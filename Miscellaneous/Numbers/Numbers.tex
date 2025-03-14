@@ -1,0 +1,1244 @@
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+%\usepackage[none]{hyphenat}
+\usepackage{fancyhdr} %create a custom header and footer
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[english, main=ukrainian]{babel}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{physics}
+\usepackage[unicode]{hyperref}
+\usepgfplotslibrary{polar}
+\usepackage{ifthen}
+\usetikzlibrary{spy}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+
+
+
+\fancyhead{}
+\fancyfoot{}
+\parindent 0ex
+\def\huge{\displaystyle}
+\def\rightproof{$\boxed{\Rightarrow}$ }
+\def\leftproof{$\boxed{\Leftarrow}$ }
+
+\usepackage{pdfpages}
+
+\newtheoremstyle{theoremdd}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\normalfont}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ \textbf{#3}\\}}}
+
+\theoremstyle{theoremdd}
+\newtheorem{theorem}{Theorem}[subsection]
+  
+\theoremstyle{theoremdd}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\theoremstyle{theoremdd}
+\newtheorem*{definition*}{Definition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{samedef}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{theoremdd}
+\newtheorem*{example*}{Example.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{lemma*}{Lemma.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{theorem*}{Theorem.}
+
+\theoremstyle{theoremdd}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{theoremdd}
+\newtheorem*{proposition*}{Proposition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{theoremdd}
+\newtheorem*{remark*}{Remark.}
+
+\theoremstyle{theoremdd}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{theoremdd}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{theoremdd}
+\newtheorem*{corollary*}{Corollary.}
+
+\newenvironment{pf}{\vspace*{-3mm} \textbf{Proof. \\}}{$\blacksquare$}
+\newenvironment{pfMI}{\vspace*{-3mm} \textbf{Proof MI. \\}}{$\blacksquare$}
+\newenvironment{pfNoTh}{\textbf{Proof. \\}}{$\blacksquare$}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\makeatletter
+\renewenvironment{proof}[1][Proof.\\]{\par
+\pushQED{\hfill \qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\bfseries
+#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\charac}{char}
+
+\newcommand\thref[1]{\textbf{Th.~\ref{#1}}}
+\newcommand\defref[1]{\textbf{Def.~\ref{#1}}}
+\newcommand\exref[1]{\textbf{Ex.~\ref{#1}}}
+\newcommand\prpref[1]{\textbf{Prp.~\ref{#1}}}
+\newcommand\rmref[1]{\textbf{Rm.~\ref{#1}}}
+\newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
+\newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
+%\renewcommand{\stcomp}[1]{{#1}^{\mathsf{c}}}
+
+
+\newcommand{\symdif}{\,\triangle\,} % symmetric difference
+\newcommand{\plusplus}{\!\!\mathrel{++}}
+\newcommand{\subtract}{\text{--}}
+
+%delete
+
+\begin{document}
+\tableofcontents
+\newpage
+\section{Натуральні числа}
+Зі школи ми знаємо, що таке натуральні числа. Ось така множина:
+\begin{align*}
+\mathbb{N} = \{1,2,3,4,\dots \}
+\end{align*}
+Зараз буде максимально строгий підхід до побудови даної множини, яка дозволить відповісти на деякі питання. Вперше це вигадав математик Пеано, на честь якого видумані аксіоми.
+
+\subsection{Аксіоми Пеано}
+Використовуються два фундаметальні поняття: елемент $1$ та операція інкремент $\_\plusplus$ (позначення взяте з мов програмувань).\\
+Тобто хочемо побудувати $\mathbb{N}$, що складається з $1$ та інших елементів, що отримуються з $0$ за допомогою інкремента. Тобто множина містить такі елементи:\\
+$1, 1 \plusplus , (1 \plusplus) \plusplus, ((1 \plusplus)\plusplus)\plusplus, \dots$\\
+До речі, $1 \plusplus$ часто називають ще \textbf{наступником} числа $1$.
+
+\begin{axiom}
+$1 \in \mathbb{N}$.
+\end{axiom}
+
+\begin{axiom}
+$n \in \mathbb{N} \implies n \plusplus \in \mathbb{N}$.
+\end{axiom}
+
+Далі такі позначення будуть незручними, тому роблять перепозначення:\\
+$2 = 1\plusplus$;\\
+$3 = (1\plusplus)\plusplus$;\\
+$4 = ((1\plusplus)\plusplus)\plusplus$;\\
+\vdots \\
+Іншими словами $2 = 1\plusplus,\ 3 = 2\plusplus,\ 4 = 3\plusplus, \dots$\\
+Отже, ми вже визначили числа.
+\bigskip \\
+Усі ці числа $2,3,4,\dots \in \mathbb{N}$. Наприклад, доведемо, що $4 \in \mathbb{N}$.\\
+За першою аксіомою $1 \in \mathbb{N}$. За другою аксіомою $2 = 1\plusplus \in \mathbb{N}$. Знову за другою аксіомою $3 = 2\plusplus \in \mathbb{N}$. Знову за другою аксіомою $4 = 3\plusplus \in \mathbb{N}$.
+\bigskip \\
+Цих двох аксіом недостатньо. Нам треба переконатися, що нема зациклення, тобто, наприклад, $4\plusplus \neq 1$. Для цього потрібна нова аксіома:
+
+\begin{axiom}
+$1$ не є наступником жодного натурального числа, тобто $n \plusplus \neq 1$ для будь-якого $n \in \mathbb{N}$.
+\end{axiom}
+Маючи таку аксіому, на прикладі можемо довести, що $5 \neq 1$. Тобто дійсно $4\plusplus \neq 0$.\\
+За означення $5 = 4\plusplus$. Використавши першу та другу аксіоми, отримаємо, що $4 \in \mathbb{N}$. За третьою аксіомою, $4\plusplus \neq 0$. Отже, $5 \neq 0$.
+\bigskip \\
+Також нам треба уникнути ситуації, коли $5 \plusplus = 5$ (тоді $6 = 5,\ 7 = 5,\ 8 = 5,\ \dots$). Поки це не суперечить трьом аксіомам. Ще одна проблема, що може бути таке, що $5\plusplus = 1$ (тоді далі $6 = 1,\ 7 = 2,\ \dots$). Тому потрібна ще одна аксіома:
+
+\begin{axiom}
+Різні натуральні числа мають різні наступники. Іншими словами, $n,m \in \mathbb{N},\ n \neq m \implies n\plusplus \neq m \plusplus$.
+\end{axiom}
+
+Маючи таку акосіму, на прикладі можемо довести, що $7 \neq 3$.\\
+!Припустимо, що $7 = 3$. Тоді $6\plusplus = 2\plusplus$, звідси за четвертою аксіомою $6 = 2$. Отже, $5 \plusplus = 1\plusplus$. Знову за четвертою аксіомою $5 = 1$. Ми вже довели, що це неможливо!
+
+\begin{axiom}[Принцип математичної індукції]
+Нехай $S \subset \mathbb{N}$. Про цю множину відомо, що $1 \in S$, а також якщо $n \in S$, то $n\plusplus \in S$. Тоді $S = \mathbb{N}$.  
+\end{axiom}
+
+Необхідність даної аксіоми трохи неочевидна. Це дозволяє в множині натуральних чисел зберігати лише натуральні числі, але не дозволяє зберігати десяткові дроби, букви, котів та інше сміття.
+
+\subsection{Додавання}
+\begin{definition}
+Нехай $m \in \mathbb{N}$.\\
+\textbf{Додавання до числа $m$} визначається таким чином:
+\begin{align*}
+1 + m \overset{\text{def.}}{=} m \plusplus
+\end{align*}
+Припускаючи, що ми знаємо, як додавати $n + m$, ми можемо визначити
+\begin{align*}
+(n\plusplus) + m \overset{\text{def.}}{=} (n+m)\plusplus
+\end{align*}
+\end{definition}
+
+\begin{example}
+Наприклад, $2 + 3 = 5$.\\
+$2+3 = 1\plusplus + 3 = (1+3)\plusplus = (3 \plusplus) \plusplus = 4 \plusplus = 5$.
+\end{example}
+
+\begin{remark}
+$n+m \in \mathbb{N}$.\\
+Доведемо це за індукцією. Зафіксуємо $m \in \mathbb{N}$, а далі змінюємо $n$.\\
+При $n = 1$ маємо $1+m = m \plusplus$. Оскільки $m \in \mathbb{N}$, то за другою аксіомою $1+m \in \mathbb{N}$.\\
+Припустимо, що $n+m \in \mathbb{N}$. Доведемо, що $(n\plusplus) + m \in \mathbb{N}$. Дійсно,\\
+$(n\plusplus) + m = (n + m)\plusplus$. Припустили, що $n+m \in \mathbb{N}$, але тоді другою аксіомою $(n+m)\plusplus \in \mathbb{N}$.\\
+Отже, за п'ятою аксіомою $n+m \in \mathbb{N}$ для кожного $n \in \mathbb{N}$.
+\end{remark}
+
+\begin{lemma}
+$n + (m\plusplus) = (n+m)\plusplus$ для кожних $n,m \in \mathbb{N}$.
+\end{lemma}
+
+\begin{proof}
+Фіксуємо $m \in \mathbb{N}$. Доведемо за індукцією по $n$.\\
+При $n = 1$ маємо $1 + m\plusplus \overset{\text{def.}}{=} (m\plusplus)\plusplus = (1+m)\plusplus$.\\
+Нехай $n + (m\plusplus) = (n+m)\plusplus$. Доведемо, що \\ $(n\plusplus) + (m\plusplus) = ((n\plusplus) + m)\plusplus$.\\
+$(n\plusplus) + (m\plusplus) = (n + (m\plusplus))\plusplus = ((n+m)\plusplus)\plusplus$ за означенням додавання та за припущенням.\\
+$(n\plusplus) + m = (n+m)\plusplus$ за означення додавання.
+\end{proof}
+
+\begin{proposition}[Комутативність]
+$n + m = m + n$ для кожного $n,m \in \mathbb{N}$.
+\end{proposition}
+
+\begin{proof}
+Фіксуємо $m \in \mathbb{N}$. Далі доведемо за індукцією по $n$.\\
+Доведемо, що $1+m = m+1$. Тут варто довести за індукцією по $m$. При $m = 1$ маємо очевидну рівність. Якщо $1+m = m+1$, то звідси $1 + m\plusplus = (1+m)\plusplus = (m+1)\plusplus = m\plusplus + 1$.\\
+Припустимо, що $n+m = m+n$. Доведемо, що $(n\plusplus) + m = m + (n\plusplus)$.\\
+За означенням $(n\plusplus) + m = (n+m)\plusplus$. За лемою $m + (n\plusplus) = (m+n)\plusplus \overset{\text{припущення}}{=} (n+m)\plusplus$.
+\end{proof}
+
+\begin{proposition}[Асоціативність]
+$(a+b) + c = a+ (b+c)$ для кожних $a,b,c \in \mathbb{N}$.\\
+У силу асоціативності можна писати просто $a+b+c$.
+\end{proposition}
+
+\begin{proof}
+Фіксуємо $a,b \in \mathbb{N}$. Далі доведення за індукцією по $c$.\\
+$(a+b) + 1 = (a+b)\plusplus$.\\
+$a + (b+1) = a + b \plusplus = (a+b)\plusplus$.\\
+Припустимо, що $(a+b)+c=a+(b+c)$. Доведемо, що $(a+b) + c \plusplus = a + (b + c\plusplus)$.\\
+$(a+b) + c\plusplus \overset{\text{друга лема}}{=} ((a+b) + c)\plusplus \overset{\text{припущення}}{=} (a+ (b+c))\plusplus \overset{\text{друга лема}}{=} a + ((b+c)\plusplus ) = a + (b + c\plusplus )$.
+\end{proof}
+
+\begin{proposition}[Скорочення]
+Нехай $a,b,c \in \mathbb{N}$ такі, що $a+b = a+c$. Тоді $b = c$.\\
+\textit{Це твердженням буде підґрунттям для визначення віднімання чисел.}
+\end{proposition}
+
+\begin{proof}
+Доведемо індуктивно за $a$.\\
+$a = 1$ -- отримаємо $1 + b = 1 + c$, тобто $b\plusplus = c\plusplus$, а за четвертою аксіомою $b = c$.\\
+Нехай $a + b = a + c \implies b = c$. Хочемо довести, що \\ $(a\plusplus) + b = (a\plusplus) + c \implies b = c$.\\
+За означенням довавання $(a\plusplus) + b = (a+b)\plusplus$ та $(a\plusplus) + c = (a +c)\plusplus$, тобто ми маємо $(a+b)\plusplus = (a+c)\plusplus$. За четвертою аксіомою $a + b = a + c$ та за припущенням $b = c$.
+\end{proof}
+
+%shift to integers
+\iffalse
+\begin{definition}
+Число $n \in \mathbb{N}$ вважається \textbf{додатним}, якщо $n\neq 0$.
+\end{definition}
+
+\begin{proposition}
+Нехай $a$ -- додатне та $b \in \mathbb{N}$. Тоді $a + b$ -- додатне.
+\end{proposition}
+
+\begin{proof}
+Індуктивно за $b$.\\
+$b = 0 \implies a+b = a+0 = a$ -- додатне.\\
+Нехай $a + b$ -- додатне. Тоді $a + (b \plusplus) = (a+b)\plusplus$ ненулеве за третьою аксіомою, тому додатне.
+\end{proof}
+
+\begin{corollary}
+Нехай $a,b \in \mathbb{N}$ так, що $a+b = 0$. Тоді $a = 0,\ b = 0$.
+\end{corollary}
+
+\begin{lemma}
+Нехай $a$ -- додатне число. Тоді існує єдине натуральне число $b \in \mathbb{N}$, для якого $b \plusplus = a$. \\
+\textit{Вказівка: індукція по $a$.}
+\end{lemma}
+\fi
+
+\subsection{Порядок}
+\begin{definition}
+Нехай $m,n \in \mathbb{N}$.\\
+Кажуть, що $n$ \textbf{більше за} $m$, якщо \begin{align*}
+n = m + a,\ a \in \mathbb{N}
+\end{align*}
+Позначення: $n > m$.\\
+Кажуть, що $n$ \textbf{більше або дорівнює} $m$, якщо
+\begin{align*}
+n > m \text{ або } n = m
+\end{align*}
+Позначення: $n \geq m$ (скоро доведемо, що лише один із варіантів можливий).
+\end{definition}
+
+\begin{example}
+$8 > 5$, тому що $8 = 5 + 3$.
+\end{example}
+
+\begin{remark}
+$n \plusplus > n$ для кожного $n \in \mathbb{N}$.
+\end{remark}
+
+\begin{lemma}
+Нехай $a,b \in \mathbb{N}$. Тоді $a < b \iff a \plusplus \leq b$.
+\end{lemma}
+
+\begin{proof}
+\rightproof Дано: $a < b$, тобто звідси $b = a + u$. Якщо раптом $u = 1$, то звідси $a\plusplus = b$. Інакше $u > 1$, тобто $u = 1 + v$, звідси випливає $b = a \plusplus + (u+v)$, а тому $a \plusplus < b$.
+\bigskip \\
+\leftproof Дано: $a \plusplus \leq b$, тобто $b = a\plusplus + u = a + (1+u)$, отже $a <b$.
+\end{proof}
+
+\begin{proposition}[Трихотомія порядку натуральних чисел]
+Нехай $a,b \in \mathbb{N}$. Тоді або $a < b$, або $a = b$, або $a > b$. Причому лише один із трьох можливий.
+\end{proposition}
+
+\begin{proof}
+Спочатку доведемо, що лише один з трьох випадків можливий. Нехай $a < b$, тобто $b = a + u$ для деякого $u \in \mathbb{N}$.\\
+!Припустимо, що $a = b$, звідси маємо $a = a + u$. Але можна за МІ по $a$ довести, що $a \neq a + u$ -- суперечність!\\
+!Припустимо, що $a > b$, звідси $a = b + v$, але тоді $a = (a + u) +v = a + (u+v)$. Аналогічно це не виконується, як на минулому абзаці -- суперечність!
+Отже, перше та друге, перше та третє не можуть бути одночасно. Друге та третє теж не можуть бути одночасно (аналогічно як перше та друге).
+\bigskip \\
+Фіксуємо $b \in \mathbb{N}$. Твердження доведемо за індукцією по $a$.\\
+При $a = 1$ отримаємо $1 \leq b$ -- і це виконується для всіх $b \in \mathbb{N}$ (можна це окремо довести індуктивно за $b$). Значить, або $b = 1$, або $b > 1$.\\
+Нехай при деякому $a$ виконується твердження (тобто $a < b$ або $a = b$ або $a > b$). Доведемо це твердження при $a \plusplus$.\\
+Якщо $a > b$, то $a\plusplus > b$. Якщо $a = b$, то $a \plusplus > b$. (неважко довести). Якщо $a < b$, то маємо $a \plusplus \leq b$, а тому звідси або $a \plusplus = b$, або $a \plusplus < b$.
+\end{proof}
+
+\begin{proposition}
+Нехай $a,b,c \in \mathbb{N}$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a \geq a$ (рефлексивність);
+\item $a \geq b,\ b \geq a \implies a = b$ (антисиметричність);
+\item $a \geq b,\ b \geq c \implies a \geq c$ (транзитивність);
+\item $a \geq b \iff a + c \geq b + c$ (збереження порядку за додаванням);
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Доведемо кожну властивість окремо:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a \geq a$, просто тому що $a = a$.
+\item Нехай $a \geq b,\ b \geq a$. Це означає, що $a > b$ або $a = b$ та $b < a$ або $a = b$. За трихотомією єдиним варіантом залишається $a = b$. 
+\item Нехай $a \geq b,\ b \geq c$. Якщо $a = b$ або $b = c$, то автоматично $a \geq c$. Якщо $a > b,\ b > c$, то звідси $a = b + u,\ b = c + v$, значить $a = c + (u+v)$, тож $a > c$.
+\item Доведення в дві сторони.\\
+\rightproof Дано: $a \geq b$. Якщо $a = b$, то тоді $a+c=b+c$. Якщо $a > b$, тобто $a = b + u$, то звідси $a+c= (b+u)+c = (b+c)+u$, тож $a+c>b+c$.\\
+\leftproof Дано: $a+c \geq b+c$. Якщо $a+c = b+c$, то звідси $a = b$ за скороченням. Якщо $a+c > b+c$, тобто $a+c = (b+c) + u$, то за скороченням $a = b+u$, тобто $a > b$.
+\end{enumerate}
+Усі властивості доведені.
+\end{proof}
+
+\begin{proposition}[Посилений принцип математичної індукції]
+Нехай $m \in \mathbb{N}$ та $P(m)$ -- будь-яка властивість, яка відноситься до натурального числа $m$. Нехай для кожного $m \geq m_0$ справедливе наступне: якщо $P(m')$ виконується для всіх $m_0 \leq m' < m$, тоді $P(m)$ теж виконується (зокрема тут кажуть, що $P(m_0)$ теж виконується). Тоді $P(m)$ виконується для всіх $m \geq m_0$. 
+\end{proposition}
+
+\begin{remark}
+Індукцію зазвичай ми починали з числа $1$. Часто на практиці починають з іншого натурального числа, як-от $2$ або $3$ або будь-яке інше.
+\end{remark}
+
+\begin{proof}
+Треба тут розглянути $Q(n)$ -- властивість, де $P(m)$ виконується для всіх $m_0 \leq m < n$. Зауважимо, що при $n < m_0$ властивість $Q(n)$ марно правдива. (TODO: дописати).
+\end{proof}
+
+\subsection{Множення (виправити)}
+\begin{definition}
+Нехай $m \in \mathbb{N}$.\\
+\textbf{Множення до числа} $m$ визначається таким чином:
+\begin{align*}
+0 \cdot m \overset{\text{def.}}{=} 0
+\end{align*}
+Припускаючи, що ми знаємо, як множити $n \cdot m$, ми можемо визначити
+\begin{align*}
+(n \plusplus) \cdot m \overset{\text{def.}}{=} (n \cdot m) + m
+\end{align*}
+\end{definition}
+
+\begin{remark}
+$n \cdot m \in \mathbb{N}$.\\
+Беремо $0 \in \mathbb{N}$. Отримаємо $0 \cdot m = 0 \in \mathbb{N}$.\\
+Припустимо, що $n \cdot m \in \mathbb{N}$. Тоді $(n \plusplus) \cdot m = (n \cdot m) + m$. За припущенням $n \cdot m \in \mathbb{N}$, при цьому також $m \in \mathbb{N}$. Тоді, як відомо, сума $(n \cdot m) + m \in \mathbb{N}$.  
+\end{remark}
+
+\begin{lemma}
+$m \cdot 0 = 0$ для кожного $n \in \mathbb{N}$.\\
+\textit{Аналогічне доведення, як було з $n + 0 = 0$.} 
+\end{lemma}
+
+\begin{lemma}
+$m \cdot (n \plusplus) = m \cdot n + m$ для кожних $m,n \in \mathbb{N}$.\\
+\textit{Аналогічне доведення, як було з $n + (m \plusplus) = (n+m)\plusplus$.}
+\end{lemma}
+
+\begin{proposition}[Комутативність]
+$n \cdot m = m \cdot n$ для всіх $n,m \in \mathbb{N}$.\\
+\textit{Аналогічно фіксуємо $m$ та доводимо індукцією за $n$, паралельно використовуючи вище отримані леми}.
+\end{proposition}
+
+\begin{lemma}
+Нехай $m,n \in \mathbb{N}$. Тоді $n \cdot m = 0 \iff n = 0 \text{ або } m = 0$. 
+\end{lemma}
+
+\begin{proof}
+Насправді спочатку треба довести таке: якщо $m,n$ -- додатні, то $mn$ -- додатне. Фіксуючи $m$, ми доводимо за індукцією по $n$.\\
+Після цього нехай $mn = 0$. Якби $m \neq 0, n \neq 0$ одночасно, тобто $m,n$ -- додатні, то отримали б $mn \neq 0$, тобто додатне, що неможливо. 
+\end{proof}
+
+\begin{proposition}[Дистрибутивність]
+$a(b+c) = ab + ac$ та $(b+c)a = ba + ca$ для всіх $a,b,c \in \mathbb{N}$.
+\end{proposition}
+
+\begin{proof}
+У силу комутативності множення достатньо довести $a(b+c) = ab + ac$.\\
+Фіксуємо $a,b \in \mathbb{N}$. Доведення за індукцією по $c$.\\
+При $c = 0$ маємо $a(b+0) = ab = ab + 0 = ab + a0$.\\
+Нехай $a(b+c) = ab + ac$ виконується. Доведемо, що $a(b+ (c\plusplus)) = ab + a(c \plusplus)$.\\
+$a(b + c\plusplus) = a (b + c) \plusplus = a (b+c) + a$.\\
+$ab + a(c \plusplus) = ab + ac + a \overset{\text{припущення}}{=} a(b+c) + a$.
+\end{proof}
+
+\begin{proposition}[Асоціативність]
+$(a \cdot b) \cdot c = a \cdot (b \cdot c)$ для всіх $a,b,c \in \mathbb{N}$.
+\end{proposition}
+
+\begin{proof}
+Фіксуємо $a,b \in \mathbb{N}$. Доводимо індукцією по $c$.\\
+$(a \cdot b) \cdot 0 = 0 = a \cdot (b \cdot 0)$.\\
+Нехай $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ виконується. Доведемо, що $(a \cdot b) \cdot (c \plusplus) = a \cdot (b \cdot c\plusplus)$.\\
+$(a \cdot b) \cdot (c \plusplus) = (a \cdot b) \cdot c + (a \cdot b) \overset{\text{припущення}}{=} a \cdot (b \cdot c) + a \cdot b \overset{\text{дистрибутивність}}{=} a \cdot (b \cdot c + b) = a \cdot (b \cdot c \plusplus)$.
+\end{proof}
+
+\begin{proposition}[Збереження порядку за множенням]
+Нехай $a,b \in \mathbb{N}$ так, що $a < b$. Нехай $c$ -- додатне. Тоді $ac < bc$.
+\end{proposition}
+
+\begin{proof}
+Оскільки $a < b$, маємо $b = a+d$ для деякого додатного $d$. Помножимо на $c$ та за дистрибутивністю отримаємо $bc = ac + dc$.\\
+$d,c$ -- додатні, тому $dc$ -- додатне. Звідси $ac < bc$.
+\end{proof}
+
+\begin{corollary}[Скорочення]
+Нехай $a,b,c \in \mathbb{N}$ такі, що $ac = bc$ при $c \neq 0$. Тоді $a = b$.\\
+\textit{Це твердження буде підґрунттям для визначення ділення.}
+\end{corollary}
+
+\begin{proof}
+!Припустимо, що $a < b$. Тоді маємо $ac < bc$, бо $c$ -- додатне. Суперечність!\\
+Аналогічно при $a > b$ отримаємо суперечність $ac > bc$.\\
+За трихотомією, єдине залишаєтсья в нас $a = b$.
+\end{proof}
+
+\begin{definition}
+Нехай $m \in \mathbb{N}$.\\
+\textbf{Зведення числа $m$ в степінь} визначається таким чином:
+\begin{align*}
+m^0 = 1
+\end{align*}
+Припускаючи, що ми знаємо, як брати $m^n$, ми можемо визначити
+\begin{align*}
+m^{n\plusplus} = m^n \cdot m
+\end{align*}
+\end{definition}
+\newpage
+
+\section{Натуральні числа (починаючи з нуля)}
+Зі школи ми знаємо, що таке натуральні числа. Ось така множина:
+\begin{align*}
+\mathbb{N} = \{1,2,3,4,\dots \}
+\end{align*}
+Постає чимало питань: ''Стартуємо з $0$ та рахуємо до нескінченності -- чи не буде зациклювання? Як додавати, множити числа?'' І так далі.
+\bigskip \\
+Часто в множину $\mathbb{N}$ включають число $0$.
+
+\subsection{Аксіоми Пеано}
+Ми використаємо два фундаметальні поняття: елемент $0$ та операцію інкремент $\_\plusplus$ (позначення взяте з мов програмувань).\\
+Тобто ми хочемо побудувати $\mathbb{N}$, що складається з $0$ та інших елементів, що отримуються з $0$ за допомогою інкремента. Тобто множина містить такі елементи:\\
+$0, 0 \plusplus , (0 \plusplus) \plusplus, ((0 \plusplus)\plusplus)\plusplus, \dots$\\
+До речі, $0 \plusplus$ часто називають ще \textbf{наступником} числа $0$.
+
+\begin{axiom}
+$0 \in \mathbb{N}$.
+\end{axiom}
+
+\begin{axiom}
+$n \in \mathbb{N} \implies n \plusplus \in \mathbb{N}$.
+\end{axiom}
+
+Далі такі позначення будуть незручними, тому роблять перепозначення:\\
+$1 = 0\plusplus$;\\
+$2 = (0\plusplus)\plusplus$;\\
+$3 = ((0\plusplus)\plusplus)\plusplus$;\\
+\vdots \\
+Іншими словами $1 = 0\plusplus,\ 2 = 1\plusplus,\ 3 = 2\plusplus, \dots$\\
+Отже, ми вже визначили числа.
+\bigskip \\
+Усі ці числа $1,2,3,\dots \in \mathbb{N}$. Наприклад, доведемо, що $3 \in \mathbb{N}$.\\
+За першою аксіомою $0 \in \mathbb{N}$. За другою аксіомою $1 = 0\plusplus \in \mathbb{N}$. Знову за другою аксіомою $2 = 1\plusplus \in \mathbb{N}$. Знову за другою аксіомою $3 = 2\plusplus \in \mathbb{N}$.
+\bigskip \\
+Цих двох аксіом недостатньо. Нам треба переконатися, що нема зациклення, тобто, наприклад, $3\plusplus \neq 0$. Для цього потрібна нова аксіома:
+
+\begin{axiom}
+$0$ не є наступником жодного натурального числа, тобто $n \plusplus \neq 0$ для будь-якого $n \in \mathbb{N}$.
+\end{axiom}
+Маючи таку аксіому, на прикладі можемо довести, що $4 \neq 0$. Тобто дійсно $3\plusplus \neq 0$.\\
+За означення $4 = 3\plusplus$. Використавши першу та другу аксіоми, отримаємо, що $3 \in \mathbb{N}$. За третьою аксіомою, $3\plusplus \neq 0$. Отже, $4 \neq 0$.
+\bigskip \\
+Також нам треба уникнути ситуації, коли $4 \plusplus = 4$ (тоді $5 = 4,\ 6 = 4,\ 7 = 4,\ \dots$). Поки це не суперечить трьом аксіомам. Ще одна проблема, що може бути таке, що $4\plusplus = 1$ (тоді далі $5 = 1,\ 6 = 2,\ \dots$). Тому потрібна ще одна аксіома:
+
+\begin{axiom}
+Різні натуральні числа мають різні наступники. Іншими словами, $n,m \in \mathbb{N},\ n \neq m \implies n\plusplus \neq m \plusplus$.
+\end{axiom}
+
+Маючи таку акосіму, на прикладі можемо довести, що $6 \neq 2$.\\
+!Припустимо, що $6 = 2$. Тоді $5\plusplus = 1\plusplus$, звідси за четвертою аксіомою $5 = 1$. Отже, $4 \plusplus = 0\plusplus$. Знову за четвертою аксіомою $4 = 0$. Ми вже довели, що це неможливо!
+
+\iffalse
+\begin{axiom}[Принцип математичної індукції]
+Нехай $P(n)$ -- будь-яка властивість, що відноситься до натурального числа $n$. Припустимо, що $P(0)$ виконується. Припустимо також, що якщо $P(n)$ виконується, то $P(n\plusplus)$ теж виконується. Тоді $P(n)$ виконується для всіх $n \in \mathbb{N}$.
+\end{axiom}
+\fi
+
+\begin{axiom}[Принцип математичної індукції]
+Нехай $S \subset \mathbb{N}$. Про цю множину відомо, що $0 \in S$, а також якщо $n \in S$, то $n\plusplus \in S$. Тоді $S = \mathbb{N}$.  
+\end{axiom}
+
+\begin{definition}
+\textbf{Цифрами} називають елементи
+\begin{align*}
+\{0,1,2,3,4,5,6,7,8,9\}
+\end{align*}
+\end{definition}
+
+\subsection{Додавання}
+\begin{definition}
+Нехай $m \in \mathbb{N}$.\\
+\textbf{Додавання до числа $m$} визначається таким чином:
+\begin{align*}
+0 + m \overset{\text{def.}}{=} m
+\end{align*}
+Припускаючи, що ми знаємо, як додавати $n + m$, ми можемо визначити
+\begin{align*}
+(n\plusplus) + m \overset{\text{def.}}{=} (n+m)\plusplus
+\end{align*}
+\end{definition}
+
+\begin{example}
+Наприклад, $2 + 3 = 5$.\\
+$2 + 3 = (0\plusplus)\plusplus + 3 = (0\plusplus + 3)\plusplus = ((0+3)\plusplus)\plusplus = (3\plusplus)\plusplus = 4\plusplus = 5$.
+\end{example}
+
+\begin{remark}
+$n+m \in \mathbb{N}$.\\
+Беремо $0 \in \mathbb{N}$ за першою аксіомою. Отримаємо $0+m = m \in \mathbb{N}$.\\
+Припустимо, що $n+m \in \mathbb{N}$. Доведемо, що $(n\plusplus) + m \in \mathbb{N}$. Дійсно,\\
+$(n\plusplus) + m = (n + m)\plusplus$. Припустили, що $n+m \in \mathbb{N}$, але тоді другою аксіомою $(n+m)\plusplus \in \mathbb{N}$.\\
+Отже, за п'ятою аксіомою $n+m \in \mathbb{N}$ для кожного $n \in \mathbb{N}$.
+\end{remark}
+
+\begin{lemma}
+$n + 0 = n$ для кожного $n \in \mathbb{N}$.
+\end{lemma}
+
+\begin{proof}
+Доведемо цю лему за індукцією.\\
+$0 + 0 = 0$, оскільки відомо, що $0+m = m$.\\
+Нехай $n + 0 = n$. Доведемо, що $(n \plusplus) + 0 = n\plusplus$. За означенням $(n\plusplus + 0) = (n+0)\plusplus = n \plusplus$.
+\end{proof}
+
+\begin{lemma}
+$n + (m\plusplus) = (n+m)\plusplus$ для кожних $n,m \in \mathbb{N}$.
+\end{lemma}
+
+\begin{proof}
+Фіксуємо $m \in \mathbb{N}$. Доведемо за індукцією по $n$.\\
+При $n = 0$ маємо $0 + (m \plusplus) = m\plusplus$, а також $0 + m = m \implies (0+m)\plusplus = m\plusplus$.\\
+Нехай $n + (m\plusplus) = (n+m)\plusplus$. Доведемо, що \\ $(n\plusplus) + (m\plusplus) = ((n\plusplus) + m)\plusplus$.\\
+$(n\plusplus) + (m\plusplus) = (n + (m\plusplus))\plusplus = ((n+m)\plusplus)\plusplus$ за означенням додавання та за припущенням.\\
+$(n\plusplus) + m = (n+m)\plusplus$ за означення додавання.
+\end{proof}
+
+\begin{corollary}
+$n\plusplus = n+1$.
+\end{corollary}
+
+\begin{proof}
+$n+1 = n + (0\plusplus) \overset{\text{друга лема}}{=} (n+0)\plusplus \overset{\text{перша лема}}{=} n\plusplus$.
+\end{proof}
+
+\begin{proposition}[Комутативність]
+$n + m = m + n$ для кожного $n,m \in \mathbb{N}$.
+\end{proposition}
+
+\begin{proof}
+Фіксуємо $m \in \mathbb{N}$. Далі доведемо за індукцією по $n$.\\
+Доведемо, що $0+m = m+0$. За означенням $0+m = m$, тим часом за лемою $m +0 = m$.\\
+Припустимо, що $n+m = m+n$. Доведемо, що $(n\plusplus) + m = m + (n\plusplus)$.\\
+За означенням $(n\plusplus) + m = (n+m)\plusplus$. За лемою $m + (n\plusplus) = (m+n)\plusplus \overset{\text{припущення}}{=} (n+m)\plusplus$.
+\end{proof}
+
+\begin{proposition}[Асоціативність]
+$(a+b) + c = a+ (b+c)$ для кожних $a,b,c \in \mathbb{N}$.\\
+У силу асоціативності можна писати просто $a+b+c$.
+\end{proposition}
+
+\begin{proof}
+Фіксуємо $a,b \in \mathbb{N}$. Далі доведення за індукцією по $c$.\\
+$(a+b) + 0 = a+b = a+ (b+0)$.\\
+Припустимо, що $(a+b)+c=a+(b+c)$. Доведемо, що $(a+b) + c \plusplus = a + (b + c\plusplus)$.\\
+$(a+b) + c\plusplus \overset{\text{друга лема}}{=} ((a+b) + c)\plusplus \overset{\text{припущення}}{=} (a+ (b+c))\plusplus \overset{\text{друга лема}}{=} a + ((b+c)\plusplus ) = a + (b + c\plusplus )$.
+\end{proof}
+
+\begin{proposition}[Скорочення]
+Нехай $a,b,c \in \mathbb{N}$ такі, що $a+b = a+c$. Тоді $b = c$.\\
+\textit{Це твердженням буде підґрунттям для визначення віднімання чисел.}
+\end{proposition}
+
+\begin{proof}
+Доведемо індуктивно за $a$.\\
+$a = 0$ -- отримаємо $0 + b = 0 + c$, що за означенням дає $b = c$.\\
+Нехай $a + b = a + c \implies b = c$. Хочемо довести, що \\ $(a\plusplus) + b = (a\plusplus) + c \implies b = c$.\\
+За означенням довавання $(a\plusplus) + b = (a+b)\plusplus$ та $(a\plusplus) + c = (a +c)\plusplus$, тобто ми маємо $(a+b)\plusplus = (a+c)\plusplus$. За четвертою аксіомою $a + b = a + c$ та за припущенням $b = c$.
+\end{proof}
+
+\begin{definition}
+Число $n \in \mathbb{N}$ вважається \textbf{додатним}, якщо $n\neq 0$.
+\end{definition}
+
+\begin{proposition}
+Нехай $a$ -- додатне та $b \in \mathbb{N}$. Тоді $a + b$ -- додатне.
+\end{proposition}
+
+\begin{proof}
+Індуктивно за $b$.\\
+$b = 0 \implies a+b = a+0 = a$ -- додатне.\\
+Нехай $a + b$ -- додатне. Тоді $a + (b \plusplus) = (a+b)\plusplus$ ненулеве за третьою аксіомою, тому додатне.
+\end{proof}
+
+\begin{corollary}
+Нехай $a,b \in \mathbb{N}$ так, що $a+b = 0$. Тоді $a = 0,\ b = 0$.
+\end{corollary}
+
+\begin{lemma}
+Нехай $a$ -- додатне число. Тоді існує єдине натуральне число $b \in \mathbb{N}$, для якого $b \plusplus = a$. \\
+\textit{Вказівка: індукція по $a$.}
+\end{lemma}
+
+\subsection{Порядок}
+\begin{definition}
+Нехай $m,n \in \mathbb{N}$.\\
+Кажуть, що $n$ \textbf{більше або дорівнює} $m$, якщо \begin{align*}
+n = m + a,\ a \in \mathbb{N}
+\end{align*}
+Позначення: $n \geq m$.\\
+Кажуть, що $n$ \textbf{строго більше за} $m$, якщо
+\begin{align*}
+n \geq m,\ n \neq m
+\end{align*}
+Позначення: $n > m$.
+\end{definition}
+
+\begin{example}
+$8 > 5$, тому що $8 = 5 + 3$ та $8 \neq 5$.\\
+Також $n \plusplus > n$ для кожного $n \in \mathbb{N}$.
+\end{example}
+
+\begin{proposition}
+Нехай $a,b,c \in \mathbb{N}$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a \geq a$ (рефлексивність);
+\item $a \geq b,\ b \geq a \implies a = b$ (антисиметричність);
+\item $a \geq b,\ b \geq c \implies a \geq c$ (транзитивність);
+\item $a \geq b \iff a + c \geq b + c$ (збереження порядку за додаванням);
+\item $a < b \iff b = a + d$ для деякого додатного $d$;
+\item $a < b \iff a\plusplus \leq b$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Доведемо кожну властивість окремо:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a \geq a$, просто тому що $a = a + 0$ за означення додавання.
+\item Нехай $a \geq b,\ b \geq a$. Це означає, що $a = b + m$ та $b = a + n$. Отже, $a = a + (m + n)$. За скороченням отримаємо $m + n = 0$, звідси $m = n = 0$. Таким чином, $a = b$.
+\item Нехай $a \geq b,\ b \geq c$. Тобто маємо $a = b + m$ та $b = c + n$. Отже, $a = (c + n) + m = c + (n + m)$. Таким чином, $a \geq c$.
+\item Якщо $a \geq b$, тобто $a = b + m$, то звідси $a + c = (b + m) + c = (b + c) + m$, тобто отримаємо $a + c \geq b + c$. Якщо $a + c \geq b + c$, тобто $a + c = (b + c) + k = (b + k) + c$ , то за скороченням $a = b + k$, тому $a \geq b$.
+\item Нехай спочатку $a < b$, тобто $a \leq b$ та $a \neq b$. Маємо $b = a + d$, при цьому $d \neq 0$ (інакше отримали б $a = b$). Отримали $b = a + d$ для деякого додатного $d$.\\
+Нехай $b = a + d$ для деякого додатного $d$. Уже маємо $a \leq b$. Якби $a = b$, то отримали б $a = a + d$, а за скороченням $0 = d$, що неможливо. Отже, $a \leq b,\ a \neq b$, звідси $a < b$.
+\item Нехай $a < b$, тобто $b = a + d$. Оскільки $d$ -- додатне, то існує $x \in \mathbb{N}$, для якого $x\plusplus = d$. Значить, $b = a + x\plusplus = a + (x+1) = (a+1) + x = a\plusplus + x$. Таким чиниом, $a\plusplus \leq b$.\\
+Нехай $a \plusplus \leq b$, тобто $b = a\plusplus + m = (a+1) + m = a + (m+1) = a + m\plusplus$. Зауважимо, що $m \plusplus$ -- додатне число за третьою аксіомою, тому $a < b$. 
+\end{enumerate}
+Усі властивості доведені.
+\end{proof}
+
+\begin{proposition}[Трихотомія порядку натуральних чисел]
+Нехай $a,b \in \mathbb{N}$. Тоді або $a < b$, або $a = b$, або $a > b$. Причому лише один із трьох можливий.
+\end{proposition}
+
+\begin{proof}
+Спочатку доведемо, що лише один з трьох випадків можливий.\\
+Якщо $a < b$, то автоматично $a \neq b$. Якщо $a > b$, то автоматично $a \neq b$.\\
+Якщо $a < b,\ a < b$, то за антисиметричністю $a = b$, що неможливо.\\
+Отже, справді лише один з трьох випадків можливий.
+\bigskip \\
+Фіксуємо $b \in \mathbb{N}$. Твердження доведемо за індукцією по $a$.\\
+При $a = 0$ отримаємо $0 \leq b$ -- і це виконується для всіх $b$ (можна це окремо довести індуктивно за $b$). Значить, або $b = 0$, або $b > 0$.\\
+Нехай при деякому $a$ виконується твердження (тобто $a < b$ або $a = b$ або $a > b$). Доведемо це твердження при $a \plusplus$.\\
+Якщо $a > b$, то $a\plusplus > b$. Якщо $a = b$, то $a \plusplus > b$. (неважко довести)\\
+Якщо $a < b$, то за п'ятою властивістю порядку $a \plusplus \leq b$, тому або $a \plusplus = b$, або $a \plusplus < b$.
+\end{proof}
+
+\begin{proposition}[Посилений принцип математичної індукції]
+Нехай $m \in \mathbb{N}$ та $P(m)$ -- будь-яка властивість, яка відноситься до натурального числа $m$. Нехай для кожного $m \geq m_0$ справедливе наступне: якщо $P(m')$ виконується для всіх $m_0 \leq m' < m$, тоді $P(m)$ теж виконується (зокрема тут кажуть, що $P(m_0)$ теж виконується). Тоді $P(m)$ виконується для всіх $m \geq m_0$. 
+\end{proposition}
+
+\begin{remark}
+Індукцію зазвичай ми починали з числа $0$. Часто на практиці починають з іншого натурального числа, як-от $1$ або $2$ або будь-яке інше.
+\end{remark}
+
+\begin{proof}
+Треба тут розглянути $Q(n)$ -- властивість, де $P(m)$ виконується для всіх $m_0 \leq m < n$. Зауважимо, що при $n < m_0$ властивість $Q(n)$ марно правдива. (TODO: дописати).
+\end{proof}
+
+\subsection{Множення}
+\begin{definition}
+Нехай $m \in \mathbb{N}$.\\
+\textbf{Множення до числа} $m$ визначається таким чином:
+\begin{align*}
+0 \cdot m \overset{\text{def.}}{=} 0
+\end{align*}
+Припускаючи, що ми знаємо, як множити $n \cdot m$, ми можемо визначити
+\begin{align*}
+(n \plusplus) \cdot m \overset{\text{def.}}{=} (n \cdot m) + m
+\end{align*}
+\end{definition}
+
+\begin{remark}
+$n \cdot m \in \mathbb{N}$.\\
+Беремо $0 \in \mathbb{N}$. Отримаємо $0 \cdot m = 0 \in \mathbb{N}$.\\
+Припустимо, що $n \cdot m \in \mathbb{N}$. Тоді $(n \plusplus) \cdot m = (n \cdot m) + m$. За припущенням $n \cdot m \in \mathbb{N}$, при цьому також $m \in \mathbb{N}$. Тоді, як відомо, сума $(n \cdot m) + m \in \mathbb{N}$.  
+\end{remark}
+
+\begin{lemma}
+$m \cdot 0 = 0$ для кожного $n \in \mathbb{N}$.\\
+\textit{Аналогічне доведення, як було з $n + 0 = 0$.} 
+\end{lemma}
+
+\begin{lemma}
+$m \cdot (n \plusplus) = m \cdot n + m$ для кожних $m,n \in \mathbb{N}$.\\
+\textit{Аналогічне доведення, як було з $n + (m \plusplus) = (n+m)\plusplus$.}
+\end{lemma}
+
+\begin{proposition}[Комутативність]
+$n \cdot m = m \cdot n$ для всіх $n,m \in \mathbb{N}$.\\
+\textit{Аналогічно фіксуємо $m$ та доводимо індукцією за $n$, паралельно використовуючи вище отримані леми}.
+\end{proposition}
+
+\begin{lemma}
+Нехай $m,n \in \mathbb{N}$. Тоді $n \cdot m = 0 \iff n = 0 \text{ або } m = 0$. 
+\end{lemma}
+
+\begin{proof}
+Насправді спочатку треба довести таке: якщо $m,n$ -- додатні, то $mn$ -- додатне. Фіксуючи $m$, ми доводимо за індукцією по $n$.\\
+Після цього нехай $mn = 0$. Якби $m \neq 0, n \neq 0$ одночасно, тобто $m,n$ -- додатні, то отримали б $mn \neq 0$, тобто додатне, що неможливо. 
+\end{proof}
+
+\begin{proposition}[Дистрибутивність]
+$a(b+c) = ab + ac$ та $(b+c)a = ba + ca$ для всіх $a,b,c \in \mathbb{N}$.
+\end{proposition}
+
+\begin{proof}
+У силу комутативності множення достатньо довести $a(b+c) = ab + ac$.\\
+Фіксуємо $a,b \in \mathbb{N}$. Доведення за індукцією по $c$.\\
+При $c = 0$ маємо $a(b+0) = ab = ab + 0 = ab + a0$.\\
+Нехай $a(b+c) = ab + ac$ виконується. Доведемо, що $a(b+ (c\plusplus)) = ab + a(c \plusplus)$.\\
+$a(b + c\plusplus) = a (b + c) \plusplus = a (b+c) + a$.\\
+$ab + a(c \plusplus) = ab + ac + a \overset{\text{припущення}}{=} a(b+c) + a$.
+\end{proof}
+
+\begin{proposition}[Асоціативність]
+$(a \cdot b) \cdot c = a \cdot (b \cdot c)$ для всіх $a,b,c \in \mathbb{N}$.
+\end{proposition}
+
+\begin{proof}
+Фіксуємо $a,b \in \mathbb{N}$. Доводимо індукцією по $c$.\\
+$(a \cdot b) \cdot 0 = 0 = a \cdot (b \cdot 0)$.\\
+Нехай $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ виконується. Доведемо, що $(a \cdot b) \cdot (c \plusplus) = a \cdot (b \cdot c\plusplus)$.\\
+$(a \cdot b) \cdot (c \plusplus) = (a \cdot b) \cdot c + (a \cdot b) \overset{\text{припущення}}{=} a \cdot (b \cdot c) + a \cdot b \overset{\text{дистрибутивність}}{=} a \cdot (b \cdot c + b) = a \cdot (b \cdot c \plusplus)$.
+\end{proof}
+
+\begin{proposition}[Збереження порядку за множенням]
+Нехай $a,b \in \mathbb{N}$ так, що $a < b$. Нехай $c$ -- додатне. Тоді $ac < bc$.
+\end{proposition}
+
+\begin{proof}
+Оскільки $a < b$, маємо $b = a+d$ для деякого додатного $d$. Помножимо на $c$ та за дистрибутивністю отримаємо $bc = ac + dc$.\\
+$d,c$ -- додатні, тому $dc$ -- додатне. Звідси $ac < bc$.
+\end{proof}
+
+\begin{corollary}[Скорочення]
+Нехай $a,b,c \in \mathbb{N}$ такі, що $ac = bc$ при $c \neq 0$. Тоді $a = b$.\\
+\textit{Це твердження буде підґрунттям для визначення ділення.}
+\end{corollary}
+
+\begin{proof}
+!Припустимо, що $a < b$. Тоді маємо $ac < bc$, бо $c$ -- додатне. Суперечність!\\
+Аналогічно при $a > b$ отримаємо суперечність $ac > bc$.\\
+За трихотомією, єдине залишаєтсья в нас $a = b$.
+\end{proof}
+
+\begin{definition}
+Нехай $m \in \mathbb{N}$.\\
+\textbf{Зведення числа $m$ в степінь} визначається таким чином:
+\begin{align*}
+m^0 = 1
+\end{align*}
+Припускаючи, що ми знаємо, як брати $m^n$, ми можемо визначити
+\begin{align*}
+m^{n\plusplus} = m^n \cdot m
+\end{align*}
+\end{definition}
+\newpage
+
+\section{Цілі числа}
+\begin{definition}
+\textbf{Цілим числом} називають вираз $a\subtract b$, де $a,b \in \mathbb{N}$.\\
+\textit{Це не знак мінус, це таке формальне позначення цілого числа.}
+\bigskip \\
+Позначення: $\mathbb{Z}$ -- множина цілих чисел.
+\end{definition}
+
+\begin{definition}
+Два цілих числа $a \subtract b =  c \subtract d$, якщо
+\begin{align*}
+a + d = c + b
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Рівність задовольняє властивість рефлексивності, симетричності та транзитивності.\\
+\textit{Вправа: довести.}
+\end{remark}
+
+\begin{example}
+$3 \subtract 5 = 2 \subtract 4$, тому що $3 + 4 = 2 + 5$.
+\end{example}
+
+\begin{definition}
+Нехай $a \subtract b,\ c \subtract d \in \mathbb{Z}$.\\
+\textbf{Сумою} двох цілих чисел визначимо ось так:
+\begin{align*}
+(a \subtract b) + (c \subtract d) = (a+c)\subtract (b+d)
+\end{align*}
+\textbf{Добуток} двох цілих чисел визначимо ось так:
+\begin{align*}
+(a \subtract b) \cdot (c \subtract d) = (ac + bd)\subtract (ad+bc)
+\end{align*}
+\end{definition}
+
+\begin{lemma}
+Операція додавання та множення визначені коректно.
+\end{lemma}
+
+\begin{remark}
+Іншими словами, якщо $(a \subtract b) = (a' \subtract b')$, то звідси\\
+$(a \subtract b) + (c \subtract d) = (a' \subtract b') + (c \subtract d)$;\\
+$(a \subtract b) \cdot (c \subtract d) = (a' \subtract b') \cdot (c \subtract d)$.\\
+\textit{Вправа: довести.}
+\end{remark}
+
+\begin{remark}
+Розглянемо ціле число $n\subtract 0 \in \mathbb{Z}$. Воно поводить себе так само, як натуральне число $n \in \mathbb{N}$.\\
+Зауважимо, що $(n\subtract 0) + (m \subtract 0) = (n+m)\subtract 0$, а також $(n \subtract 0)  \cdot (m \subtract 0) = nm \subtract 0$. Крім того, $n \subtract 0 = m \subtract 0 \iff n = m$.\\
+Отже, можна будь-яке натуральне число $n$ сприймати як ціле число $n \subtract 0$. 
+\end{remark}
+
+\begin{definition}
+Нехай $a\subtract b \in \mathbb{Z}$.\\
+\textbf{Взяття знака мінус} $a\subtract b$ визначається як
+\begin{align*}
+-(a \subtract b) = b\subtract a
+\end{align*}
+Зокрема при $n \in \mathbb{N}$ -- додатне число -- можна визначити від'ємне число $-n = 0 \subtract n$.
+\end{definition}
+
+\begin{lemma}
+Взяття знак мінус -- коректне означення.\\
+Тобто якщо $(a\subtract b) = (a' \subtract b')$, то звідси $-(a \subtract b) = -(a' \subtract b')$.
+\end{lemma}
+
+\begin{lemma}[Трихотомія цілих чисел]
+Нехай $x \in \mathbb{Z}$. Тоді або $x = 0$, або $x = n$, або $x = -n$ при $n \in \mathbb{N}$. Причому лише одна з умов виконується. 
+\end{lemma}
+
+\begin{proof}
+За означенням $x = a \subtract b$. Далі трихотомія порядку натуральних чисел йде.\\
+Якщо $a > b$, тобто $a = b + c$ для деякого додатного $c$, то $a \subtract b = c \subtract 0 = c$. Отже, отримали другу рівність.\\
+Якщо $a < b$, тобто $b > a$, то аналогічно отримаємо $b \subtract a = c$, але тоді $a \subtract b = -c$. Отже, отримали третю рівність.\\
+Якщо $a = b$, то $a \subtract b = a \subtract a = 0 \subtract 0 = 0$. Отже, отримали першу рівність.
+\bigskip \\
+Залишилось довести, що лише одна з умов виконується. Одночасно перше та друге неможливі, в силу означення додатного числа. Якщо одночасно виконуються перша та третя рівності, то тоді $-n = 0$, тобто $0 \subtract 0 = 0 - n$, тобто $0 + n = 0 + 0 \implies n = 0$, що неможливо для додатного числа. Якщо одночасно виконуються друга та третя рівності, то $n = -m$ для додатних $n,m$. Значить, $(n \subtract 0) = (0 \subtract m)$, або $m + n = 0 + 0 \implies m = n = 0$, що неможливо. 
+\end{proof}
+
+\begin{remark}
+Можна було б визначити цілі числа за цією трихотомією. Але це б призвело до складності побудови теорій та їхніх доведень.
+\end{remark}
+
+\begin{proposition}
+Нехай $x,y,z \in \mathbb{Z}$. Тоді
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $x+y = y+x$;
+\item $(x+y) + z = x+(y+z)$;
+\item $x+0 = 0+x = x$;
+\item $x+(-x) = (-x)+x = 0$;
+\item $xy = yx$;
+\item $(xy)z = x(yz)$;
+\item $x \cdot 1 = 1 \cdot x = x$;
+\item $x(y+z) = xy + xz$;
+\item $(y+z)x = yx + zx$.
+\end{enumerate}
+\textit{Ось саме цю властивість можна простіше довести за означенням на початку. Можна було б через трихотію, але це вкрай важко.}
+\end{proposition}
+
+\begin{proof}
+Лише на прикладі доведу шосту властивість. Маємо $x = a \subtract b,\ y = c \subtract d,\ z = e \subtract f$. Звідси\\
+$(xy)z = ((a \subtract b) \cdot (c \subtract d)) \cdot (e \subtract f) = ((ac+bd) \subtract (ad + bc)) \cdot (e \subtract f) = \\
+= ((ac+bd)e + (ad+bc)f) \subtract ((ad+bc)e + (ac+bd)f) = \\
+= (ace + bde + adf + bcf) \subtract (ade + bce + acf + bdf)$.\\
+$x(yz) = (a \subtract b) \cdot ((c \subtract d)(e \subtract f)) = (a \subtract b) \cdot ((ce + df) \subtract (cf + de)) = \\
+= (a(ce+df) + b(cf+de)) \subtract (b(ce+df) + a(cf+de)) = \\
+= (ace + adf + bcf + bde) \subtract (bce + bdf + acf + ade)$.\\
+Отже, $(xy)z = x(yz)$. Інші доводяться аналогічним чином.
+\end{proof}
+
+\begin{definition}
+Визначимо \textbf{віднімання} двох цілих чисел $x,y \in \mathbb{Z}$ ось так:
+\begin{align*}
+x-y = x + (-y)
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Нехай $a,b \in \mathbb{N}$. Тоді\\
+$a - b = a + (-b) = (a\subtract 0) + (0 \subtract b) = a \subtract b$.\\
+Отже, $a - b$ та $a \subtract b$ -- це однакові речі. Таким чином, ми можемо прибрати позначення ''$\subtract$''.
+\end{remark}
+
+Кілька тверджень можна узагальнити на множині цілих чисел.
+
+\begin{lemma}
+Нехай $m,n \in \mathbb{Z}$. Тоді $n \cdot m = 0 \iff n = 0 \text{ або } m = 0$. 
+\end{lemma}
+
+\begin{corollary}[Скорочення]
+Нехай $a,b,c \in \mathbb{Z}$ такі, що $ac = bc$ при $c \neq 0$. Тоді $a = b$.
+\end{corollary}
+
+\begin{definition}
+Нехай $m,n \in \mathbb{Z}$.\\
+Кажуть, що $n$ \textbf{більше або дорівнює} $m$, якщо \begin{align*}
+n = m + a,\ a \in \mathbb{N}
+\end{align*}
+Позначення: $n \geq m$.\\
+Кажуть, що $n$ \textbf{строго більше за} $m$, якщо
+\begin{align*}
+n \geq m,\ n \neq m
+\end{align*}
+Позначення: $n > m$.
+\end{definition}
+
+\begin{proposition}
+Нехай $a,b,c \in \mathbb{Z}$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a > b \iff a - b$ -- додатне число;
+\item $a > b \implies a + c > b + c$ (збереження порядку за додаванням);
+\item $a > b, c > 0 \implies ac > bc$ (збереження порядку за множенням);
+\item $a > b \implies -a < -b$;
+\item $a > b, \ b > c \implies a > c$ (транзитивність);
+\item або $a > b$, або $a = b$, або $a < b$ -- лише одна із умов (трихотомія).
+\end{enumerate}
+\end{proposition}
+\newpage
+
+\section{Раціональні числа}
+\subsection{Визначення}
+\begin{definition}
+\textbf{Раціональним числом} називають вираз $a//b$, де $a \in \mathbb{Z}$ та $b \in \mathbb{Z} \setminus \{0\}$. Ми не будемо елемент $a//0$ вважати за раціональним числом.
+\bigskip \\
+Позначення: $\mathbb{Q}$ -- множина раціональних чисел.
+\end{definition}
+
+\begin{definition}
+Два раціональних числа $a//b = c//d$, якщо
+\begin{align*}
+ad = cb
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Рівність задовольняє властивість рефлексивності, симетричності та транзитивності.\\
+\textit{Вправа: довести}.
+\end{remark}
+
+\begin{example}
+$6//3 = 2//1$, тому що $3 \cdot 2 = 6 \cdot 1$.
+\end{example}
+
+\begin{definition}
+Нехай $a//b,\ c//d \in \mathbb{Q}$.\\
+\textbf{Сумою} двох раціональних чисел визначимо ось так:
+\begin{align*}
+a//b + c//d = (ad+bc)//(bd)
+\end{align*}
+\textbf{Добуток} двох раціональних чисел визначимо ось так:
+\begin{align*}
+a//b \cdot c//d = (ac)//(bd)
+\end{align*}
+\textbf{Взяття знака мінус} раціонального числа визначимо ось так:
+\begin{align*}
+-(a//b) = (-a)//b
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Усі три операції визначені коректно.
+\end{remark}
+
+\begin{remark}
+Також відомо, що оскільки $b,d$ -- ненулеві, то добуток $bd$ -- ненулевий. Це означає, що результат додавання, множення, взяття знака мінус -- раціональне число.
+\end{remark}
+
+\begin{remark}
+Розглянемо раціональне число $a//1 \in \mathbb{Q}$ поводять себе так само, як ціле число $a \in \mathbb{Z}$.\\
+$a//1 + b//1 = (a+b)//1$;\\
+$a//1 + b//1 = (ab)//1$;\\
+$-(a//1) = (-a)//1$;\\
+Також $a//1 = b//1 \iff a = b$.\\
+Отже, можна будь-яке ціле число $a$ сприймати як раціональне число $a//1$.
+\end{remark}
+
+\begin{definition}
+Задане раціональне число $x \in \mathbb{Q},\ x \neq 0$. Запишемо як $x = a//b$.\\
+\textbf{Оборотним} до раціонального числа $x$ назвемо нове число:
+\begin{align*}
+x^{-1} = b//a
+\end{align*}
+Оборотним до числа $0$ вважається невизначеним.
+\end{definition}
+
+\begin{remark}
+Якщо два раціональні числа рівні, то їхні оборотні також рівні.
+\end{remark}
+
+\begin{proposition}
+Нехай $x,y,z \in \mathbb{Q}$. Тоді
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $x+y = y+x$;
+\item $(x+y) + z = x+(y+z)$;
+\item $x+0 = 0+x = x$;
+\item $x+(-x) = (-x)+x = 0$;
+\item $xy = yx$;
+\item $(xy)z = x(yz)$;
+\item $x \cdot 1 = 1 \cdot x = x$;
+\item $x(y+z) = xy + xz$;
+\item $(y+z)x = yx + zx$;
+\item $xx^{-1} = x^{-1}x = 1$ при $x \neq 0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Лише на прикладі доведу другу властивість. Маємо $x = a//b,\ y = c//d,\ z = e//f$. Звідси\\
+$(x+y)+z = (a//b + c//d) + e//f = ((ad+bc)//(bd)) + e//f = (adf+bcf+bde)//(bdf)$;\\
+$x+(y+z) = a//b + (c//d + e//f) = a//b + (cf+de)//(df) = (adf + bcf + bde)//(bdf)$.\\
+Отже, $(x+y)+z=x+(y+z)$. Інші доводяться аналогічним чином.
+\end{proof}
+
+\begin{definition}
+Визначимо \textbf{ділення} двох раціональних чисел $x,y \in \mathbb{Q}$ ось так:
+\begin{align*}
+\dfrac{x}{y} = x \cdot y^{-1}
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Нехай $a,b \in \mathbb{Z}$. Тоді
+$\dfrac{a}{b} = a \cdot b^{-1} = a//1 \cdot 1//b = a//b$.\\
+Отже, $\dfrac{a}{b}$ та $a//b$ -- це однакові речі. Таким чином, ми можемо прибрати позначення ''$//$''.
+\end{remark}
+
+\begin{definition}
+Раціональне число $x \in \mathbb{Q}$ називається \textbf{додатним}, якщо
+\begin{align*}
+x = \dfrac{a}{b},\ a,b \text{ -- додатні}.
+\end{align*}
+Раціональне число $x$ називається \textbf{від'ємним}, якщо
+\begin{align*}
+x =  -y,\ y \text{ -- додатне раціональне}.
+\end{align*}  
+\end{definition}
+
+\begin{lemma}[Трихотомія раціональних чисел]
+Нехай $x \in \mathbb{Q}$. Тоді або $x = 0$, або $x$ -- додатне, або $x$ -- від'ємне. Причому лише одна з умов виконується. 
+\end{lemma}
+
+\begin{definition}
+Нехай $x,y \in \mathbb{Q}$.\\
+Кажуть, що $x > y$, якщо
+\begin{align*}
+x-y \text{ -- додатне раціональне}.
+\end{align*}
+Кажуть, що $x < y$, якщо
+\begin{align*}
+x-y \text{ -- від'ємне раціональне}.
+\end{align*}
+Нерівність $x \geq y$ означає $x>y$ або $x=y$.
+\end{definition}
+
+\begin{proposition}
+Нехай $a,b,c \in \mathbb{Q}$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a > b \implies a + c > b + c$ (збереження порядку за додаванням);
+\item $a > b, c > 0 \implies ac > bc$ (збереження порядку за множенням);
+\item $a > b \implies -a < -b$;
+\item $a > b, \ b > c \implies a > c$ (транзитивність);
+\item або $a > b$, або $a = b$, або $a < b$ -- лише одна із умов (трихотомія).
+\end{enumerate}
+\end{proposition}
+
+\subsection{Модуль раціонального числа}
+\begin{definition}
+Нехай $x \in \mathbb{Q}$.\\
+\textbf{Модулем} числа $x$ називають таке:
+\begin{align*}
+|x| = \begin{cases} x, & x \text{ -- додатне} \\ -x, & x \text{ -- від'ємне}, \\ 0, & x = 0 \end{cases}.
+\end{align*}
+\end{definition}
+
+\begin{proposition}[Властивості модуля]
+Нехай $x,y,z \in \mathbb{Q}$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $|x| \geq 0$, а також $|x| = 0 \iff x = 0$;
+\item $|x+y| \leq |x| + |y|$;
+\item $|x| \leq y \iff -y \leq x \leq y$;
+\item $-|x| \leq x \leq |x|$;
+\item $|xy| = |x| \cdot |y|$;
+\item $|-x| = |x|$.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+Нехай $\varepsilon > 0$ та $x,y \in \mathbb{Q}$.\\
+Число $y$ називається \textbf{$\varepsilon$-близьким до $x$}, якщо
+\begin{align*}
+|x-y| \leq \varepsilon
+\end{align*} 
+\end{definition}
+
+\begin{proposition}
+Нехай $w,x,y,z \in \mathbb{Q}$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Нехай $x = y$, тоді $x$ буде $\varepsilon$-близьким до $y$ для кожного $\varepsilon > 0$. Навпаки: якщо $x$ є $\varepsilon$-близьким до $y$ для кожного $\varepsilon > 0$, то $x = y$.
+
+\item Якщо $x$ є $\varepsilon$-близьким до $y$, то $y$ є $\varepsilon$-близьким до $x$.
+
+\item Нехай $x$ є $\varepsilon$-близьким до $y$, водночас $y$ є $\delta$-близьким до $z$. Тоді $x$ є $(\varepsilon+\delta)$-близьким до $z$.
+
+\item Нехай $x,y$ -- $\varepsilon$-близькі та $z,w$ -- $\delta$-близькі, тоді $x+z$ та $y+w$ -- $(\varepsilon+\delta)$ -- близкі; також $x-z$ та $y-w$ -- $(\varepsilon+\delta)$ -- близкі.
+
+\item Якщо $x,y$ -- $\varepsilon$-близькі, то $x,y$ -- $\varepsilon'$-близькі для кожного $\varepsilon' > \varepsilon$.
+
+\item Якщо $y,z$ -- обидва $\varepsilon$-близькі до $x$ та $w$ знаходиться між $y,z$, то звідси $w$ -- $\varepsilon$-близька до $x$.
+
+\item Якщо $x,y$ -- $\varepsilon$-близькі та $z \neq 0$, тоді $xz,yz$ -- $\varepsilon |z|$-близькі. 
+
+\item Якщо $x,y$ -- $\varepsilon$-близькі та $z,w$ -- $\delta$-близькі, тоді $xz,yw$ -- $(\varepsilon |z| + \delta |x| + \varepsilon \delta)$-близькі.
+\end{enumerate}
+
+\begin{proof}
+Доведемо лише останню властивість. Нехай $x,y$ -- $\varepsilon$-близькі та $z,w$ -- $\delta$-близькі. Позначимо $a = y-x$, тоді $y = x+a$ та $|a| \leq \varepsilon$. Аналогічно позначимо $b = w-z$, тоді $w = z+b$ та $|b| \leq \delta$.\\
+Звідси $yw = (x+a)(z+b) = xz + az + xb + ab$. Тому\\
+$|yw - xz| = |az + bx + ab| \leq |az| + |bx| + |ab| = |a||z| + |b||x| + |a||b| \leq \varepsilon |z| + \delta |x| + \varepsilon \delta$.\\
+Отже, $yw,xz$ -- $(\varepsilon |z| + \delta |x| + \varepsilon \delta)$-близькі.
+\end{proof}
+\end{proposition}
+
+\subsection{Діри в раціональних числах}
+\begin{proposition}[Вкраплення цілих чисел раціональними числами]
+Нехай $x \in \mathbb{Q}$. Тоді існує (причому єдине) $n \in \mathbb{Z}$, для якого $n \leq x < n+1$.
+\end{proposition}
+
+\begin{remark}
+Дане число $n \in \mathbb{Z}$, для якого $n \leq x < n+1$, часто називають \textbf{цілою частиною числа} $x$. Позначається $n = [x]$.
+\end{remark}
+
+\begin{remark}
+Із цього твердження випливає, що для кожного $x \in \mathbb{Q}$ існує число $N \in \mathbb{N}$, для якого $N > x$.\\
+Тобто не існує раціонального числа, який більший за всі натуральні. 
+\end{remark}
+
+\begin{proposition}
+Не існує $x \in \mathbb{Q}$, для якого $x^2 = 2$.\\
+Іншими словами, $\sqrt{2} \notin \mathbb{Q}$.
+\end{proposition}
+
+\begin{proposition}
+Для будь-якого $\varepsilon > 0$ (раціонального) існує $x \in \mathbb{Q}_{\geq 0}$, для якого $x^2 < 2 < (x+\varepsilon)^2$.\\
+Тобто можна знайти раціональні числа, які скільки завгодно наближаються до $\sqrt{2}$.
+\end{proposition}
+
+\begin{example}
+Нехай $\varepsilon = 0.001$, тоді можна взяти $x = 1.414$, оскільки $x^2 = 1.999396,\ (x+\varepsilon)^2 = 2.002225$.
+\end{example}
+
+\subsection{Представлення раціонального числа в десятковому вигляді}
+Щойно неявно ми представляли раціональні числа в такому вигляді. Треба тепер переконатися, що так можна.
+
+\begin{proposition}
+$x \in \mathbb{Q} \iff$ десяткове представлення $x$ -- періодичне. 
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $r \in \mathbb{Q}$. Не втрачаючи загальності, ми припускатимемо, що $r$ -- додатне. Отже, маємо $r = \dfrac{m}{n}$. Якщо так станеться, що $m > n$, то тоді беремо цілу частину $[r]$. При цьому $r - [r] \geq 0$. Якщо $r - [r] = 0$, то закінчили доведення. Тож надалі $r - [r] > 0$, тоді звідси $r = [r] + \dfrac{p}{n}$, де $0 < p < n$.\\
+Для раціонального числа $\dfrac{p}{n}$ знайдеться $k \in \mathbb{N}$, для якого $10^k \geq \dfrac{n}{p}$. Коротше, $10^k p \geq n$. Тоді розпишемо $\dfrac{p}{n} = \dfrac{10^k p}{10^k n} = \dfrac{s}{10^k} + \dfrac{q_1}{10^k n}$, де число $s = \left[ \dfrac{10^k p}{n} \right]$. Якщо $q_1 = 0$, то закінчили доведення. Інакше $0 < q_1 < n$.\\
+Всю ту же процедуру повторимо для $\dfrac{q_1}{10^k n}$. Такий процес буде скінченним, оскільки ми постійно знаходимо число із $\{0,1,2,\dots,n-1\}$. Рано чи пізно ми можемо прийти до самого числа, що приведе до зациклення. У результаті отримаємо десятковий періодичний дріб.
+\bigskip \\
+\leftproof Дано: $r$ -- періодичний десятковий. Не втрачаючи загальності, розпишемо як $r = 0.a_0a_1\dots a_n \overline{b_0 b_1 \dots b_m}$. Домножимо на $10^n$, а потім те саме рівняння на $10^{n+m}$ -- отримаємо\\
+$r \cdot 10^n = a_0a_1 \dots a_n + 0.\overline{b_0 b_1 \dots b_m}$.\\
+$r \cdot 10^{n+m} = a_0a_1\dots a_n b_0 \dots b_m + 0.\overline{b_0 b_1 \dots b_m}$.\\
+Віднімаючи два рівняння, отримаємо \\
+$(10^{n+m} - 10^n) r = a_0a_1\dots a_n b_0 \dots b_m - a_0a_1 \dots a_n$.\\
+Позначимо $(10^{n+m} - 10^n) = N,\ a_0a_1\dots a_n b_0 \dots b_m = M,\ a_0a_1 \dots a_n = K$. Три числа $M,N,K$ -- цілі ненулеві, тому $N r = M - K$ або $r = \dfrac{M-K}{N}$. Таким чином, $r \in \mathbb{Q}$.
+\end{proof}
+
+\end{document}

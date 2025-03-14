@@ -1,0 +1,402 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+%\usepackage[none]{hyphenat}
+\usepackage{fancyhdr} %create a custom header and footer
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[english, main=ukrainian]{babel}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{physics}
+\usepackage[unicode]{hyperref}
+\usepgfplotslibrary{polar}
+\usepackage{ifthen}
+\usetikzlibrary{spy}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{centernot}
+
+
+\fancyhead{}
+\fancyfoot{}
+\parindent 0ex
+\def\huge{\displaystyle}
+\def\rightproof{$\boxed{\Rightarrow}$ }
+\def\leftproof{$\boxed{\Leftarrow}$ }
+
+\usepackage{pdfpages}
+
+\newtheoremstyle{theoremdd}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\normalfont}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ \textbf{#3}\\}}}
+
+\theoremstyle{theoremdd}
+\newtheorem{theorem}{Theorem}[subsection]
+  
+\theoremstyle{theoremdd}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem*{definition*}{Definition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{samedef}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{theoremdd}
+\newtheorem*{example*}{Example.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{lemma*}{Lemma.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{theorem*}{Theorem.}
+
+\theoremstyle{theoremdd}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{theoremdd}
+\newtheorem*{proposition*}{Proposition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{theoremdd}
+\newtheorem*{remark*}{Remark.}
+
+\theoremstyle{theoremdd}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{theoremdd}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{theoremdd}
+\newtheorem*{corollary*}{Corollary.}
+
+\newenvironment{pf}{\vspace*{-3mm} \textbf{Proof. \\}}{$\blacksquare$}
+\newenvironment{pfMI}{\vspace*{-3mm} \textbf{Proof MI. \\}}{$\blacksquare$}
+\newenvironment{pfNoTh}{\textbf{Proof. \\}}{$\blacksquare$}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\makeatletter
+\renewenvironment{proof}[1][Proof.\\]{\par
+\pushQED{\hfill \qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\bfseries
+#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+
+\newcommand\thref[1]{\textbf{Th.~\ref{#1}}}
+\newcommand\defref[1]{\textbf{Def.~\ref{#1}}}
+\newcommand\exref[1]{\textbf{Ex.~\ref{#1}}}
+\newcommand\prpref[1]{\textbf{Prp.~\ref{#1}}}
+\newcommand\rmref[1]{\textbf{Rm.~\ref{#1}}}
+\newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
+\newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
+%\renewcommand{\stcomp}[1]{{#1}^{\mathsf{c}}}
+
+\newcommand{\eqbydef}{\overset{\text{def.}}{=}}
+\newcommand\homom[2]{\text{Hom}({#1},{#2})}
+\newcommand{\symdif}{\,\triangle\,} % symmetric difference
+\newcommand\End[1]{\text{End}({#1})}
+\newcommand\Aut[1]{\text{Aut}({#1})}
+\newcommand\Orb{\text{Orb}}
+\newcommand\Stab{\text{Stab}}
+\newcommand\ncl{\text{ncl}}
+
+%delete
+
+\begin{document}
+%\includepdf[scale=1]{preview.jpg}
+
+\tableofcontents
+\newpage
+\section{Алгебраїчні цілі числа}
+\subsection{Гаусові числа}
+У курсі абстрактної алгебри мала б бути така множина
+\begin{align*}
+\mathbb{Z}[i] = \{a + bi \mid a,b \in \mathbb{Z}\},\qquad i^2 = -1
+\end{align*}
+Про неї відомі наступні факти, які були доведені там же.
+\begin{theorem}
+$\mathbb{Z}[i]$ -- область цілісності, причому $(\mathbb{Z}[i])^* = \{1,-1, i, -i\}$.\\
+Крім того, $\mathbb{Z}[i]$ -- евклідова область із нормою $N(a+bi) = a^2 + b^2$.
+\end{theorem}
+
+Будемо сьогодні детальніше досліджувати дану множину та пов'яжемо з теорією чисел.
+
+\begin{theorem}
+$N$ -- мультиплікативна функція, тобто $N(\alpha \beta) = N(\alpha) N(\beta)$.
+\end{theorem}
+
+\begin{proof}
+$N(\alpha \beta) = N((a+bi)(c+di)) = N((ac-bd) + i(ad + bc)) = (ac-bd)^2 + (ad+bc)^2 = \\
+= a^2$\\
+$N(\alpha) N(\beta) = (a^2 + b^2)(c^2 + d^2)$.\\
+Можна пересвідчитися, що дві праві частини -- рівні.
+\end{proof}
+
+\begin{theorem}
+$\alpha \in (\mathbb{Z}[i])^\times \iff N(\alpha) = 1$.
+\end{theorem}
+
+\begin{proof}
+\rightproof Дано: $\alpha \in (\mathbb{Z}[i])^\times = \{1,-1, i, -i\}$. Тут все зрозуміло, чому $N(\alpha) = 1$.
+\bigskip \\
+\leftproof Дано: $N(\alpha) = 1$. Якщо позначити $\alpha = a + bi$, то тоді маємо $a^2 + b^2 = 1$. Дана рівність в цілих числах виконується лише при $a = \pm 1$ та $b = 0$ або $a = 0$ та $b = \pm 1$. Внаслідок чого отримаємо $\alpha \in (\mathbb{Z}[i])^\times$.
+\end{proof}
+
+\begin{theorem}
+Нехай задане просте число $p \equiv 1 \pmod 4$ (просте в $\mathbb{Z}$). Тоді $p$ -- не просте в $\mathbb{Z}[i]$.
+\end{theorem}
+
+\begin{proof}
+Нехай $p \equiv 1 \pmod 4$. Ми знаємо, що тоді $x^2 \equiv -1 \pmod p$ (із теорії символів Лежандра). Якщо цю теорію не знати, існує другий спосіб як довести -- це покласти $x = (2n)!$ (\textit{вправа: довести}).\\
+Це означає, що $p \mid x^2 + 1$, тобто звідси $p \mid (x+i)(x-i)$. Якби $p$ було простим в $\mathbb{Z}[i]$, то ми би отримали $p \mid (x+i)$ або $p \mid (x-i)$. Якщо розписати, то ми прийдемо до суперечності. Тому $p$ -- не просте в $\mathbb{Z}[i]$.
+\end{proof}
+
+Основною мотивацією гаусових цілих чисел була теорема про суму двох квадратів.
+
+\begin{theorem}
+Просте число $p \neq 2$ -- сума двох квадратів $\iff p \equiv 1 \pmod 4$. 
+\end{theorem}
+
+Ми вже доводили цю теорему, але я покажу альтернативний спосіб у іншу сторону.
+
+\begin{proof}
+\leftproof Дано: $p \equiv 1 \pmod 4$, тобто $p$ -- непросте в $\mathbb{Z}[i]$. Значить, $p = \alpha \beta$, де $\alpha,\beta \notin (\mathbb{Z}[i])^\times$. Звідси випливає, що $p^2 = N(p) = N(\alpha) N(\beta)$. Утім оскільки $\alpha,\beta \notin (\mathbb{Z}[i])^\times$, то тоді $N(\alpha) \neq 1, N(\beta) \neq 1$, але тоді звідси $N(\alpha) = N(\beta) = p$. Позначивши $\alpha = a + ib$, отримаємо $p = a^2 + b^2$.
+\end{proof}
+
+\begin{theorem}
+Простими елементами в $\mathbb{Z}[i]$ (із точністю до асоціативних елементів) будуть вони:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $1 + i$;
+\item $a + bi$, причому $a^2 + b^2 = p,\ p \equiv 1 \pmod 4$, а також $a > |b| > 0$;
+\item $p$, причому $p \equiv 3 \pmod 4$
+\end{enumerate}
+Під $p$ мається на увазі просте число в $\mathbb{Z}$.
+\end{theorem}
+
+\begin{proof}
+1) Маємо $1 + i = \alpha \beta$, тоді звідси $2 = N(i+i) = N(\alpha) N(\beta)$, але тоді або $N(\alpha) = 1$, або $N(\beta) = 1$; іншими словами або $\alpha \in (\mathbb{Z}[i])^\times$, або $\beta \in (\mathbb{Z}[i])^\times$. Звідси $1 + i$ -- просте.
+\bigskip \\
+2) Десь так само, як з 1).
+\bigskip \\
+3) Маємо $p \equiv 3 \pmod 4$, припустимо $p = \alpha \beta$. Якби $\alpha, \beta \notin (\mathbb{Z}[i])^\times$, то ми би отрмиали $p^2 = N(\alpha) N(\beta)$ та згодом $N(\alpha) = N(a + bi) = a^2 + b^2$ -- отримали би $p \equiv 1 \pmod 4$, що не наш випадок. Отже, або $\alpha \in (\mathbb{Z}[i])^\times$, або $\beta \in (\mathbb{Z}[i])^\times$. Звідси $p \equiv 3 \pmod 4$ -- просте.
+\bigskip \\
+Залишилося дещо пояснити за асоціативність. Маємо просте число $\tau$ із цього списку, тоді $p_1 \dots p_r \overset{\text{Th. арифм.}}{=} N(\tau) = \tau \cdot \bar{\tau}$. Звідси випливає, що $\tau \mid p$ для деякого $p = p_i$. Внаслідок цього $N(\tau) \mid N(p) = p^2$, тому або $N(\tau) = p$, або $N(\tau) = p^2$ (випадок $N(\tau) = 1$ неможливий). У випадку $N(\tau) = p$ маємо $\pi = a + bi$ при $a^2+b^2 = p$, тобто $\tau$ -- число вигляду 2), але коли $p = 2$, то тоді отримаємо число вигляду 1). У випадку $N(\tau) = p^2$ число $\tau$ буде асоційованим до $p$ (дійсно, маємо $\tau = p \omega$, тоді $p^2 = N(\tau) = N(p) N(\omega) = p^2 N(\omega)$, а значить $\omega \in (\mathbb{Z}[i])^\times$). Нарешті, $p \equiv 3 \pmod 4$ (інакше $p \equiv 1 \pmod 4$ або $p = 2$, а вони непрості в $\mathbb{Z}[i]$).
+\end{proof}
+
+\begin{remark}
+Твердження відповідає на питання, як прості числа $p \in \mathbb{Z}$ розкладаються в $\mathbb{Z}[i]$.\\
+$2 = (1+i)(1-i)$, яке асоційоване до $(1+i)^2$.\\
+$p \equiv 1 \pmod 4$ дає $p = a^2 + b^2 = (a+bi)(a-bi)$.\\
+$p \equiv 3 \pmod 4$ залишаються простими в $\mathbb{Z}[i]$.
+\end{remark}
+
+\begin{proposition}
+$\mathbb{Z}[i]$ складається лише з цих елементів із розширення $\mathbb{Q} \subset \mathbb{Q}(i)$, які задовольняють рівнянню $x^2 + ax + b = 0$ при $a,b \in \mathbb{Z}$.
+\end{proposition}
+
+\begin{proof}
+Нехай $\alpha \in c+id \in \mathbb{Q}(i)$, він є нулем многочлена $x^2 + a x + b$ при $a = -2c,\ b = c^2+d^2$. Якщо $c,d \in \mathbb{Z}$, то тоді $a,b \in \mathbb{Z}$. Якщо $a,b \in \mathbb{Z}$, тоді й $2c,2d \in \mathbb{Z}$. Із $(2x)^2 + (2d)^2 = 4b \equiv 0 \pmod 4$ випливає, що $(2c)^2 \equiv (2d)^2 \equiv 0 \pmod 4$, тому $c,d \in \mathbb{Z}$.
+\end{proof}
+
+(TODO: $a \mid b \implies N(a) \mid N(b)$).
+
+Ще одне застосування гаусових чисел дає ось такий результат. Тільки спочатку лема:
+\begin{lemma}
+Нехай в $\mathbb{Z}[i]$ маємо рівність $\alpha \beta = \varepsilon \gamma^n$, причому $\gcd(\alpha,\beta) = 1$ та $\varepsilon \in (\mathbb{Z}[i])^\times$. Тоді $\alpha = \varepsilon' \xi^n$ та $\beta = \varepsilon'' \eta^n$ при $\varepsilon',\varepsilon'' \in (\mathbb{Z}[i])^\times$.
+\end{lemma}
+
+\begin{proof}
+Маємо такі розклади чисел: $\alpha = \tau_1^{e_1} \dots \tau_k^{e_k} \qquad \beta = \theta_1^{f_1} \dots \theta_m^{f_m}$.\\
+Оскільки $\gcd(\alpha,\beta) = 1$, то звідси $\alpha \beta = \tau_1^{e_1} \dots \tau_k^{e_k} \theta_1^{f_1} \dots \theta_m^{f_m}$.\\
+Із іншого боку, $\gamma = \omega_1^{s_1} \dots \omega_{k+m}^{s_{k+m}}$. Маючи рівність $\alpha \beta = \varepsilon \gamma^n$ та скориставшись єдиністю розкладу з точністю до перестановки та асоційованих елементів, отримаємо $e_1 = n s_1, \dots, f_m = n s_{k+m}$. Підставивши степені, отримаємо $\alpha = \varepsilon' \xi^n$ та $\beta = \varepsilon'' \eta^n$.
+\end{proof}
+
+\begin{theorem}
+Маємо рівняння $x^2 + y^2 = z^2$. Розв'язками даного рівняння будуть $x = u^2 - v^2,\ y = 2uv,\ z = u^2 + v^2$ при $x,y,z > 0$ та $\gcd(x,y,z) = 1$, причому $u,v \in \mathbb{Z},\ u,v > 0$ та $\gcd(u,v) = 1$, які не непарні одночасно.
+\end{theorem}
+
+\begin{proof}
+Маємо $x^2 + y^2 = z^2$, перепишемо як $(x+iy)(x-iy) = z^2$. Тоді за лемою, $x+iy = \varepsilon \alpha^2$, де число $\varepsilon \in (\mathbb{Z}[i])^\times$. Позначимо $\alpha = u+iv$. Тоді звідси $x + iy = \varepsilon (u^2 + 2uvi - v^2)$. Припустимо, що $\varepsilon = 1$, тоді із рівності двох комплексних чисел випливає, що $x = u^2 - v^2$ та $y = 2uv$. Підставивши їх, отримаємо $z = u^2+v^2$. Якщо взяти $\varepsilon = i$, то тоді буде перестановка $x,y$ -- власне, ті самі розв'язки.\\
+Цілком зрозуміло, що $\gcd(u,v) = 1$, бо якби просте число $p \mid u,v$, то автоматично $p \mid x,y,z$, тобто $\gcd(x,y,z) \neq 1$. Нарешті, $u,v$ -- не можуть бути непарними одночасно, інакше $x,y,z$ стануть парними, що дає $\gcd(x,y,z) \neq 1$.\\
+(TODO: дописати красиво доведення).
+\end{proof}
+
+Щодо інших можливих кілець. Ми ввесь цей час досліджували $\mathbb{Z}[i] = \mathbb{Z}[\sqrt{-1}]$, тепер тимчасово замінимо це на $\mathbb{Z}[\sqrt{-d}] = \{a + b \sqrt{-d} \mid a,b \in \mathbb{Z}\}$ при $d > 1$.\\
+На ній теж можна задати евклідову область, мавши $N(a + b\sqrt{-d}) = a^2 + b^2d$, яка також мультиплікативна.
+
+\begin{proposition}
+$(\mathbb{Z}[\sqrt{-d}])^\times = \{-1,1\}$ за умовою, що $d > 1$.
+\end{proposition}
+
+\begin{proof}
+Розглянемо $u \in (\mathbb{Z}[\sqrt{-d}])^\times$, тоді звідси $uv = 1$.\\
+$(a + b \sqrt{-d}) (x + y \sqrt{-d}) = 1$.\\
+$(a^2 + b^2 d)(x^2 + y^2d) = 1$.\\
+Рівність в цілих числах можлива в одному випадку: $a^2 + b^2 d = 1$ та $x^2 + y^2 d = 1$. Нас цікавитиме $b^2 d = 1 - a^2$. Ліва частина рівності невід'ємна, а права частина буде додатною при $a = \pm 1$ або $a = 0$. Якщо $a = 0$, то $b^2 d = 1$, але оскільки $d > 1$, то рівність неможлива. Залишається $a = \pm 1$, звідси $b^2 d = 0 \implies b = 0$.\\
+Висновок: $u = \pm 1$.
+\end{proof}
+
+Тепер дослідимо $\mathbb{Z}[\sqrt{d}]$ при $d> 1$ -- число, що вільне від квадратів. Це теж буде областю цілісності, а про евклідовість потім поговоримо окремо. Функція $N(a + b\sqrt{d}) = |a^2 - b^2d|$ буде досі мультиплікативною, але вона не завжди задаватиме евклідовість кільця.
+
+\begin{proposition}
+$\mathbb{Z}[\sqrt{d}]$ має нескінченне число одиниць.
+\end{proposition}
+
+\begin{proof}
+Початок доведення аналогічне, як було минулого разу. Цього разу хіба що отримаємо\\
+$|a^2 - b^2d| |x^2 - y^2d| = 1$.\\
+Маємо $a^2 - b^2d = 1$. Оскільки $d$ -- вільне від квадратів, ми маємо ніщо інше як рівняння Пелля (див. стандартну теорію чисел). Для такого випадку кількість розв'язків $(a,b)$ нескінченна, тому й кількість елементів $u = a + b \sqrt{d} \in (\mathbb{Z}[\sqrt{d}])^\times$ нескінченна.
+\end{proof}
+
+\begin{theorem}
+$\mathbb{Z}[\sqrt{2}]$ буде евклідовим кільцем, $(\mathbb{Z}[\sqrt{2}])^\times = \{ \pm (1+\sqrt{2})^n \mid n \in \mathbb{Z} \}$.\\
+(TODO: добити)
+\end{theorem}
+
+\subsection{Цілі елементи}
+Протягом даного розділу ми будемо припускати, що кільце -- комутативне та має одиницю.
+
+\begin{definition}
+Нехай $A \subset B$ -- розширення кільця.\\
+Елемент $b \in B$ називається \textbf{цілим над $A$}, якщо
+\begin{align*}
+\exists f \in A[x] \text{ -- монічний}: f(b) = 0
+\end{align*}
+Кільце $B$ називається \textbf{цілим над $A$}, якщо
+\begin{align*}
+\forall b \in B: b \text{ -- цілий над $A$.}
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Нехай $A \subset B$ -- розширення кільця.\\
+$b_1,\dots,b_n \in B$ -- цілі над $A \iff A[b_1,\dots,b_n]$ -- скінченно породжений $A$-модуль. 
+\end{proposition}
+
+\begin{proof}
+\rightproof Спочатку доведемо для одного елемента. Отже, дано: $b \in B$ -- цілий над $A$, тобто маємо монічний многчлен $f \in A[x]$, де $f(b) = 0$. Для кожного $g \in A[x]$ маємо розклад\\
+$g(x) = q(x)f(x) + r(x)$,\\
+де $q,r \in A[x]$, причому $\deg r < \deg f$ (ми можемо підібрати саме таку остачу, щоб $r \not\equiv 0$). Підставимо $x = b$ -- матимемо\\
+$g(b) = r(b) = a_0 + a_1 b + \dots + a_{n-1} b^{n-1}$.\\
+Отже, $A[b]$ (як модуль) породжена елементами $\{1,b,\dots,b^{n-1}\}$.\\
+Якщо $b_1,\dots,b_n \in B$ -- цілі над $A$, то довести той факт, що $A[b_1,\dots,b_n]$ скінченно породжений модуль, можна за МІ.
+\bigskip \\
+\leftproof Дано: $A[b_1,\dots,b_n]$ -- скінченно породжений $A$-модуль, тобто $A[b_1,\dots,b_n] = (\omega_1,\dots,\omega_r)$. Значить, для кожного $b \in A[b_1,\dots,b_n]$ матимемо розклад:\\
+$b \omega_i = \displaystyle\sum_{j=1}^r a_{ij} \omega_j$ при $i = 1,\dots,r$ та $a_{ij} \in A$.\\
+Позначимо $\mathbb{A} = (a_{ij})$ -- матриця елементів з кільця $A$. Тоді із рівності вище отримаємо:\\
+$(b\mathbb{I} - \mathbb{A}) \omega = 0$ при $\omega = (\omega_1,\dots,\omega_r)$. Значить, звідси $\det (b \mathbb{I} - \mathbb{A}) \omega_i = 0$.\\
+Також $1 = c_1 \omega_1 + \dots + c_r \omega_r$, тому тотожність $\det (b \mathbb{I} - \mathbb{A}) = 0$ дасть монічне рівняння для $b$ з коефіцієнтами $A$. Тобто $b$ -- ціле над $A$.
+(TODO: додумати)
+\end{proof}
+
+\begin{corollary}
+Нехай $b_1,b_2 \in B$ -- цілі над $A$. Тоді $b_1 + b_2,\ b_1 b_2$ -- цілі над $A$.
+\end{corollary}
+
+\begin{proof}
+За твердженням вище, якщо $b_1,\dots,b_n \in B$ -- цілі над $A$, то $A[b_1,\dots,b_n]$ -- скінченно породжений модуль. Будь-який інший елемент $b \in A[b_1,\dots,b_n]$ буде цілим над $A$, тому що $A[b_1,\dots,b_n,b] = A[b_1,\dots,b_n]$ -- скінченно породжений (твердження вище).\\
+Внаслідок чого $b_1,b_2$ -- цілі над $A$, тому й $b_1 + b_2,\ b_1 b_2 \in A[b_1,b_2]$ -- також цілі над $A$.
+\end{proof}
+
+\begin{proposition}
+Нехай $A \subset B \subset C$ -- два розширення кілець. Відомо, що $C$ -- цілий над $B$ та $B$ -- цілий над $A$. Тоді $C$ -- цілий над $A$.
+\end{proposition}
+
+\begin{proof}
+Беремо $c \in C$, який цілий над $b$, тобто $c^n + b_1 c^{n-1} + \dots + b_n = 0$. Позначимо $R = A[b_1,\dots,b_n]$, тоді $R[c]$ -- скінченно породжений $R$-модуль. Оскільки $B$ -- скінченний над $A$, то $R[c]$ -- скінченно породжений $A$-модуль. Отже, $c$ -- цілий над $A$.
+\end{proof}
+
+\begin{definition}
+\textbf{Цілим замиканням} розширення кілець $A \subset B$ називають множину
+\begin{align*}
+\overline{A} = \{b \in B \mid b \text{ -- цілий над $A$} \}.
+\end{align*}
+Кільце $A$ називають \textbf{ціло замкненим} в $B$, якщо
+\begin{align*}
+A = \overline{A}.
+\end{align*}
+\end{definition}
+
+\begin{corollary}
+$\overline{A}$ -- кільце.
+\end{corollary}
+
+\begin{definition}
+Якщо $A$ -- область цілісності з полем часток $K$, то замикання $\overline{A}$ в $K$ називають \textbf{нормалізацією} $A$. Кільце $A$ називають \textbf{ціло замкненим} (не уточнюючи відносно чого) -- це означає, що $A$ ціло замкнене відносно $K$.
+\end{definition}
+
+\begin{proposition}
+Кожне кільце, що є ООФ, -- ціло замкнене.
+\end{proposition}
+
+\begin{proof}
+Нехай $A$ -- кільце, що ООФ. Автоматично $A \subset \overline{A}$, треба в іншу сторону.\\
+Нехай $u \in \overline{A}$, тобто $u \in K$ та цілий над $A$, тобто $u = \dfrac{a}{b}$, де $a,b \in A$. Тоді звідси\\
+$\left(\dfrac{a}{b}\right)^n + a_1 \left( \dfrac{a}{b}\right)^{n-1} + \dots + a_n = 0$.\\
+$a^n + a_1 b a^{n-1} + \dots + a_n b^n = 0$.\\
+Ми в ООФ, тому розкладемо $b$ на добуток простих елементів. Маючи $\pi \mid b$, ми отримаємо $\pi \mid a$ із рівності вище. Значить, після скорочення $\dfrac{a}{b}$ в нас тіпа зникне знаменник, ми залишимося з тим, що $u \in A$.
+\end{proof}
+
+Маємо $A$ -- ціло замкнена область цілісності, $K$ -- його поле часток.\\
+Нехай $L|K$ -- скінченне розширення полів та $B$ -- ціле замикання $A$ в $L$, тобто $B = \{\beta \in L \mid \beta \text{ -- цілий над }A\}$. Тоді звідси $B$ буде ціло замкненим (в $K$).\\
+Кожний елемент $\beta \in L$ має вигляд $\beta = \dfrac{b}{a},\ b \in A,\ a \in A$. (TODO: чому?)
+
+\begin{definition}
+Нехай $L|K$ -- скінченне розширення (тоді $L$ -- векторний простір над $K$).\\
+\textbf{Слідом} елемента $x \in L$ називають наступне:
+\begin{align*}
+\Tr_{L|K}(x) = \Tr T_x
+\end{align*}
+\textbf{Нормою} елемента $x \in L$ називають наступне:
+\begin{align*}
+N_{L|K}(x) = \det T_x
+\end{align*}
+Всюди $T_x \colon L \to L$ -- це відображення $T_x(\alpha) = x \alpha$.
+\end{definition}
+
+У характеристичного многочлена $f_x(t) = \det (t I - T_x) = t^n - a_1 t^{n-1} + \dots + (-1)^n a_n \in K[t]$ ми побачимо, що $a_1 = \Tr_{L|K}(x)$ та $a_n = N_{L|K}(x)$.\\
+Оскільки $T_{x+y} = T_x + T_y$ та $T_{xy} = T_x \circ T_y$, отримаємо, що $\Tr_{L|K}$ та $N_{L|K}$ -- гомоморфізми.
+
+\begin{proposition}
+Нехай $L|K$ -- сепарабельне скінченне розширення полів та $\sigma \colon L \to \overline{K}$ варіативується над різними $K$-вкладеннями в $L$ на алгебраїчне замикання $\overline{K}$ в $K$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $f_x(t) = \displaystyle\prod_{\sigma} (t-\sigma x)$;
+\item $\Tr_{L|K}(x) = \displaystyle\sum_\sigma \sigma x$;
+\item $N_{L|K}(x) = \displaystyle\prod_{\sigma} \sigma x$.
+\end{enumerate}
+\end{proposition}
+\end{document}

@@ -1436,7 +1436,7 @@ x \equiv 24 \pmod {25}
 \end{example}
 
 \begin{example}
-Задано $p$ -- просте число, причому $p \nmid a$. Нехай $1 \leq  m \leq p-1$ - найменше число, для якого $a^m \equiv 1 \pmod p$. Довести, що $m \mid p-1$.\\
+Задано $p$ -- просте число, причому $p \nmid a$. Нехай $1 \leq  m \leq p-1$ -- найменше число, для якого $a^m \equiv 1 \pmod p$. Довести, що $m \mid p-1$.\\
 !Припустимо, що $p-1 = mq + r$ та остача $r < m$. Тоді звідси\\
 $1 \overset{\text{мала Ферма}}{\equiv} a^{p-1} = a^{mq+r} = (a^m)^q a^r \equiv 1^q a^r = a^r$.\\
 Тобто $a^{r} \equiv 1 \pmod p$, але $m$ -- найменше таке число. Суперечність!
@@ -1575,7 +1575,7 @@ $\displaystyle \# \{1,2,\dots,n\} = n = \#\left( \bigsqcup_{d \mid n} S_d \right
 \begin{proof}
 Маємо $m,n$ такі, що $\gcd(m,n) = 1$. Розглянемо кілька випадків:\\
 I. $m$ або $n$ -- не вільне від квадратів. Тобто існує просте число $p$, для якого $p^2 \mid m$ або $p^2 \mid n$. В обох випадках отримаємо $p^2 \mid mn$, а тому також $mn$ не буде вільним від квадратів. Отже, $\mu(mn) = 0 = \mu(m)\mu(n)$.\\
-II. $m$ та $n$ - вільні від квадратів, нехай $m = p_1 \dots p_r$ та $n = q_1 \dots q_s$, причому $p_i,q_j$ всі різні в силу $\gcd(m,n) = 1$. Отже, $mn = p_1 \dots p_r q_1 \dots q_s$, а тому $\mu(mn) = (-1)^{r+s} = (-1)^r (-1)^s = \mu(m)\mu(n)$.
+II. $m$ та $n$ -- вільні від квадратів, нехай $m = p_1 \dots p_r$ та $n = q_1 \dots q_s$, причому $p_i,q_j$ всі різні в силу $\gcd(m,n) = 1$. Отже, $mn = p_1 \dots p_r q_1 \dots q_s$, а тому $\mu(mn) = (-1)^{r+s} = (-1)^r (-1)^s = \mu(m)\mu(n)$.
 \end{proof}
 
 \begin{theorem}
@@ -3739,6 +3739,112 @@ $s \sqrt{d} = \left(r + s \sqrt{d}\right) - \left(r - s \sqrt{d}\right) > 1 - 1 
 \end{proof}
 \newpage
 
+\section{Постулат Бертрана}
+\begin{theorem}
+Для кожного цілого числа $n \geq 2$ існує щонайменше одне просте число $p$, для якого $n < p < 2n$.
+\end{theorem}
+
+Даний постулат вже можна вважати за теорему, бо була доведена Чебишовим.
+
+\begin{lemma}
+Для кожного $n \in \mathbb{N}$ виконується $\dfrac{4^n}{2n} \leq C_{2n}^n$.
+\end{lemma}
+
+\begin{proof}
+$4^n = (1+1)^{2n} = \displaystyle\sum_{k=0}^{2n} C_{2k}^k = 2 + \sum_{k=1}^{2n-1} C_{2k}^k \leq 2n C_{2n}^n$.
+\end{proof}
+
+\begin{lemma}
+Зафіксуємо просте число $p$. Визначимо $R = R(n,p)$ -- найбільше натуральне число $r$ таке, що $p^r \mid C_{2n}^n$. Тоді для кожного простого $p$ виконується $p^R \leq 2n$. 
+\end{lemma}
+
+\begin{proof}
+Для числа $n!$ степінь простого числа $p$ визначається за формулою Лежандра $\displaystyle\sum_{j=1}^\infty \left[ \dfrac{n}{p^j} \right]$. Тоді для числа $C_{2n}^n = \dfrac{(2n)!}{n!n!}$ степінь простого числа $p$ дорівнює $\displaystyle\sum_{j=1}^\infty \left[ \dfrac{2n}{p^j} \right] - 2 \sum_{j=1}^\infty \left[ \dfrac{n}{p^j} \right]$. Такий степінь є найбільшим можливим, тому\\
+$\displaystyle\sum_{j=1}^\infty \left( \left[ \dfrac{2n}{p^j} \right] - 2 \left[ \dfrac{n}{p^j} \right] \right) = R$.\\
+У цій сумі при $j > \log_p(2n)$ всі доданки нулеві. Інакше зауважимо, що $\left[ \dfrac{2n}{p^j} \right] - 2 \left[ \dfrac{n}{p^j} \right]$ приймає значення $0$ або $1$. Таким чином, $R \leq \log_p (2n)$. Власне, звідси $p^R \leq 2n$.
+\end{proof}
+
+\begin{lemma}
+Нехай $p$ -- таке непарне просте число, що $\dfrac{2n}{3} < p \leq n$. Тоді $R(n,p) = 0$.
+\end{lemma}
+
+\begin{proof}
+Ми вже знаємо, що $\displaystyle\sum_{j=1}^\infty \left( \left[ \dfrac{2n}{p^j} \right] - 2 \left[ \dfrac{n}{p^j} \right] \right) = R$ та що $\left[ \dfrac{2n}{p^j} \right] - 2 \left[ \dfrac{n}{p^j} \right]$ приймає значення $0$ або $1$ -- це було в лемі 2. \\
+Припустимо, що $\dfrac{2n}{p^j} \geq 1$, тобто $p^j \leq 2n \implies j \leq \log_p 2n < \log_p (3p) = 1 + \log_p 3 \overset{\text{$p$ -- непарне}}{<} 2$. Єдиний варіант тут -- це $j = 1$. У силу нашої оцінки на просте число $p$ матимемо $\left[ \dfrac{2n}{p^j} \right] - 2 \left[ \dfrac{n}{p^j} \right] = 2 - 2 \cdot 1 = 0$.\\
+Якщо $\dfrac{2n}{p^j} < 1$, то тим паче $\dfrac{n}{p^j} < \dfrac{1}{2}$, а тому $\left[ \dfrac{2n}{p^j} \right] - 2 \left[ \dfrac{n}{p^j} \right] = 0$.\\
+Внаслідок чого отримали $R = 0$. 
+\end{proof}
+
+\begin{lemma}
+Визначимо $n \# = \displaystyle\prod_{p \leq n} p$ -- це називають англійською primorial. Для кожного $n \geq 1$ виконується $n \# < 4^n$.
+\end{lemma}
+
+\begin{proof}
+I. \textit{База індукції}. При $n = 1$ маємо $1 \# = 1 < 4$.\\
+II. \textit{Припущення індукції (перша частина)}. При $1 \leq n \leq 2k-1$ нерівність виконується.\\
+III. \textit{Крок індукції (перша частина)}. Число $n = 2k > 2$ та є складеними, а тому звідси $(2k)\# = (2k-1)\# \overset{\text{припущення МІ}}{<} 4^{2k-1} < 4^{2k}$.
+\bigskip \\
+II. \textit{Припущення індукції (друга частина)}. При $1 \leq n \leq 2k$ нерівність виконується.\\
+III. \textit{Крок індукції (друга частина)}. Зауважимо, що $C_{2k+1}^k$ -- ціле число, при цьому прості числа $k+2 \leq p \leq 2k+1$ з'являються лише в $(2k+1)!$ (тобто в чисельнику). Звідси\\
+$\dfrac{(2k+1)\#}{(k+1)\#} \leq C_{2k+1}^k = \dfrac{1}{2} (C_{2k+1}^k + C_{2k+1}^{k+1}) \leq \dfrac{1}{2} (1+1)^{2k+1} = 4^k$.\\
+Отже, $(2k+1)\# = (k+1)\# \cdot \dfrac{(2k+1)\#}{(k+1)\#} \overset{\text{припущення МІ}}{<} 4^k \cdot 4^{k+1} = 4^{2k+1}$.\\
+МІ доведено.
+\end{proof}
+
+Тепер ми готові довести постулат Бертрана.
+
+\begin{proof}
+!Припустимо, що існує натуральне число $n \geq 2$, таке, щоб не існувало простого числа $p$, де $n < p < 2n$. Тоді обов'язково $n \geq 427$.\\
+Якби $n < 427$, то ми можемо обрати просте число $p$ серед цього списку: $\{3,5,7,13,23,43,83,163,317,631\}$. Тому обов'язково $n \geq 427$.\\
+Розглянемо число $C_{2n}^n$. Тут в нас така ситуація: не існує простого множника так, що:
+\begin{itemize}[nosep,wide=0pt]
+\item $2n < p$ (кожний множник має ділити $(2n)!$);
+\item $p = 2n$ ($2n$ взагалі не є простим);
+\item $n < p < 2n$ (припущення);
+\item $\dfrac{2n}{3} < p \leq n$ (лема 3).
+\end{itemize}
+Отже, кожний множник $p$ задовольняє умову $p \leq \dfrac{2n}{3}$.\\
+Нехай $p > \sqrt{2n}$, тоді число $C_{2n}^n$ матиме до одного множник $p$. За лемою 2, $p^{R(p,n)} \leq 2n$, також $\pi(x) \leq x-1$ (бо $1$ ані просте, ані складене). Використовуючи лему 1 та лему 4, отримаємо:\\
+$\dfrac{4^n}{2n} \leq C_{2n}^n \overset{\text{основна Th.\ арифметики}}{=} \displaystyle\left( \prod_{p \leq \sqrt{2n}} p^{R(p,n)} \right) \left( \prod_{\sqrt{2n} < p \leq \frac{2n}{3}} p^{R(p,n)} \right) < \\ < \left( \prod_{p \leq \sqrt{2n}} 2n \right) \left( \prod_{p \leq \frac{2n}{3}} p \right) \leq (2n)^{\pi(\sqrt{2n})} 4^{\frac{2n}{3}} \leq (2n)^{\sqrt{2n}-1} 4^{\frac{2n}{3}}$.\\
+Отже, $4^{\frac{n}{3}} \leq (2n)^{\sqrt{2n}}$, тобто звідси $2^{\sqrt{2n}} \leq (2n)^3$. Тобто $\sqrt{2n} \leq 3 \log_2 (2n)$.\\
+Зауважимо, що при $n = 426$ нерівність виконується, але вже не при $n = 427$. Оскільки $\log_2(2n)$ -- випукла, нерівність виконується на інтервалі.\\
+Отже, ми отримали $n < 427$, що не можна припустити. Суперечність! 
+\end{proof}
+\newpage
+
+\section{Prime number theorem}
+\begin{theorem}
+$\pi(x) \sim \dfrac{x}{\ln x}$ при $x \to +\infty$.
+\end{theorem}
+
+Дана теорема не є простою в додвенні. Будемо до цього рухатися поступово. Оскільки я ще не знаю комплексного аналізу, то цей розділ буде тимчасово недоповненим.
+
+\begin{definition}
+Визначимо \textbf{функцію Чебишова} таким чином:
+\begin{align*}
+\psi(x) = \sum_{p \leq x} \left[ \dfrac{\ln x}{\ln p} \right] \ln p, \quad x > 0
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+$\pi(x) \sim \dfrac{x}{\ln x} \iff \psi(x) \sim x$ (обидва при $x \to +\infty$).\\
+По суті кажучи, ми записали еквівалентність до prime number theorem.
+\end{proposition}
+
+\begin{proof}
+\leftproof Дано: $\psi(x) \sim x$.\\
+Спочатку зауважимо, що $\psi(x) \leq \displaystyle\sum_{p \leq x} \ln x = \pi(x) \ln x$. Звідси випливає, що $\dfrac{\psi(x)}{x} \leq \dfrac{\pi(x) \ln x}{x}$. Тоді, взявши $x \to +\infty$, ми отримаємо $1 \leq \displaystyle\liminf_{x \to +\infty} \dfrac{\pi(x) \ln x}{x}$.\\
+Тепер зауважимо, що при $\alpha \in (0,1)$ маємо $\psi(x) \geq \displaystyle\sum_{p \leq x} \ln p \geq \sum_{x^\alpha < p \leq x} \ln p \geq (\pi(x) - \pi(x^\alpha)) \ln x^\alpha \geq \alpha(\pi(x) - x^\alpha) \ln x$. Звідси випливає, що $\dfrac{\psi(x)}{x} \geq \dfrac{\ln x}{x} \alpha (\pi(x) - x^\alpha)$. Тоді, взявши спочатку $x \to +\infty$, а згодом $\alpha \to 1-0$, отримаємо $1 \geq \displaystyle\limsup_{x \to +\infty} \dfrac{\pi(x) \ln x}{x}$.\\
+Ці дві нерівності свідчать як раз про $\dfrac{\pi(x) \ln x}{x} \to 1$, тобто $\pi(x) \sim \dfrac{x}{\ln x}, \quad x \to +\infty$.
+\bigskip \\
+\rightproof Дано: $\pi(x) \sim \dfrac{x}{\ln x}$.\\
+Уже доводили оцінку $\dfrac{\psi(x)}{x} \leq \dfrac{\pi(x) \ln x}{x}$ в напрямку \leftproof. Зворотна оцінка по-іншому отримується: (TODO:?)\\
+$\psi(x) > \displaystyle\sum_{p \leq x} (\ln x - \ln p) = (\ln x - \ln p) \pi(x)$ 
+\end{proof}
+
+
+
+\newpage
 \section*{Відкриті задачі теорії чисел}
 Станом на \today маємо такі відкриті задачі:
 \begin{enumerate}

@@ -110,7 +110,7 @@
 	$$ \mathbb{Z} = \{\dots,\ -3 ,\ -2, \ -1,\ 0,\ 1,\ 2,\ 3,\ \dots\} $$
 	Саме в цілих числах ми змогли визначити вже операцію $+$, але цього недостатньо. Потім раціональні числа: \\
 	$$ \mathbb{Q} = \left\{ \dfrac{m}{n} \biggm| m \in \mathbb{Z},\ n \in \mathbb{N} \right\} $$
-	А тут вже ми змогли визначити операцію $\cdot$, і цього теж мало. Насправді, всі ці множини та операції $+,\ \cdot$ можна спробувати дуже строго формалізувати, проте цього робити не планую. Це не сильно вплине на якість вивчення матана.
+	А тут вже ми змогли визначити операцію $\cdot$, і цього теж мало. (TODO: залишити посилання для цього). Насправді, всі ці множини та операції $+,\ \cdot$ можна спробувати дуже строго формалізувати, проте цього робити не планую. Це не сильно вплине на якість вивчення матана.
 	
 	Настав саме час дослідити поле дійсних чисел -- $\mathbb{R}$. Одна з головних мотивацій зробити -- це задача про прямокутний трикутник зі сторонами $1$.
 	\begin{figure}[H]
@@ -188,11 +188,11 @@
 	Саме це твердження є головною мотивацією розвивати нову множину. У грубому сенсі, це все означає, що множина $\mathbb{Q}$ -- неповна множина, тобто на числовій прямій є \lq\lq дірки\rq\rq. І саме $\mathbb{R}$ прибирає ці самі  \lq\lq дірки\rq\rq . \\
 	Множину $\mathbb{R}$ можна конструювати по-різному:
 	\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
-	\item як набір нескінченних десяткових дробів (наприклад, $\sqrt{2} = 1.41421356237\dots$;
-	\item через послідовності Коші (наприклад, $\sqrt{2} = \{1, 1.4, 1.41, 1.414, \dots\}$;
+	\item як набір нескінченних десяткових дробів (наприклад, $\sqrt{2} = 1.41421356237\dots$);
+	\item через послідовності Коші (наприклад, $\sqrt{2} = \{1, 1.4, 1.41, 1.414, \dots\}$);
 	\item через переріз Дедекінда.
 	\end{enumerate}
-	Конструкцією $\mathbb{R}$ займатися не хочу на самому початку, просто тому що це нудно та затратно. Ми підемо іншим шляхом.
+	Конструкцією $\mathbb{R}$ займатися не хочу на самому початку, просто тому що це нудно та затратно. Ми підемо іншим більш стандартним шляхом, який не призводить до зміни теорії.
 	
 	\subsection{Аксіоматика множини дійсних чисел}
 	\begin{definition}
@@ -429,7 +429,7 @@
 	Повернімось до множини $A = \{1-2^{-n} \mid| n \in \mathbb{N}\} \overset{\text{або}}{=} \left\{\dfrac{1}{2}, \dfrac{3}{4}, \dfrac{7}{8}, \dots \right\}$. Доведемо, що $\sup A = 1$.\\
 	Дійсно, $\forall a \in A: a = 1 - \dfrac{1}{2^n} < 1$.\\
 	Нехай $c < 1$. Знайдемо таке число $a \in A$, щоб $a > c$.\\
-	$1 - \dfrac{1}{2^n} > 1 - \dfrac{1}{2n} > c \iff \dfrac{1}{2n} < 1-c \iff n > \dfrac{1}{2-2c}$\\
+	$1 - \dfrac{1}{2^n} > 1 - \dfrac{1}{2n} > c \iff \dfrac{1}{2n} < 1-c \iff n > \dfrac{1}{2-2c}$.\\
 	Ця нерівність каже, що існує такий номер $n \in \mathbb{N}$, щоб взяти елемент $a \in A$, для якого, $a > c$. Але якщо точніше, ми можемо взяти $n = \left[ \dfrac{1}{2-2c} \right] + 1$, проте про цю штуку $[ \,\cdot\, ]$ (це називається ціла частина числа) треба ще згодом поговорити.
 	\bigskip \\
 	Аналогічно доводиться, що $\inf A = \dfrac{1}{2}$.
@@ -561,8 +561,7 @@
 	\end{proof}
 	
 	\begin{corollary}
-	Задано такі два числа $a,b \in \mathbb{R}$, що $a < b$. Тоді в інтервалі $(a,b)$ знайдеться принаймні одне раціональне число.\\
-	Математично кажучи, $\exists q \in \mathbb{Q}: a < q < b$.
+	Задано такі два числа $a,b \in \mathbb{R}$, що $a < b$. Тоді в інтервалі $(a,b)$ знайдеться принаймні одне раціональне число.
 	\end{corollary}
 	
 	\begin{proof}
@@ -574,8 +573,7 @@
 \end{proof}
 
 	\begin{corollary}
-	Задано такі два числа $a,b \in \mathbb{R}$, що $a < b$. Тоді в інтервалі $(a,b)$ знайдеться принаймні одне ірраціональне число.\\
-	Математично кажучи, $\exists x \in \mathbb{R} \setminus \mathbb{Q}: a < q < b$
+	Задано такі два числа $a,b \in \mathbb{R}$, що $a < b$. Тоді в інтервалі $(a,b)$ знайдеться принаймні одне ірраціональне число.
 	\end{corollary}
 	
 	\begin{proof}
@@ -1027,7 +1025,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	Тоді за лемою Кантора, знайдемо якусь т. $c$, яка належить будь-якому відрізку.\\
 	$c \in I_1 \implies c \neq x_1$, $c \in I_2 \implies c \neq x_2$, $c \in I_3 \implies c \neq x_3$, $\dots$\\
 	Можна зробити висновок, що $\forall n \geq 1: c \neq x_n$, а тому точка $c$ не має нумерації. Суперечність!\\
-	Отже, $[0,1]$ -- незліченна множина, а тому тим паче $\mathbb{R} \supset [0,1] \subset \mathbb{R}$ -- незліченна множина.
+	Отже, $[0,1]$ -- незліченна множина, а тому тим паче $\mathbb{R} \supset [0,1]$ -- незліченна множина.
 	\end{proof}
 	
 	\setcounter{section}{0}
@@ -1309,18 +1307,21 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\begin{align*}
 	\{a_1,a_2,a_3, \dots\} \overset{\text{скорочено}}{=} \{a_n, n \geq 1\}.
 	\end{align*}
-	А формально називають це відображенням $a \colon \mathbb{N} \to \mathbb{R}$, де $a(n) = a_n$. Тобто кожному номеру послідовності ставиться в відповідність єдине дійсне число.
+	А формально називають це відображенням $a \colon \mathbb{N} \to \mathbb{R}$, де $a(n) = a_n$. Тобто кожному номеру послідовності ставиться в відповідність єдине дійсне число.\\
+	Існує ще ось таке позначення послідовності: $\{a_n\}_{n=1}^\infty$.
 	\end{definition}
 	
 	\begin{example}
-	Розглянемо декілька прикладів, де послідовності по-різному задаються:\\
-	1. $\{a_n, n \geq 1\} = \{\underset{a_1}{1},\underset{a_2}{2},\underset{a_3}{-1},\underset{a_4}{3},\underset{a_5}{0},\dots\}$ -- якась рандомна послідовність;\\
-	2. $\{b_n, n \geq 1\}$, де $b_n = \dfrac{1}{n}$ -- послідовність, що задається формулою;\\
-	3. $\{c_n, n \geq 1\}$, де $c_1 = 1$, а також $c_{n+1} = \dfrac{c_n}{n+1}$ -- рекурентна послідовність.
+	Розглянемо декілька прикладів, де послідовності по-різному задаються:
+	\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+	\item $\{a_n, n \geq 1\} = \{\underset{a_1}{1},\underset{a_2}{2},\underset{a_3}{-1},\underset{a_4}{3},\underset{a_5}{0},\dots\}$ -- якась рандомна послідовність;
+	\item $\{b_n, n \geq 1\}$, де $b_n = \dfrac{1}{n}$ -- послідовність, що задається формулою;
+	\item $\{c_n, n \geq 1\}$, де $c_1 = 1$, а також $c_{n+1} = \dfrac{c_n}{n+1}$ -- рекурентна послідовність.
+	\end{enumerate}
 	\end{example}
 	
 	\begin{example}
-	Така штука $a_n = \dfrac{1}{n - 2024}$ не задаватиме числову послідовність, допоки ми не визначимо, чому дорівнює $a_{2024}$.
+	Така штука $a_n = \dfrac{1}{n - \the\year}$ не задаватиме числову послідовність, допоки ми не визначимо, чому дорівнює $a_{\the\year}$.
 	\end{example}
 	
 	\begin{definition} Задано послідовність $\{a_n, n \geq 1\}$.\\
@@ -1329,7 +1330,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\forall \varepsilon > 0: \exists N(\varepsilon) \in \mathbb{N}: \forall n \geq N: |a_n - a| < \varepsilon
 	\end{align*}
 	Позначення: $\displaystyle \lim_{n \to \infty} a_n = a$ або $a_n \xrightarrow{n \to \infty} a$.\\
-	У такому разі послідовність називається \textbf{збіжною}. Якщо границі не існує, то тоді послідовність називається \textbf{розбіжною}.
+	У такому разі послідовність $\{a_n,n \geq 1\}$ називається \textbf{збіжною}. Якщо границі не існує, то тоді послідовність називається \textbf{розбіжною}.
 	\end{definition}
 	
 	\begin{proposition}
@@ -1337,20 +1338,22 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{proposition}
 	
 	\begin{proof}
-	!Припустімо, що задано збіжну числову послідовність $\{a_n, n \geq 1\}$, для якої існують дві границі: $\displaystyle \lim_{n \to \infty} a_n = a_1, \ \lim_{n \to \infty} a_n = a_2$. Ми вважатимемо, що $a_1 < a_2$, оскільки для $a_1 > a_2$ міркування є аналогічними.\\
-	Оскільки границі існують, ми можемо задати $\displaystyle \varepsilon = \frac{a_2-a_1}{3} > 0$. Тоді за означенням,\\
-	$\displaystyle \exists N_1: \forall n \geq N_1: |a_n-a_1|< \frac{a_2-a_1}{3} \implies a_n < a_1 + \frac{a_2-a_1}{3}$\\
-	$\displaystyle \exists N_2: \forall n \geq N_2: |a_n-a_2|< \frac{a_2-a_1}{3} \implies a_n > a_2 - \frac{a_2-a_1}{3}$\\
+	!Припустімо, що задано збіжну числову послідовність $\{a_n, n \geq 1\}$, для якої існують дві границі: $\displaystyle \lim_{n \to \infty} a_n = a', \ \lim_{n \to \infty} a_n = a''$. Ми вважатимемо, що $a_1 < a_2$, оскільки для $a_1 > a_2$ міркування є аналогічними.\\
+	Оберемо число $\displaystyle \varepsilon = \frac{a''-a'}{3} > 0$. Тоді за означенням існують числа $N_1,N_2$ такі, що\\
+	$\displaystyle\forall n \geq N_1: |a_n-a'|< \frac{a''-a'}{3} \implies a_n < a' + \frac{a''-a'}{3}$;\\
+	$\displaystyle\forall n \geq N_2: |a_n-a''|< \frac{a''-a'}{3} \implies a_n > a'' - \frac{a''-a'}{3}$.\\
 	Аби обидві нерівності працювали одночасно, ми зафіксуємо новий $N= \max\{N_1,N_2\}$. Тоді\\
-	$\displaystyle \forall n \geq N: a_n < \frac{a_1+(a_1+a_2)}{3} < \frac{a_2+(a_1+b_2)}{3}<a_n$. \\
+	$\displaystyle \forall n \geq N: a_n < \frac{a'+(a'+a'')}{3} < \frac{a''+(a'+a'')}{3}<a_n$. \\
 	У цьому ланцюгу нерівностей суперечність! \\ 
 	Отже, два різних ліміти не можуть існувати одночасно, тим самим доводимо єдиність.
 	\end{proof}
 	
-	\begin{example} Доведемо за означенням, що $\displaystyle\lim_{n \to \infty} \frac{1}{n} = 0$. \textbf{(важливо!)}\\
-	Задане довільне $\varepsilon > 0$. Необхідно знайти таке $N$, щоб $\displaystyle  \forall n \geq N: \left|\frac{1}{n}-0 \right|<\varepsilon$.\\
+	\begin{example}[Важливий] 
+	\label{one_over_n_converges_to_zero}
+	Доведемо за означенням, що $\displaystyle\lim_{n \to \infty} \frac{1}{n} = 0$.\\
+	Задамо довільне $\varepsilon > 0$. Необхідно знайти таке $N$, щоб $\displaystyle  \forall n \geq N: \left|\frac{1}{n}-0 \right|<\varepsilon$.\\
 	$\displaystyle \abs{\frac{1}{n} - 0} < \varepsilon \iff \displaystyle \frac{1}{n}<\varepsilon \iff n > \frac{1}{\varepsilon}$.\\
-	Зафіксуймо $\displaystyle N = \left[\frac{1}{\varepsilon} \right] + 1$. Тоді маємо: $\forall \varepsilon > 0: \exists N = \displaystyle \left[\frac{1}{\varepsilon} \right] + 1: \forall n \geq N: n > \frac{1}{\varepsilon} \implies \abs{\frac{1}{n} - 0} < \varepsilon$.\\
+	Зафіксуємо $\displaystyle N = \left[\frac{1}{\varepsilon} \right] + 1$. Тоді маємо: $\forall \varepsilon > 0: \exists N = \displaystyle \left[\frac{1}{\varepsilon} \right] + 1: \forall n \geq N: n > \frac{1}{\varepsilon} \implies \abs{\frac{1}{n} - 0} < \varepsilon$.\\
 	Отже, означення виконується, тому $\displaystyle\lim_{n \to \infty} \frac{1}{n} = 0$.
 	\begin{figure}[H]
 	\centering
@@ -1370,8 +1373,8 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{figure}
 	\end{example}
 
-	\begin{example}
-	Доведемо за означенням, що $\displaystyle\lim_{n \to \infty} \sqrt[n]{n}=1$. \textbf{(важливо!)} \\
+	\begin{example}[Важливий]
+	Доведемо за означенням, що $\displaystyle\lim_{n \to \infty} \sqrt[n]{n}=1$.\\
 	Знову задамо довільне $\varepsilon > 0$. Знову необхідно знайти $N$, щоб $\displaystyle \forall n \geq N: \left|\sqrt[n]{n}-1  \right|<\varepsilon$.\\
 	$\left|\sqrt[n]{n}-1  \right|<\varepsilon \iff \sqrt[n]{n}<1+\varepsilon$.\\
 	Використовуючи нерівність Коші, ми отримаємо таку оцінку:\\
@@ -1406,30 +1409,6 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 \caption*{Тут на малюнку я встановил границю $a=1$. Лише для деяких $\varepsilon$ всі члени потраплятимуть всередину. Однак, скажімо, не для $\varepsilon = 0.5$ як на малюнку - ось чому ліміт не може бути рівним $1$. І так для кожного $a$.}
 \end{figure}
 	\end{example}
-
-	\begin{definition}
-	Послідовність $\{a_n, n \geq 1\}$ називається \textbf{обмеженою}, якщо
-	\begin{align*}
-	\exists C>0: \forall n \geq 1: |a_n|\leq C
-	\end{align*}
-	\end{definition}
-	
-	\begin{theorem}
-	Будь-яка збіжна послідовність $\{a_n, n \geq 1\}$ є обмеженою.
-	\end{theorem}
-	
-	\begin{proof}
-	Нехай задана збіжна послідовність $\{a_n, n \geq 1\}$, тобто для неї\\ $\displaystyle \exists \lim_{n \to \infty} a_n = a \overset{\textrm{def.}}{\iff}\forall \varepsilon > 0: \exists N(\varepsilon): \forall n \geq N: |a_n-a| < \varepsilon$.\\
-	Оскільки ліміт існує, то задамо $\varepsilon = 1$. Тоді: $\forall n \geq N: \abs{a_n-a}<1$.\\
-	Спробуємо оцінити вираз $|a_n|$ для нашого бажаного:\\
-	$|a_n| = |a_n - a + a| \leq |a_n-a|+|a| < 1 + |a|$ - це виконується $\forall n \geq N$. Інакше кажучи, всі числа, починаючи з $N$, є обмеженими.\\
-	Покладемо $C=\max\{|a_1|, \ |a_2|, \ \ldots, \ |a_{N-1}|, \ 1+|a|\}$. Тоді отримаємо, що $\forall n\geq1: |a_n|\leq C$. \\ 
-	Отже, числова послідовність -- обмежена.
-	\end{proof}
-	
-	\begin{remark}
-	Обернене твердеження не є вірним. Тобто обмежена послідовність $\{a_n, n \geq 1\}$ не обов'язково збіжна (див. \exref{example_of_divergent_sequence}).
-	\end{remark}
 	
 	\begin{definition}
 	Послідовність $\{a_n, n \geq 1\}$ \textbf{має границю} $\infty$, якщо: 			\begin{align*}
@@ -1443,9 +1422,9 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	
 	\begin{example}
 	Доведемо за означенням, що $\displaystyle\lim_{n \to \infty} 2^n = +\infty$.\\
-	Задане довільне $E>0$. Необхідно знайти $N$, для якого $\forall n \geq N: 2^n>E$.\\
+	Задамо довільне $E>0$. Необхідно знайти $N$, для якого $\forall n \geq N: 2^n>E$.\\
 	Раніше доводили, що $2^n \geq n$. Вимагатимемо тепер, щоб $n > E$.\\
-	Фіксуймо $N=\left[ E \right] + 2$. Тоді $\forall n \geq N: n > E$, а тим паче $2^n > n > E$.\\
+	Фіксуємо $N=\left[ E \right] + 2$. Тоді $\forall n \geq N: n > E$, а тим паче $2^n > n > E$.\\
 	Тому $\displaystyle\lim_{n \to \infty} 2^n = +\infty$.
 	\begin{figure}[H]
 \centering
@@ -1464,12 +1443,34 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 
 \begin{example}
 Доведемо, що $\displaystyle \lim_{n \to \infty} (-1)^n 2^n = \infty$.\\
-Задамо довільне $E > 0$. Необхідно знайти $N$, для якого $\forall n \geq N: |(-1)^n 2^n| = 2^n > E$. Але це ми вже доводили зверху. \\
-Важливо тут те, що не можна визначитись, чи $+\infty$, чи $-\infty$ через знакочередованість.
+Задамо довільне $E > 0$. Необхідно знайти $N$, для якого $\forall n \geq N: |(-1)^n 2^n| = 2^n > E$. Але це ми вже доводили зверху. Важливо тут те, що не можна визначитись, чи $+\infty$, чи $-\infty$ через знакочередованість.
 \end{example}
 	
+	\subsection{Обмежені послідовності}
+	\begin{definition}
+	Послідовність $\{a_n, n \geq 1\}$ називається \textbf{обмеженою}, якщо
+	\begin{align*}
+	\exists C>0: \forall n \geq 1: |a_n|\leq C
+	\end{align*}
+	\end{definition}
 	
-	\subsection{Нескінченно малі/великі послідовності}
+	\begin{theorem}
+	Будь-яка збіжна послідовність $\{a_n, n \geq 1\}$ є обмеженою.
+	\end{theorem}
+	
+	\begin{proof}
+	Нехай задана збіжна послідовність $\{a_n, n \geq 1\}$, тобто для неї існує границя $\displaystyle \lim_{n \to \infty} a_n = a$. Зокрема для $\varepsilon = 1$ існуватиме $N$, для якого $\forall n \geq N: \abs{a_n-a}<1$.\\
+	Спробуємо оцінити вираз $|a_n|$ для нашого бажаного:\\
+	$|a_n| = |a_n - a + a| \leq |a_n-a|+|a| < 1 + |a|$ -- це виконується $\forall n \geq N$. Тобто обмежені всі члени, починаючи з $N$.\\
+	Покладемо $C=\max\{|a_1|, \ |a_2|, \ \ldots, \ |a_{N-1}|, \ 1+|a|\}$. Тоді отримаємо, що $\forall n\geq1: |a_n|\leq C$. \\ 
+	Отже, числова послідовність -- обмежена.
+	\end{proof}
+	
+	\begin{remark}
+	Обернене твердеження не є вірним. Тобто обмежена послідовність $\{a_n, n \geq 1\}$ не обов'язково збіжна (див. \exref{example_of_divergent_sequence}).
+	\end{remark}
+	
+	\subsection{Нескінченно малі/великі послідовності, арифметика границь}
 	\begin{definition}
 	Задана послідовність $\{a_n, n \geq 1\}$. \\
 	Послідовність називається \textbf{нескінченно малою (н.м.)}, якщо
@@ -1487,14 +1488,14 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{example}
 	
 	\begin{definition}
-	Послідовність $\{a_n, n \geq 1\}$ назвемо \textbf{таку, що віддалена від нуля}, якщо
+	Послідовність $\{a_n, n \geq 1\}$ назвемо \textbf{віддаленою від нуля}, якщо
 	\begin{align*}
 	\exists \delta>0: \forall n\geq 1: |p_n|\geq \delta
 	\end{align*}
 	\end{definition}
 	
 	\begin{theorem}[Арифметика нескінченно малих та нескінченно великих послідовностей]
-	Задані п'ять послідовності: $\{a_n\}, \ \{b_n\},\ \{c_n\},\ \{d_n\}, \{p_n\}$ -- відповідно н.м., н.м., обмежена, н.в.; така, що віддалена від нуля. Тоді:\\
+	Задані п'ять послідовності: $\{a_n\}, \ \{b_n\},\ \{c_n\},\ \{d_n\}, \{p_n\}$ -- відповідно н.м.,\ н.м.,\ обмежена,\ н.в.,\ віддалена від нуля. Тоді:\\
 	\begin{tabular}{ll}
 	1) $\{a_n+b_n\}$ -- н.м. & 4) $\left\{ \dfrac{1}{a_n} \right\}$ -- н.в. \\
 	2) $\forall C \in \mathbb{R}: \{C a_n\}$ -- н.м. & 5) $\left\{ \dfrac{1}{d_n} \right\}$ -- н.м. \\
@@ -1503,41 +1504,40 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{theorem}
 	
 	\begin{proof}
-	1) $\displaystyle \lim_{n \to \infty} a_n = 0, \lim_{n \to \infty} b_n = 0 \overset{\textrm{def.}}{\iff}$\\
-	$\forall \varepsilon > 0: \exists N_1(\varepsilon): \forall n \geq N_1: |a_n-0| = |a_n| < \dfrac{\varepsilon}{2}$\\
-	$\forall \varepsilon > 0: \exists N_2(\varepsilon): \forall n \geq N_2: |b_n-0| = |b_n| < \dfrac{\varepsilon}{2}$\\
-	Нехай існує $N=\max\{N_1, \ N_2\}$. Тоді $\forall n \geq N: |a_n+b_n - 0| = |a_n+b_n| \leq |a_n|+|b_n| < \varepsilon$.\\
-	Отже, $\{a_n+b_n, n \geq 1\}$ - н.м.
+	1) Маємо $\{a_n\},\ \{b_n\}$ -- обидва н.м. Нехай $\varepsilon > 0$, тоді існують такі $N_1,N_2$, що \\
+	$\forall n \geq N_1: |a_n-0| = |a_n| < \dfrac{\varepsilon}{2} \qquad \forall n \geq N_2: |b_n-0| = |b_n| < \dfrac{\varepsilon}{2}$.\\
+	Покладемо $N = \max\{N_1,N_2\}$. Тоді $|(a_n+b_n)-0| = |a_n+b_n| \leq |a_n|+|b_n| < \varepsilon$ для всіх $n \geq N$. Отже, $\{a_n+b_n\}$ -- н.м.
 	\bigskip \\
-	3) $\displaystyle \lim_{n \to \infty} a_n = 0 \overset{\textrm{def.}}{\iff}$ $\forall \varepsilon > 0: \exists N(\varepsilon): \forall n \geq N: |a_n-0| = |a_n| < \dfrac{\varepsilon}{M}$\\
-	де $M>0$ - таке число, що $\forall n \geq 1: |c_n| \leq M$ - означення обмеженності.\\
-	Тоді $\forall n \geq N: |a_n \cdot c_n - 0| = |a_n \cdot c_n| = |a_n| \cdot |c_n| < \varepsilon$.\\
-	Отже, $\{a_n \cdot c_n, n \geq 1 \}$ - н.м.
+	2) \textit{Буде доводитися десь аналогічно як 3), яке зараз доведемо.}
 	\bigskip \\
-	4) $\displaystyle \lim_{n \to \infty} a_n = 0 \overset{\textrm{def.}}{\iff}$ $\forall \varepsilon > 0: \exists N(\varepsilon): \forall n \geq N: |a_n-0| = |a_n| < \varepsilon$\\
-	Зафіксуємо $\displaystyle \varepsilon = \frac{1}{E}$ для всіх $E>0$. Тоді $\displaystyle \exists N(E): \forall n \geq N: |a_n|<\frac{1}{E} \iff \abs{\frac{1}{a_n}} > E$.\\
-	Отже, $\left\{ \dfrac{1}{a_n}, n \geq 1 \right\}$ - н.в.
+	3) Маємо $\{a_n\}$ -- н.м. та $\{c_n\}$ -- обмежена. Нехай $\varepsilon > 0$. Тоді із н.м. існує $N$, для якого $\forall n \geq N: |a_n-0| = |a_n| < \dfrac{\varepsilon}{M}$. Число $M > 0$ ми взяли з означення обмеженості $\{c_n\}$, тобто в нашому випадку $|c_n| \leq M,\ \forall n \geq 1$. \\
+	Отже, $\forall n \geq N: | (c_n \cdot a_n) - 0| = |c_n| \cdot |a_n| < M \dfrac{\varepsilon}{M} = \varepsilon$. Внаслідок чого $\{a_n \cdot c_n\}$ -- н.м.
 	\bigskip \\
-	2), 6) доводиться як 3). 5) доводиться аналогічно як 4)
+	4) Маємо $\{a_n\}$ -- н.м. Нехай $E > 0$. Взявши $\varepsilon = \dfrac{1}{E}$ та означення н.м., тоді існує таке $N$, що $\forall n \geq N: |a_n| < \dfrac{1}{E}$. Значить, $\left| \dfrac{1}{a_n} \right| > E$. Отже, $\left\{ \dfrac{1}{a_n} \right\}$ -- н.в.
+	\bigskip \\
+	5) \textit{Доводиться аналогічно як} 4)
+	\bigskip \\
+	6) \textit{Доводиться аналогічно як} 3)
 	\end{proof}
 	
 	\begin{example}
-	Розглянемо декілька прикладів:\\
-	$\displaystyle\lim_{n \to \infty} \dfrac{1}{2^n} = 0$, тому що $a_n = 2^n$ - н.в., а тому $\dfrac{1}{a_n} = \dfrac{1}{2^n}$ - н.м.\\
-	$\displaystyle\lim_{n \to \infty} \dfrac{(-1)^n}{n} = 0$, тому що $a_n = (-1)^n$ - обмежена та $b_n = \dfrac{1}{n}$ - н.м.
+	Розглянемо декілька прикладів:
+	\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+	\item $\displaystyle\lim_{n \to \infty} \dfrac{1}{2^n} = 0$, тому що $a_n = 2^n$ -- н.в., а тому $\dfrac{1}{a_n} = \dfrac{1}{2^n}$ -- н.м.\\
+	\item $\displaystyle\lim_{n \to \infty} \dfrac{(-1)^n}{n} = 0$, тому що $a_n = (-1)^n$ -- обмежена та $b_n = \dfrac{1}{n}$ -- н.м.
+	\end{enumerate}
 	\end{example}
 	
 	\begin{theorem}[Про характеризацію збіжної послідовності]
 	Задано послідовність $\{a_n, n \geq 1\}$.\\
-	Послідовність $\{a_n, n \geq 1\}$ - збіжна $\iff$ існує $\{\alpha_n, n \geq 1\}$ - така н.м. послідовність, що $a_n = a+\alpha_n$.
+	Послідовність $\{a_n, n \geq 1\}$ -- збіжна до $a$ $\iff$ існує н.м. послідовність $\{\alpha_n, n \geq 1\}$, де $a_n = a+\alpha_n$.
 	\end{theorem}
 	
 	\begin{proof}
-	\rightproof Дано: $\{a_n, n \geq 1\}$ - збіжна, тобто $\forall \varepsilon > 0: \exists N: \forall n \geq N: |a_n-a| < \varepsilon$.\\
-	Позначимо $a_n-a=\alpha_n$. Тоді $a_n=a+\alpha_n$ та послідовність $\{\alpha_n, n \geq 1\}$ - н.м., оскільки \\ $|\alpha_n - 0| = |\alpha_n| = |a_n - a| < \varepsilon$.
+	\rightproof Дано: $\{a_n, n \geq 1\}$ -- збіжна до $a$, тобто $\forall \varepsilon > 0: \exists N: \forall n \geq N: |a_n-a| < \varepsilon$. Позначимо $a_n-a=\alpha_n$. Тоді $a_n=a+\alpha_n$ та послідовність $\{\alpha_n, n \geq 1\}$ -- н.м., оскільки $|\alpha_n - 0| = |\alpha_n| = |a_n - a| < \varepsilon$.
 	\bigskip \\
-	\leftproof Дано: $\{\alpha_n, n \geq 1\}$ - н.м., де $a_n = a + \alpha_n$. Тоді $\forall \varepsilon > 0: \exists N: \forall n \geq N: |\alpha_n| < \varepsilon \implies |a_n - a| < \varepsilon$.\\
-	Отже, $\{a_n, n \geq 1\}$ - збіжна.
+	\leftproof Дано: $\{\alpha_n, n \geq 1\}$ -- н.м., де $a_n = a + \alpha_n$. Тоді $\forall \varepsilon > 0: \exists N: \forall n \geq N: |\alpha_n| < \varepsilon \implies |a_n - a| < \varepsilon$.\\
+	Отже, $\{a_n, n \geq 1\}$ -- збіжна (до $a$).
 	\end{proof}
 	
 	\begin{theorem}[Арифметика границь]
@@ -1552,30 +1552,33 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{theorem}
 	
 	\begin{proof}
-	Обидві послідовності збіжні за умовою. Тоді за попередньою теоремою, $a_n = a + \alpha_n$ та $b_n=b+\beta_n$, де $\{\alpha_n\}, \{\beta_n\}$ - н.м. послідовності. Тоді:\\
-	1) $a_n+b_n=a+\alpha_n+b+\beta_n=(a+b)+(\alpha_n+\beta_n)$, причому $\{\alpha_n + \beta_n\}$ - н.м. \\ Отже, послідовність $\{a_n+b_n, n \geq 1\}$ - збіжна та має границю $\displaystyle \lim_{n \to \infty} (a_n+b_n) = a+b = \lim_{n \to \infty} a_n+\lim_{n \to \infty} b_n$.
+	Обидві послідовності збіжні за умовою. Тоді за попередньою теоремою $a_n = a + \alpha_n$ та $b_n=b+\beta_n$, де $\{\alpha_n\}, \{\beta_n\}$ -- н.м. послідовності.\\
+	1) $a_n+b_n=a+\alpha_n+b+\beta_n=(a+b)+(\alpha_n+\beta_n)$, причому $\{\alpha_n + \beta_n\}$ -- н.м. Отже, послідовність $\{a_n+b_n, n \geq 1\}$ -- збіжна та має границю $\displaystyle \lim_{n \to \infty} (a_n+b_n) = a+b = \lim_{n \to \infty} a_n+\lim_{n \to \infty} b_n$.
 	\bigskip \\
-	2) Це зрозуміло.
+	2) \textit{Зрозуміло}.
 	\bigskip \\
-	3) $a_n b_n - ab = (a+\alpha_n)(b+\beta_n) - ab = \alpha_n b + \alpha_n \beta_n + a \beta_n = \gamma_n$, причому послідовність \\ $\{\gamma_n = \alpha_n b + \alpha_n \beta_n + a \beta_n \}$ - н.м. \\
-	Отже, послідовність $\{a_n b_n, n \geq 1\}$ - збіжна та має границю $\displaystyle \lim_{n \to \infty} (a_n \cdot b_n) = ab = \lim_{n \to \infty} a_n \cdot \lim_{n \to \infty} b_n$.
+	3) $a_n b_n - ab = (a+\alpha_n)(b+\beta_n) - ab = \alpha_n b + \alpha_n \beta_n + a \beta_n = \gamma_n$, причому послідовність $\{\gamma_n = \alpha_n b + \alpha_n \beta_n + a \beta_n \}$ -- н.м.  Отже, послідовність $\{a_n b_n, n \geq 1\}$ -- збіжна та має границю $\displaystyle \lim_{n \to \infty} (a_n \cdot b_n) = ab = \lim_{n \to \infty} a_n \cdot \lim_{n \to \infty} b_n$.
 	\bigskip \\
-	4) У принципі, це є наслідком 3), якщо представити послідовність $\dfrac{a_n}{b_n} = a_n \cdot \dfrac{1}{b_n}$. Треба лишень довести, що $\dfrac{1}{b_n} \to \dfrac{1}{b}, n \to \infty$.\\
+	4) У принципі, це є наслідком 3), якщо представити послідовність $\dfrac{a_n}{b_n} = a_n \cdot \dfrac{1}{b_n}$. Треба лише довести, що $\dfrac{1}{b_n} \to \dfrac{1}{b}, n \to \infty$.\\
 	Відомо, що $b_n \to b \iff \forall \varepsilon > 0: \exists N': \forall n \geq N: |b_n-b| < \varepsilon$.\\
 	Зафіксую $\varepsilon = \dfrac{|b|}{2}$, тоді $\exists N'': \forall n \geq N'':  |b| = |b - b_n + b_n| \leq |b - b_n| + |b_n| < \dfrac{|b|}{2} + |b_n| \implies |b_n| > \dfrac{|b|}{2}$.\\
 	Я хочу одночасно $|b_n| > \dfrac{|b|}{2}$ та $|b_n - b| < \varepsilon$, тож нехай $N = \max \{N', \ N'' \}$. Це вже $N = N(\varepsilon)$, тоді\\
 	$\forall n \geq N: \abs{\dfrac{1}{b_n} - \dfrac{1}{b}} = \dfrac{|b_n -b|}{|b_n| |b|} < \dfrac{\varepsilon}{ \dfrac{|b|}{2} |b|} = \dfrac{2}{|b|^2} \varepsilon$.\\
-	Таким чином, можна твердити, що $\dfrac{1}{b_n} \to \dfrac{1}{b}, n \to \infty \implies \dfrac{a_n}{b_n} \to \dfrac{a}{b}$, тобто $\left\{ \dfrac{a_n}{b_n}, n \geq 1 \right\}$ - збіжна.
+	Таким чином, можна казати, що $\dfrac{1}{b_n} \to \dfrac{1}{b}, n \to \infty \implies \dfrac{a_n}{b_n} \to \dfrac{a}{b}$, тобто $\left\{ \dfrac{a_n}{b_n}, n \geq 1 \right\}$ -- збіжна.
 	\end{proof}
 	
 	\begin{example}
 	Знайти границю $\displaystyle \lim_{n \to \infty} \dfrac{(-1)^n + \dfrac{1}{n}}{\dfrac{1}{n^2}- (-1)^n}$.\\
-	Як робити неправильно: $\displaystyle \lim_{n \to \infty} \dfrac{(-1)^n + \frac{1}{n}}{\dfrac{1}{n^2}- (-1)^n} = \dfrac{\displaystyle \lim_{n \to \infty} \left( (-1)^n + \frac{1}{n} \right) }{\displaystyle \lim_{n \to \infty} \left( \frac{1}{n^2} - (-1)^n \right)} = \dfrac{\displaystyle \lim_{n \to \infty} (-1)^n + \lim_{n \to \infty} \frac{1}{n} }{\displaystyle \lim_{n \to \infty} \frac{1}{n^2} - \lim_{n \to \infty} (-1)^n} = \dots$\\
-	Проблема тут полягає в тому, що $(-1)^n + \dfrac{1}{n}$ та $\dfrac{1}{n^2}-(-1)^n$ - це розбіжні послідовності. Тому я не можу використати арифметику границі в частках.\\
-	Як робити правильно: $\displaystyle \lim_{n \to \infty} \dfrac{(-1)^n + \frac{1}{n}}{\dfrac{1}{n^2}- (-1)^n} = \lim_{n \to \infty} \dfrac{1 + \dfrac{1}{(-1)^n n}}{\dfrac{1}{(-1)^n n^2} - 1} \boxed{=} \dfrac{\displaystyle\lim_{n \to \infty} \left( 1 + \dfrac{1}{(-1)^n n} \right)}{\displaystyle\lim_{n \to \infty} \left( \dfrac{1}{(-1)^n n^2} - 1 \right)} \boxed{\boxed{=}}
+	$\displaystyle \lim_{n \to \infty} \dfrac{(-1)^n + \frac{1}{n}}{\dfrac{1}{n^2}- (-1)^n} = \lim_{n \to \infty} \dfrac{1 + \dfrac{1}{(-1)^n n}}{\dfrac{1}{(-1)^n n^2} - 1} \boxed{=} \dfrac{\displaystyle\lim_{n \to \infty} \left( 1 + \dfrac{1}{(-1)^n n} \right)}{\displaystyle\lim_{n \to \infty} \left( \dfrac{1}{(-1)^n n^2} - 1 \right)} \boxed{\boxed{=}}
 	\\ \boxed{\boxed{=}} \dfrac{\displaystyle\lim_{n \to \infty} 1 + \lim_{n \to \infty} \dfrac{1}{(-1)^n n}}{\displaystyle\lim_{n \to \infty} \dfrac{1}{(-1)^n n^2} - \lim_{n \to \infty} 1 } = \dfrac{1+0}{0-1} = -1$\\
 	Рівність $\boxed{\boxed{=}}$ коректна: оскільки кожна послідовність чисельника -- збіжна, то їхня сума теж збіжна. Знаменник аналогічно. Тоді рівність $\boxed{=}$ теж коректна: через збіжність, маємо, що частка збіжна.
 	\end{example}
+	
+	\begin{remark}
+	Вище було правильне розв'язання. Як було б неправильно: \\
+	$\displaystyle \lim_{n \to \infty} \dfrac{(-1)^n + \frac{1}{n}}{\dfrac{1}{n^2}- (-1)^n} = \dfrac{\displaystyle \lim_{n \to \infty} \left( (-1)^n + \frac{1}{n} \right) }{\displaystyle \lim_{n \to \infty} \left( \frac{1}{n^2} - (-1)^n \right)} = \dfrac{\displaystyle \lim_{n \to \infty} (-1)^n + \lim_{n \to \infty} \frac{1}{n} }{\displaystyle \lim_{n \to \infty} \frac{1}{n^2} - \lim_{n \to \infty} (-1)^n} = \dots$\\
+	Проблема тут полягає в тому, що $(-1)^n + \dfrac{1}{n}$ та $\dfrac{1}{n^2}-(-1)^n$ -- це розбіжні послідовності. Тому я не можу використати арифметику границі в частках.\\
+	\end{remark}
 	
 	\subsection{Нерівності в границях}
 	\begin{theorem}[Граничний перехід в нерівності]
@@ -1584,20 +1587,20 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	
 	\begin{proof}
 	Задано дві збіжні послідовності, для яких $\displaystyle \lim_{n \to \infty} a_n =a, \ \lim_{n \to \infty} b_n = b$.\\
-	!Припустимо, що $a>b$ та розглянемо $\displaystyle \varepsilon = \frac{a-b}{2}$. Тоді за означенням границі,\\
-	$\exists N_1: \forall n \geq N_1:|a_n-a|<\varepsilon \Rightarrow a_n>a-\varepsilon$\\
-	$\exists N_2: \forall n \geq N_2:|b_n-b|<\varepsilon \Rightarrow b_n<b+\varepsilon$.\\
+	!Припустимо $a>b$. Розглянемо $\displaystyle \varepsilon = \frac{a-b}{2}$. Тоді за означенням границі існують $N_1,N_2$, для яких\\
+	$\forall n \geq N_1:|a_n-a|<\varepsilon \implies a_n>a-\varepsilon$\\
+	$\forall n \geq N_2:|b_n-b|<\varepsilon \implies b_n<b+\varepsilon$.\\
 	Задамо $N=\max \{N_1, \ N_2\}$. Тоді  $\displaystyle b_n < b+\varepsilon = b + \frac{a-b}{2}=\frac{a+b}{2}=a-\frac{a-b}{2} = a-\varepsilon<a_n \\ \implies b_n<a_n$. Суперечність!
 	\end{proof}
 	
 	\begin{corollary}
 	Задано збіжну числову послідовность $\{b_n, n \geq 1\}$ таким чином, що $\exists N': \forall n \geq N': a \leq b_n$, де $a \in \mathbb{R}$. Тоді $\displaystyle a \leq \lim_{n \to \infty} b_n$.\\
-	\textit{Вказівка: розглянути послідовність $\{a_n = a, n \geq 1\}$ - так звана, стаціонарна послідовність.}
+	\textit{Вказівка: розглянути послідовність $\{a_n = a, n \geq 1\}$ -- так звана, стаціонарна послідовність.}
 	\end{corollary}
 	
 	\begin{remark}
-	Для нерівності $\geq$ аналогічно все. А також ця теорема спрацьовує для $<$ або $>$, проте нерівність з границями залишається нестрогою.\\
-	Наприклад, $a_n = \dfrac{1}{n^2} \,, b_n = \dfrac{1}{n}$. Зрозуміло, що $a_n < b_n$. Але звідси $\displaystyle\lim_{n \to \infty} a_n = \displaystyle\lim_{n \to \infty} b_n = 0$.
+	Для нерівності $\geq$ аналогічно два твердження. Також ці твердження спрацьовують для $<$ або $>$, проте нерівність з границями залишається нестрогою.\\
+	Наприклад, $a_n = \dfrac{1}{n^2}, \ b_n = \dfrac{1}{n}$. Зрозуміло, що $a_n < b_n$. Але звідси $\displaystyle\lim_{n \to \infty} a_n = \displaystyle\lim_{n \to \infty} b_n = 0$.
 	\end{remark}
 	
 	\begin{theorem}[Теорема про 3 послідовності]
@@ -1605,15 +1608,21 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	Тоді $\exists \displaystyle \lim_{n \to \infty} c_n = a$.
 	\end{theorem}
 	
+	\begin{remark}
+	Теорему про 3 послідовності часто жартома називаю \textit{теорему про двох поліцаїв}.
+	\end{remark}
+	
 	\begin{proof}
-	$\displaystyle \lim_{n \to \infty} a_n = a \overset{\textrm{def.}}{\iff}$ $\forall \varepsilon > 0: \exists N_1(\varepsilon): \forall n \geq N_1: |a_n-a| < \varepsilon$ $\Rightarrow a_n > a - \varepsilon$\\
-	$\displaystyle \lim_{n \to \infty} b_n = a \overset{\textrm{def.}}{\iff}$ $\forall \varepsilon > 0: \exists N_2(\varepsilon): \forall n \geq N_2: |b_n-a| < \varepsilon$ $\Rightarrow b_n<a+\varepsilon$\\
-	Зафіксуймо $N=\max\{N_1, N_2, N'\}$. Тоді $\forall n \geq N: a-\varepsilon< a_n \leq c_n \leq b_n < a+\varepsilon \Rightarrow |c_n - a|<\varepsilon$.\\
+	Маємо $a_n \to a,\ b_n \to a$ при $n \to \infty$. Нехай $\varepsilon > 0$. Тоді існують $N_1,N_2$, для яких\\
+	$\forall n \geq N_1: |a_n-a| < \varepsilon \implies a_n > a - \varepsilon$;\\
+	$\forall n \geq N_2: |b_n-a| < \varepsilon \implies b_n<a+\varepsilon$.\\
+	Покладемо $N=\max\{N_1, N_2, N'\}$ Номер $N'$ за умовою такий, що $\forall n \geq N': a_n \leq c_n \leq b_n$. Тоді \\
+	$\forall n \geq N: a-\varepsilon< a_n \leq c_n \leq b_n < a+\varepsilon \implies |c_n - a|<\varepsilon$.\\
 	Отже, $\displaystyle \lim_{n \to \infty} c_n = a$.
 	\end{proof}
 	
-	\begin{example}
-	(важливо!) Знайти границю $\displaystyle\lim_{n \to \infty} \sqrt[n]{a}$, де число $a>0$. \\
+	\begin{example}[Важливий]
+	Знайти границю $\displaystyle\lim_{n \to \infty} \sqrt[n]{a}$, де число $a>0$. \\
 	Розглянемо $a > 1$. Тоді існує $N = [a]+1$ такий, що $\forall n \geq N: 1 \leq \sqrt[n]{a} \leq \sqrt[n]{n}$.\\
 	$\displaystyle\lim_{n \to \infty} 1 = 1$ \quad $\displaystyle\lim_{n \to \infty} \sqrt[n]{n} = 1$. Тоді за теоремою про двох поліцаїв, маємо, що $\displaystyle\lim_{n \to \infty} \sqrt[n]{a} = 1$.\\
 	Якщо $0 < a < 1$, то тоді зробимо заміну: $b = \dfrac{1}{a}, b > 1$. Тоді $\displaystyle\lim_{n \to \infty} \sqrt[n]{b} = 1 \implies \\ \displaystyle\lim_{n \to \infty} \sqrt[n]{a} = \displaystyle\lim_{n \to \infty} = \dfrac{1}{\sqrt[n]{b}} = 1$.\\
@@ -1621,40 +1630,40 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{example}
 	
 	\begin{remark}
-	Всі ці теореми спрацьовують для випадків, коли ліміти є нескінченностями.
+	Всі ці теореми спрацьовують для випадків, коли границі є нескінченностями.
 	\end{remark}
 	
 	\subsection{Монотонні послідовності}
 	\begin{definition}
 	Послідовність $\{a_n, n \geq 1\}$ називається: \\
 	\begin{tabular}{ll}
-	\textbf{строго монотонно зростаючою}, якщо & $\forall n \geq 1: a_{n+1} > a_n$; \\
-	\textbf{монотонно не спадною}, якщо & $\forall n \geq 1: a_{n+1} \geq a_n$; \\
-	\textbf{строго монотонно спадною}, якщо & $\forall n \geq 1: a_{n+1} < a_n$; \\
-	\textbf{монотонно не зростаючою}, якщо & $\forall n \geq 1: a_{n+1} \leq a_n$.
+	\textbf{строго зростаючою}, якщо & $\forall n \geq 1: a_{n+1} > a_n$; \\
+	\textbf{не спадною}, якщо & $\forall n \geq 1: a_{n+1} \geq a_n$; \\
+	\textbf{строго спадною}, якщо & $\forall n \geq 1: a_{n+1} < a_n$; \\
+	\textbf{не зростаючою}, якщо & $\forall n \geq 1: a_{n+1} \leq a_n$.
 	\end{tabular}
 	\end{definition}
 	
 	\begin{example}
 	Дослідимо послідовність $\{a_n = \sqrt{n}, n \geq 1 \}$ на монотонність.\\
-	$\displaystyle a_{n+1} - a_n = \sqrt{n+1} - \sqrt{n} = \frac{n+1-n}{\sqrt{n+1} + \sqrt{n}} = \frac{1}{\sqrt{n+1} + \sqrt{n}} > 0$\\
-	$\implies a_{n+1}>a_n$, тобто дана послідовність зростає.
+	$\displaystyle a_{n+1} - a_n = \sqrt{n+1} - \sqrt{n} = \frac{n+1-n}{\sqrt{n+1} + \sqrt{n}} = \frac{1}{\sqrt{n+1} + \sqrt{n}} > 0 \implies a_{n+1}>a_n$, тобто дана послідовність зростає.
 	\end{example}
 	
 	\begin{theorem}[Теорема Ваєрштраса]
-	Будь-яка обмежена зверху та монотонно неспадна, починаючи з деякого номеру (обмежена знизу та монотонно не зростаюча, починаючи з деякого номеру), послідовність є збіжною.
+	Будь-яка обмежена зверху та неспадна, починаючи з деякого номеру, послідовність є збіжною.\\
+	(або обмежена знизу та незростаюча, починаючи з деякого номеру).
 	\end{theorem}
+
 	\begin{proof}
-	Нехай задано послідовність $\{a_n, n \geq 1\}$, яка є обмеженю зверху та монотонно неспадної. Оскільки вона монотонна, а ще - обмежена, то $\exists \displaystyle\sup_{n \geq 1}\{a_n\} = a < +\infty$.\\
-	За критерієм sup, маємо, що: $ \begin{gathered}
+	Нехай задана послідовність $\{a_n, n \geq 1\}$, яка є обмеженю зверху та неспадною. Оскільки вона монотонна, а ще -- обмежена, то $\exists \displaystyle\sup_{n \geq 1}\{a_n\} = a < +\infty$.\\
+	За критерієм sup, маємо, що \ $ \begin{gathered}
 	\forall n \geq 1: a_n \leq a ;\\
 	\forall \varepsilon > 0: \exists N(\varepsilon): a_{N} > a - \varepsilon
 	\end{gathered}$.\\
-	Отримаємо наступний ланцюг нерівностей: $\forall n \geq N:$\\
-	$a-\varepsilon < a_N \leq a_n \leq a < a + \varepsilon \implies |a_n-a|<\varepsilon$.\\
+	Отримаємо такий ланцюг нерівностей: $\forall n \geq N: a-\varepsilon < a_N \leq a_n \leq a < a + \varepsilon \implies |a_n-a|<\varepsilon$.\\
 	Отже, $\displaystyle \exists \lim_{n \to \infty} a_n = \sup_{n \geq 1}\{a_n\}$.
 	\bigskip \\
-	Для інших випадків монотонності все аналогічно.
+	Для інших випадків монотонності (у тому числі строгої монотонності) все аналогічно.
 	\end{proof}
 	
 	\begin{remark}
@@ -1672,7 +1681,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{example}
 	
 	\begin{remark}
-	Такими самими міркуваннями можна довести, що $\displaystyle \frac{n^k}{b^n} (b > 1), \frac{b^n}{n!} (b>0), \frac{n!}{n^n}$ - всі вони будуть нескінченно малими, якщо $n \to \infty$.
+	Такими самими міркуваннями можна довести, що $\dfrac{n^k}{b^n}$ при $b > 1$, $\dfrac{b^n}{n!}$ при $b > 0$, $\dfrac{n!}{n^n}$ -- всі вони будуть нескінченно малими, якщо $n \to \infty$.
 	\end{remark}
 	
 	\begin{example}
@@ -1690,7 +1699,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	$\displaystyle \frac{a_{n+1}}{a_n} = \frac{\displaystyle \left(1+\frac{1}{n+1} \right)^{n+1}}{\displaystyle \left(1+\frac{1}{n} \right)^n} = \left(1 + \frac{1}{n+1} \right) \left( \frac{\displaystyle 1+\frac{1}{n+1}}{\displaystyle 1 + \frac{1}{n}} \right)^n = \frac{n+2}{n+1} \cdot \left( \frac{n(n+2)}{(n+1)^2} \right)^n = \\ = \frac{n+2}{n+1} \cdot \left(1 - \frac{1}{(n+1)^2} \right)^n = \frac{\displaystyle \frac{n+2}{n+1}}{\displaystyle 1-\frac{1}{(n+1)^2}} \cdot \left( 1 - \frac{1}{(n+1)^2} \right)^{n+1} = \frac{n+2}{n+1} \cdot \frac{(n+1)^2}{n^2+2n} \cdot \left( 1 - \frac{1}{(n+1)^2} \right)^{n+1} \boxed{\geq}$\\
 	Тут ми маємо право на третю дужку використати нерівність Бернуллі, оскільки $\displaystyle - \frac{1}{(n+1)^2} > -1$.\\
 	$\displaystyle \boxed{\geq} \frac{n+2}{n+1} \cdot \frac{(n+1)^2}{n^2+2n} \cdot \left(1 - \frac{n+1}{(n+1)^2} \right) = \frac{n+1}{n} \left(1-\frac{1}{n+1} \right) = 1$\\
-	Коротше, $\displaystyle \frac{a_{n+1}}{a_n} \geq 1 \Rightarrow a_{n+1} \geq a_n$. Тобто наша послідовність дійсно монотонно зростає.
+	Коротше, $\displaystyle \frac{a_{n+1}}{a_n} \geq 1 \implies a_{n+1} \geq a_n$. Тобто наша послідовність дійсно монотонно зростає.
 	\bigskip \\
 	II. \textit{$\{a_n, n \geq 1\}$ -- обмежена зверху}.\\
 	Для цього треба розглянути $\left\{ b_n = \left( 1 + \dfrac{1}{n} \right)^{n+1} \right\}$ і довести, що:
@@ -1713,7 +1722,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\bigskip \\
 	Остаточно, за теоремою Ваєрштраса, для послідовності $\left\{a_n = \left(1 + \dfrac{1}{n} \right)^n, n \geq 1 \right\}$ існує границя:
 	$$\displaystyle \lim_{n \to \infty}\left(1+\frac{1}{n} \right)^n \overset{\text{позн.}}{=} e \approx 2.71...$$
-	До речі, для $\left\{b_n = \left( 1 + \dfrac{1}{n} \right)^{n+1}, n \geq 1 \right\}$ така сама границя, оскільки виконується така рівність: \\ $\displaystyle\lim_{n \to \infty} \left( 1 + \dfrac{1}{n} \right)^{n+1} = \lim_{n \to \infty} \left( 1 + \dfrac{1}{n} \right)^n \lim_{n \to \infty} \left(1 + \dfrac{1}{n} \right) = e \cdot 1 = e$.
+	До речі, у $\left\{b_n = \left( 1 + \dfrac{1}{n} \right)^{n+1}, n \geq 1 \right\}$ така сама границя, оскільки виконується така рівність: \\ $\displaystyle\lim_{n \to \infty} \left( 1 + \dfrac{1}{n} \right)^{n+1} = \lim_{n \to \infty} \left( 1 + \dfrac{1}{n} \right)^n \lim_{n \to \infty} \left(1 + \dfrac{1}{n} \right) = e \cdot 1 = e$.
 	\bigskip \\	
 	Тепер, оскільки $\{a_n \}$ зростає, а $\{b_n \}$ спадає та обидва обмежені, то $\forall n \geq 1: a_n<e<b_n$.\\
 	$\displaystyle \left(1+\frac{1}{n} \right)^n < e < \left(1+\frac{1}{n} \right)^{n+1}$.\\
@@ -1786,7 +1795,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{proof}
 	
 	\begin{corollary}
-	Будь-яка послідонвість натуральних чисел $\{n_k, k \geq 1\}$ -- н.в. Тобто $\displaystyle\lim_{k \to \infty} n_k = +\infty$.\\
+	Будь-яка послідонвість натуральних чисел $\{n_k, k \geq 1\}$ -- додатно н.в.\\
 	\textit{Вказівка: попередня лема.}
 	\end{corollary}
 	
@@ -1807,7 +1816,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\begin{example} Маємо послідовність натуральних чисел
 	$\{n_k = 2k, k \geq 1 \} = \{2,4,6,8,\dots \} \subset \mathbb{N}$.
 	Також маємо послідовність $\{a_n = (-1)^n, n \geq 1\}$. Тоді якщо використати нашу послідовність натуральних чисел, отримаємо підпослідовність $\{a_{n_k} = a_{2k} = (-1)^{2k} = 1, k \geq 1\}$.\\
-	Зокрема $\{a_{n_k} = a_{2k}, k \geq 1\}$ матиме границю $\displaystyle\lim_{k \to \infty} a_{n_k} = 1$. -- це часткова границя $\{a_n\}$.
+	Зокрема $\{a_{n_k} = a_{2k}, k \geq 1\}$ матиме границю $\displaystyle\lim_{k \to \infty} a_{n_k} = 1$ -- це часткова границя $\{a_n\}$.
 	\end{example}
 	
 	\begin{proposition}
@@ -1815,7 +1824,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{proposition}
 	
 	\begin{proof}
-	$\displaystyle \exists \lim_{n \to \infty} a_n = a \iff \forall \varepsilon > 0: \exists N(\varepsilon): \forall n \geq N: |a_n-a| < \varepsilon$.\\
+	Нехай $\varepsilon > 0$. Тоді із $\displaystyle\lim_{n \to \infty} a_n = a$ випливає, що існує $N$, для якого $\forall n \geq N: |a_n-a| < \varepsilon$.\\
 	Візьмемо підпослідовність $\{a_{n_k}, k \geq 1\}$. Оскільки послідовність $\{n_k, k \geq 1\}$ -- строга зростаюча послідовність натуральних чисел, то $\exists \displaystyle \lim_{k \to \infty} n_k = +\infty$. Тоді для $E = N(\varepsilon): \exists K(\varepsilon): \forall k \geq K: n_k > N$.\\
 	Зокрема оскільки $n_k > N$, то одразу $|a_{n_k} - a| < \varepsilon \implies \displaystyle \lim_{k \to \infty} a_{n_k} = a$.
 	\end{proof}
@@ -1889,10 +1898,10 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\begin{proof}
 	Розглянемо послідовність $\{a_n, n \geq 1\}$. Існують два випадки за кількістю елементів.
 	\bigskip \\
-	\textit{I. Послідовність -- скінченна} (як в \textbf{Ex. 2.6.3.}). \\
+	\textit{I. Кількість значень послідовності -- скінченна} (як, наприклад, в \exref{example_of_divergent_sequence}). \\
 	Тоді одне із значень послідовності буде прийматись нескінченну кількість разів. Отримаємо стаціонарну підпослідовність, яка є збіжною.
 	\bigskip \\
-	\textit{II. Послідовність - нескінченна} (як в \textbf{Ex. 2.6.8.}). \\
+	\textit{II. Кількість значень послідовності -- нескінченна} (як, наприклад, в \exref{one_over_n_converges_to_zero}). \\
 	Нехай $A$ -- множина всіх можливих значень послідовності. Оскільки вона є обмеженою, то за лемою Бользано-Ваєрштраса, у неї існує гранична точка $b_* \iff \forall \varepsilon > 0:A \cap (b_*-\varepsilon, b_*+\varepsilon)$ -- нескінченна множина. Розглянемо $\varepsilon = \displaystyle \frac{1}{k}$ при $k \in \mathbb{N}$.\\
 	$\displaystyle k = 1: A \cap(b_*-1, b_*+1) \rotatebox[origin=c]{180}{$\in$}a_{n_1}$\\
 	$\displaystyle k = 2: A \cap(b_*-\frac{1}{2}, b_*+\frac{1}{2}) \rotatebox[origin=c]{180}{$\in$}a_{n_2}$, вимагаємо $n_2>n_1$. Це можна робити, бо всього $n_1$ членів, індекс яких не більший за $n_1$. А у нас нескінченна множина.\\
@@ -1920,6 +1929,8 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{proof}
 	
 	\subsection{Верхні та нижні границі}
+	Нагадаю, що трохи вище було позначення: $X$ -- множина часткових границь.
+	
 	\begin{definition} Задано послідовність $\{a_n, n \geq 1\}$.\\
 	\textbf{Верхньою границею} називають число:
 	\begin{align*}
@@ -1929,7 +1940,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\begin{align*}
 	\displaystyle \varliminf_{n \to \infty} a_n = \inf X
 	\end{align*}
-	Часто ще $\displaystyle\varlimsup_{n \to \infty} a_n$ позначають за $\displaystyle\limsup_{n \to \infty} a_n$; $\displaystyle\varliminf_{n \to \infty} a_n$ позначають за $\displaystyle\liminf_{n \to \infty} a_n$.
+	Часто ще $\displaystyle\varlimsup_{n \to \infty} a_n$ позначають за $\displaystyle\limsup_{n \to \infty} a_n$; \qquad $\displaystyle\varliminf_{n \to \infty} a_n$ позначають за $\displaystyle\liminf_{n \to \infty} a_n$.
 	\end{definition}
 	
 	\begin{example}
@@ -1985,9 +1996,9 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{remark}
 	
 	\begin{proof}
-	Позначимо $x_* = \inf X$. Оскільки $X$ - множина часткових границь, то\\
+	Позначимо $x_* = \inf X$. Оскільки $X$ -- множина часткових границь, то\\
 	$\forall \varepsilon > 0: \exists x_{\varepsilon} \in X: x_* \leq x_{\varepsilon} < x_* + \dfrac{\varepsilon}{2}$.\\
-	Оскільки $x_\varepsilon \in X$, то тоді це - часткова границя для послідовності $\{a_n, n \geq 1\}$, тобто \\ $\exists \{a_{n_m}^{(\varepsilon)}, m \geq 1\}: \displaystyle \lim_{m \to \infty} a_{n_m}^{(\varepsilon)} = x_{\varepsilon} \implies \exists M(\varepsilon): \forall m \geq M: |a_{n_m}^{(\varepsilon)} - x_{\varepsilon}| < \varepsilon$, зокрема $|a_{n_M}^{(\varepsilon)} - x_\varepsilon| < \varepsilon$.\\
+	Оскільки $x_\varepsilon \in X$, то тоді це -- часткова границя для послідовності $\{a_n, n \geq 1\}$, тобто \\ $\exists \{a_{n_m}^{(\varepsilon)}, m \geq 1\}: \displaystyle \lim_{m \to \infty} a_{n_m}^{(\varepsilon)} = x_{\varepsilon} \implies \exists M(\varepsilon): \forall m \geq M: |a_{n_m}^{(\varepsilon)} - x_{\varepsilon}| < \varepsilon$, зокрема $|a_{n_M}^{(\varepsilon)} - x_\varepsilon| < \varepsilon$.\\
 	$\implies |a_{n_M}^{(\varepsilon)} - x_*| = |a_{n_M}^{(\varepsilon)} - x_{\varepsilon} + x_{\varepsilon} - x_*| \leq |a_{n_M}^{(\varepsilon)} - x_{\varepsilon}| + |x_{\varepsilon} - x_*| < \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon$.\\
 	При $\varepsilon = 1$ маємо: $|a_{n_{M(1)}}^{(1)} - x_*| < 1$\\
 	При $\varepsilon = \dfrac{1}{2}$ маємо: $|a_{n_{M(\frac{1}{2})}}^{(\frac{1}{2})} - x_*| < \dfrac{1}{2}$\\
@@ -2167,32 +2178,30 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\end{lemma}
 	
 	\begin{proof}
-	Маємо $\{a_n, n \geq 1\}$ -- фундаментальна, тобто $\forall \varepsilon > 0: \exists N \in \mathbb{N}: \forall n,m \geq N: |a_n - a_m| < \varepsilon$.\\
-	Для $\varepsilon = 1: \exists N: \forall n \geq N, m = N: |a_n - a_N| < 1$\\
-	$\implies |a_n| = |a_n - a_N + a_N| \leq |a_n - a_N| + |a_N| < 1 + |a_N|$.\\
+	Маємо $\{a_n, n \geq 1\}$ -- фундаментальна, тож для $\varepsilon = 1$ існує $N$, для якого $\forall n,m \geq N: |a_n - a_m| < 1$. Схожимо чином отримуємо $|a_n| = |a_n - a_N + a_N| \leq |a_n - a_N| + |a_N| < 1 + |a_N|$ для всіх $n \geq N$.\\
 	Задамо $C = \max\{|a_1|, \dots, |a_{N-1}|, |1|+|a_N|\}$. Тоді $\forall n \geq 1: |a_n| \leq C$, тобто обмежена.
 	\end{proof}
 	
 	Тепер можемо довести даний критерій.
 	
 	\begin{proof}
-	\rightproof Дано: $\{a_n,n \geq 1\}$ - збіжна, тобто: $\forall \varepsilon >0: \exists N: $\\
-	$\displaystyle \forall n \geq N: |a_n - a| < \frac{\varepsilon}{2}$\\
-	$\displaystyle \forall m \geq N: |a_m - a| < \frac{\varepsilon}{2}$\\
+	\rightproof Дано: $\{a_n,n \geq 1\}$ -- збіжна. Тоді якщо $\varepsilon > 0$, то існує номер $N$, для якого \\
+	$\displaystyle \forall n \geq N: |a_n - a| < \frac{\varepsilon}{2}$;\\
+	$\displaystyle \forall m \geq N: |a_m - a| < \frac{\varepsilon}{2}$.\\
 	А тоді отримаємо $|a_n - a_m| = |a_n - a + a - a_m| \leq |a_n - a| + |a_m - a| < \varepsilon$.\\
 	Отже, послідовність є фундаментальною.
 	\bigskip \\
 	\leftproof Дано: $\{a_n, n \geq 1\}$ -- фундаментальна, тобто $\forall \varepsilon > 0: \exists N \in \mathbb{N}: \forall n,m \geq N: |a_n - a_m| < \varepsilon$. Оскільки наша послідовність обмежена (за лемою), виділимо збіжну підпослідовність $\{a_{n_k}, k \geq 1\}$, \\ $\displaystyle \lim_{n \to \infty} a_{n_k} = a \implies$
 	$\displaystyle \forall \varepsilon > 0: \exists K: \forall k \geq K: |a_{n_k} - a| < \frac{\varepsilon}{2}$.\\
-	Покладемо $N_* = \max\{N,K\}$. Тоді маємо: \\
-	$\forall n \geq N_*$: $|a_n - a| = |a_n - a_{n_{N_*}} + a_{n_{N_*}} - a| \leq |a_n - a_{n_{N_*}}| + |a_{n_{N_*}} - a| < \varepsilon$.\\
+	Покладемо $N_* = \max\{N,K\}$. Тоді $\forall n \geq N_*$ маємо наступне: \\
+	$|a_n - a| = |a_n - a_{n_{N_*}} + a_{n_{N_*}} - a| \leq |a_n - a_{n_{N_*}}| + |a_{n_{N_*}} - a| < \varepsilon$.\\
 	Тобто $\displaystyle \exists \lim_{n \to \infty} a_n = a$.
 	\end{proof}
 	
 	\begin{example}
-	Розглянемо послідовність $\{a_n, n \geq 1\}$, де $a_n = \dfrac{\sin 1}{1^2} + \dfrac{\sin 2}{2^2} + \dots + \dfrac{\sin n}{n^2}$. Довести збіжність.\\
-	$|x_{n+p} - x_n| \leq \dfrac{1}{(n+1)^2} + \dots + \dfrac{1}{(n+p)^2} \leq \dfrac{1}{n(n+1)} + \dots + \dfrac{1}{(n+p-1)(n+p)} = \\ = \dfrac{1}{n} - \dfrac{1}{n-1} + \dots + \dfrac{1}{n+p-1} - \dfrac{1}{n+p} = \dfrac{1}{n} - \dfrac{1}{n+p} \leq \dfrac{1}{n} < \varepsilon \implies n > \dfrac{1}{\varepsilon}$\\
-	Встановимо $N = \left[ \dfrac{1}{\varepsilon} \right] + 1$. Тоді $\forall n \geq N: \forall p \geq 1: |x_{n+p} - x_n| < \varepsilon$.\\
+	Розглянемо послідовність $\{a_n, n \geq 1\}$, де $a_n = \dfrac{\sin 1}{1^2} + \dfrac{\sin 2}{2^2} + \dots + \dfrac{\sin n}{n^2}$. Довести збіжність даної послідовності.\\
+	$|x_{n+p} - x_n| \leq \dfrac{1}{(n+1)^2} + \dots + \dfrac{1}{(n+p)^2} \leq \dfrac{1}{n(n+1)} + \dots + \dfrac{1}{(n+p-1)(n+p)} = \\ = \dfrac{1}{n} - \dfrac{1}{n-1} + \dots + \dfrac{1}{n+p-1} - \dfrac{1}{n+p} = \dfrac{1}{n} - \dfrac{1}{n+p} \leq \dfrac{1}{n} < \varepsilon \implies n > \dfrac{1}{\varepsilon}$.\\
+	Установимо $N = \left[ \dfrac{1}{\varepsilon} \right] + 1$. Тоді $\forall n \geq N: \forall p \geq 1: |x_{n+p} - x_n| < \varepsilon$.\\
 	Отже, наша послідовність -- фундаментальна, а тому збіжна.
 	\end{example}
 	
@@ -2200,7 +2209,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	\begin{theorem}[Теорема Штольца]
 	Задано дві послідовності $\{a_n, n \geq 1\}, \{b_n, n \geq 1\}$, які мають ось такі властивості:
 	\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
-	\item $\{b_n\}$ -- н.в. та монотонно строго зростає (можливо, з якогось номера);
+	\item $\{b_n\}$ -- н.в. та монотонно строго зростає (не обов'язково всюди, може з якогось номера);
 	\item $\exists \displaystyle \lim_{n \to \infty} \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n} = L$.
 	\end{enumerate}
 	Тоді $\exists \displaystyle \lim_{n \to \infty} \dfrac{a_n}{b_n} = L$.
@@ -2208,29 +2217,28 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	
 	\begin{proof}
 	I. \textit{Випадок при $|L| < \infty$}.\\
-	$\displaystyle \lim_{n \to \infty} \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n} = L \Rightarrow \forall \varepsilon > 0: \exists N_1: \forall n \geq N_1: \abs{\dfrac{a_{n+1}-a_n}{b_{n+1}-b_n} - L} < \varepsilon \Rightarrow L - \varepsilon < \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n} < L + \varepsilon$.\\
-	Оскільки $\{b_n\}$ -- н.м., то $\exists N_2: \forall n \geq N_2: b_n > 0$.\\
+	Отже, маємо $\displaystyle \lim_{n \to \infty} \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n} = L$. За означенням для $\varepsilon > 0$ існує $N_1$, для якого $\forall n \geq N_1: \abs{\dfrac{a_{n+1}-a_n}{b_{n+1}-b_n} - L} < \varepsilon \implies L - \varepsilon < \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n} < L + \varepsilon$.\\
+	Оскільки $\{b_n\}$ -- н.м., то для того ж $\varepsilon$ існує $N_2$, де $\forall n \geq N_2: b_n > 0$.\\
 	Щоб виконувались ці нерівності одночасно, я зафіксую $N = \max \{N_1, N_2\}$.\\
-	Оскільки $\{b_n\}$ -- монотонно зростає, то ми домножимо на $b_{n+1} - b_n > 0$, отримаємо:\\
+	Оскільки $\{b_n\}$ -- монотонно зростає, то ми домножимо на $b_{n+1} - b_n > 0$ -- отримаємо:\\
 	$(L - \varepsilon)(b_{n+1} - b_n) < a_{n+1} - a_n < (L + \varepsilon)(b_{n+1} - b_n)$.\\
-	Зафіксуємо $k > N$ та просумуємо це до $k$. Матимемо після винесення дужок $(L-\varepsilon), (L+\varepsilon):$ \\
+	Зафіксуємо $k > N$ та просумуємо це до $k$. Після винесення дужок $(L-\varepsilon), (L+\varepsilon)$ маємо: \\
 	$(b_{N+1} - b_N) + (b_{N+2} - b_{N+1}) + \dots + (b_{k+1} - b_{k}) = b_{k+1} - b_N$.\\
 	Аналогічно $(a_{N+1} - a_N) + (a_{N+2} - a_{N+1}) + \dots + (a_{k+1} - a_{k}) = a_{k+1} - a_N$.\\
-	$\Rightarrow(L - \varepsilon)(b_{k+1} - b_N) < a_{k+1} - a_N < (L + \varepsilon)(b_{k+1} - b_N)$\\
-	Поділимо на $b_{k+1} > 0$ - буде:\\
+	Разом отримуємо оцінку $(L - \varepsilon)(b_{k+1} - b_N) < a_{k+1} - a_N < (L + \varepsilon)(b_{k+1} - b_N)$.\\
+	Поділимо на $b_{k+1} > 0$ -- буде така оцінка:\\
 	$(L - \varepsilon) \left(1 - \dfrac{b_N}{b_{k+1}} \right) < \dfrac{a_{k+1}}{b_{k+1}} - \dfrac{a_N}{b_{k+1}} < (L + \varepsilon) \left(1 - \dfrac{b_N}{b_{k+1}} \right)$\\
-	$\Rightarrow (L - \varepsilon) \left(1 - \dfrac{b_N}{b_{k+1}} \right) + \dfrac{a_N}{b_{k+1}}  < \dfrac{a_{k+1}}{b_{k+1}} < (L + \varepsilon) \left(1 - \dfrac{b_N}{b_{k+1}} \right) + \dfrac{a_N}{b_{k+1}}$.\\
+	$(L - \varepsilon) \left(1 - \dfrac{b_N}{b_{k+1}} \right) + \dfrac{a_N}{b_{k+1}}  < \dfrac{a_{k+1}}{b_{k+1}} < (L + \varepsilon) \left(1 - \dfrac{b_N}{b_{k+1}} \right) + \dfrac{a_N}{b_{k+1}}$.\\
 	Спрямуємо $k \to \infty$, тоді за теоремою про нерівність та з урахуванням тим, що $\{b_n\}$ -- н.в., маємо:\\
-	$(L-\varepsilon) \leq \displaystyle \lim_{k \to \infty} \dfrac{a_{k+1}}{b_{k+1}} \leq (L + \varepsilon) \Rightarrow \abs{\displaystyle \lim_{k \to \infty} \dfrac{a_{k+1}}{b_{k+1}} - L} \leq \varepsilon, \forall \varepsilon > 0$\\
+	$(L-\varepsilon) \leq \displaystyle \lim_{k \to \infty} \dfrac{a_{k+1}}{b_{k+1}} \leq (L + \varepsilon) \implies \abs{\displaystyle \lim_{k \to \infty} \dfrac{a_{k+1}}{b_{k+1}} - L} \leq \varepsilon$, причому $\forall \varepsilon > 0$.\\
 	Остаточно отримаємо: $\displaystyle \lim_{k \to \infty} \dfrac{a_{k+1}}{b_{k+1}} = L$.
 	\bigskip \\
 	II. \textit{Випадок при $L = +\infty$}. \\
-	$\displaystyle \lim_{n \to \infty} \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n} = + \infty \Rightarrow$ для $E = 1: \exists N: \forall n \geq N: a_{n+1} - a_n > b_{n+1} - b_n \Rightarrow a_{n+1} > a_n$.\\
-	Зафіксуємо $k > N$ та просумуємо нерівність $a_{n+1} - a_n > b_{n+1} - b_n$ до $k$.\\
-	$\Rightarrow a_{k+1} - a_N > b_{k+1} - b_N \Rightarrow a_{k+1} > a_N-b_N + b_{k+1} \Rightarrow \displaystyle\lim_{k \to \infty} a_k = +\infty$.\\
-	Отже, маємо $\{a_n\}$ - н.в. та монотонно строго зростаюча.\\
+	Тепер маємо $\displaystyle \lim_{n \to \infty} \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n} = + \infty$, а тому для $E = 1$: існує $N$, для якого $\forall n \geq N: a_{n+1} - a_n > b_{n+1} - b_n \implies a_{n+1} > a_n$. Зафіксуємо $k > N$ та просумуємо нерівність $a_{n+1} - a_n > b_{n+1} - b_n$ до $k$.\\
+	$\implies a_{k+1} - a_N > b_{k+1} - b_N \implies a_{k+1} > a_N-b_N + b_{k+1} \implies \displaystyle\lim_{k \to \infty} a_k = +\infty$.\\
+	Отже, маємо $\{a_n\}$ -- н.в. та монотонно строго зростаюча.\\
 	Також $\displaystyle \lim_{n \to \infty} \dfrac{b_{n+1} - b_n}{a_{n+1} - a_n} = 0$.
-	Звідси $\displaystyle \lim_{n \to \infty} \dfrac{b_n}{a_n} = 0 \Rightarrow \lim_{n \to \infty} \dfrac{a_n}{b_n} = + \infty$.
+	Звідси $\displaystyle \lim_{n \to \infty} \dfrac{b_n}{a_n} = 0 \implies \lim_{n \to \infty} \dfrac{a_n}{b_n} = + \infty$.
 	\bigskip \\
 	III. \textit{Випадок при $L = -\infty$}.\\
 	Насправді, все що треба зробити, -- це розглянути послідонвість $\{-a_n\}$.
@@ -2255,7 +2263,7 @@ $\emptyset, \mathbb{R}$ -- єдині множини, що є відкритим
 	Маємо зверху послідовність $\{a_n = 1^k + 2^k + \dots + n^k, n \geq 1 \}$, що строго монотонно зростає, а також є н.в. Знайдемо одну границю як в теоремі Штольца. Перед цим ми маємо ще послідовність $\{b_n = n^{k+1}, n \geq 1\}$.\\
 	$\displaystyle \lim_{n \to \infty} \dfrac{a_{n+1} - a_n}{b_{n+1} - b_n}  =\lim_{n \to \infty} \dfrac{(n+1)^k}{(n+1)^{k+1} - n^{k+1}} \boxed{=}$\\
 	Скористаємось тотожністю: \\ $x^n - y^n = (x-y)(x^{n-1} + x^{n-2}y + \dots + xy^{n-2} + y^{n-1})$\\
-	$\boxed{=} \displaystyle \lim_{n \to \infty} \dfrac{(n+1)^k}{(n+1-n)((n+1)^k + (n+1)^{k-1}n + \dots + (n+1) n^{k-1} + n^k)} = \\ = \lim_{n \to \infty} \dfrac{1}{1 + \dfrac{n}{(n+1)} + \dots + \dfrac{n^{k-1}}{(n+1)^{k-1}} + \dfrac{n^k}{(n+1)^k}} = \dfrac{1}{1+ \underset{\textrm{k разів}}{1 + \dots + 1}} = \dfrac{1}{k+1}$\\
+	$\boxed{=} \displaystyle \lim_{n \to \infty} \dfrac{(n+1)^k}{(n+1-n)((n+1)^k + (n+1)^{k-1}n + \dots + (n+1) n^{k-1} + n^k)} = \\ = \lim_{n \to \infty} \dfrac{1}{1 + \dfrac{n}{(n+1)} + \dots + \dfrac{n^{k-1}}{(n+1)^{k-1}} + \dfrac{n^k}{(n+1)^k}} = \dfrac{1}{1+ \underset{\textrm{k разів}}{1 + \dots + 1}} = \dfrac{1}{k+1}$.\\
 	Тоді за теоремою Штольца, $\displaystyle \lim_{n \to \infty} \dfrac{1^k + 2^k + \dots + n^k}{n^{k+1}} = \dfrac{1}{k+1}, k \in \mathbb{N}$.
 	\end{example}
 	
@@ -3293,7 +3301,7 @@ $\displaystyle\lim_{t \to 0} \dfrac{(t+1)^3-2(t+1)^8+1}{(t+1)^{40}-3(t+1)^{10}+2
 
 \subsection{Перша чудова границя}
 Розглянемо такий геометричний малюнок:
-\\ \iffalse %uncomment picture
+%\\ \iffalse %uncomment picture
 \begin{figure}[H]
 \centering
 %\resizebox{0.5\textwidth}{!} 
@@ -3314,7 +3322,7 @@ $\displaystyle\lim_{t \to 0} \dfrac{(t+1)^3-2(t+1)^8+1}{(t+1)^{40}-3(t+1)^{10}+2
 }
 \caption*{Коло радіуса $1$. Вважаємо поки $x \in \left(0, \dfrac{\pi}{2} \right)$.}
 \end{figure}
-\fi %uncomment picture
+%\fi %uncomment picture
 Відокремимо з малюнку наступні дані: $|AB|=\sin x, \quad |AC|=x, \quad |KC|=\tg x$.\\
 	Зрозуміло, що $|AB|<|AC|<|KC| \implies \sin x < x < \tg x$.\\
 	Розглянемо обидві сторони нерівності:\\

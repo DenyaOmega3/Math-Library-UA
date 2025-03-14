@@ -1,0 +1,198 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+%\usepackage[none]{hyphenat}
+\usepackage[T2A]{fontenc}
+\usepackage{fancyhdr} %create a custom header and footer
+\usepackage[utf8]{inputenc}
+\usepackage[english, main=ukrainian]{babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat = newest}
+\usepackage{changepage}
+
+\usepackage{nccmath}
+\usepackage{gnuplottex}
+
+
+\usepackage{enumitem}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{physics}
+\usepackage[unicode]{hyperref}
+\usepackage{pdfpages}
+\usepackage{tikz-3dplot}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+
+\usetikzlibrary{spy,angles,quotes}
+
+\fancyhead{}
+\fancyfoot{}
+\parindent 0ex
+\DeclareMathOperator*\uplim{\overline{lim}}
+\DeclareMathOperator*\downlim{\underline{lim}}
+\DeclareMathOperator{\wordgrad}{grad}
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\departial#1#2{\dfrac{\partial {#1}}{\partial {#2}}}
+\def\seconddepartial#1#2#3{\ifthenelse{\equal{#2}{#3}}{\dfrac{\partial^2 {#1}}{\partial {#2}^2}}{\dfrac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}}
+\def\huge{\displaystyle}
+\def\bigline{\vspace{5mm}\\}
+
+\def\qed{$\blacksquare$}
+
+\def\rightproof{$\boxed{\Rightarrow}$ }
+\def\leftproof{$\boxed{\Leftarrow}$ }
+
+
+\def\noProof{\\ \textit{Без доведення.}}
+\DeclareMathOperator\sign{sgn}
+
+\newtheoremstyle{theoremdd}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\normalfont}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ \textbf{#3}\\}}}
+
+\theoremstyle{theoremdd}
+\newtheorem{theorem}{Theorem}[subsection]
+
+\theoremstyle{theoremdd}
+\newtheorem*{theorem*}{Theorem.}
+ 
+\theoremstyle{theoremdd}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{samedef}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{theoremdd}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{theoremdd}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{theoremdd}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{theoremdd}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand\thref[1]{\textbf{Th.~\ref{#1}}}
+\newcommand\defref[1]{\textbf{Def.~\ref{#1}}}
+\newcommand\exref[1]{\textbf{Ex.~\ref{#1}}}
+\newcommand\prpref[1]{\textbf{Prp.~\ref{#1}}}
+\newcommand\rmref[1]{\textbf{Rm.~\ref{#1}}}
+\newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
+\newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
+
+\makeatletter
+\renewenvironment{proof}[1][Proof.\\]{\par
+\pushQED{\hfill \qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\bfseries
+#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\newenvironment{pfMI}{\vspace*{-3mm} \textbf{\\ Proof MI. \\}}{\hfill $\blacksquare$}
+\newenvironment{pfNoTh}{\textbf{Proof. \\}}{$\blacksquare$}
+
+\newcommand\Norm[1]{\|#1\|}
+\newcommand{\notimplies}{\;\not\!\!\!\implies}
+\newcommand{\tounif}{^\rightarrow_\rightarrow}
+
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\linspan}{span}
+%\DeclareMathOperator{\gradient}{grad}
+
+\begin{document}
+\section*{Вступ до диференціальних форм. $0$-форма}
+Мета теорії диференціальних форм: узагальнення диференціальне та інтегральне числення на 'безкоординатний' випадок (тобто на многовидах).\\
+Для спрощенного розуміння поки розглянемо випадок на $\mathbb{R}^3$, бо ми щось про диференціальне та інтегральне числення там знаємо. Координати будемо позначати $x_1,x_2,x_3$. Поступово все будемо узагальнювати.
+\bigskip \\
+Нехай $X \subset \mathbb{R}^3$ -- деяка відкрита підмножина.\\
+\textbf{$0$-формою} будемо називати ось такий простір: $\Omega^0(X) \overset{\text{def.}}{=} C^\infty(X)$. По суті, це просто набір гладких функцій трьох змінних. Нічого особливого.
+\bigskip \\
+Мабуть, перед цим треба буде трошки поговорити за новий апарат лінійної алгеби.
+\newpage
+
+\section{Зовнішня алгебра}
+Нехай $V$ -- векторний простір та $U \subset V$ -- двовимірний підпростір.
+\bigskip \\
+Треба пригадати, що таке \textbf{кососиметрична} форма (її англомовним чином називають \textbf{alternating} map). Простір цих кососиметричних форм позначають за $A_k(V)$.
+
+\begin{definition}
+\textbf{Другим зовнішнім степенем} скінченновимірного векторного простору називають дуальний простір $(A_2(V))^*$.\\
+Позначення: $\Lambda^2 V$.\\
+Елементами $\Lambda^2 V$ називають \textbf{$2$-векторами}.
+\end{definition}
+
+\begin{definition}
+Нехай $u,v \in V$.\\
+\textbf{Зовнішнім добутком} $u \wedge v \in \Lambda^2 V$ називають наступне:
+\begin{align*}
+(u \wedge v)(B) = B(u,v),\ B \in A_2(V)
+\end{align*}
+\end{definition}
+
+\begin{proposition}[Властивості зовнішнього добутку]
+Справедливе наступне:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $v \wedge u = -u \wedge v$;
+\item $(\lambda_1 u_1 + \lambda_2 u_2) \wedge v = \lambda u_1 \wedge v + \lambda u_2 \wedge u$;
+\item Якщо $\{v_1,\dots,v_n\}$ -- базис $V$, тоді $\{ v_i \wedge v_j \mid i < j \}$ -- базис $\Lambda^2 V$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Нехай $u \in V$ -- ненулевий вектор. Тоді $u \wedge v = 0 \iff v = \lambda u$ для деякого скаляра $\lambda$.
+\end{proposition}
+
+\newpage
+\section{$1$-форми}
+\subsection{Означення $1$-фоми}
+Ми визначимо деякі об'єкти: $dx_1,\ dx_2,\ dx_3 \colon X \to \mathbb{R}$. Кожний з них представляє наступне:
+\begin{align*}
+dx_i(\vec{x}) = x_i
+\end{align*}
+Чому саме так? Well, якщо глянути на функцію $f(x_1,x_2,x_3) = x_1$, то коли будемо рахувати диференціал, отримуємо $df(x_1,x_2,x_3) = $
+Разом система $\{dx_1,\ dx_2,\ dx_3\}$ формує базис на $X^*$. Чому такі позначення (тобто чому вони збігаються з диференціалами), буде виправдано пізніше.\\
+\textbf{$1$-формою} будемо називати ось такий простір:
+\begin{align*}
+\Omega^1(X) \overset{\text{def.}}{=} \{ f_1\,dx_1 + f_2\,dx_2 + f_3\,dx_3 \mid f_1,f_2,f_3 \in C^\infty(X) \}
+\end{align*}
+Коротко записуючи, $\Omega^1(X) = \linspan_{C^\infty(X)}\{dx_1,\, dx_2,\, dx_3\}$ -- лінійна оболонка таких елементів, де коефіцієнтами будуть гладкі функції. Подібний об'єкт зустрічали, коли обчислювали так званий \textit{диференціал функції $f$, що визначали як $df = f'_x\,dx + f'_y\,dy + f'_z\,dz$.}
+\bigskip \\
+Природно ми можемо визначити відображення $d \colon \Omega^0(X) \to \Omega^1(X)$ ось таким чином: $f \mapsto df = f'_{x_1}\,dx_1 + f'_{x_2}\,dx_2 + f'_{x_3}\,dx_3$. Дане відображення буде природно назвати \textbf{диференціалом}.
+
+\subsection{$2$-форми}
+Ми визначимо деякі інші вже об'єкти: $dx_1 \wedge dx_2,\ dx_1 \wedge dx_3,\ dx_2 \wedge dx_3$. Що це, щас буде.\\
+По суті, ми із $\Omega^1(X)$ забираємо всі базисні вектори $dx_1\,dx_2\,dx_3$ та проводимо попарно операцію $\wedge$ (англійською ця хрінь називається \textbf{wedge}). Така операція задовлоьнятиме властивості:
+\begin{align*}
+dx_2 \wedge dx_1 = -dx_1 \wedge dx_2 \text{ (із іншими аналогічно) } \\
+dx_1 \wedge dx_1 = 0 \text{ (із іншими аналогічно) }
+\end{align*}
+Тобто дана операція над собою онулює, а також можна змінювати порядок зі знаком мінус.\\
+Тепер побудуємо векторний простір, де $\{dx_1 \wedge dx_2,\ dx_1 \wedge dx_3,\ dx_2 \wedge dx_3\}$ формує базис. Ми будемо записувати $dx_i$ в порядку зростання для зручності.\\
+\textbf{$2$-формою} будемо називати ось такий простір:\\
+$\Omega^2(X) \overset{\text{def.}}{=} \{ f_3\, dx_1 \wedge dx_2 + f_2\, dx_1 \wedge dx_3 + f_1\, dx_2 \wedge dx_3 \mid f_1,f_2,f_3 \in C^\infty(X) \}$.
+\bigskip \\
+Хочемо аналогічно визначити відображення $d \colon \Omega^1(X) \to \Omega^0(X)$.
+\end{document}

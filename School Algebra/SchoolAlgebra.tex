@@ -1,0 +1,1548 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage[none]{hyphenat}
+\usepackage[T2A]{fontenc}
+\usepackage{fancyhdr} %create a custom header and footer
+\usepackage[utf8]{inputenc}
+\usepackage[english, main=ukrainian]{babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat = newest}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage[unicode]{hyperref}
+\usepackage{pdfpages}
+\usepackage{tikz-3dplot}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usetikzlibrary{spy,angles,quotes}
+
+\fancyhead{}
+\fancyfoot{}
+\parindent 0ex
+\DeclareMathOperator*\uplim{\overline{lim}}
+\DeclareMathOperator*\downlim{\underline{lim}}
+\DeclareMathOperator{\wordgrad}{grad}
+\DeclareMathOperator*\diam{diam}
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\departial#1#2{\dfrac{\partial {#1}}{\partial {#2}}}
+\def\seconddepartial#1#2#3{\ifthenelse{\equal{#2}{#3}}{\dfrac{\partial^2 {#1}}{\partial {#2}^2}}{\dfrac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}}
+\def\huge{\displaystyle}
+\def\bigline{\vspace{5mm}\\}
+
+\def\qed{$\blacksquare$}
+
+\def\rightproof{$\boxed{\Rightarrow}$ }
+\def\leftproof{$\boxed{\Leftarrow}$ }
+
+\newcommand\thref[1]{\textbf{Th.~\ref{#1}}}
+\newcommand\defref[1]{\textbf{Def.~\ref{#1}}}
+\newcommand\exref[1]{\textbf{Ex.~\ref{#1}}}
+\newcommand\prpref[1]{\textbf{Prp.~\ref{#1}}}
+\newcommand\rmref[1]{\textbf{Rm.~\ref{#1}}}
+\newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
+\newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
+
+\def\noProof{\\ \textit{Без доведення.}}
+\DeclareMathOperator\sign{sgn}
+
+\newtheoremstyle{theoremdd}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\normalfont}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ \textbf{#3}\\}}}
+
+\theoremstyle{theoremdd}
+\newtheorem{theorem}{Theorem}[subsection]
+  
+\theoremstyle{theoremdd}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{samedef}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{theoremdd}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{theoremdd}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{theoremdd}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{theoremdd}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\makeatletter
+\renewenvironment{proof}[1][Proof.\\]{\par
+\pushQED{\hfill \qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\bfseries
+#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\newenvironment{pfMI}{\vspace*{-3mm} \textbf{\\ Proof MI. \\}}{\hfill $\blacksquare$}
+\newenvironment{pfNoTh}{\textbf{Proof. \\}}{$\blacksquare$}
+
+\newcommand\Norm[1]{\lVert#1\rVert}
+\newcommand\divisibleBy{\, \vdots \,}
+\DeclareMathOperator{\lcm}{lcm}
+
+\begin{document}
+\newpage
+{\Huge \textbf{Клас сьомий}}
+\section{Лінійні рівняння}
+\subsection{Вступ}
+\begin{definition}
+\textbf{Лінійне рівняння з однією змінною} називають таке рівняння:
+\begin{align*}
+ax = b
+\end{align*}
+Тут числа $a,b$ -- довільні та $x$ -- змінна.
+\end{definition}
+
+\subsubsection*{Як розв'язувати рівняння}
+Для цього ми розглянемо декілька випадків:
+\begin{enumerate}[wide=0pt,label={\arabic*)}]
+\item Якщо $a = 0$ та $b = 0$, то тоді маємо рівняння $0x = 0$. Який би ми $x$ не підібрали, то він завжди задовольнятиме даному рівнянню. Отже, в цьому випадку ми маємо безліч коренів;
+\item Якщо $a = 0$, але $b \neq 0$, то тоді маємо рівняння $0x = b$. Ліворуч стоїть число $0$, який б ми $x$ не підставляли. Оскільки $b \neq 0$, то це означає, що розв'язків нема;
+\item Якщо $a \neq 0$ та $b \neq 0$, то тоді обидві частини рівності ми поділимо на $a$. Тоді отримаємо $x = \dfrac{b}{a}$. І це єдиний можливий розв'язок.
+\end{enumerate}
+
+\begin{example}
+Розв'язати рівняння $(2x + 1)(3x - 3) = 0$.\\
+Для того, щоб ліворуч отримати нуль, то нам треба вимагати, щоб або $2x + 1 = 0$, або $3x - 3 = 0$. Ми отримали два лінійних рівняння $2x = -1$ та $3x = 3$. У першому рівнянні поділимо обидві частини рівності на $2$, а в другому -- на $3$. Тоді буде або $x = -\dfrac{1}{2}$, або $x = 1$.
+\end{example}
+
+\begin{example}[Життєвий приклад]
+Bolt пропонує самокати на прокат. Вартість однієї хвилини проїзду становить 1.5 грн (на момент запису цієї задачі). Я витратив сумарно 36 грн. Скільки хвилин я проїхав?\\
+Маємо $a = 1.5$ грн за 1 хвилину. Тоді $b = 36$ грн за $x$ хвилин. Отримаємо лінійне рівняння:\\
+$1.5x = 36$, звідси отримаємо $x = 24$ хвилин.
+\end{example}
+
+\subsection{Тотожності}
+\begin{definition}
+Два вирази називають \textbf{тотожними}, якщо 
+\begin{align*}
+\text{вони збігаються зі значенням для будь-якої кількості та значень кожної змінної.}
+\end{align*}
+Сама рівність називається \textbf{тотожністю}. Саме заміна одного виразу на його тотожний вираз називається \textbf{тотожним перетворенням}.
+\end{definition}
+
+\begin{example}
+Зокрема $2(x-1) - 1$ та $2x-3$ -- це тотожні вирази. Який б ви $x$ не намагалися підставити, вони будуть набувати однакових значень. При цьому рівність $2(x-1)-1=2x-3$ -- це тотожність. \\
+Ми тут зрубили тотожне перетворення ось таке: розкрили дужки та звели до подібних.
+\end{example}
+
+\subsubsection*{Основні способи, як довести, що вирази тотожні}
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item одну з частин рівності тотожно перетворити таким чином, щоб отримати другу частину рівності;
+\item одночасно дві частини рівності перетворювати тотожно, допоки не дістанемося до рівності;
+\item можна від однієї частини рівності відняти іншу та довести, що це буде дорівнювати нулю.
+\end{enumerate}
+
+\begin{example}
+Довести тотожність $2(3a + 4b) + 3(a-7b) - 7(2a - 7b) = -5a + 36b$.\\
+Зараз буду робити за способом 1), тобто ми візьмемо ліву рівність та тотожно будемо його перетворювати, допоки не дійдемо до другого виразу. Для цього (в цьому випадку) треба розкрити дужки та звести до подібних:\\
+$2(3a + 4b) + 3(a-7b) - 7(2a - 7b) = 6a + 8b + 3a - 21b - 14a + 49b = 6a + 3a - 14a + 8b - 21b +49b = \\ = -5a + 36b$.
+\end{example}
+
+\begin{example}
+Довести тотожність $(2a-3b)^2 = (3b-2a)^2$.\\
+Зараз буду робити за способом 2), де ми будемо розписувати кожну частину, допоки не дістанемося до рівності. В обох частинах ми маємо:\\
+$(2a-3b)(2a-3b) = (3b-2a)(3b-2a)$;\\
+$4a^2 - 6ab - 6ab + 9b^2 = 9b^2 - 6ab - 6ab + 4a^2$;\\
+$4a^2 - 12ab + 9b^2 = 4a^2 - 12ab + 9b^2$.
+Дві частини збіглися -- тому довели тотожність.
+\end{example}
+
+\begin{example}
+Довести тотожність $a(b-c) + b(c-a) = c(b-a)$.\\
+Зараз буду робити за способом 3), де ми хочемо довести, що ліва частина мінус права частина -- нуль.\\
+$a(b-c) + b(c-a) -c(b-a) = ab - ac + bc - ba - cb - ca = 0$.
+\end{example}
+
+Бувають такі ситуації, що треба довести, що ці два вирази не тотожні. Один з можливих варіантів -- знайти контрприклад.
+
+\begin{example}
+Довести, що $4 - m^2$ не тотожний до $(2-m)^2$.\\
+Контрприкладом буде $m = 1$, у лівій частині буде $4 - 1^2 = 3$; у правій частині буде $(2-1)^2 = 1^2 = 1$. Тобто ці два вирази не рівні -- тож вони не тотожні.
+\end{example}
+
+
+\subsection{Степінь з натуральним показником}
+\begin{definition}
+\textbf{Степенем основи $a$ з натуральним показником $n > 1$} називають вираз:
+\begin{align*}
+a^n = \underbrace{a \cdot a \cdots a}_{\text{$n$ разів}}
+\end{align*}
+Якщо $n = 1$, то домовляються, що $a^1 = a$.
+\end{definition}
+
+\begin{example}
+Наприклад, $2^5 = 32$, просто тому що $2^5 = 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 = 32$.
+\end{example}
+
+\begin{remark}
+Декілька хороших зауважень:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Якщо $a > 0$, то тоді $a^n > 0$ також;
+\item $0^n = 0$;
+\item Будь-яке число з парним степенем завжди додатне (або нуль).\\
+Останнє поясню детальніше. Беремо $n$ -- парне число. Якщо $a > 0$, то ми вже знаємо за 1), що $a^n > 0$. Якщо $a = 0$, то тоді за 2), маємо $0^n = 0$. Якщо $a < 0$, то в нас число зі знаком мінус. Двічі мінус при множенні дає плюс, тому отримаємо все одно $a^n > 0$.
+\end{enumerate}
+\end{remark}
+
+\begin{proposition}[Властивості степеней]
+Виконуються такі властивості:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a^{m+n} = a^m \cdot a^n$;
+\item $a^{m-n} = a^m : a^n$ за умовою, що $m > n$;
+\item $(a^m)^n = a^{mn}$;
+\item $(ab)^n = a^n b^n$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Доведемо кожну властивість:
+\begin{enumerate}[wide=0pt,label={\arabic*)}]
+\item $a^{m+n} = \underbrace{a \cdot a \cdots a}_{\text{$m+n$ разів}} = \underbrace{a \cdot a \cdots a}_{\text{$m$ разів}} \, \cdot \, \underbrace{a \cdot a \cdots a}_{\text{$n$ разів}} = a^m \cdot a^n$.
+\item Використовуючи властивість 1), отрмаємо $a^{m-n} \cdot a^n = a^{(m-n)+n} = a^m$. Отже, $a^{m-n} = a^m : a^n$.
+\item Знову використовуючи властивість 1), отримаємо $(a^m)^n = \underbrace{a^m \cdot a^m \cdots a^m}_{\text{$n$ разів}} = a^{\tiny\underbrace{m+m+\dots+m}_{\text{$n$ разів}}} = a^{mn}$.
+\item $(ab)^n = \underbrace{(ab) \cdot (ab) \cdots (ab)}_{\text{$n$ разів}} = \underbrace{a \cdot a \cdots a}_{\text{$n$ разів}} \underbrace{b \cdot b \cdots b}_{\text{$n$ разів}} = a^n b^n$.
+\end{enumerate}
+Всі властивості доведені. Однак, по-хорошому, ми це все доводии за умовою, що $n > 1,m > 1$. Прийнято розглядати окремо випадки: $n = 1, m > 1$ та $n > 1, m = 1$ та $n = 1, m = 1$. Але це вже розписувати не буду.
+\end{proof}
+
+\begin{example}
+Обчислити значення виразу $\dfrac{3^{10} \cdot (3^3)^5}{(3^5)^4 \cdot 3}$.\\
+$\dfrac{3^{10} \cdot (3^3)^5}{(3^5)^4 \cdot 3} \overset{\text{вл-ть 3)}}{=} \dfrac{3^{10} \cdot 3^{15}}{3^{20} \cdot 3} \overset{\text{вл-ть 1)}}{=} \dfrac{3^{25}}{3^{21}} \overset{\text{вл-ть 2)}}{=} 3^{4} = 3 \cdot 3 \cdot 3 \cdot 3 = 81$.
+\end{example}
+
+\begin{example}
+Розв'язати рівняння $x^2 = -1$.\\
+Зауважимо, що ліворуч ми підносемо число в парний степінь, тож за нашими зауваженнями вище, дане число має бути додатним або нуль. Це означає, що $x^2$ не може приймати від'ємні числа, зокрема $-1$. Значить, розв'язків не існує.
+\end{example}
+
+\subsection{Одночлени, многочлени}
+\begin{definition}
+\textbf{Одночленом} називають вираз, що складається з добутків змінних та деякого числа.
+\end{definition}
+
+\begin{definition}
+\textbf{Коефіцієнтом} стандартного одночлена називають саме числовий множник.
+\end{definition}
+
+\begin{example}
+$2 a \cdot 4 a^2 b$ -- одночлен, але пишуть в зведеному вигляді $8a^3b$.\\
+Зокрема тут число $8$ -- це коефіцієнт даного одночлена.
+\end{example}
+
+\begin{definition}
+\textbf{Подібними одночленами} називають одночлени, літеральні вирази яких тотожні.
+\end{definition}
+
+\begin{example}
+Одночлени $2a^2b, 8a^2b$ -- подібні, бо співпадають літерні вирази. Хоча самі одночлени не рівні.
+\end{example}
+
+\begin{definition}
+\textbf{Степенем одночлена} називають суму степеней літеральних виразів.
+\end{definition}
+
+\begin{example}
+Одночлен $2a^2b$ має степінь $3$. Тому що маємо $2$ від $а$ та $1$ від $b$ -- тоді $2 + 1 = 3$.
+\end{example}
+
+\begin{definition}
+\textbf{Многочленом} називають суму одночленів.
+\end{definition}
+
+\begin{example}
+$2a + 3b + a + 2$ - многочлен, але пишуть в зведеному вигляді $3a + 3b + 2$.\\
+Можна зауважити, що в многочлена більше нема подібних одночленів.
+\end{example}
+
+\begin{definition}
+\textbf{Степенем многочлена} називають найбільший степінь одночлена.
+\end{definition}
+
+\begin{example}
+Зокрема маємо многочлен $3a + 3b + 2$. У перших двох одночленів степенями будуть $1$, у останнього одночлена степенем буде $0$. Значить, беремо найбільше число -- і це буде $1$, що є степенем многочлена.
+\end{example}
+
+\subsubsection*{Додавання (віднімання) многочленів}
+Многочлени можна додавати та віднімати між собою. Додати чи відняти два многочлени означає додати чи відняті подібні одночлени (якщо такі є). Якщо подібних нема, то тоді ми так і залишаємо.
+
+\begin{example}
+Наприклад, хочу до $3xy^2 + 5x^2y^2 - 7xy + x + 11$ додати $-2xy^2 + x^2y^2 + 2xy + y -2$. Тобто ми хочемо знайти, чому дорівнює $(3xy^2 + 5x^2y^2 - 7xy + x + 11) + (-2xy^2 + x^2y^2 + 2xy + y -2)$.\\
+Розкриємо дужки та, як зазначалося, щоб додати, треба додати подібні одночлени. Існують подібні одночлени $3xy^2,-2xy^2$; тож після сумування буде $3xy^2 - 2xy^2 = xy^2$. Існують подібні одночлени $5x^2y^2,x^2y^2$; тож після сумування буде $6x^2y^2$ -- і так далі до кінця. Отримаємо:\\
+$(3xy^2 + 5x^2y^2 - 7xy + x + 11) + (-2xy^2 + x^2y^2 + 2xy + y -2) = xy^2 + 6x^2y^2 - 5xy + x + y + 9$.
+\end{example}
+
+\begin{example}
+Тепер хочу до $x^2 - y^2$ відняти $x - y$. Тобто ми хочемо знайти, чому дорівнює $x^2 - y^2 - (x - y)$.\\
+Насправді, у цих двох многочленів уже нема подібних доданків, тому ми залишаємо як є. Єдине що можна дужки розкрити -- отримаємо:\\
+$x^2 - y^2 - (x - y) = x^2 - y^2 - x + y$. 
+\end{example}
+
+\subsubsection*{Множення одночлена на многочлен}
+Для того, щоб одночлен помножити на многочлен, нам треба розкрити дужки.
+
+\begin{example}
+Наприклад, хочу одночлен $2x$ помножити на многочлен $3x + 2y - 5$. Тобто ми хочемо знайти, чому дорівнює $2x \cdot (3x + 2y - 5)$.\\
+Для цього ми розкриємо дужки -- отримаємо наступне:
+$2x \cdot (3x + 2y - 5) = 2x \cdot 3x + 2x \cdot 2y - 2x \cdot 5 = 6x^2 + 4xy - 10x$.
+\end{example}
+
+\subsubsection*{Множення многочлена на многочлен}
+Дане множення зводиться до того, що ми кілька разів множимо одночлен на многочлен. Покажу краще одразу на прикладі.
+
+\begin{example}
+Наприклад, хочу многочлен $a+b$ помножити на многочлен $x-y-z$. Тобто ми хочемо знайти, чому дорівнює $(a+b) \cdot (x-y-z)$.\\
+Тимчасово перепозначимо дужку $a + b = u$. Тоді ми звели задачу до множення одночлена на многочлен $u \cdot (x-y-z) = ux - uy - uz$.\\
+Тоді звідси отримали $(a+b) \cdot (x-y-z) = (a+b)x - (a+b)y - (a+b)z = ax + bx - ay - by - az - bz$.
+\bigskip \\
+По суті кажучи, ми можемо один многочлен множити на інший многочлен таким чином. Беремо з першого многочлена по кожному одночлену та множимо на другий многочлен -- а далі все це сумуємо.
+\end{example}
+
+\subsubsection*{Розклад многочлена на множники}
+Тобто ми хочемо многочлен записати як добуток кількох многочленів.
+
+\begin{example}
+Наприклад, маємо $(x^2 - 4) + 2x (x^2 - 4) = (x^2 - 4) \cdot (1 + 2x)$.
+\end{example}
+
+\begin{example}
+Тепер хочемо розкласти многочлен $ax + bx + ay + by$. Цього разу не вийде розкласти на множники методом винесення за дужки спільного множника, як було минулого разу.\\
+На допомогу тепер приходить метод групування. Ми групуємо доданки так, щоб кожна група мала спільний множник:\\
+$ax + bx + ay + by = (ax + bx) + (ay + by) = x(a+b) + y(a+b) = (a+b)(x+y)$.
+\end{example}
+
+\subsection*{Відомі тотожності з многочленами}
+Дані тотожності настільки популярні, що їх варто окремо тримати в голові.\\
+1. Різниця квадратів двох виразів:
+\begin{align*}
+a^2 - b^2 = (a-b)(a+b)
+\end{align*}
+2. Квадрат суми двох виразів:
+\begin{align*}
+(a + b)^2 = a^2 + 2ab + b^2
+\end{align*}
+3. Квадрат різниці двох виразів:
+\begin{align*}
+(a + b)^2 = a^2 + 2ab + b^2
+\end{align*}
+4. Різниця кубів двох виразів:
+\begin{align*}
+a^3 - b^3 = (a - b)(a^2 + ab + b^2)
+\end{align*}
+5. Сума кубів двох виразів:
+\begin{align*}
+a^3 + b^3 = (a + b)(a^2 - ab + b^2)
+\end{align*}
+Всі ці тотожності спокійно доводяться методами, що було вище.\\
+Рідко в даному класі (зазвичай для фіз.\ мат шкіл) дають ще такі тотожності:\\
+$(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$ (куб різниці можна вивести самому).\\
+$a^n - b^n = (a-b)(a^{n-1}+a^{n-2} b + \dots + a b^{n-2} + b^{n-1})$ для всіх $n \geq 1$.
+\bigskip \\
+Далі можна буде узагальнити $(a+b)^n$, але це буде пізніше.
+\newpage
+\iffalse
+%просто цікава задача
+Довести тотожність Лагранжа: $(a^2+b^2+c^2)(x^2+y^2+z^2) - (ax+by+cz)^2 = (ay - bx)^2 + (az - cx)^2 + (bz - cy)^2$.
+\fi
+
+\section{Функції}
+\subsection{Вступ до функцій}
+Поки це буде нестроге означення через те, що це лише сьомий клас. Хоча мені здається, що час давати тему на множини.
+
+\begin{definition}
+\textbf{Функцією} називають таке правило: кожному елементу множини $X$ ставиться в відповідність єдиний елемент множини $Y$.
+\end{definition}
+Способи задання функції:\\
+1. Описанням.\\
+2. Формулою.\\
+3. Таблицею.\\
+4. Графіками.
+
+\begin{definition}
+\textbf{Графіком функції} називають геометричну фігуру, що складається з усіх тих й лише тих точок координатної площини, абсциси яких дорівнює значенню аргументу, а ординати - відповідним значенням функції.
+\end{definition}
+
+\subsection{Лінійні функції}
+\begin{definition}
+\textbf{Лінійною функцією} називають таку функцію:
+\begin{align*}
+y = kx+b
+\end{align*}
+Тут $k,b$ - деякі числа.
+\end{definition}
+
+\begin{theorem}
+Графіком функції $y = kx + b$ є пряма.\\
+\textit{Без доведення поки що.}
+\end{theorem}
+\newpage
+
+{\Huge \textbf{Клас восьмий}}
+\section{Множини}
+\begin{definition}
+\textbf{Множиною} ми будемо називати сукупність якихось об'єктів, які не повторюються.\\
+Позначення: $A,B,C, \dots$
+\end{definition}
+
+\begin{example}
+Наприклад, $A = \{ \textit{червоний}, \textit{зелений}, \textit{синій} \}$ -- множина деяких кольорів. Ще маємо $B = \{2,4,6,8,\dots\}$ -- множина парних чисел.\\
+Коли пишемо $2 \in B$, це означає, що \textbf{елемент $2$ належить множині $B$}.\\
+Коли пишемо $\textit{жовтий} \notin A$, це означає, що \textbf{елемент ''жовтий'' не належить множині $A$}.
+\end{example}
+
+Існує ооблива множина: $\emptyset$ -- це називається \textbf{порожня множина}, яка не містить жодного елементу.
+
+\subsection{Підмножини. Операції над підмножинами.}
+\begin{definition}
+Множина $B$ називають \textbf{підмножиною} множини $A$, якщо 
+\begin{align*}
+\text{кожний елемент множини $B$ належить множині $A$.}
+\end{align*}
+Позначення: $B \subset A$.
+\end{definition}
+
+\begin{example}
+Нехай $C$ -- множина абсолютно всіх кольорів. Попереднього разу ми визначали $A = \{ \text{червоний}, \text{зелений}, \text{синій} \}$ -- всі вони є кольорами, тобто вони також лежать на множині $C$. Значить, тут $A \subset C$.
+\end{example}
+
+\begin{definition}
+\textbf{Перерізом} множин $A,B$ називають нову множину,
+\begin{align*}
+\text{що складається з елементів, які належать $A$ та $B$ одночасно.}
+\end{align*}
+Позначення: $A \cap B$.
+\end{definition}
+
+\begin{example}
+Маємо множину $F = \{\text{Саша}, \text{Даша}, \text{Женя}, \text{Лєна}\}$ та множину $M = \{\text{Женя}, \text{Даня}, \text{Саша}\}$. Тоді звідси маємо $F \cap M = \{\text{Саша}, \text{Женя}\}$.
+\end{example}
+
+\begin{definition}
+\textbf{Об'єднанням} множин $A,B$ називають нову множину, 
+\begin{align*}
+\text{що складається з елементів, які належать $A$ або $B$.}
+\end{align*}
+Позначення: $A \cup B$.
+\end{definition}
+
+\begin{example}
+Наприклад, $A = \{1,3,5,7,9\}$ та $B = \{0, 2,4,6,8\}$. Тоді $A \cup B$ -- множина всіх цифр.
+\end{example}
+
+\begin{definition}
+\textbf{Різницею} множин $A,B$ називають нову множину,
+\begin{align*}
+\text{що складається з елементів, які належать $A$, але не належать $B$.}
+\end{align*}
+Позначення: $A \setminus B$.
+\end{definition}
+
+\begin{example}
+Маємо $A$ -- множина всіх чисел від $1$ до $100$; також $B$ -- множина цифр від $1$ до $9$ та число $100$. Тоді звідси $A \setminus B$ -- всі двозначні числа.
+\end{example}
+
+\begin{definition}
+Множина називається \textbf{скінченною}, якщо
+\begin{align*}
+\text{кількість елементів скінченна}.
+\end{align*}
+Інакше така множина \textbf{нескінченна}.\\
+Порожня множина $\emptyset$ вважається за скінченною множиною.
+\end{definition}
+
+Якщо $A$ -- скінченна, то ми можемо порахувати кількість елементів. Позначення кількості елементів: $n(A)$. Це ще інколи називають \textbf{потужністю множини $A$}.
+
+\begin{theorem}
+Заано $A,B$ -- скінченні множини, які не перетинаються. Тоді \\
+$n(A \cup B) = n(A) + n(B)$.\\
+\textit{Цілком зрозуміло.}
+\end{theorem}
+
+\begin{theorem}
+Задано $A,B$ -- скінченні множини. Тоді $n(A \cup B) = n(A) + n(B) - n(A \cap B)$.\\
+\textit{Цього разу ці дві множини можуть перетинатися. Значить, один елемент належить одночасно й множині $A$, й множині $B$; тобто його двічі включили, а нам треба один раз. Значить, треба його один раз відняти -- і це каже нам $n(A \cap B)$.}
+\end{theorem}
+
+\subsection{Зліченні множини}
+\begin{definition}
+Нехай кожному елементу множини $A$ ставиться в відповідність єдиний елемент множини $B$. І навпаки теж.\\
+Тоді $A,B$ встановлюють \textbf{однозначну відповідність}.
+\end{definition}
+
+\begin{theorem}
+Якщо $A,B$ мають однозначну відповідність, то $n(A) = n(B)$. І навпаки.\\
+Але це можна для скінченних множин.
+\end{theorem}
+
+\begin{definition}
+Множини $A,B$ називаються \textbf{рівнопотужними}, якщо між ними встановлена однозначна відповідність.
+\end{definition}
+
+\begin{definition}
+Множина $A$ називається \textbf{зліченною}, якщо $A,\mathbb{N}$ -- рівнопотужні множини.
+\end{definition}
+\newpage
+
+\section{Вступ до теорії чисел}
+Даний розділ як раз лише для фіз.\ мат.\ шкіл, тому його можна спокійно пропускати.
+\subsection{Ділення націло. Остача}
+\begin{definition}
+Число $a$ \textbf{ділиться націло} на число $b \neq 0$, якщо
+\begin{align*}
+\text{існує число $k$, для якого $a = bk$.}
+\end{align*}
+Позначення: $a \divisibleBy b$.
+\end{definition}
+
+\begin{proposition}[Властивості]
+Справедливі такі властивості:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Якщо $a \neq 0$, то $a \divisibleBy a$;
+\item Якщо $a \neq 0$, то $0 \divisibleBy a$;
+\item Якщо $a \divisibleBy b$, то $ka \divisibleBy b$;
+\item Якщо $a \divisibleBy b$ та $b \divisibleBy c$, то $a \divisibleBy c$;
+\item Якщо $a \divisibleBy m$ та $b \divisibleBy n$, то $ab \divisibleBy mn$;
+\item Якщо $a \divisibleBy c$ та $b \divisibleBy c$, то $a+b \divisibleBy c$.
+\end{enumerate}
+\textit{Зрозуміло.}
+\end{proposition}
+
+\begin{theorem}
+Для будь-якого цілого числа $a$ та натурального числа $b$ існує єдина пара цілих чисел $q,r$, для яких $a = bq + r$. Причому $0 \leq r < b$.\\
+Число $r$ називають \textbf{остачею}.
+\end{theorem}
+
+\begin{proof}
+Нехай задані ціле число $a$ та натуральне число $b$. Розглянемо два випадки:\\
+I. $a \divisibleBy b$. Тоді, за означенням, існує $q$ -- ціле, для якого $a = qb$. Тут остача $r = 0$.\\
+II. $a \not\divisibleBy b$. Тоді розглянемо множину $B$, що складається з чисел, кратні $b$:\\
+$B = \{x \in \mathbb{Z}: x \divisibleBy b \} = \{\dots,-2b,-b,0,b,2b,\dots\}$.\\
+Число $a$ обов'язково має лежати між двома сусідніми числами (бо інакше якщо $a$ збігається з якимось числом, то це випадок I, який ми більше не розглядаємо). Тобто $bq < a < bq+b$. Звідси $0 < a-bq < b$.\\
+Позначимо $r = a-bq$. Тоді $0 < r < b$ та $a = bq+r$. Це ми довели лише існування. Залишилося показати єдиність.\\
+!Припустимо, що $a = bq_1+r_1$ та $a = bq_r+r_2$. Тоді звідси $r_2-r_1 = b(q_1-q_2)$, тобто $r_2-r_1 \divisibleBy b$. Єдиний такий можливий варіант -- це коли $r_2-r_1 = 0 \implies r_1 = r_2$, а тому й $q_1 = q_2$. Суперечність!
+\end{proof}
+
+\begin{theorem}
+Задано $a,b \in \mathbb{Z}$. Відомо, що при діленні на $m \in \mathbb{N}$ вони мають однакову остачу. Тоді $a-b \divisibleBy m$.\\
+Навпаки теорема працює теж.\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+\begin{definition}
+Числа $a,b \in \mathbb{Z}$ називаються \textbf{конгруентними за модулем} $m \in \mathbb{N}$, якщо
+\begin{align*}
+\text{ці числа мають однакову остачу при діленні на $m$.}
+\end{align*}
+Позначення: $a \equiv b \pmod m$.
+\end{definition}
+
+\begin{proposition}[Властивості]
+Справедливі такі властивості:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Якщо $a \equiv b \pmod m$ та $b \equiv c \pmod m$, то $a \equiv c \pmod m$;
+\item Якщо $a \equiv b \pmod m$, то $a+c \equiv b+c \pmod m$;
+\item Якщо $a \equiv b \pmod m$, то $ac \equiv bc \pmod m$;
+\item Якщо $a \equiv c \pmod m$ та $b \equiv d \pmod m$, то $a+c \equiv b+d \pmod m$;
+\item Якщо $a \equiv c \pmod m$ та $b \equiv d \pmod m$, то $ac \equiv bd \pmod m$;
+\item Якщо $a \equiv b \pmod m$, то $a^n \equiv b^n \pmod m$.
+\end{enumerate}
+\textit{Зрозуміло.}
+\end{proposition}
+
+\subsection{Найбільший спільний дільник}
+\begin{definition}
+Число $d$ називається \textbf{спільним дільником}, якщо
+\begin{align*}
+\text{$a,b$ одночасно діляться націло на $d$}
+\end{align*}
+\end{definition}
+
+Оскільки $d \leq a$, $d \leq b$, то звідси кількість дільників -- скінченна. Оберемо найбільше число $d$ серед усіх. Тоді $d$ називають \textbf{найбільшим спільним дільником} чисел $a,b$.\\
+Позначення: $d = \text{НСД}(a,b)$; хоча по-хорошому прийнято позначати $d = \gcd(a,b)$.
+
+\begin{theorem}
+Якщо $a>b$, то $\gcd(a,b) = \gcd(a-b,b)$.
+\end{theorem}
+
+\begin{proof}
+Візьмемо якийсь спільний дільник $d$ числа $a,b$. Маємо $a \divisibleBy d$, $b \divisibleBy d$. Тоді звідси $a-b \divisibleBy d$.\\
+Візьмемо якийсь спільний дільник $d$ числа $a,a-b$. Маємо $a \divisibleBy d$, $a - b \divisibleBy d$. Тоді звідси $b = (a-b) -a \divisibleBy d$.\\
+Отже, будь-який спільний дільник $a,b$ є спільним дільником $a,a-b$. І навпаки. А тому беремо найбільший спільний дільник серед усіх. Звідси $\gcd(a,b) = \gcd(a-b,b)$.
+\end{proof}
+
+\begin{remark}
+Якщо в нас числа $a \divisibleBy b$, то тоді автоматично $\gcd(a,b) = b$.
+\end{remark}
+
+\begin{lemma}
+Якщо $a = bq+r$, де $r$ -- остача, то $\gcd(a,b) = \gcd(b,r)$.\\
+\textit{Вказівка: $\gcd(bq+r,b) = \gcd(bq+r-b,b)$, тобто скористатися попередною теоремою.}
+\end{lemma}
+
+\subsubsection*{Алгоритм Евкліда}
+Маємо цілі числа $a,b$. Мета: знайти, чому дорівнює $\gcd(a,b)$.\\
+$a = bq + r$. Якщо $r = 0$, то знайшли. Інакше $\gcd(a,b) = \gcd(b,r)$.\\
+Маємо тепер $b,r$. Другорядна мета: знайти $\gcd(b;r)$, щоб розв'язати основну мету.\\
+$b = rq_1 + r_1$. Якщо $r_1 = 0$, то знайшли. Інакше $\gcd(b,r) = \gcd(r,r_1)$.\\
+\vdots \\
+Кількість таких кроків буде скінченною, оскільки $b > r > r_1 > \dots \geq 0$. Тож на якомусь кроці виникне остання остача $r_{n+1} = 0$. А остання ненульова остача -- це $r_n$, що розписується так:\\
+$r_n = r_{n+1}q_{n+1}$. Звідси $\gcd(r_n,r_{n+1}) = r_{n+1}$.\\
+Таким чином, $\gcd(a,b) = r_{n+1}$.
+
+\begin{example}
+Знайти, чому дорівнює $\gcd(525,231)$.\\
+$525 = 231 \cdot 2 + 63$;\\
+$231 = 63 \cdot 3 + 42$;\\
+$63 = 42 \cdot 1 + 21$;\\
+$42 = 21 \cdot 2 + 0$.\\
+Остання ненульова остача -- це $21$, отже $\gcd(525,231) = 21$.
+\end{example}
+
+\subsection{Найменше спільне кратне}
+\begin{definition}
+Число $k$ називається \textbf{спільним кратним}, якщо
+\begin{align*}
+\text{$k$ одночасно ділиться націло на $a,b$}.
+\end{align*}
+\end{definition}
+
+Оскільки $k \geq a$, $k \geq b$, то серед них можна знайти найменше. Тоді $k$ називають \textbf{найменшим спільним кратним} чисел $a,b$.\\
+Позначення: $k = \text{НСК}(a,b)$; хоча по-хорошому прийнято позначати $k = \lcm(a,b)$.
+
+\begin{theorem}
+\label{another_common_multiple_is_divisible_by_lcm}
+Позначимо $k = \lcm(a,b)$ та візьмемо будь-яке інше спільне кратне $k_1$ чисел $a,b$, причому $k_1 > k$. Тоді $k_1 \divisibleBy k$.
+\end{theorem}
+
+\begin{proof}
+!Припустимо, що $k_1 \not\divisibleBy k$. Тоді $k_1 = kq+r$, де $r$ -- остача, тобто $0 \leq r < k$.\\
+Звідси $r = k_1 - kq$. Оскільки $k_1,k$ -- спільні дільники $a,b$, то тоді $r$ -- теж спільний дільник числа $a,b$. Але суперечність! Тому що $r < k$.
+\end{proof}
+
+\begin{theorem}
+\label{about_common_multiple}
+Задано $a \divisibleBy c$, $b \divisibleBy c$. Тоді $\dfrac{ab}{c}$ -- спільне кратне чисел $a,b$.\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+\begin{theorem}
+$\gcd(a,b) \cdot \lcm(a,b) = ab$.
+\end{theorem}
+
+\begin{proof}
+Позначимо $\gcd(a,b) = d,\ \lcm(a,b) = k$.\\
+Зрозуміло, що $ab$ -- спільний дільник чисел $a,b$. Тоді за \thref{another_common_multiple_is_divisible_by_lcm}, $ab \divisibleBy k$, тоді існує число $c$, для якого $ab = ck$. Доведемо, що $c$ -- спільний дільник чисел $a,b$.\\
+$k \divisibleBy a \implies k = ma \implies ab = cma \implies b = cm \implies b \divisibleBy c$.\\
+$k \divisibleBy b \implies$ аналогічним чином $a \divisibleBy c$.\\
+$ab = ck \implies k = \dfrac{ab}{c} \geq \dfrac{ab}{d}$.\\
+Також за \thref{about_common_multiple}, число $\dfrac{ab}{d}$ -- спільне кратне чисел $a,b$. Тоді $\dfrac{ab}{d} \geq k$.\\
+Таким чином, єдиний можливий варіант $\dfrac{ab}{d} = k \implies ab = dk$.
+\end{proof}
+
+\begin{definition}
+Числа $a,b$ називаються \textbf{взаємно простими}, якщо
+\begin{align*}
+\gcd(a,b) = 1
+\end{align*}
+\end{definition}
+
+\begin{corollary}
+Якщо числа $a,b$ -- взаємно прості, то $\lcm(a,b) = ab$.
+\end{corollary}
+
+\begin{theorem}
+Якщо $\gcd(b,c) = 1$, а також $a \divisibleBy b$, $a \divisibleBy c$, тоді $a \divisibleBy bc$.
+\end{theorem}
+
+\begin{proof}
+Оскільки $\gcd(b,c) = 1$, то тоді $\lcm(b,c) = bc$. Із умови випливає, що $a$ -- спільне кратне чисел $b,c$. Тоді звідси, за \thref{another_common_multiple_is_divisible_by_lcm}, $a \divisibleBy \lcm(b,c) = bc$.
+\end{proof}
+
+\begin{theorem}
+Якщо $\gcd(a,b) = 1$ та $ac \divisibleBy b$, то $c \divisibleBy b$.
+\end{theorem}
+
+\begin{proof}
+Оскільки $\gcd(a,b) = 1$, то тоді $\lcm(a,b) = ab$. Із умови випливає, що $ac$ -- спільне кратне чисел $a,b$. Таким чином, за \thref{another_common_multiple_is_divisible_by_lcm}, $ac \divisibleBy \lcm(a,b) = ab$. Але з цього зрозуміло випливає, що $c \divisibleBy b$.
+\end{proof}
+
+\subsection{Ознаки подільності}
+\begin{theorem}
+$\overline{a_na_{n-1}\dots a_1a_0} \equiv a_n + a_{n-1} + \dots + a_1 + a_0 \pmod 9$.\\
+\textit{Неважко доводиться.}
+\end{theorem}
+
+\begin{theorem}
+$\overline{a_na_{n-1}\dots a_1a_0} \equiv a_n + a_{n-1} + \dots + a_1 + a_0 \mod 3$.\\
+\textit{Аналогічно.}
+\end{theorem}
+
+\begin{theorem}
+$\overline{a_na_{n-1}\dots a_1a_0} \equiv a_0 - a_1 + \dots + (-1)^n a_n \pmod {11}$.\\
+\textit{Аналогічно, але трохи інакше.}
+\end{theorem}
+
+\subsection{Прості та складені числа}
+\begin{definition}
+Число $p \in \mathbb{N}$ називається \textbf{простим}, якщо 
+\begin{align*}
+\text{лише $p \divisibleBy 1$ та $p \divisibleBy p$}.
+\end{align*}
+Якщо $p$ ще на щось ділиться, то число $p$ називають \textbf{складеним}.
+\end{definition}
+
+\begin{theorem}
+Множина простих чисел -- нескінченна.
+\end{theorem}
+
+\begin{proof}
+Сконструюємо множину $P = \{ p \in \mathbb{N}: p \text{ -- просте} \}$.\\
+!Припустимо, що множина простих чисел -- скінченна, тобто $P = \{p_1,\dots,p_n\}$. А далі розглянемо число $p = p_1 \cdots p_n + 1$ -- тобто перемножили всі числа та додали одиницю.\\
+Нехай $p$ -- просте число, то тоді $p \in P$, тобто $p = p_i$. Проте це неможливо, тому що в такому разі $p \divisibleBy p_i$, а в нашому випадку під час ділення $p$ на $p_i$ буде остача $1$.\\
+Тому $p$ -- складене число. Тоді знайдеться дільник $m \neq 1$, для якого $p \divisibleBy m$ (ми оберемо найменше можливе $m$). Припустимо, що $m$ -- складене, тоді звідси $m \divisibleBy k$, тоді $p \divisibleBy k$, що неможливо (оскільки $m$ -- найменше можливе таке число, а ми знайшли ще менше $k$).\\
+Таким чином, $m$ -- просте число, тоді $m \in P \implies m = p_i$. Тобто звідси $p \divisibleBy p_i$ -- а це неможливо (ми про це говорили).\\
+Отримали суперечність!
+\end{proof}
+
+\begin{theorem}
+Задано $p_1,p_2$ -- прості числа. Якщо $p_1 \divisibleBy p_2$, то $p_1 = p_2$.
+\end{theorem}
+
+\begin{proof}
+Маємо $p_1 \divisibleBy 1$, $p_1 \divisibleBy p_1$, $p_1 \divisibleBy p_2$. Число $p_1$ -- просте, тобто має два дільника: $1,p_1$. Тому число $p_2 = 1$ або $p_2 = p_1$. Перший варіант не можливий, бо $p_2 = 1$ -- не просте число. Отже, $p_2 = p_1$.
+\end{proof}
+
+\begin{theorem}
+Задано $n \in \mathbb{N}$ та $p$ -- просте число. Тоді або $\gcd(n,p) = p$, або $\gcd(n,p) = 1$.
+\end{theorem}
+
+\begin{proof}
+Оскільки $p$ -- просте, то звідси $p \divisibleBy 1, p \divisibleBy p$. Позначимо $\gcd(n,p) = k$, тоді $n \divisibleBy k, p \divisibleBy k$. Звідси існують два варіанти: або $k = 1$, або $k = p$.
+\end{proof}
+
+\begin{theorem}
+Задано $a,b \in \mathbb{N}$ та $p$ -- просте. Якщо $ab \divisibleBy p$, то або $a \divisibleBy p$, або $b \divisibleBy p$.
+\end{theorem}
+
+\begin{proof}
+Якщо $a \vdots p$, то тоді все доведено. Інакше за попередньою теоремою, $\gcd(a;p) = 1$. Тоді $b \divisibleBy p$.
+\end{proof}
+
+\begin{theorem}[Основна теорема арифметики]
+Будь-яке число $n \in \mathbb{N} \setminus \{1\}$ або є простим, або можна подати в вигляді добутку простих чисел єдиним чином із точністю до їхньої перестановки.\\
+\textit{Надам доведення, яке пропонує Мерзляк.}
+\end{theorem}
+
+%standard
+\iffalse
+\begin{proof}
+Нехай є деяке число $m > 1$. \\
+!Припустимо, що $m$ -- це перше число, що до нас потрапило, яке не допускає розклад на прості. Якщо $m$ -- просте, то уже суперечність. Залишається випадок, коли $m$ -- складене.\\
+Тоді $m \divisibleBy a$, де $1 < a < m$, а тому $m = ab$, причому також $1 < b < m$. Але оскільки $a,b < m$, то ці числа можна розкласти на добуток простих чисел. Отже, $m$ розкладається на добуток простих чисел від $a$ та $b$. Суперечність!\\
+Довели, що будь-яке число все ж таки розкладається на просте.
+\bigskip \\
+Залишилося довести єдиність. \\
+!Припустимо, що $n = p_1\dots p_n$ та одночасно $n = q_1 \dots q_k$ -- різні представлення. Тобто ми маємо рівність $p_1 \dots p_n = q_1 \dots q_k$.\\
+Ліва частина ділиться на $p_1$, а тому права частина теж ділиться на $p_1$. А отже, за (майже) попередньою теоремою, $p_1 \divisibleBy q_1$. Звідси маємо $p_1 = q_1$.\\
+Отримаємо рівність $p_2 \dots p_n = q_2 \dots q_m$. А далі над $p_2$ проводимо аналогічні міркування та отримаємо $p_2 = q_2$.\\
+А тепер уявимо на хвилину, що $n < k$, тобто кількість простих чисел зліва менше кількості простих справа. Тоді ми прийдемо до рівності $1 = q_{n+1} \dots q_k$, а така рівність неможлива, бо прості числа не можуть бути одиницями. Аналогічні міркування для $n > k$.\\
+Таким чином, по-перше, $n=k$, а по-друге, $p_1 = q_1,\dots,p_n = q_n$. Суперечність!\\
+Отже, представлення -- єдине. Із точністю до перестановок множників -- це важливо.
+\end{proof}
+\fi
+
+%Merzliak
+\begin{proof}
+Якщо $n \in \mathbb{N} \setminus \{1\}$ -- просте, то кінець доведення.\\
+Нехай $n \in \mathbb{N} \setminus \{1\}$ -- складене, тоді його можна розкласти як $n = ab$, причому $1 < a < n,\ 1 < b < n$. Зауважимо, що існує таке натуральне число $k$, для якого $2^k \geq n$. Звідси випливає, що кількість множників у розкладі числа $n$ не більша за $k$.\\
+Дійсно, якби кількість множників у розкладі $n$ була більша за $k$, то тоді буде $n > 2^k$ в силу того, що кожний з множників не менший за $2$.\\
+Розглянемо той з розкладів, що містить найбільшу кількість дільників. Це і буде розкладом $n$ на добуток простих чисел.\\
+Дійсно, якби хтось серед них був складеним, то ми би отримали ''довший'' розклад, але це вже неможливо.
+\bigskip \\
+Залишилося довести єдиність. \\
+!Припустимо, що $n = p_1\dots p_n$ та одночасно $n = q_1 \dots q_k$ -- різні представлення. Тобто ми маємо рівність $p_1 \dots p_n = q_1 \dots q_k$.\\
+Ліва частина ділиться на $p_1$, а тому права частина теж ділиться на $p_1$. А отже, за (майже) попередньою теоремою, $p_1 \divisibleBy q_1$. Звідси маємо $p_1 = q_1$.\\
+Отримаємо рівність $p_2 \dots p_n = q_2 \dots q_m$. А далі над $p_2$ проводимо аналогічні міркування та отримаємо $p_2 = q_2$.\\
+А тепер уявимо на хвилину, що $n < k$, тобто кількість простих чисел зліва менше кількості простих справа. Тоді ми прийдемо до рівності $1 = q_{n+1} \dots q_k$, а така рівність неможлива, бо прості числа не можуть бути одиницями. Аналогічні міркування для $n > k$.\\
+Таким чином, по-перше, $n=k$, а по-друге, $p_1 = q_1,\dots,p_n = q_n$. Суперечність!\\
+Отже, представлення -- єдине із точністю до перестановок множників.
+\end{proof}
+
+Отже, $n \in \mathbb{N} \setminus \{1\}$ можна розписати як $n = p_1^{\alpha_1} \dots p_k^{\alpha_k}$. Це називають \textbf{канонічним розкладом}.
+
+\begin{theorem}[Мала теорема Ферма]
+Задано $a \in \mathbb{N}$ та $p$ -- просте. Відомо, що $a \not\divisibleBy p$. Тоді $a^{p-1} \equiv 1 \pmod p$.
+\end{theorem}
+
+\begin{proof}
+Запишемо такі числа: $a,2a,\dots,(p-1)a$. Ясно, що ніхто з них не ділиться на $p$. Тому кожний згенерує свою остачу: $r_1,r_2,\dots,r_{p-1}$, тобто\\
+$a \equiv r_1 \pmod p$\\
+$2a \equiv r_2 \pmod p$\\
+\vdots \\
+$(p-1)a \equiv r_{p-1} \pmod p$.\\
+Всі остачі $0 < r_1,r_2,\dots,r_{p-1} < p$. Спробуємо довести, що ці остачі абсолютно різні за значенням.\\
+!Для цього припустимо, що $la \equiv r_l \pmod p$ та $ka \equiv r_k \pmod p$ та при цьому $r_l = r_k$. Тоді звідси $la \equiv ka \pmod p \implies la-ka \divisibleBy p$. Але оскільки $\gcd(a,p) = 1$, то $l-k \divisibleBy p$. Оскільки $0 < l,k < p$, то єдиний можливий варіант -- це $l-k=0$. Суперечність!\\
+А тепер повернімось до рядків з конгруєнціями. Ми їх перемножимо зараз, тоді:\\
+$a \cdot 2a \dots (p-1)a \equiv r_1 r_2 \dots r_n \pmod p$.\\
+Зауважимо, що ми маємо рівно $p-1$ остач, кожни з яких різні та обмежені діапазоном вище. Тому $r_1r_2 \dots r_n = 1\cdot 2 \dots (p-1)$.\\
+Отже, $1 \cdot 2 \dots (p-1) a^{p-1} \equiv 1 \cdot 2 \dots (p-1) \pmod p$. Або можна сказати, що $1 \cdot 2 \dots (p-1)(a^{p-1}-1) \divisibleBy p$. Єдиний можливий варіант - це $a^{p-1}-1 \vdots p$, тобто $a^{p-1} \equiv 1 \pmod p$.
+\end{proof}
+
+\begin{corollary}
+Для будь-якого $a \in \mathbb{N}$ та $p$ -- просте маємо $a^{p} \equiv a \pmod p$.
+\end{corollary}
+\newpage
+
+\section{Раціональні вирази}
+Основна властивість раціонального виразу: $\dfrac{A}{B} = \dfrac{A \cdot C}{B \cdot C}$, де $A,B,C$ - многочлени.\\
+Можна довести, що $\left( \dfrac{A}{B} \right)^n = \dfrac{A^n}{B^n}$.
+
+\subsection{Рівносильні рівняння. Раціональні рівняння}
+\begin{definition}
+\textbf{Областю визначення рівняння} $f(x) = g(x)$ називають множину значень $x$, для якого обидва рівняння має зміст.
+\end{definition}
+
+\begin{example}
+$\dfrac{x^2-4}{x+2} = 0$ має область визначення $\{x | x \neq 2\}$.\\
+$x^2 = -2$ має область визначення всі числа. (хоча розв'язків нема, але зміст існує, бо я можу підставити туда будь-які $x$).
+\end{example}
+
+\begin{corollary}
+Область визначення рівняння $f(x) = g(x)$ - це множина $D(f) \cap D(g)$.
+\end{corollary}
+
+Щоб рівняння $f(x) = g(x)$ мало розв'язок $x$, необіхдно, щоб $x \in D(f) \cap D(g)$. (бо інакше сенсу від цього $x$ нема).\\
+У зворотньому напрямку це не завжди працює.\\
+$\dfrac{x^2-4}{x+2} = 0$, тут $x = 3$ належить області визначення, але не корінь рівняння.
+
+\begin{definition}
+Рівняння $f_1(x) = g_1(x)$ та $f_2(x) = g_2(x)$ називаються \textbf{рівносильними}, якщо множина розв'язків співпадає.\\
+Позначення: $f_1(x) = g_1(x) \iff f_2(x) = g_2(x)$.
+\end{definition}
+
+\begin{theorem}
+$f(x) = g(x) \iff f(x) + c = g(x) + c$, де число $c$ - довільне число.\\
+\textit{Неважко.}
+\end{theorem}
+
+\begin{theorem}
+$f(x) = g(x) \iff c \cdot f(x) = c \cdot g(x)$, де $c$ - довільне ненульове число.
+\end{theorem}
+
+\begin{definition}
+Рівняння $f_2(x) = g_2(x)$ називають \textbf{наслідком} рівняння $f_1(x) = g_1(x)$, якщо множина розв'язків рівняння (2) містить множину розв'язків рівняння (1).\\
+Позначення: $f_1(x) = g_1(x) \implies f_2(x) = g_2(x)$.
+\end{definition}
+
+\begin{definition}
+\textbf{Раціональним рівнянням} називають рівняння, що містить зліва й справа раціональні вирази.
+\end{definition}
+
+\subsection{Степінь з від'ємним показником}
+\begin{definition}
+Задано $a \neq 0$ та $n \in \mathbb{N}$. Тоді визначимо ось це:
+\begin{align*}
+a^{-n} = \dfrac{1}{a^n}
+\end{align*}
+Також визначимо $a^0 = 1$.
+\end{definition}
+
+\begin{definition}
+Число вигляду $a \cdot 10^n$ називають \textbf{число в стандартному вигляді}.
+\end{definition}
+
+Таким чином, ми визначили операцію $a^n$ уже для чисел $n \in \mathbb{Z}$. Тепер при цьому $a \neq 0$.\\
+Всі властивостей степеней зберігаються для перевизначеної операції зведення в степінь.\\
+\textit{Неважко доводиться.}
+
+\subsection{Функція $y = \dfrac{k}{x}$}
+\begin{definition}
+\textbf{Оберненою пропорційністю} називають функцію такого вигляду:
+\begin{align*}
+y = \dfrac{k}{x}
+\end{align*}
+Тут $k$ - будь-яке ненульове число.
+\end{definition}
+
+\begin{corollary}
+Графіком функції $y = \dfrac{k}{x}$ є гіпербола.
+\end{corollary}
+\newpage
+
+\section{Нерівності}
+\subsection{Основні означення}
+\begin{definition}
+Число $a$ називається \textbf{більшим за} число $b$, якщо
+\begin{align*}
+a-b > 0
+\end{align*}
+Число $a$ називається \textbf{меншим за} число $b$, якщо
+\begin{align*}
+a-b < 0
+\end{align*}
+\end{definition}
+
+\begin{theorem}
+Якщо $a>b$ та $b>c$, то $a>c$.
+\end{theorem}
+
+\begin{proof}
+$a>b \implies a-b>0$.\\
+$b>c \implies b-c>0$.\\
+Тоді $a-c = (a-b) + (b-c)>0$. Отже, $a>c$.
+\end{proof}
+
+\begin{theorem}
+Якщо $a > b$, то $a + c > b + c$, де $c$ -- будь-яке число.
+\end{theorem}
+
+\begin{proof}
+$a>b \implies a-b>0 \implies a+c-b-c = a+c - (b+c) > 0 \implies a+c > b+c$.
+\end{proof}
+
+\begin{theorem}
+Якщо $a > b$, то при $c > 0$ маємо $ac > bc$; при $c < 0$ маємо $ac < bc$.
+\end{theorem}
+
+\begin{proof}
+Маємо $a>b \implies a-b>0$.\\
+Якщо $c>0$, то звідси $ca-cb = c(a-b) > 0$. Отже, $ca > cb$.\\
+Якщо $c<0$, то звідси $ca-cb = c(a-b) < 0$. Отже, $ca < cb$.
+\end{proof}
+
+\begin{remark}
+Всі ці твердження аналогічно працюють, якщо всюди змінити знак на $<$.
+\end{remark}
+
+\begin{corollary}
+Якщо $a>b$ та $ab > 0$, то $\dfrac{1}{a} < \dfrac{1}{b}$.
+\end{corollary}
+
+\begin{theorem}
+Якщо $a>b$ та $c>d$, то $a+c > b+d$.
+\end{theorem}
+
+\begin{proof}
+$a > b \implies a - b > 0$.\\
+$c > d \implies c - d > 0$.\\
+$(a + c) - (b + d) = (a - b) + (c - d) > 0 \implies a + c > b + d$.
+\end{proof}
+
+\begin{theorem}
+Якщо $a>b$ та $c>d$, причому $a,b,c,d$ -- додатні, то $ac > bd$.
+\end{theorem}
+
+\begin{proof}
+$a > b \implies a - b > 0 \implies c ( a - b) > 0$.\\
+$c > d \implies c - d > 0 \implies b (c - d) > 0$.\\
+$ac - bd = ac - bc + bc - bd = c (a - b) + b (c - d) > 0 \implies ac > bd$.
+\end{proof}
+
+\begin{corollary}
+Якщо $a>b>0$, то $a^n > b^n$.
+\end{corollary}
+
+\begin{remark}
+Останні три твердження справедливі також для нестрогої нерівності $\geq$.
+\end{remark}
+
+\subsection{Нерівності з однією змінною}
+\begin{definition}
+\textbf{Розв'язком нерівності з однією змінною} називають значення змінної, яке перетворює її в правильну нерівність.
+\end{definition}
+
+\begin{definition}
+Дві нерівності називаються \textbf{рівносильними}, якщо множини їх розв'язків рівні.
+\end{definition}
+
+\begin{definition}
+Якщо множина розв'язків першої нерівності є множиною розв'язків другої нерівності, то другу нерівність називають \textbf{наслідком} першої.
+\end{definition}
+
+\begin{definition}
+Нерівність вигляду
+\begin{align*}
+ax \geq b
+\end{align*}
+називають \textbf{лінійними нерівностями з однією змінною} (на місці $\geq$ може бути інший знак нерівностей).
+\end{definition}
+
+\begin{definition}
+\textbf{Розв'язком системи нерівності з однією змінною} називають значення змінної, яке перетворює кожну нерівність в правильну.
+\end{definition}
+
+\subsection{Модуль}
+\begin{definition}
+\textbf{Модулем числа} $a$ називають таке число:
+\begin{align*}
+|a| = \begin{cases} a, & a \geq 0 \\ -a, & a < 0 \end{cases}
+\end{align*}
+\end{definition}
+
+\begin{proposition}[Властивості]
+1. $|a| > 0$;\\
+2. $|a| = -|a|$;\\
+3. $|a| = |b| \implies a = b$ або $a = -b$;\\
+4. $|a| = b, b \geq 0 \implies a = b$ або $a = -b$.
+\end{proposition}
+\newpage
+
+\section{Квадратні корені}
+\subsection{Функція $y = x^2$}
+\begin{proposition}
+Графіком функції $y = x^2$ є парабола.
+\end{proposition}
+
+\subsection{Квадратні корені. Арифметичні квадратні корені}
+\begin{definition}
+\textbf{Квадратним коренем} числа $a$ називають таке число, що його квадрат дорівнює $a$.
+\end{definition}
+
+\begin{definition}
+\textbf{Арифметичним квадратним коренем} числа $a$ називають невід'ємний квадратний корінь числа $a$.\\
+Позначення: $\sqrt{a}$.
+\end{definition}
+Із означення випливає, що $a \geq 0$ обов'язково.
+\bigskip \\
+Взагалі, рівність $\sqrt{a} = b$ виконується, якщо $b \geq 0$ та $a = b^2$.
+
+\begin{proposition}[Властивості]
+1. $\sqrt{a^2} = |a|$;\\
+2. Якщо $a\geq 0, b \geq 0$, то $\sqrt{ab} = \sqrt{a} \sqrt{b}$. Якщо $a \leq 0, b \leq 0$, то $\sqrt{ab} = \sqrt{-a} \sqrt{-b}$.\\
+3. Якщо $a > b \geq 0$, то $\sqrt{a} > \sqrt{b}$.\\
+4. Якщо $\sqrt{a} > \sqrt{b}$, то $a > b$.
+\end{proposition}
+
+\subsection{Функція $y = \sqrt{x}$}
+\textit{Нецікаво.}
+
+\subsection{Квадратні рівняння}
+\begin{definition}
+\textbf{Квадратним рівнянням} називають рівняння вигляду
+\begin{align*}
+ax^2 + bx + c = 0.
+\end{align*}
+Тут $a \neq 0, b,c \in \mathbb{R}$.\\
+Квадратне рівняння називають \textbf{зведеним}, якщо $a = 1$.
+\end{definition}
+
+\begin{definition}
+Вираз $ax^2 + bx+ c$ називають \textbf{квадратним тричленом}.
+\end{definition}
+
+\begin{remark}
+Якби $a = 0$, то ми би отримали лінійне рівняння $bx + c = 0$, яке ми навчилися робити.
+\end{remark}
+
+\subsubsection*{Як розв'язувати квадратне рівняння}
+Маємо $ax^2 + bx + c = 0$.\\
+Помножимо обидві частини рівності на $4a$, оскільки $a \neq 0$. Звідси отримаємо:\\
+$4a^2x^2 + 4abx + 4ac = 0$;\\
+$4a^2x^2 + 4abx + b^2 - b^2 + 4ac = 0$;\\
+$(2ax+b)^2 - (b^2 - 4ac) = 0$.\\
+Позначимо $b^2 - 4ac = D$. Такий вираз називають \textbf{дискримінантом} квадратного рівняння.\\
+$(2ax+b)^2 = D$.\\
+Якщо $D \geq 0$, то тоді можна виділити корінь та $2ax+b = \pm \sqrt{D} \implies x = \dfrac{-b \pm \sqrt{D}}{2a}$.\\
+Якщо $D < 0$, то розв'язків нема, бо ліворуч невід'ємне, а праворуч -- від'ємне.
+
+\begin{example}
+Розв'язати квадратне рівняння $x^2 - 3x - 4 = 0$.\\
+Спочатку знайдемо дискримінант даного рівняння: $D = (-3)^2 - 4 \cdot 1 \cdot (-4) = 9 + 16 = 25$. Зауважимо, що вийшов $D > 0$, тож звідси розв'язки існують та обчислюються за формулою:\\
+$x = \dfrac{-(-3) \pm \sqrt{25}}{2 \cdot 1} \implies x = 4,\ x = -1$.
+\end{example}
+
+\begin{theorem}[Теорема Вієта]
+Задано квадратне рівняння $ax^2+bx+c=0$ та числа $x_1,x_2 \in \mathbb{R}$. \\
+$x_1,x_2$ -- корені рівняння $\iff \begin{cases} x_1+x_2 = -\dfrac{b}{a} \\ x_1 x_2 = \dfrac{c}{a} \end{cases}$.
+\end{theorem}
+
+\begin{proof}
+\rightproof Дано: $x_1,x_2$ -- корені рівняння. Тобто $x_1 = \dfrac{-b + \sqrt{D}}{2a}$ та $x_2 = \dfrac{-b - \sqrt{D}}{2a}$. Звідси маємо:\\
+$x_1 + x_2 = \dfrac{-b+\sqrt{D}}{2a} + \dfrac{-b-\sqrt{D}}{2a} = \dfrac{-2b}{2a} = -\dfrac{b}{a}$.\\
+$x_1 x_2 = \dfrac{(-b+\sqrt{D})(-b-\sqrt{D})}{2a \cdot 2a} = \dfrac{b^2-D^2}{4a^2} = \dfrac{b^2 - (b^2 - 4ac)}{4a^2} = \dfrac{4ac}{4a^2} = \dfrac{c}{a}$.
+\bigskip \\
+\leftproof Дано: $\begin{cases} x_1 + x_2 = -\dfrac{b}{a} \\ x_1 x_2 = \dfrac{c}{a} \end{cases}$. Наше квадратне рівняння перепишемо в зведений вигляд:\\
+$x^2 + \dfrac{b}{a}x + \dfrac{c}{a} = 0$.\\
+Згідно зі заданої системи, ми отримаємо наступне:\\
+$x^2 - (x_1+x_2)x + x_1x_2 = 0$.\\
+Тепер підставимо $x = x_1$, а згодом $x = x_2$ -- отримаємо:\\
+$x_1^2 - (x_1+x_2)x_1 + x_1x_2 = x_1^2 - x_1^2 - x_2 x_1 + x_1 x_2 = 0$;\\
+$x_2^2 - (x_1+x_2)x_2 + x_1x_2 = x_2^2 - x_1x_2 - x_2^2 + x_1x_2 = 0$.\\
+Звідси випливає, що $x_1,x_2$ -- дійсно корені рівняння.
+%kinda hard
+\iffalse
+Із першого рівняння виразимо $x_1 = -x_2 - \dfrac{b}{a}$, а потім дану змінну підставимо в друге рівняння:\\
+$x_2 \left( -x_2 - \dfrac{b}{a} \right) = \dfrac{c}{a}$\\
+$-x_2^2 - \dfrac{b}{a}x_2 = \dfrac{c}{a}$\\
+$-ax_2^2 - bx_2 = c$\\
+$ax_2^2 + bx_2 + c = 0$.\\
+Звідси випливає, що $x_2$ -- корінь рівняння $ax^2 + bx + c = 0$.\\
+Залишилося перевірити, що в такому разі $x_1$ -- також корінь даного рівняння:\\
+$ax_1^2 + bx_1 + c = a \left( -x_2 - \dfrac{b}{a} \right)^2 + b \left( -x_2 - \dfrac{b}{a} \right) + c = a\left(x_2^2 + 2x_2 \dfrac{b}{a} + \dfrac{b^2}{a^2}\right) - bx_2 - \dfrac{b^2}{a} + c = \\
+= ax_2^2 + 2x_2b + \dfrac{b^2}{a} - bx_2 - \dfrac{b^2}{a} + c = ax_2^2 + bx_2 + c \overset{x_2 \text{ -- корінь}}{=} 0$.
+\fi
+\end{proof}
+
+\begin{theorem}
+Задано квадратний тричлен $ax^2+bx+c$. Відомо, що $D \geq 0$. Позначимо $x_1,x_2$ -- корені квадратного тричлену (вони існують). Тоді $ax^2+bx+c = a(x-x_1)(x-x_2)$.
+\end{theorem}
+
+\begin{proof}
+Скористаємося теоремою Вієта. Маємо наступне:\\
+$ax^2 + bx + c = a\left(x^2 + \dfrac{b}{a}x + \dfrac{c}{a}\right) = a\left( x^2 - (x_1+x_2)x + x_1x_2 \right) = \\ = a(x^2 - x_1x - x_2x +x_1x_2) = a(x(x-x_1) - x_2(x-x_1)) = a(x-x_1)(x-x_2)$.
+\end{proof}
+
+\begin{theorem}
+Задано квадратний тричлен $ax^2+bx+c$. Відомо, що $D < 0$ (тобто нема розв'язків). Тоді даний вираз не можна розкласти на лінійні множники.
+\end{theorem}
+
+\begin{proof}
+!Припустимо, що можна, тобто $ax^2 + bx + c = u(x-v_1)(x-v_2)$. Але тоді звідси $v_1,v_2$ стануть коренями квадратного рівняння $ax^2 + bx + c = 0$. При цьому $D < 0$ -- суперечність!
+\end{proof}
+
+\begin{theorem}
+Задано квадратний тричлен $ax^2+bx+c$. Відомо, що якщо розв'язувати квадратне рівняння, то $D < 0$. Тоді\\
+при $a > 0$ маємо, що $ax^2+bx+c > 0$ для всіх $x$;\\
+при $a < 0$ маємо, що $ax^2+bx+c > 0$ для всіх $x$.\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+\subsection{Рівняння, які можна звести до квадратного}
+\subsubsection{Біквадратне рівняння}
+Розглянемо ось таке рівняння:
+\begin{align*}
+ax^4 + bx^2 + c = 0,
+\end{align*}
+де числа $a \neq 0,b,c$ -- довільні. Головний трюк -- провести заміну: $t = x^2$. Після цього рівняння перетвориться в квадратне:\\
+$at^2 + bt + c = 0$.\\
+Далі розв'язуємо відносно $t$ (якщо це можливо) та переходимо до зворотної заміни.
+
+\begin{example}
+Розв'язати рівняння $x^4 + 2x^2 - 3 = 0$.\\
+Проведемо заміну $x^2 = t$, тоді отримаємо наступне:\\
+$t^2 + 2t - 3 = 0$.\\
+Розв'язавши, отримаємо корені $t_1 = 1,\ t_2 = -3$. Тоді або $x^2 = 1$, або $x^2 = -3$. Другий випадок неможливий, залишається $x^2 = 1 \implies x = \pm 1$.
+\end{example}
+
+\subsubsection{Рівняння $(x+a)(x+b)(x+c)(x+d) = f$}
+Розглянемо ось таке рівняння:
+\begin{align*}
+(x+a)(x+b)(x+c)(x+d) = f,
+\end{align*}
+де відомо, що $a+d = b+c$.\\
+Дане рівняння перепишемо таким чином:\\
+$(x^2+ (a+d)x+ad)(x^2 + (b+c)x +bc) = f$.\\
+Проводимо заміну: $x^2 + (a+d)x = t$, тоді отримаємо\\
+$(t+ad)(t + bc) = f$.\\
+$t^2 + (ad + bc)t + (adbc - f) = 0$.\\
+Отримали квадратне рівняння, яке вміємо розв'язувати.
+
+\begin{example}
+Розв'язати рівняння $(x-4)(x-5)(x-6)(x-7) = 1680$.\\
+$(x-4)(x-7)(x-5)(x-6) = 1680$\\
+$(x^2 - 11x + 28)(x^2 - 11 x + 30) = 1680$.\\
+Заміна: $x^2 - 11x = t$.\\
+$(t + 28)(t + 30) = 1680$\\
+$t^2 + 58t - 840 = 0$.\\
+Розв'язуючи рівняння, отримаємо $t = -70,\ t = 12$.\\
+Тепер проведемо на кожну зворотну заміну:\\
+$x^2 -11x = -70$\\
+$x^2 -11x + 70 = 0$.\\
+Тут дискримінант від'ємний -- нічого не отримаємо
+\bigskip \\
+$x^2 -11 x = 12$\\
+$x^2 - 11x - 12 = 0$.\\
+Звідси ми отримаємо $x = 12,\ x = -1$.
+\end{example}
+
+\subsubsection{Рівняння $(ax^2+bx+c)(ax^2+dx+c) =kx^2$}
+Розглянемо ось таке рівняння:
+\begin{align*}
+(ax^2+bx+c)(ax^2+dx+c) = kx^2,
+\end{align*}
+Якщо $a = 0$, то нецікаво. Якщо $c = 0$, то там точно виникне корінь $x = 0$, але знову нецікаво.\\
+Надалі розглянемо $c \neq 0$. Поділимо обидві частині рівності на $x^2$:\\
+$\left(ax + \dfrac{c}{x} + b\right)\left(ax + \dfrac{c}{x}+d\right) = k$.\\
+Проведемо заміну $ax + \dfrac{c}{x} = t$ -- отримаємо:\\
+$(t+b)(t+d) = k$\\
+$t^2 + (b+d)t + (bd - k) = 0$.\\
+Отримали квадратне рівняння, яке ми навчилися розв'язувати.
+
+\begin{example}
+Розв'язати рівняння $(2x^2-3x+1)(2x^2+5x+1) = 9x^2$.\\
+Оскільки $0$ не є коренем рівняння, ми можемо сміло поділити на $x^2$\\
+$\left( 2x - 3 + \dfrac{1}{x} \right) \left( 2x + 5 + \dfrac{1}{x} \right) = 9$.\\
+Заміна: $2x+\dfrac{1}{x} = t$.\\
+$(t-3)(t+5) = 9$.\\
+$t^2 +2t -24 = 0$.\\
+Розв'язуючи квадратне рівняння, отримаємо $t = -6,\ t = 4$.\\
+Далі маємо $2x+\dfrac{1}{x} = -6$ та $2x + \dfrac{1}{x} = 4$. Зрозуміло, як далі розв'язувати. Звідси маємо $x = \dfrac{2 \pm \sqrt{2}}{2},\ x = \dfrac{-3\pm \sqrt{7}}{2}$.
+\end{example}
+
+\subsubsection{Зворотне рівняння четвертого степеня}
+Розглянемо ось таке рівняння:
+\begin{align*}
+ax^4 + bx^3 + cx^2 + bx + a = 0,
+\end{align*}
+де в цьому випадку $a \neq 0$. Дане рівняння рівносильне наступному:
+$ax^2 + bx + c + \dfrac{b}{x} + \dfrac{a}{x^2} = 0$.\\
+$a\left( x^2 + \dfrac{1}{x^2} \right) + b\left( x + \dfrac{1}{x} \right) + c = 0$.\\
+Далі проводемо заміну $x + \dfrac{1}{x} = t$. Тоді зауважимо, що, насправді, $t^2 = x^2 + 2 + \dfrac{1}{x^2}$.\\
+$a(t^2-2) + bt + c = 0$.\\
+$at^2 + bt + (c-2a) = 0$.\\
+Отримали квадратне рівняння, яке ми навчилися розв'язувати.
+
+\begin{example}
+Розв'язати рівняння $4x^4 + 12x^3 + 12x + 4 = 47x^2$.\\
+Оскільки $0$ не є коренем, то буде рівносильне рівняння:\\
+$4x^2 + 12x + \dfrac{12}{x} + \dfrac{4}{x^2} = 47$.\\
+$4 \left( 1 + \dfrac{1}{x^2} \right) + 12 \left( x + \dfrac{1}{x} \right) = 47$.\\
+Заміна: $x + \dfrac{1}{x} = t$.\\
+$4 (t^2 - 2) + 12t = 47$.\\
+$4t^2 + 12t -55 = 0$.\\
+Отримаємо звідси $t = -\dfrac{11}{2}$ або $t = \dfrac{5}{2}$; отже, звідси $x + \dfrac{1}{x} = -\dfrac{11}{2}$ та $x + \dfrac{1}{x} = \dfrac{5}{2}$. Далі зрозуміло, як розв'язувати.
+\end{example}
+
+Є ще узагальнене зворотне рівняння четвертого степеня, що виглядає ось так:
+\begin{align*}
+ax^4 + bx^3 + cx^2 + kbx + k^2a = 0
+\end{align*}
+Тут проводиться заміна $x + \dfrac{k}{x} = t$, а далі нічого нового.
+
+\subsubsection{Однорідне рівняння другого степеня}
+\begin{example}
+Розглянемо рівняння $(x^2-2x+2)^2 + 3x(x^2-2x+2) = 10x^2$.\\
+Перший спосіб полягає в тому, щоб поділити обидві частини на $x^2$ -- отримаємо:\\
+$\dfrac{(x^2-2x+2)^2}{x^2} + \dfrac{3(x^2-2x+2)}{x} = 10$.\\
+Далі проведемо заміну: $\dfrac{x^2-2x+2}{x} = t$ -- отримаємо рівняння $t^2+3t-10=0$.
+\bigskip \\
+Другий спосіб ось такий. Проведемо заміну $x^2 - 2x + 2 = u,\ x = v$.\\
+$u^2 + 3uv - 10v^2 = 0$.\\
+Отримали так зване \textbf{однорідне рівняння другого степеня}, де всі одночлени в лівій частині мають однаковий степінь (зокрема другий), а права частина -- нулева.\\
+Для початку варто перевірити, які розв'язки рівняння $v=0$ є коренями заданого рівняння.\\
+При $v \neq 0$ дане рівняння рівносильне такому:\\
+$\left( \dfrac{u}{v} \right)^2 - 3 \dfrac{u}{v} - 10 = 0$.\\
+Далі робимо заміну $\dfrac{u}{v} = t$ -- все зрозуміло.
+\end{example}
+
+\subsubsection{Рівняння $(x-a)^4 + (x-b)^4 = c$}
+Розглянемо ось таке рівняння:
+\begin{align*}
+(x-a)^4 + (x-b)^4 = c
+\end{align*}
+Проведемо заміну: $t = x - \dfrac{a+b}{2}$. Після підставлення отримаємо\\
+$\left(t - \dfrac{a-b}{2}\right)^4 + \left(t + \dfrac{a-b}{2}\right)^4 = c$.\\
+Перепозначу $\dfrac{a-b}{2} = d$ тимчасово -- тобто отримали\\
+$(t-d)^4 + (t+d)^4 = c$\\
+$2t^4 + 12t^2d^2 + 2d^4 = c$.\\
+Ми отримали біквадратне рівняння, яке ми навчилися уже розв'язувати.
+
+\begin{example}
+Розв'язати рівняння $(x+1)^4 + (x+5)^4 = 32$.\\
+Заміна: $t = x - \dfrac{-1+(-5)}{2}$, тобто заміна $x = t-3$.\\
+$(t-2)^2 + (t+2)^4 = 32$.\\
+$t^4 + 24t^2 = 0 \implies t = 0 \implies x = -3$.
+\end{example}
+
+\subsection{Ділення многочленів}
+\begin{definition}
+Многочлен $A(x)$ \textbf{ділиться націло на} ненульовий многочлен $B(x)$, якщо існує такий многочлен $Q(x)$, для якого $A(x) = Q(x) B(x)$ для всіх $x \in \mathbb{R}$.
+\end{definition}
+
+\begin{theorem}
+Для будь-якої пари многочленів $A(x), B(x)$, де $B(x) \neq 0$, існують $Q(x),R(x)$, для яких $A(x) = Q(x)B(x) + R(x)$ для всіх $x \in \mathbb{R}$.\\
+Причому $R(x)$ має меншу степінь многочлена, ніж $B(x)$.\\
+\textit{Без доведення.}
+\end{theorem}
+
+\begin{definition}
+Число $\alpha \in \mathbb{R}$ називають \textbf{коренем} многочлена $A(x)$, якщо $A(\alpha) = 0$.
+\end{definition}
+
+\begin{theorem}[Теорема Безу]
+Поділимо многочлен $A(x)$ на $x-\alpha$. Тоді $A(\alpha)$ - остача.\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+\begin{theorem}
+$\alpha$ - корінь многочлена $A(x) \iff A(x)$ ділиться без остачі на $x-\alpha$.
+\end{theorem}
+
+\begin{theorem}
+Множина коренів многочлена степені $n$ містить не більше, ніж $n$ елементів.
+\end{theorem}
+
+\begin{definition}
+\textbf{Цілим раціональним рівнянням} називають рівняння такого типу:
+\begin{align*}
+a_nx^n + \dots + a_1 x + a_0 = 0
+\end{align*}
+Тут $a_0,\dots,a_n$ - довільні.
+\end{definition}
+
+\begin{theorem}
+Задано ціле раціональне рівняння $a_nx^n + \dots + a_1 x + a_0 = 0$ з цілими коефіцієнтами. Відомо, що корінь $x_0$ - цілий. Тоді $a_0 \vdots x_0$.
+\end{theorem}
+\newpage
+
+\section*{9 клас}
+\newpage
+
+\section{Квадратичні функції}
+\subsection{Зростання й спадання функції}
+\begin{definition}
+Значення аргументу, при якому значення функції нулеве, називають \textbf{нулем функції}.
+\end{definition}
+
+\begin{definition}
+Проміжок, на якому функція набуває значень однакового знака, називається \textbf{проміжком знакосталості} функції.
+\end{definition}
+
+\begin{definition}
+Задано функцію $f$ та $M \subset D(f)$.\\
+Функція $f$ називається \textbf{зростаючою} на множині $M$, якщо для всіх $x_1,x_2 \in M: x_1 > x_2 \implies f(x_1) > f(x_2)$.\\
+Функція $f$ називається \textbf{спадною} на множині $M$, якщо для всіх $x_1,x_2 \in M: x_1 > x_2 \implies f(x_1) < f(x_2)$.
+\end{definition}
+
+\begin{theorem}
+Задано функцію $f$. Відомо, що $f$ зростає. Тоді якщо $f(x_1) = f(x_2)$, то $x_1 = x_2$.\\
+\textit{Аналогічно для випадку, коли $f$ - спадає.}\\
+\textit{Доведення від супротивного.}
+\end{theorem}
+
+\begin{corollary}
+Якщо функція $f$ зростає, то відображення $D(f)$ на $E(f)$ - взаємно однозначне.
+\end{corollary}
+
+\begin{theorem}
+Задано функцію $f$ та $M \subset D(f)$. Відомо, що $f$ - зростає на $M$. Тоді $-f$ - спадає на $M$.\\
+\textit{Аналогічно для випадку, коли $f$ - спадає.}
+\end{theorem}
+
+\begin{theorem}
+Задані функції $f,g$ та $M \subset D(f) \cap D(g)$. Відомо, що $f,g$ - зростають на $M$. Тоді $f+g$ - зростає на $M$.\\
+\textit{Аналогічно для випадку, коли $f,g$ - спадають.}
+\end{theorem}
+
+\begin{theorem}
+Задані функції $f,g$ та $M \subset D(f) \cap D(g)$. Відомо, що $f,g$ - зростають на $M$, причому $f \geq 0, g \geq 0$. Тоді $fg$ - зростає на $M$.\\
+\textit{Аналогічно для випадку, коли $f,g$ - спадають.}
+\end{theorem}
+
+\begin{theorem}
+Задано функцію $f$ та $M \subset D(f)$. Відомо, що $f$ - зростає на $M$ та має однаковий знак. Тоді $\dfrac{1}{f}$ - спадає на $M$.\\
+\textit{Аналогічно для випадку, коли $f$ - спадає.}
+\end{theorem}
+
+\begin{theorem}
+Задано функцію $f$, що зростає. Тоді рівняння $f(x) = a, a \in \mathbb{R}$ має не більше одного розв'язку.\\
+\textit{Аналогічно для випадку, коли $f$ - спадає.}
+\end{theorem}
+
+\begin{proof}
+!Припустимо, що $x_1,x_2$ - два корені рівняння $f(x) = a$. Тобто $f(x_1) = a, f(x_2) = a \implies f(x_1) = f(x_2) \implies x_1 = x_2$. Суперечність!
+\end{proof}
+
+\begin{theorem}
+Задані функції $f,g$ та $M \subset D(f) \cap D(g)$. Відомо, що $f$ - зростає, а $g$ - спадає на $M$. Тоді рівняння $f(x) = g(x)$ має не більше одного розв'язку.\\
+\textit{Аналогічно для випадку, коли $f$ - спадає, а $g$ - зростає.}
+\end{theorem}
+
+\begin{theorem}
+Задано функцію $f$. Відомо, що $f$ - зростаюча.\\
+$f(f(x)) = x \iff f(x) = x$.
+\end{theorem}
+
+\begin{proof}
+Нехай $x_0$ - корінь лівого рівняння. Тобто $f(f(x_0)) = x_0$. !Припустимо, що $f(x_0) \neq x_0$.\\
+Розглянемо $f(x_0) > x_0$, тоді оскільки $f$ зростає, то $f(f(x_0)) > f(x_0)$ - суперечність! \\
+Випадок $f(x_0) < x_0$ аналогічно.
+\bigskip \\
+Нехай $x_0$ - корінь правого рівняння, тобто $f(x_0) = x_0$. Тоді звідси $f(f(x_0)) = f(x_0) = x_0$, тобто $x_0$ - корінь лівого рівняння.
+\end{proof}
+
+\begin{definition}
+Задано функцію $f$ та $M \subset D(f)$.\\
+Число $f(x_0)$ називають \textbf{найбільшим значенням} функції $f$ на $M$, якщо для всіх $x \in M: f(x_0) \geq f(x)$.\\
+Число $f(x_0)$ називають \textbf{найменшим значенням} функції $f$ на $M$, якщо для всіх $x \in M: f(x_0) \geq f(x)$.\\
+Позначення: $f(x_0) = \huge\max_M f(x), \hspace{1cm} f(x_0) = \min_M f(x)$.
+\end{definition}
+
+\subsection{Парні та непарні функції}
+\begin{definition}
+Задано функцію $f$.\\
+Вона називається \textbf{парною}, якщо $\forall x \in D(f): f(-x)=f(x)$.\\
+Вона називається \textbf{непарною}, якщо $\forall x \in D(f): f(-x)=-f(x)$.
+\end{definition}
+
+\begin{remark}
+Для парності та непарності ми вимагаємо, щоб $x$ та $-x$ одночасно лежали в $D(f)$. Тому $D(f)$ має бути симетричним відносно початку координат.
+\end{remark}
+
+\begin{theorem}
+Графік парної функції симетричний відносно осі $OY$. Графік непарної функції симетричний відносно початку координат.\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+\begin{proposition}
+Задані функції $f,g$, нехай $D(f) \cap D(g) \neq \emptyset$. Відомо, що:\\
+1) $f,g$ - парні. Тоді $f+g$ - парна.\\
+2) $f,g$ - парні. Тоді $fg$ - парна.\\
+3) $f$ - парна, $g$ - непарна. Тоді $fg$ - непарна.\\
+\textit{На кожний пункт можна записати аналогічні твердження.}
+\end{proposition}
+
+\begin{remark}
+Функція $f(x) = 0$, $D(f) = \mathbb{R}$, - єдина функція, що є парною та непарною одночасно.
+\end{remark}
+
+\begin{theorem}
+Задано функцію $f$ та $D(f)$ - симетрична відносно початку координат. Тоді її можна розкласти на функцію таким чином:\\
+$f(x) = \dfrac{f(x) + f(-x)}{2} + \dfrac{f(x)-f(-x)}{2}$.\\
+Функція $\dfrac{f(x)+f(-x)}{2}$ - парна. Функція $\dfrac{f(x)-f(-x)}{2}$ - непарна.\\
+Тобто функція $f$ розкладається на суму парної та непарної, причому єдиним чином.\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+\subsection{Побудова деяких функцій}
+Задано функцію $f(x)$. Хочемо побудувати:\\
+$kf(x), f(kx), f(x)+b, f(x+b), |f(x)|, f(|x|)$.\\
+Але це трошки нецікаво.
+
+\subsection{Функція $y=ax^2+bx+c$}
+\begin{definition}
+\textbf{Квадратичною функцією} називають таку функцію:
+\begin{align*}
+y = ax^2+bx+c
+\end{align*}
+Причому $a \neq 0$.
+\end{definition}
+Графік функції запишемо ось таким чином: $y = a\left(x + \dfrac{b}{2a} \right)^2 - \dfrac{D}{4a}$ (то навчився вже робити).\\
+Якщо взяти $f(x) = x^2$, то квадратичну функцію можна отримати через $a \cdot f\left( x + \dfrac{b}{2a} \right) - \dfrac{D}{4a}$.\\
+Тобто ми маємо ту саму параболу з відповідним зсувом. Чи має вона нулі, чи ні, це вже залежить від самого квадратного тричлену.\\
+Вершина параболи знаходиться в $x_0 = \dfrac{-b}{2a}$, а функція в вершині дорівнює $f(x_0)$.
+
+\subsection{Квадратні нерівності}
+\begin{definition}
+\textbf{Квадратними нерівностями} називають нерівності такого типу:
+\begin{align*}
+ax^2+bx+c \geq 0
+\end{align*}
+На місці знаку нерівності може стояти щось інше. Також $a \neq 0$.\\
+Її можна розв'язати через квадратичні функції.
+\end{definition}
+
+\subsection{Метод інтервалів}
+Розглянемо деяку функцію $f(x)$, яка є неперервною. Що таке неперервність, згодом.\\
+Мета: знайти множину значень $x$, для якої $f(x) > 0$, або інша будь-яка нерівність.
+
+\begin{theorem}
+Задано функцію $f$ - неперервна на деякому проміжку, де нема нулів. Тоді $f$ на проміжку має один знак.\\
+\textit{Доведення згодом.}
+\end{theorem}
+Ця теорема дозволить знайти розв'язок без побудови графіка функції.\\
+Шукаємо нулі функції, якщо такі існують. Нулі розбивають $D(f)$ на купу проміжків. Щоб дізнатись знак одного проміжка, треба взяти довільну точку з цього проміжка та підставити в нашу функцію.
+
+\begin{theorem}
+Функція $h(x) = \dfrac{f(x)}{g(x)}$ - неперервна на $D(h)$, де $f,g$ - многочлени.
+\end{theorem}
+\newpage
+
+\section{Системи рівнянь}
+Що таке рівносильні системи, та що таке наслідок однієї системи до іншої, зрозуміти можна.
+
+\begin{theorem}
+$\begin{cases}
+y = f(x) \\
+F(x,y) = 0
+\end{cases} \iff 
+\begin{cases}
+y = f(x) \\
+F(x,f(x)) = 0
+\end{cases}$\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+\begin{theorem}
+$\begin{cases}
+F(x,y) = 0 \\
+G(x,y) = 0
+\end{cases} \iff \begin{cases} F(x,y)+G(x,y) = 0 \\ G(x,y) = 0 \end{cases}$ або $\begin{cases} F(x,y) = 0 \\ F(x,y)+G(x,y) = 0 \end{cases}$
+\end{theorem}
+
+\begin{theorem}
+$\begin{cases}
+F(x,y) = c_1 \\
+G(x,y) = c_2
+\end{cases} \iff \begin{cases} \dfrac{F(x,y)}{G(x,y)} = \dfrac{c_1}{c_2} \\ G(x,y) = c_2 \end{cases}$ або $\begin{cases} F(x,y) = c_1 \\ \dfrac{G(x,y)}{F(x,y)} = \dfrac{c_2}{c_2} \end{cases}$\\
+За умовою, що $c_1,c_2 \neq 0$.
+\end{theorem}
+
+\begin{definition}
+Многочлен $F(x,y)$ називається \textbf{симетричним}, якщо рівність $F(x,y) = F(y,x)$ - тотожність.
+\end{definition}
+
+\begin{theorem}
+Задано многочлен $F(x,y)$ - симетричний. Уведемо позначення $u=x+y, v=xy$. Тоді $F(x,y)$ можна подати в вигляді $G(u,v)$ - елементарний симетричний многочлен від $x,y$.\\
+\textit{Без доведення.}
+\end{theorem}
+
+\begin{example}
+$F(x,y) = x^2+y^2$\\
+$x^2+y^2 = (x+y)^2 - 2xy = u^2 - 2v$\\
+$G(u,v) = u^2-2v$.
+\end{example}
+Це червогий метод розв'язання системи рівнянь.
+\newpage
+
+\subsection{Нерівності з двома невідомими та доведення}
+Що таке розв'язок з двома невідомими, то ясно.
+
+\begin{definition}
+\textbf{Графіком нерівності з двома змінними} називають геометричну фігуру, що складається лише з тих точок координатної площини, що є розв'язками.
+\end{definition}
+
+\subsection{Способи доведення нерівностей}
+1. Метод різниці.\\
+2. Метод спрощення нерівності.\\
+3. Від супротивного.\\
+4. Застосування очевидної нерівності. (тобто перетворення вираза, або додавання/множення нерівностей)\\
+5. Використати раніше доведену нерівність.
+
+\begin{theorem}[Нерівність Коші (розширена)]
+$\sqrt{\dfrac{a^2+b^2}{2}} \geq \dfrac{a+b}{2} \geq \sqrt{ab} \geq \dfrac{2}{\dfrac{1}{a} + \dfrac{1}{b}}$
+\end{theorem}
+
+\begin{theorem}[Нерівність Кощі-Буняковського]
+$a_1b_1 + a_2b_2 \leq \sqrt{a_1^2+a_2^2} \sqrt{b_1^2+b_2^2}$
+\end{theorem}
+
+\section{Послідовності, прогресії, суми}
+\textit{Це все досконально знаю.}
+
+\end{document}

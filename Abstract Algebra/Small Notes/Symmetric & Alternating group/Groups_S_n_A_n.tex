@@ -1,0 +1,492 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+%\usepackage[none]{hyphenat}
+\usepackage{fancyhdr} %create a custom header and footer
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[english, main=ukrainian]{babel}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{physics}
+\usepackage[unicode]{hyperref}
+\usepgfplotslibrary{polar}
+\usepackage{ifthen}
+\usetikzlibrary{spy}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{centernot}
+
+
+\fancyhead{}
+\fancyfoot{}
+\parindent 0ex
+\def\huge{\displaystyle}
+\def\rightproof{$\boxed{\Rightarrow}$ }
+\def\leftproof{$\boxed{\Leftarrow}$ }
+
+\usepackage{pdfpages}
+
+\newtheoremstyle{theoremdd}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\normalfont}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ \textbf{#3}\\}}}
+
+\theoremstyle{theoremdd}
+\newtheorem{theorem}{Theorem}[subsection]
+  
+\theoremstyle{theoremdd}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem*{definition*}{Definition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{samedef}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{theoremdd}
+\newtheorem*{example*}{Example.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{lemma*}{Lemma.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{theorem*}{Theorem.}
+
+\theoremstyle{theoremdd}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{theoremdd}
+\newtheorem*{proposition*}{Proposition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{theoremdd}
+\newtheorem*{remark*}{Remark.}
+
+\theoremstyle{theoremdd}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{theoremdd}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{theoremdd}
+\newtheorem*{corollary*}{Corollary.}
+
+\newenvironment{pf}{\vspace*{-3mm} \textbf{Proof. \\}}{$\blacksquare$}
+\newenvironment{pfMI}{\vspace*{-3mm} \textbf{Proof MI. \\}}{$\blacksquare$}
+\newenvironment{pfNoTh}{\textbf{Proof. \\}}{$\blacksquare$}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\makeatletter
+\renewenvironment{proof}[1][Proof.\\]{\par
+\pushQED{\hfill \qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\bfseries
+#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\linspan}{span}
+
+\newcommand\thref[1]{\textbf{Th.~\ref{#1}}}
+\newcommand\defref[1]{\textbf{Def.~\ref{#1}}}
+\newcommand\exref[1]{\textbf{Ex.~\ref{#1}}}
+\newcommand\prpref[1]{\textbf{Prp.~\ref{#1}}}
+\newcommand\rmref[1]{\textbf{Rm.~\ref{#1}}}
+\newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
+\newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
+%\renewcommand{\stcomp}[1]{{#1}^{\mathsf{c}}}
+
+\newcommand{\eqbydef}{\overset{\text{def.}}{=}}
+\newcommand\homom[2]{\text{Hom}({#1},{#2})}
+\newcommand{\symdif}{\,\triangle\,} % symmetric difference
+\newcommand\End[1]{\text{End}({#1})}
+\newcommand\Aut[1]{\text{Aut}({#1})}
+\newcommand\Orb{\text{Orb}}
+\newcommand\Stab{\text{Stab}}
+\newcommand\ncl{\text{ncl}}
+
+%delete
+
+\begin{document}
+\section*{Група $S_n$}
+Група $\left<S_n, \circ \right>$ складається з перестановок $\sigma \colon \{1,2,\dots,n\} \to \{1,2,\dots,n\}$, які мають таке позначення:
+$$ \sigma = \begin{pmatrix}
+1 & 2 & \dots & n \\
+i_1 & i_2 & \dots & i_n
+\end{pmatrix},$$
+де $\{i_1,i_2,\dots,i_n\}$ -- переставлені числа $\{1,2,\dots,n\}$. Тут $\sigma(k) = i_k$.
+\bigskip \\
+Тотожну перестановку позначають ось так:
+$$ \varepsilon = \begin{pmatrix}
+1 & 2 & \dots & n \\
+1 & 2 & \dots & n 
+\end{pmatrix} $$
+
+\begin{remark}
+$\text{card}(S_n) = n!$.
+\end{remark}
+
+\begin{example}
+Зокрема в групі $\left< S_3, \circ \right>$ маються такі перестановки:\\
+$\begin{pmatrix}
+1 & 2 & 3 \\
+1 & 2 & 3
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+1 & 3 & 2
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+2 & 1 & 3
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+2 & 3 & 1
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 1 & 2
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 2 & 1
+\end{pmatrix}$.
+\end{example}
+
+Тотожна перестановка виглядає як $\varepsilon = \begin{pmatrix}
+1 & 2 & \dots & n \\
+1 & 2 & \dots & n
+\end{pmatrix}$.\\
+
+\begin{example} Як робити композицію. Наприклад, $\mu = \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 2 & 1
+\end{pmatrix}, \sigma = \begin{pmatrix}
+1 & 2 & 3 \\
+1 & 3 & 2
+\end{pmatrix}$. Тоді\\
+$\sigma \circ \mu = \begin{pmatrix}
+1 & 2 & 3 \\
+1 & 3 & 2
+\end{pmatrix} \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 2 & 1
+\end{pmatrix} = \begin{pmatrix}
+1 & 2 & 3 \\
+2 & 3 & 1
+\end{pmatrix}$\\
+$\mu \circ \sigma = \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 2 & 1
+\end{pmatrix} \begin{pmatrix}
+1 & 2 & 3 \\
+1 & 3 & 2
+\end{pmatrix} = \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 1 & 2
+\end{pmatrix}$
+\end{example}
+
+\begin{example}
+Як шукати оборотну перестановку. Наприклад, $\sigma = \begin{pmatrix}
+1 & 2 & 3 \\
+1 & 3 & 2
+\end{pmatrix}$.\\
+Оскільки $\sigma$ -- бієкція, при цьому $\sigma(1) = 1, \sigma(2) = 3, \sigma(3) = 2$, тоді $\sigma^{-1}(1) = 1, \sigma^{-1}(3) = 2, \sigma^{-1}(2) = 3$. \\
+Такий розв'язок каже нам наступне: ми просто рядки в перестановці $\sigma$ поміняємо місцями, а далі верхній рядок переставимо за порядком. А тому звідси\\
+$\sigma^{-1} = \begin{pmatrix}
+1 & 3 & 2 \\
+1 & 2 & 3
+\end{pmatrix} = \begin{pmatrix}
+1 & 2 & 3 \\
+1 & 3 & 2
+\end{pmatrix}$.
+\end{example}
+
+\begin{definition}
+Задано $\sigma \in S_n$ -- перестановка.\\
+Пара $(i_j,i_k)$ називається \textbf{інверсією} перестановки $\sigma$, якщо 
+\begin{align*}
+\text{при } j < k \text{ маємо  } i_j > i_k
+\end{align*}
+\end{definition}
+
+\begin{example}
+Зокрема для $\sigma = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5\\
+3 & 2 & 5 & 4 & 1
+\end{pmatrix}$ маємо такі інверсії: $(3,2), (3,1), (2,1), (5,4), (5,1), (4,1)$.
+\end{example}
+
+\begin{definition}
+Перестановка $\sigma \in S_n$ називається \textbf{парною}, якщо
+\begin{align*}
+\text{кількість інверсії -- парне число.}
+\end{align*}
+Інакше перестановка називається \textbf{непарною}.\\
+\textbf{Парність} перестановки визначається ось так:
+\begin{align*}
+l(\sigma) = \begin{cases} 1, & \sigma \text{ -- парна}\\ 0, & \sigma \text{ -- непарна} \end{cases}
+\end{align*}
+\end{definition}
+
+\begin{definition}
+Перестановка $\tau \in S_n$ називається \textbf{транспозицією}, якщо лише два елементи змінені місцями, тобто
+\begin{align*}
+\tau = \begin{pmatrix}
+1 & \dots & k & \dots & j & \dots & n \\
+1 & \dots & j & \dots & k & \dots & n
+\end{pmatrix}
+\end{align*}
+Особливе позначення: $\tau = (kj)$.
+\end{definition}
+
+\begin{lemma}
+Задано $\tau$ -- транспозиція. Тоді $\tau^{-1} = \tau$.
+\end{lemma}
+
+\begin{theorem}
+Будь-яку перестановку $\sigma \in S_n$ можна записати як добуток транспозицій.
+\end{theorem}
+
+\begin{remark}
+Ящо взяти перестановку $\sigma \in S_n$ та транспозицію $\tau = (jk)$, то звідси $\sigma \circ \tau$ -- та сама перестановка $\sigma$, але елементи на $j,k$ позиціях помінялися місцями. Тобто\\
+$\begin{pmatrix}
+1 & \dots & j & \dots & k & \dots & n \\
+i_1 & \dots & i_j & \dots & i_k & \dots & i_n
+\end{pmatrix} \circ \begin{pmatrix}
+1 & \dots & j & \dots & k & \dots & n \\
+1 & \dots & k & \dots & j & \dots & n
+\end{pmatrix} = \begin{pmatrix}
+1 & \dots & j & \dots & k & \dots & n \\
+i_1 & \dots & i_k & \dots & i_j & \dots & i_n
+\end{pmatrix}$
+\end{remark}
+
+\begin{example}
+Зокрема для перестановки $\sigma = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 \\
+5 & 1 & 6 & 4 & 3 & 2
+\end{pmatrix}$ маємо таке представлення в добуток транспозицій: $\sigma = (51) \circ (52) \circ (63) \circ (65)$.\\
+Це робиться за вищеописаним алгоритмом. Але ніхто не забороняє спочатку поставити на місце останній, потім передостанній і так до першого. Отримаємо іншу репрезентацію:\\
+$\sigma = (62) \circ (35) \circ (23) \circ (12)$.\\
+А ще ніхто не забороняє зробити ось так:\\
+$\sigma = (62) \circ (35) \circ (23) \circ (12) \circ \underbrace{(13) \circ (13)}_{\varepsilon}$.\\
+Висновок: розклад на транспозицію не є єдиним.
+\end{example}
+
+\begin{proposition}
+Перестановка $\sigma \in S_n$ -- парна $\iff$ кількість транспозицій в розкладі -- парна.
+\end{proposition}
+
+\begin{proposition}
+Якщо $\sigma = \sigma_1 \circ \sigma_2$, то тоді $l(\sigma) = l(\sigma_1) \oplus l(\sigma_2)$ (під $\oplus$ мається на увазі сума за модулем $2$).
+\end{proposition}
+
+\begin{definition}
+Задано $\sigma \in S_n$ -- перестановка.\\
+Вона називається \textbf{циклом довжини $k$}, якщо
+\begin{align*}
+i_1 \mapsto i_2 \mapsto \dots \mapsto i_k \mapsto i_1 \\
+x \mapsto x,\ x \neq i_s
+\end{align*}
+Позначення: $(i_1 i_2 \dots i_k)$.\\
+Множину $\{i_1,\dots,i_k\}$ в деякій літературі називають \textbf{носієм} даного цикла.
+\end{definition}
+
+\begin{example}
+Зокрема перестановка $\sigma = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 \\
+1 & 4 & 3 & 5 & 2 
+\end{pmatrix}$ буде циклом довжиною $3$, тому що\\
+$2 \mapsto 4 \mapsto 5 \mapsto 2$, а також $1 \mapsto 1, 3 \mapsto 3$.\\
+Отже, $\sigma = (245)$.
+\end{example}
+
+\begin{remark}
+Перестановка $\varepsilon = (1)$ також є циклом, але довжини $1$. Усі транспозиції -- цикли довжини $2$.
+\end{remark}
+
+\begin{definition}
+Задано цикли $(i_1 \dots i_k)$ та $(j_1 \dots j_m)$.\\
+Вони називаються \textbf{незалежними}, якщо
+\begin{align*}
+\{i_1,\dots,i_k\} \cap \{j_1,\dots,j_m\} = \emptyset
+\end{align*}
+Тобто їхні носії не перетинаються між собою.
+\end{definition}
+
+\begin{example}
+Зокрема цикли $(23) \in S_6$ та $(456) \in S_6$ -- незалежні.
+\end{example}
+
+\begin{lemma}
+Задано $\sigma_1, \sigma \in S_n$ -- незалежні цикли. Тоді $\sigma_1 \circ \sigma_2 = \sigma_2 \circ \sigma_1$.
+\end{lemma}
+
+\begin{theorem}
+Будь-яку перестановку $\sigma \in S_n$ можна записати як добуток незалежних циклів єдиним чином з точністю до перестановки циклів.
+\end{theorem}
+
+\begin{example}
+Зокрема маємо $\sigma = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+2 & 5 & 8 & 6 & 4 & 1 & 7 & 3
+\end{pmatrix}$. Тоді\\
+$1 \to 2 \to 5 \to 4 \to 6 \to 1$.\\
+$3 \to 8 \to 3$\\
+$7 \to 7$\\
+Отже, $\sigma = (12546) \circ (38) \circ (7)$.\\
+\textit{Зазвичай цикл довжини $1$ в добутку циклів не пишуть. Тобто можна записати $\sigma = (12546) \circ (38)$. Якщо перестановка тотожна, то пишуть $\varepsilon = (1)$.}
+\end{example}
+
+\begin{example}
+Повернімось до групи $\left< S_3, \circ \right>$:\\
+$\begin{pmatrix}
+1 & 2 & 3 \\
+1 & 2 & 3
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+1 & 3 & 2
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+2 & 1 & 3
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+2 & 3 & 1
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 1 & 2
+\end{pmatrix}, \begin{pmatrix}
+1 & 2 & 3 \\
+3 & 2 & 1
+\end{pmatrix}$.\\
+Тепер ці перестановки можна записати більш компактно циклами:\\
+$(1), (23), (12), (123), (132), (13)$
+\end{example}
+
+\begin{corollary}
+$(i_1 i_2 i_3\dots i_k) = (i_1 i_k) \circ \dots \circ (i_1 i_3) \circ (i_1 i_2)$.
+\end{corollary}
+
+\begin{theorem}
+Задано перестановку $\sigma \in S_n$, розкладемо на незалежні цикли $\sigma = \sigma_1 \dots \sigma_k$ -- довжини відповідно $a_1,\dots,a_k$. Тоді $\ord (\sigma) = \lcm(a_1,\dots,a_k)$.
+\end{theorem}
+
+\begin{example}
+Зокрема $\sigma = (13) (254)$ із $S_5$ має $\ord(\sigma) = \lcm(2,3) = 6$.
+\end{example}
+
+\begin{lemma}[Спряженість в $S_n$]
+Нехай $\tau \in S_n$, а також $\sigma \in S_n$, причому\\
+$\sigma = (a_1 \dots a_r) \circ (b_1 \dots b_s) \circ \dots \circ (c_1 \dots c_l)$.\\
+Тоді $\tau \circ \sigma \circ \tau^{-1} = (\tau(a_1)\dots \tau(a_r)) \circ (\tau(b_1)\dots \tau(b_s)) \circ \dots \circ (\tau(c_1)\dots \tau(c_l))$.
+\end{lemma}
+
+\begin{definition}
+\textbf{Типом перестановки $\sigma \in S_n$} називають розбиття числа $n$, що відповідає набору довжин незалежних циклів (включаючи цикл довжини $1$), добутком яких є $\sigma$.
+\end{definition}
+
+\begin{example}
+Маємо $\sigma = (14) \circ (23756)$. Тоді його типом буде розбиття $8 = 2 + 5 + 1$.
+\end{example}
+
+\begin{corollary}
+Маємо перестановки $\sigma, \sigma' \in S_n$.\\
+$\sigma, \sigma'$ -- спряжені $\iff \sigma, \sigma'$ мають однаковий тип.
+\end{corollary}
+
+\section*{Знакозмінна група $A_n$}
+Знакозмінна група $A_n$ містить всі парні перестановки $S_n$. Зокрема із результатів вище випливає, що $A_n$ -- підгрупа. Причому також відомо, що $A_n \triangleleft S_n$, а факторгрупа ${S_n}/_{A_n} = \{ A_n, S_n \setminus A_n\}$.
+
+\begin{corollary}
+$\card (A_n) = \dfrac{n!}{2}$.
+\end{corollary}
+
+\begin{lemma}
+$A_n$ породжена циклами довжини $3$.
+\end{lemma}
+
+$A_3$ -- проста група.\\
+$A_4$ -- не проста група, тому що існує \textbf{четверта група Кляйна} $K = \{(1),(12)(34),(13)(24),(14)(23)\}$, причому $K \subsetneq A_4$.\\
+$A_n$ -- проста при $n \geq 5$.
+
+\begin{lemma}
+Всі цикли довжини $3$ спряжені в $A_n,\ n \geq 5$.
+\end{lemma}
+
+\begin{remark}
+Питання, що відбувається з $n \in \{3,4\}$.\\
+Для $A_3 = \{ (1), (123), (132) \}$ зауважимо, що $(123)$ не спряжений з $(132)$ в групі $A_3$. Тому що який б $\tau \in A_3$ я не взяв, $(123) \neq \tau (132) \tau^{-1}$.\\
+Для $A_4$ кількість класів спряженості ділить $|A_n| = 12$, кількість $3$-циклів тут всього $8$. Значить, всі вони не лежать в одному класу спряженості.
+\end{remark}
+
+\begin{lemma}
+Задано перестановку $\sigma \in A_n, n \geq 5$, причому $\sigma \neq \varepsilon$. Припустимо, що $\sigma$ не є циклом довжини $3$. Тоді існує перестановка $\tau \in A_n$, для якої $\tau \sigma \tau^{-1} \sigma^{-1} \neq \varepsilon$ та має більше нерухомих точок, аніж $\sigma$.
+\end{lemma}
+
+Позначимо $[\sigma]_{S_n},\ [\sigma]_{A_n}$ -- клас спряженостей відповідної групи.\\
+Зауважимо, що $[\sigma]_{A_n} \subset [\sigma]_{S_n}$. Але навпаки не завжди виконується. 
+
+\begin{proposition}
+Нехай $\sigma \in A_n,\ n \geq 2$. Якщо $Z_{S_n}(\sigma) \subset A_n$, то звідси $|[\sigma]_{S_n}| = 2|[\sigma]_{A_n}|$. Якщо $Z_{S_n}(\sigma) \not\subset A_n$, то звідси $[\sigma]_{A_n} = [\sigma]_{S_n}$.
+\end{proposition}
+
+\begin{proof}
+Спочатку зазначимо, що $Z_{A_n}(\sigma) = A_n \cap Z_{S_n}(\sigma)$. Також $|[\sigma]_{S_n}| = \dfrac{|S_n|}{|\Stab_{S_n}(\sigma)|} = [S_n : \Stab_{S_n}(\sigma)] = [S_n : Z_{S_n}(\sigma)]$. Аналогічно доводиться, що $|[\sigma]_{A_n}| = [A_n : Z_{A_n}(\sigma)]$.
+\bigskip \\
+I. $Z_{S_n}(\sigma) \subset A_n$.\\
+У такому разі маємо $Z_{A_n}(\sigma) = Z_{S_n}(\sigma)$. Тоді звідси випливає, що\\
+$|[\sigma]_{S_n}| = [S_n : Z_{S_n}(\sigma)] = [S_n : Z_{A_n}(\sigma)] \overset{Z_{A_n}(\sigma) \subset A_n \subset S_n}{=} [S_n : A_n] [A_n : Z_{A_n}(\sigma)] = 2 |[\sigma]_{A_n}|$.
+\bigskip \\
+II. $Z_{S_n}(\sigma) \not\subset A_n$.\\
+Тоді, маючи той факт, що $A_n \triangleleft S_n$, отримуємо $Z_{S_n}(\sigma) A_n = S_n$. Звідси випливає, що\\
+$|[\sigma]_{A_n}| = [A_n : Z_{A_n}(\sigma)] = [A_n : Z_{S_n}(\sigma) \cap A_n] \overset{\text{III Th. про $\cong$}}{=} [A_n Z_{S_n}(\sigma) : Z_{S_n}(\sigma)] = [S_n : Z_{S_n}(\sigma)] = |[\sigma]_{S_n}|$.\\
+Центральна рівність випливає з того, що $S_n/_{A_n} = (Z_{S_n}(\sigma) A_n)/_{A_n} \cong A_n/_{Z_{S_n}(\sigma) \cap A_n}$.
+\end{proof}
+
+\begin{proposition}
+Нехай $\sigma \in A_n, n \geq 2$.\\
+$[\sigma]_{S_n}$ розщеплюється на два класи спряженості в $A_n \iff$ циклічний тип $\sigma$ складається з різних непарних чисел.
+\end{proposition}
+
+\begin{remark}
+$[\sigma]_{S_n}$ розщеплюється на два класи спряженості в $A_n \iff Z_{S_n}(\sigma) \subset A_n$. Останнє означає, що не існує жодної непарної перестановки $\theta$, яка б комутувала з $\sigma$.
+\end{remark}
+
+\begin{proof}
+\rightproof Дано: не існує жодної непарної перестановки $\theta$, яка б комутувала з $\sigma$. Зауважимо, що $\sigma = c_1 \dots c_k$, кожний цикл $c_i$ комутує з $\sigma$. Якщо припустити, що серед $c_i$ існує цикл парної довжини, тоді цикл -- непарний, який комутує з $\sigma$, що суперечить дано. Значить, всі $c_i$ мають непарну довжину.\\
+Нехай два цикли мають однакову (непарну) довжину, $(a_1, \dots, a_{2k+1})$ та $(b_1,\dots,b_{2k+1})$. Тоді\\
+$((a_1 b_1) \dots (a_{2k+1} b_{2k+1})) (a_1, \dots, a_{2k+1}) (b_1,\dots,b_{2k+1}) ((a_1 b_1) \dots (a_{2k+1} b_{2k+1}))^{-1} = (a_1, \dots, a_{2k+1}) (b_1,\dots,b_{2k+1})$.\\
+Отже, $(a_1 \dots a_{2k+1}) (b_1 \dots b_{2k+1})$, а значить $\sigma$ комутує з добутком $2k+1$ транспозицій, що є непарною перестановкою, що суперечить дано.
+\bigskip \\
+\leftproof Дано: циклічний тип $\sigma$ складається з різних непарних чисел. Доведемо, що $Z_{S_n}(\sigma) \subset A_n$.\\
+Нехай $\tau \in Z_{S_n}(\sigma)$, тобто $\tau \sigma = \sigma \tau$. Спряженість зберігає довжину цикла. Тому оскільки $\tau$ комутує з $\sigma$ та $\sigma$ має всі його цикли різної довини, то кожний цикл $\tau$ має комутувати з кожним циклом $\sigma$.
+\end{proof}
+\end{document}

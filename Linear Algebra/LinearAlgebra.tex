@@ -2206,7 +2206,34 @@ $\boxed{=} x_1 \begin{pmatrix} a_{11} \\ \vdots \\ a_{m1} \end{pmatrix} + \dots 
 	Тут $c_{ij} = a_{i1}b_{1j} + \dots + a_{in}b_{nj}$. Таким чином, $c_{ji} = a_{j1}b_{1i} + \dots + a_{jn}b_{ni} = b_{i1}^T a_{1j}^T + \dots + b_{in}^T a_{nj}^T = d_{ij}$.\\
 	Отже, $\mathbb{C} = \mathbb{D} \implies (\mathbb{A} \mathbb{B})^T = \mathbb{B}^T \mathbb{A}^T$.
 	\end{proof}
-
+	
+	\subsection{Слід матриці}
+	\begin{definition}
+	Задана матриця $\mathbb{A} \in \Mat_{n \times n}(\mathbb{R})$, тобто $\mathbb{A} = \begin{pmatrix}
+	a_{11} & \dots & a_{1n} \\
+	\vdots & \ddots & \vdots \\
+	a_{n1} & \dots & a_{nn}
+	\end{pmatrix}$.\\
+	\textbf{Слідом} матриці $\mathbb{A}$ назвемо ось таке число:
+	\begin{align*}
+	\tr \mathbb{A} = a_{11} + \dots + a_{nn}
+	\end{align*}
+	По суті кажучи, слідом називають суму елементів по головній діагоналі.
+	\end{definition}
+	
+	\begin{proposition}[Деякі властивості слідів]
+	Справедливе наступне:
+	\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+	\item $\tr (\mathbb{A} + \mathbb{B}) = \tr \mathbb{A} + \tr \mathbb{B}$;
+	\item $\tr (\lambda \mathbb{A}) = \lambda \tr \mathbb{A},\ \forall \lambda \in \mathbb{R}$;
+	\item $\tr \mathbb{A}^T = \tr \mathbb{A}$;
+	\item $\tr (\mathbb{A} \mathbb{B}) = \tr (\mathbb{B} \mathbb{A})$ (при цьому $\mathbb{A} \in \Mat_{n \times m}(\mathbb{R})$, $\mathbb{B} \in \Mat_{m \times n}(\mathbb{R})$).
+	\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof}
+	Перші дві властивості зрозумілі. Третя властивість: при транспонуванні матриця елементи головної діагоналі нікуди не рухаються. Залишається довести четверту властивість. Четверту властивість просто треба розписати.
+	\end{proof}
 	
 	\subsection{Коротко про $n$-лінійні функціонали}
 	\begin{definition}
@@ -4634,6 +4661,15 @@ $\det (\mathbb{A} - \lambda \mathbb{I}) = \displaystyle (-1)^n \lambda^n + (-1)^
 = (-1)^n \lambda^n + \sum_{k=1}^{n-1} (-1)^{n-k} \left( \sum_{1 \leq j_1 < j_2 < \dots < j_k} M_{j_1j_2\dots j_k}^{j_1j_2\dots j_k} \lambda^{n-k} \right) + \det \mathbb{A}$.
 \end{proof}
 
+\begin{corollary}
+$\tr \mathbb{A} = \displaystyle\sum_{i=1}^n \lambda_i$.\\
+Іншими словами, слід матриці буде сума всіх власних чисел.
+\end{corollary}
+
+\begin{proof}
+Дійсно, ми знаємо, що $\det (\mathbb{A} - \lambda \mathbb{I}) = (-1)^n \lambda^n + (-1)^{n-1} \tr A + \dots + \det \mathbb{A}$. Але з іншого боку, якщо допускається $\det (\mathbb{A} - \lambda \mathbb{I}) = (-1)^n (\lambda - \lambda_1) \dots (\lambda - \lambda_n)$, то, прирівнюючи коефіцієнти многочлена, отримаємо $\tr \mathbb{A} = \lambda_1 + \dots + \lambda_n$.
+\end{proof}
+
 \begin{example}
 За щойно доведеною формулою знайдемо характеристичний многочлен для той самої матриці $\mathbb{A} = \begin{pmatrix}
 4 & -1 & -2 \\
@@ -5258,6 +5294,26 @@ $L = L^{\lambda_1} + \dots + L^{\lambda_k}$.\\
 \begin{corollary}
 Всі вектори з $L$ будуть кореневими певної висоти для нільпотентного оператора $B$. Інакше кажучи, $L^{\lambda =  0} = L$.
 \end{corollary}
+
+\noindent
+Даний результат навряд буде потрібним, але хочеться все одно підкреслити.
+\begin{proposition}
+Заданий $L$ -- лінійний простір та $B \in \mathcal{L,L}$ -- нільпотентний. Тоді існує такий базис $L$, що матриця оператора $\mathbb{B}$ -- строго верхньотрикутна.
+\end{proposition}
+
+\begin{proof}
+Доведення розбивається на дві частини.\\
+\textit{I. Існує ненулевий елемент $x \in L$, для якого $Bx = 0$.}\\
+Оскільки $B$ -- нільпотентний, то існує $m \in \mathbb{N}$, для якого $B^m = O$. Оберемо найменше можливе $m$. Позначимо вектор $x = B^{m-1}w \neq 0$ (за мінімальністю). Власне, звідси $Bx = 0$.
+\bigskip \\
+\textit{ІІ. Знайдеться базис $L$, щоб матриця $\mathbb{B}$ була строго верхьотрикутною.}\\
+Проведемо це доведення за МІ по $\dim L$.\\
+i. \textit{База індукції}. Зазначимо, що тоді $L = \linspan\{x\}$, де елемент $x$ -- шуканий за І. Тоді звідси $\mathbb{B} = (0)$.\\
+ii. \textit{Припщуення індукції}. Твердження виконується для $\dim L \neq n$.\\
+iii. \textit{Крок індукції}. Нехай $\dim L = n+1$. Позначимо підпростір $M = \linspan\{w\}$. Далі розглядатимемо $L/_M$, причому $\dim L/_M = n$. Оператор $B$ породжує лінійний оператор $\overline{B} \colon L/_M \to L/_M$ ось таким чином: $\overline{B}(x+M) = Bx + M$ (який, до речі, теж нільпотентний). За припущенням МІ, існує базис $\{x_1 + M, \dots , x_n + M\}$, для якого $\overline{\mathbb{B}}$ -- строго верхньотрикутна матриця. Якщо детально розписати, то буде $B(x_j + M) = \alpha_1 x_1 + \dots + \alpha_{j-1} x_{j-1} + M$.\\
+Побудуємо базис $\{x,x_1,\dots,x_n\}$ простору $L$ (довести, що базис). Тоді далі $B(x_j) = \alpha_0 x + \alpha_1 x_1 + \dots + \alpha_{j-1} x_{j-1}$.\\
+МІ доведено.
+\end{proof}
 
 \begin{definition}
 Заданий $A \in \mathcal{L}(L,L)$ та $f$ -- деякий елемент.\\
@@ -6193,6 +6249,31 @@ $\mathbb{A}_J = \begin{pmatrix}
 \end{pmatrix}$
 \end{example}
 
+\begin{theorem}
+Заданий $A \in \mathcal{L}(L,L)$, де $L$ -- лінійний простір над $\mathbb{C}$. Тоді існує єдиний розклад оператора $A = A_d + A_n$, де $A_d$ -- діагоналізовний оператор та $A_n$ -- нільпотентний оператор. Крім того, оператори $A_d,A_n$ комутують між собою.
+\end{theorem}
+
+\begin{remark}
+Насправді $A_d,A_n$ також комутують з $A$. Дійсно,\\
+$A A_d = (A_d + A_n) A_d = A_d A_d + A_n A_d = A_d A_d + A_d A_n = A_d (A_d + A_n) = A_d A$.\\
+Абсолютно аналогічним чином можна за $A_n$ сказати.
+\end{remark}
+
+\begin{proof}
+І. \textit{Існування}.\\
+За теоремою Жордана маємо розклад $L = L^{\lambda_1} \oplus \dots \oplus L^{\lambda_k}$. Визначимо оператор $A_d = \lambda_1 I_{V_1} \oplus \dots \oplus \lambda_k I_{V_k}$. Цілком зрозуміло, що матриця даного оператора $\mathbb{A}_d$ матиме діагональний вигляд. Отже, $A_d$ -- діагоналізовний оператор. Водночас позначимо $A_n = A - A_d$. Тимчасово звузимо до ${A_n}|_{V_i}$ та зауважимо, що матриця матиме вигляд ${\mathbb{A}_n}|_{V_i} = \begin{pmatrix}
+0 & 1 & \dots & 0 & 0 \\
+0 & 0 & \dots & 0 & 0\\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & 0 & 1 \\
+0 & 0 & \dots & 0 & 0
+\end{pmatrix}$, яка є нільпотентною. Тому $A_n$ -- нільпотентний оператор.\\
+Щоб довести, що $A_n, A_d$ комутують між собою, досить просто матриці перемножити.
+\bigskip \\
+II. \textit{Єдиність}.\\
+!Припустимо, що існує інший розклад $A = A_d' + A_n'$. Зокрема отримуємо $A_d' - A_d = A_n - A_n'$. По-перше, $A_d' - A_d$ -- досі діагоналізовний оператор; а по-друге, $A_n - A_n'$ -- досі нільпотентний, але це буде довести трошки важче. По-перше, $A_d,A_d'$ між собою комутують (як діагоналізовні матриці), внаслідок чого $A_d,A_n'$ між собою комутують, а після чого $A_n,A_n'$ між собою комутують. Оскільки $A_n,A_n'$ комуюуть, то можна скористатися біномом Ньютона та, підібравши необхідний степінь, довести нільпотентність $A_n - A_n'$.\\
+Отже, $A_d - A_d'$ -- нільпотентний та діагоналізовний одночасно. Залишається єдина можливість -- це $A_d - A_d' = O$, тому $A_d = A_d'$. Після чого $A_n = A_n'$ -- суперечність!
+\end{proof}
 
 \subsection{Властивості жорданової форми матриці}
 Нехай $\lambda_0$ -- власне число. Оператор $A$ звузимо до $A|_{L^{\lambda_0}}$, а потім розглянемо $B = A|_{L^{\lambda_0}} - \lambda_0 I$, який буде нільпотентним. Тоді там є базис з набору ланцюгів.

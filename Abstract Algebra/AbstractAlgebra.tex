@@ -115,6 +115,7 @@
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\linspan}{span}
 
 \newcommand\thref[1]{\textbf{Th.~\ref{#1}}}
 \newcommand\defref[1]{\textbf{Def.~\ref{#1}}}
@@ -157,7 +158,7 @@
 
 \subsection{Означення груп}
 \begin{definition}
-Задана $G$ -- деяка множина, $*$ -- деяка бінарна операція.\\
+Задана $G$ -- деяка множина та $*\,$ -- деяка бінарна операція.\\
 \textbf{Групою} назвемо пару $\left<G, *\right>$, для якої виконуються такі властивості:\\
 I. Замкненість відносно операції:
 \begin{align*}
@@ -189,7 +190,7 @@ $\{-1,1\}$ & $\cdot$ & $1$ & $1,-1$ & $1,-1$
 \end{example}
 
 \begin{example}
-Ось така струткура $\left< \Mat_{n \times n}(\mathbb{R}, \cdot \right>$ уже не буде групою. Тому що для не для всіх матриц $A \in \Mat_{n \times n}$ існує оберненої матриці $A^{-1}$. Якщо $\det A = 0$, то нема оберненої.
+Ось така струткура $\left< \Mat_{n \times n}(\mathbb{R}), \cdot \right>$ уже не буде групою. Тому що для не для всіх матриць $A \in \Mat_{n \times n}$ існує оберненої матриці $A^{-1}$. Якщо $\det A = 0$, то нема оберненої.
 \end{example}
 
 \begin{example}
@@ -212,10 +213,10 @@ II. Перевіримо три аксіоми:\\
 \begin{proof}
 Покажемо виконання кожного пункту від супротивного.
 \begin{enumerate}[wide=0pt,label={\arabic*)}]
-\item !Припустимо, що існують два нейтральних елементи: $e_1,e_2 \in G$. Отримаємо такий ланцюг рівностей:\\
+\item Припустимо, що існують два нейтральні елементи: $e_1,e_2 \in G$. Отримуємо:\\
 $e_1 = e_1*e_2$ та $e_2 = e_1*e_2$, а тому звідси $e_1 = e_2$.
 
-\item !Припустимо, що для $a \in G$ існують два обернени $a_1^{-1},a_2^{-1} \in G$. Отримаємо такий ланцюг рівностей:\\
+\item Припустимо, що для $a \in G$ існують два обернені $a_1^{-1},a_2^{-1} \in G$. Отримуємо ланцюг рівностей:\\
 $a_1^{-1} = a_1^{-1} * e = a_1^{-1} * (a*a_2^{-1}) = (a_1^{-1}*a)*a_2^{-1} = e*a_2^{-1} = a_2^{-1}$.
 \end{enumerate}
 У двох випадках отримали суперечність!
@@ -246,7 +247,7 @@ a^0 = e
 
 \begin{definition}
 Задано $\left<G,* \right>$ -- група.\\
-Вона називається \textbf{абелевою}, якщо
+Група $G$ називається \textbf{абелевою}, якщо
 \begin{align*}
 \forall a,b \in G: a*b = b*a \text{ -- комутативність}
 \end{align*}
@@ -262,7 +263,7 @@ a^0 = e
 \begin{align*}
 x \sim y \iff x \equiv y \pmod p
 \end{align*}
-Ми вже її якось встигли профакторизувати ось так (див. дискретку):\\
+Ми вже її якось встигли профакторизувати ось так (див.\ pdf дискретної математики):\\
 $\mathbb{Z}/_{\!\!\pmod p} = \{[0],\ [1],\ \dots,\ [p-1] \}$, де\\
 $[0] = \{\dots,-2p,-p,0,p,2p,\dots\}$\\
 $[1] = \{\dots, -2p+1,-p+1,1,p+1,2p+1,\dots\}$\\
@@ -327,7 +328,7 @@ $\left<\mathbb{Z}_p, + \right>$ -- абелева група, де операц�
 Для початку треба з'ясувати, чи є коректно визначеною операція.\\
 Тобто нехай $\overline{a} = \overline{c}$ та $\overline{b} = \overline{d}$. Хочемо довести, що $\overline{a+b} = \overline{c+d}$.\\
 %Паралель: 1/2 = 2/4 та 1/3 = 3/6, тоді треба пересвідчитись, що 1/2+1/3 = 5/6 - це той самий елемент, що й 2/4 + 3/6 = 10/12
-Маємо $a \equiv c \pmod p$ та $b \equiv d \pmod p$. А тому за властивостями конгруенції (див. теорію чисел), $a+b \equiv c+d \pmod p$. Тобто $\overline{a+b} = \overline{c+d}$.
+Маємо $a \equiv c \pmod p$ та $b \equiv d \pmod p$. А тому за властивостями конгруенції (див.\ теорію чисел), $a+b \equiv c+d \pmod p$. Тобто $\overline{a+b} = \overline{c+d}$.
 \iffalse
 Перш за все необхідно показати, що визначена операція коректна.
 \begin{example}
@@ -339,7 +340,7 @@ $\left<\mathbb{Z}_p, + \right>$ -- абелева група, де операц�
 Насправді кажучи, це властивість з теорії чисел про дільність за модулем, тому все в нас коректно визначено.
 \fi
 \bigskip \\
-А тепер час довести, що це абелева -- група.\\
+А тепер час довести, що це утворює абелеву групу.\\
 I. $\overline{a},\ \overline{b} \in \mathbb{Z}_p: \overline{a}+\overline{b} = \overline{a+b} \in \mathbb{Z}_p$ -- тобто замкненість є, бо отримали, по суті, клас еквівалентності.\\
 II. Перевіримо аксіоми груп.\\
 1) $\forall \overline{a},\ \overline{b},\ \overline{c} \in \mathbb{Z}_p: \overline{a}+(\overline{b}+\overline{c}) = \overline{a}+\overline{b+c} = \overline{a+(b+c)} = \overline{(a+b)+c} = \overline{a+b} + \overline{c} = (\overline{a}+\overline{b})+\overline{c}$ -- тобто асоціативність є.\\
@@ -375,14 +376,12 @@ $\left< \mathbb{Z}_p \setminus \{\overline{0}\}, \cdot \right>$, де $p$ -- п�
 
 \begin{example}
 Маємо структуру $\left< \mathbb{Z}_p, \cdot \right>$, яка не буде групою, тому що нема нейтрального елемента.\\
-!Припустімо, що $\overline{e} \in \mathbb{Z}_p$ -- це нейтральний елемент, тобто \\ $\forall \overline{a} \in \mathbb{Z}_p: \overline{a} \cdot \overline{e} = \overline{a}$. Звідси випливає, що $\overline{e} = \overline{1}$.\\
-Водночас $\overline{0} = \overline{0} \cdot \overline{1} = \overline{1}$. Суперечність!
+!Припустімо, що $\overline{e} \in \mathbb{Z}_p$ -- це нейтральний елемент, тобто $\forall \overline{a} \in \mathbb{Z}_p: \overline{a} \cdot \overline{e} = \overline{a}$. Звідси випливає, що $\overline{e} = \overline{1}$. Водночас $\overline{0} = \overline{0} \cdot \overline{1} = \overline{1}$. Суперечність!
 \end{example}
 
 \begin{example}
 Тепер маємо структуру $\left<\mathbb{Z}_p \setminus \{\overline{0}\}, \cdot \right>$, де $p$ -- складене. Уже нейтральний елемент існує, утім все одно не буде групою.\\
-Оскільки $p$ -- складене, то існує якийсь інший дільник $n \neq p, n \neq 1$. Тому звідси $p = nm \implies \overline{p} = \overline{n} \cdot \overline{m}$.\\
-Але $\overline{p} = \overline{0}$, а тому $\overline{n}\cdot \overline{m} = \overline{0}$. А це означає, що хоча $\overline{m}, \overline{n} \in \mathbb{Z}_p$, але $\overline{mn} = \overline{0} \not\in \mathbb{Z}_p$. Замкненості нема.
+Оскільки $p$ -- складене, то існує якийсь інший дільник $1 < n < p$. Тому звідси $p = nm \implies \overline{p} = \overline{n} \cdot \overline{m}$. Але $\overline{p} = \overline{0}$, а тому $\overline{n}\cdot \overline{m} = \overline{0}$. А це означає, що хоча $\overline{m}, \overline{n} \in \mathbb{Z}_p$, але $\overline{mn} = \overline{0} \not\in \mathbb{Z}_p$. Замкненості нема.
 \end{example}
 
 Тепер повернімося до нашої теореми та проведемо її доведення.
@@ -396,8 +395,7 @@ II. Тепер доведемо виконання аксіом груп.\\
 2) нейтральним елементом стане $\overline{1} \in \mathbb{Z}_p \setminus \{ \overline{0}\}$, тому що $\overline{a} \overline{1} = \overline{a \cdot 1} = \overline{a}$;\\
 3) а ось з оберненим елементом ситуація складніша. Маємо $\overline{a} \in \mathbb{Z}_p \setminus \{ \overline{0}\}$, розглянемо ось таку множину: $\{\overline{a}, \overline{2a}, \dots, \overline{(p-1)a} \}$. Спочатку покажемо, що тут всі елементи абсолютно різні. \\
 !Припускаючи, що $\overline{k_1 a} = \overline{k_2 a}$ для $k_1 \neq k_2$, ми отримаємо $k_1 a \equiv k_2 a \pmod p \implies (k_1-k_2)a \equiv 0 \pmod p$. У силу того, що $p$ -- просте, то або $p \mid a$, що точно неправда, або $p \mid k_1-k_2$. Але це має місце лише тоді, коли $k_1 = k_2$, оскільки $k_1,k_2 = \overline{1,p-1}$. Суперечність!\\
-Отже, множина $\{\overline{a}, \overline{2a}, \dots, \overline{(p-1)a} \}$ містить різні елементи. Так само різні елементи містить $\mathbb{Z}_p \setminus \{ \overline{0}\}$, тобто фактично ми отримали, що\\
-$\{\overline{a}, \overline{2a}, \dots, \overline{(p-1)a} \} = \{ \overline{1}, \overline{2}, \dots, \overline{p-1} \} = \mathbb{Z}_p \setminus \{ \overline{0}\}$.\\
+Отже, множина $\{\overline{a}, \overline{2a}, \dots, \overline{(p-1)a} \}$ містить різні елементи. Так само різні елементи містить $\mathbb{Z}_p \setminus \{ \overline{0}\}$, тобто фактично ми отримали, що $\{\overline{a}, \overline{2a}, \dots, \overline{(p-1)a} \} = \{ \overline{1}, \overline{2}, \dots, \overline{p-1} \} = \mathbb{Z}_p \setminus \{ \overline{0}\}$.\\
 Таким чином, елемент серед елементів $\overline{ka}$, де $k = 1,2,\dots,p-1$, має бути елемент $\overline{1}$. \\
 Тоді для $\overline{a} \in \mathbb{Z}_p \setminus \{ \overline{0}\}$ знайдеться деякий $\overline{ka}$, для якого $\overline{ka} = \overline{k} \overline{a} = \overline{1}$, і от $\overline{k}$ буде деяким оберненим елементом.\\
 Залишилось показати, що це абелева група. Справді,\\
@@ -434,7 +432,7 @@ $\overline{m} \in \mathbb{Z}_n \setminus \{ \overline{0} \}$ має оберне
 \end{proof}
 
 Познайомимось з ось такою множиною:
-$$ U_n = \{ \overline{m} \in \mathbb{Z}_n | \gcd(m,n) = 1 \}$$
+$$ U_n = \{ \overline{m} \in \mathbb{Z}_n \mid \gcd(m,n) = 1 \}$$
 
 \begin{example}
 Зокрема маємо $U_9 = \{\overline{1},\overline{2},\overline{4},\overline{5},\overline{7},\overline{8} \}$.
@@ -473,12 +471,12 @@ II. Комутативність, асоціативність аналогіч�
      \node[inner sep=1pt,circle,draw,fill,label={\p:\l}] at (\x:\R) {};
 \end{tikzpicture}
 \end{figure}
-Над цією фігурою робитемо два перетворення (це всі симетрії):\\
+Над цією фігурою робитимемо два перетворення (це всі симетрії):\\
 1) обертання відносно центра фігури проти годинникової стрілки;\\
 2) відбиття відносно осі, що проходить через центр фігури.
 \bigskip \\
 Зауважимо, що в цьому випадку $\card D_{n} = 2n$.\\
-Щоб кожну вершину зсунути проти годинниковою стрілкою, треба на $n$-кутник застоувати обертання розміром $\dfrac{360^\circ}{n}$. Цю дію позначимо за $r$.
+Щоб кожну вершину зсунути проти годинникової стрілки, треба на $n$-кутник застоувати обертання розміром $\dfrac{360^\circ}{n}$. Цю дію позначимо за $r$.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -496,6 +494,7 @@ II. Комутативність, асоціативність аналогіч�
      \node[inner sep=1pt,circle,draw,fill,label={\p:\l}] at (\x:\R) {};
      
      \draw[->] (4,0)--(5,0) node[anchor = south east] {$r$};
+     \node[white] at (0,-2.8) {$.$};
 \end{tikzpicture}
 \qquad
 \begin{tikzpicture}
@@ -511,6 +510,7 @@ II. Комутативність, асоціативність аналогіч�
       360/{$n-1$}/right
      }
      \node[inner sep=1pt,circle,draw,fill,label={\p:\l}] at (\x:\R) {};
+     \node[white] at (0,-2.8) {$.$};
 \end{tikzpicture}
 \end{figure}
 $r^k$ -- означає $k$ разів застосувати обертання.\\
@@ -665,7 +665,7 @@ $\left< S_X, \circ \right>$ -- група, якщо $X \neq \emptyset$.
 \end{proof}
 
 \begin{lemma}
-Задано $\sigma \colon X \to X$ - бієкція. Тоді існує бієкція $\mu \colon X \to X$, для якого $\sigma(a) = b \iff \mu(b) = a$.\\
+Задано $\sigma \colon X \to X$ -- бієкція. Тоді існує бієкція $\mu \colon X \to X$, для якого $\sigma(a) = b \iff \mu(b) = a$.\\
 Таким чином, це доводить існування оберненого елементу. Тобто для кожного $\sigma \in S_X$ існуватиме $\mu \in S_X$, для якого $\sigma \circ \mu (b) = b, \forall b \in X$ та $\mu \circ \sigma (a) = a, \forall a \in X$.
 \end{lemma}
 
@@ -876,17 +876,17 @@ $\sigma = (62) \circ (35) \circ (23) \circ (12) \circ \underbrace{(13) \circ (13
 \begin{proof}
 $\sigma = \begin{pmatrix}
 1 & \dots & k & \dots & j & \dots & n \\
-i_1 & \dots & i_k & \dots & i_j & \dots & i_n
+i_1 & \dots & \textcolor{red}{i_k} & \dots & \textcolor{red}{i_j} & \dots & i_n
 \end{pmatrix}$ \hspace{1cm}  $\sigma \circ \tau = \begin{pmatrix}
 1 & \dots & k & \dots & j & \dots & n \\
-i_1 & \dots & i_j & \dots & i_k & \dots & i_n
+i_1 & \dots & \textcolor{red}{i_j} & \dots & \textcolor{red}{i_k} & \dots & i_n
 \end{pmatrix}$.\\
 Візьмемо пару $(i_s,i_t)$ та розглянемо кілька випадків:\\
-1. $(i_s,i_t) \neq (i_j,i_k)$. Тоді як і в $\sigma$, так і в $\sigma \circ \tau$ або пара $(i_s,i_t)$ або буде інверсією, або не буде.\\
-2. $(i_s,i_t) = \left[ \begin{gathered} (i_s,i_k) \\ (i_s,i_j) \end{gathered} \right.$ при $1 \leq s < k$. Тоді аналогічно або пара $(i_s,i_t)$ або буде інверсією, або не буде.\\
-3. $(i_s,i_t) = \left[ \begin{gathered} (i_k,i_t) \\ (i_j,i_t) \end{gathered} \right.$ при $j < t \leq n$ -- абсолютно аналогічно до 2.\\
-4. $(і_s,i_t) = (i_k, i_t)$ при $k < t < j$ або $(i_s,i_t) = (i_s,i_j)$ при $k < s < j$. Тоді наочно можна подивитись, що або $(i_s,i_t)$ інверсія $\sigma$ та не інверсія в $\tau \circ \sigma$, або навпаки. Кількість таких пар $j-k-1$  кожному випадку.\\
-5. $(i_s,i_t) = (i_k,i_j)$. Очевидно, що або $(i_s,i_t)$ інверсія $\sigma$ та не інверсія в $\tau \circ \sigma$, або навпаки.\\
+1. $(i_s,i_t) \neq (\textcolor{red}{i_j},\textcolor{red}{i_k})$. Тоді як і в $\sigma$, так і в $\sigma \circ \tau$ або пара $(i_s,i_t)$ або буде інверсією, або не буде.\\
+2. $(i_s,i_t) = \left[ \begin{gathered} (i_s,\textcolor{red}{i_k}) \\ (i_s,\textcolor{red}{i_j}) \end{gathered} \right.$ при $1 \leq s < k$. Тоді аналогічно або пара $(i_s,i_t)$ або буде інверсією, або не буде.\\
+3. $(i_s,i_t) = \left[ \begin{gathered} (\textcolor{red}{i_k},i_t) \\ (\textcolor{red}{i_j},i_t) \end{gathered} \right.$ при $j < t \leq n$ -- абсолютно аналогічно до 2.\\
+4. $(і_s,i_t) = \left[ \begin{gathered} (\textcolor{red}{i_k}, i_t) \text{ при $k < t < j$} \\ (i_s,\textcolor{red}{i_j}) \text{при $k < s < j$} \end{gathered} \right.$. Тоді наочно можна подивитись, що або $(i_s,i_t)$ інверсія $\sigma$ та не інверсія в $\tau \circ \sigma$, або навпаки. Кількість таких пар $j-k-1$  кожному випадку.\\
+5. $(i_s,i_t) = (\textcolor{red}{i_k},\textcolor{red}{i_j})$. Очевидно, що або $(i_s,i_t)$ інверсія $\sigma$ та не інверсія в $\tau \circ \sigma$, або навпаки.\\
 Остаточно, всього $2 \cdot (j-k-1) + 1$ пар з різною інверсійністю. Цього цілком достатньо, щоб сказати, що $l(\sigma) \neq l(\tau \circ \sigma)$.
 \end{proof}
 
@@ -937,13 +937,12 @@ $2 \mapsto 4 \mapsto 5 \mapsto 2$, а також $1 \mapsto 1, 3 \mapsto 3$.\\
 \end{example}
 
 \begin{lemma}
-Задано $\sigma_1, \sigma \in S_n$ -- цикли. Тоді $\sigma_1 \circ \sigma_2 = \sigma_2 \circ \sigma_1$.\\
-Тобто цикли комутують між собою.\\
+Задано $\sigma_1, \sigma \in S_n$ -- незалежні цикли. Тоді $\sigma_1 \circ \sigma_2 = \sigma_2 \circ \sigma_1$.\\
 \textit{Вказівка: подивитися наочно.}
 \end{lemma}
 
 \begin{theorem}
-Будь-яку перестановку $\sigma \in S_n$ можна записати як добуток циклів єдиним чином.
+Будь-яку перестановку $\sigma \in S_n$ можна записати як добуток незалежних циклів єдиним чином з точністю до перестановки циклів.
 \end{theorem}
 
 \begin{proof}
@@ -951,7 +950,7 @@ $2 \mapsto 4 \mapsto 5 \mapsto 2$, а також $1 \mapsto 1, 3 \mapsto 3$.\\
 $1 = i_0 \to \sigma(i_0) \to \sigma^2(i_0) \to \dots \to \sigma^{k_0-1}(i_0) \to \sigma^{k_0}(i_0) = i_0 = 1$.\\
 Тут вважаємо, що всі числа до цього різні між собою.\\
 Цей цикл обов'язково рано чи пізно почне повторюватись, починаючи з номера $k_0$, просто тому що у нас множина $\{1,2,\dots,n\}$ скінченна.\\
-Чи може таке статись, що $\sigma^{k_0}(i_0)$ потрапить в один з $\sigma^{p}(i_0), p = \overline{1,k_0}$ -- ні, не може. Тому що маємо $\sigma^{p-1}(i_0) \mapsto \sigma^p(i_0)$, а якби також $\sigma^{k_0}(i_0) \mapsto \sigma^p(i_0)$, то порушувались би умова ін'єкції.\\
+Чи може таке статись, що $\sigma^{k_0}(i_0)$ потрапить в один з $\sigma^{p}(i_0), p = \overline{1,k_0}$ -- ні, не може. Тому що маємо $\sigma^{p-1}(i_0) \mapsto \sigma^p(i_0)$, а якби також $\sigma^{k_0-1}(i_0) \mapsto \sigma^p(i_0)$, то порушувались би умова ін'єкції.\\
 Отже, звідси маємо $\sigma^{k_0}(i_0) = i_0 = 1$. Знайшли один цикл.\\
 Якщо так сталось, що $k_0 \neq n$, то тоді побудуємо новий ще один цикл аналогічним чином:\\
 $j_0 \to \sigma(j_0) \to \dots \to \sigma^{k_1}(j_0) = j_0$.\\
@@ -970,7 +969,7 @@ $1 \to 2 \to 5 \to 4 \to 6 \to 1$.\\
 $3 \to 8 \to 3$\\
 $7 \to 7$\\
 Отже, $\sigma = (12546) \circ (38) \circ (7)$.\\
-\textit{Зазвичай цикл довжини $1$ в іноземних підручниках не пишуть, окрім тотожної перестановки. Тобто можна записати $\sigma = (12546) \circ (38)$.}
+\textit{Зазвичай цикл довжини $1$ в добутку циклів не пишуть. Тобто можна записати $\sigma = (12546) \circ (38)$. Якщо перестановка тотожна, то пишуть $\varepsilon = (1)$.}
 \end{example}
 
 \begin{example}
@@ -1013,14 +1012,16 @@ $(i_1 i_2 i_3\dots i_k) = (i_1 i_k) \circ \dots \circ (i_1 i_3) \circ (i_1 i_2)$
 \left<H,* \right> \text{ -- група,}
 \end{align*}
 де операцію $*$ ми успадкували з групи $G$.\\
-Позначення: $H \leq G$ (цим позначенням не користуватимуся, але таке є).
+Інколи користуються таким позначенням: $H \leq G$
 \end{definition}
 
 \begin{example}
-Розглянемо кілька прикладів:\\
-1. $\mathbb{Z}$ -- підгрупа групи $\left<\mathbb{R},+ \right>$.\\
-2. $SL_n$ (special linear group) -- набір матриць з одничним визначником -- підгрупа групи $\left<GL_n, \cdot \right>$.\\
-3. $A_n$ -- набір парних перестановок -- підгрупа групи $\left<S_n, \circ\right>$. Групу $\left< A_n, \circ \right>$ називаються часто \textbf{знакозмінною групою}.
+Розглянемо кілька прикладів:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*.}]
+\item $\mathbb{Z}$ -- підгрупа групи $\left<\mathbb{R},+ \right>$.
+\item $SL_n$ (special linear group) -- набір матриць з одничним визначником -- підгрупа групи $\left<GL_n, \cdot \right>$.
+\item $A_n$ -- набір парних перестановок -- підгрупа групи $\left<S_n, \circ\right>$. Групу $\left< A_n, \circ \right>$ називаються часто \textbf{знакозмінною групою}.
+\end{enumerate}
 \end{example}
 
 \begin{remark}
@@ -1041,7 +1042,7 @@ $H$ -- підгрупа $\iff \begin{cases} \forall a,b \in H: a*b \in H \\ \for
 Нижче ми будемо брати елементи з $H$ -- і це легітимно, адже $H \neq \emptyset$.\\
 $\forall a,b,c \in H \implies a,b,c \in G: a*(b*c) = (a*b)*c$ - тобто маємо асоціативність.\\
 Оскільки $a \in H$, то звідси $a^{-1} \in H$, але водночас $a,a^{-1} \in G$, а тому звідси $a*a^{-1} = e$. Причому за першою умовою, $e \in H$.\\
-Отже, нейтральний елемент існує. Автоматично існування оберненого елемента теж виконується.
+Отже, нейтральний елемент існує. Автоматично існування оберненого елемента виконується.
 \end{proof}
 
 \begin{remark}
@@ -1055,7 +1056,7 @@ $H$ -- підгрупа $\iff \forall a,b \in H: a*b^{-1} \in H$, причому
 \end{corollary}
 
 \begin{proof}
-Нам достатньо показати, що $\begin{cases} \forall a,b \in H: a*b \in H \\ \forall a \in H: a^{-1} \in H \end{cases} \iff a*b^{-1} \in H$.\\
+Нам досить показати, що $\begin{cases} \forall a,b \in H: a*b \in H \\ \forall a \in H: a^{-1} \in H \end{cases} \iff a*b^{-1} \in H$.\\
 \rightproof все ясно.\\
 \leftproof Дано: $\forall a,b \in H: a*b^{-1} \in H$.\\
 Зауважимо, що $a*a^{-1} = e \in H$, рівність виконана, оскільки $a,a^{-1} \in G$. Тоді звідси\\
@@ -1102,7 +1103,7 @@ $[M] = \{ m = m_1^{\varepsilon_1} * \dots * m_s^{\varepsilon_s} \mid s \geq 0, m
 \begin{proof}
 Позначимо $P = \{ m = m_1^{\varepsilon_1} * \dots * m_s^{\varepsilon_s} \mid m_i \in M, \varepsilon_i = \pm 1 \}$.\\
 Нехай $H$ -- один з підгруп $G$ так, щоб $H \supset M$, тоді звідси будь-який $m_i \in H$, а в силу підгрупи $m_i^{\varepsilon_i} \in H \implies m_1^{\varepsilon_1} * \dots m_s^{\varepsilon_s} \in H \implies P \subset [M]$.\\
-Навпаки: зрозуміло, що $M \subset P$. Нам треба показати, щоб $P$ - підгрупа $G$, тоді звідси буде $P \supset [M]$.
+Навпаки: зрозуміло, що $M \subset P$. Нам треба показати, щоб $P$ -- підгрупа $G$, тоді звідси буде $P \supset [M]$.
 \bigskip \\
 Покажемо, що $P$ -- підгрупа групи $G$. Маємо $u,v \in P$, тобто\\
 $u = m_1^{\varepsilon_1} * \dots * m_s^{\varepsilon_s}$ \hspace{1cm} $\varepsilon_i = \pm 1$.\\
@@ -1173,11 +1174,11 @@ $x*y^{-1} = a^m * (a^n)^{-1} = a^m * a^{-n} = a^{m-n}$, тут в нас $m-n \i
 \end{example}
 
 \begin{remark}
-Між іншим, із нескінченної групи ми знайшли скінченну підгрупу.
+Між іншим, із нескінченної (нециклічної) групи ми знайшли скінченну (циклічну) підгрупу.
 \end{remark}
 
 \begin{example}
-Маємо групу $\left< \mathbb{Z}_6, + \right>$. Всі можливі циклічні підгрупи записані ось таким чином:\\
+Маємо групу $\left< \mathbb{Z}, + \right>$. Всі можливі циклічні підгрупи записані ось таким чином:\\
 $[k] = [-k] = \{-2k,-k,0,k,2k,\dots\} \overset{\text{позн}}{=} k\mathbb{Z}$.
 \end{example}
 
@@ -1210,7 +1211,7 @@ a^n = e
 
 \begin{proposition}
 Задано $\left<G,* \right>$ -- група та $\left<a\right>$ -- циклічна підгрупа. Тоді $\ord (a) = |\left<a\right>|$.\\
-Тобто порядок елемента $a$ дорівнює порядку циклічної підгрупи $\left<a\right>$
+Тобто порядок елемента $a$ дорівнює порядку циклічної підгрупи $\left<a\right>$.
 \end{proposition}
 
 \begin{proof}
@@ -1278,6 +1279,7 @@ $h = g^n = g^{mq+r} = (g^m)^q g^r$.\\
 \end{lemma}
 
 \begin{proposition}
+\label{ord_g_to_some_power}
 Задано $\left< G, * \right> = \left<g\right>$ -- циклічна група, $\ord (g) = n$. Тоді $\ord (g^m) =  \dfrac{n}{\gcd(m,n)}$, тут $m < n$.\\
 \textit{Без доведення за аналогічними причинами.}
 \end{proposition}
@@ -1287,6 +1289,7 @@ $h = g^n = g^{mq+r} = (g^m)^q g^r$.\\
 \end{example}
 
 \begin{theorem}
+\label{from_generated_group_get_subgroup}
 Задано $\left< G, *\right>$ -- циклічна група порядка $n$. Нехай $d \mid n$. Тоді існує єдина підгрупа $H$, для якого $|H| = d$.
 \end{theorem}
 
@@ -1672,7 +1675,7 @@ $\begin{pmatrix}
 \fi
 
 \subsection{Суміжні класи}
-Маємо $\left< G, *\right>,\ \left< G', \star \right>$ -- групи та $f \colon G \to G'$ -- гомоморфізм. Установимо відношення еквівалентності:\\
+Маємо $\left< G, *\right>, \left< G', \star \right>$ -- групи та $f \colon G \to G'$ -- гомоморфізм. Установимо відношення еквівалентності:\\
 $g_1 \sim g_2 \iff f(g_1) = f(g_2)$.\\
 Окремо пропишемо рівність, помноживши зліва на $(f(g))^{-1}$ -- отримаємо:\\
 $(f(g_1))^{-1} \star f(g_2) = e_{G'} \iff f(g_1^{-1}) \star f(g_2) = e_{G'} \iff f(g_1^{-1}*g_2) = e_{G'} \iff g_1^{-1}*g_2 \in \ker f$.\\
@@ -1793,7 +1796,7 @@ $g_1 * H = g_2 * H \iff H * g_2^{-1} = H * g_1^{-1}$.
 Нехай $x \in H*g_1^{-1}$, тоді аналогічним чином $x \in H*g_2^{-1}$.\\
 Висновок: $H*g_2^{-1} = H*g_1^{-1}$.
 \bigskip \\
-\leftproof \textit{доведення є зеркальним}.
+\leftproof \textit{доведення є дзеркальним}.
 \end{proof}
 
 \begin{proposition}
@@ -1870,13 +1873,13 @@ $[K:H] \cdot \card(H) = \card(K)$. Підставивши це вище, отр�
 $[G:H] = [G:K] \cdot [K:H]$.
 \end{proof}
 
-\begin{theorem}[Теорема Ейлера]
+\begin{theorem}[Теорема Ойлера]
 Задані числа $a,n$ так, що $\gcd(a,n) = 1$. Тоді $a^{\varphi(n)} \equiv 1 \pmod n$.\\
 \textit{У теорії чисел це доводилось, але покажу інший спосіб.}
 \end{theorem}
 
 \begin{proof}
-Маємо $\left<U_n,\cdot\right>$ -- скінченна група, причому $\card(U_n) = \varphi(n)$ за визначенням функції Ейлера. Тоді за наслідком теореми Лагранжа, $\overline{a}^{\card(U_n)} = \overline{a}^{\varphi(n)} = \overline{a^{\varphi(n)}} = \overline{1}$. Отже,  $a^{\varphi(n)} \equiv 1 \pmod n$.
+Маємо $\left<U_n,\cdot\right>$ -- скінченна група, причому $\card(U_n) = \varphi(n)$ за визначенням функції Ойлера. Тоді за наслідком теореми Лагранжа, $\overline{a}^{\card(U_n)} = \overline{a}^{\varphi(n)} = \overline{a^{\varphi(n)}} = \overline{1}$. Отже,  $a^{\varphi(n)} \equiv 1 \pmod n$.
 \end{proof}
 
 \subsection{Нормальні підгрупи}
@@ -1948,13 +1951,14 @@ $x \in H*g \implies x = h*g = g*g^{-1}*h*g = g*(g^{-1}*h*g) = g*\tilde{h} \impli
 \end{proof}
 
 \begin{example}
-Маємо $\left<GL_n, \cdot \right>$ -- група.\\
-1. Розглянемо підгрупу $SL_n$. Покажемо, що $SL_n \triangleleft GL_n$.\\
+Маємо $\left<GL_n, \cdot \right>$ -- група.
+\begin{enumerate}[wide=0pt,label={\arabic*.}]
+\item Розглянемо підгрупу $SL_n$. Покажемо, що $SL_n \triangleleft GL_n$.\\
 Нехай $A \in GL_n$, тобто $\det A \neq 0$. Розглянемо ще $B \in SL_n$, тоді маємо $\det B = 1$. Звідси\\
 $\det (ABA^{-1}) = \det A \det B \det A^{-1} = \det A \det B \dfrac{1}{\det A} = \det B = 1$.\\
 Таким чином, ми довели, що $ABA^{-1} \in SL_n$. Отже, $SL_n \triangleleft GL_n$.
-\bigskip \\
-2. Розглянемо підгрупу $H \subset GL_2$ -- набір всіх нижньо трикутних матриць. Покажемо, що $H \centernot\triangleleft GL_2$.\\
+
+\item Розглянемо підгрупу $H \subset GL_2$ -- набір всіх нижньо трикутних матриць. Покажемо, що $H \centernot\triangleleft GL_2$.\\
 Дійсно, візьмемо деяку матрицю $B = \begin{pmatrix}
 1 & 0 \\
 1 & 1
@@ -1965,6 +1969,7 @@ $\det (ABA^{-1}) = \det A \det B \det A^{-1} = \det A \det B \dfrac{1}{\det A} =
 -3 & 4 \\
 2 & -1
 \end{pmatrix} \not \in H$. Отже, $H \centernot\triangleleft GL_2$.
+\end{enumerate}
 \end{example}
 
 \begin{example}
@@ -1992,7 +1997,7 @@ $g \in a*H$. Припустимо, що $g*h*g^{-1} \in g*H$, тобто зві�
 \begin{example}
 Зокрема маємо $\left< D_4, \circ \right>$ - діедральну групу. \\
 $[s] \triangleleft \ [s,r^2]$ та $[s,r^2] \triangleleft D_4$.\\
-Але тут $[s] \not\triangleleft D_4$. І дійсно, для $s \in [s]$ та $r \in D_4$ маємо:\\
+Але тут $[s] \centernot\triangleleft D_4$. І дійсно, для $s \in [s]$ та $r \in D_4$ маємо:\\
 $rsr^{-1} = rsr^3 = r^2s = sr^2 \not\in [s]$.
 \end{example}
 
@@ -2155,6 +2160,14 @@ $(\overline{2},\overline{3},sr)*(\overline{2}, \overline{4}, sr^2) = (\overline{
 \begin{example}
 Маємо $\left< \mathbb{Z}_2 \times \mathbb{Z}_2 \times \dots, * \right>$, де під $*$ ховаються операції $(+,+,\dots)$.\\
 $(\overline{1},\overline{0},\overline{1},\overline{0},\overline{1},\overline{0},\dots)*(\overline{0},\overline{1},\overline{0},\overline{1},\overline{0},\overline{1},\dots) = (\overline{1},\overline{1},\overline{1},\overline{1},\overline{1},\overline{1},\dots)$.
+\end{example}
+
+\begin{remark}
+Нехай $G_1,G_2$ -- групи. Припустимо, що $K$ -- підгрупа $G_1 \times G_2$. Варто зазначити, що не обов'язково $K$ матиме вигляд прямого добутку $H_1 \times H_2$, де $H_1,H_2$ -- підгрупи $G_1,G_2$. 
+\end{remark}
+
+\begin{example}
+Зокрема розглянемо $G_1 = \{e,x\}$ та $G_2 = \{e,y\}$. Тоді звідси $G_1 \times G_2 = \{ (e,e), (e,x), (y,e), (x,y) \}$. Розглянемо підгрупу $K = \{ (e,e), (x,y)\} = \left< (x,y) \right>$ та зазначимо, що $K$ не є прямим добутком підгруп $G_1,G_2$. 
 \end{example}
 
 \begin{proposition}
@@ -2597,6 +2610,7 @@ $\ker \varphi = \left\{g \in G \mid \varphi(g) = e*G/_M \right\} = \left\{ g \in
 За першою теоремою про ізоморфізм, $G/_M \cong {G/_N}/_{M/_N}$.
 \end{proof}
 
+
 %Another proof without using correpsondence theorem
 \iffalse
 \begin{proof}
@@ -2612,11 +2626,12 @@ $\varphi$ -- сюр'єктивне відображення, бо якщо $g*M 
 \fi
 \newpage
 
-\section{Просунуті матеріали з теорії груп}
-\subsection{Дія групи, орбіта}
+%\section{Просунуті матеріали з теорії груп}
+\section{Теорія групової дії}
+\subsection{Дія групи}
 \begin{definition}
 Задано $\left< G,*\right>$ -- групу та множину $A \neq \emptyset$.\\
-\textbf{Дією групи $G$ на множину $A$} назвемо відображення $\rho \colon G \times A \to A$, що підпорядкована умовами:
+\textbf{Дією (ліворуч) групи $G$ на множину $A$} назвемо відображення $\rho \colon G \times A \to A$, що підпорядкована умовами:
 \begin{align*}
 \forall a \in A: \rho(e_G,a) = a; \\
 \forall g_1,g_2 \in G: \rho(g_1*g_2,a) = \rho(g_1,\rho(g_2,a))
@@ -2668,6 +2683,19 @@ x \\ y
 \end{pmatrix}$.
 \end{example}
 
+\begin{example}
+Розглянемо знову дієдральну групу $D_4$ та простір $\Omega = \{ HH, HT, TH, TT \}$. Дана множина характеризуватиме ситуацію, коли на столі лежать дві монети поруч, що показують або орла (head) або решку (tail). Установимо дію групи $D_4$ на $\Omega$ таким чином:\\
+$r \omega$ -- повернути ліву монету (наприклад, $r (HT) = TT$;\\
+$s \omega$ -- змінити місцями монети (наприклад, $s(HT) = TH$.
+\end{example}
+
+\begin{example}
+Нехай $\left< G,*\right>$ -- група. Розглянемо операцію $G$ як відображення $\rho \colon G \times G \to G$ таким чином: $\rho(g_1,g_2) = g_1*g_2$. Тоді\\
+$\rho(e,g) = e*g = g$\\
+$\rho(g_1*g_2,h) = (g_1*g_2)*h = g_1*(g_2*h) = \rho(g_1,g_2*h) = \rho(g_1,\rho(g_2,h))$.\\
+Отже, $\rho$ буде дією. Ще кажуть, що \textbf{група $G$ діє на собі множенням зліва}.
+\end{example}
+
 \begin{proposition}
 Задано $\left< G,*\right>$ -- групу та множину $A \neq \emptyset$. Кожна дія $\rho$ групи $G$ на множину $A$ задає гомоморфізм $\sigma \colon G \to S_A$ формулою $\sigma (g)(a) = \rho(g,a), \forall a \in A$.\\
 Навпаки теж працює: кожний гомоморфізм $\sigma \colon G \to S_A$ задає дію групи $G$ на множину $A$.
@@ -2689,14 +2717,17 @@ $\sigma (g_1*g_2)(a) = \rho(g_1*g_2,a) = \rho(g_1, \rho(g_2,a)) = \sigma(g_1)[\s
 Маємо групу $[r]$ -- підгрупа дієдральної групи $D_3$. Маємо $A = \{1,2,3\}$, де ці числа відповідають вершинами рівностороннього трикутника.\\
 1. Дію $\rho$ групи $[r]$ на множину $A$ задамо таким чином: $r$ діє на елемент $a \in A$ як поворот трикутника проти годинникової стрілки. Наприклад, $\rho(r^2,1) = 2,\ \rho(r^2,2) = 3,\ \rho(r^2,3) = 1$.\\
 За твердженням, ця дія $\rho$ відповідає гомоморфізму $\sigma \colon [r] \to S_3$ таким чином:\\
-$e \mapsto \begin{cases} 1 \mapsto 1 \\ 2 \mapsto 2 \\ 3 \mapsto 3 \end{cases},\ r \mapsto \begin{cases} 1 \mapsto 3 \\ 2 \mapsto 1 \\ 3 \mapsto 2 \end{cases},\ r^2 \mapsto \begin{cases} 1 \mapsto 2 \\ 2 \mapsto 3 \\ 3 \mapsto 1 \end{cases}$.
+$e \mapsto \begin{cases} 1 \mapsto 1 \\ 2 \mapsto 2 \\ 3 \mapsto 3 \end{cases},\ r \mapsto \begin{cases} 1 \mapsto 3 \\ 2 \mapsto 1 \\ 3 \mapsto 2 \end{cases},\ r^2 \mapsto \begin{cases} 1 \mapsto 2 \\ 2 \mapsto 3 \\ 3 \mapsto 1 \end{cases}$.\\
+Іншими словами $\sigma(e) = (1),\ \sigma(r) = (132),\ \sigma(r^2) = (123)$.
 \bigskip \\
 Візьмемо іншу підгрупу $[s]$.\\
 2. Дію $\rho$ групи $[s]$ на множину $A$ задамо таким чином: $r$ діє на елемент $a \in A$ як відбиття трикутника відносно осі, що проходить через цю вершину. Наприклад, $\rho(s,1) = 1,\ \rho(s,2) = 3,\ \rho(s,3) = 2$.\\
 За твердженням, це діє $\rho$ відповідає гомоморфізму $\sigma \colon [s] \to S_3$ таким чином:\\
-$e \mapsto \begin{cases} 1 \mapsto 1 \\ 2 \mapsto 2 \\ 3 \mapsto 3 \end{cases},\ s \mapsto \begin{cases} 1 \mapsto 1 \\ 2 \mapsto 3 \\ 3 \mapsto 2 \end{cases}$
+$e \mapsto \begin{cases} 1 \mapsto 1 \\ 2 \mapsto 2 \\ 3 \mapsto 3 \end{cases},\ s \mapsto \begin{cases} 1 \mapsto 1 \\ 2 \mapsto 3 \\ 3 \mapsto 2 \end{cases}$.\\
+Іншими словами, $\sigma(e) = (1),\ \sigma(s) = (23)$.
 \end{example}
 
+\subsection{Орбіта елемента}
 \begin{definition}
 Задано $\left< G,*\right>$ -- групу, що діє на множину $A \neq \emptyset$.\\
 \textbf{Орбітою елемента $a \in A$} називають таку підмножину:
@@ -2715,6 +2746,7 @@ $e \mapsto \begin{cases} 1 \mapsto 1 \\ 2 \mapsto 2 \\ 3 \mapsto 3 \end{cases},\
 \begin{align*}
 \Orb_G(a) = \{a\}
 \end{align*}
+У такому разі $\forall g \in G: ga = a$. Із такою умовою точку $a$ називають \textbf{нерухомою}. 
 \end{definition}
 
 \begin{example}
@@ -2749,12 +2781,13 @@ $a = \rho(e_G, a) = \rho(g_1^{-1}*g_1, a) = \rho(g_1^{-1}, \rho(g_1,a)) = \rho(g
 Узявши першу дію з минулого прикладу, там $\Orb_{[r]}(1) = A$ -- і це єдина орбіта в принципі. Тобто дія $[r]$ на $A$ транзитивна.
 \end{example}
 
+\subsection{Точні та вільні дії}
 \begin{definition}
 Дія групи $\left< G,*\right>$ на множині $A$ називається \textbf{точною} (\textbf{faithful action}), якщо
 \begin{align*}
-\nexists g \in G \setminus \{e\} : ga = a, \forall a \in A
-\iffalse \forall g \in G \setminus \{e\}: \exists a \in A: ga \neq a \fi
+\forall g \in G: \forall a \in A: ga = a \implies g = e
 \end{align*}
+Іншими словами, лише $e$ може бути тотожною дією.
 \end{definition}
 
 \begin{proposition}
@@ -2769,8 +2802,9 @@ $a = \rho(e_G, a) = \rho(g_1^{-1}*g_1, a) = \rho(g_1^{-1}, \rho(g_1,a)) = \rho(g
 \begin{definition}
 Дія групи $\left< G,*\right>$ на множині $A$ називається \textbf{вільною} (\textbf{free action}), якщо
 \begin{align*}
-\forall a \in A: ga \neq a, \forall g \in G \setminus \{e\}
+\forall g \in G: \exists a \in A: ga = a \implies g = e
 \end{align*}
+Іншими словами, крім $g = e$, точка має переводитись в щось інше.
 \end{definition}
 
 \begin{remark}
@@ -2782,11 +2816,7 @@ $a = \rho(e_G, a) = \rho(g_1^{-1}*g_1, a) = \rho(g_1^{-1}, \rho(g_1,a)) = \rho(g
 \end{example}
 
 \begin{example}
-Нехай $\left< G,*\right>$ -- група. Розглянемо операцію $G$ як відображення $\rho \colon G \times G \to G$ таким чином: $\rho(g_1,g_2) = g_1*g_2$. Тоді\\
-$\rho(e,g) = e*g = g$\\
-$\rho(g_1*g_2,h) = (g_1*g_2)*h = g_1*(g_2*h) = \rho(g_1,g_2*h) = \rho(g_1,\rho(g_2,h))$.\\
-Отже, $\rho$ буде дією. Ще кажуть, що \textbf{група $G$ діє на собі множенням зліва}.\\
-Така дія -- вільна. Дійсно, якщо $g,h \in G$ такі, що $g*h = h$, то миттєво $g = e$.
+Дія групи $G$ на собі ліворуч -- вільна. Дійсно, якщо $g,h \in G$ такі, що $g*h = h$, то миттєво $g = e$. Це допоможе нам при доведенні наступної теореми.
 \end{example}
 
 \begin{theorem}[Теорема Келі]
@@ -2798,7 +2828,82 @@ $\rho(g_1*g_2,h) = (g_1*g_2)*h = g_1*(g_2*h) = \rho(g_1,g_2*h) = \rho(g_1,\rho(g
 Розглянемо дію $G$ на собі множенням зліва. Тоді вона задає гомоморфзм $\sigma \colon G \to S_G$ формулою $\sigma(g)(a) = g*a, \forall a \in G$. Але оскільки дія -- вільна (тому автоматично точна), то $\ker \sigma = \{e\}$, тому що відображення ін'єктивне. Тоді $G \cong \Im \sigma$, причому $\Im \sigma$ -- шукана підгрупа $S_G$.
 \end{proof}
 
-\subsection{Спряженість та центр групи}
+\subsection{Стабілізатор}
+\begin{definition}
+Задано $\left< G,* \right>$ -- група та $A$ -- множина. Нехай є дія групи $G$ на множині $A$.\\
+\textbf{Стабілізатором елемента $a \in A$} називається підгрупа
+\begin{align*}
+\Stab_G(a) = \{g \in G \mid ga = a\}
+\end{align*}
+Тобто тут всі елементи групи $g$, для яких точка $a \in A$ буде нерухомою.
+\end{definition}
+
+\begin{proposition}
+$\Stab_G(a)$ -- підгрупа $G$.
+\end{proposition}
+
+\begin{proof}
+Ясно, що ця множина непорожня, бо $e \in \Stab_G(a)$.\\
+Нехай $u,v \in \Stab_G(a)$, тобто $ua = a,\ va = a$.\\
+$(u*v)a = u(va) = ua = a \implies u*v \in \Stab_G(a)$;\\
+$a = ea = (u^{-1}*u)a = u^{-1}(ua) = u^{-1}a \implies u^{-1} \in \Stab_G(a)$.
+\end{proof}
+
+\begin{lemma}
+Існує бієкція $\Orb_G(a) \to G/_{\Stab_G(a)}$.
+\end{lemma}
+
+\begin{remark}
+Хоча $\Stab_G(a) \centernot\triangleleft G$ загалом, але множина $G/_{\Stab_G(a)}$ все одно визначається як просто клас всіх суміжних класів (тут будуть ліві суміжні).
+\end{remark}
+
+\begin{proof}
+Установимо відображення $\alpha \colon G/_{\Stab_G(a)} \to \Orb_G(a)$ таким чином: $\alpha(g*\Stab_G(a)) = ga$.\\
+Це відображення коректно визначено. Маємо $g_1*\Stab_G(a) = g_2*\Stab_G(a)$. Маємо $g_1*g_2^{-1} \in \Stab_G(a)$, тобто звідси $(g_1*g_2^{-1})a = a$, а звідси отримаємо $g_1a = g_2a$.\\
+Нехай $\alpha(g_1*\Stab_G(a)) = \alpha(g_2*\Stab_G(a))$, тобто $g_1a = g_2a$, тоді звідси $(g_1*g_2^{-1})a = a$, тобто $g_1*g_2^{-1} \in \Stab_G(a)$ або $g_1*\Stab_G(a) = g_2*\Stab_G(a)$.\\
+Нехай $x \in \Orb_G(a)$, тобто $x = ga$. Тоді існує $g*\Stab_G(a) \in G/_{\Stab_G(a)}$, де $\alpha(g*\Stab_G(a)) = ga = x$.\\
+Довели, що $\alpha$ -- бієктивне відображення.
+\end{proof}
+
+Із даної леми випливає миттєвво теорема:
+
+\begin{theorem}
+Задано $\left<G,*\right>$ -- скінченна група та $A$ -- множина. Маємо дію групи $G$ на $A$. Тоді $\card(\Orb_G(a)) = [G:\Stab_G(a)]$.
+\end{theorem}
+
+\begin{example}
+Маємо циклічну групу $G$ порядка $35$, що діє на множину $A$, де $\card(A) = 4$. За щойно доведеною теоремою, $\card(\Orb_G(a)) = [G : \Stab_G(a)]$, тобто $\card(\Orb_G(a)) \mid \card(G) = 35$, звідси маємо $\card(\Orb_G(a)) \in \{1,5,7,35\}$.\\
+Водночас $\Orb_G(a) \subset A$, тобто $\card(\Orb_G(a)) \leq 4$.\\
+Разом отримаємо $\card(\Orb_G(a)) = 1$, тож дія групи $G$ на $A$ буде тривіальною, бо всі орбіти -- тривіальні. 
+\end{example}
+
+\begin{remark}
+Означення нерухомої точки можна переписати інакше. Якщо $\left<G,*\right>$ -- група, яка діє на множину $A$, то точка $a \in A$ буде \textbf{нерухомою} $\iff \Stab_G(a) = G$.
+\end{remark}
+
+\begin{corollary}
+\label{amount_of_fixed_points}
+Задано $\left< G,* \right>$ -- $p$-група та $A$ -- множина. Нехай є дія групи $G$ на множині $A$. Позначимо $F$ за множину всіх нерухомих точок цієї дії. Тоді $\card(F) \equiv \card(A) \pmod {p}$.
+\end{corollary}
+
+\begin{proof}
+Ми вже знаємо, що $|G| = [G:\Stab_G(a)] |\Stab_G(a)|$ за теоремою Лагранжа, а також ми знаємо, що $[G:\Stab_G(a)] = |\Orb_G(a)|$. Маючи той факт, що $G$ є $p$-групою (тобто $|G| = p^r$), то отримаємо $|\Orb_G(a)| \mid p^r$. В силу того, що $p$ -- просте, то звідси $|\Orb_G(a)| \in \{1,p,p^2,\dots,p^r\}$.\\
+За умовою, $F$ -- множина нерухомих точок, тобто $F = \{a \in A : |\Orb_G(a)| = 1\}$. Із цього випливатиме, що $\forall a \in A \setminus F: p \mid |\Orb_G(a)|$. Ми вже знаємо, що множина $A$ розбивається орбітами. Доведемо, що множина $A \setminus F$ теж розбивається орбітами тільки елементами з $A \setminus F$.\\
+Якщо $x \in A \setminus F$, то $x \in \Orb_G(a)$, причому обов'язково $a \in A \setminus F$ (у протилежному випадку $x$ сама стане нерухомою точкою, чого ми не вимагали). Якщо $x \in \Orb_G(a)$, де $a$ не є нерухомою, то тоді $x \in A \setminus F$; бо якби $x$ була нерухомою, то, маючи $x = ga$ та $x = gx$, отримали би $x = a$, а це означало б нерухомість точки $a$, чого ми не вимагали.\\
+Отже, $A \setminus F = \displaystyle\bigsqcup_{a \in A \setminus F} \Orb_G(a) \implies p \mid |A \setminus F| \implies |A| = |A \setminus F| + |F| \equiv |F| \pmod p$.
+\end{proof}
+
+\begin{corollary}
+Задано $\left< G,*\right>$ -- скінченна група та $a \in G$. Тоді $\card(a^G) \mid \card(G)$.
+\end{corollary}
+
+\begin{proof}
+Група $G$ діє сама на себе спряженням та $\Orb_G(a) = a^G$. Ми вже знаємо, що $\card(\Orb_G(a)) \mid \card(G)$, але це те, що ми хотіли.
+\end{proof}
+
+\subsection{Спряженість}
+Одна особлива дія, яку часто розглядають в теорії груп. Вирішив її вставити окремим підрозділом, оскільки така дія варта своєї уваги.
+
 \begin{definition}
 Задано $\left<G,*\right>$ -- група та $a \in G$.\\
 Елемент $y \in G$ називається \textbf{спряженим до $a$}, якщо
@@ -2852,6 +2957,23 @@ $1^{Q_8} = \{1\}$ \hspace{0.5cm} $(-1)^{Q_8} = \{-1\}$ \hspace{0.5cm} $i^{Q_8} =
 \end{enumerate}
 \end{example}
 
+\begin{remark}
+Один із способів розглядати спряження як узагальнення зміни координат при переписуванні матриць або, з фізичної точки зору, як процес ''погляду на групу з іншої точки зору''.\\
+Дане зауваження було взято ось тут: \href{https://math.stackexchange.com/questions/11971/intuition-behind-conjugation-in-group-theory}{*клік*}.
+\end{remark}
+
+\begin{proposition}[Інший критерій нормальної підгрупи]
+Задано $\left< G,* \right>$ -- група та $H$ -- підгрупа.\\
+$H \triangleleft G \iff H = \displaystyle\bigcup_{h \in H} h^G$.
+\end{proposition}
+
+\begin{proof}
+Позначимо $\tilde{H}$ -- об'єднання класів спряженості елементів групи $H$. Тобто $\tilde{H} = \displaystyle\bigcup_{h \in H} h^G$. Звідси отримаємо $\tilde{H} = \displaystyle\bigcup_{g \in G} g*H*g^{-1}$.\\
+\rightproof Дано: $H$ -- нормальна, тобто $g*H*g^{-1} = H$, але тоді звідси $\tilde{H} = H$.\\
+\leftproof Дано: $\tilde{H} = H$, тоді $\forall g \in G: g*H*g^{-1} \subset \tilde{H} = H$, тобто $H \triangleleft G$.
+\end{proof}
+
+\subsection{Центр групи}
 \begin{definition}
 Задано $\left< G, *\right>$ -- група.\\
 \textbf{Центром} групи $G$ будемо називати таку множину:
@@ -2861,17 +2983,20 @@ Z(G) = \{ a \in G: \forall x \in G: a*x = x*a\}
 Елементи $a \in Z(G)$ називають \textbf{центральними елементами} групи $G$.
 \end{definition}
 
-\begin{remark}
-Спряженість не точна дія -- це теж саме, що сказати, що $\exists g \in G \setminus \{e\}: \forall a \in A: g*a*g^{-1} = a \iff g*a=a*g$. Це теж саме, що сказати, що $g \in Z(G)$.\\
-Отже, спряженість не точна дія $\iff Z(G) \neq \emptyset$.
-\end{remark}
+\begin{lemma}
+Дія спряженості -- не точна дія $\iff Z(G) \neq \emptyset$.
+\end{lemma}
+
+\begin{proof}
+Дійсно, спряженість -- не точна дія $\iff \exists g \in G \setminus \{e\}: \forall a \in A: g*a*g^{-1} = a \iff \forall a \in A: g*a = a*g \iff \exists g \in Z(G)$.
+\end{proof}
 
 \begin{remark}
 Оскільки $e \in Z(G)$, то вже автоматично $Z(G) \neq \emptyset$, тому звідси спряженість автоматично не точна дія (внаслідок чого не вільна дія).
 \end{remark}
 
 \begin{remark}
-$a^G = \{a\}$, тобто орбіта -- тривіальна $\iff a \in Z(G)$.
+Орбіта $a^G$ (ми розглядаємо спряженість) -- тривіальна $\iff a \in Z(G)$.
 \end{remark}
 
 \begin{proposition}
@@ -2908,98 +3033,20 @@ $a*b^{-1}*x = a*b^{-1}*x*b*b^{-1} = a*b^{-1}*b*x*b^{-1}= a*x*b^{-1} = x*a*b^{-1}
 Абелевість $Z(G)$ доводиться миттєво.
 \end{proof}
 
-\begin{proposition}[Інший критерій нормальної підгрупи]
-Задано $\left< G,* \right>$ -- група та $H$ -- підгрупа.\\
-$H \triangleleft G \iff H = \displaystyle\bigcup_{h \in H} h^G$.
-\end{proposition}
-
-\begin{proof}
-Позначимо $\tilde{H}$ -- об'єднання класів спряженості елементів групи $H$. Тобто $\tilde{H} = \displaystyle\bigcup_{h \in H} h^G$. Звідси отримаємо $\tilde{H} = \displaystyle\bigcup_{g \in G} g*H*g^{-1}$.\\
-\rightproof Дано: $H$ -- нормальна, тобто $g*H*g^{-1} = H$, але тоді звідси $\tilde{H} = H$.\\
-\leftproof Дано: $\tilde{H} = H$, тоді $\forall g \in G: g*H*g^{-1} \subset \tilde{H} = H$, тобто $H \triangleleft G$.
-\end{proof}
-
-\subsection{Стабілізатори}
-\begin{definition}
-Задано $\left< G,* \right>$ -- група та $A$ -- множина. Нехай є дія групи $G$ на множині $A$.\\
-\textbf{Стабілізатором елемента $a \in A$} називається підгрупа
-\begin{align*}
-\Stab_G(a) = \{g \in G \mid ga = a\}
-\end{align*}
-Тобто тут всі елементи групи $g$, для яких точка $a \in A$ буде нерухомою.
-\end{definition}
-
 \begin{proposition}
-$\Stab_G(a)$ -- підгрупа $G$.
+Задані $\left<G,*\right>,\ \left<H, \star \right>$ -- групи та $f \colon G \to H$ -- сюр'єктивний гомоморфізм. Тоді $f(Z(G)) \subset Z(H)$.  
 \end{proposition}
 
 \begin{proof}
-Ясно, що ця множина непорожня, бо $e \in \Stab_G(a)$.\\
-Нехай $u,v \in \Stab_G(a)$, тобто $ua = a,\ va = a$.\\
-$(u*v)a = u(va) = ua = a \implies u*v \in \Stab_G(a)$;\\
-$a = ea = (u^{-1}*u)a = u^{-1}(ua) = u^{-1}a \implies u^{-1} \in \Stab_G(a)$.
-\end{proof}
-
-\begin{lemma}
-Існує бієкція $\Orb_G(a) \to G/_{\Stab_G(a)}$.
-\end{lemma}
-
-\begin{remark}
-Хоча $\Stab_G(a) \centernot\triangleleft G$ загалом, але множина $G/_{\Stab_G(a)}$ все одно визначається як просто клас всіх суміжних класів (тут будуть ліві суміжні).
-\end{remark}
-
-\begin{proof}
-Установимо відображення $\alpha \colon G/_{\Stab_G(a)} \to \Orb_G(a)$ таким чином: $\alpha(g*\Stab_G(a)) = ga$.\\
-Це відображення коректно визначено. Маємо $g_1*\Stab_G(a) = g_2*\Stab_G(a)$. Маємо $g_1*g_2^{-1} \in \Stab_G(a)$, тобто звідси $(g_1*g_2^{-1})a = a$, а звідси отримаємо $g_1a = g_2a$.\\
-Нехай $\alpha(g_1*\Stab_G(a)) = \alpha(g_2*\Stab_G(a))$, тобто $g_1a = g_2a$, тоді звідси $(g_1*g_2^{-1})a = a$, тобто $g_1*g_2^{-1} \in \Stab_G(a)$ або $g_1*\Stab_G(a) = g_2*\Stab_G(a)$.\\
-Нехай $x \in \Orb_G(a)$, тобто $x = ga$. Тоді існує $g*\Stab_G(a) \in G/_{\Stab_G(a)}$, де $\alpha(g*\Stab_G(a)) = ga = x$.\\
-Довели, що $\alpha$ -- бієктивне відображення.
-\end{proof}
-
-Із даної леми випливає миттєвво теорема:
-
-\begin{theorem}
-Задано $\left<G,*\right>$ -- скінченна група та $A$ -- множина. Маємо дію групи $G$ на $A$. Тоді $\card(\Orb_G(a)) = [G:\Stab_G(a)]$.
-\end{theorem}
-
-\begin{example}
-Маємо циклічну групу $G$ порядка $35$, що діє на множину $A$, де $\card(A) = 4$. За щойно доведеною теоремою, $\card(\Orb_G(a)) = [G : \Stab_G(a)]$, тобто $\card(\Orb_G(a)) \mid \card(G) = 35$, звідси маємо $\card(\Orb_G(a)) \in \{1,5,7,35\}$.\\
-Водночас $\Orb_G(a) \subset A$, тобто $\card(\Orb_G(a)) \leq 4$.\\
-Разом отримаємо $\card(\Orb_G(a)) = 1$, тож дія групи $G$ на $A$ буде тривіальною, бо всі орбіти -- тривіальні. 
-\end{example}
-
-\begin{definition}
-Задано $\left<G,*\right>$ -- скінченна група та $A$ -- множина. Маємо дію групи $G$ на $A$.\\
-Елемент $a \in A$ називається \textbf{нерухомою точкою дії групи $G$}, якщо
-\begin{align*}
-\Stab_G(a) = G
-\end{align*}
-Або інакше кажучи, $\card(\Orb_G(a)) = 1$. Тобто якщо орбіта тривіальна, то точка $a$ є нерухомою.
-\end{definition}
-
-\begin{corollary}
-\label{amount_of_fixed_points}
-Задано $\left< G,* \right>$ -- $p$-група та $A$ -- множина. Нехай є дія групи $G$ на множині $A$. Позначимо $F$ за множину всіх нерухомих точок цієї дії. Тоді $\card(F) \equiv \card(A) \pmod {p}$.
-\end{corollary}
-
-\begin{proof}
-Ми вже знаємо, що $|G| = [G:\Stab_G(a)] |\Stab_G(a)|$ за теоремою Лагранжа, а також ми знаємо, що $[G:\Stab_G(a)] = |\Orb_G(a)|$. Маючи той факт, що $G$ є $p$-групою (тобто $|G| = p^r$), то отримаємо $|\Orb_G(a)| \mid p^r$. В силу того, що $p$ -- просте, то звідси $|\Orb_G(a)| \in \{1,p,p^2,\dots,p^r\}$.\\
-За умовою, $F$ -- множина нерухомих точок, тобто $F = \{a \in A : |\Orb_G(a)| = 1\}$. Із цього випливатиме, що $\forall a \in A \setminus F: |\Orb_G(a)| \mid p$. Ми вже знаємо, що множина $A$ розбивається орбітами. Доведемо, що множина $A \setminus F$ теж розбивається орбітами тільки елементами з $A \setminus F$.\\
-Якщо $x \in A \setminus F$, то $x \in \Orb_G(a)$, причому обов'язково $a \in A \setminus F$ (у протилежному випадку $x$ сама стане нерухомою точкою, чого ми не вимагали). Якщо $x \in \Orb_G(a)$, де $a$ не є нерухомою, то тоді $x \in A \setminus F$; бо якби $x$ була нерухомою, то, маючи $x = ga$ та $x = gx$, отримали би $x = a$, а це означало б нерухомість точки $a$, чого ми не вимагали.\\
-Отже, $A \setminus F = \displaystyle\bigsqcup_{a \in A \setminus F} \Orb_G(a) \implies p \mid |A \setminus F| \implies |A| = |A \setminus F| + |F| \equiv |F| \pmod p$.
-\end{proof}
-
-\begin{corollary}
-Задано $\left< G,*\right>$ -- скінченна група та $a \in G$. Тоді $\card(a^G) \mid \card(G)$.
-\end{corollary}
-
-\begin{proof}
-Група $G$ діє сама на себе спряженням та $\Orb_G(a) = a^G$. Ми вже знаємо, що $\card(\Orb_G(a)) \mid \card(G)$, але це те, що ми хотіли.
+Нехай $u \in f(Z(G))$, тобто $u = f(g)$ при деякому $g \in Z(G)$. Доведемо, що $u \in Z(H)$.\\
+Зафіксуємо $v \in H$. Оскільки $f$ -- сюр'єктивний, то звідси існує $a \in G$, для якого $v = f(a)$. Значить,\\
+$v \star u = f(a) \star f(g) = f(a*g) \overset{g \in Z(G)}{=} f(g*a) = f(g) \star f(a) = u \star v$.\\
+Отже, ми довели тим самим, що справді $u \in Z(H)$.
 \end{proof}
 
 \subsection{Централізатори та $p$-групи}
 \begin{definition}
-Задано $\left< G, *\right>$ - група та елемент $a \in G$.\\
+Задано $\left< G, *\right>$ -- група та елемент $a \in G$.\\
 \textbf{Централізатором елемента $a$} називають таку множину:
 \begin{align*}
 Z_G(a) = \{g \in G: a*g = g*a\}
@@ -3015,36 +3062,45 @@ $\Stab_G(a) = \{ g \in G \mid g*a*g^{-1} = a \} = \{g \in G \mid a*g = g*a\} = Z
 \end{remark}
 
 \begin{remark}
-$a^G = \Orb_G(a) = [G: \Stab_G(a)] = [G: Z_G(a)]$
+$\card (a^G) = \card (\Orb_G(a)) = [G: \Stab_G(a)] = [G: Z_G(a)]$.
 \end{remark}
 
 \begin{remark}
 $Z(G) = \displaystyle\bigcap_{a \in G} Z_G(a)$ \textit{(вправа: довести)}
 \end{remark}
 
+\begin{remark}
+У дії спряженості множина $Z(G)$ -- це множина всіх нерухомих точок.\\
+Дійсно, якщо $a \in Z(G)$, то звідси $\forall g \in G: a*g = g*a \implies g*a*g^{-1} = a$. Це означає, що $\Orb_G(a) = a^G = \{a\}$, тобто справді нерухома точка.
+\end{remark}
+
 \begin{theorem}
-Задано $\left< G,* \right>$ -- група. Нехай $\Gamma_0 \subset G$ містить рівно по одному представнику від кожного класа спряжності елемента $G$. Позначимо $\Gamma = \Gamma_0 \setminus Z(G)$. Тоді\\
+Задано $\left< G,* \right>$ -- група (розглядається дія спряженості). Нехай $\Gamma_0 \subset G$ містить рівно по одному представнику від кожного класа спряжності елемента $G$. Позначимо $\Gamma = \Gamma_0 \setminus Z(G)$. Тоді\\
 $\card(G) = \displaystyle\sum_{a \in \Gamma_0} [G: Z_G(a)] \overset{\text{або}}{=} \card(Z(G)) + \sum_{a \in \Gamma} [G: Z_G(a)]$.
 \end{theorem}
 
 \begin{proof}
-Маємо дію групи $G$ на собі -- і це спряження. \\
-Робимо нагадування, що $a^G = \Orb_G(a)$.\\
-Зауважимо, що $Z(G)$ у цьому випадку -- це множина нерухомих точок. А це означає, що $Z(G)$ містить точки групи $G$, орбіти яких одноелементні. Справді,\\
-$Z(G) = \{ a \in G: \forall g \in G: ga = ag \} = \{a \in G: \forall g \in G: gag^{-1} = a\} = \{a \in G: a^G = \{a\}\} = \{a \in G: \Orb_G(a) = \{a\}\}$.\\
-Ми знаємо, що $G$  розбивається орбітами, тобто $G = \displaystyle\bigsqcup_{a \in \Gamma_0} \Orb_G(a)$. Отже,\\
+Нагадую, що $Z(G)$ -- множина всіх нерухомих точок. Ми знаємо, що $G$  розбивається орбітами, тобто $G = \displaystyle\bigsqcup_{a \in \Gamma_0} \Orb_G(a)$. Отже,\\
 $\card(G) = \displaystyle\sum_{a \in \Gamma_0} \card(\Orb_G(a)) \overset{\text{або}}{=} \card(Z(G)) + \sum_{a \in \Gamma} \card(\Orb_G(a))$.\\
 Але ми знаємо, що $\card(\Orb_G(a)) = [G:\Stab_G(a)] = [G:Z_G(a)]$.
 \end{proof}
 
+\subsection{Деякі результати про $p$-групи}
 \begin{corollary}
 Задано $G \neq \{e\}$ -- $p$-група. Тоді $Z(G) \neq \{e\}$.
 \end{corollary}
 
 \begin{proof}
-Відомо, що $\card(G) = [G \!: \! Z_G(a)] \card(Z_G(a))$. Оскільки $\card(G) = p^r, \\ r > 1$, то тоді отримаємо $p \mid [G \!: \! Z_G(a)]$ для всіх $a \in \Gamma$, тому що в цьому випадку $[G:Z_G(a)] = \card(\Orb_G(a)) > 1$ (ми беремо ті точки, де орбіта містить більше одного елементу). Тоді\\
+Оскільки $Z(G)$ -- множина нерухомих точок (під спряженістю), то звідси $|G| \equiv |Z(G)| \pmod p$. Оскільки $G$ -- $p$-група, то звідси $p \mid |Z(G)|$, тому $Z(G) \neq \{e\}$.
+\end{proof}
+
+%How to prove based on the formula above
+\iffalse
+\begin{proof}
+Відомо, що $\card(G) = [G \!: \! Z_G(a)] \card(Z_G(a))$. Оскільки $\card(G) = p^r,\ r > 1$, то тоді отримаємо $p \mid [G \!: \! Z_G(a)]$ для всіх $a \in \Gamma$, тому що в цьому випадку $[G:Z_G(a)] = \card(\Orb_G(a)) > 1$ (ми беремо ті точки, де орбіта містить більше одного елементу). Тоді\\
 $\card(Z(g)) = \card(G) - \displaystyle\sum_{a \in \Gamma}[G: Z_G(a)] \implies p \mid \card(Z(g))$.
 \end{proof}
+\fi
 
 \begin{corollary}
 Задано $G$ -- група порядку $p^2$. Тоді $G$ -- абелева.
@@ -3057,12 +3113,12 @@ $\card(Z(g)) = \card(G) - \displaystyle\sum_{a \in \Gamma}[G: Z_G(a)] \implies p
 \end{proof}
 
 \begin{remark}
-Якщо $G$ має порядок $p^k, k > 2$, то ми не можемо сказати загалом, що $G$ -- абелева група.\\
+Якщо $|G| = p^k, k > 2$, то ми не можемо сказати загалом, що $G$ -- абелева група.\\
 Зокрема дієдральна група $D_4$ містить $8 = 2^3$ елементів, але не абелева. Ну дійсно, $sr \cdot r \neq r \cdot sr$.
 \end{remark}
 
 \subsection{Нормалізатори}
-Маємо $\left<G,*\right>$ -- група та множина $2^G$ (клас всіх підмножин $G$). Буде група $G$ діяти на $2^G$ таким чином:\\
+Маємо $\left<G,*\right>$ -- група та множина $2^G$ (клас всіх підмножин $G$). Група $G$ діє на $2^G$ таким чином:\\
 $\rho(g,S) = g*S*g^{-1} \eqbydef \{g*s*g^{-1} \mid s \in S\}$ -- це теж тіпа спряження.
 
 \begin{definition}
@@ -3083,37 +3139,62 @@ $N_G(H)$ -- найбільша підгрупа $G$, що містить $H$ т�
 \end{proposition}
 
 \begin{proof}
-Спочатку нехай $g_1,g_2 \in N_G(H)$, тобто $g_1*H*g_1^{-1} = H$ та $g_2*H*g_2^{-1} = H$. Звідси отримаємо:\\
-$(g_1*g_2)*H*(g_1*g_2)^{-1} = g_1*(g_2*H*g_2^{-1})*g_1^{-1} = g_1*H*g_1^{-1} = H$\\
-$g_1*H*g_1^{-1} = H \implies H*g_1^{-1} = g_1^{-1}*H \implies H = g_1^{-1}*H*(g_1^{-1})^{-1}$.\\
-Довели, що $g_1*g_2, g_1^{-1} \in H$.\\
-Тепер доведемо, що $N_G(H) \supset H$.\\
-Нехай $a \in H$, тоді автоматично $a^{-1} \in H$. Але тоді\\
-$a*H*a^{-1} = a*(H*a^{-1}) \overset{a^{-1} \in H}{=} a*H \overset{a \in H}{=} H$.\\
-Таким чином, $a \in N_G(H)$. Той факт, що $H \triangleleft N_G(H)$, доводиться легко.\\
-!Припустимо тепер, що існує $M \supset N_G(H)$ -- більша підгрупа $G$, що містить $H$ та $H \triangleleft M$. Але тоді за нормальністю, $\forall m \in M: H = m*H*m^{-1}$, тобто автоматично $m \in N_G(H)$, а тому $M \subset N_G(H)$.
+$N_G(H)$ -- дійсно підгрупа $G$ (як стабілізатор). Зараз доведемо, що $N_G(H) \supset H$.\\
+Нехай $a \in H$, тоді автоматично $a^{-1} \in H$. Але тоді $a*H*a^{-1} = a*(H*a^{-1}) \overset{a^{-1} \in H}{=} a*H \overset{a \in H}{=} H$. Таким чином, $a \in N_G(H)$. \\
+Той факт, що $H \triangleleft N_G(H)$, доводиться легко.\\
+Припустимо тепер, що існує $M \supset N_G(H)$ -- більша підгрупа $G$, що містить $H$ та $H \triangleleft M$. Але тоді за нормальністю, $\forall m \in M: H = m*H*m^{-1}$, тобто автоматично $m \in N_G(H)$, а тому $M \subset N_G(H)$. Отже, $M = N_G(H)$.
 \end{proof}
 
 \begin{definition}
 Задано $\left< G, *\right>$ -- група, де $G \neq \{e\}$.\\
-Група називається \textbf{простою}, якщо в неї нема власних нормальних підгруп, відмінних від $\{e\}$.
+Група називається \textbf{простою}, якщо
+\begin{align*}
+\text{у групи $G$ немає власних нормальних підгруп, відмінних від $\{e\}$}
+\end{align*}
 \end{definition}
 
 \begin{remark}
 Тобто $\{e\}$ уже не буде простою групою.
 \end{remark}
 
-\subsection{Теореми Сілова}
-\begin{definition}
-Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число. Із порядка $|G|$ відокремимо найбільший можливий степінь простого числа $p$, тобто буде $|G| = p^r \cdot m$, де $m \nmid p$.\\
-\textbf{$p$-підгрупою Сілова} називають підгрупу порядка $p^r$ (найбільша $p$-підгрупа).
-\end{definition}
-
-\begin{theorem}[Перша теорема Сілова]
-Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число. Відомо, що існує $k \in \mathbb{N}$, для якого $p^k \mid \, |G|$. Тоді група $G$ містить підгрупу порядка $p^k$.
+\subsection{Теорема Коші та Теореми Сілова}
+\begin{theorem}[Теорема Коші (для абелевої групи)]
+Задано $\left< G,*\right>$ -- скінченна абелева група та $p$ -- просте число, причому $p | |G|$. Тоді існує елемент $g \in G$, для якого $\ord(g) = p$.
 \end{theorem}
 
-Як наслідок, у кожній скінченній групі існує $p$-сіловська підгрупа.
+\begin{proof}
+Доведемо проведемо індуктивно.\\
+I. \textit{База індукції}. При $|G| = p$, за наслідком з теореми Лагранжа, $G$ -- циклічна група. Тому такий елемент $g \in G$, що $\ord(g) = p$, точно існує.\\
+II. \textit{Припущення індукції}. Теорема Коші виконується для груп, для яких просте число $p$ ділить їхній порядок, причому їхній порядок строго менший за $|G|$.\\
+III. \textit{Крок індукції}. Доведемо теорему Коші для групи $G$ з порядком $|G|$.\\
+Нехай $x \in G$ -- ненейтральний. Позначимо $\ord x = m$ для зручності.\\
+Припустимо, що $p \mid m$, тобто $\ord\left(x^{\frac{m}{p}}\right) = p$ за \prpref{ord_g_to_some_power} -- завершили.\\
+Інакше маємо $p \nmid m$, тоді розглянемо підгрупу $H = \left<x\right>$. Оскільки $G$ -- абелева, то звідси $H \triangleleft G$. Значить, можна розглянути групу $G/_H$. Спочатку зазначимо, що $|G/_H| < |G|$, оскільки $|H| = \ord x = m > 1$. Крім того, $p \mid |G/_H|$, адже маємо $|G/_H| \cdot |H| = |G|$, де $p \mid |G|$, але $p \nmid |H|$.\\
+Отже, за припущенням МІ, існує елемент $y+H \in G/_H$, для якого $\ord(y+H) = p$. Але неважко переконатися, що $p = \ord(g+H) \mid \ord(y) = k$. Тоді знову $\ord\left(y^{\frac{k}{p}}\right) = p$ за \prpref{ord_g_to_some_power}.\\
+МІ доведено.
+\end{proof}
+
+\begin{definition}
+Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число. Із порядка $|G|$ відокремимо найбільший можливий степінь простого числа $p$, тобто буде $|G| = p^r \cdot m$, де $p \nmid m$.\\
+\textbf{$p$-підгрупою Сілова} називають підгрупу порядка $p^r$ (найбільша $p$-підгрупа).
+\end{definition}
+\noindent
+Важливі питання, на які ми хочемо відповісти:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*.}]
+\item Чи існує завжди підгрупа Сілова?
+\item Якщо їх кілька, як вони між собою пов'язані?
+\item Що відомо за кількість підгруп Сілова?
+\end{enumerate}
+
+\begin{theorem}[І теорема Сілова]
+Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число, причому $|G| = p^r m,\ p \nmid m$. Тоді існує $p$-підгрупа Сілова.
+\end{theorem}
+
+Ми доведемо більш загальну теорему, після якої автоматично доведемо І теорему Сілова.
+
+\begin{theorem}
+Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число. Відомо, що існує $k \in \mathbb{N}$, для якого $p^k \mid \, |G|$. Тоді група $G$ містить підгрупу порядка $p^k$.
+\end{theorem}
 
 \begin{proof}
 !Припустимо, що існує скінченна група $\left< G, *\right>$, просте число $p$, для яких хоч й існує $k \in \mathbb{N}$, для якого $p^k \mid \, |G|$, але при цьому $G$ не містить підгрупу порядка $p^k$.\\
@@ -3126,18 +3207,26 @@ $a*H*a^{-1} = a*(H*a^{-1}) \overset{a^{-1} \in H}{=} a*H \overset{a \in H}{=} H$
 Нарешті, $|H| = p |H'| = p^k$, звідси $G$ містить підгрупу $H$ порядка $p^k$ -- суперечність!
 \end{proof}
 
-\begin{theorem}[Друга теорема Сілова]
-Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число. Оберемо $P$ -- $p$-підгрупу Сілова. Нехай $H$ -- $p$-підгрупа $G$. Тоді існує елемент $g \in G$, для якого $H \subset g*P*g^{-1}$.
+\begin{theorem}[II теорема Сілова]
+Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число. Нехай $P_1,P_2$ -- дві $p$-підгрупи Сілова. Тоді $P_1,P_2$ -- спряжені. Іншими словами, існує $g \in G$, для якого $P_2 = g*P_1*g^{-1}$.
 \end{theorem}
 
-Як наслідок, якщо $P_1,P_2$ -- дві $p$-підгрупи Сілова, то тоді вони є спряженими: $\exists g \in G: P_2 = g*P_1*g^{-1}$.
+Знову доведемо більш загальну теорему, яка доведе ІІ теорему Сілова.
+
+\begin{theorem}
+Задано $\left< G, * \right>$ -- скінченна група та $p$ -- просте число. Оберемо $P$ -- $p$-підгрупу Сілова. Нехай $H$ -- $p$-підгрупа $G$. Тоді існує елемент $g \in G$, для якого $H \subset g*P*g^{-1}$.
+\end{theorem}
 
 \begin{proof}
 Розглянемо дію групи $H$ множенням зліва на множини суміжних класів $G/_P$. У нас буде $h (a*P) = (h*a)*P$. Оскільки $|G/_P| = [G:P]$, тобто це буде взаємно просте число з $p$, то звідси дана дія містить нерухомі точки, за \crlref{amount_of_fixed_points}. Оберемо $a*P \in G/_P$ -- нерухома точка, тобто $h*a*P = a*P$, для всіх $h \in H$.\\
 $\forall h \in H: h*a*P = a*P \implies \forall h \in H: a^{-1}*h*a*P = P \implies \forall h \in H: a^{-1}*h*a \in P \implies a^{-1}*H*a \subset P \implies H \subset a*P*a^{-1}$.
 \end{proof}
 
-Для наступної теореми над знадобиться корисна лема.
+\begin{theorem}[III теорема Сілова]
+Задано $\left< G, *\right>$ -- скінченна група та $p$ -- просте число. Маємо $|G| = p^r m,\ p \nmid m$. Позначимо $N$ за кількість $p$-підгруп Сілова групи $G$. Тоді $N \mid m$ та $N \equiv 1 \pmod p$.
+\end{theorem}
+
+Для доведення даної теореми над знадобиться корисна лема.
 \begin{lemma}
 Задано $\left< G, *\right>$ -- скінченна група та $H$ -- підгрупа. Нехай $H$ діє на $G/_H$ множенням лівих суміжних класів.\\
 $a*H \in G/_H$ -- нерухома точка $\iff a*H \subset N_G(H)$.\\
@@ -3145,19 +3234,15 @@ $a*H \in G/_H$ -- нерухома точка $\iff a*H \subset N_G(H)$.\\
 \end{lemma}
 
 \begin{proof}
-Аналогічно, як це було з другою теоремою Сілова, доведемо, що\\
-$a*H$ -- нерухома точка $\iff H \subset a*H*a^{-1}$.\\
+Аналогічно, як це було з ІІ теоремою Сілова, доведемо, що $a*H$ -- нерухома точка $\iff H \subset a*H*a^{-1}$.\\
 Останнє еквівалентне тому, що $a \in N_G(H)$ (див. означення нормальних підгруп). А це теж саме, що $a*H \subset N_G(H)$.\\
 Нарешті, оскільки $H \triangleleft N_G(H)$, то звідси $[N_G(H):H]$ -- кількість нерухомих точок.
 \end{proof}
 
-\begin{theorem}[Третя теорема Сілова]
-Задано $\left< G, *\right>$ -- скінченна група та $p$ -- просте число. Маємо $|G| = p^r m,\ p \nmid m$. Позначимо $N$ за кількість $p$-підгруп Сілова групи $G$. Тоді $N \mid m$ та $N \equiv 1 \pmod p$.
-\end{theorem}
+Маючи лему, тепер доведемо ІІІ теорему Сілова.
 
 \begin{proof}
-За першою теоремою Сілова, бодай одна $p$-підгрупи Сілова $P$ існує. \\
-За другою теоремою Сілова, множина всіх $p$-підгруп Сілова -- це множина всіх спряжених до $P$. Якщо розглядати дію групи $G$ спряженням на $2^G$, то отримаємо, що $\Orb_G(P)$ -- це та сама множина, яка описує множину всіх спряжених до $P$, а до того ж $\Stab_G(P) = N_G(P)$. За умовою, $N = |\Orb_G(P)|$, тоді ми знаємо, що $|\Orb_G(P)| = N = [G: N_G(P)]$.\\
+За І теоремою Сілова, бодай одна $p$-підгрупи Сілова $P$ існує. За ІІ теоремою Сілова, множина всіх $p$-підгруп Сілова -- це множина всіх спряжених до $P$. Якщо розглядати дію групи $G$ спряженням на $2^G$, то отримаємо, що $\Orb_G(P)$ -- це та сама множина, яка описує множину всіх спряжених до $P$, а до того ж $\Stab_G(P) = N_G(P)$. За умовою, $N = |\Orb_G(P)|$, тоді ми знаємо, що $|\Orb_G(P)| = N = [G: N_G(P)]$.\\
 Спочатку доведемо, що $N \mid m$. Дійсно,\\
 $m = [G:P] = [G:N_G(P)] \cdot [N_G(P) : P] = N_p \cdot [N_G(P) : P]$.\\
 Залишилося довести, що $N \equiv 1 \pmod p$.\\
@@ -3167,14 +3252,202 @@ $N_p \cdot [N_G(P):P] = N_p \cdot m \equiv m \pmod p$.\\
 Утім оскільки $p \nmid m$, то автоматом $N_p \equiv 1 \pmod p$.
 \end{proof}
 
-\subsection{Застосування теорем Сілова}
 \begin{theorem}[Теорема Коші]
 Задано $\left< G, *\right>$ -- скінченна група та $p$ -- просте число, причому $p \mid |G|$. Тоді існує елемент $g \in G$, для якого $\ord(g) = p$.
 \end{theorem}
 
 \begin{proof}
-За першою теоремою Сілова, існує підгрупа $H$ групи $G$, для якої $|H| = p$. За наслідком теореми Лагранжа, така підгрупа -- циклічна, тож $H = [h]$. Причому $h \in G$, а також $\ord(h) = p$.
+За І теоремою Сілова, існує підгрупа $H$ групи $G$, для якої $|H| = p$. За наслідком теореми Лагранжа, така підгрупа -- циклічна, тож $H = [h]$. Причому $h \in G$, а також $\ord(h) = p$.
 \end{proof}
+
+Для доведення І теореми Сілова потрібна була мені теорема Коші для абелевих груп. Для узагальнення теореми Коші мені потрібна була І теорема Сілова. Саме тому я вирішив теореми з двома прізвищами поєднати в один підрозділ.
+\newpage
+
+\section{Просунуті матеріали з теорії груп}
+\subsection{Протилежна група}
+\begin{definition}
+Нехай $\left<G,*\right>$ -- група.\\
+Визначимо \textbf{протилежну групу} $\left< G^{\text{op}}, \cdot \right>$ ось таким чином: множина $G^{\text{op}} = G$, а операція $\cdot$ працює так:
+\begin{align*}
+\forall g,h \in G^{\text{op}}: g \cdot h = h*g
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Отримана структура $\left< G^{\text{op}}, \cdot \right>$ задає групу.\\
+\textit{Вправа: довести.}
+\end{proposition}
+
+\begin{proposition}
+Нехай $\left<G,*\right>$ -- група.\\
+Відображення $f \colon G^{\text{op}} \to G,\ f(g) = g$ -- ізоморфізм $\iff G$ -- абелева.
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $f \colon G^{\text{op}} \to G,\ f(g) = g$ -- ізоморфізм. Зафіксуємо елементи $g,h \in G$. Тоді $h*g = f(h)*f(g) = f(hg) = hg = g*h$. Отже, $G$ -- абелева.
+\bigskip \\
+\leftproof Дано: $G$ -- абелева. Тоді $f(gh) = gh = h*g = g*h = f(g)*f(h)$, тобто $f$ -- гомоморфізм. Крім того, зауважимо, що $f^{-1}(g) = g$. Таким чином, $f$ -- ізоморфізм. 
+\end{proof}
+
+\begin{remark}
+$G^{\text{op}} \cong G$ (навіть, якщо група $G$ не буде абелевою). У цьому випадку треба розглянути гомоморфізм $f \colon G \to G^{\text{op}}$, що задається таким чином: $f(g) = g^{-1}$.
+\end{remark}
+
+\begin{definition}
+Задано $\left<G,*\right>$ -- групу та множину $A \neq \emptyset$.\\
+\textbf{Дією (праворуч) групи $G$ на множину $A$} назвемо відображення $\rho \colon A \times G \to A$, що підпорядкована умовами:
+\begin{align*}
+\forall a \in A: \rho(a,e_G) = a; \\
+\forall g_1,g_2 \in G: \rho(a,g_1*g_2) = \rho(\rho(a,g_1),g_2)
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Задати дію праворуч групи $G$ на множину $A$ -- теж саме, що задати дію ліворуч групи $G^{\text{op}}$ на множину $A$.
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $G$ діє праворуч на множину $A$ відображенням $\rho \colon A \times G \to A$. Розглянемо інше відображення $\theta \colon G^{\text{op}} \times A \to A$, що задається таким чином: $\theta(g,a) = \rho(a,g)$. Тоді $G^{\text{op}}$ діятиме ліворуч на множину $A$ відображенням $\theta$. Дійсно,\\
+$\theta(e,a) = \rho(a,e) = a$;\\
+$\theta(g_1 \cdot g_2,a) = \theta(g_2*g_1,a) = \rho(a, g_2*g_1) = \rho(\rho(a,g_2), g_1) = \rho(\theta(g_2,a), g_1) = \theta(g_1,\theta(g_2,a))$.\\
+Доведення в \leftproof не потребує уточнення.
+\end{proof}
+
+\begin{remark}
+У групі $G$ можна задати праве множення на себе $ag = g*a$, де $a,g \in G$. Маючи праву дію, ми можемо миттєво перейти до лівої дії $ga = ag^{-1}$. 
+\end{remark}
+
+\subsection{Вільні групи}
+Задача полягає в тому, щоб із множини $A \neq \emptyset$ (яка не має групову структуру) побудувати групу $F(A)$ адекватним чином, причому так, щоб $F(A)$ містила $A$.\\
+Нехай $A$ -- множина. Позначимо $A'$ за множину оборотних елементів, елементу $a^{-1} \in A'$ відповідає елемент $a \in A$.
+
+\begin{definition}
+\textbf{Словом} множини $A$ називають впорядкований список
+\begin{align*}
+(a_1,a_2,\dots,a_n)
+\end{align*}
+Кожний елемент $a_i$ називають \textbf{літерою}, що є елементом або $A$, або $A'$.\\  
+Частіше позначають слово ось так: $w = a_1a_2 \dots a_n$.
+\bigskip \\
+\textbf{Порожнім словом} назвемо слово $w = ()$ або ще позначають $w = \_$, яке не містить літер.
+\bigskip \\
+Позначення: $W(A)$ -- множина всіх слів $A$ (включаючи порожнє слово).
+\end{definition}
+
+\begin{example}
+Наприклад, $A = \{a\}$ (тоді $A' = \{a^{-1}\}$), маємо слово $a^{-1}a^{-1}aaaa^{-1}aa^{-1} \in W(A)$.
+\end{example}
+
+\begin{example}
+Наприклад, $xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x \in W(\{x,y\})$.
+\end{example}
+
+\begin{remark}
+Ми тепер хочемо, щоб різні слова $xyy^{-1}x,\ xx \in W(\{x,y\})$ були одними й тими самими елементами в майбутній групі.
+\end{remark}
+
+\begin{definition}
+\textbf{Елементарним скороченням} слова $w \in W(A)$ називають відображення
+\begin{align*}
+r \colon W(A) \to W(A),
+\end{align*}
+де елемент $r(w)$ -- нове слово, у якого із слова $w$ прибрали першу пару $aa^{-1}$ або $a^{-1}a$, якщо проходитись по слову $w$ ліворуч-праворуч.
+\end{definition}
+
+\begin{example}
+Зокрема $r(x\textcolor{red}{xx^{-1}}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x) = xyy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x$.
+\end{example}
+
+\begin{remark}
+$r(w) = w$ лише тоді, коли нема більше скорочень. У такому разі слово $w$ називають \textbf{скороченим словом}.
+\end{remark}
+
+\begin{lemma}
+Нехай $w \in W(A)$ -- слово довжини $n$. Тоді $r^{\left[ \frac{n}{2} \right]}(w)$ -- скорочене слово.
+\end{lemma}
+
+\begin{proof}
+Якщо $r(w) = w$, то отримали скорочене слово, внаслідок чого $r^{\left[ \frac{n}{2} \right]}(w) = w$ -- скорочене слово.\\
+Якщо $r(w) \neq w$, то тоді $r(w)$ -- слово довжиною $n-2$. Отже, ми не зможемо зменшити більше, ніж $\left[ \dfrac{n}{2} \right]$ разів. Інакше було б слово довжини, що менше нуля. Таким чином, $r^{\left[ \frac{n}{2} \right]}(w)$ -- гарантовано скорочене слово.
+\end{proof}
+
+\begin{definition}
+\textbf{Скороченням} слова $w \in W(A)$ назвемо відображення
+\begin{align*}
+R \colon W(A) \to W(A), \qquad R(w) = r^{\left[\frac{n}{2}\right]}(w),
+\end{align*}
+де $n$ -- довжина переданого слова $w$ в наше відобраежння.
+\end{definition}
+
+\begin{example}
+Зокрема $R(xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x) = xxxy^{-1}y^{-1}x$.
+\end{example}
+
+\begin{definition}
+Позначимо $F(A)$ за множину всіх скорочених слів множини $A$. На ній визначимо операцію $\cdot$ ось таким чином:
+\begin{align*}
+\forall w,w' \in F(A): w \cdot w' = R(ww'),
+\end{align*}
+де якщо $w = a_1 \dots a_n$ та $w' = a_1' \dots a_n'$, то тоді $ww' = a_1 \dots a_n a_1' \dots a_n'$.\\
+Тоді структура $\left< F(A), \cdot \right>$ називають \textbf{вільною групою}.
+\end{definition}
+
+\begin{lemma}
+Результат поступового скорочення слова не залежить від порядку, в якому проводиться скорочення (увесь цей час ми розглядали лише скорочення ліворуч-праворуч, але насправді різниці нема).
+\end{lemma}
+
+\begin{proof}
+Проведемо доведення за індукцією за кількістю необхідних скорочень.\\
+I. \textit{База індукції.} $n = 1$ -- лише один спосіб -- доведено.\\
+II. \textit{Припущення індукції.} Лема виконується для слів, де кількість потрібних скорочень менша за $n$.\\
+III. \textit{Крок індукції.} Розглянемо слово $w = X_1 \underset{(1)}{y_1} X_2 \underset{(2)}{y_2} X_3 \dots X_{n-1} \underset{(n)}{y_n} X_n$. У даного слова треба провести $n$ скорочень, кожний $y_i \in \{aa^{-1}, a^{-1}a\}$. Оберемо будь-яке число $i \in \{1,2,\dots,n\}$. Тобто в нас буде слово $w = X_1 \underset{(1)}{y_1} X_2 \underset{(2)}{y_2} X_3 \dots X_{i} \underset{(i)}{y_i} X_{i+1} \dots X_{n-1} \underset{(n)}{y_n} X_n$. Ми перепозначимо $w = \theta_1 y_i \theta_2$, де $\theta_1$ -- ліва частина слова $w$ та $\theta_2$ -- права частина слова. Їхня кількість скорочень в словах $\theta_1,\theta_2$ точно менша за $n$, тому за припущенням МІ, їх можна скорочувати як завгодно (по-перше, неважливо, кого першого; а по-друге, можна скорочувати поступово перший та другий, а не одразу повністю скорочувати умовно перше слово). У результаті, у нас є $(n-1)!$ можливих скорочень. Але оскільки це було для конкретного $i$, то тоді маємо $n(n-1)! = n!$ способів скоротити слово $w$.\\
+МІ доведено.  
+\end{proof}
+
+\begin{proposition}
+$\left< F(A), \cdot \right>$ із визначеною операцією -- дійсно група.
+\end{proposition}
+
+\begin{proof}
+Нехай $x,y,z \in F(A)$. Тоді\\
+$x \cdot (y \cdot z) = x \cdot R(yz) = R(x R(yz)) = R(R(x) R(yz)) = R(R(xyz))$.\\
+$(x \cdot y) \cdot z = R(xy) \cdot z = R(R(xy)z) = R(R(xyz))$.\\
+Остання рівність в кожному рядку виконується в силу щойно доведеної леми. Отже, асоціативність виконана.\\
+Нейтральним елементом буде порожнє слово $\_ \in F(A)$. Тут цілком зрозуміло.\\
+Нехай тепер $w \in F(A)$. Утворимо слово $w^{-1}$ ось таким чином: записати літери із $w$ праворуч-ліворуч, а потім кожний слово замінити на оборотний ($a$ замінюємо на $a^{-1}$ або $a^{-1}$ замінюємо на $a$). Зауважимо, що утворене слово $w^{-1} \in F(A)$ (інакше якби $w^{-1} \in F(A)$, то там був би (наприклад) $aa^{-1}$, а якщо переписати назад $w$, то там тоді буде $aa^{-1}$, що неможливо, бо ми брали $w$ уже скороченим). Склеюючи слова, а потім скорочуючи, ми отримаємо $w \cdot w^{-1} = w^{-1} \cdot w = \_$.
+\end{proof}
+
+\begin{example}
+Мабуть, на прикладі поясню дещо. Якщо є слово $w = xy^{-1}$, то його оборотне $w^{-1} = yx^{-1}$.
+\end{example}
+
+\begin{example}
+Цілком зрозуміло, що $F(\{a\}) \cong \mathbb{Z}$. Ми можемо утворити ізоморфізм $f \colon F(\{a\}) \to \mathbb{Z}$ ось таким чином: $f(\_) = 0,\ f(\underbrace{aa \dots a}_{\text{$n$ штук}}) = n,\ f(\underbrace{a^{-1}a^{-1} \dots a^{-1}}_{\text{$n$ штук}}) = -n$.\\
+Візуалізувати можна ось так: порожнє слово $\_$ буде початком на числовій прямій. Якщо додати $a$, то рухаємось праворуч на $1$ клітину, а якщо $a^{-1}$, то -- ліворуч на $1$ клітину.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[->] (-3,0)--(3,0);
+\fill (0,0) circle (1pt) node[anchor = north] {$0$};
+\fill (1,0) circle (1pt) node[anchor = north] {$1$};
+\fill (2,0) circle (1pt) node[anchor = north] {$2$};
+\fill (-1,0) circle (1pt) node[anchor = north] {$-1$};
+\fill (-2,0) circle (1pt) node[anchor = north] {$-2$};
+
+\draw[->] (0.1,0.5)--(0.5,0.5) node[red,anchor = south] {$a$};
+\draw[->] (-0.1,0.5)--(-0.5,0.5) node[red,anchor = south] {$a^{-1}$};
+\end{tikzpicture}
+\end{figure}
+\end{example}
+
+\begin{example}
+Вільну групу $F(\{x,y\})$ можна репрезентувати геометрично так званим графом Келі. Центральна точка -- це порожнє слово $\_$. Крок ми робимо кожний раз або ліворуч, або праворуч, або вгору, або вниз. Довжина кроку в нас $1$, потім $\dfrac{1}{2}$, потім $\dfrac{1}{4}$, потім $\dfrac{1}{8}$, \dots \\
+Якщо до слова додати: $x$, ми рухаємось праворуч; $x^{-1}$, ми рухаємось ліворуч; $y$, ми рухаємось вгору; $y^{-1}$, ми рухаємось вниз.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Cayley_graph.png}
+\end{figure}
+\end{example}
 
 \subsection{Простота знакозмінної групи}
 \begin{lemma}
@@ -3330,7 +3603,7 @@ $A_n$ -- проста при $n \geq 5$.
 \item $x,y$ комутують між собою $\iff [x,y] = e$;
 \item $[x,y]^{-1} = [y,x]$;
 \item $[x^g,y^g] = [x,y]^g, g \in G$;
-\item Нехай $\varphi \colon G \to H$ -- гомоморфізм груп. Тоді $\varphi([x,y]) = [\varphi(x),\varphi[y])$.
+\item Нехай $\varphi \colon G \to H$ -- гомоморфізм груп. Тоді $\varphi([x,y]) = [\varphi(x),\varphi(y)]$.
 \end{enumerate}
 \end{proposition}
 
@@ -3361,8 +3634,7 @@ G' = \left< [x,y] \mid x \in G, y \in G \right>
 \end{definition}
 
 \begin{remark}
-Ми знаємо, що в породжуючих елементах там фігурує добуток елементів, деякі з них є оборотними. Але за властивістю 3), оборотний до комутатора -- теж комутатор. Внаслідок цього можна записати\\
-$G' = \{ [x_1,y_1]*\dots*[x_n,y_n] \mid x_i,y_i \in G, n \in \mathbb{N} \}$
+Ми знаємо, що в породжуючих елементах там фігурує добуток елементів, деякі з них є оборотними. Але за властивістю 3), оборотний до комутатора -- теж комутатор. Внаслідок цього можна записати $G' = \{ [x_1,y_1]*\dots*[x_n,y_n] \mid x_i,y_i \in G, n \in \mathbb{N} \}$.
 \end{remark}
 
 \begin{remark}
@@ -3458,32 +3730,25 @@ $[K,K] = K'$.\\
 \end{remark}
 
 \begin{proposition}
-Задано $\left< G, *\right>, \left<H,\star \right>$ -- групи та $\varphi \colon G \to H$ -- гомоморфізм. Тоді $\varphi(G')$ буде підгрупою $H'$.\\
-Ба більше, якщо $\varphi$ -- сюр'єктивний, то $\varphi(G') = H'$.
+Задано $\left< G, *\right>, \left<H,\star \right>$ -- групи та $\varphi \colon G \to H$ -- гомоморфізм. Тоді $\varphi(G')$ буде підгрупою $H'$. Ба більше, якщо $\varphi$ -- сюр'єктивний, то $\varphi(G') = H'$.
 \end{proposition}
 
 \begin{proof}
-Нехай $u,v \in \varphi(G')$, тобто для них існують елементи $a,b \in G'$, для яких $\varphi(a) = u, \varphi(b) = v$. Але оскільки $a,b \in G'$, то тоді $a = [x_1,y_1], b = [x_2,y_2]$ при $x_1,x_2,y_1,y_2 \in G$.\\
-Із іншого боку, $u = \varphi([x_1,y_1]) = [\varphi(x_1),\varphi(y_1)]$ та $v = \varphi([x_2,y_2]) = [\varphi(x_2), \varphi(y_2)]$. Звідси випливає, що\\
-$u \star v^{-1} = [\varphi(x_1),\varphi(y_1)] [\varphi(y_2),\varphi(x_2)] \in H'$\\
-$u \star v^{-1} = \varphi(a) \star (\varphi(b))^{-1} = \varphi(a*b^{-1}) = \varphi([x_1,y_1]*[y_2,x_2])$.\\
-Тобто ми знайшли елемент $a*b^{-1} \in G'$, для якого $\varphi(a*b^{-1}) = u \star v^{-1}$, тобто $u \star v^{-1} \in \varphi(G')$.
+Нехай $u,v \in \varphi(G')$, тобто для них існують елементи $a,b \in G'$, для яких $\varphi(a) = u, \varphi(b) = v$. Але оскільки $a,b \in G'$, то тоді $a = [x_1,y_1]* \dots *[x_n,y_n],\ b = [w_1,z_1]* \dots *[w_m, z_m]$ при $x_i,y_i,w_i,z_i \in G$.\\
+Із іншого боку, $u = [\varphi(x_1),\varphi(y_1)]* \dots *[\varphi(x_n),\varphi(y_n)],\ v = \varphi([x_2,y_2]) = [\varphi(z_k), \varphi(w_k)]* \dots *[\varphi(z_1), \varphi(w_1)]$. Звідси випливає, що $u \star v^{-1} = \varphi( [x_1,y_1] * \dots *[x_n,y_n] * [z_k,w_k] * \dots * [z_1,w_1] ) = \varphi(c)$ при деякому елементі $c \in G'$. Отже, $u \star v^{-1} \in \varphi(G')$.
 \bigskip \\
-Тепер нехай $\varphi$ -- сюр'єктивне. Нехай $h_1,h_2 \in H$, тобто звідси $\varphi(a) = h_1, \varphi(b) = h_2$ для деяких $a,b \in G$. Отже,\\
-$\varphi([a,b]) = [\varphi(a),\varphi(b)] = [h_1,h_2] \in \varphi(G')$.\\
+Тепер нехай $\varphi$ -- сюр'єктивне. Нехай $h_1,h_2 \in H$, тобто звідси $\varphi(a) = h_1, \varphi(b) = h_2$ для деяких $a,b \in G$. Отже, $\varphi([a,b]) = [\varphi(a),\varphi(b)] = [h_1,h_2] \in \varphi(G')$.\\
 Якщо взяти елемент $u \in H'$, то це буде добуток комутаторів, кожний з яких потрапляє уже в $\varphi(G')$. Отже, $u \in G'$. Отримали $\varphi(G') = H'$.
 \end{proof}
 
-\begin{corollary}
+\begin{proposition}
 Нехай $K \triangleleft G$. Тоді $K' \triangleleft G$.
-\end{corollary}
+\end{proposition}
 
 \begin{proof}
-Нехай $k \in K'$ та $g \in G$, тобто маємо\\
-$k = [u_1,v_1]* \dots *[u_n,v_n]$, причому $u_i,v_i \in K$.\\
+Нехай $k \in K'$ та $g \in G$, тобто маємо $k = [u_1,v_1]* \dots *[u_n,v_n]$, причому $u_i,v_i \in K$.\\
 $g*k*g^{-1} = g*[u_1,v_1]*g^{-1}*g*[u_2,v_2]*g^{-1}*\dots*g*[u_n,v_n]*g^{-1}$.\\
-Отже, достатньо показати, що $g*[u_1,v_1]*g^{-1} = [u_1,v_1]^g = [u_1^g,v_1^g] \in K$. Дійсно, так воно й буде, оскільки $u_1^g,v_1^g \in K$ в силу $K \triangleleft G$.\\
-Внаслідок цього доведемо $g*k*g^{-1} \in K$.
+Отже, досить показати, що $g*[u_1,v_1]*g^{-1} = [u_1,v_1]^g = [u_1^g,v_1^g] \in K$. Дійсно, так воно й буде, оскільки $u_1^g,v_1^g \in K$ в силу $K \triangleleft G$. Внаслідок цього доведемо $g*k*g^{-1} \in K'$.
 \end{proof}
 
 \begin{corollary}
@@ -3498,10 +3763,14 @@ $G' \triangleleft G$.
 \end{enumerate}
 \end{theorem}
 
+\begin{remark}
+Із групи $G$ ми отримали нову абелеву групу $G/_{[G,G]}$. Цей процес називається \textbf{абеліанізацією}.
+\end{remark}
+
 \begin{proof}
-1) Розглянемо проєкцію $\pi \colon G \to G/_{G'}$, при цьому відомо, що $\ker \pi = G'$. Оберемо будь-які $x*G', y*G' \in G/_{G'}$. Тоді\\
+1) Розглянемо проєкцію $\pi \colon G \to G/_{G'}$, де відомо, що $\ker \pi = G'$. Оберемо $x*G', y*G' \in G/_{G'}$. Тоді\\
 $[x*G',y*G'] = [\pi(x), \pi(y)] = \pi([x,y]) \overset{[x,y] \in G' = \ker \pi}{=} e*G'$.\\
-За властивістю 2), звідси $(x*G')*(y*G') = (y*G')*(x*G')$, довели абелевість.
+За властивістю 2), звідси $(x*G')*(y*G') = (y*G')*(x*G')$ -- довели абелевість.
 \bigskip \\
 2) Доведення буде в обидві сторони.\\
 \rightproof Дано: $H \triangleleft G$, причому $G/_H$ -- абелева.\\
@@ -3525,6 +3794,14 @@ $G'$ -- найменша нормальна підгрупа $G$, для яко�
 $(ijk) = (ij)(ik)(ij)(ik) = (ij)(ik)(ij)^{-1}(ik)^{-1} = [(ij),(ik)] \in S_n'$.\\
 Отже, отримаємо $A_n \subset S_n'$.\\
 Висновок: $S_n' = A_n$.
+\end{example}
+
+\begin{example}
+Абеліанізуємо групу кватерніонів $Q_8$.\\
+Для цього нам необхідно знайти комутант. Стверджую, що $Q_8' = \{-1,1\}$. Уже відомо, що $Z(Q_8) = \{1,-1\}$. Тому залишилося подивитися на комутанти $[x,y]$, коли $x,y \in \{\pm i, \pm j, \pm k\}$.\\
+$[i,j] = iji^{-1}j^{-1} = k (-k)^{-1} = k^2 = -1$; \quad $[j,k] = [k,i] = -1$ (аналогічно).\\
+(автоматично знайшли $[j,i], [k,j], [i,k]$). Інші комутанти перевіряються аналогічно. Отже, в нас всі комутанти $1$ або $-1$ (тому й добуток теж). Значить, $Q_8' = \{-1,1\}$.\\
+Таким чином, абеліанізація ${Q_8}/_{Q_8'} = {Q_8}/_{\{-1,1\}} \cong \mathbb{Z}_4 \cong \mathbb{Z}_2 \times \mathbb{Z}_2$.
 \end{example}
 
 \begin{example}
@@ -3591,9 +3868,6 @@ $\begin{pmatrix}
 Висновок: $D_n' = \left<r^2\right>$.
 \end{example}
 
-\begin{example}
-\end{example}
-
 \subsection{Нормальні замикання}
 \begin{definition}
 Задано $\left< G, *\right>$ -- група та $M \subset G$.\\
@@ -3641,34 +3915,297 @@ $[m_1,m_2]*\ncl_G(M') = [m_1*\ncl_G(M'),m_2*\ncl_G(M')]$. Оскільки $[m_1
 За еквівалентністю, $G' \subset \ncl_G(M)$.
 \end{proof}
 
-\subsection{Розв'язні групи}
+\subsection{Композиційний ряд}
 \begin{definition}
-Група $G$ називається \textbf{розв'язною}, якщо допускається ось такий ряд
+Задано $G$ -- група.\\
+\textbf{Рядом} підгруп $G_i$ групи $G$ називають спадну послідовність підгруп
 \begin{align*}
-G = G_0 \triangleright G_1 \triangleright G_2 \triangleright \dots \triangleright G_r = \{e\},
+G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots
 \end{align*}
-причому кожна ${G_i}/_{G_{i+1}}$ -- нетривіальна абелева група.
+\textbf{Довжиною ряда} назвемо кількість строгих вкладень.
+\end{definition}
+
+\begin{definition}
+Задано $G$ -- група.\\
+Ряд $G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots$ називається \textbf{субнормальним рядом}, якщо
+\begin{align*}
+G_i \triangleright G_{i+1}
+\end{align*}
+Фактормножини ${G_i}/_{G_{i+1}}$ називаються \textbf{композиційними множниками}.
+\end{definition}
+
+\begin{remark}
+Уже відомо, що якщо умовно $G_1 \triangleleft G_1$ та $G_1 \triangleleft G_0$, то зовсім не обов'язково, щоб було $G_2 \triangleleft G_0$. Тому субнормальний ряд я не можу позначити за $G = G_0 \triangleright G_1 \triangleright G_2 \triangleright \dots$. Коректніше в нашому випадку буде писати $G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots$ при $G_i \triangleright G_{i+1}$.
+\end{remark}
+
+\begin{definition}
+Задано $G$ -- група.\\
+Cубнормальний ряд $G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots$ при $G_i \triangleright G_{i+1}$ називається \textbf{нормальним рядом}, якщо
+\begin{align*}
+G \triangleright G_{i+1}
+\end{align*}
+Тепер в даному випадку можна ряд позначати $G = G_0 \triangleright G_1 \triangleright G_2 \triangleright \dots$.
+\end{definition}
+
+\begin{remark}
+Деякі автори субнормальні ряди називають просто нормальними. Я вирішив відокремити різницю, аби не було плутанини.
+\end{remark}
+
+\begin{remark}
+Ряд групи $G$ має максимальну нулеву довжину $\iff G$ -- тривіальна група. Ряд групи $G$ має максимальну одиничну довжину $\iff G$ -- нетривіальна проста група.\\
+Таким чином, довжина ряду групи $G$ визначає, наскільки далеко від властивості простоти знаходиться група $G$.
+\end{remark}
+
+\begin{definition}
+Задана $G$ -- група.\\
+Скінченний субнормальний ряд $G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots \supsetneq G_n = \{e\}$ при $G_i \triangleright G_{i+1}$ називається \textbf{композиційним рядом}, якщо
+\begin{align*}
+G_i/_{G_{i+1}} \text{ -- композиційні множники -- всі вони прості групи.}
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Якщо $G$ -- скінченна група, тоді $G$ має композиційний ряд.
+\end{proposition}
+
+\begin{proof}
+Доведемо це твердження за МІ за $|G|$.\\
+I. \textit{База індукції}. $|G| = 1$ -- це тривіальна група, тут все ясно.\\
+II. \textit{Припущення індукції}. Твердження виконується для деякого порядка, меншого за $|G|$.\\
+III. \textit{Крок індукції}. Нехай група має порядок $|G|$. Якщо $G$ -- проста група, то знайшли (див.\ зауваження вище). Інакше існує нетривіальна нормальна підгрупа $H \triangleleft G$ (оберемо $H$ максимального порядку). За припущенням МІ, група $H$ має композиціний ряд $H = H_0 \supsetneq H_1 \supsetneq \dots \supsetneq H_k = \{e\}$, причому кожна ${H_i}/_{H_{i+1}}$ -- проста. Тоді зазначимо, що $G \supsetneq H = H_0 \supsetneq  H_1 \supsetneq \dots \supsetneq H_k = \{e\}$ буде композиційним рядом, причому слід зауважити, що $G/_H$ -- теж проста (в силу максимальності).\\
+МІ доведено.
+\end{proof}
+
+\begin{remark}
+Максимальність нормальної підгрупи можна строго описати за допомогою леми Цорна. Маємо $G$ -- непроста група, $\mathcal{S}$ -- множина всіх нетривіальних нормальних власних підгруп $G$. Зрозуміло, що $\mathcal{S} \neq \emptyset$ (бо $G$ -- непроста) та впорядковані за вкладенням, причому $G$ -- верхня межа $\mathcal{S}$.  
+\end{remark}
+
+\begin{remark}
+Твердження не працює у випадку нескінченної групи.
+\end{remark}
+
+\begin{example}
+Доведемо, що $\mathbb{Z}$ не має взагалі композиційного ряду.\\
+!Припустимо, що має, тобто в нас ланцюг $\mathbb{Z} \supsetneq d_1 \mathbb{Z} \supsetneq d_2 \mathbb{Z} \supsetneq \dots \supsetneq d_n \mathbb{Z} = \{0\}$. Кілька зауважень: підгрупа $\mathbb{Z}$ має вигляд $d_1 \mathbb{Z}$ при деякому $d_1$ -- невід'ємному; група $d_2 \mathbb{Z}$ -- підгрупа $d_1 \mathbb{Z}$ тоді й лише тоді, коли $d_2 \mid d_1$. Також оскільки всі ці підгрупи абелеві, то тоді в нас ряд автоматом нормальний.\\
+За умовою $d_{n-1} \mathbb{Z}$ -- проста. Також вона циклічна, як підгрупа циклічної групи $\mathbb{Z}$, тобто $d_{n-1} \mathbb{Z} = \left<x\right>$. Але зауважимо, що $\left<x^2 \right> \triangleleft \left<x\right>$ -- суперечність! Бо в нас $d_{n-1} \mathbb{Z}$ мала бути простою.
+\end{example}
+
+\begin{proposition}
+Задана $G$ -- група. Припустимо, що його субнормальний ряд має максимальну довжину (тобто іншого субнормального ряду більшої довжини нема). Тоді даний ряд буде композиційним.
+\end{proposition}
+
+\begin{proof}
+Нехай $G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots \supsetneq G_n = \{e\}$ -- субнормальний ряд, $G_i \triangleright G_{i+1}$, серед всіх обрали з максимальною довжиною.\\
+!Припустимо, що даний субнормальний ряд -- не композиційний, тобто існує факторгрупа ${G_i}/_{G_{i+1}}$, яка не є простою. Отже, існує нетривіальна власна підгрупа $K \triangleleft {G_i}/_{G_{i+1}}$. Підгрупі ставиться в відповідність підгрупа $G_{i+1} \triangleleft N \triangleleft G_i$. Таким чином, ми розширимо ряд $G = G_0 \supsetneq G_1 \supsetneq \dots \supsetneq G_i \supsetneq N \supsetneq G_{i+1} \supsetneq \dots \supsetneq G_n = \{e\}$, який теж субнормальний -- суперечність за максимальністю!
+\end{proof}
+
+\begin{theorem}[Теорема Жордана-Гьольдера]
+Нехай $G$ -- група та має два композиційні ряди:\\
+$G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots \supsetneq G_n = \{e\}$;\\
+$G = G'_0 \supsetneq G'_1 \supsetneq G'_2 \supsetneq \dots \supsetneq G'_m = \{e\}$.\\
+Тоді $m = n$, а також набір факторгруп ${G_i}/_{G_{i+1}} \cong G'_{\sigma(i)}/_{G'_{\sigma(i)+1}}$, де $\sigma$ -- перестановка $\{1,\dots,n\}$.
+\end{theorem}
+
+\begin{remark}
+Прокоментую суть теореми. Взагалі група може мати різні композиційні ряди. Але теорема Жордана-Гьольдера гарантує, що всі ці ряди однакової довжини. Крім того, у них однакові (з точністю до ізомормфізму) факторгрупи, тільки в переставленому порядку.
+\end{remark}
+
+\begin{example}
+Зокрема розглянемо групу $\mathbb{Z}_{12}$. У нього існують аж три композиційних ряди:\\
+$\mathbb{Z}_{12} \triangleright \mathbb{Z}_6 \triangleright \mathbb{Z}_2 \triangleright \mathbb{Z}_1 = \{\overline{0}\}$;\\
+$\mathbb{Z}_{12} \triangleright \mathbb{Z}_4 \triangleright \mathbb{Z}_2 \triangleright \mathbb{Z}_1 = \{\overline{0}\}$;\\
+$\mathbb{Z}_{12} \triangleright \mathbb{Z}_6 \triangleright \mathbb{Z}_3 \triangleright \mathbb{Z}_1 = \{\overline{0}\}$.\\
+Всі вони однакового розміру. Запишемо в кожному композиційному ряду факторгрупи, а праворуч їхні ізоморфізми:\\
+${\mathbb{Z}_{12}}/{\mathbb{Z}_6},\ {\mathbb{Z}_6}/_{\mathbb{Z}_2},\ {\mathbb{Z}_2}/{\mathbb{Z}_1}$; \qquad\qquad $\mathbb{Z}_2,\ \mathbb{Z}_3, \mathbb{Z}_2$;\\
+${\mathbb{Z}_{12}}/{\mathbb{Z}_4},\ {\mathbb{Z}_4}/_{\mathbb{Z}_2},\ {\mathbb{Z}_2}/{\mathbb{Z}_1}$; \qquad\qquad $\mathbb{Z}_3,\ \mathbb{Z}_2, \mathbb{Z}_2$;\\
+${\mathbb{Z}_{12}}/{\mathbb{Z}_6},\ {\mathbb{Z}_6}/_{\mathbb{Z}_3},\ {\mathbb{Z}_3}/{\mathbb{Z}_1}$ \qquad\qquad $\mathbb{Z}_2,\ \mathbb{Z}_2, \mathbb{Z}_3$.\\
+Тобто якщо розглянути перший та другий ряди, в нас переставлені факторгрупи, які між собою ізоморфні. Тобто ${\mathbb{Z}_{12}}/_{\mathbb{Z}_6} \cong {\mathbb{Z}_{4}}/_{\mathbb{Z}_2},\quad {\mathbb{Z}_{6}}/_{\mathbb{Z}_2} \cong {\mathbb{Z}_{12}}/_{\mathbb{Z}_4},\quad {\mathbb{Z}_{2}}/_{\mathbb{Z}_1} = {\mathbb{Z}_{2}}/_{\mathbb{Z}_1}$.
+\end{example}
+
+\begin{proof}
+Нехай $G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots \supsetneq G_n = \{e\}$ -- композиційний ряд $G$. Доведення за МІ по $n$.\\
+I. \textit{База індукції}. При $n = 0$ отримаємо $G = G_0 = \{e\}$ -- тривіальна група. Нема чого показувати.\\
+II. \textit{Припущення індукції}. Теорема виконується для рядів $<n$.\\
+III. \textit{Крок індукції}. Оберемо $G = G'_0 \supsetneq G'_1 \supsetneq G'_2 \supsetneq \dots \supsetneq G'_m = \{e\}$ -- ще один композиційний ряд групи $G$. Якщо раптом $G_1 = G_1'$, то тоді маємо композиційний ряд $G_1 \supsetneq G_2 \supsetneq \dots \supsetneq G_n = \{e\}$ групи $G_1$ довжини $n-1 < n$. Тому за прищуенням індукції, взявши $G_1 = G'_1 \supsetneq G'_2 \supsetneq \dots \supsetneq G'_m = \{e\}$, отримаємо $m-1 = n-1$ та однаковий набір факторгруп. Далі $m = n$ та однаковий набір фактогруп для двох композиційних рядів групи $G$.\\
+Інакше нехай $G_1 \neq G_1'$. Зазначимо, що $G_1  G_1' = G$. Дійсно, в нас $G_1 G_1' \triangleleft G$ (бо $G_1 \triangleleft G,\ G'_1 \triangleleft G$) та $G_1 \subsetneq G_1 G_1'$, проте між групами $G_1,G$ нема нормальних власних підгруп, оскільки $G/_{G_1}$ -- проста.\\
+Нехай $K = G_1 \cap G_1'$ та розглянемо $K \supsetneq K_1 \supsetneq K_2 \supsetneq \dots \supsetneq K_r = \{e\}$ -- композиційний ряд групи $K$. За II теоремою про ізоморфізм\\
+${G_1}/_K = {G_1}/_{G_1 \cap G_1'} \cong {G_1 G_1'}/_{G_1'} = G/_{G_1'}$; \qquad ${G_1'}/_K \cong G/_{G_1}$.\\
+Отже, маємо нові комозиційні ряди групи $G$:\\
+$G \supsetneq G_1 \supsetneq K \supsetneq K_1 \supsetneq \dots \supsetneq K_r = \{e\}$;\\
+$G \supsetneq G'_1 \supsetneq K \supsetneq K_1 \supsetneq \dots \supsetneq K_r = \{e\}$.\\
+Вони всюди однакові, окрім на $G_1,G_1'$ відповідно. Також вони мають одну довжину та однаковий набір факторгруп.\\
+$G_1 \supsetneq K \supsetneq \dots \supsetneq K_r = \{e\}$ та $G_1 \supsetneq G_2 \supsetneq \dots \subsetneq G_n = \{e\}$ -- композиційний ряд групи $G_1$, довжина другого $n-1$. Тому за припущенням МІ виконується теорема Жордана-Гьольдера: $r = n-2$, а також в них однакові факторгрупи.\\
+Тепер маємо $G_1' \supsetneq K \supsetneq \dots \supsetneq K_{n-2} = \{e\}$ та $G'_1 \supsetneq G'_2 \supsetneq \dots \subsetneq G'_m = \{e\}$ -- композиційний ряд групи $G'_1$, довжина першого $n-1$. Знову за припущенням МІ виконується теорема Жордана-Гьольдера: $n-1 = m-1$, тому зокрема необхідне $n = m$, а також в них однакові факторгрупи.\\
+МІ доведено.
+\end{proof}
+
+\begin{remark}
+Зазначимо, що якщо маємо дві різні групи $G \cong H$, то в них однакові композиційні множники. Проте навпаки сказати не можна.
+\end{remark}
+
+\begin{example}
+Розглянемо два композиційних ряди, де однакові композиційні множники:\\
+$S_3 \triangleright \left< (123) \right> \triangleright \{\varepsilon\}$;\\
+$\mathbb{Z}_6 \triangleright \mathbb{Z}_3 \triangleright \mathbb{Z}_1$;\\
+При цьому цілком зрозуміло, що $S_3 \not\cong \mathbb{Z}_6$.
+\end{example}
+
+\begin{proposition}
+Нехай $G$ -- група та $N \triangleleft G$.\\
+$G$ має композиційний ряд $\iff$ обидва $N,G/_N$ мають композиційні ряди.
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $G$ має композиційний ряд $G = G_0 \supsetneq G_1 \supsetneq G_2 \supsetneq \dots \supsetneq G_n = \{e\}$. \\
+I. \textit{Існування композиційного ряду групи $N$}.\\
+Перетнемо цей ряд з групою $N$, отримаємо таку послідовність:\\
+$N = G \cap N \supset G_1 \cap N \supset \dots \supset \{e\} \cap N = \{e\}$.\\
+Причому $G_{i+1} \cap N \triangleleft G_i \cap N$. Якщо прибрати можливі повторення, то стверджується, що це формує композиційний ряд групи $N$. Для цього нам треба довести, що:\\
+або ${G_i \cap N}/_{G_{i+1} \cap N}$ -- тривіальна група (тому $G_{i+1} \cap N = G_i \cap N$, отже включення $G_{i} \cap N \subset G_{i+1} \cap N$ можна прибрати);\\
+або ${G_i \cap N}/_{G_{i+1} \cap N} \cong {G_i}/_{G_{i+1}}$ (тому ${G_i \cap N}/_{G_{i+1} \cap N}$ стане простою групою).\\
+Розглянемо гомоморфізм $G_i \cap N \hookrightarrow G_i \twoheadrightarrow G_i/_{G_{i+1}}$. Його ядро дорівнює $G_{i+1} \cap N$. Тому за І теоремою про ізоморфізм існує ін'єктивний гомоморфізм ${G_i \cap N}/_{G_{i+1} \cap N} \hookrightarrow {G_i}/_{G_{i+1}}$. Значить, ${G_i \cap N}/_{G_{i+1} \cap N}$ можна сприймати як підгрупу ${G_i}/_{G_{i+1}}$. Причому зазначимо, що ${G_i \cap N}/_{G_{i+1} \cap N} \triangleleft {G_i}/_{G_{i+1}}$ (бо $N \triangleleft G$). Оскільки ${G_i}/_{G_{i+1}}$ -- проста, то ми довели, що треба було.
+\bigskip \\
+II. \textit{Існування композиційного ряду $G/_N$}.\\
+Для цього ми розглянемо вже ось такий ряд:\\
+$G/_N \supset {G_1N}/_N \supset {G_2N}/_N \supset \dots \supset {\{e_G\} N}/_N = \{e_{G/_N}\}$,\\
+причому ${G_{i+1}N}/_N \triangleleft {G_i N}/_N$ (TODO: подумати). Аналогічно тому, як було вище, нам залишилося довести, що або ${{G_i N}/_N}/_{{G_{i+1}N}/_N}$ -- тривіальний або ${{G_i N}/_N}/_{{G_{i+1}N}/_N} \cong {G_i}/_{G_{i+1}}$.\\
+За ІІІ теоремою про ізоморфізм ${{G_i N}/_N}/_{{G_{i+1}N}/_N} \cong {G_i N}/_{G_{i+1} N}$. Цього разу розглянемо гомоморфізм $G_i \hookrightarrow G_i N \twoheadrightarrow {G_i N}/_{G_{i+1}N}$, який є сюр'єктивним. Підгрупа $G_{i+1} \subset \ker$ нашого гомоморфізму. Отже, існує сюр'єктивний гомоморфізм ${G_i}/_{G_{i+1}} \twoheadrightarrow {G_iN}/_{G_{i+1}N}$. Оскільки ${G_i}/_{G_{i+1}}$ -- проста, то звідси ${G_iN}/_{G_{i+1}N}$ або тривіальна, або ${G_iN}/_{G_{i+1}N} \cong {G_i}/_{G_{i+1}}$.
+\bigskip \\
+\leftproof Дано: $N,G/_N$ мають композиційні ряди. Запишемо їх:\\
+$G/_N \supsetneq {\tilde{N}_1}/_N \supsetneq {\tilde{N}_2}/_N  \supsetneq \dots \supsetneq \{e_{G/_N}\}$ \qquad $N \supsetneq N_1 \supsetneq N_2 \supsetneq \dots \supsetneq \{e\}$.\\
+За теоремою про відповідність $\tilde{N}_1$ -- підгрупа $G$, $\tilde{N}_2$ -- підгрупа $\tilde{N_1}$ тощо, але всі $\tilde{N}_i \supset N$. Тобто маємо ось такий ланцюг:\\
+$G \supsetneq \tilde{N}_1 \supsetneq \tilde{N}_2 \supsetneq \dots \supsetneq N \supsetneq N_1 \supsetneq N_2 \supsetneq \dots \supsetneq \{e\}$.
+\end{proof}
+
+\begin{corollary}
+Довижна композиційного ряду $G$ -- сума довжин композиційних рядів $N$ та $G/_N$. Також композиційні множники $G$ складаються з набору композиційних множників $N$ та $G/_N$.
+\end{corollary}
+
+\begin{definition}
+Один ряд називається \textbf{уточненням} другого ряду, якщо всі підгрупи другого ряду містяться в першому ряді.
 \end{definition}
 
 \begin{example}
-Розглянемо купа прикладів:\\
-1. Кожна абелева група -- розв'язна, оскільки існує ланцюг $G \triangleright \{e\}$.
-\bigskip \\
-2. $S_3$ -- розв'язна, оскільки $S_3 \triangleright [(123)] \triangleright \{\varepsilon\}$, причому $S_3/_{[(123)]}$ буде абелевою, оскільки там всього $2$ елементи; $[(123)]/{\{e\}} \cong [(123)]$ буде абелевою. 
-\bigskip \\
-3. $S_4$ -- розв'язна, оскільки $S_4 \triangleright A_4 \triangleright V \triangleright \{\varepsilon\}$, де передостання $V$ -- група Кляйна. Теж зрозуміло, що кожна факторгрупа -- абелева.
-\bigskip \\
-4. $p$-група $G$ -- розв'язні. (TODO: ?)
+$\{0\} \subsetneq 72 \mathbb{Z} \subsetneq 18 \mathbb{Z} \subsetneq 9 \mathbb{Z} \subsetneq \mathbb{Z}$ -- уточнення ряду $\{0\} \subsetneq 9 \mathbb{Z} \subsetneq \mathbb{Z}$.
 \end{example}
 
-\begin{theorem}[Теорема Фейта-Томпсона]
-Задано $G$ -- група, причому $|G|$ -- непарний порядок. Тоді $G$ -- розв'язний.\\
-\textit{Без доведення. Стаття містить десь 250 сторінок доведення.}
+\begin{theorem}[Теорема Шраєра]
+Будь-які два нормальні ряди скінченної групи, що закічнуються на $\{e\}$, допускають так звані еквівалентні уточнення.
 \end{theorem}
 
+\begin{proof}
+Треба просто уточнити два нормальні ряди до композиційного ряду. Далі застосувати теорему Жордана-Гьольдера. Тоді в них еквівалентні уточнення (тобто однакова кількість рядів та один набір факторгруп).
+\end{proof}
+
+\subsection{Розв'язні групи}
+\begin{definition}
+Задана $G$ -- група.\\
+\textbf{Похідним рядом} групи $G$ називають послідовність підгруп
+\begin{align*}
+G \supset G' \supset G'' \supset G''' \supset \dots
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Якщо $G$ -- абелева, то похідний ряд такий: $G \supset G' = \{e\}$.
+\end{remark}
+
+\begin{remark}
+Якщо $G$ -- проста та некомутативна, то тоді похідний ряд такий: $G = G' = G'' = \dots$
+\end{remark}
+
+\begin{definition}
+Група $G$ називається \textbf{розв'язною}, якщо маємо такий похідний ряд:
+\begin{align*}
+G \supset G' \supset G'' \supset \dots \supset G^{(n)} = \{e\}
+\end{align*}
+Тобто похідний ряд розривається на тривіальній підгрупі.
+\end{definition}
+
+\begin{remark}
+Зокрема будь-яка абелева група -- розв'язна (див.\ вище).
+\end{remark}
+
+\begin{theorem}
+Нехай $G$ -- група та $K \triangleleft G$.\\
+$G$ -- розв'язна $\iff K,\ G/_K$ -- розв'язні групи.
+\end{theorem}
+
+\begin{proof}
+\rightproof Дано: $G$ -- розв'язна, тобто $G \supset G' \supset G'' \supset \dots \supset G^{(n)} = \{e\}$. \\
+Зауважимо, що оскільки $K \subset G$, то тоді $K' \subset G'$, тоді $K'' \subset G''$, \dots, $K^{(n)} \subset G^{(n)} = \{e\}$. Таким чином, ряд $K \supset K' \supset \dots \supset K^{(n)} = \{e\}$, тобто рано чи пізно обірветься. Отже, $K$ -- розв'язна.\\
+Тепер розглянемо проєкцію $\pi \colon G \to G/_K$. Оскільки $\pi$ -- сюр'єктивний, то $\pi(G') = (G/_K)'$. Звузимо до $\pi|_{G'} \colon G' \to (G/_K)'$. Досі сюр'єктивний, тому $\pi|_{G'}(G'') = (G/_K)''$. Продовжуємо так звужувати -- отримуємо $\pi|_{G^{(n-1)}}(G^{(n)}) = (G/_K)^{(n)}$, але з іншогь боку $\{e\} = \pi(G^{(n)}) = \pi|_{G^{(n-1)}}(G^{(n)}) = (G/_K)^{(n)}$. Таким чином, ряд $G/_K \supset (G/_K)' \supset \dots \supset (G/_K)^{(n)} = \{e\}$, тобто рано чи пізно обірветься. Отже, $G/_K$ -- розв'язна.
+\bigskip \\
+\leftproof Дано: $G,\ G/_K$ -- розв'язні групи. Тобто маємо ось такі ряди:\\
+$K \supset K' \supset \dots \supset K^{(l)} = \{e\}$;\\
+$G/_K \supset (G/_K)' \supset \dots \supset (G/_K)^{(m)} = \{K\}$.\\
+Пригадаємо, що $\{K\} = (G/_K)^{(m)} = \pi(G^{(m)})$. Це означає, що $G^{(m)} \subset \ker \pi = K$. Звідси випливає, що $G^{(m+1)} \subset K'$, а далі, продовжуючи, отримуємо $G^{(m+l)} \subset K^{(l)} = \{e\}$. Таким чином, отримали ряд $G \supset G' \supset \dots \supset G^{(m+l)} = \{e\}$, який обірвався. Значить, $G$ -- розв'язна.
+\end{proof}
+
+\begin{proposition}
+Група $G$ -- розв'язна $\iff$ допускає субнормальний ряд $G_0 \triangleright G_1 \triangleright \dots \triangleright G_n = \{e\}$, при цьому всі ${G_i}/_{G_{i+1}}$ -- (нетривіальні) абелеві.
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $G$ -- розв'язна. Тобто ми маємо $G \supsetneq G' \supsetneq G'' \supsetneq \dots \supsetneq G^{(n)} = \{e\}$. Із теорії про комутанти ми знаємо, що кожний $G^{(i+1)} \triangleleft G^{(i)}$. Отже, насправді даний ряд $G \triangleright G' \triangleright G'' \triangleright \dots \triangleright G^{(n)} = \{e\}$ -- субнормальний. Із тої самої теорії відомо, що ${G_i}/_{G_{i+1}}$ -- абелеві.
+\bigskip \\
+\leftproof Дано: $G$ допускає ряд $G_0 \triangleright G_1 \triangleright \dots \triangleright G_n = \{e\}$, при цьому всі ${G_i}/_{G_{i+1}}$ -- (нетривіальні) абелеві. Доведення проведемо за МІ за довжиною субнормального ряду.\\
+I. \textit{База індукції}. Якщо $G_0 = \{e\}$, то нецікаво. Якщо $G_0 \triangleright G_1 = \{e\}$, то отримали абелеву групу $G \cong {G_0}/_{G_1}$, тому розв'язна.\\
+II. \textit{Припущення індукції}. Твердження виконується для довжини, що менша за $n$.\\
+III. \textit{Крок індукції}. 
+\end{proof}
+
+\textcolor{red}{TODO: дописати розділ.}
+
 \begin{example}
-$A_n, n \geq 5$ -- нерозв'язні, оскільки вона є простою.
+Дослідимо групу $S_n$ на розв'язність.\\
+$n = 1 \implies S_1 = \{\varepsilon\}$ -- тривіальна група -- розв'язна;\\
+$n = 2 \implies S_2 \cong \mathbb{Z}_2$ -- абелева група -- розв'язна;\\
+$n = 3 \implies S_3 \supsetneq S_3' = A_3 \supsetneq A_3' = \{\varepsilon\}$ -- розв'язна;\\
+$n = 4 \implies S_4 \supsetneq A_4 \supsetneq V \supsetneq \{\varepsilon\}$ -- розв'язна (тут $V$ -- група Кляйна);\\
+$n \geq 5 \implies S_n$ -- не розв'язна. Дійсно, єдиний можливий ряд, де можна обірвати, є $S_n \supsetneq A_n \supsetneq \{e\}$. Хоча ${S_n}/_{A_n}$ -- абелева нетривіальна, але ${A_n}/_{\{e\}}$ уже не буде абелевою. Інших нормальних підгруп нема, оскільки $A_n$ -- проста при $n \geq 5$.
 \end{example}
+
+\begin{example}
+Розглянемо групу верхньотрикутних матриць $B_n(\mathbb{R}) \subset GL_n(\mathbb{R})$. Доведемо, що $B_n(\mathbb{R})$ -- розв'язна група.\\
+Розглянемо гомоморфізм $\varphi \colon B_n(\mathbb{R}) \to \underbrace{\mathbb{R}^{\times} \times \dots \times \mathbb{R}^{\times}}_{\text{$n$ разіва}}$ ось таким чином:\\
+$\begin{pmatrix}
+\lambda_1 & * & \dots & * \\
+0 & \lambda_2 & \dots & * \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & \lambda_n
+\end{pmatrix} \overset{\varphi}{\mapsto} (\lambda_1,\dots,\lambda_n)$.\\
+Той факт, що $\varphi$ -- гомоморфізм, випливає з того факту, як виглядає перемноження двох верхньотрикутних матриць $A,B \in B_n(\mathbb{R})$. Зазначимо, що $\ker \varphi = U_n(\mathbb{R})$ -- група верхньотрикутних матриць, де по головній діагоналі одинички. Оскільки $\varphi$ -- сюр'єктивний гомоморфізм, то звідси ${B_n(\mathbb{R})}/_{U_n(\mathbb{R})} \cong \underbrace{\mathbb{R}^{\times} \times \dots \times \mathbb{R}^{\times}}_{\text{$n$ разіва}}$. Власне, звідси випливає, що ${B_n(\mathbb{R})}/_{U_n(\mathbb{R})}$ -- абелева, а тому й розв'язна. Залишилося довести, що $U_n(\mathbb{R})$ -- розв'язна. Це буде індуктивно доведено.\\
+I. \textit{База індукції}. $n = 1 \implies U_1(\mathbb{R}) = \{1\}$ -- тривіальна група.\\
+II. \textit{Припущення індукції}. $U_k(\mathbb{R})$ -- розв'язна при $k < n$.\\
+III. \textit{Крок індукції}. Розглянемо гомоморфізм $\psi \colon U_n(\mathbb{R}) \to U_{n-1}(\mathbb{R})$, яка працює таким чином: із матриці із $U_n(\mathbb{R})$ виділити матрицю $(n-1) \times (n-1)$, починаючи від лівого верхнього края -- це буде матриця із $U_{n-1}(\mathbb{R})$. Зазначимо, що $\ker \psi = V_n(\mathbb{R})$, де під даною групою маються на увазі матриці формату $A = \begin{pmatrix}
+I & \vline & * \\
+\hline
+0 & \vline & 1
+\end{pmatrix}$, тут $I$ -- одинична матриця розмірності $(n-1) \times (n-1)$. Насправді кажучи, $\ker \psi \cong \underbrace{\mathbb{R} \times \dots \times \mathbb{R}}_{\text{$n-1$ разів}}$, просто тому що матриці $A \in \ker \psi$ ставимо однозначно в відповідність з першими $n-1$ числами, які беруться з $n$-го стовпчика матриці $A$. Тобто $V_n(\mathbb{R})$ -- розв'язна. За першою теоремою про ізоморфізм ${U_n(\mathbb{R})}/_{V_n(\mathbb{R})} \cong \Im \psi = U_{n-1}(\mathbb{R})$ -- отримали розв'язну групу (за припущенням МІ). Отже, звідси доведемо, що $U_n(\mathbb{R})$. МІ доведено.\\
+Нарешті, закінчуємо доведення того, що $B_n(\mathbb{R})$ -- розв'язна.
+\end{example}
+
+\begin{theorem}
+Будь-яка $p$-група $G$ -- розв'язна.
+\end{theorem}
+
+\begin{proof}
+Маємо $|G| = p^k, k \geq 1$. Доведення проведемо за МІ по $k$.\\
+I. \textit{База індукції}. При $k = 1$ маємо $G \cong C_p$, де $C_p$ -- циклічна група, яка абелева. Отже, $G$ -- розв'язна.\\
+II. \textit{Припущення індукції}. Для груп $G$ так, що $|G| < p^k$ теорема виконується.\\
+III. \textit{Крок індукції}. Треба пригадати, що в будь-якій $p$-групи $Z(G)$ -- нетривіальна група. Розіб'ємо на два випадки:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $Z(G) = G$, тобто $G$ -- абелева, але тоді автоматично розв'язна.
+\item $\{e\} \neq Z(G) \subsetneq G$, тоді звідси $|Z(G)| = p^n$ при $0 < n < k$. Отже, $|G/_{Z(G)}| < p^k$, а тому за припущенням МІ $G/_{Z(G)}$ -- розв'язна група. Сам по собі $Z(G)$ -- розв'язна група, адже абелева. Звідси $G$ -- сама розв'язна.
+\end{enumerate}
+МІ доведено.
+\end{proof}
+
+\begin{theorem}[Теорема Фейта-Томпсона]
+Задано $G$ -- група, причому $|G|$ -- непарний порядок. Тоді $G$ -- розв'язна.\\
+\textit{Без доведення. Стаття містить десь 250 сторінок доведення.}
+\end{theorem}
 
 \begin{proposition}
 Задано $G$ -- розв'язна група та $H$ -- підгрупа $G$. Тоді $H$ -- також розв'язна.
@@ -3693,73 +4230,120 @@ $G/_K \supsetneq G_1 K/_K \supsetneq G_2 K/_K \supsetneq \dots \supsetneq G_r K/
 Розглянемо відображення $\alpha \colon G_i \hookrightarrow G_i K \twoheadrightarrow G_i K/_{G_{i+1} K}$, яке є сюр'єктивним. Дійсно, для кожного $gk G_i K \in G_i K/_{G_{i+1} K}$ існує елемент $g \in G$, для якого $\alpha(g) \eqbydef gG_{i+1}K = gk G_{i+1}K$. Остання рівність виконана, тому що $g^{-1}gk = k \in K \subset G_{i+1}K$. Також можна показати, що $\ker \alpha \supset G_{i+1}$, але тоді в нас індукується сюр'єктивний гомоморфізм $G_i/_{G_{i+1}} \twoheadrightarrow G_iK/_{G_{i+1}K}$. Оскільки $G_i/_{G_{i+1}}$ -- абелева, то тоді $G_i K/_{G_{i+1}K}$ -- абелева.
 \end{proof}
 
-\begin{theorem}
-$S_n, n \geq 5$ -- не розв'язна група.
-\end{theorem}
-
-\begin{proof}
-!Припустимо, що $S_n$ -- все ж таки розв'язна. Але оскільки $A_n$ -- підгрупа $S_n$, то $A_n$ теж буде розв'язною -- суперечність!
-\end{proof}
-
-Взагалі-то кажучи, деякі автори можуть дати альтернативне означення, саме через комутатори.
+\subsection{Нільпотентні групи}
+У поняття ''нільпотентні групи'' існують три еквівалентних означення, які є по-своєму зручними. Тому почнемо з них, а далі перейдемо до суті. Для спрощення наведу три означення деяких специфічних групових рядів.
 
 \begin{definition}
-Задано $G$ -- група та $G'$ -- похідна групи $G$. Таким же чином можна визначити другу похідну $G'' = (G')'$, третю похідну $G''' = (G'')'$ тощо. У нас утвориться \textbf{похідний ряд}
+Задана $G$ -- група. Позначимо $G_0 = G,\ G_k = [G_{k-1},G]$.\\
+\textbf{Нижнім центральним рядом} називається ряд підгруп
 \begin{align*}
-G \triangleright G' \triangleright G'' \triangleright \dots
+G_0 \supset G_1 \supset G_2 \supset \dots
 \end{align*}
-Група $G$ називається \textbf{розв'язною}, якщо
+Можна зауважити, що такий ряд -- нормальний.
+\end{definition}
+
+\begin{definition}
+Задана $G$ -- група.\\
+\textbf{Центральним рядом} називається нормальний ряд підгруп
 \begin{align*}
-\exists n \in \mathbb{N}: G^{(n)} = \{e\}
+\{e\} = N_0 \subset N_1 \subset N_2 \subset \dots,
 \end{align*}
+для яких ${N_i}/_{N_{i-1}} = Z\left(G/_{N_{i-1}}\right)$.\\
+Останнє можна переписати еквівалентним чином: $[G, N_{i-1}] \subset N_i$.
+\end{definition}
+
+\begin{definition}
+Задана $G$ -- група.\\
+\textbf{Верхнім центральним рядом} називається нормальний ряд підгруп
+\begin{align*}
+\{e\} = Z_0 \subset Z_1 \subset Z_2 \subset \dots,
+\end{align*}
+де $Z_i$ -- такі підгрупи, для яких ${Z_i}/_{Z_{i-1}} = Z(G/_{Z_{i-1}})$.\\
+\textit{(вправа: довести, що $Z_i \triangleleft G$ при всіх $i \geq 0$, тоді означення буде коректним.)}
 \end{definition}
 
 \begin{proposition}
-Два означення розв'язних груп еквівалентні.
+Нижче твердження еквівалетні:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Нижній центральний ряд $G_0 \supset G_1 \supset \dots \supset G_m = \{e\}$ обривається на тривіальній підгрупі;
+\item Центральний ряд $\{e\} = N_0 \subset N_1 \subset \dots \subset N_m = G$ обривається на всій групі;
+\item Верхній центральний ряд $\{e\} = Z_0 \subset Z_1 \subset \dots \subset Z_m = G$ обривається на всій групі.
+\end{enumerate}
 \end{proposition}
 
 \begin{proof}
-TODO: обдумати
-\end{proof}
-
-\begin{lemma}
-Задано $G$ -- група та $H,K$ -- підгрупи. Довести, що $[H,K] \triangleleft H,K$.
-\end{lemma}
-
-\begin{definition}
-Задано $G$ -- група та $G_1 = [G,G],\ G_2 = [G_1,G], \dots$ У нас утвориться \textbf{нижній центральний ряд}
-\begin{align*}
-G \triangleright G_1 \triangleright G_2 \dots
-\end{align*}
-Група $G$ називається \textbf{нільпотентною}, якщо
-\begin{align*}
-\exists n \in \mathbb{N}: G_n = \{e\}
-\end{align*}
-\end{definition}
-
-\begin{proposition}
-Задано $G$ -- нільпотентна група. Тоді $G$ -- розв'язна.
-\end{proposition}
-
-\begin{proof}
-За МІ ми доведемо, що $\forall n \in \mathbb{N}: G^{(n)} \subset G_n$.\\
-База: $n = 1$, тоді отримаємо $G' \subset [G,G] = G'$.\\
-Припущення: $G^{(k)} \subset G_k$.\\
-Крок: $G^{(k+1)} = (G^{(k)})' = [G^{(k)}, G^{(k)}] \subset [G_k, G^{(k)}] \subset [G_k,G] = G_{k+1}$.\\
-МІ доведено. А тепер якщо $G$ -- нільпотентна, то $\exists n \in \mathbb{N}: G_n = \{e\}$. Звідси $G^{(n)} \subset G_n = \{e\} \implies G^{(n)} = \{e\}$.\\
-Отже, $G$ -- розв'язна група.
-\end{proof}
-
-\begin{theorem}
-Нехай $G$ -- група та $K \triangleleft G$.\\
-$G$ -- розв'язна $\iff K$ та $G/_K$ -- розв'язні.
-\end{theorem}
-
-\begin{proof}
-\rightproof випливає з двох тверджень вище.
+$\boxed{\text{1) $\Rightarrow$ 2)}}$ Дано: нижній центральний ряд $G_0 \supset G_1 \supset \dots \supset G_m = \{e\}$ обривається на тривіальній підгрупі. Насправді нижній центральний ряд -- сам (просто) центральний ряд. Для цього лише покажемо, що ${G_i}/_{G_{i+1}} \subset Z(G/_{G_{i+1}})$, що теж саме, що $[G, G_{i+1}] \subset G_i$. Але тут все зрозуміло, оскільки $G_{i+1} \subset G_i$, то звідси $[G,G_{i+1}] \subset [G,G_{i}] = G_{i+1} \subset G_i$.
 \bigskip \\
-\leftproof Дано: $K, G/_K$ -- розв'язні. Маємо $K^{(n)} = (G/_K)^{(l)} \{e\}$.\\
-Розглянемо $\pi \colon G \to G/_K$ -- сюр'єктивне. Нам уже відомо, що $\pi(G') = (G/_K)'$, тоді можна звузити до $\pi|_{G'} \colon G' \to (G/_K)'$, що залишається сюр'єктивним. Так продовжуємо до $\pi|_{G^{(l)}} \colon G^{(l)} \to (G/_K)^{(l)} = \{e\}$. Звідси випливає, що $G^{(l)}$ -- підгрупа $\ker \pi = K$. Але можна довести, що $G^{(l+n)}$ -- підгрупа $K^{(n)} = \{e\}$. Тому звідси $G$ -- розв'язна.
+$\boxed{\text{2) $\Rightarrow$ 1)}}$ Дано: центральний ряд $\{e\} = N_0 \subset N_1 \subset \dots \subset N_m = G$ обривається на всій групі. Індуктивно доведемо, що $G_{k} \subset N_{m-k}$. Таким чином $G_m \subset N_0 = \{e\}$, а тому нижній центральний ряд розривається.\\
+I. \textit{База індукції}. $k = 0$, маємо $G_0 = N_m = G$ -- все виконано.\\
+II. \textit{Припущення індукції}. Нехай $G_k \subset N_{m-k}$ для деякого $k$.\\
+III. \textit{Крок індукції}. Маємо $G_{k+1} = [G_k,G]$, але через припущення МІ отримуємо $[G_k,G] \subset [N_{m-k}, G]$. Отже, звідси $[N_{m-k}, G] \subset N_{m-k-1}$ (за означення центрального ряда). Комбінуючи це все, отримуємо $G_{k+1} \subset N_{m-k-1}$. МІ доведено.
+\bigskip \\
+$\boxed{\text{3) $\Rightarrow$ 2)}}$ Дано: верхній центральний ряд $\{e\} = Z_0 \subset Z_1 \subset \dots \subset Z_m = G$ обривається на всій групі. Із означення випливає, що даний верхній центральний ряд -- сам (просто) центральний ряд, який обривається.
+\bigskip \\
+$\boxed{\text{2) $\Rightarrow$ 3)}}$ Дано: центральний ряд $\{e\} = N_0 \subset N_1 \subset \dots \subset N_m = G$ обривається на всій групі. Індуктивно доведемо, що $N_k \subset Z_k$ для всіх $k$. Таким чином $G = N_m \subset Z_m$, а тому матимемо $\{e\} = Z_0 \subset Z_1 \subset \dots \subset Z_m = G$. Ми доведемо нільпотентність.\\
+I. \textit{База індукції}. $k = 1 \implies N_1 \cong {N_1}/_{N_0} \subset Z\left(G/_{N_0}\right) \cong Z(G) = Z_1$.\\
+II. \textit{Припущення індукції}. Нехай $N_k \subset Z_k$ для деякого $k$.\\
+III. \textit{Крок індукції}. Із припущення випливає, що маємо сюр'єктивний гомоморфізм $\varphi \colon G/_{N_k} \twoheadrightarrow G/_{Z_k}$. Значить, $\varphi(Z(G/_{N_k})) \subset Z(G/_{Z_k}) = {Z_{k+1}}/_{Z_k}$. Із цього вкладення та того факту, що ${N_{k+1}}/_{N_k} \subset Z(G/_{N_k})$, випливає $N_{k+1} \subset Z_{k+1}$. МІ доведено.
+\end{proof}
+
+\begin{definition}
+Задана $G$ -- група.
+Група $G$ називається \textbf{нільпотентною}, якщо маємо нижній центральний ряд:
+\begin{align*}
+G_0 \supset G_1 \supset G_2 \supset \dots \supset G_n = \{e\},
+\end{align*}
+який розривається на тривіальній групі.\\
+Щойно довели, що можна розглядати просто центральні ряди або верхні центральні ряди.
+\end{definition}
+
+\begin{remark}
+Якщо $G$ -- абелева група, то $G$ -- нільпотентна. Дійсно, $G = G_0 \supset G_1 = [G,G] = \{e\}$.
+\end{remark}
+
+\begin{proposition}
+Якщо $G$ -- нільпотентна група, тоді $G$ -- розв'язна. 
+\end{proposition}
+
+\begin{proof}
+Маємо $G$ -- нільпотентна група, тобто ряд $G_0 \supset G_1 \supset G_2 \supset \dots \supset G_n = \{e\}$. Для доведення розв'язності нам буде досить довести, що $G^{(n)} \subset G_n$. Тоді в нас буде похідний ряд $G \supset G' \supset \dots \supset G^{(n)} = \{e\}$, що свідчитиме за розв'язність.\\
+I. \textit{База індукції}. При $n = 1$ маємо $G' = [G,G] = G_1$.\\
+II. \textit{Припущення індукції}. Вкладення $G^{(k)} \subset G_k$ виконується при $k < n$.\\
+III. \textit{Крок індукції}. Маємо $G^{(n)} = [G^{(n-1)},G^{(n-1)}] \overset{\text{припущення МІ}}{\subset} [G_{n-1}, G^{(n-1)}] \subset [G_{n-1}, G] = G_n$.\\
+МІ доведено, а тому вже довели твердження.
+\end{proof}
+
+\begin{example}
+Розглянемо групу $S_3$ -- розв'язна. Пригадаємо, що $Z(S_3) = \{\varepsilon\}$, тому звідси $S_3$ не може бути нільпотентною.
+\end{example}
+
+\begin{proposition}
+$G$ -- нільпотентна група $\iff G/_{Z(G)}$ -- нільпотентна.
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $G$ -- нільпотентна.\\
+!Припустимо, що $G/_N$ не є нільпотентною, тобто матимемо верхній центральний ряд ${K_0}/_{Z(G)} \subset {K_1}/_{Z(G)} \subset {K_2}/_{Z(G)} \subset \dots$, який ніколи не обривається. Доведемо, що тоді $K_0 \subset K_1 \subset K_2 \subset \dots$ -- верхній центральний ряд.\\
+По перше, всі $K_i$ -- підгрупи $G$, причому $K_i \subset Z(G)$. По-друге, з одного боку ${{K_i}/_{Z(G)}}/_{{K_{i-1}}/_{Z(G)}} \cong {K_i}/K_{i-1}$ за ІІІ теоремою про ізоморфім. А з іншого боку, $Z\left( {G/_{Z(G)}}/_{{K_{i-1}}/_{Z(G)}} \right) \cong Z(G/_{K_{i-1}})$. Звідси випливає, що ${K_i}/_{K_{i-1}} = Z(G/_{K_{i-1}})$.\\
+Оскільки $G$ -- нільпотентна, то тоді $K_m = G$, а тому звідси ${K_m}/_{Z(G)} = G/_{Z(G)}$ -- суперечність!
+\bigskip \\
+\leftproof Дано: $G/_N$ -- нільпотентна. Цього разу маємо верхній цетральний ряд ${K_0}/_{Z(G)} \subset {K_1}/_{Z(G)} \subset \dots \subset {K_m}/_{Z(G)} = {G}/_{Z(G)}$, який розірвався. Тоді аналогічно отримуємо $K_0 \subset K_1 \subset \dots \subset K_m = G$, який стане верхнім центральним рядом. Значить, $G$ -- нільпотентна.
+\end{proof}
+
+\begin{theorem}
+Будь-яка $p$-група $G$ -- нільпотентна.
+\end{theorem}
+
+\begin{proof}
+Маємо $|G| = p^k, k \geq 1$. Доведемо за МІ по $k$.\\
+I. \textit{База індукції}. При $k = 1$ маємо $|G| \cong C_p$ -- абелева група -- нільпотентна.\\
+II. \textit{Припущення індукції}. При $|G| < p^k$ теорема виконується.\\
+III. \textit{Крок індукції}. Відомо, що в $p$-групі $Z(G) \neq \{e\}$. Розіб'ємо на два випадки:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $Z(G) = G$, тобто $G$ -- абелева, тому нільпотентна.
+\item $Z(G) \subsetneq G$, тоді отримуємо $|Z(G)| = p^n,\ 0 < n < k$, а також $|G/_{Z(G)}| < p^k$. За припущенням МІ $G/_{Z(G)}$ -- нільпотентна; звідси $G$ -- нільпотентна.
+\end{enumerate}
+МІ доведено.
 \end{proof}
 
 \iffalse
@@ -4158,7 +4742,7 @@ $R_1$ -- підкільце $\iff \begin{cases} \forall a,b \in R_1: a-b \in R_1
 Кожне кільце $\left<R,+,\cdot \right>$ має два \textbf{тривіальних} підкільця: $\{0\}$ та $R$.
 \end{remark}
 
-\subsection{Основні класифікації кілець}
+\subsection{Основні види кілець}
 \subsubsection{Комутативні кільця}
 \begin{definition}
 Задано $\left<R,+, \cdot \right>$ -- кільце.\\
@@ -4184,7 +4768,8 @@ $R_1$ -- підкільце $\iff \begin{cases} \forall a,b \in R_1: a-b \in R_1
 \begin{align*}
 \exists 1 \in R: a \cdot 1 = 1 \cdot a = a
 \end{align*}
-Тобто $1$ -- нейтральний елемент за множенням.
+Тобто $1$ -- нейтральний елемент за множенням.\\
+Про кільце з одиницею існує особливе зауваження, це буде окремим ненумерованим розділом.
 \end{definition}
 
 \begin{proposition}
@@ -4259,15 +4844,14 @@ $\mathbb{Z}_n$ & $U_n$ \\
 $M_{n \times n}(\mathbb{R})$ & $GL_n$ \\
 \end{tabular}
 \end{figure}
-Більш детальне пояснення:\\
-1. Тут всі ненульові елементи оборотні, бо\\
-$a \cdot \dfrac{1}{a} = 1$, де елемент $a^{-1} = \dfrac{1}{a}$.
-\bigskip \\
-2. Тут лише, $1$, $-1$ оборотні. В інакшому випадку якщо припустити, що для $n \in \mathbb{Z}$ знайдеться обернений $n^{-1} \in \mathbb{Z}$, то маємо $n \cdot n^{-1} = 1 \implies n^{-1} = \dfrac{1}{n}$. Але тоді $n^{-1} \in \mathbb{Z}$ лише в тому випадку, коли $n = \pm 1$.
-\bigskip \\
-3-4. Обернений елемент $\overline{m} \in \mathbb{Z}_n$ існує $\iff \gcd(m,n) = 1$.
-\bigskip \\
-5. Оборотними будуть ті матриці, які мають ненульові визначники.
+Більш детальне пояснення:
+\begin{enumerate}[wide=0pt,label={\arabic*.}]
+\item Тут всі ненульові елементи оборотні, бо $a \cdot \dfrac{1}{a} = 1$, де елемент $a^{-1} = \dfrac{1}{a}$.
+\item Тут лише, $1$, $-1$ оборотні. В інакшому випадку якщо припустити, що для $n \in \mathbb{Z}$ знайдеться обернений $n^{-1} \in \mathbb{Z}$, то маємо $n \cdot n^{-1} = 1 \implies n^{-1} = \dfrac{1}{n}$. Але тоді $n^{-1} \in \mathbb{Z}$ лише в тому випадку, коли $n = \pm 1$.
+\item (див.\ 4);
+\item Обернений елемент $\overline{m} \in \mathbb{Z}_n$ існує $\iff \gcd(m,n) = 1$.
+\item Оборотними будуть ті матриці, які мають ненульові визначники.
+\end{enumerate}
 \end{example}
 
 \begin{example}
@@ -4390,7 +4974,7 @@ $\forall a \in R: \exists a^{-1} = b \in R: a \cdot a^{-1} = a^{-1} \cdot a = 1$
 \end{proof}
 
 \begin{example}
-Розглянемо $\left<\mathbb{Z}_p, +, \cdot \right>$ -- кільце, де $p$ - просте. Воно не має дільників нуля, тому що\\
+Розглянемо $\left<\mathbb{Z}_p, +, \cdot \right>$ -- кільце, де $p$ -- просте. Воно не має дільників нуля, тому що\\
 $\overline{k_1} \cdot \overline{k_2} = \overline{k_1 \cdot k_2} = \overline{0} \implies k_1 \cdot k_2 \equiv 0 \pmod p \implies p \mid k_1 \cdot k_2$, тобто або $p \mid k_1 \implies \overline{k_1} = \overline{0}$; або $p \mid k_2 \implies \overline{k_2} = \overline{0}$. Тоді звідси випливає, що всі ці елементи -- оборотні, тобто $\mathbb{Z}_p^\times = \mathbb{Z}_p \setminus \{0\}$.\\
 \textit{Це як по-іншому можна було довести існування обернених елементів.}
 \end{example}
@@ -4451,8 +5035,9 @@ F^\times = F \setminus \{0\},
 Зокрема $\left<\mathbb{Z}_p, + ,\cdot \right>$, де $p$ -- просте, буде полем.\\
 А от якщо $p$ -- складене, то тоді вже полем не буде. Тому що має дільник. Дісно, $p = k \cdot m$, раз воно складене. Тоді $\overline{0} = \overline{p} = \overline{k \cdot m} = \overline{k} \cdot \overline{m}$.
 \end{example}
+\noindent
+Про поле будемо говорити детальніше пізніше.
 
-Це були лише основні класифікації кілець. Із іншими більш цікавими кільцями ознаймомимося вже пізніше.
 
 \subsection{Характеристика}
 \begin{definition}
@@ -4592,194 +5177,6 @@ $f(x,y) = \displaystyle\sum_{i,j \geq 0} b_{ij} x^i y^j$.\\
 
 Про кільце многочленів ми ще будемо розмовляти неодноразово.
 
-\subsection{Гомоморфізм кілець}
-\begin{definition}
-Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ -- кільця.\\
-\textbf{Гомоморфізмом (кілець)} називають відображення $f \colon R_1 \to R_2$, для якого
-\begin{align*}
-\forall a,b \in R_1: f(a+b) = f(a) \oplus f(b) \\
-\forall a,b \in R_1: f(a \cdot b) = f(a) \odot f(b)
-\end{align*}
-\end{definition}
-
-\begin{example}
-Між будь-якими кільцями $\left<R_1,+,\cdot\right>$ та $\left<R_2,+,\cdot \right>$ можна встановити нульовий гомоморфізм $O \colon R_1 \to R_2$ таким чином: $O(x) = 0, \forall x \in R_1$.
-\iffalse До речі кажучи, $\ker O = R_1$, а тому даний гомоморфізм -- не ін'єктивний. \fi
-\end{example}
-
-\begin{example}[Freshman's dream (мрія першокурсника)]
-Задано $\left< R,+,\cdot\right>$ -- комутативне кільце з одиницею, причому $\text{char}(R) = p$, де $p$ -- просте число. Розглянемо відображення Фробеніуса $\varphi \colon R \to R$ як $\varphi(r) = r^p$. Воно задає гомоморфізм.\\
-$\varphi(a+b) = (a+b)^p = a^p + C_p^1 a^{p-1}b + \dots + C_p^{p-1} ab^{p-1} + b^p \boxed{=}$.\\
-Зауважимо, що $p \mid C_p^k$ при $k \in \{1,\dots,p-1\}$. Вправа з теорії чисел.\\
-А далі скористаємось тим, що $\text{char}(R) = p$.\\
-$\boxed{=} a^p + 0 + \dots + 0 + b^p = a^p + b^p = \varphi(a) + \varphi(b)$.\\
-$\varphi(ab) = (ab)^p = a^p b^p = \varphi(a) \varphi(b)$.\\
-Всі рівності виконуються лише за умовою комутативності кільця.
-\bigskip \\
-У загальному випадку це не працює. Можна взяти кільце $\left< \mathbb{R},+,\cdot \right>$ з нулевою характеристикою. Там $(a+b)^2 \neq a^2+b^2$.
-\end{example}
-
-\begin{proposition}[Категорія гомоморфізмів кілець]
-Задані $R,S,T$ -- кільця. Тоді виконуються наступне:
-\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
-\item $\id \colon R \to R$ -- гомоморфізм;
-\item Якщо $\varphi \colon R \! \to S, \psi \colon S \! \to T$ -- гомоморфізми, то $\psi \circ \varphi \colon R \! \to T$ -- також гомоморфізм;
-\item Операція композиції гомоморфізмів кілець -- асоціативна.
-\end{enumerate}
-\textit{Все що треба показати -- це збереження множення (неважко). Все решта виконується в силу категорії гомоморфізма груп.}
-\end{proposition}
-
-\begin{theorem}[Властивості гомоморфізма]
-Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ -- кільця. Маємо $f \colon R_1 \to R_2$ -- гомоморфізм кілець, тоді виконуються такі пункти:
-\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
-\item $f(0_{R_1}) = 0_{R_2}$;
-\item $\forall a \in R_1: f(-a) = -f(a)$;
-\item Нехай $S$ -- підкільце $\left<R_1,+,\cdot \right>$. Тоді $f(S)$ -- підкільце $\left<R_2, \oplus, \odot \right>$;
-\item Нехай $T$ -- підкільце $\left<R_2, \oplus, \odot \right>$. Тоді $f^{-1}(T)$ -- підкільце $\left<R_1,+,\cdot \right>$.
-\end{enumerate}
-\textit{Перші дві властивості випливають з властивостей гомоморфізма груп (якщо викинути операцію множення). Решта дві доводяться майже аналогічно, як було це з групами.}
-\end{theorem}
-
-\begin{theorem}
-Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ -- кільця та $f \colon R_1 \to R_2$ -- сюр'єктивний гомоморфізм. Тоді якщо $J$ -- ідеал $R_1$, то $f(J)$ -- ідеал $R_2$.\\
-\textit{Вправа: довести.}
-\end{theorem}
-
-\begin{corollary}
-Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ - кільця та $f: R_1 \to R_2$ - гомоморфізм. Тоді\\
-1. $\ker f$ - ідеал $R_1$;\\
-2. $\Im f$ - підкільце кільця $R_2$.
-\end{corollary}
-
-\begin{definition}
-Задані $\left<R_1, +, \cdot \right>, \left<R_2, \oplus, \odot \right>$ -- кільця, а також $f \colon R_1 \to R_2$ -- гомоморфізм кілець.\\
-Відображення $f$ називається \textbf{ізоморфізмом}, якщо
-\begin{align*}
-f \text{ -- бієктивне}
-\end{align*}
-У такому разі кільця $R_1,R_2$ називаються \textbf{ізоморфними}.\\
-Позначення: $\left<R_1,+,\cdot \right> \cong \left<R_2, \oplus, \odot \right>$.
-\end{definition}
-
-\begin{example}
-$m\mathbb{Z} \cong n \mathbb{Z}$ в сенсі груп при $m \neq n$ (припускаємо всюди $m,n \geq 0$), просто тому що це дві циклічні групи, що $\cong \mathbb{Z}$.\\
-Але $m\mathbb{Z} \not\cong n \mathbb{Z}$ в сенсі кілець при $m \neq n$.\\
-!Припустимо, що існує ізоморфізм кілець $f \colon m \mathbb{Z} \to n \mathbb{Z}$. Маємо:\\
-$f(m^2) = f(m)f(m) = \underbrace{f(m) + \dots + f(m)}_{m \text{ разів}} = m f(m)$.\\
-$\implies f(m)(f(m)-m)) = 0$. Оскільки $n \mathbb{Z}$ -- це область цілісності, то тоді або $f(m) = 0$, або $f(m) = m$.\\
-I. $f(m) = 0$, тоді $f(km) = 0, \forall km \in m\mathbb{Z}$, це ніфіга не ізоморфізм.\\
-II. $f(m) = m$, а це можливо лише при $n \mid m$. Тобто $m = kn$, маємо $f(kn) = kn$. Оскільки $f$ -- сюр'єктивний, то $n = f(u \cdot kn) = u f(kn) = ukn$. Ці два елементи $n, ukn \in n \mathbb{Z}$ і вони рівні лише при $uk = 1$. Але $k \neq 1$, тоді рівність така неможлива.\\
-Отримали суперечність у двох випадках!
-\end{example}
-
-\begin{theorem}[Властивості ізоморфізма]
-Задані $\left<R_1, +, \cdot\right>, \left<R_2, \oplus, \odot \right>$ -- кільця. Маємо $f \colon R_1 \to R_2$ -- ізоморфізм, тоді:
-\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
-\item $f^{-1} \colon R_2 \to R_1$ -- також ізоморфізм;
-\item $\left< R_1, +, \cdot \right>$ -- комутативне $\iff \left< R_2, \oplus, \odot \right>$ -- комутативне;
-\item $a \in R_1$ -- дільник нуля $\iff f(a)$ -- дільник нуля;
-\end{enumerate}
-\end{theorem}
-
-\begin{corollary}
-$\left< R_1, +, \cdot \right>$ -- область цілісності (поле) $\iff \left< R_2, \oplus, \odot \right>$ -- область цілісності (поле).
-\end{corollary}
-
-\begin{definition}
-Задані $\left<R_1, +, \cdot \right>,\left<R_2, \oplus, \odot \right>$ -- кільця, $f \colon R_1 \to R_2$ -- гомоморфізм.\\
-\textbf{Ядром} гомоморфізма називають множину
-\begin{align*}
-\ker f = \{ x \in R_1: f(x) = 0_{R_2} \}
-\end{align*}
-\textbf{Образом} гомоморфізма називають множину
-\begin{align*}
-\Im f = \{f(x) : x \in R_1\}
-\end{align*}
-\end{definition}
-
-\begin{remark}
-$\ker f = f^{-1}(\{0_{R_2}\})$, \qquad $\Im f = f(R_1)$.\\
-Таким чином, оскільки $\{0_{R_2}\}, R_2$ є тривіальними підкільцями для своїх кілець, то за властивостями гомоморфізма, $f^{-1}(\{0_{R_2}\}), f(S_1)$ будуть підкільцями для своїх кілець як прообраз та образ відповідно.
-\end{remark}
-
-\begin{theorem}
-Задані $\left<R_1, +, \cdot \right>,\left<R_2, \oplus, \odot \right>$ -- кільця та $f \colon R_1 \to R_2$ -- гомоморфізм.\\
-$f$ -- ін'єктивне $\iff \ker f = \{0_{R_1}\}$.\\
-\textit{Вправа: довести.}
-\end{theorem}
-
-Аналогічно будується \textbf{основна теорема про гомоморфізми кілець}
-\iffalse
-%old-style theorem
-\begin{theorem}
-Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ - кільця та $f: R_1 \to R_2$ - гомоморфізм. Тоді:\\
-1. $\left<R_1/_{\ker f},+,\cdot \right> \cong \left< \Im f, \oplus, \odotо\right>$.\\
-2. Ізоморфізм $\varphi: R_1/_{\ker f} \to \Im f$ буде такий, що $\varphi \circ \rho = f$, де\\
-$\rho: R_1 \to R_1/_{\ker f}$ - природний гомоморфізм кілець. Ізоморфізм $\varphi$ єдиний.
-\end{theorem}
-\fi
-
-\begin{theorem}
-Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ - кільця та $f: R_1 \to R_2$ - гомоморфізм. Тоді існує єдиний ізоморфізм кілець $\tilde{f} \colon G_1/_{\ker f} \to \Im f$, для якого $\imath \circ \tilde{f} \circ \rho = f$.
-\begin{figure}[H]
-\centering
-\begin{tikzcd}
-R_1 \arrow[two heads]{r}{\rho} \arrow[bend left]{rrr}{f} & R_1/_{\ker f} \arrow{r}{\underset{\simeq}{\tilde{f}}} & \Im f \arrow[hook]{r}{\imath} & R_2
-\end{tikzcd}
-\end{figure}
-Тут $\rho$ - природний гомоморфізм кілець та $\imath$ - гомоморфізм кілець вкладення.
-\end{theorem}
-
-\begin{proof}
-Лише достатньо показати, що $\tilde{f}(x \cdot y) = \tilde{f}(x) \cdot \tilde{f}(y)$ - це неважко. Також варто це зроби для інших гомоморфізмів. Це неважко.\\
-А далі все решта випливає з основної теореми про гомоморфізм груп.
-\end{proof}
-
-\begin{example}
-Маємо кільце $\left< \mathbb{R}[x],+,\cdot \right>$ та головний ідеал $(x-a), a \in \mathbb{R}$. Розглянемо гомоморфізм $f: \mathbb{R}[x] \to \mathbb{R}$ таким чином:\\
-$f(p) = p(a)$.\\
-Тобто беремо кожний многочлен та відображуємо на цей же многочлен в точці $a \in \mathbb{R}$.\\
-$\ker f = \{ p \in \mathbb{R}[x]: p(a) = 0 \} = (x-a)$.\\
-$\Im f = \{ p(a) | p \in \mathbb{R}[x] \} = \mathbb{R}$.\\
-Застосувавши основну теорему про гомоморфізм, отримаємо, що \\ $\mathbb{R}[x]/_{(x-a)} \cong \mathbb{R}$.\\
-А ізоморфізм задається таким чином:\\
-$\varphi(p + (x-a)) = p(a)$, де\\
-$p + (x-a) = \{p(x) + r(x) | r \in (x-a)\} = \{p(x) + q(x)(x-a) | q \in \mathbb{R}[x] \}$
-\end{example}
-
-\begin{example}
-Маємо кільце $\left< \mathbb{R}[x],+,\cdot \right>$ та головний ідеал \\ $(ax^2+bx+c), a \neq 0,b,c \in \mathbb{R}$, причому $D < 0$. Розглянемо гомоморфізм $f: \mathbb{R}[x] \to \mathbb{C}$ таким чином:\\
-$p \overset{f}{\mapsto} p(z)$, де $z$ - комплексний корінь $ax^2+bx+c$.\\
-$\ker f = \{ p \in \mathbb{R}[x]: p(z) = 0 \} = (ax^2+bx+c)$.\\
-$\Im f = \{ p(z) | p \in \mathbb{R}[x] \} = \mathbb{C}$.\\
-Застосувавши основну теорему про гомоморфізм, отримаємо, що \\ $\mathbb{R}[x]/_{(ax^2+bx+c)} \cong \mathbb{C}$.\\
-А ізоморфізм задається таким чином:\\
-$\varphi(p + (ax^2+bx+c)) = p(z)$, тобто беремо всі многочлени, де значення дорівнює $p(z)$.
-\end{example}
-
-\begin{example}
-Маємо кільце $\left< \mathbb{R}[x],+,\cdot \right>$ та головний ідеал: \\ 
-1. $(x-a)(x-b), a,b \in \mathbb{R}, a \neq b$. Розглянемо гомоморфізм $f: \mathbb{R}[x] \to M_{2 \times 2}$ таким чином:\\
-$f(p) = p \begin{pmatrix}
-a & 0 \\
-0 & b
-\end{pmatrix}$.\\
-Аналогічно можна показати, що $\mathbb{R}/_{(x-a)(x-b)} \cong \left\{ \begin{pmatrix}
-a_1 & 0 \\
-0 & a_2
-\end{pmatrix} | a_1,a_2 \in \mathbb{R} \right\}$.
-\bigskip \\
-2. $(x-a)^2, a \in \mathbb{R}$. Розглянемо гомоморфізм $f: \mathbb{R}[x] \to M_{2 \times 2}$ таким чином:\\
-$f(p) = p \begin{pmatrix}
-a & 1 \\
-0 & a
-\end{pmatrix}$ - клітина Жордана.\\
-Аналогічно можна показати, що $\mathbb{R}/_{(x-a)^2} \cong \left\{ \begin{pmatrix}
-a_1 & a_2 \\
-0 & a_1
-\end{pmatrix} | a_1,a_2 \in \mathbb{R} \right\}$.
-\end{example}
-
 \subsection{Ідеал кільця. Породжені ідеали}
 \begin{definition}
 Задано $\left<R,+,\cdot \right>$ -- кільце.\\
@@ -4791,7 +5188,7 @@ a_1 & a_2 \\
 \end{definition}
 
 \begin{remark}
-Можна сказати, що ідеал кільця -- це такий собі аналог нормального дільника групи в теорії груп.
+Можна сказати, що ідеал кільця -- це такий собі аналог нормальної підгрупи в теорії груп.
 \end{remark}
 
 \begin{remark}
@@ -4800,7 +5197,7 @@ a_1 & a_2 \\
 
 \begin{example}
 Розглянемо кільце $\left< \mathbb{Z},+,\cdot \right>$. Воно має ідеали $n \mathbb{Z}$, де $n \in \mathbb{N} \cup \{0\}$, тому що\\
-$n\mathbb{Z}$ - підгрупа групи $\left<\mathbb{Z},+ \right>$;\\
+$n\mathbb{Z}$ -- підгрупа групи $\left<\mathbb{Z},+ \right>$;\\
 $\forall m \in \mathbb{Z}: \forall k \in n\mathbb{Z}$ маємо $k = nl$, а тому звідси $mk = km = n(lm) \in n\mathbb{Z}$.
 \end{example}
 
@@ -4855,7 +5252,7 @@ $x \in aR,r_0 \in R \implies x = ar, r \in R \implies r_0 x = xr_0 = arr_0 \in a
 
 \begin{proof}
 !Припустимо, що існує якийсь інший ідеал $J \ni a$, який менший, тобто $J \subset (a)$. Тоді доведемо, що $J = (a)$.\\
-Нехай $x \in (a)$, тобто $x = ar_0, r_0 \in R$. Оскільки $J$ - ідеал, то звідси $\forall j \in J: \forall r \in R: jr \in J$.\\
+Нехай $x \in (a)$, тобто $x = ar_0, r_0 \in R$. Оскільки $J$ -- ідеал, то звідси $\forall j \in J: \forall r \in R: jr \in J$.\\
 Зокрема для $j = a$, $r = r_0$ ми маємо $ar_0 = x \in J$.\\
 Отже, $(a) \subset J$, а тому звідси $J = (a)$. Суперечність!
 \end{proof}
@@ -4891,19 +5288,20 @@ $\{0\} = 0R = (0)$ та $R = 1R = (1)$.
 \end{definition}
 
 \begin{example}
-Зокрема $\left<\mathbb{Z},+,\cdot \right>$ - що є областю цілісності - буде областю головних ідеалів.\\
-!Припустимо, що $J$ - деякий ненульовий ідеал, але не можна розписати його як головний ідеал. Щоб прийти до суперечності, ми покажемо, що $J = (m)$ для числа $m = \displaystyle \min_{\substack{n \in \mathbb{N} \\ n \in J}} n$.\\
+Зокрема $\left<\mathbb{Z},+,\cdot \right>$ -- що є областю цілісності -- буде областю головних ідеалів.\\
+!Припустимо, що $J$ -- деякий ненульовий ідеал, але не можна розписати його як головний ідеал. Щоб прийти до суперечності, ми покажемо, що $J = (m)$ для числа $m = \displaystyle \min_{\substack{n \in \mathbb{N} \\ n \in J}} n$.\\
 Цей мінімум завжди існує, тому що коли є якесь від'ємне число $-m \in J$, то зокрема $m = (-1) \cdot (-m) \in J$ в силу означення ідеала.\\
 Маємо $m \in J$ та $k \in \mathbb{Z}$, тоді звідси $mk \in J$, а тому $(m) \subset J$.\\
 Маємо $n,m \in J$, застосуємо алгоритм Евкліда - отримаємо\\
 $n = km + r \implies r = n - km \in J$.\\
-Також $0 \leq r < m$. А оскільки $m$ - найменше додатне число, то в силу того, що $r \in J$ маємо $r \geq m$. Тому єдиний варіант - це вимагати $r = 0$.\\
+Також $0 \leq r < m$. А оскільки $m$ -- найменше додатне число, то в силу того, що $r \in J$ маємо $r \geq m$. Тому єдиний варіант -- це вимагати $r = 0$.\\
 Отже, $n \in J$, причому $n = km$, звідси $n \in (m)$. Отже, $J \subset (m)$.\\
 Таким чином, $J = (m)$. Суперечність!
 \end{example}
 
 \begin{example}
-Зокрема $\left<\mathbb{R}[x],+,\cdot \right>$ - що є областю цілісності - буде областю головних ідеалів.\\
+Зокрема $\left<\mathbb{R}[x],+,\cdot \right>$ -- що є областю цілісності -- буде областю головних ідеалів. Ідея доведення аналогічна. Насправді ці два приклади можна буде узагальнити (це буде пізніше).
+\iffalse
 !Припустимо, що $J$ - деякий ненульовий ідеал, але не можна розписати його як головний ідеал. Щоб прийти до суперечності, ми покажемо, що $J = (p(x))$, де $p$ - многочлен, для якого $\deg p = m$, а число $m = \displaystyle\min_{f \in J} \deg f$, де $m > 0$.\\
 Маємо $p(x) \in J$ - многочлен степені $m$. Тоді $\forall q(x) \in \mathbb{R}[x]$ маємо $r(x) = p(x) q(x) \in J$ за означенням ідеала. Отже, $r(x) \in (p(x))$.\\
 Таким чином, $(p(x)) \subset J$.\\
@@ -4912,6 +5310,7 @@ $s(x) = p(x)q(x) + r(x) \implies r(x) = s(x) - p(x)q(x) \in J$.\\
 Також $\deg r < m$ або $r \equiv 0$. А оскільки $m$ - найменше додатне число, то в силу того, що $r(x) \in J$ ми маємо $\deg r \geq m$. Єдиинй варіант - це $r = 0$, тоді звідси $s(x) = p(x)q(x) \implies s(x) \in (p(x))$. І звідси $J = (p(x))$. Суперечність!
 \bigskip \\
 І взагалі, якщо ми маємо $k[x]$, де $k$ - деяке поле (див. нижче), то ми все одно будемо мати область головних ідеалів.
+\fi
 \end{example}
 
 \begin{example}
@@ -5036,13 +5435,122 @@ $u - v = a_1^1 b_1^1 + \dots + a_n^1 b_n^1 - a_1^2 b_1^2 - \dots - a_m^2 b_m^2$.
 Оскільки $I+J = R$, то звідси існують $\alpha \in I$ та $\beta \in J$, для яких $\alpha + \beta = 1$. Якщо $r \in I \cap J$, то тоді $r = r \cdot 1 = r(\alpha + \beta) = r \alpha + r \beta = \alpha r + r \beta$. Ця рівність каже, що $r \in IJ$. Отже, $IJ \supset I \cap J$.
 \end{proof}
 
+\subsection{Гомоморфізм кілець}
+\begin{definition}
+Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ -- кільця.\\
+\textbf{Гомоморфізмом (кілець)} називають відображення $f \colon R_1 \to R_2$, для якого
+\begin{align*}
+\forall a,b \in R_1: f(a+b) = f(a) \oplus f(b) \\
+\forall a,b \in R_1: f(a \cdot b) = f(a) \odot f(b)
+\end{align*}
+\end{definition}
+
+\begin{example}
+Між будь-якими кільцями $\left<R_1,+,\cdot\right>$ та $\left<R_2,+,\cdot \right>$ можна встановити нульовий гомоморфізм $O \colon R_1 \to R_2$ таким чином: $O(x) = 0, \forall x \in R_1$.
+\iffalse До речі кажучи, $\ker O = R_1$, а тому даний гомоморфізм -- не ін'єктивний. \fi
+\end{example}
+
+\begin{example}[Freshman's dream (мрія першокурсника)]
+Задано $\left< R,+,\cdot\right>$ -- комутативне кільце з одиницею, причому $\text{char}(R) = p$, де $p$ -- просте число. Розглянемо відображення Фробеніуса $\varphi \colon R \to R$ як $\varphi(r) = r^p$. Воно задає гомоморфізм.\\
+$\varphi(a+b) = (a+b)^p = a^p + C_p^1 a^{p-1}b + \dots + C_p^{p-1} ab^{p-1} + b^p \boxed{=}$.\\
+Зауважимо, що $p \mid C_p^k$ при $k \in \{1,\dots,p-1\}$. Вправа з теорії чисел.\\
+А далі скористаємось тим, що $\text{char}(R) = p$.\\
+$\boxed{=} a^p + 0 + \dots + 0 + b^p = a^p + b^p = \varphi(a) + \varphi(b)$.\\
+$\varphi(ab) = (ab)^p = a^p b^p = \varphi(a) \varphi(b)$.\\
+Всі рівності виконуються лише за умовою комутативності кільця.
+\bigskip \\
+У загальному випадку це не працює. Можна взяти кільце $\left< \mathbb{R},+,\cdot \right>$ з нулевою характеристикою. Там $(a+b)^2 \neq a^2+b^2$.
+\end{example}
+
+\begin{proposition}[Категорія гомоморфізмів кілець]
+Задані $R,S,T$ -- кільця. Тоді виконуються наступне:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $\id \colon R \to R$ -- гомоморфізм;
+\item Якщо $\varphi \colon R \! \to S, \psi \colon S \! \to T$ -- гомоморфізми, то $\psi \circ \varphi \colon R \! \to T$ -- також гомоморфізм;
+\item Операція композиції гомоморфізмів кілець -- асоціативна.
+\end{enumerate}
+\textit{Все що треба показати -- це збереження множення (неважко). Все решта виконується в силу категорії гомоморфізма груп.}
+\end{proposition}
+
+\begin{theorem}[Властивості гомоморфізма]
+Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ -- кільця. Маємо $f \colon R_1 \to R_2$ -- гомоморфізм кілець, тоді виконуються такі пункти:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $f(0_{R_1}) = 0_{R_2}$;
+\item $\forall a \in R_1: f(-a) = -f(a)$;
+\item Нехай $S$ -- підкільце $\left<R_1,+,\cdot \right>$. Тоді $f(S)$ -- підкільце $\left<R_2, \oplus, \odot \right>$;
+\item Нехай $T$ -- ідеал $\left<R_2, \oplus, \odot \right>$. Тоді $f^{-1}(T)$ -- ідеал $\left<R_1,+,\cdot \right>$.
+\end{enumerate}
+\textit{Перші дві властивості випливають з властивостей гомоморфізма груп (якщо викинути операцію множення). Решта дві доводяться майже аналогічно, як було це з групами.}
+\end{theorem}
+
+\begin{theorem}
+Задано $\left<R_1, +, \cdot \right>$ та $\left<R_2, \oplus, \odot \right>$ -- кільця та $f \colon R_1 \to R_2$ -- сюр'єктивний гомоморфізм. Тоді якщо $J$ -- ідеал $R_1$, то $f(J)$ -- ідеал $R_2$.\\
+\textit{Вправа: довести.}
+\end{theorem}
+
+\begin{definition}
+Задані $\left<R_1, +, \cdot \right>, \left<R_2, \oplus, \odot \right>$ -- кільця, а також $f \colon R_1 \to R_2$ -- гомоморфізм кілець.\\
+Відображення $f$ називається \textbf{ізоморфізмом}, якщо
+\begin{align*}
+f \text{ -- бієктивне}
+\end{align*}
+У такому разі кільця $R_1,R_2$ називаються \textbf{ізоморфними}.\\
+Позначення: $\left<R_1,+,\cdot \right> \cong \left<R_2, \oplus, \odot \right>$.
+\end{definition}
+
+\begin{example}
+$m\mathbb{Z} \cong n \mathbb{Z}$ в сенсі груп при $m \neq n$ (припускаємо всюди $m,n \geq 0$), просто тому що це дві циклічні групи, що $\cong \mathbb{Z}$. Але $m\mathbb{Z} \not\cong n \mathbb{Z}$ в сенсі кілець при $m \neq n$.\\
+!Припустимо, що існує ізоморфізм кілець $f \colon m \mathbb{Z} \to n \mathbb{Z}$. Маємо:\\
+$f(m^2) = f(m)f(m) = \underbrace{f(m) + \dots + f(m)}_{m \text{ разів}} = m f(m)$.\\
+$\implies f(m)(f(m)-m)) = 0$. Оскільки $n \mathbb{Z}$ -- це область цілісності, то тоді або $f(m) = 0$, або $f(m) = m$.\\
+I. $f(m) = 0$, тоді $f(km) = 0, \forall km \in m\mathbb{Z}$, це ніфіга не ізоморфізм.\\
+II. $f(m) = m$, а це можливо лише при $n \mid m$. Тобто $m = kn$, маємо $f(kn) = kn$. Оскільки $f$ -- сюр'єктивний, то $n = f(u \cdot kn) = u f(kn) = ukn$. Ці два елементи $n, ukn \in n \mathbb{Z}$ і вони рівні лише при $uk = 1$. Але $k \neq 1$, тоді рівність така неможлива.\\
+Отримали суперечність у двох випадках!
+\end{example}
+
+\begin{theorem}[Властивості ізоморфізма]
+Задані $\left<R_1, +, \cdot\right>, \left<R_2, \oplus, \odot \right>$ -- кільця. Маємо $f \colon R_1 \to R_2$ -- ізоморфізм, тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $f^{-1} \colon R_2 \to R_1$ -- також ізоморфізм;
+\item $\left< R_1, +, \cdot \right>$ -- комутативне $\iff \left< R_2, \oplus, \odot \right>$ -- комутативне;
+\item $a \in R_1$ -- дільник нуля $\iff f(a)$ -- дільник нуля;
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+$\left< R_1, +, \cdot \right>$ -- область цілісності (поле) $\iff \left< R_2, \oplus, \odot \right>$ -- область цілісності (поле).
+\end{corollary}
+
+\begin{definition}
+Задані $\left<R_1, +, \cdot \right>,\left<R_2, \oplus, \odot \right>$ -- кільця, $f \colon R_1 \to R_2$ -- гомоморфізм.\\
+\textbf{Ядром} гомоморфізма називають множину
+\begin{align*}
+\ker f = \{ x \in R_1: f(x) = 0_{R_2} \}
+\end{align*}
+\textbf{Образом} гомоморфізма називають множину
+\begin{align*}
+\Im f = \{f(x) : x \in R_1\}
+\end{align*}
+\end{definition}
+
+\begin{remark}
+$\ker f = f^{-1}(\{0_{R_2}\})$, \qquad $\Im f = f(R_1)$.\\
+Таким чином, оскільки $\{0_{R_2}\}, R_2$ є ідеалом та підкільцем для своїх кілець, то за властивостями гомоморфізма, $f^{-1}(\{0_{R_2}\}), f(S_1)$ будуть ідеалом та підкільцем для своїх кілець як прообраз та образ відповідно.
+\end{remark}
+
+\begin{theorem}
+Задані $\left<R_1, +, \cdot \right>,\left<R_2, \oplus, \odot \right>$ -- кільця та $f \colon R_1 \to R_2$ -- гомоморфізм.\\
+$f$ -- ін'єктивне $\iff \ker f = \{0_{R_1}\}$.\\
+\textit{Вправа: довести.}
+\end{theorem}
+
 \subsection{Суміжні класи кілець та факторкільце}
 Маємо $\left< R, +, \cdot \right>,\ \left< S, \oplus, \odot \right>$ -- кільця та $f \colon R \to S$ -- гомоморфізм. Установимо відношення еквівалентності:\\
 $r_1 \sim r_2 \iff f(r_1) = f(r_2)$.\\
 Окремо пропишемо праву частину еквівалентних чином:\\
 $f(r_1-r_2) = 0_S \iff r_1 - r_2 \in \ker f$.\\
 Таким чином, ми отримали $r_1 \sim r_2 \iff r_1 - r_2 \in \ker f$.\\
-Але $\ker f$ -- це один із ідеалів $R$. Насправді, ми можемо ці міркування повторити для кожного ідеалу.
+$\ker f$ -- один із ідеалів $R$. Насправді ми можемо ці міркування повторити для кожного ідеалу.
 \bigskip \\
 Нехай $I$ -- ідеал $R$, встановимо схоже відношення еківалентності:\\
 $r_1 \sim r_2 \iff r_1 - r_2 \in I$.\\
@@ -5062,7 +5570,7 @@ $r+I = \{ r+i \mid i \in I \}$.\\
 \end{proposition}
 Фактормножина $R/_\sim \overset{\text{позн.}}{=} R/_I$ буде містити всі суміжні класи.
 \bigskip \\
-Цього разу не виникне проблем із діленням на ліві та праві суміжні класи, як це було з групами. Чому ми саме працюємо з ідеалами, а не підгрупами, мотивація краще описує додатковий розділ про кільця в кінці.
+Цього разу не виникне проблем із діленням на ліві та праві суміжні класи, як це було з групами. \iffalse Чому ми саме працюємо з ідеалами, а не підгрупами, мотивацію краще описує додатковий розділ про кільця в кінці. \fi
 
 \begin{theorem}
 Задано $\left< R,+,\cdot \right>$ -- кільце та $I$ -- ідеал $R$. На множині $R/_I$ визначимо операцію $+, \cdot$ таким чином:\\
@@ -5163,6 +5671,51 @@ R \arrow{r}{f} \arrow{d}{\rho} & \Im f \subset S \\
 \textit{Тут нічого нового не написано, тупо попередня теорема.}
 \end{theorem}
 
+\begin{example}
+Маємо кільце $\left< \mathbb{R}[x],+,\cdot \right>$ та головний ідеал $(x-a), a \in \mathbb{R}$. Розглянемо гомоморфізм $f \colon \mathbb{R}[x] \to \mathbb{R}$ таким чином:\\
+$f(p) = p(a)$.\\
+Тобто беремо кожний многочлен та відображуємо на цей же многочлен в точці $a \in \mathbb{R}$.\\
+$\ker f = \{ p \in \mathbb{R}[x]: p(a) = 0 \} = (x-a)$.\\
+$\Im f = \{ p(a) | p \in \mathbb{R}[x] \} = \mathbb{R}$.\\
+Застосувавши першу теорему про ізоморфізм, отримаємо, що \\ $\mathbb{R}[x]/_{(x-a)} \cong \mathbb{R}$.\\
+А ізоморфізм задається таким чином:\\
+$\varphi(p + (x-a)) = p(a)$, де\\
+$p + (x-a) = \{p(x) + r(x) | r \in (x-a)\} = \{p(x) + q(x)(x-a) | q \in \mathbb{R}[x] \}$.
+\end{example}
+
+\begin{example}
+Маємо кільце $\left< \mathbb{R}[x],+,\cdot \right>$ та головний ідеал $(ax^2+bx+c), a \neq 0,b,c \in \mathbb{R}$, причому $D < 0$. Розглянемо гомоморфізм $f \colon \mathbb{R}[x] \to \mathbb{C}$ таким чином:\\
+$p \overset{f}{\mapsto} p(z)$, де $z$ -- комплексний корінь $ax^2+bx+c$.\\
+$\ker f = \{ p \in \mathbb{R}[x]: p(z) = 0 \} = (ax^2+bx+c)$.\\
+$\Im f = \{ p(z) | p \in \mathbb{R}[x] \} = \mathbb{C}$.\\
+Застосувавши першу теорему про ізоморфізм, отримаємо, що \\ $\mathbb{R}[x]/_{(ax^2+bx+c)} \cong \mathbb{C}$.\\
+А ізоморфізм задається таким чином:\\
+$\varphi(p + (ax^2+bx+c)) = p(z)$, тобто беремо всі многочлени, де значення дорівнює $p(z)$.
+\end{example}
+
+\begin{example}
+Маємо кільце $\left< \mathbb{R}[x],+,\cdot \right>$ та головний ідеал: \\ 
+1. $(x-a)(x-b), a,b \in \mathbb{R}, a \neq b$. Розглянемо гомоморфізм $f \colon \mathbb{R}[x] \to M_{2 \times 2}$ таким чином:\\
+$f(p) = p \begin{pmatrix}
+a & 0 \\
+0 & b
+\end{pmatrix}$.\\
+Аналогічно можна показати, що $\mathbb{R}/_{(x-a)(x-b)} \cong \left\{ \begin{pmatrix}
+a_1 & 0 \\
+0 & a_2
+\end{pmatrix} | a_1,a_2 \in \mathbb{R} \right\}$.
+\bigskip \\
+2. $(x-a)^2, a \in \mathbb{R}$. Розглянемо гомоморфізм $f: \mathbb{R}[x] \to M_{2 \times 2}$ таким чином:\\
+$f(p) = p \begin{pmatrix}
+a & 1 \\
+0 & a
+\end{pmatrix}$ -- клітина Жордана.\\
+Аналогічно можна показати, що $\mathbb{R}/_{(x-a)^2} \cong \left\{ \begin{pmatrix}
+a_1 & a_2 \\
+0 & a_1
+\end{pmatrix} | a_1,a_2 \in \mathbb{R} \right\}$.
+\end{example}
+
 \subsubsection{Друга теорема про ізоморфізм}
 \begin{lemma}
 Задано $R$ -- кільце, $S$ -- підкільце $R$ та $I$ -- ідеал $R$. Тоді $S \cap I$ -- ідеал $S$.
@@ -5174,7 +5727,7 @@ R \arrow{r}{f} \arrow{d}{\rho} & \Im f \subset S \\
 \end{proof}
 
 \begin{lemma}
-Задано $R$ -- кільце, $S$ -- підкільце $R$ та $I$ -- ідеал $R$. Тоді $I$ -- ідеал $I+S$.
+Задано $R$ -- кільце, $S$ -- підкільце $R$ та $I$ -- ідеал $R$. Тоді $I$ -- ідеал $S+I$.
 \end{lemma}
 
 \begin{proof}
@@ -5261,7 +5814,136 @@ R \times S = \{(r,s) \mid r \in R, s \in S\},
 Нехай $(u,v) \in R^\times \times S^{\times}$, тобто $u \in R^\times,\ v \in S^\times$, тобто $u \in R, v \in S$ - оборотні в своїх кільцях. Тож існують $a \in R,b \in S$, для яких $\begin{cases} u \cdot a = 1 \\ v \cdot b = 1 \end{cases}$, тоді звідси вилпиває, що $(u,v) \cdot (a,b) = (u \cdot a, v \cdot b) = (1,1)$, тобто $(u,v) \in (R \times S)$ та є оборотним. Отже, $(u,v) \in (R \times S)^\times$.\\
 Висновок: $(R \times S)^\times = R^\times \times S^\times$.
 \end{proof}
+\newpage
 
+\section*{Сучасний підхід до означення кілець}
+Часто коли автори кажуть про кільця, вони вважають автоматично, що там є одиниця. Якщо дотримуватися такої філософії, то кілька тверджень можуть змінитися. І зараз про них ми поговоримо. А поки оновимо означення.
+
+\begin{definition*}
+Задано $R$ -- деяку множину та дві бінарні операції $+,\cdot$.\\
+\textbf{Кільцем} назвемо трійку $\left<R, +, \cdot \right>$, для якої виконуються властивості:\\
+I. $\forall a,b \in R: a+b \in R$ -- замкненість відносно $+$;\\
+II. $\forall a,b \in R: a \cdot b \in R$ -- замкненість відносно $\cdot$;\\
+III. Підпорядкована такими аксіомами:
+\begin{figure}[H]
+\centering
+\begin{enumerate}[wide = 0pt, nosep, label={\arabic*)}]
+\item $\forall a,b,c \in R: a+(b+c) = (a+b)+c$ -- асоціативність додавання
+\item $\forall a,b,c \in R: a+b = b+a$ -- комутативність додавання
+\item $\exists 0 \in R: a+0 = a$ -- існування нейтрального елементу за додаванням
+\item $\forall a \in R: \exists (-a) \in R: a+(-a) = 0$ -- існування оберненого елементу за додаванням
+\item $\forall a,b,c \in R: a \cdot (b \cdot c) = (a \cdot b) \cdot c$ -- асоціативність множення
+\item $\forall a,b,c \in R: (a+b)\cdot c = (a\cdot c) + (b \cdot c)$ та $c \cdot (a+b) = (c \cdot a) + c \cdot b)$ -- дистрибутивність множення відносно додавання
+\color{red}{\item $\exists 1 \in R: a \cdot 1 = 1 \cdot a = a$}
+\end{enumerate}
+\end{figure}
+У рамках цього окремого розділу, коли задається кільце, то там вже є одиниця!
+\end{definition*}
+
+Миттєво з цього означення випливає зміна поняття підкільця.
+\begin{definition*}
+Задано $\left<R,+, \cdot \right>$ -- кільце та множину $R_1 \subset R$.\\
+Воно називається \textbf{підкільцем}, якщо 
+\begin{align*}
+\left<R_1,+,\cdot \right> \text{ -- кільце},
+\end{align*}
+де операцію $+$ ми успадкували з $R$. \color{red}{Також вимагається $1_R = 1_{R_1}$.}
+\end{definition*}
+
+\begin{remark*}
+У $R$ та $R_1$ уже нулі точно збігаються. Щодо одиниць: якщо припустити, що $1' \in R_1$ -- одиниця кільця, то тоді $1 = 1' \cdot 1 = 1'$.
+\end{remark*}
+
+Для визначення підкільця є абсолютно ідентичний критерій, що з теорії груп, просто буде додаткова та схожа умова.
+
+\begin{theorem}[Критерій підкільця]
+\label{subring_criterion_updated}
+Задано $\left<R,+, \cdot \right>$ -- кільце та множину $R_1 \subset R$.\\
+$R_1$ -- підкільце $\iff \begin{cases} \forall a,b \in R_1: a+b \in R_1 \\ \forall a,b \in R_1: a \cdot b \in R_1 \\ \forall a \in R_1: -a \in R_1 \end{cases}$ \color{red}{та $0_R,1_R \in R_1$.}\\
+\color{black}{\textit{Вправа: довести.}}
+\end{theorem}
+
+\begin{corollary}[Переписаний критерій]
+$R_1$ -- підкільце $\iff \begin{cases} \forall a,b \in R_1: a-b \in R_1 \\ a \cdot b \in R_1 \end{cases}$ \color{red}{та $0_R,1_R \in R_1$.}\\
+\end{corollary}
+
+Маючи оновлений критерій підкільця, один приклад зміниться.
+
+\begin{example*}
+Маємо $\left< \mathbb{Z}_6, +, \cdot \right>$ - кільце. Якщо раніше $S = \{\overline{0}, \overline{3}\} \subset \mathbb{Z}_6$ можна сприймати було як підкільце, то в оновлених домовленностях $S$ більше не буде підкільцем. Хоча само по собі кільцем є.\\
+А все тому що $1_S = \overline{3}$, коли водночас $1_{\mathbb{Z}_6} = \overline{1}$ -- не збігаються одиниці.
+\end{example*}
+
+\begin{definition*}
+Задано $\left<R, +, \cdot \right>$ та $\left<S, +, \cdot \right>$ -- кільця.\\
+\textbf{Гомоморфізмом кілець} називають відображення $f \colon R \to S$, де
+\begin{align*}
+\forall a,b \in R: f(a+b) = f(a) + f(b) \\
+\forall a,b \in R: f(a \cdot b) = f(a) \cdot f(b) \\
+\color{red}{f(1_R) = 1_S}
+\end{align*}
+\end{definition*}
+
+\begin{example*}
+Якщо раніше можна було задати гомоморфізм $f \colon \mathbb{Z}_n \to \mathbb{Z}$ (і це лише $f(\overline{a}) = 0$), то зараз між цими множинами просто не існує гомоморфізма.
+\bigskip \\
+!Припустимо, що оновлений гомоморфізм $f \colon \mathbb{Z}_n \to \mathbb{Z}$ існує. Якщо $n = 1$, то тоді $\mathbb{Z}_1 = \{ \overline{0} \}$ -- нульове кільце. Значить, $f(\overline{0}) = 0$, а також $f(\overline{0}) = 1$ (тому що в нульововму кільці одиниця та нулі збігаються). Разом $0 = 1$.\\
+Тож далі нехай $n > 1$. Відомо, що $f(\overline{1}) = 1$. Тоді звідси \\
+$f(\underbrace{\overline{1} + \dots + \overline{1}}_{n \text{ разів}}) = n f(\overline{1}) = n$.\\
+Із іншого боку,$f(\underbrace{\overline{1} + \dots + \overline{1}}_{n \text{ разів}}) = f(\overline{0}) = 0$.\\
+Разом отримали $n = 0$ -- суперечність!
+\bigskip \\
+Можна, до речі, це узгальнити, а доведення буде аналогічним.
+\end{example*}
+
+\begin{proposition*}
+Задані $R,S$ -- кільця, причому $\charac S = 0$.\\
+Якщо $\charac R > 0$, то не існує гомоморфізму кілець $f \colon R \to S$.
+\end{proposition*}
+
+\begin{example*}
+Задано $\left< R,+,\cdot\right>$ -- кільце. Розглянемо відображення $\sigma \colon \mathbb{Z} \to R$, що задається ось так:\\
+$\sigma(n) = \underbrace{1_R+\dots+1_R}_{n \text{ разів}},\ n > 0$\\
+$\sigma(n) = -\sigma(n),\ n < 0$\\
+$\sigma(0) = 0$.\\
+Тоді це утворює гомоморфізм кілець. Причому серед всіх гомоморфізмів кілець $\mathbb{Z} \to R$ гомоморфізм $\sigma$ -- єдиний.\\
+При $m,n > 0$ маємо наступне:\\
+$\sigma(n+m) = \underbrace{1_R+\dots+1_R}_{n+m \text{ разів}} = \underbrace{1_R+\dots+1_R}_{n \text{ разів}} + \underbrace{1_R+\dots+1_R}_{m \text{ разів}} = \sigma(n) + \sigma(m)$.\\
+$\sigma(nm) = \underbrace{1_R+\dots+1_R}_{nm \text{ разів}} = \underbrace{\underbrace{1_R+\dots+1_R}_{n \text{ разів}} + \dots + \underbrace{1_R+\dots+1_R}_{n \text{ разів}}}_{m \text{ разів}} = \\
+= (\underbrace{1_R+\dots+1_R}_{n \text{ разів}}) (\underbrace{1_R+\dots+1_R}_{m \text{ разів}}) = \sigma(n) \sigma(m)$.\\
+$\sigma(1) = 1_R$.\\
+Для всіх інших випадків $m,n$ легко довести.\\
+!Припустимо, що існує інший гомоморфізм $\tau \colon \mathbb{Z} \to R$. Тоді звідси $\tau(1) = 1_R$, а також при $n > 0$ маємо\\
+$\tau(n) = \tau(\underbrace{1+\dots+1}_{n \text{ разів}}) = \underbrace{\tau(1)+\dots+\tau(1)}_{n \text{ разів}} = \underbrace{1_R+\dots+1_R}_{n \text{ разів}} = \sigma(n)$.\\
+$\tau(0) = 0_R = \sigma(0)$.\\
+$\tau(-n) = -\tau(n) = -\sigma(n) = \sigma(n)$.\\
+Тобто довели $\tau \equiv \sigma$ -- суперечність!
+\iffalse
+\bigskip \\
+У старому означенні кільця теж гомоморфізм $\mathbb{Z} \to R$ єдиний, але це якщо викинути гомоморфізм $\tau \colon \mathbb{Z} \to R$, що задається як $\tau(n) = 0_R$.
+\fi
+\end{example*}
+
+До властивостей ізоморфізму кілець в цьому випадку додається ще одна властивість:
+\begin{proposition*}
+\color{red}{Маємо $f \colon R \to S$ -- гомоморфізм кілець. Тоді
+$a \in R^\times \iff f(a) \in S^\times$.}
+\end{proposition*}
+
+\begin{proof}
+Дійсно, нехай $a \in R^\times$, тобто звідси $a \cdot a^{-1} = 1_R$. Подіявши гомоморфізмом $f$, отримаємо $f(a) \cdot f(a^{-1}) = 1_S$. Звідси $(f(a))^{-1} = f(a^{-1})$, а також $f(a) \in S^\times$.\\
+Навпаки аналогічно.
+\end{proof}
+
+Означення ідеала не зміниться жодним чином. Але раніше було зауваження: $J$ -- ідеал кільця $R \implies J$ -- підкільце $R$. \color{red}{Зараз це вже -- неправда.}
+\color{black}{}
+
+\begin{example}
+Зокрема $\left< \mathbb{Z}_6, +, \cdot \right>$ -- кільце та $J = \{\overline{0},\overline{3}\}$ -- ідеал. Воно кільцем само по собі є, але не є підкільцем $\mathbb{Z}_6$ (ми вже це з'ясовували).
+\end{example}
+\newpage
+
+\section{Зв'язок з теорією кілець та теорією чисел}
 \subsection{Китайська теорема про остачі в кільцях}
 Нехай $R$ -- кільце та $I,J$ -- ідеали $R$. Маємо дві проєкції $\pi_I, \pi_J$. Розглянемо відображення $\rho \colon R \to (R/_I) \times (R/_J)$ таким чином:\\
 $\rho(r) = (\pi_I(r),\pi_J(r))$.\\
@@ -5310,7 +5992,7 @@ x \equiv a_2 \pmod n
 Більш того, якщо $N = p_1^{\alpha_1} \dots p_q^{\alpha_q}$, то $\mathbb{Z}/_{N} \cong (\mathbb{Z}/_{p_1^{\alpha_1} \mathbb{Z}}) \times \dots \times (\mathbb{Z}/_{p_q^{\alpha_q} \mathbb{Z}})$.
 \end{corollary}
 
-Знову повернімося до теорії чисел. Виявляється, що по-інакшому можна довести мультиплікативність функції Ейлера.
+Знову повернімося до теорії чисел. Виявляється, що по-інакшому можна довести мультиплікативність функції Ойлера.
 
 \begin{proposition}
 Функція $\varphi$ -- мультиплікативна.
@@ -5369,18 +6051,20 @@ $I$ -- максимальний ідеал $\iff R/_I$ -- поле.
 \end{proof}
 
 \begin{proposition}
-Задано $\left< R,+,\cdot\right>$ - комутативне кільце з $1$ та $I$ -- максимальний ідеал. Тоді $I$ -- простий ідеал.\\
+Задано $\left< R,+,\cdot\right>$ -- комутативне кільце з $1$ та $I$ -- максимальний ідеал. Тоді $I$ -- простий ідеал.\\
 \textit{Випливає з того факту, що будь-яке поле -- область цілісності.}
 \end{proposition}
 
 \begin{example}
-Розглянемо кілька прикладів:\\
-1. $\left<\mathbb{Z},+,\cdot \right>$, яка взагалі є областю головних ідеалів. Тут $n \mathbb{Z}$ - максимальний $\iff n$ - просте число. Зокрема $n\mathbb{Z}$ - простий ідеал $\iff n$ - просте число.\\
-Тобто $11 \mathbb{Z}$ - максимальний, а от $6 \mathbb{Z}$ - ні, тому що $6 \mathbb{Z} \subset 2 \mathbb{Z}$.
-\bigskip \\
-2. $\left< \mathbb{R}[x], +,\cdot \right>$, яка взагалі є областю головних ідеалів. Тут $(p(x))$ - максимальний тоді й тільки тоді, коли $p(x)$ не можна розкласти в добуток многочленів ненульового степеня.\\
-Тобто $(x^2+x+1)$ - максимальний, а от $(x^2-1)$ - ні, тому що $(x^2-1) \subset (x-1)$.\\
+Розглянемо кілька прикладів:
+\begin{enumerate}[wide=0pt,label={\arabic*.}]
+\item $\left<\mathbb{Z},+,\cdot \right>$, яка взагалі є областю головних ідеалів. Тут $n \mathbb{Z}$ -- максимальний $\iff n$ -- просте число. Зокрема $n\mathbb{Z}$ -- простий ідеал $\iff n$ -- просте число.\\
+Тобто $11 \mathbb{Z}$ -- максимальний, а от $6 \mathbb{Z}$ -- ні, тому що $6 \mathbb{Z} \subset 2 \mathbb{Z}$.
+
+\item $\left< \mathbb{R}[x], +,\cdot \right>$, яка взагалі є областю головних ідеалів. Тут $(p(x))$ -- максимальний тоді й тільки тоді, коли $p(x)$ не можна розкласти в добуток многочленів ненульового степеня.\\
+Тобто $(x^2+x+1)$ -- максимальний, а от $(x^2-1)$ - ні, тому що $(x^2-1) \subset (x-1)$.\\
 Важливе зауваження на прикладі: $(2x^2+2x+2) = (x^2+x+1)$, тобто для запису максимального ідеалу можна взяти многочлен з одиничним старшим коефіцієнтом.
+\end{enumerate}
 \end{example}
 
 \iffalse
@@ -5467,7 +6151,7 @@ $(a+J) \cdot (r+J) = 1+J$, а значить, $r+J = (a+J)^{-1}$.\\
 \fi
 
 \begin{example}
-$\mathbb{Z}/_{p\mathbb{Z}}$, а також $\mathbb{R}[x]/_{(x-a)}, \mathbb{R}[x]/_{\underset{D<0}{(ax^2+bx+c)}}$ - всі вони поля.
+$\mathbb{Z}/_{p\mathbb{Z}}$, а також $\mathbb{R}[x]/_{(x-a)}, \mathbb{R}[x]/_{\underset{D<0}{(ax^2+bx+c)}}$ -- всі вони поля.
 \end{example}
 
 \subsection{Найбільший спільний дільник}
@@ -5533,7 +6217,7 @@ $-bc^2 - 3bd^2 = 2d$\fi
 \end{corollary}
 
 \begin{definition}
-Задано $\left<R,+,\cdot \right>$ - область цілісності та $x \in R$.\\
+Задано $\left<R,+,\cdot \right>$ -- область цілісності та $x \in R$.\\
 Елемент $y \in R$ назвемо \textbf{асоційованим} з елементом $x$, якщо
 \begin{align*}
 y = x \cdot u, u \in R^\times
@@ -5543,30 +6227,30 @@ y = x \cdot u, u \in R^\times
 
 
 \begin{proposition}["Єдиність"]
-Задано $\left<R,+,\cdot\right>$ - область цілісності та $d = \gcd(a,b)$. Тоді будь-який інший $d' = \gcd(a,b)$ буде асоційовним з $d$.
+Задано $\left<R,+,\cdot\right>$ -- область цілісності та $d = \gcd(a,b)$. Тоді будь-який інший $d' = \gcd(a,b)$ буде асоційовним з $d$.
 \end{proposition}
 
 \begin{proof}
-Маємо $d,d'$ - два НСД. Тоді за означенням, $d' \mid  d$ та $d \mid d'$, тобто\\
+Маємо $d,d'$ -- два НСД. Тоді за означенням, $d' \mid  d$ та $d \mid d'$, тобто\\
 $d = d' \cdot u$ та $d' = d \cdot v$. Тоді\\
 $d = d \cdot u \cdot v \implies d(1-uv) = 0$.\\
 За умовою, $d \neq 0$, а також не забуваймо, що ми працюємо в області цілісноті. Тому для рівності треба вимагати, щоб $1 - uv = 0 \implies uv = 1$.\\
 Таким чином, ми довели, що $u$ - оборотний елемент, а тому $u \in R^\times$.\\
-Отже, $d$ - асоційований з $d'$, тому що $d = d' \cdot u$, де $u \in R^\times$.
+Отже, $d$ -- асоційований з $d'$, тому що $d = d' \cdot u$, де $u \in R^\times$.
 \end{proof}
 
-\begin{example} Розглянемо три приклади:\\
-1. Для області головних ідеалів $\mathbb{Z}$ ми маємо $\mathbb{Z}^\times = \{-1,1\}$. За попередніми міркуваннями, якщо маємо $x_1,x_2$ - два якісь НСД, то\\
+\begin{example} Розглянемо три приклади:
+\begin{enumerate}[wide=0pt,label={\arabic*.}]
+\item Для області головних ідеалів $\mathbb{Z}$ ми маємо $\mathbb{Z}^\times = \{-1,1\}$. За попередніми міркуваннями, якщо маємо $x_1,x_2$ -- два якісь НСД, то\\
 $x_1 = x_2$ або $x_1 = -x_2$.\\
-Тобто НСД в цілих числах - єдиний з точністю до знаку.
-\bigskip \\
-2. Для області головних ідеалів $k[x]$ ми маємо $(k[x])^\times = k^\times = k \setminus \{0\}$. Знову за попередніми міркуваннями, $x_1,x_2$ - два якісь НСД - тоді\\
+Тобто НСД в цілих числах -- єдиний з точністю до знаку.
+\item Для області головних ідеалів $k[x]$ ми маємо $(k[x])^\times = k^\times = k \setminus \{0\}$. Знову за попередніми міркуваннями, $x_1,x_2$ -- два якісь НСД - тоді\\
 $x_1 = c x_2$, де $c \in k \setminus \{0\}$.\\
-Тобто НСД в многочленах - єдиний з точністю до ненульової константи.
-\bigskip \\
-3. Для гаусових чисел $\mathbb{Z}[i]$ маємо $(\mathbb{Z}[i])^\times = \{1,-1,i,-i\}$. Тоді якщо $x_1,x_2$ - два якісь НСД, то\\
+Тобто НСД в многочленах -- єдиний з точністю до ненульової константи.
+\item Для гаусових чисел $\mathbb{Z}[i]$ маємо $(\mathbb{Z}[i])^\times = \{1,-1,i,-i\}$. Тоді якщо $x_1,x_2$ -- два якісь НСД, то\\
 $x_1 = \pm x_2$ або $x_1 = \pm ix_2$.\\
-Тобто НСД гаусових чисел - єдиний з точністю до знаку та уявної одиниці.
+Тобто НСД гаусових чисел -- єдиний з точністю до знаку та уявної одиниці.
+\end{enumerate}
 \end{example}
 
 \begin{remark}
@@ -5603,13 +6287,15 @@ q = ab \implies a \in R^\times \text{ або } b \in R^\times
 
 \noindent Як і решта означень, хочеться переписати мовою головних ідеалів. Маємо таку лему:
 \begin{lemma}
-Задано $\left<R,+,\cdot \right>$ - область цілісності. Тоді\\
-1. $r_1 = r_2a$ для деякого $a \in R \iff (r_1) \subset (r_2)$;\\
-2. $r_1 = r_2a$ для деякого $a \in R^\times \iff (r_1) = (r_2)$.\\
+Задано $\left<R,+,\cdot \right>$ -- область цілісності. Тоді
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $r_1 = r_2a$ для деякого $a \in R \iff (r_1) \subset (r_2)$;
+\item $r_1 = r_2a$ для деякого $a \in R^\times \iff (r_1) = (r_2)$.
+\end{enumerate}
 \textit{Вправа: довести.}
 \end{lemma}
 
-Таким чином, означення '$q$ - незвідний' перепишеться таким чином:
+Таким чином, означення ''$q$ -- незвідний'' перепишеться таким чином:
 \begin{align*}
 q = ab \implies (q) = (b) \text{ або } (q) = (a)
 \end{align*}
@@ -5630,10 +6316,10 @@ q = ab \implies (q) = (b) \text{ або } (q) = (a)
 \end{remark}
 
 \begin{example}
-Маємо $R = \left(x^2,y^2,xy \right) \subset \mathbb{Q}[x,y]$. Одразу зауважу, що $R^\times = \mathbb{Q}^\times$ - тобто многочлени вигляді константи.\\
-Многочлен $xy$ - незвідний.\\
-Припустимо, що $xy$ - звідний, тобто $xy = f(x,y)g(x,y)$, де многочлени $f,g \not\in R^\times$. $\deg (xy) = 2$. А тому звідси $\deg f(x,y) = \deg g(x,y) = 1$. Але суперечність, бо вони, $f,g \in \left< x^2,y^2, xy\right>$.\\
-Але многочлен $xy$ - не простий, тому що $xy \mid x^2y^2$, але $xy \nmid x^2$ та $xy \nmid y^2$. Останні два дуже легко показуються.
+Маємо $R = \left(x^2,y^2,xy \right) \subset \mathbb{Q}[x,y]$. Одразу зауважу, що $R^\times = \mathbb{Q}^\times$ -- тобто многочлени вигляді константи.\\
+Многочлен $xy$ -- незвідний.\\
+Припустимо, що $xy$ -- звідний, тобто $xy = f(x,y)g(x,y)$, де многочлени $f,g \not\in R^\times$. $\deg (xy) = 2$. А тому звідси $\deg f(x,y) = \deg g(x,y) = 1$. Але суперечність, бо вони, $f,g \in \left< x^2,y^2, xy\right>$.\\
+Але многочлен $xy$ -- не простий, тому що $xy \mid x^2y^2$, але $xy \nmid x^2$ та $xy \nmid y^2$. Останні два дуже легко показуються.
 \end{example}
 
 \begin{proposition}
@@ -5648,7 +6334,7 @@ $r \nmid a \implies \gcd (r,a) = 1$.\\
 $x \in R^\times$, тоді $d = rx^{-1} \implies a = rx^{-1}y \implies r \mid a$. Суперечність!\\
 $d \in R^\times$, тоді $d$ буде асоційовним з $1$, а НСД однаковий з точністю до асоційовності. Отже, все одно прийдемо до $\gcd(r,a) = 1$.\\
 Тоді за одним наслідком, $(r,a) = R$.\\
-Тоді $(rb,ab) = (b)$ - в принципі, неважко показати.\\
+Тоді $(rb,ab) = (b)$ -- в принципі, неважко показати.\\
 Але оскільки $r \mid ab$, то тоді $(rb,ab) = (b) \subset (r)$ - теж відносно неважко показати. Таким чином, $b \in (r)$, а значить, $r \mid b$.
 \end{proof}
 
@@ -5706,23 +6392,23 @@ $\lambda(r) = \dfrac{1}{\lambda^2(b)} ((m_2r_1+n_2r_2)^2 + (n_2r_1-m_2r_2)^2) = 
 \end{example}
 
 \begin{theorem}
-Задано $\left<R,+,\cdot\right>$ - евклідова область. Тоді $\left<R,+,\cdot\right>$ -- область головних ідеалів.
+Задано $\left<R,+,\cdot\right>$ -- евклідова область. Тоді $\left<R,+,\cdot\right>$ -- область головних ідеалів.
 \end{theorem}
 
 \begin{proof}
-За означенням евклідової області, $R$ - область цілісності.\\
+За означенням евклідової області, $R$ -- область цілісності.\\
 Залишилось довести, що кожний ідеал має структуру головного ідеалу.\\
-!Припустимо, що $J$ - деякий ідеал, але не головний. Для суперечності ми доведемо, що $J = (x)$, де $x \in J$, такий, що $\lambda(x) = \displaystyle\min_{y \in J \setminus \{0\}} \lambda(y)$.\\
+!Припустимо, що $J$ -- деякий ідеал, але не головний. Для суперечності ми доведемо, що $J = (x)$, де $x \in J$, такий, що $\lambda(x) = \displaystyle\min_{y \in J \setminus \{0\}} \lambda(y)$.\\
 Нехай $z \in (x)$, тоді звідси $z = xr$, де $x \in J$ та $r \in R$. Тоді автоматично $z \in J$ за визначенням ідеала. Отже, $(x) \subset J$.\\
-Нехай $z \in J$. Застосуємо узагальнений алгоритм Евкліда для елементів $x,z$ - маємо:\\
-$z = xq + r$, причому $r = 0$ або $\lambda(r) < \lambda(x)$. Виразимо остачу - отримаємо\\
-$r = z - xq \in J$ за визначенням ідеала. Тоді звідси $\lambda(r) \geq \lambda(x)$ за визначенням $\lambda(x)$. І тому єдиний можливий варіант для остачі - це стати $r = 0$.\\
+Нехай $z \in J$. Застосуємо узагальнений алгоритм Евкліда для елементів $x,z$ -- маємо:\\
+$z = xq + r$, причому $r = 0$ або $\lambda(r) < \lambda(x)$. Виразимо остачу -- отримаємо\\
+$r = z - xq \in J$ за визначенням ідеала. Тоді звідси $\lambda(r) \geq \lambda(x)$ за визначенням $\lambda(x)$. І тому єдиний можливий варіант для остачі -- це стати $r = 0$.\\
 Отже, $z = xq \implies z \in (x)$, тобто звідси $J \subset (x)$.\\
 Нарешті, довели $J = (x)$. Суперечність!
 \end{proof}
 
 \begin{example}
-Зокрема оскільки $\mathbb{Z}, k[x], \mathbb{Z}[i]$ - евклідові області, то вони ж - області головних ідеалів.
+Зокрема оскільки $\mathbb{Z}, k[x], \mathbb{Z}[i]$ -- евклідові області, то вони ж -- області головних ідеалів.
 \end{example}
 
 \begin{example}
@@ -5757,7 +6443,7 @@ $a = p_1 \dots p_r$, де $p_1,\dots,p_r$ -- всі незвідні.
 \end{lemma}
 
 \begin{proof}
-Якщо $a$ - незвідний, то нема про що говорити ($a = a$).\\
+Якщо $a$ -- незвідний, то нема про що говорити ($a = a$).\\
 Інакше існує незвідний елемент $p_1$, для якого $p_1 \mid a$. Тоді $a = p_1 q_1$. Зауважимо, що $(a) \subset (q_1)$. Якщо $q_1 \in R^\times$, то тоді маємо асоційований незвідний елемент $p_1^* = p_1 q_1$, звідси $a = p_1^*$ -- закінчили.\\
 Інакше для числа $q_1$ знайдеться якийсь незвідний елемент $p_2$, для якого $p_2 \mid q_1$, тоді $q_1 = p_2 q_2$. Зауважимо, що $(q_1) \subset (q_2)$. Якщо $q_2 \in R^\times$, то тоді маємо асоційований незвідний елемент $p_2^* = p_2 q_2$, звідси $a = p_1 \cdot p_2^*$ -- закінчили.\\
 $\vdots$\\
@@ -5805,7 +6491,7 @@ $a = q_1 \dots q_r u_r^{-1} \dots u_1^{-1} = p_1^* \dots p_r^*$. Отримал�
 \end{theorem}
 
 \begin{theorem}[Узагальнення розкладу елемента]
-Задано $R$ - область головних ідеалів. Позначимо $P$ - множина простих елементів, так, що:\\
+Задано $R$ -- область головних ідеалів. Позначимо $P$ -- множина простих елементів, так, що:\\
 - кожен простий елемент в $R$ асоційований з деяким елементом з $P$;\\
 - жодні два елементи в $P$ не є асоційованими.\\
 Тоді будь-який елемент $r \neq 0 \in R$ можна розкласти единим чином як добуток простих елементів. Тобто\\
@@ -5825,141 +6511,6 @@ $F$ -- поле.\\
 \begin{align*}
 R \supset ID \supset UFD \supset PID \supset ED \supset F
 \end{align*}
-\newpage
-\section*{Сучасний підхід до означення кілець}
-Часто коли автори кажуть про кільця, вони вважають автоматично, що там є одиниця. Якщо притримуватися такої філософії, то кілька тверджень можуть змінитися. І зараз про них ми поговоримо. А поки оновимо означення.
-
-\begin{definition*}
-Задано $R$ -- деяку множину та дві бінарні операції $+,\cdot$.\\
-\textbf{Кільцем} назвемо трійку $\left<R, +, \cdot \right>$, для якої виконуються властивості:\\
-I. $\forall a,b \in R: a+b \in R$ -- замкненість відносно $+$;\\
-II. $\forall a,b \in R: a \cdot b \in R$ -- замкненість відносно $\cdot$;\\
-III. Підпорядкована такими аксіомами:
-\begin{figure}[H]
-\centering
-\begin{enumerate}[wide = 0pt, nosep, label={\arabic*)}]
-\item $\forall a,b,c \in R: a+(b+c) = (a+b)+c$ -- асоціативність додавання
-\item $\forall a,b,c \in R: a+b = b+a$ -- комутативність додавання
-\item $\exists 0 \in R: a+0 = a$ -- існування нейтрального елементу за додаванням
-\item $\forall a \in R: \exists (-a) \in R: a+(-a) = 0$ -- існування оберненого елементу за додаванням
-\item $\forall a,b,c \in R: a \cdot (b \cdot c) = (a \cdot b) \cdot c$ -- асоціативність множення
-\item $\forall a,b,c \in R: (a+b)\cdot c = (a\cdot c) + (b \cdot c)$ та $c \cdot (a+b) = (c \cdot a) + c \cdot b)$ -- дистрибутивність множення відносно додавання
-\color{red}{\item $\exists 1 \in R: a \cdot 1 = 1 \cdot a = a$}
-\end{enumerate}
-\end{figure}
-У рамках цього окремого розділу, коли задається кільце, то там вже є одиниця!
-\end{definition*}
-
-Миттєво з цього означення випливає зміна поняття підкільця.
-\begin{definition*}
-Задано $\left<R,+, \cdot \right>$ -- кільце та множину $R_1 \subset R$.\\
-Воно називається \textbf{підкільцем}, якщо 
-\begin{align*}
-\left<R_1,+,\cdot \right> \text{ -- кільце},
-\end{align*}
-де операцію $+$ ми успадкували з $R$. \color{red}{Також вимагається $1_R = 1_{R_1}$.}
-\end{definition*}
-
-\begin{remark*}
-У $R$ та $R_1$ уже нулі точно збігаються. Щодо одиниць: якщо припустити, що $1' \in R_1$ -- одиниця кільця, то тоді $1 = 1' \cdot 1 = 1'$.
-\end{remark*}
-
-Для визначення підкільця є абсолютно ідентичний критерій, що з теорії груп, просто буде додаткова та схожа умова.
-
-\begin{theorem}[Критерій підкільця]
-\label{subring_criterion_updated}
-Задано $\left<R,+, \cdot \right>$ -- кільце та множину $R_1 \subset R$.\\
-$R_1$ -- підкільце $\iff \begin{cases} \forall a,b \in R_1: a+b \in R_1 \\ \forall a,b \in R_1: a \cdot b \in R_1 \\ \forall a \in R_1: -a \in R_1 \end{cases}$ \color{red}{та $0_R,1_R \in R_1$.}\\
-\color{black}{\textit{Вправа: довести.}}
-\end{theorem}
-
-\begin{corollary}[Переписаний критерій]
-$R_1$ -- підкільце $\iff \begin{cases} \forall a,b \in R_1: a-b \in R_1 \\ a \cdot b \in R_1 \end{cases}$ \color{red}{та $0_R,1_R \in R_1$.}\\
-\end{corollary}
-
-Маючи оновлений критерій підкільця, один приклад зміниться.
-
-\begin{example*}
-Маємо $\left< \mathbb{Z}_6, +, \cdot \right>$ - кільце. Якщо раніше $S = \{\overline{0}, \overline{3}\} \subset \mathbb{Z}_6$ можна сприймати було як підкільце, то в оновлених домовленностях $S$ більше не буде підкільцем. Хоча само по собі кільцем є.\\
-А все тому що $1_S = \overline{3}$, коли водночас $1_{\mathbb{Z}_6} = \overline{1}$ -- не збігаються одиниці.
-\end{example*}
-
-\begin{definition*}
-Задано $\left<R, +, \cdot \right>$ та $\left<S, +, \cdot \right>$ -- кільця.\\
-\textbf{Гомоморфізмом кілець} називають відображення $f \colon R \to S$, де
-\begin{align*}
-\forall a,b \in R: f(a+b) = f(a) + f(b) \\
-\forall a,b \in R: f(a \cdot b) = f(a) \cdot f(b) \\
-\color{red}{f(1_R) = 1_S}
-\end{align*}
-\end{definition*}
-
-\begin{example*}
-Якщо раніше можна було задати гомоморфізм $f \colon \mathbb{Z}_n \to \mathbb{Z}$ (і це лише $f(\overline{a}) = 0$), то зараз між цими множинами просто не існує гомоморфізма.
-\bigskip \\
-!Припустимо, що оновлений гомоморфізм $f \colon \mathbb{Z}_n \to \mathbb{Z}$ існує. Якщо $n = 1$, то тоді $\mathbb{Z}_1 = \{ \overline{0} \}$ -- нульове кільце. Значить, $f(\overline{0}) = 0$, а також $f(\overline{0}) = 1$ (тому що в нульововму кільці одиниця та нулі збігаються). Разом $0 = 1$.\\
-Тож далі нехай $n > 1$. Відомо, що $f(\overline{1}) = 1$. Тоді звідси \\
-$f(\underbrace{\overline{1} + \dots + \overline{1}}_{n \text{ разів}}) = n f(\overline{1}) = n$.\\
-Із іншого боку,$f(\underbrace{\overline{1} + \dots + \overline{1}}_{n \text{ разів}}) = f(\overline{0}) = 0$.\\
-Разом отримали $n = 0$ -- суперечність!
-\bigskip \\
-Можна, до речі, це узгальнити, а доведення буде аналогічним.
-\end{example*}
-
-\begin{proposition*}
-Задані $R,S$ -- кільця, причому $\charac S = 0$.\\
-Якщо $\charac R > 0$, то не існує гомоморфізму кілець $f \colon R \to S$.
-\end{proposition*}
-
-\begin{example*}
-Задано $\left< R,+,\cdot\right>$ -- кільце. Розглянемо відображення $\sigma \colon \mathbb{Z} \to R$, що задається таким чином:\\
-$\sigma(n) = \underbrace{1_R+\dots+1_R}_{n \text{ разів}},\ n > 0$\\
-$\sigma(n) = -\sigma(n),\ n < 0$\\
-$\sigma(0) = 0$.\\
-Тоді це утворює гомоморфізм кілець. Причому серед всіх гомоморфізмів кілець $\mathbb{Z} \to R$ гомоморфізм $\sigma$ -- єдиний.\\
-При $m,n > 0$ маємо наступне:\\
-$\sigma(n+m) = \underbrace{1_R+\dots+1_R}_{n+m \text{ разів}} = \underbrace{1_R+\dots+1_R}_{n \text{ разів}} + \underbrace{1_R+\dots+1_R}_{m \text{ разів}} = \sigma(n) + \sigma(m)$.\\
-$\sigma(nm) = \underbrace{1_R+\dots+1_R}_{nm \text{ разів}} = \underbrace{\underbrace{1_R+\dots+1_R}_{n \text{ разів}} + \dots + \underbrace{1_R+\dots+1_R}_{n \text{ разів}}}_{m \text{ разів}} = \\
-= (\underbrace{1_R+\dots+1_R}_{n \text{ разів}}) (\underbrace{1_R+\dots+1_R}_{m \text{ разів}}) = \sigma(n) \sigma(m)$.\\
-$\sigma(1) = 1_R$.\\
-Для всіх інших випадків $m,n$ легко довести.\\
-!Припустимо, що існує інший гомоморфізм $\tau \colon \mathbb{Z} \to R$. Тоді звідси $\tau(1) = 1_R$, а також при $n > 0$ маємо\\
-$\tau(n) = \tau(\underbrace{1+\dots+1}_{n \text{ разів}}) = \underbrace{\tau(1)+\dots+\tau(1)}_{n \text{ разів}} = \underbrace{1_R+\dots+1_R}_{n \text{ разів}} = \sigma(n)$.\\
-$\tau(0) = 0_R = \sigma(0)$.\\
-$\tau(-n) = -\tau(n) = -\sigma(n) = \sigma(n)$.\\
-Тобто довели $\tau \equiv \sigma$ -- суперечність!
-\iffalse
-\bigskip \\
-У старому означенні кільця теж гомоморфізм $\mathbb{Z} \to R$ єдиний, але це якщо викинути гомоморфізм $\tau \colon \mathbb{Z} \to R$, що задається як $\tau(n) = 0_R$.
-\fi
-\end{example*}
-
-До властивостей ізоморфізму кілець в цьому випадку додається ще одна властивість:
-\begin{proposition*}
-\color{red}{Маємо $f \colon R \to S$ -- гомоморфізм кілець. Тоді
-$a \in R^\times \iff f(a) \in S^\times$.}
-\end{proposition*}
-
-\begin{proof}
-Дійсно, нехай $a \in R^\times$, тобто звідси $a \cdot a^{-1} = 1_R$. Подіявши гомоморфізмом $f$, отримаємо $f(a) \cdot f(a^{-1}) = 1_S$. Звідси $(f(a))^{-1} = f(a^{-1})$, а також $f(a) \in S^\times$.\\
-Навпаки аналогічно.
-\end{proof}
-
-Означення ідеала не зміниться жодним чином. Але раніше було зауваження: $J$ -- ідеал кільця $R \implies J$ -- підкільце $R$. \color{red}{Зараз це вже -- неправда.}
-\color{black}{}
-
-\begin{example}
-Зокрема $\left< \mathbb{Z}_6, +, \cdot \right>$ -- кільце та $J = \{\overline{0},\overline{3}\}$ -- ідеал. Воно кільцем само по собі є, але не є підкільцем $\mathbb{Z}_6$ (ми вже це з'ясовували).
-\end{example}
-
-У нас змінюється формулювання четвертої теореми про ізоморфізм.
-\begin{theorem}[Четверта теорема про ізоморфізм]
-\color{red}{Задано $R$ -- кільце та $I$ -- ідеал. Тоді існує бієкція $F \colon U_1 \to U_2$, де окремо $U_1 = \{ S \text{ -- ідеал } R \mid S \supset I\}$, а також $U_2 = \left\{ K \text{ -- ідеал } G/_I\right\}$.}
-\end{theorem}
-
-\begin{proof}
-
-\end{proof}
 
 \newpage
 \section{Многочлени}
@@ -6065,7 +6616,7 @@ $k[x]$ -- область головних ідеалів. Як черговий 
 
 Запишемо ділення з остачею мовою ідеалів.
 \begin{corollary}
-Задано $\left< R,+,\cdot\right>$ -- область цілісності та $f,g \in R[x]$, причому $f \not\equiv 0$. Також нехай старший коефіцієнт $f$ оборотний. Тоді будь-який суміжний клас $R[x]/_{(f(x))}$ має єдиного представника вигляду $r(x) + (f(x))$, де $r(x) = 0$ або $\deg r < \deg f$.
+Задано $\left< R,+,\cdot\right>$ -- область цілісності та $f,g \in R[x]$, причому $f \not\equiv 0$. Також нехай старший коефіцієнт $f$ оборотний. Тоді будь-який суміжний клас $g(x) + (f(x)) \in R[x]/_{(f(x))}$ записується в вигляді $r(x) + (f(x))$ єдиним чином, де $r(x) = 0$ або $\deg r < \deg f$.
 \end{corollary}
 
 \begin{proof}
@@ -6893,10 +7444,12 @@ $\ker f = \{ (m_1,m_2) \mid f(m_1,m_2) = (0+L_1,0+L_2) \} = \\ = \{ (m_1,m_2) \m
 Оскільки $\ker f$ є підмодулем, то довели, що $L_1 \oplus L_2$ -- підмодуль.\\
 Нарешті, $(M_1 \oplus M_2)/_{L_1 \oplus L_2} \cong (M_1/_{L_1}) \oplus (M_2/_{L_2})$ -- випливає із I теореми про ізоморфізм.
 \end{proof}
+\newpage
 
-\subsection{Модулі над областями цілісноті}
+\section{Модулі над областями цілісноті}
 Усюди вважатимемо в даному розділі, що $\left<R,+,\cdot \right>$ -- область цілісності.
 
+\subsection{Вільні модулі та матричне представлення}
 \begin{definition}
 Маємо $m \in \mathbb{N} \cup \{0\}$. \\
 $R$-модуль $F$ називається \textbf{вільним}, якщо даний модуль ізоморфіний деякому вільному $R$-модулю деякого рангу, тобто
@@ -8662,12 +9215,177 @@ $d = [\mathbb{F}_{p^d} : \mathbb{F}_p] = [\mathbb{F}_{p^d} : \mathbb{F}_p(\beta)
 \begin{corollary}
 Маємо розширення $\mathbb{F}_{p^e} \subset \mathbb{F}_{p^d} \iff e \mid d$.
 \end{corollary}
+\newpage
 
 \iffalse
 \begin{proposition}
 Задано $k \subset F$ -- розширення полів. Нехай $E$ -- множина всіх елементів із $F$, що є алгебраїчними над $k$ (це буде формувати поле, пізніше додам). Тоді якщо $\alpha \in F$ та є алгебраїчним над $E$, то $\alpha \in E$.
 \end{proposition}
 \fi
+
+\section{Алгебра}
+\subsection{Базові поняття про алгебру}
+Надалі позначимо $k$ за деяке поле.
+
+\begin{definition}
+Векторний простір $A$ над полем $k$ разом із білінійною формою (множенням)
+\begin{align*}
+\cdot \colon A \times A \to A
+\end{align*}
+називається \textbf{алгеброю над полем $k$} (або \textbf{$k$-алгеброю}).
+\end{definition}
+
+\begin{definition}
+Алгебра $A$ називається \textbf{комутативною}, якщо
+\begin{align*}
+\forall a,b \in A: a \cdot b = b \cdot a
+\end{align*}
+\end{definition}
+
+\begin{definition}
+Алгебра $A$ називається \textbf{асоціативною}, якщо
+\begin{align*}
+\forall a,b.c \in A: a \cdot (b \cdot c) = (a \cdot b) \cdot c
+\end{align*}
+\end{definition}
+
+\begin{definition}
+\textbf{Одиницею} алгебри $A$ називають елемент $1 \in A$, для якого
+\begin{align*}
+\forall a \in A: 1 \cdot a = a \cdot 1 = a
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Існуюча одиниця в алгебрі $A$ -- єдина.
+\end{proposition}
+
+\begin{proof}
+Дійсно, коли в нас $1,1' \in A$ -- дві одиниці алгебри, то за означенням, $1 = 1 \cdot 1' = 1'$.
+\end{proof}
+
+\begin{example}
+Зокрема розглянемо кілька важливих прикладів асоціативних алгебр з одиницею:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $k$ -- тобто саме поле;
+\item $k[x_1,\dots,x_n]$ -- многочлени;
+\item $\End V$ -- множина всіх лінійних операторів $V \to V$ (тут $V$ -- векторний простір).
+\end{enumerate}
+\end{example}
+
+\begin{example}
+Розглянемо $k\left<x_1,\dots,x_n\right>$. Зазначимо, що серед $\{x_1,\dots,x_n\}$ можна скласти 'слово' із алфавіту зі зазначеної множини. Наприклад, $x_1x_2x_1, x_1x_3x_2x_1$ тощо. Так ось, $k\left<x_1,\dots,x_n\right> = \linspan\{ \text{всі можливі слова} \}$.\\
+На базисні елементи задається операція множення -- так звана конкатенація слів. Наприклад, $(x_1 x_2 x_1) \cdot (x_1 x_3 x_2 x_1) = x_1 x_2 x_1 x_1 x_3 x_2 x_1$. Конкатенація -- асоціативна операція (цілком ясно).\\
+Одиницею алгебри тут буде порожнє слово.\\
+Користь даного прикладу полягає в наступному:
+\end{example}
+
+\begin{proposition}
+Нехай $B$ -- алгебра та $f \colon \{x_1,\dots,x_n\} \to B$ -- довільне відображення. Тоді існує єдиний гомоморфізм $\tilde{f} \colon k\left<x_1,\dots,x_n\right> \to B$, для якого $\tilde{f} \circ \imath = f$. У цьому випадку $\imath \colon \{x_1,\dots,x_n\} \hookrightarrow k\left<x_1,\dots,x_n\right>$ -- вкладення.
+\begin{figure}[H]
+\centering
+\begin{tikzcd}
+\{x_1,\dots,x_n\} \arrow{r}{f} \arrow{d}{\imath} & B \\
+k\left<x_1,\dots,x_n\right> \arrow{ru}[swap]{\exists ! \tilde{f}}
+\end{tikzcd}
+\end{figure}
+\end{proposition}
+
+\begin{proof}
+I. \textit{Існування}.\\
+Побудуємо відображення $\tilde{f} \colon k\left<x_1,\dots,x_n\right> \to B$ ось таким чином (на прикладі конкретного слова опишу): $\tilde{f}(x_1x_2x_1) = f(x_1)f(x_2)f(x_1)$. Для інших слів аналогічно. Якщо взяти будь-який елемент $u \in k\left<x_1,\dots,x_n\right>$, тобто $u = \displaystyle\sum_i \lambda_i u_i$, де $u_i$ -- слово, то $\tilde{f}(u) = \displaystyle\sum_i \lambda_i \tilde{f}(u_i)$. Автоматично маємо лінійне відображення. Покажемо, що це додатково гомоморфізм алгебр.\\
+Покажу на конкретних двух словах, для інших двох аналогічно:\\
+$\tilde{f}((x_1x_2x_1) \cdot (x_1x_3x_2x_1)) = \tilde{f}(x_1x_2x_1x_1x_3x_2x_1) = f(x_1)f(x_2)f(x_1)f(x_1)f(x_3)f(x_2)f(x_1) = [f(x_1)f(x_2)f(x_1)] \cdot [f(x_1)f(x_3)f(x_2)f(x_1)] = \tilde{f}(x_1x_2x_1) \cdot \tilde{f}(x_1x_3x_2x_1)$.\\
+Якщо взяти будь-які два слова $u,v \in k\left<x_1,\dots,x_n\right>$, то, насправді, там теж виконується. Просто дуже лінь розписувати детально. Тобто там теж $\tilde{f}(uv) =\tilde{f}(u) \tilde{f}(v)$.
+\bigskip \\
+Позначимо $\imath \colon \{x_1,\dots,x_n\} \to k\left<x_1,\dots,x_n\right>$. Звідси випливає, що $\tilde{f} \circ \imath (x_i) = \tilde{f}(x_i) = f(x_i)$.
+\bigskip \\
+II. \textit{Єдиність}.\\
+!Припустимо, що $\tilde{\tilde{f}} \colon k\left<x_1,\dots,x_n\right> \to B$ -- інший гоморфізм алгебр так, що $\tilde{\tilde{f}} \circ \imath = f$. Тоді (на конкретному прикладі)\\
+$\tilde{\tilde{f}}(x_1x_2x_1) = \tilde{\tilde{f}}(x_1) \tilde{\tilde{f}}(x_2) \tilde{\tilde{f}}(x_1) = \tilde{\tilde{f}} \circ \imath (x_1) \tilde{\tilde{f}} \circ \imath (x_2) \tilde{\tilde{f}} \circ \imath (x_1) = f(x_1) f(x_2) f(x_1) = \tilde{f} \circ \imath (x_1) \tilde{f} \circ \imath (x_2) \tilde{f} \circ \imath (x_1) = \tilde{f}(x_1) \tilde{f}(x_2) \tilde{f}(x_1) = \tilde{f}(x_1x_2x_1)$.\\
+Тобто $\tilde{\tilde{f}} = \tilde{f}$ для будь-яких слів. Для лінійних комбінацій слів рівність теж працює в силу лінійності. Тому тут суперечність!
+\end{proof}
+
+\begin{example}
+Нехай $\left<G,*\right>$ -- група та $k$ -- поле. Визначимо нову множину: $k[G]$ -- елементи вигляду $a_1 g_1 + \dots + a_n g_n,\ a_i \in k, g_i \in G$. Тобто це набір всіх можливих лінійних комбінацій скінченного числа елементів $G$ з коефіцієнтами $k$.\\
+Іншими словами, $k[G] = \displaystyle\left\{ \sum_{g \in G} a_g g \mid a_g = 0, \text{крім скінченного числа елементів }g \right\}$.\\
+$k[G]$ -- асоціативна алгебра над полем $k$ відносно заданих операції:\\
+$\displaystyle\sum_{g \in G} a_g g + \sum_{g \in G} b_g g = \sum_{g \in G} (a_g + b_g) g$;\\
+$\displaystyle \lambda \sum_{g \in G} a_g g = \sum_{g \in G} (\lambda a_g) g$;\\
+$\displaystyle\left( \sum_{g \in G} a_g g \right) \left( \sum_{g \in G} b_g g \right) = \sum_{g,h \in G} (a_g b_h) (g*h)$.\\
+Одиницею алгебри $k[G]$ буде нейтральний елемент $e \in G$.\\
+Алгебра $k[G]$ -- скінченна $\iff$ група $G$ -- скінченна.\\
+Алгебра $k[G]$ -- комутативна $\iff$ група $G$ -- абелева.
+\bigskip \\
+Така алгебра $k[G]$ називається \textbf{груповою алгеброю}.
+\end{example}
+
+\begin{definition}
+Нехай $A,B$ -- алгебри.\\
+Лінійний оператор $f \colon A \to B$ називається \textbf{гомоморфізмом} алгебр $A,B$, якщо
+\begin{align*}
+f(x \cdot y) = f(x) \cdot f(y)
+\end{align*}
+Операція множення в цих двох алгебр різна, але я вже це підкреслювати не буду.\\
+Якщо $A,B$ -- алгебри з одиницею, то додатково вимагається
+\begin{align*}
+f(1) = 1
+\end{align*}
+Гомоморфізм алгебр $f \colon A \to B$ називається \textbf{ізоморфізмом}, якщо
+\begin{align*}
+\text{$f$ -- ізоморфізм як векторні простори.}
+\end{align*}
+\end{definition}
+
+\begin{definition}
+Нехай $A$ -- алгебра над полем $k$.\\
+Підпростір $B \subset A$ назвемо \textbf{підалгеброю}, якщо
+\begin{align*}
+\forall x,y \in B: x \cdot y \in B
+\end{align*}
+Якщо алгебра $A$ була задана з одиницею, то для підалгебри $B$ ще зазвичай вимагають
+\begin{align*}
+1 \in B
+\end{align*}
+\end{definition}
+
+\begin{example}
+Нехай $H$ -- підгрупа групи $\left<G,*\right>$. Тоді $k[H]$ -- підалгебра $k[G]$.
+\end{example}
+
+\begin{example}
+Нехай $\varphi \colon A \to B$ -- гомоморфізм алгебр. Тоді $\Im \varphi$ -- підалгебра $B$.
+\end{example}
+
+\begin{remark}
+Слід зазначити, що якщо $A$ -- асоціативна алгебра над полем $k$, то $A$ задовольняє означенню кільця. Тобто звідси можна визначити ідеали алгебри та факторалгебру легко.
+\end{remark}
+
+\begin{definition}
+Нехай $A$ -- алгебра.\\
+\textbf{Лівим ідеалом} називають підпростір $I \subset A$, для якого
+\begin{align*}
+\forall a \in A, \forall x \in I: ax \in I
+\end{align*}
+Коротко кажучи, виконується вкладення $aI \subset I$ для всіх $a \in A$.\\
+\textbf{Лівим ідеалом} називають підпростір $I \subset A$, для якого
+\begin{align*}
+\forall a \in A, \forall x \in I: xa \in I
+\end{align*}
+Коротко кажучи, виконується вкладення $Ia \subset I$ для всіх $a \in A$.\\
+Якщо ідеал $I$ лівий та правий одночасно, то $I$ називають \textbf{двостороннім ідеалом}.
+\end{definition}
+
+\begin{example}
+Кілька прикладів ідеалів:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Нехай $A$ -- будь-яка алгебра. Тоді $\{0\}, A$ -- двосторонні ідеали. Якщо так станеться, що $A$ має тільки ці два двосторонні ідеали, то $A$ називається \textbf{простою алгеброю}.
+\item Нехай $\varphi \colon A \to B$ -- гомоморфізм алгебр. Тоді $\ker \varphi$ -- двосторонній ідеал $A$.
+\item Нехай $S \subset A$ -- просто деяка підмножина. Позначимо $\left<S\right> = \linspan\{asb \mid a,b \in A, s \in S\}$ --  \textbf{двосторонній ідеал, породжений множиною $S$}. Аналогічним чином можна визначити $\left<S\right>_l = \linspan\{as\}$ та $\left<S\right>_r = \linspan\{sb\}$ -- відповідно \textbf{лівий, правий ідеал, породжений множиною $S$}.
+\end{enumerate}
+\end{example}
+\noindent
+Нехай $A$ -- алгебра та $I$ -- двосторонній ідеал $A$. Позначимо $A/_I$ -- множину суміжних класів $I$. На ній визначались операція $+$ та $\cdot$. Як векторний простір, також маємо $\lambda \cdot$ (множення на скаляр). Насправді, $A/_I$ буде також алгеброю.
 
 %Optional topic
 \iffalse

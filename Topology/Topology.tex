@@ -2470,6 +2470,47 @@ $A \in \mathcal{F} \iff \forall F \in \mathcal{F}: A \cap F \neq \emptyset$.
 \end{remark}
 \newpage
 
+\section{$CW$-complex}
+Розділ написав мовою оригіналу. Більшість термінів теж будуть англійською, але паралельно спробую перекласти належним чином.
+
+\subsection{Побудова $CW$-complex}
+Побудова $CW$-комплекса $X$ в загальному вигляді можна описати таким чином:
+\begin{enumerate}[nosep,wide=0pt,label={\alph*)}]
+\item Починаємо з дискретної множини $X^0$ -- набір точок. Вони називаються \text{$0$-клітинами} (\textbf{$0$-cells});
+\item Далі індуктивно. Маючи $X^{n-1}$, побудуємо $X^n$ за допомогою відображень $\phi_\alpha \colon S^{n-1} \to X^{n-1}$. Ми побудуємо $X^n = X_{n-1} \bigsqcup_\alpha D_\alpha^n /{_\sim}$, де ми ідентифікуємо точки за допомогою $\phi_\alpha$.
+\item Ми можемо або зупинити процедуру, тоді $X = X^n$. Або зліченне число разів продовжувати, тоді $X = \displaystyle\bigcup_n X_n$. Для останнього випадку задається слабка топологія: $A$ -- відкрита в $X \iff A \cap X^n$ -- відкрита на $X^n$ для кожного $n \geq 1$. 
+\end{enumerate}
+\noindent
+Часто ось ці клітини позначають за $e_\alpha^n$.
+\bigskip \\
+Спочатку найпростіші приклади, аби було ясніше.
+
+\begin{example}
+Нехай $X^0 = \{x_0\}$ -- лише одна точка. До неї ми додамо лише диск $D^1$ (так звану $1$-клітину або \textbf{$1$-cell}). Яким чином: відображення $\phi \colon S^0 \to X^0$ допоможе. Ми візьмемо кінцеві точки $D^1$ та склеїмо до точки $x_0$. Короче, маємо $\phi(a) \sim x_0,\ \phi(b) \sim x_0$. В результаті побудуємо $X^1$.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{example_1.png}
+\end{figure}
+\end{example}
+
+\begin{example}
+Нехай $X^0 = \{x_0\}$ -- лише одна точка. До неї не будемо додавати диск $D^1$ (тобто $1$-клітину). Отже, $X^1 = X^0$. Але цього разу додамо один диск $D^2$ (тобто $2$-клітину). Яким чином: відображення $\phi \colon S^1 \to X^1$ допоможе. Ми візьмемо границю $\partial D^2 = S^1$ та склеїмо до точки $x_0$. В результаті побудуємо $X^2$, який буде ізоморфний $S^1$.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{example_2.png}
+\end{figure}
+\end{example}
+
+\begin{example}
+До речі, будь-який граф $(V,E)$ може сприйматися як CW-коплекс. Дійсно, у нас $V = X^0$ -- поки просто набір точок. До них ми додаємо ребра $E$, що еквівалентно додавати диски $D^1$ (тобто $1$-клітини). Тут вже буде кілька відображень $\phi_i \colon \partial D_i^1 = S^0 \to X^0$. За таким же принципом, як вище. Отримуємо $X^1$, тобто граф.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{example_3.png}
+\end{figure}
+\end{example}
+
+\newpage
+
 \section*{Використані джерела}
 \begin{enumerate}
 \item \href{https://www.maths.ed.ac.uk/~tl/topology/topology_notes.pdf}{Tom Leinster, General Topology, 2014-2015}
