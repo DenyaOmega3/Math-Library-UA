@@ -1088,7 +1088,7 @@ x_3 = 11
 Маємо $x = 3N_1x_1 + 3N_2x_2 + 4N_3x_3 = 2908 \equiv 388 \pmod {420}$.
 \end{example}
 
-%Here was a subsection{Функція $\varphi$ (функція Ейлера)}
+%Here was a subsection{Функція $\varphi$ (функція Ойлера)}
 
 \subsection{Теорема Вільсона}
 \begin{lemma}
@@ -1251,7 +1251,7 @@ $f(x) \equiv 0 \pmod {125}$ має розв'язки $x \in \{18,92\}$. \\
 \newpage
 
 \section{Арифметичні функції}
-Надалі ми будемо розглядати \textbf{арифметичні функції} $f \colon \mathbb{N} \to \mathbb{C}$ (хоча тут розглядатимуться частіше $\mathbb{N} \to \mathbb{N}$). Тобто це такі функції, область визначення яких -- натуральні числа.
+Надалі ми будемо розглядати \textbf{арифметичні функції} $f \colon \mathbb{N} \to \mathbb{C}$ (хоча тут розглядатимуться частіше $\mathbb{N} \to \mathbb{N}$). Тобто це такі функції, область визначення яких -- натуральні числа, а область значень -- підмножина комплексних чисел.
 
 \begin{definition}
 Арифметична функція $f \colon \mathbb{N} \to \mathbb{C}$ називається \textbf{мультиплікативною}, якщо
@@ -1270,38 +1270,38 @@ $\displaystyle\sum_{d \mid n} f(d) = \sum_{d \mid n } f\left( \dfrac{n}{d} \righ
 Маємо $d \mid n$, тоді звідси $\exists x \in \mathbb{Z}: n = xd$, а це означає, що $x \mid n$, але $x = \dfrac{n}{d}$. Якщо діяти навпаки, тобто $\dfrac{n}{d} \mid n$, то тоді миттєво $d \mid n$.\\
 Тобто $d_1,\dots,d_r$ -- всі дільники числа $n \iff \dfrac{n}{d_1},\dots, \dfrac{n}{d_r}$ -- всі дільники числа $n$.\\
 Отже, $d_1 = \dfrac{n}{d_{j_1}}, \dots, d_r = \dfrac{n}{d_{j_r}}$.\\
-$\displaystyle\sum_{d \mid n} f(d) = f(d_1) + \dots + f(d_r) = f\left( \dfrac{n}{d_{j_1}} \right) + \dots + f\left( \dfrac{n}{d_{j_r}} \right) \overset{\text{переставимо в природному порядку}}{=} \\ = f\left( \dfrac{n}{d_1} \right) + \dots + f\left( \dfrac{n}{d_r} \right) = \sum_{d \mid n} f\left( \dfrac{n}{d} \right)$.
+$\displaystyle\sum_{d \mid n} f(d) = f(d_1) + \dots + f(d_r) = f\left( \dfrac{n}{d_{j_1}} \right) + \dots + f\left( \dfrac{n}{d_{j_r}} \right) \overset{\substack{\text{переставимо в} \\ \text{природному порядку}}}{=} \\ = f\left( \dfrac{n}{d_1} \right) + \dots + f\left( \dfrac{n}{d_r} \right) = \sum_{d \mid n} f\left( \dfrac{n}{d} \right)$.
 \end{proof}
 
 \subsection{Функції $\tau,\sigma$}
 \begin{definition}
 Арифметична функція $\tau \colon \mathbb{N} \to \mathbb{N}$ визначає \textbf{кількість дільників} числа $n$, тобто інакше кажучи:
 \begin{align*}
-\tau(n) = \sum_{d \mid n} 1
+\tau(n) = \sum_{d \mid n} 1.
 \end{align*}
 \end{definition}
 
 \begin{definition}
 Арифметична функція $\sigma \colon \mathbb{N} \to \mathbb{N}$ визначає \textbf{суму дільників} числа $n$, тобто інакше кажучи:
 \begin{align*}
-\tau(n) = \sum_{d \mid n} d
+\tau(n) = \sum_{d \mid n} d.
 \end{align*}
 \end{definition}
 
 \begin{example}
-Зокрема для числа $10$ ми маємо дільники $1,2,5,10$, а тому $\tau(10) = 4$ \qquad $\sigma(10) = 18$.
+Зокрема для числа $10$ ми маємо дільники $1,2,5,10$, а тому $\tau(10) = 4$, \quad $\sigma(10) = 18$.
 \end{example}
 
 \begin{theorem}
 Задано число $n = p_1^{k_1} \dots p_r^{r_k}$. Тоді\\
-$\tau(n) = (k_1+1) \dots (k_r+1)$\\
-$\sigma(n) = \dfrac{p_1^{k+1}-1}{p_1-1} \dots \dfrac{p_r^{k_r+1}-1}{p_r-1}$
+$\tau(n) = (k_1+1) \dots (k_r+1)$;\\
+$\sigma(n) = \dfrac{p_1^{k+1}-1}{p_1-1} \dots \dfrac{p_r^{k_r+1}-1}{p_r-1}$.
 \end{theorem}
 
 \begin{proof}
 Маємо, що кожний дільник $d \mid n$ має форму $d = p_1^{a_1} \dots p_r^{a_r}$, причому $0 \leq a_i \leq k_i$. Із точки зору комбінаторики, у нас є $k_1+1$ варіантів обрати степінь $a_1$, \dots, у нас є $k_r+1$ варіантів обрати степінь $a_r$. А тому всього $(k_1+1) \dots (k_r+1)$ варіантів сконструювати число $p_1^{a_1} \dots p_r^{a_r}$, що є дільником. Отже, $\tau(n) = (k_1+1) \dots (k_r+1)$.
 \bigskip \\
-А далі розглянемо ось такий вираз: $(1+p_1+\dots +p_1^{k_1}) \dots (1+p_r+\dots+p_r^{k_r})$. Якщо перемножити, то ми отримаємо суму всіх можливих дільників формату $p_1^{a_1} \dots p_r^{a_r}$, тобто суму всіх дільників числа $n$. Знаючи, що в кожній дужці - геометрична прогресія, отримаємо:\\
+А далі розглянемо ось такий вираз: $(1+p_1+\dots +p_1^{k_1}) \dots (1+p_r+\dots+p_r^{k_r})$. Якщо перемножити, то ми отримаємо суму всіх можливих дільників формату $p_1^{a_1} \dots p_r^{a_r}$, тобто суму всіх дільників числа $n$. Знаючи, що в кожній дужці -- геометрична прогресія, отримаємо:\\
 $\sigma(n) = (1+p_1+\dots +p_1^{k_1}) \dots (1+p_r+\dots+p_r^{k_r}) = \\ = \dfrac{p_1^{k+1}-1}{p_1-1} \dots \dfrac{p_r^{k_r+1}-1}{p_r-1}$.
 \end{proof}
 
@@ -1311,8 +1311,8 @@ $n$ -- просте число $\iff \begin{cases} \tau(n) =2 \\ \sigma(n) = n+1
 
 \begin{example}
 Число $180 = 2^2 \cdot 3^2 \cdot 5$, а тому звідси\\
-$\tau(180) = (2+1)(2+1)(1+1) = 18$\\
-$\sigma(180) = \dfrac{2^3-1}{2-1} \dfrac{3^3-1}{3-1} \dfrac{5^2-1}{5-1} = 546$
+$\tau(180) = (2+1)(2+1)(1+1) = 18$;\\
+$\sigma(180) = \dfrac{2^3-1}{2-1} \dfrac{3^3-1}{3-1} \dfrac{5^2-1}{5-1} = 546$.
 \end{example}
 
 \begin{theorem}
@@ -1324,9 +1324,12 @@ $d \mid n \iff \dfrac{n}{d} = d' \mid n$, причому маємо $n = dd'$. �
 $n^{\tau(n)} = \displaystyle\prod_{d \mid n} d \displaystyle\prod_{d' \mid n} d' = \left( \displaystyle\prod_{d \mid n} d \right)^2$.\\
 Таким чином, $n^{\frac{\tau(n)}{2}} = \displaystyle\prod_{d \mid n} d$.
 \bigskip \\
-Єдине треба заспокоїтись та переконатись, що зліва завжди буде ціле число, навіть попри квадратного кореня. Маємо два випадки:\\
-1) $\tau(n)$ -- парне, тоді можна не перейматись.\\
-2) $\tau(n)$ -- непарне, тоді число $n$ буде квадратом якогось числа. І дійсно, $\tau(n) = (k_1+1) \dots (k_r+1)$ - цей вираз може бути парним тоді й тільки тоді, коли кожна дужка парна, тобто $k_i = 2s_i$. А тому $n = p_1^{k_1} \dots p_r^{r_k} = (p_1^{s_1} \dots p_1^{s_r})^2$. Отже, можна взяти квадратний корінь ліворуч.
+Єдине треба заспокоїтись та переконатись, що зліва завжди буде ціле число, навіть попри квадратного кореня. Маємо два випадки:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $\tau(n)$ -- парне, тоді можна не перейматись.
+\item $\tau(n)$ -- непарне, тоді число $n$ буде квадратом якогось числа. І дійсно, $\tau(n) = (k_1+1) \dots (k_r+1)$ -- цей вираз може бути парним тоді й тільки тоді, коли кожна дужка парна, тобто $k_i = 2s_i$. А тому $n = p_1^{k_1} \dots p_r^{r_k} = (p_1^{s_1} \dots p_1^{s_r})^2$.
+\end{enumerate} 
+Отже, можна взяти квадратний корінь ліворуч.
 \end{proof}
 
 \begin{theorem}
@@ -1335,8 +1338,8 @@ $n^{\tau(n)} = \displaystyle\prod_{d \mid n} d \displaystyle\prod_{d' \mid n} d'
 
 \begin{proof}
 Маємо $n = p_1^{k_1} \dots p_r^{k_r}$ та $m = q_1^{m_1} \dots q_s^{m_s}$, причому беремо так, щоб $\gcd(m,n) = 1$. Але в такому разі маємо $\gcd\left(p_i^{k_i},q_j^{m_j}\right) = 1$. Отже, у нас буде $mn = q_1^{m_1} \dots q_s^{m_s} p_1^{k_1} \dots p_r^{k_r}$. І вони вже ніяк не перемножаться між собою. Разом отримаємо:\\
-$\tau(mn) = (m_1+1) \dots (m_s+1) (k_1+1) \dots (k_r+1) = \tau(m) \tau(n)$\\
-$\sigma(mn) = \dfrac{q_1^{m_1+1}-1}{q_1-1} \dots \dfrac{q_s^{m_s+1}-1}{q_s-1} \dfrac{p_1^{k+1}-1}{p_1-1} \dots \dfrac{p_r^{k_r+1}-1}{p_r-1} = \sigma(m) \sigma(n)$
+$\tau(mn) = (m_1+1) \dots (m_s+1) (k_1+1) \dots (k_r+1) = \tau(m) \tau(n)$;\\
+$\sigma(mn) = \dfrac{q_1^{m_1+1}-1}{q_1-1} \dots \dfrac{q_s^{m_s+1}-1}{q_s-1} \dfrac{p_1^{k+1}-1}{p_1-1} \dots \dfrac{p_r^{k_r+1}-1}{p_r-1} = \sigma(m) \sigma(n)$.
 \bigskip \\
 Також ледве не забув $\tau(1) = 1$, $\sigma(1) = 1$ -- тут з цим ясно.
 \end{proof}
@@ -1345,7 +1348,7 @@ $\sigma(mn) = \dfrac{q_1^{m_1+1}-1}{q_1-1} \dots \dfrac{q_s^{m_s+1}-1}{q_s-1} \d
 
 \begin{lemma}
 \label{set of divisors with gcd(m,n) = 1}
-Задані числа $m,n$ такі, що $\gcd(m,n) = 1$. Тоді множина дільників $d \mid  mn$ складається з елементів формату $d_1d_2$, де $d_1 \mid m, d_2 \mid n$, $\gcd(d_1,d_2) = 1$, а також всі $d_1d_2$ -- різні.
+Задані числа $m,n$ такі, що $\gcd(m,n) = 1$. Тоді множина дільників $d \mid  mn$ складається з елементів формату $d_1d_2$, де $d = d_1 \mid m,\ d_2 \mid n$, $\gcd(d_1,d_2) = 1$, а також всі $d_1d_2$ -- різні.
 \end{lemma}
 
 \begin{proof}
@@ -1354,21 +1357,99 @@ $d \mid mn \iff d = (q_1^{a_1} \dots q_s^{a_s}) \cdot (p_1^{b_1} \dots p_r^{b_r}
 \end{proof}
 
 \begin{theorem}
-Задано функцію $f$ -- мультиплікативна. Тоді функція $F(n) = \displaystyle\sum_{d \mid n} f(n)$ -- також мультиплікативна.
+Задано функцію $f$ -- мультиплікативна. Тоді функція $F(n) = \displaystyle\sum_{d \mid n} f(d)$ -- також мультиплікативна.
 \end{theorem}
 
 \begin{proof}
 $F(mn) = \displaystyle\sum_{d \mid mn} f(d) \overset{\text{\lmref{set of divisors with gcd(m,n) = 1}}}{=} \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} f(d_1 d_2) \overset{\gcd(d_1,d_2) = 1}{=} \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} f(d_1) f(d_2) = \\
-= \sum_{d_1 \mid m} f(d_1) \cdot \sum_{d_2 \mid n} f(d_2) = F(m) F(n)$.
+= \sum_{d_1 \mid m} f(d_1) \cdot \sum_{d_2 \mid n} f(d_2) = F(m) F(n)$.\\
+$F(1) = \displaystyle\sum_{d \mid 1} f(d) = f(1) = 1$.
 \end{proof}
 
 Далі ми знаємо, що $f_1(n) = 1$, $f_2(n) = n$ -- зрозумілим чином мультиплікативні. А тому за означенням $\tau,\sigma$ та отриманою теоремою, у нас будуть $\sigma,\tau$ мультиплікативні.
+
+\subsection{Функція $\mu$ (функція Мьобіуса)}
+%although some ukrainian sources displays the surname as Мебіус
+
+\begin{definition}
+Арифметична функція $\mu \colon \mathbb{N} \to \mathbb{N}$, яка визначається як
+\begin{align*}
+\mu(n) = \begin{cases} 1,& n = 1 \\ 0, & n \text{ не вільне від квадартів} \\ (-1)^l, & l = p_1 \dots p_l, \text{ тут різні прості числа} \end{cases},
+\end{align*}
+називається \textbf{функцією Мьобіуса}.\\
+Останній випадок означає, що $n$ -- вільне від квадратів число та залежить від $l$ -- кількості різних простих чисел. Що таке число, що вільне від квадратів, дивись \defref{square_free}.
+\end{definition}
+
+\begin{example}
+Зокрема $\mu(45) = 0$, бо не є вільним від квадратів. Також $\mu(42) = - 1$, бо $42 = 2 \cdot 3 \cdot 7$ -- вільне від квадратів та має $3$ (непарну кількість) простих числа.
+\end{example}
+
+\begin{remark}
+Якщо $p$ -- просте, то $\mu(p) = -1$ та $\mu(p^k) = 0$ при $k > 1$.
+\end{remark}
+
+\begin{theorem}
+Функція $\mu$ -- мультиплікативна.
+\end{theorem}
+
+\begin{proof}
+Маємо $m,n$ такі, що $\gcd(m,n) = 1$. Розглянемо кілька випадків:
+\begin{enumerate}[nosep,wide=0pt,label={\Roman*.}]
+\item $m$ або $n$ -- не вільне від квадратів. Тобто існує просте число $p$, для якого $p^2 \mid m$ або $p^2 \mid n$. В обох випадках отримаємо $p^2 \mid mn$, а тому також $mn$ не буде вільним від квадратів. Отже, $\mu(mn) = 0 = \mu(m)\mu(n)$.
+\item $m$ та $n$ -- вільні від квадратів, нехай $m = p_1 \dots p_r$ та $n = q_1 \dots q_s$, причому $p_i,q_j$ всі різні в силу $\gcd(m,n) = 1$. Отже, $mn = p_1 \dots p_r q_1 \dots q_s$, а тому $\mu(mn) = (-1)^{r+s} = (-1)^r (-1)^s = \mu(m)\mu(n)$.
+\end{enumerate}
+$\mu(1) = 1$ із означення. Довели мультиплікативніть.
+\end{proof}
+
+\begin{theorem}
+$\displaystyle\sum_{d \mid n} \mu(d) = 0$, якщо $n > 1$.
+\end{theorem}
+
+\begin{remark}
+Якщо $n = 1$, то маємо лише дільник $d = 1$, тому буде лише $\mu(1) = 1$.
+\end{remark}
+
+\begin{proof}
+Покладемо $F(n) = \displaystyle\sum_{d \mid n} \mu(d)$. Оскільки $\mu$ -- мультиплікативна, то тоді $F$ також. Відповідно при $n = p_1^{k_1} \dots p_r^{k_r}$ маємо $F(n) = F(p_1^{k_1}) \dots F(p_r^{k_r})$.\\
+Далі треба з'ясувати, чому дорівнює $F(p^k)$. Маємо\\
+$F(p^k) = \displaystyle\sum_{d \mid p^k} \mu(d) = \mu(1) + \mu(p) + \mu(p^2) + \dots + \mu(p^k) = 1 - 1 + 0 + \dots + 0 = 0$.\\
+Разом отримали $F(n) = \displaystyle\sum_{d \mid n} \mu(d) = 0$.
+\end{proof}
+
+\begin{theorem}[Формула обернення Мьобіуса]
+Задані функції $F,f \colon \mathbb{N} \to \mathbb{N}$, що взаємно пов'язані такою формулою: $F(n) = \displaystyle\sum_{d \mid n} f(d)$. \\
+Тоді $f(n) = \displaystyle\sum_{d \mid n} \mu(d) F\left(\dfrac{n}{d} \right) \overset{\text{або}}{=} \sum_{d \mid n} \mu\left( \dfrac{n}{d} \right) F(d)$.
+\end{theorem}
+
+\begin{proof}
+$\displaystyle\sum_{d \mid n} \mu(d) F\left( \dfrac{n}{d} \right) = \sum_{d \mid n} \left( \mu(d) \sum_{c \mid \frac{n}{d}} f(c) \right) = \sum_{d \mid n} \sum_{c \mid \frac{n}{d}} \mu(d)f(c) \boxed{=}$\\
+Можна показати, що $\begin{cases} d \mid n \\ c \mid \frac{n}{d} \end{cases} \iff \begin{cases} c \mid n \\ d \mid \frac{n}{c} \end{cases}$. Тоді буде трошки інший вираз в сумі.\\
+$\boxed{=} \displaystyle\sum_{c \mid n} \sum_{d \mid \frac{n}{c}} f(c) \mu(d) = \sum_{c \mid n} \left( f(c) \sum_{d \mid \frac{n}{c}} \mu(d) \right) \boxed{\boxed{=}}$\\
+Якщо $\dfrac{n}{c} = 1$ (а це буде можливо при $n = c$ в першій сумі), то тоді ця сума буде одиничкою. У всіх інших випадках онулюється.\\
+$\boxed{\boxed{=}} \displaystyle\sum_{c = n} f(c) \cdot 1 = f(n)$.
+\end{proof}
+
+\begin{corollary}
+Для функцій $\tau,\sigma$, на основі обернення Мьобіуса, маємо:\\
+$1 = \displaystyle\sum_{d \mid n} \mu\left( \dfrac{n}{d} \right) \tau(d)$;\\
+$n = \displaystyle\sum_{d \mid n} \mu\left( \dfrac{n}{d} \right) \sigma(d)$.
+\end{corollary}
+
+\begin{theorem}
+Задано функцію $F$ -- мультиплікативна, $F(n) = \displaystyle\sum_{d \mid n} f(d)$. Тоді функція $f$ -- мультиплікативна.
+\end{theorem}
+
+\begin{proof}
+Беремо $m,n$ -- такі числа, щоб $\gcd(m,n) = 1$. Тоді\\
+$f(mn) = \displaystyle\sum_{d \mid mn} \mu(d) F\left( \dfrac{mn}{d} \right) \overset{\text{\lmref{set of divisors with gcd(m,n) = 1}}}{=} \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} \mu(d_1d_2) F\left( \dfrac{mn}{d_1d_2} \right) = \\ = \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} \mu(d_1) \mu(d_2) F\left( \dfrac{m}{d_1} \right) F\left( \dfrac{n}{d_2} \right) = \sum_{d_1 \mid m} \mu(d_1) F\left( \dfrac{m}{d_1} \right) \cdot \sum_{d_2 \mid n} \mu(d_2) F\left( \dfrac{n}{d_2} \right) \\ = f(m)f(n)$.\\
+$f(1) = \displaystyle\sum_{d \mid 1} \mu(d) F\left(\dfrac{1}{d}\right) = \mu(1) F(1) = 1$.
+\end{proof}
 
 \subsection{Функція $\varphi$ (функція Ойлера)}
 \begin{definition}
 \textbf{Функцією Ойлера} називають арифметичну функцію $\varphi \colon \mathbb{N} \to \mathbb{N}$, що задана таким чином:
 \begin{align*}
-\varphi(n) = \#\{m \mid 1 \leq m \leq n, \gcd(m,n) = 1\}
+\varphi(n) = \#\{m \mid 1 \leq m \leq n, \gcd(m,n) = 1\}.
 \end{align*}
 Часто ще позначають саме $\phi(n)$. Використовуватиму позначення вище.
 \end{definition}
@@ -1394,7 +1475,7 @@ $F(mn) = \displaystyle\sum_{d \mid mn} f(d) \overset{\text{\lmref{set of divisor
 \end{lemma}
 
 \begin{proof}
-Із того, що $\gcd(a,n) = 1, \gcd(b_i,n) = 1$ випливає $\gcd(ab_i,n) = 1$.\\
+Із того, що $\gcd(a,n) = 1,ґ \gcd(b_i,n) = 1$ випливає $\gcd(ab_i,n) = 1$.\\
 Зишилось показати, що $ab_i \not\equiv ab_j \pmod n$ при $i \neq j$.\\
 !Якщо припустити, що $ab_i \equiv ab_j \pmod n$, то тоді оскільки $\gcd(a,n) = 1$, то звідси $b_i \equiv b_j \pmod n$. Суперечність!
 \end{proof}
@@ -1448,21 +1529,21 @@ $1 \overset{\text{мала Ферма}}{\equiv} a^{p-1} = a^{mq+r} = (a^m)^q a^r
 
 \begin{proof}
 Ну ясно, що $\varphi(1) = 1$.\\
-Нехай $m,n$ -- такі числа, що $\gcd(m,n) = 1$. Візьмемо якісь дві скорочені системи лишків $\pmod m$ та $\pmod n$:\\
+Нехай $m,n$ -- такі числа, що $\gcd(m,n) = 1$. Візьмемо якісь дві скорочені системи лишків $\!\!\pmod m$ та $\!\! \pmod n$:\\
 $\{a_1,\dots,a_{\varphi(m)}\}$\\
 $\{b_1,\dots,b_{\varphi(n)}\}$\\
-Доведемо, що $\{a_j n + b_k m \mid j = \overline{1,\varphi(m)}, k = \overline{1,\varphi(n)}\}$ -- також буде скороченою системою лишків, але $\pmod {mn}$.\\
+Доведемо, що $\{a_j n + b_k m \mid j = \overline{1,\varphi(m)}, k = \overline{1,\varphi(n)}\}$ -- також буде скороченою системою лишків, але $\!\! \pmod {mn}$.\\
 Зауважимо, що $\gcd(a_jn + b_km,m) = \gcd(a_jn,m) = 1$. Остання рівність виконана, бо $\gcd(a_j,m) = 1, \gcd(n,m) = 1$.\\
 Зауважимо, що $\gcd(a_jn + b_km,n) = \gcd(b_km,n) = 1$ -- аналогічно.\\
 Із двох рівностей маємо $\gcd(a_jn+b_km, mn) = 1$ -- одна умова є.\\
 !Тепер припустимо, що маємо $a_j n + b_k m \equiv a_rn + b_sm \pmod {mn}$ при $(j,k) \neq (r,s)$. Тоді
 $(a_j - a_r)n \equiv (b_s-b_k) m \pmod {mn}$.\\
 Звідси випливає, що $a_j - a_r \equiv 0 \pmod {m}$ та $b_s - b_k \equiv 0 \pmod {n}$ в силу $\gcd(m,n)=1$. В обох випадках суперечність!\\
-Отже, $a_j n + b_k m \not\equiv a_r n + b_s m \pmod {mn}$ - друга умова є. І тільки зараз можна казати, що кількість елементів в множині $\varphi(m)\varphi(n)$ штук.\\
+Отже, $a_j n + b_k m \not\equiv a_r n + b_s m \pmod {mn}$ -- друга умова є. І тільки зараз можна казати, що кількість елементів в множині $\varphi(m)\varphi(n)$ штук.\\
 Тобто принаймні для $\varphi(mn)$ ми вже маємо $\varphi(m)\varphi(n)$ елементів множини. А чи може бути більше? Хотілось б довести, що інших елементів даної множини не буде. Тобто припустивши, що є деяке число $c$, для якого $\gcd(c,mn) = 1$, ми хочемо показати, що $c \equiv a_j n + b_k m$.\\
 За умовою, $mx + ny = 1$ для деяких $x,y \in \mathbb{Z}$. Із цієї рівності маємо $\gcd(m,y) = 1, \gcd(n,x) = 1$ (можна від супротивного показати).\\
 А тепер доведемо, що $\gcd(cy,m) = 1, \gcd(cx,n) = 1$.\\
-!Припустимо, що є просте число $p$, для якого $p \mid cy, p \mid m$. Тоді $p \mid c,p \mid m \implies p \mid c,p \mid mn$ (суперечність), або $p \mid y,p \mid m$ (суперечність)!\\
+!Припустимо, що існує просте $p$, для якого $p \mid cy, p \mid m$. Тоді $p \mid c,\\  p \mid m \implies p \mid c,\ p \mid mn$ (суперечність), або $p \mid y,\ p \mid m$ (суперечність)!\\
 Аналогічним чином доводиться друге.\\
 Із $\gcd(cy,m) = 1$ випливає $cy \equiv a_j \pmod m$ (дивись систему лишків).\\
 Із $\gcd(cx,n) = 1$ випливає $cx \equiv b_k \pmod n$ (дивись систему лишків).\\
@@ -1548,79 +1629,6 @@ $\displaystyle \# \{1,2,\dots,n\} = n = \#\left( \bigsqcup_{d \mid n} S_d \right
 Остаточно $\displaystyle\sum_{d \mid n} \varphi(d) = n$.
 \end{proof}
 
-\subsection{Функція $\mu$ (функція Мьобіуса)}
-%although some ukrainian sources displays the surname as Мебіус
-
-\begin{definition}
-Арифметична функція $\mu \colon \mathbb{N} \to \mathbb{N}$, яка визначається як
-\begin{align*}
-\mu(n) = \begin{cases} 1,& n = 1 \\ 0, & n \text{ не вільне від квадартів} \\ (-1)^l, & l = p_1 \dots p_l, \text{ тут різні прості числа} \end{cases},
-\end{align*}
-називається \textbf{функцією Мьобіуса}.\\
-Останній випадок означає, що $n$ -- вільне від квадратів число та залежить від $l$ -- кількості різних простих чисел. Що таке число, що вільне від квадратів, дивись \defref{square_free}.
-\end{definition}
-
-\begin{example}
-Зокрема $\mu(45) = 0$, бо не є вільним від квадратів. Також $\mu(42) = - 1$, бо $42 = 2 \cdot 3 \cdot 7$ -- вільне від квадратів та має $3$ -- непарну кількість - простих чисел.
-\end{example}
-
-\begin{remark}
-Якщо $p$ -- просте, то $\mu(p) = -1$ та $\mu(p^k) = 0$ при $k > 1$.
-\end{remark}
-
-\begin{theorem}
-Функція $\mu$ -- мультиплікативна.
-\end{theorem}
-
-\begin{proof}
-Маємо $m,n$ такі, що $\gcd(m,n) = 1$. Розглянемо кілька випадків:\\
-I. $m$ або $n$ -- не вільне від квадратів. Тобто існує просте число $p$, для якого $p^2 \mid m$ або $p^2 \mid n$. В обох випадках отримаємо $p^2 \mid mn$, а тому також $mn$ не буде вільним від квадратів. Отже, $\mu(mn) = 0 = \mu(m)\mu(n)$.\\
-II. $m$ та $n$ -- вільні від квадратів, нехай $m = p_1 \dots p_r$ та $n = q_1 \dots q_s$, причому $p_i,q_j$ всі різні в силу $\gcd(m,n) = 1$. Отже, $mn = p_1 \dots p_r q_1 \dots q_s$, а тому $\mu(mn) = (-1)^{r+s} = (-1)^r (-1)^s = \mu(m)\mu(n)$.
-\end{proof}
-
-\begin{theorem}
-$\displaystyle\sum_{d \mid n} \mu(d) = 0$, якщо $n > 1$.
-\end{theorem}
-
-\begin{remark}
-Якщо $n = 1$, то маємо лише дільник $d = 1$, тому буде лише $\mu(1) = 1$.
-\end{remark}
-
-\begin{proof}
-Покладемо $F(n) = \displaystyle\sum_{d \mid n} \mu(d)$. Оскільки $\mu$ -- мультиплікативна, то тоді $F$ також. Відповідно при $n = p_1^{k_1} \dots p_r^{k_r}$ маємо $F(n) = F(p_1^{k_1}) \dots F(p_r^{k_r})$.\\
-Далі треба з'ясувати, чому дорівнює $F(p^k)$. Маємо\\
-$F(p^k) = \displaystyle\sum_{d \mid p^k} \mu(d) = \mu(1) + \mu(p) + \mu(p^2) + \dots + \mu(p^k) = 1 - 1 + 0 + \dots + 0 = 0$.\\
-Разом отримали $F(n) = \displaystyle\sum_{d \mid n} \mu(d) = 0$.
-\end{proof}
-
-\begin{theorem}[Формула обернення Мьобіуса]
-Задані функції $F,f \colon \mathbb{N} \to \mathbb{N}$, що взаємно пов'язані такою формулою: $F(n) = \displaystyle\sum_{d \mid n} f(d)$. \\
-Тоді $f(n) = \displaystyle\sum_{d \mid n} \mu(d) F\left(\dfrac{n}{d} \right) \overset{\text{або}}{=} \sum_{d \mid n} \mu\left( \dfrac{n}{d} \right) F(d)$.
-\end{theorem}
-
-\begin{proof}
-$\displaystyle\sum_{d \mid n} \mu(d) F\left( \dfrac{n}{d} \right) = \sum_{d \mid n} \left( \mu(d) \sum_{c \mid \frac{n}{d}} f(c) \right) = \sum_{d \mid n} \sum_{c \mid \frac{n}{d}} \mu(d)f(c) \boxed{=}$\\
-Можна показати, що $\begin{cases} d \mid n \\ c \mid \frac{n}{d} \end{cases} \iff \begin{cases} c \mid n \\ d \mid \frac{n}{c} \end{cases}$. Тоді буде трошки інший вираз в сумі.\\
-$\boxed{=} \displaystyle\sum_{c \mid n} \sum_{d \mid \frac{n}{c}} f(c) \mu(d) = \sum_{c \mid n} \left( f(c) \sum_{d \mid \frac{n}{c}} \mu(d) \right) \boxed{\boxed{=}}$\\
-Якщо $\dfrac{n}{c} = 1$ (а це буде можливо при $n = c$ в першій сумі), то тоді ця сума буде одиничкою. У всіх інших випадках онулюється.\\
-$\boxed{\boxed{=}} \displaystyle\sum_{c = n} f(c) \cdot 1 = f(n)$.
-\end{proof}
-
-\begin{corollary}
-Для функцій $\tau,\sigma$, на основі обернення Мьобіуса, маємо:\\
-$1 = \displaystyle\sum_{d \mid n} \mu\left( \dfrac{n}{d} \right) \tau(d)$\\
-$n = \displaystyle\sum_{d \mid n} \mu\left( \dfrac{n}{d} \right) \sigma(d)$
-\end{corollary}
-
-\begin{theorem}
-Задано функцію $F$ -- мультиплікативна, $F(n) = \displaystyle\sum_{d \mid n} f(d)$. Тоді функція $f$ -- мультиплікативна.
-\end{theorem}
-
-\begin{proof}
-Беремо $m,n$ - такі числа, щоб $\gcd(m,n) = 1$. Тоді\\
-$f(mn) = \displaystyle\sum_{d \mid mn} \mu(d) F\left( \dfrac{mn}{d} \right) \overset{\text{\lmref{set of divisors with gcd(m,n) = 1}}}{=} \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} \mu(d_1d_2) F\left( \dfrac{mn}{d_1d_2} \right) = \\ = \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} \mu(d_1) \mu(d_2) F\left( \dfrac{m}{d_1} \right) F\left( \dfrac{n}{d_2} \right) = \sum_{d_1 \mid m} \mu(d_1) F\left( \dfrac{m}{d_1} \right) \cdot \sum_{d_2 \mid n} \mu(d_2) F\left( \dfrac{n}{d_2} \right) \\ = f(m)f(n)$.
-\end{proof}
-
 \subsection{Ціла частина числа}
 Уже колись (можливо) використовувалось це, але хочеться показати деякі цікаві властивості. Залишу означення для нагадування.
 
@@ -1644,10 +1652,10 @@ x-1 \leq t \leq x.
 \end{remark}
 
 \begin{proof}
-Маємо $n$. Серед перших $n$ чисел, що діляться на $p$, є $p,2p,\dots,tp$. Тут $t$ -- найбільше ціле число, для якого $tp \leq n$. Тобто $t \leq \dfrac{n}{p}$ та $t$ -- таке найбільше. Отже, $t = \left[ \dfrac{n}{p} \right]$.\\
-Тобто всього рівно $\left[ \dfrac{n}{p} \right]$ чисел, що кратні $p$, що з'являються в $n!$, а саме: $p,2p,\dots, \left[ \dfrac{n}{p} \right]p$ $(1)$.\\
-Проте серед цих чисел $(1)$ можуть знайтися ті, що містять в розкладі більше, ніж одне просте число $p$. Тому ми серед перших $n$ чисел оберемо ті, що діляться на $p^2$ - зокрема:\\
+Маємо $n$. Серед перших $n$ чисел, що діляться на $p$, є $p,2p,\dots,tp$. Тут $t$ -- найбільше ціле число, для якого $tp \leq n$. Тобто $t \leq \dfrac{n}{p}$ та $t$ -- таке найбільше. Отже, $t = \left[ \dfrac{n}{p} \right]$. Тобто всього рівно $\left[ \dfrac{n}{p} \right]$ чисел, що кратні $p$, що з'являються в $n!$, а саме: $p,2p,\dots, \left[ \dfrac{n}{p} \right]p$ $(1)$.\\
+Проте серед цих чисел $(1)$ можуть знайтися ті, що містять в розкладі більше, ніж одне просте число $p$. Тому ми серед перших $n$ чисел оберемо ті, що діляться на $p^2$ -- зокрема:\\
 $p^2, 2p^2, \dots, \left[ \dfrac{n}{p^2} \right]p$ $(2)$.\\
+Ми отримали ще додатково $\left[ \dfrac{n}{p^2} \right]$ простих чисел $p$, тобто загалом вже їхня кількість дорівнює $\left[ \dfrac{n}{p} \right] + \left[ \dfrac{n}{p^2} \right]$.\\
 Але серед чисел $(2)$ можуть знайтися ті, що містять окрім $p^2$ ще один $p$. Повторюємо все те саме.\\
 Врешті-решт процес закінчиться, коли $p^{k_0} > n$ при деякому $k_0$. А тому щоб отримати кількість простих чисел $p$, що з'явиться в розкладі $n!$ (тобто найбільший степінь), треба просумувати:\\
 $\left[ \dfrac{n}{p} \right] + \left[ \dfrac{n}{p^2} \right] + \dots + \left[ \dfrac{n}{p^{k_0-1}} \right]$.
@@ -1655,9 +1663,9 @@ $\left[ \dfrac{n}{p} \right] + \left[ \dfrac{n}{p^2} \right] + \dots + \left[ \d
 
 \begin{example}
 Для повного розуміння теореми, розглянемо $10!$. З'ясуємо, скільки всього простих чисел $p = 3$ в розкладі.\\
-Маємо $3,6,9$ - числа, що діляться на $p$. Маємо $3 = \left[ \dfrac{10}{p} \right]$ простих чисел $p$ в нашому розкладі. Але серед них є число, що має не одне $p$.\\
-Маємо $9$ - число, що ділиться на $p^2$. Маємо ще $1 = \left[ \dfrac{10}{p^2} \right]$ просте число $p$ в нашому розкладі.\\
-Отже, всього $\left[ \dfrac{10}{p} \right] + \left[ \dfrac{10}{p^2} \right] = 3 + 1 = 4$ разів буде просте число $p = 3$. Тобто $4$ - найбільший степінь числа $p = 3$.
+Маємо $3,6,9$ -- числа, що діляться на $p$. Маємо $3 = \left[ \dfrac{10}{p} \right]$ простих чисел $p$ в нашому розкладі. Але серед них є число, що має не одне $p$.\\
+Маємо $9$ -- число, що ділиться на $p^2$. Маємо ще $1 = \left[ \dfrac{10}{p^2} \right]$ просте число $p$ в нашому розкладі.\\
+Отже, всього $\left[ \dfrac{10}{p} \right] + \left[ \dfrac{10}{p^2} \right] = 3 + 1 = 4$ разів буде просте число $p = 3$. Тобто $4$ =- найбільший степінь числа $p = 3$.
 \end{example}
 
 \begin{corollary}[Формула Лежандра]
@@ -1675,7 +1683,7 @@ $C_n^r \in \mathbb{N} \cup \{0\}$.\\
 $\left[ \dfrac{n}{p^k} \right] = \left[ \dfrac{r+(n-r)}{p^k} \right] \geq \left[ \dfrac{r}{p^k} \right] + \left[ \dfrac{n-r}{p^k} \right]$.\\
 Просумувавши по $k$, отримаємо:\\
 $\displaystyle\sum_{k \geq 1}\left[ \dfrac{n}{p^k} \right] \geq \sum_{k \geq 1}\left[ \dfrac{r}{p^k} \right] + \sum_{k \geq 1}\left[ \dfrac{n-r}{p^k} \right]$.\\
-Ліва частина - це кількість простих чисел $p$, що з'явиться в $n!$. Права частина -- це кількість простих чисел $p$, що з'явиться в $r!(n-r)!$. Значить, в чисельнику кількість $p$ або така сама, або більша за кількість в знаменнику.
+Ліва частина -- це кількість простих чисел $p$, що з'явиться в $n!$. Права частина -- це кількість простих чисел $p$, що з'явиться в $r!(n-r)!$. Значить, в чисельнику кількість $p$ або така сама, або більша за кількість в знаменнику.
 \end{proof}
 
 \begin{corollary}
@@ -1691,8 +1699,7 @@ $\displaystyle\sum_{k \geq 1}\left[ \dfrac{n}{p^k} \right] \geq \sum_{k \geq 1}\
 Зафіксуємо деяке $1 \leq k \leq N$. У нашій сумі ми завжди зможемо знайти $f(k)$ хоча б один раз в $k$-ій сумі при $d = k$. Але наша мета -- знайти загальну кількість $f(k)$.\\
 $f(k)$ знаходиться в сумі $\displaystyle\sum_{d \mid n} f(d)$ тоді й тільки тоді, коли $k \mid n, n = \overline{1,N}$. А тому серед чисел $1,2,\dots,N$ оберемо ті, що діляться на $k$ -- отримаємо такий список:\\
 $k,2k,\dots,\left[ \dfrac{N}{k} \right]k$.\\
-Тобто всього $\left[ \dfrac{N}{k} \right]$ дільників $k$, це теж саме, що $f(k)$ знаходиться в $\left[ \dfrac{N}{k} \right]$ різних сумах формата $\displaystyle\sum_{d \mid n} f(d)$.\\
-Отже, можемо переписати вираз\\
+Тобто всього $\left[ \dfrac{N}{k} \right]$ дільників $k$, це теж саме, що $f(k)$ знаходиться в $\left[ \dfrac{N}{k} \right]$ різних сумах формата $\displaystyle\sum_{d \mid n} f(d)$. Отже, можемо переписати вираз:\\
 $\displaystyle\sum_{n=1}^N \sum_{d \mid n}f(d) = \sum_{k=1}^N f(k) \left[ \dfrac{N}{k} \right]$.
 \end{proof}
 
@@ -1828,7 +1835,7 @@ $a^i = a^{j+kq} = a^j \cdot (a^k)^q \equiv a^j \pmod n$.
 
 \subsection{Первісні корені}
 \begin{definition}
-Задано $a, n \in \mathbb{N}$ -- взаємно прості.\\
+Задані $a, n \in \mathbb{N}$ -- взаємно прості.\\
 Число $a$ називається \textbf{первісним коренем} $\!\! \pmod n$, якщо
 \begin{align*}
 \ord_n(a) = \varphi(n)
@@ -1849,7 +1856,7 @@ $3^4 \equiv 1 \pmod {10}$\\
 По-перше, $\varphi(12) = 4$, а по-друге, $\gcd(a,12) = 1 \iff a \in \{1,5,7,11\}$. Тож досить подивитись лише на них. Але $a^2 \equiv 1 \pmod {12}$ при кожному $a$. Тобто $\ord_{12}(a) \leq 2 \neq \varphi(12)$.
 \end{example}
 
-Виникає важливе питання, коли взагалі первісні корені існують. Відповідь на це питання дає ось така теорема.
+Виникає важливе питання, коли взагалі первісні корені існують. Відповідь дає ось така теорема.
 
 \begin{theorem}
 \label{primitive_root_exists}
@@ -1860,12 +1867,12 @@ $3^4 \equiv 1 \pmod {10}$\\
 
 \begin{theorem}
 \label{primitive root (mod p)}
-Нехай $p$ -- просте число. Тоді існує примітивний корінь $\pmod p$.
+Нехай $p$ -- просте число. Тоді існує первісний корінь $\pmod p$.
 \end{theorem}
 
-Але, насправді, ми доведемо більш строгу теорему:
+Але, насправді, ми доведемо більш загальну теорему:
 \begin{theorem}
-Якщо $d \mid p-1$, то тоді всього $\varphi(d)$ неконгруентних чисел порядка $d$ за модулем $p$.
+Якщо $d \mid p-1$, то тоді всього $\varphi(d)$ неконгруентних чисел порядка $d$ за $\!\! \pmod p$.
 \end{theorem}
 
 \begin{proof}
@@ -1873,10 +1880,10 @@ $3^4 \equiv 1 \pmod {10}$\\
 Розглянемо функцію $f(d) = \# S_d$. В силу зауважень вище, ми маємо $\displaystyle\sum_{d \mid p-1} f(d) = p-1$. Але ми знаємо, що $\displaystyle\sum_{d \mid p-1} \varphi(d) = p-1$, тобто маємо \\ $\displaystyle\sum_{d \mid p-1} f(d) = \sum_{d \mid p-1} \varphi(d)$.\\
 Ми покажемо, що $f(d) \leq \varphi(d)$ для деякого дільника $d$, а це разом з рівнянням вище приведе потім до рівності.\\
 Якщо $f(d) = 0$, то доведено. Інакше нехай $f(d) > 0$, тоді існує елемент $a$, для якого $\ord_p (a) = d$.\\
-Розглянемо множину $\{a,a^2,\dots,a^{d-1},a^d\}$. Всі ці елементи - неконгруентні розв'язки $x^d - 1 \equiv 0 \pmod p$. !Якщо якась пара $a^i \equiv a^j \pmod p$, де $1 \leq j < i \leq d$, то тоді $a^{i-j} \equiv 1 \pmod p$, але число $0 \leq i-j < d-1$, та водночас $i-j \geq d$. Суперечність!\\
+Розглянемо множину $\{a,a^2,\dots,a^{d-1},a^d\}$. Всі ці елементи -- неконгруентні розв'язки $x^d - 1 \equiv 0 \pmod p$. !Якщо якась пара $a^i \equiv a^j \pmod p$, де $1 \leq j < i \leq d$, то тоді $a^{i-j} \equiv 1 \pmod p$, але число $0 \leq i-j < d-1$, та водночас $i-j \geq d$. Суперечність!\\
 Більше розв'язків даного рівняння нема, оскільки за попередніми результатами, тут всього $d$ розв'язків.\\
 За попередньою формулою, $\ord_n (a^k) = \dfrac{d}{\gcd(k,d)}$. Зауважимо, що \\
-$\ord_n (a^k) = d$ лише тоді, коли $\gcd(k,d) = 1$. Отже, кількість розв'язків - рівно $d$, але лише $\varphi(d)$ з них будуть розв'язками порядку $d$.\\
+$\ord_n (a^k) = d$ лише тоді, коли $\gcd(k,d) = 1$. Отже, кількість розв'язків -- рівно $d$, але лише $\varphi(d)$ з них будуть розв'язками порядку $d$.\\
 Отже, звідси $f(d) = \varphi(d)$, але це для конкретного дільника $d$.\\
 !Припустимо, що існує якийсь дільник $d^*$, для якого $f(d^*) < \varphi(d^*)$. Автоматично звідси $\displaystyle\sum_{d \mid p-1} f(d) < \sum_{d \mid p-1} \varphi(d)$. Суперечність!\\
 Таким чином, $f(d) = \varphi(d), \forall d \mid p-1$.
@@ -1885,13 +1892,12 @@ $\ord_n (a^k) = d$ лише тоді, коли $\gcd(k,d) = 1$. Отже, кіл
 А тепер якщо взяти $d = p-1$ з попередньої теореми, то тоді буде всього $\varphi(p-1)$ чисел порядка $p-1$ за модулем $p$. Отже, за модулем $p$ знайдеться первісний корінь, як ми й хотіли з самого початку.
 
 \begin{theorem}
-Задано $p$ -- непарне просте число та $r$ -- первісний корінь $\pmod p$. (він існує за \thref{primitive root (mod p)}). Тоді існує $m \in \mathbb{Z}$ такий, що $g = r+mp$ -- первісний корінь $\pmod {p^k}$, для довільного $k \in \mathbb{N}$.\\
-Якщо точніше, або $r$, або $r + p$ буде первісним коренем $\pmod {p^k}$.
+Задано $p$ -- непарне просте число та $r$ -- первісний корінь $\pmod p$. (він існує за \thref{primitive root (mod p)}). Тоді існує $m \in \mathbb{Z}$ такий, що $g = r+mp$ -- первісний корінь $\!\!\pmod {p^k}$, для довільного $k \in \mathbb{N}$.\\
+Якщо точніше, або $r$, або $r + p$ буде первісним коренем $\!\! \pmod {p^k}$.
 \end{theorem}
 
 \begin{proof}
-Оскільки $r$ -- первісний корінь $\pmod p$, тоді $r^{p-1} \equiv 1 \pmod p$.\\
-Тобто $r^{p-1} = 1 + px, x \in \mathbb{Z}$.\\
+Оскільки $r$ -- первісний корінь за $\!\!\pmod p$, то $r^{p-1} \equiv 1 \pmod p$. Тобто $r^{p-1} = 1 + px, x \in \mathbb{Z}$.\\
 Побудуємо $g = r+mp$, де $m \in \mathbb{Z}$, яке скоро надам.\\
 Хочемо довести, що $\ord_{p^k} (g) = \varphi(p^k)$. Я позначу $d =\ord_{p^k} (g)$.\\
 Зауважимо, що $\varphi(p^k) = p^k - p^{k-1} = p^{k-1}(p-1)$.
@@ -1951,16 +1957,15 @@ $5^6 = (25)^3 \equiv 7^3 = 7 \cdot 49 \equiv 7 \cdot 4 = 28 \equiv 1 \pmod 9$.\\
 
 \begin{proof}
 \textit{База індукції}: $m = 3$. Нам треба розглянути числа $\{1,3,5,7\}$. \\
-Маємо $\ord_8 (3) = 2, \ord_8 (5) = 2, \ord_8 (7) = 2$. Але $\varphi(8) = 4$, тому й не існує первісного кореня $\pmod 8$.\\
-\textit{Припущення індукції}: для $k \geq 3$ не існує первісних поренів $\pmod {2^k}$.\\
-\textit{Крок індукції}: доведемо для ситуації $\pmod {2^{k+1}}$. Для цього ми хочемо показати, що $\forall a \in \mathbb{Z}: \gcd(a,2^{k+1}) = 1$ матимемо $a^{\varphi(2^k)} \equiv 1 \pmod {2^{k+1}}$.\\
+Маємо $\ord_8 (3) = 2, \ord_8 (5) = 2, \ord_8 (7) = 2$. Але $\varphi(8) = 4$, тому й не існує первісного кореня $\!\! \pmod 8$.\\
+\textit{Припущення індукції}: для $k \geq 3$ не існує первісних поренів $\!\! \pmod {2^k}$.\\
+\textit{Крок індукції}: доведемо для ситуації $\!\! \pmod {2^{k+1}}$. Для цього ми хочемо показати, що $\forall a \in \mathbb{Z}: \gcd(a,2^{k+1}) = 1$ матимемо $a^{\varphi(2^k)} \equiv 1 \pmod {2^{k+1}}$.\\
 Із припущення маємо, що $\forall a \in \mathbb{Z}, a \text{ - непарні}: a^{\frac{\varphi(2^k)}{2}} \equiv 1 \pmod {2^k}$.\\
-Пояснення: за теоремою Ойлера, $a^{\varphi(2^k)} \equiv 1 \pmod {2^k}$, при $a$ - непарне. Також $a$ -- не первісний, позначимо $d = \ord_{2^k}(a)$. Тоді $a^d \equiv 1 \pmod {2^k}$, а тому $d < \varphi(2^k)$ та $d \mid \varphi(2^k)$. Також $\varphi(2^k) = 2^{k-1}$, тому число $d = 2^l$, де $1 \leq l \leq 2^{k-2} = \dfrac{\varphi(2^{k-1})}{2}$. Звідси випливає, що $d \mid \dfrac{\varphi(2^{k-1})}{2}$, а тому й отримується бажана рівність.\\
-Коротше, ми маємо $a^{2^{k-2}} \equiv 1 \pmod {2^k}$, а тому \\
-$a^{2^{k-2}} = 1 + x \cdot 2^k$ для деякого $x \in \mathbb{Z}$.\\
+Пояснення: за теоремою Ойлера, $a^{\varphi(2^k)} \equiv 1 \pmod {2^k}$, при $a$ -- непарне. Також $a$ -- не первісний, позначимо $d = \ord_{2^k}(a)$. Тоді $a^d \equiv 1 \pmod {2^k}$, а тому $d < \varphi(2^k)$ та $d \mid \varphi(2^k)$. Також $\varphi(2^k) = 2^{k-1}$, тому число $d = 2^l$, де $1 \leq l \leq 2^{k-2} = \dfrac{\varphi(2^{k-1})}{2}$. Звідси випливає, що $d \mid \dfrac{\varphi(2^{k-1})}{2}$, а тому й отримується бажана рівність.\\
+Коротше, ми маємо $a^{2^{k-2}} \equiv 1 \pmod {2^k}$, а тому  $a^{2^{k-2}} = 1 + x \cdot 2^k$ для деякого $x \in \mathbb{Z}$.\\
 Взведемо обидві частини в квадрат:\\
 $a^{2^{k-1}} = 1 + x \cdot 2^{k+1} + x^2 \cdot 2^{2k} \equiv 1 \pmod {2^{k+1}}$.\\
-У нас виникла степінь менша за $\varphi(2^{k+1})$, для якого виконується конгруенція $1$ для будь-якого непарного числа. А тому первісних коренів $\pmod {2^{k+1}}$ не має.\\
+У нас виник степінь менший за $\varphi(2^{k+1})$, для якого виконується конгруенція $1$ для будь-якого непарного числа. А тому первісних коренів $\pmod {2^{k+1}}$ не має.\\
 МІ доведено.
 \end{proof}
 
@@ -1972,7 +1977,7 @@ $a^{2^{k-1}} = 1 + x \cdot 2^{k+1} + x^2 \cdot 2^{2k} \equiv 1 \pmod {2^{k+1}}$.
 
 \begin{proof}
 Зауважимо, що $\varphi(2^n) = 2^n - 2^{n-1} = 2^{n-1} = 2 \cdot 2^{n-2}$, тож кількість елементів на множині вище збігається з $\varphi(2^n)$.\\
-Доведемо, що всі вони -- неконгруентні між собою $\pmod {2^n}$.\\
+Доведемо, що всі вони -- неконгруентні між собою $\!\!\pmod {2^n}$.\\
 Розглянемо $5,5^2,\dots,5^{2^{n-2}}$ та покажемо, що вони між собою не конгруентні. Яким чином? А ми доведемо, що $\ord_{2^n} (5) = 2^{n-2}$. Це як раз допоможе доведенню бажаного.\\
 \textit{!Якщо за такими умовами припустити, що $5^i \equiv 5^j \pmod {2^n}$, то буде звідси випливати, що число $i-j < 2^{n-2}$ буде порядком, що суперечить!}\\
 \iffalse
@@ -2004,7 +2009,7 @@ $\dfrac{1}{2} \varphi(n) = \left(\dfrac{\varphi(m_1)}{2} \right) \varphi(m_2) = 
 Тоді звідси маємо дві конгруенції за Ойлером:\\
 $a^{\frac{1}{2} \varphi(n)} = \left(a^{\frac{\varphi(m_2)}{2}} \right)^{\varphi(m_1)} \equiv 1 \pmod {m_1}$.\\
 $a^{\frac{1}{2} \varphi(n)} = \left(a^{\frac{\varphi(m_1)}{2}} \right)^{\varphi(m_2)} \equiv 1 \pmod {m_2}$.\\
-Тоді оскільки $\gcd(m_1,m_2) = 1$, маємо $a^{\frac{\varphi(n)}{2}} \equiv 1 \pmod {n}$. І знову отримали степінь меншу за $\varphi(n)$, де конгруенція один.
+Тоді оскільки $\gcd(m_1,m_2) = 1$, маємо $a^{\frac{\varphi(n)}{2}} \equiv 1 \pmod {n}$. І знову отримали степінь менший за $\varphi(n)$, де конгруенція один.
 \end{proof}
 
 \begin{theorem}
@@ -2012,7 +2017,7 @@ $a^{\frac{1}{2} \varphi(n)} = \left(a^{\frac{\varphi(m_1)}{2}} \right)^{\varphi(
 \end{theorem}
 
 \begin{proof}
-Припустимо, що $r$ -- первісний корінь $\pmod {p^k}$. Він існує в силу того, що існує первісний корінь $\pmod p$, а згодом й $\pmod {p^k}$.\\
+Припустимо, що $r$ -- первісний корінь $\!\! \pmod {p^k}$. Він існує в силу того, що існує первісний корінь $\!\! \pmod p$, а згодом й $\!\! \pmod {p^k}$.\\
 Побудуємо $g = \begin{cases} r & r \text{ -- непарне} \\ r+p^k & r \text{ -- парне} \end{cases}$. \\
 Це розгалуження робиться для того, щоб $\gcd(g,2p^k) = 1$.\\
 Позначимо $d = \ord_{2p^k}(g)$, хочемо показати, що $d = \varphi(2p^k)$.\\
@@ -2048,11 +2053,11 @@ $27 = 3^3$ & $31$
 
 \subsection{Пошук первісних коренів}
 \begin{theorem}[Тест на первісний корінь $\!\! \pmod p$]
-$r$ -- первісний $\pmod p \iff \forall q - \text{просте}: q \mid p-1: r^{\frac{p-1}{q}} \not\equiv 1 \pmod p$.
+$r$ -- первісний $\!\! \pmod p \iff \forall q \text{ -- просте}: q \mid p-1: r^{\frac{p-1}{q}} \not\equiv 1 \pmod p$.
 \end{theorem}
 
 \begin{proof}
-\rightproof Дано: $r$ -- первісний корінь $\pmod p$. Тобто $\ord_p (r) = p-1$, але числа $\dfrac{p-1}{q}$ ясна річ менші за $p-1$, тобто конгруенція одиниці неможлива.
+\rightproof Дано: $r$ -- первісний корінь $\!\! \pmod p$. Тобто $\ord_p (r) = p-1$, але числа $\dfrac{p-1}{q}$ ясна річ менші за $p-1$, тобто конгруенція одиниці неможлива.
 \bigskip \\
 \leftproof Дано: $\forall q: q \mid p-1: r^{\frac{p-1}{q}} \not\equiv 1 \pmod p$.\\
 Ми доведемо, що якщо $r$ -- не первісний корінь, то тоді $\exists q \mid p-1:\\ r^{\frac{p-1}{q}} \equiv 1 \pmod p$.\\
@@ -2072,7 +2077,7 @@ $2^{\frac{28}{2}} = 2^7 \equiv 12 \not\equiv 1 \pmod {29}$.\\
 
 \begin{proposition}
 Задано $r$ -- первісний корінь $\!\! \pmod n$.\\
-$r^m$ -- первісний корінь $\pmod n \iff \gcd(m,\varphi(n)) = 1$.
+$r^m$ -- первісний корінь $\!\! \pmod n \iff \gcd(m,\varphi(n)) = 1$.
 \end{proposition}
 
 \begin{proof}
@@ -2083,7 +2088,7 @@ $\ord_n (r^m) = \dfrac{\ord_n (r)}{\gcd(m,\ord_n (r))} = \dfrac{\varphi(n)}{\gcd
 \bigskip \\
 \leftproof Дано: $\gcd(m,\varphi(n)) = 1$.\\
 Тоді $\ord_{n} (r^m) = \dfrac{\ord_n (r)}{\gcd(m,\ord_n (r))} = \dfrac{\varphi(n)}{\gcd(m,\varphi(n))} = \varphi(n)$.\\
-Отже, $r^m$ -- первісний корінь $\pmod n$.
+Отже, $r^m$ -- первісний корінь $\!\! \pmod n$.
 \end{proof}
 
 \begin{corollary}
@@ -2091,7 +2096,7 @@ $\ord_n (r^m) = \dfrac{\ord_n (r)}{\gcd(m,\ord_n (r))} = \dfrac{\varphi(n)}{\gcd
 \end{corollary}
 
 \begin{corollary}
-Задано $r$ -- первісний корінь $\pmod n$.\\
+Задано $r$ -- первісний корінь $\!\! \pmod n$.\\
 $r^a \equiv r^b \pmod n \iff a \equiv b \pmod {\varphi(n)}$.\\
 \textit{Випливає з} \prpref{power_congruence_equation}
 \end{corollary}
@@ -2107,7 +2112,7 @@ $11^3 = 121 \cdot 11 \equiv 2 \cdot 11 = 22 \equiv 5 \pmod {17}$.
 
 \subsection{Індекс числа}
 \begin{definition}
-Задано $a,n$ -- взаємно прості, $r$ -- первісний $\pmod n$.\\
+Задані $a,n$ -- взаємно прості, $r$ -- первісний $\!\! \pmod n$.\\
 \textbf{Індексом} числа $a$ відносно числа $r$ називають найменше невід'ємне число $k \in \mathbb{Z}$, для якого
 \begin{align*}
 r^k \equiv a \pmod n
@@ -2135,7 +2140,7 @@ $r^{\ind_r(a)} \equiv a \pmod n$.
 \end{corollary}
 
 \begin{proposition}[Властивості індекса]
-Задані $r$ -- первісний $\pmod n$ та $a,b$ -- обидва взаємно прості з $n$. Тоді:
+Задані $r$ -- первісний $\!\! \pmod n$ та $a,b$ -- обидва взаємно прості з $n$. Тоді:
 \begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
 \item $\ind_r(ab) \equiv \ind_r(a) + \ind_r(b) \pmod {\varphi(n)}$;
 \item $\ind_r (1) \equiv 0 \pmod {\varphi(n)}$;
@@ -2196,7 +2201,7 @@ $\ind_2 (x) \equiv 7 \pmod {10} \iff x \equiv 2^7 \equiv 7 \pmod {10}$.
 
 \begin{example}
 Знайти остачу при діленні $3^{3^3}$ на $17$.\\
-Математично кажучи, $3^{3^3} \equiv r \pmod {17}$, де $r$ -- остача, яку шукаємо. Можна перевірити, що $3$ -- первісний корінь $\pmod {17}$, а тому запишемо еквівалетне рівняння:\\
+Математично кажучи, $3^{3^3} \equiv r \pmod {17}$, де $r$ -- остача, яку шукаємо. Можна перевірити, що $3$ -- первісний корінь $\!\! \pmod {17}$, а тому запишемо еквівалетне рівняння:\\
 $3^3 \equiv \ind_3 (r) \pmod {16}$.\\
 $11 \equiv \ind_3 (r) \pmod {16} \iff r \equiv 3^{11} \equiv 7 \pmod {17}$.\\
 Отже, остача від ділення $3^{3^3}$ на $17$ буде число $7$.
@@ -2208,7 +2213,7 @@ $x^k \equiv a \pmod n$ має розв'язок $\iff a^{\frac{\varphi(n)}{\gcd(
 \end{theorem}
 
 \begin{proof}
-Нехай $r$ -- первісний корінь $\pmod n$, тоді\\
+Нехай $r$ -- первісний корінь $\!\! \pmod n$, тоді\\
 $a^{\frac{\varphi(n)}{\gcd(k,\varphi(n))}} \equiv 1 \pmod n \iff \dfrac{\varphi(n)}{\gcd(k,\varphi(n))} \ind_r (a) \equiv 0 \pmod {\varphi(n)} \\
 \iff \varphi(n) \mid \dfrac{\varphi(n)}{\gcd(k,\varphi(n))} \ind_r(a) \iff \gcd(k,\varphi(n)) \mid \ind_r(a) \iff$\\
 рівняння $kt \equiv \ind_r (a) \pmod {\varphi(n)}$ має розв'язок $t_0 \iff$\\
@@ -2265,8 +2270,8 @@ $6$ & $1$
 \end{tabular}
 \end{figure}
 Із цієї таблички видно, що:\\
-$1,2,4$ -- квадратичні лишки $\pmod 7$\\
-$3,5,6$ -- квадратичні нелишки $\pmod 7$.
+$1,2,4$ -- квадратичні лишки $\!\! \pmod 7$\\
+$3,5,6$ -- квадратичні нелишки $\!\! \pmod 7$.
 \end{example}
 
 \iffalse
@@ -2293,24 +2298,24 @@ $n = 3$ маємо $9 = m^2 \implies m = 3$.\\
 \end{example}
 
 \begin{theorem}
-Задано $p$ -- непарне просте число. Тоді в кожній скороченій системі лишків всього $\dfrac{p-1}{2}$ квадратичних лишків $\pmod p$ та $\dfrac{p-1}{2}$ квадратичних нелишків $\pmod p$.
+Задано $p$ -- непарне просте число. Тоді в кожній скороченій системі лишків всього $\dfrac{p-1}{2}$ квадратичних лишків $\!\! \pmod p$ та $\dfrac{p-1}{2}$ квадратичних нелишків $\!\! \pmod p$.
 \end{theorem}
 
 \begin{remark}
-При $p =2$ ми взагалі маємо лише $1$ квадратичний лишок та $0$ квадратичних нелишків $\pmod 2$.
+При $p =2$ ми взагалі маємо лише $1$ квадратичний лишок та $0$ квадратичних нелишків $\!\! \pmod 2$.
 \end{remark}
 
 \begin{proof}
-Візьмемо скорочену систему лишків $\pmod p$ ось таку: \\ $\left\{ -\dfrac{p-1}{2}, -\dfrac{p-1}{2}+1,\dots, -1,1,2,\dots,\dfrac{p-1}{2} \right\}$.\\
+Візьмемо скорочену систему лишків $\!\! \pmod p$ ось таку: \\ $\left\{ -\dfrac{p-1}{2}, -\dfrac{p-1}{2}+1,\dots, -1,1,2,\dots,\dfrac{p-1}{2} \right\}$.\\
 Якщо взяти в квадрат кожне число, то буде така множина:\\
 $\left\{1^2,2^2,\dots, \left( \dfrac{p-1}{2} \right)^2 \right\}$.\\
-Спочатку покажемо, що всі ці квадрати неконгруентні $\pmod p$.\\
+Спочатку покажемо, що всі ці квадрати неконгруентні $\!\! \pmod p$.\\
 !Припустимо, що $a^2 \equiv b^2 \pmod p$, якщо $1 \leq a < b \leq \dfrac{p-1}{2}$.\\
 Але тоді $p \mid a^2-b^2 = (a-b)(a+b)$, звідси $p \mid a-b$ або $p \mid a+b$.\\
 $p \mid a-b \implies a \equiv b \pmod p$\\
 $p \mid a+b \implies a \equiv -b \pmod p$.\\
 У обох випадках суперечність! Це в силу того, як ми обирали $a,b$.\\
-Отже, $\left\{1^2,2^2,\dots, \left( \dfrac{p-1}{2} \right)^2 \right\}$ -- всі неконгруентні $\pmod p$, а також ці числа належать (не скороченій, але все одно) системі лишків $\pmod p$. А це означає, що для кожного квадрата можна знайти число $a$ з першої скороченої системи лишків, щоб $x^2 \equiv a \pmod p$. Тож це -- система всіх квадратичних лишків.\\
+Отже, $\left\{1^2,2^2,\dots, \left( \dfrac{p-1}{2} \right)^2 \right\}$ -- всі неконгруентні $\!\! \pmod p$, а також ці числа належать (не скороченій, але все одно) системі лишків $\!\! \pmod p$. А це означає, що для кожного квадрата можна знайти число $a$ з першої скороченої системи лишків, щоб $x^2 \equiv a \pmod p$. Тож це -- система всіх квадратичних лишків.\\
 Тож дійсно всього $\dfrac{p-1}{2}$ квадратичних лишків, а решта $\dfrac{p-1}{2}$ -- квадратичні нелишки.
 \end{proof}
 
@@ -2319,15 +2324,15 @@ $p \mid a+b \implies a \equiv -b \pmod p$.\\
 Задано $p$ -- непарне просте число.\\
 \textbf{Символом Лежандра} називають такий вираз:
 \begin{align*}
-\left( \dfrac{a}{p} \right) = \begin{cases} 1, & a \text{ -- квадратичний лишок} \pmod p \\ -1 , & a \text{ -- квадратичний нелишок} \pmod p \\ 0, & p \mid a \end{cases}
+\left( \dfrac{a}{p} \right) = \begin{cases} 1, & a \text{ -- квадратичний лишок} \!\! \pmod p \\ -1 , & a \text{ -- квадратичний нелишок} \!\! \pmod p \\ 0, & p \mid a \end{cases}
 \end{align*}
-Власне, символ Лежандра просто дає відповідь, чи буде число $a$ квадратичним лишком $\pmod p$.
+Власне, символ Лежандра просто дає відповідь, чи буде число $a$ квадратичним лишком за $\!\! \pmod p$.
 \end{definition}
 
 \begin{example} 
 Кілька прикладів:\\
-$\left( \dfrac{2}{7} \right) = 1$, бо $2$ -- квадратичний лишок $\pmod 7$.\\
-$\left( \dfrac{3}{7} \right) = -1$, бо $3$ -- квадратичний нелишок $\pmod 7$.\\
+$\left( \dfrac{2}{7} \right) = 1$, бо $2$ -- квадратичний лишок $\!\! \pmod 7$.\\
+$\left( \dfrac{3}{7} \right) = -1$, бо $3$ -- квадратичний нелишок $\!\! \pmod 7$.\\
 $\left( \dfrac{35}{7} \right) = 0$, просто тому що $35 \equiv 0 \pmod 7$.
 \end{example}
 
@@ -2339,11 +2344,11 @@ $\left( \dfrac{a}{p} \right) \equiv a^{\textstyle\frac{p-1}{2}} \pmod p$.
 I. Випадок $a \equiv 0 \pmod p$.\\
 Тоді ясно, що $a^{\frac{p-1}{2}} \equiv 0 \pmod p$, а також $\left( \dfrac{a}{p} \right) = 0$. Отже, конгруентна рівність виконана.
 \bigskip \\
-II. Випадок $a$ -- квадратичний лишок $\pmod p$.\\
+II. Випадок $a$ -- квадратичний лишок $\!\! \pmod p$.\\
 Тоді існує число $b$, для якого $a \equiv b^2 \pmod p$. Але тоді \\ $a^{\frac{p-1}{2}} \equiv b^{p-1} \overset{\text{мала Th. Ферма}}{\equiv} 1 \pmod p$, а також відомо $\left( \dfrac{a}{p} \right) = 1$. \\
 Малу теорему Ферма можна застосовувати, бо $\gcd(b,p) = 1$. Отже, конгруентна рівність виконана.
 \bigskip \\
-III. Випадок $a$ -- квадратичний нелишок $\pmod p$.\\
+III. Випадок $a$ -- квадратичний нелишок $\!\! \pmod p$.\\
 Розглянемо число $k_1 \in \{1,2,\dots,p-1\}$. Ми можемо знайти $l_1 \neq k_1$ (причому єдине), для якого $k_1 l_1 \equiv a \pmod p$ як розв'язок лінійного конгруентного рівняння. Вимагаємо $l_1 \neq k_1$, бо тоді буде суперечність факту, що $a$ -- квадратичний нелишок.\\
 Розглянемо число $k_2 \in \{1,2,\dots,p-1\} \setminus \{k_1,l_1\}$. Аналогічно існує $l_2 \neq k_2$, для якого $k_2 l_2 \equiv a \pmod p$. Важливо зауважити, що $l_2 \not\in \{k_1,l_1\}$, бо інакше порушиться єдиність розв'язку двох конгруентних рівнянь.\\
 \vdots \\
@@ -2363,7 +2368,7 @@ $a$ -- квадратичний лишок $\pmod n \implies a^{\frac{\varphi(n)
 \end{remark}
 
 \begin{corollary}
-Задано $a$ -- квадратичний лишок $\pmod p$, де $p$ -- непарне просте. Тоді $a$ -- не первісний корінь $\pmod p$.
+Задано $a$ -- квадратичний лишок $\!\! \pmod p$, де $p$ -- непарне просте. Тоді $a$ -- не первісний корінь $\!\! \pmod p$.
 \end{corollary}
 
 \begin{corollary}[Властивості]
@@ -2388,9 +2393,9 @@ $\boxed{=} \left( \dfrac{3}{23} \right) = 3^{11} = 3^2 (3^3)^3 \equiv 9 \cdot 4^
 \end{example}
 
 \begin{example}
-Якщо $a$ -- квадратичний лишок $\pmod p$, де $p$ -- непарне просте, довести:\\
-$p-a$ -- квадратичний лишок $\pmod p \iff p \equiv 1 \pmod 4$.\\
-Дійсно, $\left( \dfrac{p-a}{p} \right) \overset{p-a \equiv -a}{=} \left( \dfrac{-a}{p} \right) = \left( \dfrac{-1}{p} \right) \left( \dfrac{a}{p} \right) \overset{a - \text{ лишок}}{=} \left( \dfrac{-1}{p} \right)$.\\
+Якщо $a$ -- квадратичний лишок $\!\! \pmod p$, де $p$ -- непарне просте, довести:\\
+$(p-a)$ -- квадратичний лишок $\!\! \pmod p \iff p \equiv 1 \pmod 4$.\\
+Дійсно, $\left( \dfrac{p-a}{p} \right) \overset{p-a \equiv -a}{=} \left( \dfrac{-a}{p} \right) = \left( \dfrac{-1}{p} \right) \left( \dfrac{a}{p} \right) \overset{a \text{-- лишок}}{=} \left( \dfrac{-1}{p} \right)$.\\
 Тоді $\left( \dfrac{p-a}{p} \right) =1 \iff p \equiv 1 \pmod 4$.
 \end{example}
 
@@ -2430,10 +2435,10 @@ $1 \equiv (-1)^n a^{\textstyle\frac{p-1}{2}} \pmod p \implies a^{\textstyle\frac
 
 \begin{proof}
 Ви використаємо ті самі позначення $r_i,s_k$, що з леми Гауса.\\
-Маємо $ja = q_j p + t_j$, тоді $\dfrac{ja}{p} = q_j - \dfrac{t_j}{p}$. Звідси випливає, що $q_j = \left[ \dfrac{ja}{p} \right]$. Отже, $ja = \left[ \dfrac{ja}{p} \right] + t_j$, де $t_j$ - один з остач $r_1,\dots,r_n$ або $s_1,\dots,s_m$.\\
+Маємо $ja = q_j p + t_j$, тоді $\dfrac{ja}{p} = q_j - \dfrac{t_j}{p}$. Звідси випливає, що $q_j = \left[ \dfrac{ja}{p} \right]$. Отже, $ja = \left[ \dfrac{ja}{p} \right] + t_j$, де $t_j$ -- один з остач $r_1,\dots,r_n$ або $s_1,\dots,s_m$.\\
 Ці числа $ja$ ми просумуємо до $\dfrac{p-1}{2}$ - отримаємо:\\
 $\displaystyle\sum_{j=1}^{\frac{p-1}{2}} ja = p\sum_{j=1}^{\frac{p-1}{2}} \left[ \dfrac{ja}{p} \right] + \sum_{j=1}^{\frac{p-1}{2}}t_j = p\sum_{j=1}^{\frac{p-1}{2}} \left[ \dfrac{ja}{p} \right] + \sum_{i=1}^n r_i + \sum_{k=1}^m s_k$.\\
-Із леми Гауса ми пам'ятаємо, що остачі $p-r_1,\dots,p-r_n, s_1,\dots,s_m$ - це просто пересортовані числа $1,2,\dots,\dfrac{p-1}{2}$. А тому\\
+Із леми Гауса ми пам'ятаємо, що остачі $p-r_1,\dots,p-r_n, s_1,\dots,s_m$ -- це просто пересортовані числа $1,2,\dots,\dfrac{p-1}{2}$. А тому\\
 $\displaystyle\sum_{j=1}^{\frac{p-1}{2}} j = \sum_{i=1}^n (p-r_i) + \sum_{k=1}^m s_k = pn + \sum_{k=1}^m s_k - \sum_{i=1}^n r_i$.\\
 Перше рівняння віднімемо від другого -- матимемо:\\
 $\displaystyle (a-1)\sum_{j=1}^{\frac{p-1}{2}}j = p \left( \sum_{j=1}^{\frac{p-1}{2}} \left[ \dfrac{ja}{p} \right] - n \right) + 2 \sum_{i=1}^n r_i = p(t-n)+2 \sum_{i=1}^n r_i$.\\
@@ -2443,11 +2448,11 @@ $0 \equiv t-n \pmod 2 \implies t \equiv n \pmod 2 \implies (-1)^t = (-1)^n$.\\
 \end{proof}
 
 \begin{corollary}
-$\left( \dfrac{2}{p} \right) = (-1)^{\textstyle\frac{p^2-1}{8}} = \begin{cases} 1, & p \equiv \pm 1 \pmod 8 \\ -1, & p \equiv \pm 3 \pmod 8 \end{cases}$
+$\left( \dfrac{2}{p} \right) = (-1)^{\textstyle\frac{p^2-1}{8}} = \begin{cases} 1, & p \equiv \pm 1 \pmod 8 \\ -1, & p \equiv \pm 3 \pmod 8 \end{cases}$.
 \end{corollary}
 
 \begin{remark}
-Число $\dfrac{p^2-1}{8} \in \mathbb{N}$, оскільки $p$ -- непарне просте.\\ Дійсно, $p$ -- непарне, а тому воно приймає один з виглядів $\{8k+1,8k+3,8k+5,8k+7\}$. Якщо для кожного варіанта обчислити $p^2-1$, а потім пошукати конгруенцію $\pmod 8$, то отримаємо, що $p^2-1 \equiv 0 \pmod 8$.
+Число $\dfrac{p^2-1}{8} \in \mathbb{N}$, оскільки $p$ -- непарне просте.\\ Дійсно, $p$ -- непарне, а тому воно приймає один з виглядів $\{8k+1,8k+3,8k+5,8k+7\}$. Якщо для кожного варіанта обчислити $p^2-1$, а потім пошукати конгруенцію $\!\! \pmod 8$, то отримаємо, що $p^2-1 \equiv 0 \pmod 8$.
 \end{remark}
 
 \begin{proof}
@@ -2509,7 +2514,7 @@ $\left( \dfrac{p}{q} \right) \left( \dfrac{q}{p} \right) = (-1)^{t_1} (-1)^{t_2}
 
 \begin{corollary}
 Задано $p,q$ -- різні непарні прості числа. Тоді\\
-$\left( \dfrac{p}{q} \right) \left( \dfrac{q}{p} \right) = \begin{cases} 1, & p \equiv 1 \pmod 4 \text{ або } q \equiv 1 \pmod 4 \\ -1, & p \equiv 3 \pmod 4 \text{ та } q \equiv 3 \pmod 4 \end{cases}$
+$\left( \dfrac{p}{q} \right) \left( \dfrac{q}{p} \right) = \begin{cases} 1, & p \equiv 1 \pmod 4 \text{ або } q \equiv 1 \pmod 4 \\ -1, & p \equiv 3 \pmod 4 \text{ та } q \equiv 3 \pmod 4 \end{cases}$.
 \end{corollary}
 
 \begin{example}
@@ -2523,11 +2528,11 @@ $\boxed{=} - \left( \dfrac{11}{101} \right) \cdot \left( \dfrac{11}{101} \right)
 \end{example}
 
 \begin{example}
-З'ясувати, при яких простих числах $p>3$ число $3$ буде квадратичним лишком $\pmod p$.\\
+З'ясувати, при яких простих числах $p>3$ число $3$ буде квадратичним лишком $\!\! \pmod p$.\\
 Перефразую питання: при яких $p$ вираз $\left( \dfrac{3}{p} \right) = 1$?\\
 Застосувавши наслідок закона квадратичної взаємності, отримаємо\\
 $\left( \dfrac{3}{p} \right) = \begin{cases} +\left( \dfrac{p}{3} \right), & p \equiv 1 \pmod 4 \\ -\left(\dfrac{p}{3}\right), & p \equiv 3 \pmod 4 \end{cases}$.\\
-Далі окремо $\left( \dfrac{p}{3} \right) = \begin{cases} 1, & p \equiv 1 \pmod 3 \\ -1, & p \equiv 2 \pmod 3 \end{cases}$ -- легко перевірити окремо, коли $p$ буде квадратичним лишком $\pmod 3$.\\
+Далі окремо $\left( \dfrac{p}{3} \right) = \begin{cases} 1, & p \equiv 1 \pmod 3 \\ -1, & p \equiv 2 \pmod 3 \end{cases}$ -- легко перевірити окремо, коли $p$ буде квадратичним лишком $\!\! \pmod 3$.\\
 Тепер ми хочемо $\left( \dfrac{3}{p} \right) = 1$, а для цього є два сценарії:\\
 1. $\left( \dfrac{3}{p} \right) = +\left( \dfrac{p}{3} \right) = +(+1) = 1$, це працює при $\begin{cases} p \equiv 1 \pmod 4 \\ p \equiv 1 \pmod 3 \end{cases}$.\\ Інакше кажучи, $p \equiv 1 \pmod {12}$, можна переконатись через китайську теорему про остачі.\\
 2. $\left( \dfrac{3}{p} \right) = -\left( \dfrac{p}{3} \right) = -(-1) = 1$, це працює при $\begin{cases} p \equiv 3 \pmod 4 \\ p \equiv 1 \pmod 3 \end{cases}$. \\Інакше кажучи, $p \equiv 11 \pmod {12}$.\\
@@ -2555,7 +2560,7 @@ $\left( \dfrac{-2}{p} \right) = \begin{cases} 1, & p \equiv 1,3 \pmod 8 \\ -1, &
 \begin{proof}
 !Припустимо, що $p_1,\dots,p_n$ -- лише вони прості формату $8k+3$. Позначу $x = p_1\dots p_n$. Причому варто зауважити, що $x \equiv 1,3 \pmod 8$.\\
 Побудуємо число $N = x^2+2$. Маємо $N \equiv 3 \pmod 8$, ще знадобиться.\\
-Нехай $p \mid N$, тоді $N \equiv 0 \pmod p \implies x^2 \equiv -2 \pmod p$. Тобто $-2$ -- квадратичний лишок $\pmod p$, а тому звідси $\left( \dfrac{-2}{p} \right) = 1$. Проте це виконується при $p \equiv 1,3 \pmod 8$.\\
+Нехай $p \mid N$, тоді $N \equiv 0 \pmod p \implies x^2 \equiv -2 \pmod p$. Тобто $-2$ -- квадратичний лишок $\!\! \pmod p$, а тому звідси $\left( \dfrac{-2}{p} \right) = 1$. Проте це виконується при $p \equiv 1,3 \pmod 8$.\\
 Отже, якщо $p \mid N$, то обов'язково $p \equiv 1,3 \pmod 8$. Серед цих простих чисел існує просте $q$, для якого якраз $q \equiv 3 \pmod 8$. Бо якби абсолютно всі прості числа були $\equiv 1 \pmod 8$, то тоді число $N \equiv 1 \pmod 8$, якщо $N$ розкласти в добуток простих чисел, що суперечить нашій умові.\\
 Отже, принаймні якийсь $q \equiv 3 \pmod 8$, але тоді $q = p_j$. Отже, \\
 $p_j \mid N, p_j \mid (p_1\dots p_n)^2 \implies p_j \mid 2 \implies p_j = 2$. Суперечність!
@@ -2574,7 +2579,7 @@ $y^2 \equiv D \pmod p$
 Нехай $x_0$ -- розв'язок початкового рівняння, тоді\\
 $(2ax_0+b)^2 \equiv b^2 - 4ac \pmod p$\\
 $y_0^2 \equiv D \pmod p$\\
-Тобто $D$ -- квадратичний лишок $\pmod p$.
+Тобто $D$ -- квадратичний лишок $\!\! \pmod p$.
 \bigskip \\
 Нехай $y^2 \equiv D \pmod p$ та $D$ -- квадратичний лишок. Тобто $y_0$ -- розв'язок даного рівняння, а також $p-y_0$ буде розв'язком, причому вони неконгруентні. Неважко це показати. Тоді $2ax+b \equiv y_0 \pmod p$ або $2ax+b \equiv p-y_0 \pmod p$. У двох рівняннях розв'язок існувати буде, оскільки $\gcd(a,p) = 1 \implies \gcd(2a,p) = 1$.\\
 Висновок:
@@ -2590,7 +2595,7 @@ $(2x+7)^2 \equiv 9 \pmod {11}$.\\
 Заміна: $2x+7 = y$, тоді отримаємо\\
 $y^2 \equiv 9 \pmod {11}$.\\
 Зауважимо, що $y \equiv 3 \pmod {11}$ та $y \equiv 8 \pmod {11}$ будуть розв'язками.\\
-Тоді $\left[ \begin{gathered} 2x+7 \equiv 3 \pmod {11} \\ 2x+7 \equiv 8 \pmod {11} \end{gathered} \right. \iff \left[ \begin{gathered} x \equiv 9 \pmod {11} \\ x \equiv 6 \pmod {11} \end{gathered} \right.$
+Тоді $\left[ \begin{gathered} 2x+7 \equiv 3 \pmod {11} \\ 2x+7 \equiv 8 \pmod {11} \end{gathered} \right. \iff \left[ \begin{gathered} x \equiv 9 \pmod {11} \\ x \equiv 6 \pmod {11} \end{gathered} \right.$.
 \end{example}
 \newpage
 
@@ -2599,13 +2604,11 @@ $y^2 \equiv 9 \pmod {11}$.\\
 Наразі порушується питання, коли можна число $n \in \mathbb{N}$ записати як суму квадратів, тобто $n = a^2+b^2$.
 
 \begin{lemma}
-Задано $n,m$ -- числа, які записуються як сума двох квадратів. Тоді $mn$ теж записується як сума двох квадратів.
+Задані $n,m$ -- числа, які записуються як сума двох квадратів. Тоді $mn$ теж записується як сума двох квадратів.
 \end{lemma}
 
 \begin{proof}
-Маємо ось такі репрезентації:\\
-$n = a^2+b^2$\\
-$m = c^2+d^2$\\
+Маємо ось такі репрезентації: $n = a^2+b^2$, \quad $m = c^2+d^2$.\\
 Тоді, використавши алгебраїчні перетворення, отримаємо:\\
 $mn = (a^2+b^2)(c^2+d^2) = a^2c^2+a^2d^2+b^2c^2+b^2d^2 = \\
 = (ac)^2 \textcolor{red}{+ 2acbd} + (bd)^2 + (ad)^2 \textcolor{red}{-2adbc} + (bc)^2 = (ac+bd)^2 + (ad-bc)^2$.
@@ -2617,12 +2620,14 @@ $mn = (a^2+b^2)(c^2+d^2) = a^2c^2+a^2d^2+b^2c^2+b^2d^2 = \\
 
 \begin{proof}
 Маємо $p \mid x^2+y^2$, тобто $x^2 + y^2 \equiv 0 \pmod p$, або $x^2 \equiv -y^2 \pmod p$.\\
-!Припустимо, що умова $p \mid x$ та $p \mid y$ не виконується. Є три випадки:\\ 
-I. $p \mid x$, але $p \nmid y$. Тоді ми отримаємо $0 \equiv -y^2 \pmod p$ -- неможливо.\\
-II. $p \nmid x$, але $p \mid y$ -- аналогічно.\\
-III. $p \nmid x$ та $p \nmid y$. Тоді за малою теоремою Ферма,\\
+!Припустимо, що умова $p \mid x$ та $p \mid y$ не виконуються. Є три випадки:
+\begin{enumerate}[nosep,wide=0pt,label={\Roman*.}]
+\item $p \mid x$, але $p \nmid y$. Тоді ми отримаємо $0 \equiv -y^2 \pmod p$ -- неможливо.
+\item $p \nmid x$, але $p \mid y$ -- аналогічно.
+\item $p \nmid x$ та $p \nmid y$. Тоді за малою теоремою Ферма,\\
 $1 \equiv x^{p-1} = \left(x^2\right)^{\textstyle\frac{p-1}{2}} \equiv \left(-y^2\right)^{\textstyle\frac{p-1}{2}} = (-1)^{\textstyle\frac{p-1}{2}}y^{p-1} \equiv (-1)^{\textstyle\frac{p-1}{2}} \pmod p$.\\
-Причому оскільки $p \equiv 3 \pmod 4$, то тоді маємо $1 \equiv - 1 \pmod p$, що можливо при $p = 2$, хоча $2 \not\equiv 3 \pmod 4$.\\
+Причому оскільки $p \equiv 3 \pmod 4$, то тоді маємо $1 \equiv - 1 \pmod p$, що можливо при $p = 2$, хоча $2 \not\equiv 3 \pmod 4$.
+\end{enumerate}
 У всіх трьох випадках ми отримали суперечність!
 \end{proof}
 
@@ -2632,7 +2637,7 @@ $1 \equiv x^{p-1} = \left(x^2\right)^{\textstyle\frac{p-1}{2}} \equiv \left(-y^2
 \end{proposition}
 
 \begin{proof}
-!Припустимо, що $p = a^2+b^2$, але тут же отримаємо, що $p \mid a^2+b^2 \implies p \mid a, p \mid b$. Тобто звідси $a = k_1p, b = k_2p$. Отже, \\
+!Припустимо, що $p = a^2+b^2$, але тут же отримаємо, що $p \mid a^2+b^2 \implies p \mid a,\ p \mid b$. Тобто звідси $a = k_1p,\ b = k_2p$. Отже, \\
 $p = p^2(k_1^2+k_2^2) \implies 1 = p(k_1^2+k_2^2)$. \\
 Ясно, що така рівність неможлива, а тому суперечність!
 \end{proof}
@@ -2644,7 +2649,7 @@ $p = p^2(k_1^2+k_2^2) \implies 1 = p(k_1^2+k_2^2)$. \\
 \begin{proof}
 Розглянемо множину $S = \left\{ax-y \Bigm| \substack{\textstyle 0 \leq x \leq \left[\sqrt{p}\right] \\ \textstyle  0 \leq y \leq \left[\sqrt{p}\right]}\right\}$. \\ Зауважимо, що $\# S = (1+\left[\sqrt{p}\right])^2$, причому\\
 $\# S = (1 + \left[\sqrt{p}\right])^2  + 1 + 2 \left[\sqrt{p}\right] + \left[\sqrt{p}\right]^2 > 1 + 2 (\sqrt{p}-1) + (\sqrt{p}-1)^2 = p$.\\
-Але за $\!\! \pmod p$ різних чисел може бути лише $p$ штук. Тоді за принципом Діріхле, на множині $S$ знайдуться принаймні два елементи $ax_1-y_1$ або $ax_2-y_2$, що рівні за $\!\pmod p$. Причому важливо, що не може виконуватися одночасно $x_1 = x_2, y_1 = y_2$.\\
+Але за $\!\! \pmod p$ різних чисел може бути лише $p$ штук. Тоді за принципом Діріхле, на множині $S$ знайдуться принаймні два елементи $ax_1-y_1$ або $ax_2-y_2$, що рівні за $\!\! \pmod p$. Причому важливо, що не може виконуватися одночасно $x_1 = x_2, y_1 = y_2$.\\
 Отже, $a(x_1-y_1) \equiv y_1-y_2 \pmod p$.\\
 Позначимо $x_0 = x_1-x_2$ та $y_0 = y_1-y_2$, тоді звідси $ax_0 \equiv y_0 \pmod p$ -- розв'язок знайшли. Причому $|x_0| < [\sqrt{p}], |y_0| < [\sqrt{p}]$, тобто\\
 $|x_0|,|y_0| < \sqrt{p}$. Переконаємось, що неможливо мати $x_0 = 0$ або $y_0 = 0$.\\
@@ -2662,29 +2667,28 @@ $p$ розписується як сума двох квадратів $\iff p \
 \bigskip \\
 \leftproof Дано: $p \equiv 1 \pmod 4$. Тобто це означає, що $\left( \dfrac{-1}{p} \right) = 1$, тобто рівняння $a^2 \equiv -1 \pmod p$ має розв'язок, причому $\gcd(a,p) = 1$. За лемою Туе, $ax \equiv y \pmod p$ має розв'язок $(x_0,y_0)$, а тому звідси\\
 $-x_0^2 \equiv a^2x_0^2 = (ax_0)^2 \equiv y_0^2 \pmod p \implies x_0^2 + y_0^2 \equiv 0 \pmod p$.\\
-Отже, $x_0^2 + y_0^2 = kp$ при $k \geq 1$. Але ми знаємо ще за Лемою Туе, що $0 < x_0^2+y_0^2 < 2p$, а значить, $k = 1$ -- єдиний варіант.\\
+Отже, $x_0^2 + y_0^2 = kp$ при $k \geq 1$. Але ми знаємо ще за лемою Туе, що $0 < x_0^2+y_0^2 < 2p$, а значить, $k = 1$ -- єдиний варіант.\\
 Отже, $p = x_0^2+y_0^2$, тобто розписали як суму двох квадратів.
 \end{proof}
 
 \begin{corollary}
-Кожне просте число $p \equiv 1 \pmod 4$ розписується як сума двох квадратів єдиним чином з точністю до перестановки доданків.\\
-Ще припускається, що $a^2 = (-a)^2$ - це один випадок.
+Кожне просте число $p \equiv 1 \pmod 4$ розписується як сума двох квадратів єдиним чином з точністю до перестановки доданків. Ще припускається, що $a^2 = (-a)^2$ -- це один випадок.
 \end{corollary}
 
 \begin{proof}
 Залишилось, власне, довести єдиність.\\
 !Припустимо, що є дві можливості записати число $p$:\\
-$p = a^2+b^2$\\
+$p = a^2+b^2$;\\
 $p = c^2+d^2$.\\
 Тоді зауважимо, що $a^2d^2-c^2b^2 = p(d^2-b^2) \equiv 0 \pmod p$.\\
 Тобто $(ad-cb)(ad+cb) \equiv 0 \pmod p$, а тому оскільки $p$ -- просте число, то звідси $\left[ \begin{gathered} ad \equiv cb \pmod p \\ ad \equiv -cb \pmod p \end{gathered} \right.$. Але із попередньої теореми, ми знаємо, що $a,b,c,d < \sqrt{p}$, тож звідси ми маємо $\left[ \begin{gathered} ad - cb = 0 \\ ad + cb = p \end{gathered} \right.$.\\
 Нехай $ad = cb$, тоді $a \mid cb$, а оскільки $\gcd(a,b) = 1$, то звідси маємо $a \mid c$, тобто $c = ka$. Після цього отримаємо $d = bk$. Але тоді\\
 $p = c^2+d^2 = k^2(a^2+b^2)$, а щоб була рівність, треба $k = 1$. Разом отримаємо $c = a, b = d$.\\
-Окремо поясню, чому $\gcd(a,b) = 1$. Припустимо, що $q \mid a, q \mid b$, де $q$ -- деяке просте число. Тоді звідси $q \mid a^2+b^2 = p$, тож або $q = 1$, або $q = p$.\\
-При $q = p$ маємо $p \mid a, p \mid b$, що не є можливим в силу того, що $p = a^2+b^2$. Тобто випадок $\gcd(a,b) > 1$ неможливий.\\
+Окремо поясню, чому $\gcd(a,b) = 1$. Припустимо, що $q \mid a,\ q \mid b$, де $q$ -- деяке просте число. Тоді звідси $q \mid a^2+b^2 = p$, тож або $q = 1$, або $q = p$.\\
+При $q = p$ маємо $p \mid a,\ p \mid b$, що не є можливим в силу того, що $p = a^2+b^2$. Тобто випадок $\gcd(a,b) > 1$ неможливий.\\
 Нехай виконується $ad+cb = p$, тоді звідси \\
 $p^2 = (a^2+b^2)(c^2+d^2) = (ad+bc)^2+(ac-bd)^2 = p^2+(ac-bd)^2 \implies ac = bd$.\\
-Випадок $ac = bd$ аналогічний попередньому випадку. Теж отримаємо врешті-решт $a = c, b = d$.\\
+Випадок $ac = bd$ аналогічний попередньому випадку. Теж отримаємо врешті-решт $a = c,\ b = d$.\\
 У двох випадках отримали суперечність!
 \end{proof}
 
@@ -2723,7 +2727,7 @@ $n$ розписується як сума двох квадратів $\iff m$ 
 
 \begin{proof}
 \rightproof Дано: $n = a^2+b^2 = N^2m$. Розглянемо випадок $m > 2$.\\
-Нехай $p \mid m$ -- деяке непарне просте число. Якщо $\gcd(a,b) = d$, то тоді $a = dr, b = ds$, тобто звідси $d^2(r^2+s^2) = N^2m$, причому $\gcd(r,s)=1$.\\
+Нехай $p \mid m$ -- деяке непарне просте число. Якщо $\gcd(a,b) = d$, то тоді $a = dr,\ b = ds$, тобто звідси $d^2(r^2+s^2) = N^2m$, причому $\gcd(r,s)=1$.\\
 Оскільки $m$ -- вільне від квадратів, то $d^2 \nmid m$, а тому вимагається $d^2 \mid N^2$. Власне, звідси\\
 $r^2+s^2 = \dfrac{N^2}{d^2}m = tp \equiv 0 \pmod p$.\\
 Але оскільки $\gcd(r,s) = 1$, то тоді звідси $\left[ \begin{gathered} \gcd(r,p)=1 \\ \gcd(s,p)=1 \end{gathered} \right.$. Бо в інакшому випадку ми отримаємо $\gcd(r,s) > 1$. Ми розглянемо $\gcd(r,p) = 1$, інший аналогічно.\\
@@ -2742,7 +2746,7 @@ $(rr')^2 + (sr')^2 \equiv 1 + (sr')^2 \equiv 0 \pmod p \implies (sr')^2 \equiv -
 
 \begin{example}
 Зокрема маємо:\\
-$459$ не розписується як сума двох квадратів, бо $459 = 3^3 \cdot 17$, і тут число $3$ має непарний степінь.\\
+$459$ не розписується як сума двох квадратів, бо $459 = 3^3 \cdot 17$, і тут число $3$ має непарний степінь;\\
 $153 = 3^2 \cdot 17$, тут $3$ має парний степінь, а тому допускає розклад на суму двох квадратів. Зокрема $153 = 3^2 (4^2+1^2) = 12^2 + 3^2$. 
 \end{example}
 
@@ -2762,7 +2766,7 @@ $n$ розписується як різниця двох квадратів $\i
 Зауважимо, що $a^2 \equiv 0,1 \pmod 4$, для всіх цілих чисел $a$, тоді звідси $a^2-b^2 \equiv 0,1,3 \pmod 4$. Тобто не існує таких $a,b$, для яких $a^2-b^2 = n \equiv 2 \pmod 4$.
 \bigskip \\
 \leftproof Дано: $n \not\equiv 2 \pmod 4$.\\
-Якщо $n \equiv 1,3 \pmod 4$, то тоді $n+1,n-1$ -- обидва парні числа, а значить, $n$ розпишемо так:\\
+Якщо $n \equiv 1,3 \pmod 4$, то тоді $(n+1),\ (n-1)$ -- обидва парні числа, а значить, $n$ розпишемо так:\\
 $n = \left( \dfrac{n+1}{2} \right)^2 - \left( \dfrac{n-1}{2} \right)^2$.\\
 Якщо $n \equiv 0 \pmod 4$, то тоді $n$ розпишемо так:\\
 $n = \left( \dfrac{n}{4} + 1 \right)^2 - \left( \dfrac{n}{4} - 1 \right)^2$.
@@ -2773,7 +2777,7 @@ $n = \left( \dfrac{n}{4} + 1 \right)^2 - \left( \dfrac{n}{4} - 1 \right)^2$.
 \end{corollary}
 
 \begin{proof}
-Маємо $p = a^2-b^2 = (a-b)(a+b)$. За попередньою теоремою, $a-b=1$, а оскільки $p$ просте, то звідси $a+b=p$. Отже, $a = \dfrac{p+1}{2}, b = \dfrac{p-1}{2}$, власне\\
+Маємо $p = a^2-b^2 = (a-b)(a+b)$. За попередньою теоремою, $a-b=1$, а оскільки $p$ просте, то звідси $a+b=p$. Отже, $a = \dfrac{p+1}{2},\ b = \dfrac{p-1}{2}$, власне\\
 $p = \left( \dfrac{p+1}{2} \right)^2 - \left( \dfrac{p-1}{2} \right)^2$.\\
 Тобто задається різниця квадратів однозначно числом $p$.
 \end{proof}
@@ -2800,22 +2804,23 @@ $4n+1 = 2m^2+2m+2k^2+2k+1 = \\ = m^2+k^2\textcolor{red}{+2km} + 2m+2k + 1 + m^2 
 \rightproof Дано: $k$ -- число формата $4^n (8m+7)$. Доведемо, що $k$ не розпишеться як сума трьох квадратів.\\
 Спочатку доведемо, що $8m+7$ не записується як сума трьох квадратів. Дійсно, для довільного числа $a$ маємо $a^2 \equiv 0,1,4 \pmod 8$, а значить,\\
 $a^2+b^2+c^2 \equiv 0,1,2,3,4,5,6 \pmod 8$, а водночас $8m+7 \equiv 7 \pmod 8$, а тому рівність $8m+7 = a^2+b^2+c^2$ при всіх $a,b,c$ неможлива.\\
-!Повернімось до $4^n (8m+7)$ та припустимо, що $4^n (8m+7) = a^2+b^2+c^2$ для деяких $a,b,c$. Тоді $a,b,c$ -- всі зобов'язані бути парними в силу того, що ліва частина ділиться на $4$. Тобто $a = 2a_1,b=2b_1,c=2c_1$.\\
+!Повернімось до $4^n (8m+7)$ та припустимо, що $4^n (8m+7) = a^2+b^2+c^2$ для деяких $a,b,c$. Тоді $a,b,c$ -- всі зобов'язані бути парними в силу того, що ліва частина ділиться на $4$. Тобто $a = 2a_1,\ b=2b_1,\ c=2c_1$.\\
 $4^{n-1}(8m+7) = a_1^2 + b_1^2 + c_1^2$.\\
 Якщо $n-1 \geq 1$, то повторити крок. А там ми дістанемось до рівності $8m+7 = a_l^2 + b_l^2 + c_l^2$. Суперечність!
 \bigskip \\
-\leftproof \textit{в іншу сторону дуже важко, тому просто залишу це як факт.}
+\leftproof \textit{В іншу сторону дуже важко, тому просто залишу це як факт.}
 \end{proof}
 
 Тобто, в принципі, ми вже знаємо, коли ми можемо записати число $n = a^2+b^2+c^2$. Підемо далі.
 
-\begin{lemma}[Лема Ейлера]
-Задано $n,m$ -- числа, які записуються як сума чотирьох квадратів. Тоді $mn$ теж записується як сума чотирьох квадратів.
+\begin{lemma}[Лема Ойлера]
+Задано $n,m$ -- числа, які записуються як сума чотирьох квадратів. Тоді $mn$ теж записується як сума чотирьох квадратів.\\
+\textit{Доведення не дуже чесне. Для демонстації з голови треба знати кватерніони, а це треба підключати апарат абстрактної алгебри.}
 \end{lemma}
 
 \begin{proof}
-Доведення не дуже чесне. Можна подивитися в пдфнику абстрактної алгебри: буде чесне доведення з використанням кватерніонів. Маємо\\
-$n = a_1^2+a_2^2+a_3^2+a_4^2$\\
+Маємо\\
+$n = a_1^2+a_2^2+a_3^2+a_4^2$;\\
 $m = b_1^2+b_2^2+b_3^2+b_4^2$.\\
 Тоді, скориставшись не дуже очевидними алгебраїнчними перетвореннями, ми отримаємо такий величезний вираз:\\
 $mn = (a_1b_1+a_2b_2+a_3b_3+a_4b_4)^2 + (a_1b_2-a_2b_1+a_3b_4-a_4b_3)^2 + \\ + (a_1b_3-a_2b_4-a_3b_1+a_4b_2)^2 + (a_1b_4+a_2b_3-a_3b_2-a_4b_1)^2$.
@@ -2826,11 +2831,14 @@ $mn = (a_1b_1+a_2b_2+a_3b_3+a_4b_4)^2 + (a_1b_2-a_2b_1+a_3b_4-a_4b_3)^2 + \\ + (
 \end{lemma}
 
 \begin{proof}
-Розглянемо множину \\ $S = \left\{ 1+0^2, 1+1^2, \dots, 1+ \left( \dfrac{p-1}{2} \right)^2, -0^2,-1^2,\dots,-\left( \dfrac{p-1}{2} \right)^2 \right\}$.\\
-Зауважимо, що $\# S = 2 \cdot \left( \dfrac{p-1}{2} +1 \right) = p+1 > p$. Але всього $p$ різних чисел за $\!\pmod p$. А тому за принципом Діріхлє, мають існувати різні елементи $u,v \in S$, де $u \equiv v \pmod p$. Є три сценарії:\\
-1) $u = x^2$ та $v = y^2$. У нас вже $x^2 \equiv y^2 \pmod p$, але звідси або $x \equiv y \pmod p$, або $x \equiv -y \pmod p$ -- жодний з двох варіантів неможливий, бо $0 \leq x \leq \dfrac{p-1}{2}$, $0 \leq y \leq \dfrac{p-1}{2}$\\
-2) $u = -1-x^2$ та $v = -1-y^2$ -- аналогічно неможливо за 1)\\
-3) $u = x^2$ та $v = -1-y^2$ (або навпаки). Тоді звідси $x^2+y^2+1 \equiv 0$ при обмеженнях $x,y$.
+Розглянемо множину \\ $S = \left\{ 1+0^2,\ 1+1^2,\ \dots,\ 1+ \left( \dfrac{p-1}{2} \right)^2,\  -0^2,\ -1^2,\ \dots,\ -\left( \dfrac{p-1}{2} \right)^2 \right\}$.\\
+Зауважимо, що $\# S = 2 \cdot \left( \dfrac{p-1}{2} +1 \right) = p+1 > p$. Але всього $p$ різних чисел за $\!\! \pmod p$. А тому за принципом Діріхлє, мають існувати різні елементи $u,v \in S$, де $u \equiv v \pmod p$. Є три сценарії:
+\begin{enumerate}[nosep,wide=0pt,label={\Roman*.}]
+\item $u = x^2$ та $v = y^2$. У нас вже $x^2 \equiv y^2 \pmod p$, але звідси або $x \equiv y \pmod p$, або $x \equiv -y \pmod p$ -- жодний з двох варіантів неможливий, бо $0 \leq x \leq \dfrac{p-1}{2}$, $0 \leq y \leq \dfrac{p-1}{2}$.
+\item $u = -1-x^2$ та $v = -1-y^2$ -- аналогічно неможливо за 1).
+\item $u = x^2$ та $v = -1-y^2$ (або навпаки). Тоді звідси $x^2+y^2+1 \equiv 0$ при обмеженнях $x,y$.
+\end{enumerate}
+У трьох випадках довели бажане.
 \end{proof}
 
 \begin{corollary}
@@ -2852,32 +2860,32 @@ $kp = x_0^2+y_0^2+1 < \dfrac{p^2}{4} + \dfrac{p^2}{4} + 1 < p^2$.\\
 Далі розглядаємо непарні прості числа. Тоді за наслідком, \\
 $kp = x^2+y^2+z^2+w^2$, ми оберемо $k < p$, щоб $k$ було найменшим додатним числом. Ми хочемо показати, що $k = 1$.\\
 !Припустимо, що $k$ -- парне число, тоді $w,x,y,z$ зобов'язані бути: або всі парні, або всі непарні, або два парних та два непарних. У такому випадку $x \equiv y \pmod 2$ та $z \equiv w \pmod 2$.\\
-Отже, $\dfrac{1}{2}(x-y),\dfrac{1}{2}(x+y),\dfrac{1}{2}(z-w),\dfrac{1}{2}(z+w)$ будуть цілими числами, тоді\\
+Отже, $\dfrac{1}{2}(x-y),\ \dfrac{1}{2}(x+y),\ \dfrac{1}{2}(z-w),\ \dfrac{1}{2}(z+w)$ будуть цілими числами, тоді\\
 $\dfrac{1}{2}kp = \left( \dfrac{x-y}{2} \right)^2 + \left( \dfrac{x+y}{2} \right)^2 + \left( \dfrac{z-w}{2} \right)^2 + \left( \dfrac{z+w}{2} \right)^2$.\\
 Тобто $\dfrac{k}{2}p$ є сумою чотирьох квадратів. Але $k$ -- найменше число, де $kp$ є сумою чотирьох квадратів, а отримали $\dfrac{k}{2}$. Суперечність!\\
-!Припустимо далі, що $k$ -- непарне, але $k \geq 3$. Звідси ми можемо обрати числа $a,b,c,d$, щоб\\
-$a \equiv x \pmod k, b \equiv y \pmod k, c \equiv z \pmod k, d \equiv w \pmod k$\\
-$|a| < \dfrac{k}{2}, |b| < \dfrac{k}{2}, |c| < \dfrac{k}{2}, |d| < \dfrac{k}{2}$.\\
+!Припустимо далі, що $k$ -- непарне, але $k \geq 3$. Звідси ми можемо обрати числа $a,\ b,\ c,\ d$, щоб\\
+$a \equiv x \pmod k,\ b \equiv y \pmod k,\ c \equiv z \pmod k,\ d \equiv w \pmod k$;\\
+$|a| < \dfrac{k}{2},\ |b| < \dfrac{k}{2},\ |c| < \dfrac{k}{2},\ |d| < \dfrac{k}{2}$.\\
 На прикладі як знайшли $a$. Маємо $x = qk + r$. Якщо $r < \dfrac{k}{2}$, тоді покладемо $a = r$. Якщо $r > \dfrac{k}{2}$, тоді покладемо $a = r-k$. Ну й ясно, що $a \equiv x \pmod k$.\\
 Із цього випливає, що\\
 $a^2+b^2+c^2+d^2 \equiv x^2+y^2+z^2+w^2 \equiv 0 \pmod k$, тобто\\
 $a^2+b^2+c^2+d^2 = nk$ для деякого $n \geq 0$.\\
 У силу обмежень $a,b,c,d$, ми отримаємо\\
 $0 \leq nk = a^2+b^2+c^2+d^2 < 4 \left( \dfrac{k}{2} \right)^2 = k^2 \implies 0 \leq nk < k^2$.\\
-Якщо $n = 0$, то тоді звідси $a=b=c=d=0$. Як наслідок, $k \mid x, k \mid y, k \mid z, k \mid w$, тоді $k^2 \mid kp \implies k \mid p$, що неможливо, бо $1 < k < p$.\\
+Якщо $n = 0$, то тоді звідси $a=b=c=d=0$. Як наслідок, $k \mid x,\ k \mid y,\ k \mid z,\ k \mid w$, тоді $k^2 \mid kp \implies k \mid p$, що неможливо, бо $1 < k < p$.\\
 Отже, ми маємо $0 < n < k$. Зауважимо тепер, що\\
 $k^2np = (kp)(kn) = r^2+s^2+t^2+u^2$.\\
-За першою лемою, $kp,kn$ -- суми чотирьох квадратів, а тому $k^2np$ - також сума чотирьох квадратів. Причому\\
+За першою лемою, $kp,\ kn$ -- суми чотирьох квадратів, а тому $k^2np$ -- також сума чотирьох квадратів. Причому\\
 $r = xa+yb+zc+wd$\\
 $s = xb-ya+zd-wc$\\
 $t = xc-yd-za+wb$\\
 $u = xd+yc-zb-wa$.\\
-Також треба зауважити, що $k \mid r,k \mid s,k \mid t,k \mid u$. На прикладі $r$ пояснення.\\
+Також треба зауважити, що $k \mid r,\ k \mid s,\ k \mid t,\ k \mid u$. На прикладі $r$ пояснення.\\
 $r = xa+yb+zc+wd \equiv a^2+b^2+c^2+d^2 \equiv 0 \pmod k$.\\
 Таким чином, маємо\\
 $np = \left( \dfrac{r}{k} \right)^2 + \left( \dfrac{s}{k} \right)^2 + \left( \dfrac{t}{k} \right)^2 + \left( \dfrac{u}{k} \right)^2$.\\
-Кожний дріб -- ціле число, але при цьому оскільки $0 < n < k$, то ми прийшли до суперечності! Знову ж таки, $k$ - найменше число, де $kp$ - сума чотирьох квадратів.\\
-Із всіх варіантів лишається тільки $k = 1$.
+Кожний дріб -- ціле число, але при цьому оскільки $0 < n < k$, то ми прийшли до суперечності! Знову ж таки, $k$ -- найменше число, де $kp$ -- сума чотирьох квадратів.\\
+Із всіх варіантів залишається лише $k = 1$.
 \end{proof}
 
 \begin{theorem}[Теорема Лагранжа]
@@ -2887,7 +2895,7 @@ $np = \left( \dfrac{r}{k} \right)^2 + \left( \dfrac{s}{k} \right)^2 + \left( \df
 
 \begin{example}
 Розписати $459$ як суму чотирьох квадратів.\\
-Тут активно застосовується лема Ейлера.\\
+Тут активно застосовується лема Ойлера.\\
 $459 = 3^3 \cdot 17 = 3^2 (1^2+1^2+1^2+0^2)(4^2+1^2+0^2+0^2) = \\
 = 3^2[(4+1+0+0)^2+(1-4+0-0)^2+(0-0-4+0)^2+(0+0-1-0)^2] = \\ = 3^2(5^2+3^2+4^2+1^2) = 15^2 + 9^2 + 12^2 + 3^2$.\\
 \end{example}
@@ -3037,7 +3045,7 @@ $a^{2n} = a^{q-1} \equiv 2^n \pmod q$.\\
 Оскільки $q$ - непарне число, то тоді $\gcd(a,q) = 1$, а тому $a^{q-1} \equiv 1 \pmod q$ за Ферма. Тобто звідси $2^n \equiv 1 \pmod q \implies q \mid M_n \implies q \equiv \pm 1 \pmod 8$.
 \end{proof}
 
-\begin{theorem}[Теорема Ейлера]
+\begin{theorem}[Теорема Ойлера]
 Задано $n$ - непарне доскональне число.\\
 Тоді $n = p_1^{k_1} p_2^{2j_2} \dots p_r^{2j_r}$, де $p_i$ - різні непарні прості числа, а також $p_1 \equiv k_1 \equiv 1 \pmod 4$.
 \end{theorem}
@@ -3944,12 +3952,12 @@ $\gcd(a,n) = 1, \gcd(b,n)= 1 \implies \gcd(ab,n) = 1$.}
 Позначення $U_n$ та $(\mathbb{Z}/_{n \mathbb{Z}})^*$ допускаються одночасно, тому що друга множина показує, які елементи із кільця $\mathbb{Z}/_{n \mathbb{Z}} = \mathbb{Z}_n$ є оберненими.
 
 \begin{remark}
-Зокрема якщо придивитись на множину $U_n$, то функція Ейлера перепишеться інакшим чином:
+Зокрема якщо придивитись на множину $U_n$, то функція Ойлера перепишеться інакшим чином:
 $$\varphi(n) = \# U_n$$
 \end{remark}
 
 А зараз будуть теореми, які ми вже доводили. Утім хочеться показати інший підхід, через абстрактний.
-\begin{theorem}[Теорема Ейлера]
+\begin{theorem}[Теорема Ойлера]
 Задані числа $a,n$ так, що $\gcd(a,n) = 1$.\\
 Тоді $a^{\varphi(n)} \equiv 1 \pmod n$.
 \end{theorem}
@@ -4036,7 +4044,7 @@ $f(1) = f(r) f(r^{-1}) = s \cdot f(r^{-1})$.\\
 \end{proof}
 
 \iffalse
-А ось цей наслідок дозволяє дуже просто довести властивість мультиплікативності функції Ейлера, зокрема в силу ізоморфності, ми отримаємо:\\
+А ось цей наслідок дозволяє дуже просто довести властивість мультиплікативності функції Ойлера, зокрема в силу ізоморфності, ми отримаємо:\\
 $\# U_N = \# U_{n_1} \dots \# U_{n_k}$\\
 $\varphi(N) = \varphi(n_1) \dots \varphi(n_k)$.
 \fi
@@ -4054,9 +4062,9 @@ $U_m = (\mathbb{Z}_m)^* \cong (\mathbb{Z}_{e_1^{e_1}} \times \dots \times \mathb
 
 А тепер розглянемо частинний випадок, коли маємо два числа $m,n$, для яких $\gcd(m,n) = 1$ Тоді ми знаємо, що $U_{mn} \cong U_m \times U_n$.\\
 Але тоді $\# U_{mn} = \# U_m \cdot \# U_n$.\\
-І якщо пригадати, що таке функція Ейлера, ми отримаємо\\
+І якщо пригадати, що таке функція Ойлера, ми отримаємо\\
 $\varphi(mn) = \varphi(m)\varphi(n)$.\\
-Тим самим ми простіше довели мультиплікативність функції Ейлера.
+Тим самим ми простіше довели мультиплікативність функції Ойлера.
 
 \subsection{Первісні корені та структура групи $U(\mathbb{Z}/_{n\mathbb{Z}})$}
 \begin{proposition}
@@ -5400,10 +5408,10 @@ $d(1,\theta,\dots,\theta^{n-1}) = \displaystyle\prod_{1 \leq i < j \leq n} (\the
 Таким чином $\overline{a} \in \mathbb{Z}/_{m \mathbb{Z}}^* \iff \exists \overline{b}: \overline{a} \overline{b} = \overline{ab} = \overline{1} \iff ab \equiv 1 \pmod m \iff \gcd(a,m)=1$.\\
 Отже, $(\mathbb{Z}/_{m\mathbb{Z}})^* = \{ \overline{a}: 1 \leq a \leq m, \gcd (a,m) = 1 \}$.
 \bigskip \\
-Тим самим, функцію Ейлра можна визначити дещо інакше:\\
+Тим самим, функцію Ойлера можна визначити дещо інакше:\\
 $\varphi(m) = \#(\mathbb{Z}/_{m\mathbb{Z}})^*$ при $m \geq 2$.
 
-\begin{theorem}[Теорема Ейлера]
+\begin{theorem}[Теорема Ойлера]
 Задано $a,b$, для яких $\gcd(a,m)=1$. Тоді $a^{\varphi(m)} \equiv 1 \pmod m$.
 \end{theorem}
 Уже така теорема була, але покажу більш абстрактний варіант доведення.
@@ -5453,7 +5461,7 @@ $\overline{5} \mapsto (\overline{1},\overline{2})$.
 Ін'єктивність легко доводиться. А сюр'єктивність випливає з доведення китайської теореми про остачі.\\
 Отже, $\mathbb{Z}/_{m \mathbb{Z}} \cong \mathbb{Z}/_{m_1 \mathbb{Z}} \times \dots \times \mathbb{Z}/_{m_r \mathbb{Z}}$.\\
 (вправа), $(\mathbb{Z}/_{m \mathbb{Z}})^* \cong (\mathbb{Z}/_{m_1 \mathbb{Z}})^* \times \dots \times (\mathbb{Z}/_{m_r \mathbb{Z}})^*$.\\
-Таким чином, доводиться $\varphi(m) = \varphi(m_1) \dots \varphi(m_r)$ - мультиплікативність функції Ейлера.
+Таким чином, доводиться $\varphi(m) = \varphi(m_1) \dots \varphi(m_r)$ - мультиплікативність функції Ойлера.
 
 \section{Скінченні поля}
 \subsection{Опис}
