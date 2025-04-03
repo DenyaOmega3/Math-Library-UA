@@ -1761,7 +1761,7 @@ $\implies 0.d_{m+1}d_{m+2} \dots = 0.d_{n+1}d_{n+2} \dots d_{m} d_{m+1} d_{m+2} 
 
 \subsection{Порядок}
 \begin{definition}
-Задано $a,n \in \mathbb{N}$ -- взаємно прості.\\
+Задані $a,n \in \mathbb{N}$ -- взаємно прості.\\
 \textbf{Порядком} $a \pmod n$ називають найменше число $m \in \mathbb{N}$, для якого
 \begin{align*}
 a^m \equiv 1 \pmod n
@@ -1776,6 +1776,7 @@ $5^2 = 25 \equiv 1 \pmod {12}$.
 \end{example}
 
 \begin{proposition}
+\label{order_and_numbers_bigger_than_order}
 Задано $m = \ord_n(a)$. Тоді маємо:\\
 $a^k \equiv 1 \pmod n \iff m \mid k$.
 \end{proposition}
@@ -1790,31 +1791,24 @@ $a^k = (a^m)^x \equiv 1^x = 1 \pmod n$.
 \end{proof}
 
 \begin{corollary}
-$\ord_n(a) \mid \varphi(n)$\\
+$\ord_n(a) \mid \varphi(n)$.\\
 \textit{Вказівка:} \thref{Euler mod theorem}.
 \end{corollary}
 
-%Не можу зрозуміти приклад
-\iffalse
-\begin{example}
-Доведемо, що прості множники чисел Ферма $F_n = 2^{2^n} + 1$ мають форму $x 2^{n+1} +1$ для деякого $x \in \mathbb{N}$.\\
-Нехай $p|F_n$, тобто $F_n \equiv 0 \pmod p$, що теж саме, що $2^{2^n} \equiv -1 \pmod p$.\\
-Звідси $(2^{2^n})^2 = 2^{2^{n+1}} \equiv 1 \pmod p$. Отже, за твердженням, $\ord_p(2) | 2^{n+1}$. Доведемо, що $\ord_p 2 = 2^{n+1}$.\\
-!Припустимо, що $\ord_p 2 \neq 2^{n+1}$. Тоді звідси $\ord_p 2 | 2^n$.
-\end{example}
-\fi
-
 \begin{proposition}
-$\ord_n (a^k) = \dfrac{\ord_n (a)}{\gcd(k,\ord_n (a))}$.\\
-\textit{Нагадування, що коли $n,a$ -- взаємно прості, то тоді $n,a^k$ -- також взаємно прості, тож рівність має сенс.}
+$\ord_n (a^k) = \dfrac{\ord_n (a)}{\gcd(k,\ord_n (a))}$.
 \end{proposition}
 
+\begin{remark}
+Якщо $n,a$ -- взаємно прості, то тоді звідси $n,a^k$ -- також взаємно прості для всіх $k \in \mathbb{N}$, тож $\ord_n(a^k)$ можна визначити.
+\end{remark}
+
 \begin{proof}
-Позначимо $d = \gcd(k,\ord_n (a))$, тоді звідси $\dfrac{k}{d}, \dfrac{\ord_n a}{d} \in \mathbb{N}$. Таким чином,\\
+Позначимо $d = \gcd(k,\ord_n (a))$, тоді звідси $\dfrac{k}{d},\ \dfrac{\ord_n a}{d} \in \mathbb{N}$. Таким чином,\\
 $\left( a^k \right)^{\frac{\ord_n (a)}{d}} = \left( a^{\ord_n (a)} \right)^{\frac{k}{d}} \equiv 1^{\frac{k}{d}} = 1 \pmod n$.\\
 Звідси маємо, що $\ord_n (a^k) \mid \dfrac{\ord_n (a)}{d}$ -- це з одного боку.\\
 Також $a^{k \ord_n (a^k)} = (a^k)^{\ord_n (a^k)} \equiv 1 \pmod n$.\\
-Звідси маємо, що $\ord_n (a) \mid k \ord_n (a^k) \implies \dfrac{\ord_n (a)}{d} \mid \dfrac{k}{d} \ord_n (a^k)$. Але оскільки $\dfrac{\ord_n (a)}{d}, \dfrac{k}{d}$ -- взаємно прості, то тоді звідси $\dfrac{\ord_n (a)}{d} \mid \ord_n (a^k)$ -- це з іншого боку.\\
+Звідси маємо, що $\ord_n (a) \mid k \ord_n (a^k) \implies \dfrac{\ord_n (a)}{d} \mid \dfrac{k}{d} \ord_n (a^k)$. Але оскільки $\dfrac{\ord_n (a)}{d},\ \dfrac{k}{d}$ -- взаємно прості, то тоді звідси $\dfrac{\ord_n (a)}{d} \mid \ord_n (a^k)$ -- це з іншого боку.\\
 Отже, $\dfrac{\ord_n (a)}{d} = \ord_n (a^k)$.
 \end{proof}
 
@@ -2045,6 +2039,11 @@ $10 = 2 \cdot 5$ & $22 = 2 \cdot 11$\\
 $27 = 3^3$ & $31$
 \end{tabular}\\
 будуть мати первісні. Решта -- не матимуть в силу неспівпадіння з бажаним розкладом.
+\end{example}
+
+\begin{example}
+Доведемо, що прості множники чисел Ферма $F_n = 2^{2^n} + 1$ мають форму $x 2^{n+1} +1$ для деякого $x \in \mathbb{N}$.\\
+Нехай $p \mid F_n$, тобто $F_n \equiv 0 \pmod p$, або маємо $2^{2^n} \equiv -1 \pmod p$. Звідси $(2^{2^n})^2 = 2^{2^{n+1}} \equiv 1 \pmod p$. Отже, за \prpref{order_and_numbers_bigger_than_order} $\ord_p(2) \mid 2^{n+1}$. Водночас за $\!\! \pmod p$ первісний корінь завжди існує, тож $\ord_p(2) = \varphi(p) = p-1$. Внаслідок чого $p -1 \mid 2^{n+1}$, а це й означає $p = 1 + x 2^{n+1}$ для деякого $x \in \mathbb{N}$.
 \end{example}
 
 \subsection{Пошук первісних коренів}
