@@ -1,0 +1,550 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+%\usepackage[none]{hyphenat}
+\usepackage{fancyhdr} %create a custom header and footer
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[english, main=ukrainian]{babel}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{physics}
+\usepackage[unicode]{hyperref}
+\usepgfplotslibrary{polar}
+\usepackage{ifthen}
+\usetikzlibrary{spy}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{centernot}
+
+
+\fancyhead{}
+\fancyfoot{}
+\parindent 0ex
+\def\huge{\displaystyle}
+\def\rightproof{$\boxed{\Rightarrow}$ }
+\def\leftproof{$\boxed{\Leftarrow}$ }
+
+\usepackage{pdfpages}
+
+\newtheoremstyle{theoremdd}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\normalfont}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ \textbf{#3}\\}}}
+
+\theoremstyle{theoremdd}
+\newtheorem{theorem}{Theorem}[subsection]
+  
+\theoremstyle{theoremdd}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem*{definition*}{Definition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{samedef}[theorem]{Definition}
+
+\theoremstyle{theoremdd}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{theoremdd}
+\newtheorem*{example*}{Example.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{lemma*}{Lemma.}
+
+\theoremstyle{theoremdd}
+\newtheorem*{theorem*}{Theorem.}
+
+\theoremstyle{theoremdd}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{theoremdd}
+\newtheorem*{proposition*}{Proposition.}
+
+\theoremstyle{theoremdd}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{theoremdd}
+\newtheorem*{remark*}{Remark.}
+
+\theoremstyle{theoremdd}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{theoremdd}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{theoremdd}
+\newtheorem*{corollary*}{Corollary.}
+
+\newenvironment{pf}{\vspace*{-3mm} \textbf{Proof. \\}}{$\blacksquare$}
+\newenvironment{pfMI}{\vspace*{-3mm} \textbf{Proof MI. \\}}{$\blacksquare$}
+\newenvironment{pfNoTh}{\textbf{Proof. \\}}{$\blacksquare$}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\makeatletter
+\renewenvironment{proof}[1][Proof.\\]{\par
+\pushQED{\hfill \qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\bfseries
+#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\linspan}{span}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\coef}{coef}
+\DeclareMathOperator{\upperbound}{upper bound}
+
+\newcommand\thref[1]{\textbf{Th.~\ref{#1}}}
+\newcommand\defref[1]{\textbf{Def.~\ref{#1}}}
+\newcommand\exref[1]{\textbf{Ex.~\ref{#1}}}
+\newcommand\prpref[1]{\textbf{Prp.~\ref{#1}}}
+\newcommand\rmref[1]{\textbf{Rm.~\ref{#1}}}
+\newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
+\newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
+%\renewcommand{\stcomp}[1]{{#1}^{\mathsf{c}}}
+
+\newcommand{\eqbydef}{\overset{\text{def.}}{=}}
+\newcommand\homom[2]{\text{Hom}({#1},{#2})}
+\newcommand{\symdif}{\,\triangle\,} % symmetric difference
+\newcommand\End[1]{\text{End}({#1})}
+\newcommand\Aut[1]{\text{Aut}({#1})}
+\newcommand\Orb{\text{Orb}}
+\newcommand\Stab{\text{Stab}}
+\newcommand\ncl{\text{ncl}}
+
+%delete
+
+\begin{document}
+\begin{theorem}[Roth]
+$\mu(x) = 2$, якщо $x \notin \mathbb{Q}$ -- алгебраїчне число.
+\end{theorem}
+
+Перш ніж доводити дану теорему варто скористатися теорією про визначник Вронського. Автор (тобто сам Roth) давав трохи модифіковане означення. Вронскіан визначав він таким чином:
+\begin{align*}
+\det \begin{pmatrix}
+\phi_0 & \phi_1 & \dots & \phi_{l-1} \\
+\dfrac{1}{1!} \dfrac{d}{dx} \phi_0 & \dfrac{1}{1!} \dfrac{d}{dx} \phi_1 & \dots & \dfrac{1}{1!} \dfrac{d}{dx} \phi_{l-1} \\
+\vdots & \vdots & \ddots & \vdots \\
+\dfrac{1}{(l-1)!} \dfrac{d^{l-1}}{dx^{l-1}} \phi_0 & \dfrac{1}{(l-1)!} \dfrac{d^{l-1}}{dx^{l-1}} \phi_1 & \dots & \dfrac{1}{(l-1)!} \dfrac{d^{l-1}}{dx^{l-1}} \dfrac{d}{dx} \phi_{l-1} \\
+\end{pmatrix} = W(\phi_0,\phi_{1},\dots,\phi_{l-1}).
+\end{align*}
+Оскільки на місці $\phi_0,\phi_1,\dots,\phi_{l-1}$ він розглядав лише многочлени, то він вирішив ділити на факторіал відповідного порядка.
+
+Про вронскіан відомо, що якщо функції $\{\phi_0,\dots,\phi_{l-1}\}$ -- лінійно залежні, то $W(\phi_0,\dots,\phi_{l-1}) \equiv 0$. Однак в зворотний бік працюватиме, якщо $\phi_0,\dots,\phi_{l-1}$ -- многочлени з коефіцієнтами нулевої характеристики (надалі розглядає автор коефіцієнти з $\mathbb{Q}$).
+
+\textit{Вказівка для доведення в оборотний бік: розглянути \\
+$W(\phi_0,\dots,\phi_{l-1})(0),\ W'(\phi_0,\dots,\phi_{l-1})(0),\ \dots, W^{(l-1)}(\phi_0,\dots,\phi_{l-1})(0)$.}
+
+\subsection{Узагальнені вронскіани}
+\begin{definition}
+Нехай $\phi_0,\dots,\phi_{l-1}$ -- $(l-1)$ разів диференційовані функції $p$ змінних. Розглянемо диференціальний оператор порядка $m$:
+\begin{align*}
+\Delta_m = \left(\dfrac{\partial}{\partial x_1}\right)^{i_1} \dots \left(\dfrac{\partial}{\partial x_p}\right)^{i_p},\quad m = i_1+\dots+i_p.
+\end{align*}
+\textbf{Узагальненим вронскіаном} називають визначник вигляду:
+\begin{align*}
+G(\phi_0,\dots,\phi_{l-1}) = \det \begin{pmatrix}
+\phi_0 & \phi_1 & \dots & \phi_{l-1} \\
+\Delta_1 \phi_0 & \Delta_1 \phi_1 & \dots & \Delta_1 \phi_{l-1} \\
+\vdots & \vdots & \ddots & \vdots \\
+\Delta_{l-1} \phi_0 & \Delta_{l-1} \phi_1 & \dots & \Delta_{l-1} \phi_{l-1}.
+\end{pmatrix}
+\end{align*}
+На місцях $\Delta$ можуть стояти будь-які диференціальні оператори певних порядків.
+\end{definition}
+
+\begin{remark}
+Знову ж таки, Roth працює лише з многочленами $\phi_0,\dots,\phi_{l-1}$ із $p$ змінними, тому його диференціальний оператор має певну модифікацію:
+\begin{align*}
+\Delta_m = \dfrac{1}{i_1 ! \dots i_p !} \left(\dfrac{\partial}{\partial x_1}\right)^{i_1} \dots \left(\dfrac{\partial}{\partial x_p}\right)^{i_p},\quad m = i_1+\dots+i_p.
+\end{align*}
+Ми тут знову ділимо на факторіали відповідні.
+\end{remark}
+
+\begin{proposition}
+Нехай $\{\phi_0,\dots,\phi_{l-1}\}$ -- лінійно залежні функції $p$ змінних. Тоді $G(\phi_0,\dots,\phi_{l-1}) ~{\equiv 0}$.\\
+\textit{Доведення десь схоже зі стандартним вронскіаном.}
+\end{proposition}
+
+\begin{proposition}
+Нехай $\{\phi_0,\dots,\phi_{l-1}\}$ -- лінійно незалежні многочлени $p$ змінних із коефіцієнтами нулевої характеристики. Тоді знайдеться узагальнений вронскан $G_0$, для якого $G_0(\phi_0,\dots,\phi_{l-1}) \not\equiv 0$.
+\end{proposition}
+
+\begin{remark}
+Автор буде брати лише многочлени з коефіцієнтами в $\mathbb{Q}$.
+\end{remark}
+
+\begin{proof}
+Оберемо $k \in \mathbb{Z}$ так, щоб $k \geq \deg \phi_i$ для всіх $i = 0,\dots,l-1$ по кожній окремій змінній.
+
+Розглянемо многочлени $\phi_v(t,t^k,\dots,t^{k^{p-1}})$ при $v = 0,1,\dots,l-1$. Дані многочлени утворюють лінійно незалежну систему.
+
+!Припустимо, що ні. Позначимо $\phi_v(x_1,\dots,x_p) = \displaystyle\sum_{0 \leq s_1 \leq k-1} \dots \sum_{0 \leq s_p \leq k-1} b^{(v)}(s_1,\dots,s_p) x_1^{s_1} \dots x_p^{s_p}$. Оскільки система лінійно залежна за щойним припущенням, то 
+\begin{align*}
+\sum_{v=0}^{l-1} c_v \phi_v(t,t^k,\dots,t^{k^{p-1}}) = 0 \implies \sum_{v=0}^{l-1} c_v\sum_{0 \leq s_1 \leq k-1} \dots \sum_{0 \leq s_p \leq k-1} b^{(v)}(s_1,\dots,s_p) t^{s_1+ks_2+\dots+k^{p-1}s_p} = 0.
+\end{align*}
+Представлення числа вигляду $s_1 + ks_2 + \dots + k^{p-1} s_p$ є єдиним, тобто абсолютно кожний коефіцієнт $b^{(v)}(s_1,\dots,s_p) = 0$, внаслідок чого
+\begin{align*}
+\sum_{v=0}^{l-1} c_v \phi_v(x_1,\dots,x_p) = 0.
+\end{align*}
+Останнє суперечить умові, що $\phi_0,\dots,\phi_{l-1}$ -- лінійно незалежні!
+
+Отже, вронскіан $W(\phi_0(t,t^k,\dots,t^{k^{p-1}}),\dots,\phi_{l-1}(t,t^k,\dots,t^{k^{p-1}})) \not\equiv 0$. Більш розгорнуто
+\begin{align*}
+\det \left( \dfrac{1}{\mu !} \left( \dfrac{d}{dt} \right)^\mu \phi_v(t,t^k,\dots,t^{k^{p-1}}) \right) (t) \neq 0.
+\end{align*}
+Позначивши $x_1 = t,\ x_2 = t^k,\dots, x_p = t^{k^{p-1}}$, маємо за chain rule
+\begin{align*}
+\dfrac{d}{dt} = \dfrac{\partial}{\partial x_1} + kt^{k-1} \dfrac{\partial}{\partial x_2} + \dots + k^{p-1} t^{k^{p-1}} \dfrac{\partial}{\partial x_p},
+\end{align*}
+а далі індуктивно можна довести, що оператор $\left( \dfrac{d}{dt} \right)^\mu$ виражається як лінійна комбінація $\Delta^{(1)},\dots,\Delta^{(r)}$ порядків не більше $\mu$ (TODO: може, просто рівні $\mu$?). Отже,
+\begin{align*}
+\left( \dfrac{d}{dt} \right)^\mu = f_1(t) \Delta^{(1)} + \dots + f_r(t) \Delta^{(r)},
+\end{align*}
+де $f_i \in \mathbb{Q}[t]$. Підставляючи це представлення оператора в визначник та розклавши в суму, матимемо
+\begin{align*}
+W(t) = g_1(t) G^{(1)}(t,\dots,t^{k^{p-1}}) + \dots + g_s(t) G^{(s)}(t,\dots,t^{k^{p-1}})
+\end{align*}
+(тут $s \leq r$, бо може якийсь визначник буде нулевий). Там в нас $g_i \in \mathbb{R}[t]$ та $G^{(i)}$ -- узагальнені вронскіани для $\phi_0,\dots,\phi_{l-1}$ в точці $(x_1,\dots,x_p) = (t,t^k,\dots,t^{k^{p-1}})$.
+
+Оскільки $W(t) \not\equiv 0$, то існує $G^{(i)}(t,t^k,\dots,t^{k^{p-1}}) \not\equiv 0$, а тому тим паче $G^{(i)}(x_1,\dots,x_p) \not\equiv 0$.
+\end{proof}
+
+\subsection{Допоміжні многочлени}
+\begin{lemma}
+\label{decompose_polynomial_n_into_n_minus_one_and_one}
+Нехай $R \in \mathbb{Z}[x_1,\dots,x_n] \setminus \{0\}$ -- многочлен принаймні двох змінних. Припустимо, що $\deg R(x_j) \leq r_j$ при $j = 1,\dots,p$ (тут $R(x_j)$ сприймається як многочлен від $x_j$). Тоді існує число $l \in \mathbb{Z}$, для якого
+\begin{align*}
+1 \leq l \leq r_p +1.
+\end{align*}
+Крім того, існує многочлен
+\begin{align*}
+F(x_1,\dots,x_p) = \det \left( \Delta_\mu \dfrac{1}{\nu!} \left( \dfrac{\partial}{\partial x_p}\right)^\nu R\right) \quad (x_1,\dots,x_p),
+\end{align*}
+тобто по суті узагальнений вронскіан, де $\Delta$ -- оператори диференціювання для $x_1,\dots,x_{p-1}$. Причому $F \in \mathbb{Z}[x_1,\dots,x_p] \setminus \{0\}$, а також
+\begin{align*}
+F(x_1,\dots,x_p) = U(x_1,\dots,x_{p-1}) V(x_p),
+\end{align*}
+де $U \in \mathbb{Z}[x_1,\dots,x_{p-1}]$ та $\deg U(x_j) \leq l r_j$, а також $V \in \mathbb{Z}[x_p]$ та $\deg V(x_p) \leq lr_p$.
+\end{lemma}
+
+\begin{remark}
+Для мене тут найголовніше, що дана лема дозволяє розкласти многочлен $p$ змінних та добуток многочлену 1 змінної та $p-1$ змінних.
+\end{remark}
+
+\begin{proof}
+Запишемо многочлен $R$ в такому вигляді:
+\begin{align*}
+R(x_1,\dots,x_p) = \phi_0(x_p) \psi_0(x_1,\dots,x_{p-1}) + \dots + \phi_{l-1}(x_p) \psi_{l-1}(x_1,\dots,x_{p-1}),
+\end{align*}
+де $\phi_v,\psi_v$ -- многочлени з коефіцієнтами $\mathbb{Q}$ при $\deg \phi_v(x_p) \leq r_p$ та $\deg \psi_v(x_j) \leq r_j$. Таке представлення $R$ точно існує (якщо $l-1 = r_p$ та $\phi_v(x_p) = x_p^v$).
+
+Оберемо таке представлення $R$, де число $l$ буде найменшим. Тоді $\phi_0(x_p),\dots,\phi_{l-1}(x_p)$ -- лінійно незалежна система.
+
+!Припустимо, що ні, тобто при $d_i \in \mathbb{Q}$ маємо
+\begin{align*}
+\phi_{l-1} = d_0 \phi_0 + \dots + d_{l-2} \phi_{l-2}.
+\end{align*}
+Підставляючи дану лінійну комбінацію в $R$, здобудемо
+\begin{align*}
+R = \phi_0(\psi_0 + d_0 \psi_{l-1}) + \dots + \phi_{l-2} (\psi_{l-2} + d_{l-2} \psi_{l-1}),
+\end{align*}
+а це суперечить обраному $l$!
+
+Аналогічними міркуваннями $\psi_0(x_1,\dots,x_{p-1}), \dots, \psi_{l-1}(x_1,\dots,x_{p-1})$ -- лінійно незалежні. Уже маємо $1 \leq l \leq r_p+1$.
+\bigskip \\
+Нехай $W(x_p)$ -- вронскіан $\phi_0,\dots,\phi_{l-1}$, тож маємо $W \in \mathbb{Q}[x_p] \setminus \{0\}$. Нехай $G(x_1,\dots,x_{p-1})$ -- узагальнений вронскіан $\psi_0,\dots,\psi_{l-1}$, для якого $G \not\equiv 0$ (такий існує за попередньою лемою).
+\begin{align*}
+W(x_p) = \det \left( \dfrac{1}{\mu !} \left( \dfrac{d}{d x_p}\right)^\mu \phi_v(x_p) \right); \\
+G(x_1,\dots,x_{p-1}) = \det ( \Delta_\mu \psi_v(x_1,\dots,x_{p-1})).
+\end{align*}
+В узагальненому вронскіані транспонуємо матрицю, а далі перемножимо два рядки:
+\begin{align*}
+GW = \det \left( \sum_{\rho=0}^{l-1} \Delta_\mu \dfrac{1}{v!} \left( \dfrac{\partial}{\partial x_p} \right)^v \phi_\rho(x_p) \psi_\rho(x_1,\dots,x_{p-1}) \right) = \det \left( \Delta_\mu \dfrac{1}{v!} \left( \dfrac{\partial}{\partial x_p}^v \right) R \right).
+\end{align*}
+Отже, отримуємо необхідну рівність:
+\begin{align*}
+W(x_p) G(x_1,\dots,x_{p-1}) = F(x_1,\dots,x_p).
+\end{align*}
+Оскільки ані $W \not\equiv 0$ та $G \not\equiv 0$, то точно $F \not\equiv 0$. Із того рівняння та факту, що $R \in \mathbb{Z}[x_1,\dots,x_p]$, випливає, що $F \in \mathbb{Z}[x_1,\dots,x_p]$.
+
+Ми маємо $F = WG$, але поки що $W,G$ -- многочлени з коефіцієнтами $\mathbb{Q}$. Однак існує число $q \in \mathbb{Q}$, для якого $g^{-1}W = V$ та $gG = U$ -- многочлени з коефіцієнтами $\mathbb{Z}$. При цьому $F = UV$.
+
+Оскільки $W$ -- визначник порядка $l$, елементи яких -- многочлени $x_p$ степені $\leq r_p$, то $W$, а тому й $V$ має порядок $\leq lr_p$. 
+\end{proof}
+
+\begin{lemma}
+Із урахуванням умов попередньої леми нехай також $|\coef R| \leq B$. Тоді
+\begin{align*}
+| \coef F| \leq [(r_1+1) \dots (r_p+1)]^l \cdot l! \cdot B^l \cdot 2^{(r_1+\dots+r_p)l}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Запишемо многочлен $R$ як суму із $(r_1+1) \dots (r_p+1)$ доданків:
+\begin{align*}
+R(x_1,\dots,x_p) = \displaystyle\sum_{0 \leq s_1 \leq r_1} \dots \sum_{0 \leq s_p \leq r_p} a_{s_1,\dots,s_p} x_1^{s_1} \dots x_p^{s_p},
+\end{align*}
+причому за умовою $|a_{s_1,\dots,s_p}| \leq B$. Знаючи, що
+\begin{align*}
+F(x_1,\dots,x_p) = \det \left( \Delta_\mu \dfrac{1}{\nu!} \left( \dfrac{\partial}{\partial x_p}\right)^\nu R (x_1,\dots,x_p) \right),
+\end{align*}
+отримуємо, що $F$ -- сума із $[(r_1+1)\dots (r_p+1)]^l$ визначників, кожний з яких є многочленом вигляду
+\begin{align*}
+\sum_{s_1} \dots \sum_{s_p} a_{s_1,\dots,s_p} \Delta_\mu \dfrac{1}{\nu !} \left( \dfrac{\partial}{\partial x_p} \right)^\nu x_1^{s_1} \dots x_p^{s_p},
+\end{align*}
+де $s_1,\dots,s_p$ залежать від $\mu$ або від $\nu$. Детальніше розглянемо доданок
+\begin{align*}
+\Delta_\mu \dfrac{1}{\nu !} \left( \dfrac{\partial}{\partial x_p} \right)^\nu x_1^{s_1} \dots x_p^{s_p} = A x_1^{t_1} \dots x_p^{t_p}
+\end{align*}
+для деякого $t_i \leq s_i$ та $A$ (якщо ненулеве) задається як
+\begin{align*}
+A = C_{s_1}^{t_1} \dots C_{s_p}^{t_p}.
+\end{align*}
+Відомо, що $C_n^k \leq 2^n$ (із бінома Ньютона), звідси випливає
+\begin{align*}
+A \leq 2^{s_1 + \dots + s_p} \leq 2^{r_1 + \dots + r_p}.
+\end{align*}
+Отже, маємо, що кожний коефіцієнт даного многочлена $\leq (B \cdot 2^{r_1+\dots+r_p})^l$.
+(TODO: обдумати кількість)
+\end{proof}
+
+\subsection{Індекс многочлена}
+\begin{definition}
+Нехай $P \in \mathbb{R}[x_1,\dots,x_p] \setminus \{0\}$. Розглянемо числа $\alpha_1,\dots,\alpha_p \in \mathbb{R}$, а також числа $r_1,\dots,r_p > 0$.  Розкладемо многочлен $P(\alpha_1+y_1,\dots,\alpha_p+y_p)$ як многочлен вигляду:
+\begin{align*}
+P(\alpha_1+y_1,\dots,\alpha_p+y_p) = \sum_{j_1 \geq 0} \dots \sum_{j_p \geq 0} c_{j_1,\dots,j_p} y_1^{j_1} \dots y_p^{j_p}.
+\end{align*}
+\textbf{Індексом многочлена $P$ в точці $(\alpha_1,\dots,\alpha_p)$ відносно $r_1,\dots,r_p$} називають число
+\begin{align*}
+\theta_{P(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} = \min_{\substack{j_1,\dots,j_p: \\ c_{j_1,\dots,j_p} \neq 0}} \left( \dfrac{j_1}{r_1} + \dots + \dfrac{j_p}{r_p} \right).
+\end{align*}
+\end{definition}
+
+\begin{remark}
+$c_{j_1,\dots,j_p} \neq 0 \iff \left( \dfrac{\partial}{\partial x_1}\right)^{j_1} \dots \left( \dfrac{\partial}{\partial x_p} \right)^{j_p} P(\alpha_1,\dots,\alpha_p) \neq 0$.
+\end{remark}
+
+\begin{remark}
+$\theta_{P(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} = 0 \iff P(\alpha_1,\dots,\alpha_p) \neq 0$.
+\end{remark}
+
+\begin{remark}
+$\theta_{\left(\frac{\partial}{\partial x_1}\right)^{k_1} \dots \left(\frac{\partial}{\partial x_p}\right)^{k_p} P(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} \geq \theta_{P(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} - \dfrac{k_1}{r_1} - \dots - \dfrac{k_p}{r_p}$.\\
+У цьому випадку $k_1,\dots,k_p \geq 0$ та обов'язково $\left(\dfrac{\partial}{\partial x_1}\right)^{k_1} \dots \left(\dfrac{\partial}{\partial x_p}\right)^{k_p} P(x_1,\dots,x_p) \not\equiv 0$.
+\end{remark}
+
+\begin{proposition}
+Нехай $P,Q \not\equiv 0$ -- многочлени $p$ змінних. Тоді
+\begin{enumerate}[wide=0pt,label={\arabic*)}]
+\item $\theta_{(P+Q)(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} \geq \min \{ \theta_{P(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p},\ \theta_{Q(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p}\}$;
+\item $\theta_{(PQ)(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} = \theta_{P(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} + \theta_{Q(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Нехай $P(x_1,\dots,x_{p-1})$ -- многочлен $p-1$ змінних та $Q(x_p)$ -- многочлен однієї змінної, обидва ненулеві. Тоді\\
+$\theta_{(PQ)(\alpha_1,\dots,\alpha_p)}^{r_1,\dots,r_p} = \theta_{P(\alpha_1,\dots,\alpha_{p-1})}^{r_1,\dots,r_{p-1}} + \theta_{Q(\alpha_p)}^{r_p}$.
+\end{proposition}
+
+\textit{Всі вони доводяться цілком легко.}
+
+Нехай $B \geq 1$ та $r_1,\dots,r_m \in \mathbb{N}$. Розглянемо множину многочленів
+\begin{align*}
+\mathcal{R}_m(B;r_1,\dots,r_m) = \left\{ R(x_1,\dots,R_m) \mid \substack{\coef(R) \in \mathbb{Z} \setminus \{0\}; \\ |\coef(R)| \leq B; \\ \deg R(x_j) \leq r_j,\ j = 1,\dots,p. } \right\}
+\end{align*}
+Нарешті, розглянемо ось таке число:
+\begin{align*}
+\Theta_m(B;r_1,\dots,r_m) = \underset{{\substack{R \in \mathcal{R}_m(B;r_1,\dots,r_m) \\ q_1,\dots,q_m \in \mathbb{N}; \\ h_1,\dots,h_m \in \mathbb{Z}: \\
+(h_j,q_j) = 1 }} }{\upperbound}\theta_{R\left( \frac{h_1}{q_1},\dots,\frac{h_m}{q_m} \right)}^{r_1,\dots,r_m}.
+\end{align*}
+Тобто перебиратимемо верхню грань всіх індексів, задовольняючи певні умови.
+
+\begin{lemma}
+$\Theta_1(B;q_1,r_1) \leq \dfrac{\log B}{r_1 \log q_1}$.\\
+\textit{Дана лема є базою математичної індукції по $m \geq 1$ для числа $\Theta_m(B;q_1,\dots,q_m,r_1,\dots,r_m)$.}
+\end{lemma}
+
+\begin{proof}
+За означенням індекса $\theta = \theta_{R\left( \frac{h_1}{q_1},\dots, \frac{h_m}{q_m}  \right)}^{r_1,\dots,r_m}$ ми маємо $\left( x_1 - \dfrac{h_1}{q_1} \right)^{\theta r_1} \mid R(x_1)$. За теоремою Гауса та факту, що $(h_1,q_1) = 1$, маємо наступне:
+\begin{align*}
+R(x_1) = (q_1x_1-h_1)^{\theta r_1} Q(x_1),\quad Q \in \mathbb{Z}[x_1].
+\end{align*}
+Отже, $q_1^{\theta r_1}$ ділить коефіцієнт $R$ з найбільшим степенем доданка, а оскільки ще $|\coef R| \leq B$, то звідси $q_1^{\theta r_1} \leq B$, тобто $\theta \leq \dfrac{\log B}{r_1 \log q_1}$.
+\end{proof}
+
+\begin{lemma}
+Нехай $p \geq 2$ -- ціле число та $r_1,\dots,r_p \in \mathbb{Z}$ такі, що
+\begin{align*}
+r_p > 10\delta^{-1} \qquad \dfrac{r_{j-1}}{r_j} > \delta^{-1}
+\end{align*}
+при $\delta \in (0,1)$. Тоді
+\begin{align*}
+\Theta_p(B;q_1,\dots,q_p,r_1,\dots,r_p) \leq 2 \max_{\substack{l \in \mathbb{N}: \\ 1 \leq l \leq r_p+1 }} (\Phi + \sqrt{\Phi} + \sqrt{\delta}).
+\end{align*}
+Число $\Phi$ задається таким чином:
+\begin{align*}
+\Phi = \Theta_1(M;q_p;lr_p) + \Theta_{p-1}(M;q_1,\dots,q_{p-1};lr_1,\dots,lr_{p-1}),
+\end{align*}
+а число $M$ задається так:
+\begin{align*}
+M = (r_1+1)^{pl} \cdot l! \cdot B^l \cdot 2^{plr_1}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Нехай $R \in \mathcal{R}(B;q_1,\dots,q_p,r_1,\dots,r_p)$. Даний многочлен задовольняє умови \lmref{decompose_polynomial_n_into_n_minus_one_and_one}. Тоді існує число $l$, для якого $1 \leq l \leq r_p+1$, а також існує многочлен $F \in \mathbb{Z}[x_1,\dots,x_p]$, вигляд якого з тої самої леми. Оскільки $|\coef F| \leq B$, то за наступною лемою
+\begin{align*}
+|\coef F| \leq [(r_1+1) \dots (r_p+1)]^l \cdot l! \cdot B^l \cdot 2^{(r_1+\dots+r_p)l} < M.
+\end{align*}
+Остання нерівність випливає із того факту, що $r_1 > \dots > r_p$ (це із $\dfrac{r_{j-1}}{r_j} > \delta^{-1}$), а те, що залишилось, позначали за $M$. Оскільки $F(x_1,\dots,x_p) = U(x_1,\dots,x_{p-1})V(x_p)$ та $U,V$ мають цілочисельні коефіцієнти, то
+\begin{align*}
+| \coef U|,\ |\coef V| < M.
+\end{align*}
+Зауважимо, що многочлен $U \in \mathcal{R}_{p-1}(M;lr_1,\dots,lr_{p-1})$, якщо згадати, що це за $U$ із \lmref{decompose_polynomial_n_into_n_minus_one_and_one}. Отже, звідси $\theta_{U\left( \frac{h_1}{q_1},\dots,\frac{h_{p-1}}{q_{p-1}} \right)}^{lr_1,\dots,lr_{p-1}} \leq \Theta_{p-1}(M;q_1,\dots,q_{p-1},lr_1,\dots,lr_{p-1})$. Із означення індекса випливає
+\begin{align*}
+\theta_{U\left( \frac{h_1}{q_1},\dots,\frac{h_{p-1}}{q_{p-1}} \right)}^{r_1,\dots,r_{p-1}} \leq l \cdot \Theta_{p-1}(M;q_1,\dots,q_{p-1};lr_1,\dots,lr_{p-1}).
+\end{align*}
+Всі міркування про $V$ аналогічні, а там отримуємо
+\begin{align*}
+\theta_{V\left( \frac{h_p}{q_p} \right)}^{r_p} \leq l \cdot \Theta_1(M;q_p;lr_p)
+\end{align*}
+Отже, можемо оцінити індекс многочлена $F$ за твердженнями про індекси:
+\begin{align*}
+\theta_{F\left( \frac{h_1}{q_1},\dots,\frac{h_p}{q_p} \right)}^{r_1,\dots,r_p} \leq l \cdot \Theta_{p-1}(M;q_1,\dots,q_{p-1};lr_1,\dots,lr_{p-1}) + l \cdot \Theta_1(M;q_p, lr_p) = l \cdot \Phi.
+\end{align*}
+Це ми знайшли верхню грань, знайдемо нижню грань.
+\bigskip \\
+Розглянемо оператор диференціювання $\Delta$ змінних $x_1,\dots,x_{p-1}$ порядка $w \leq l-1$ (TODO: може, рівно $l-1$?). За умовою, що $\Delta \cdot \dfrac{1}{v!} \left( \dfrac{\partial}{\partial x_p} \right)^v R \not\equiv 0$ ми матимемо
+\begin{align*}
+\theta_{\Delta \cdot \frac{1}{v!} \left( \frac{\partial}{\partial x_p} \right)^v R \left( \frac{h_1}{q_1},\dots,\frac{h_p}{q_p} \right)}^{r_1,\dots,r_p} & \geq \theta_{R\left( \frac{h_1}{q_1},\dots,\frac{h_p}{q_p} \right)}^{r_1,\dots,r_p} - \dfrac{i_1}{r_1} - \dots - \dfrac{i_{p-1}}{r_{p-1}} - \dfrac{v}{r_p} \\
+& \geq \theta_{R\left( \frac{h_1}{q_1},\dots,\frac{h_p}{q_p} \right)}^{r_1,\dots,r_p} - \dfrac{w}{r_{p-1}} - \dfrac{v}{r_p}
+\end{align*}
+Оскільки $\dfrac{w}{r_{p-1}} \leq \dfrac{l-1}{r_{p-1}} \leq \dfrac{r_p}{r_{p-1}} < \delta$ та індекс ніколи не від'ємний, тоді
+\begin{align*}
+\theta_{\Delta \cdot \frac{1}{v!} \left( \frac{\partial}{\partial x_p} \right)^v R \left( \frac{h_1}{q_1},\dots,\frac{h_p}{q_p} \right)}^{r_1,\dots,r_p} \geq \max \left\{ 0,\ \theta_{R\left( \frac{h_1}{q_1},\dots,\frac{h_p}{q_p} \right)}^{r_1,\dots,r_p} - \dfrac{v}{r_p} \right\} - \delta
+\end{align*}
+Знаючи, як записується $F(x_1,\dots,x_p)$, розкриємо цей визначник. Кожний з $n!$ доданків в даній сумі матиме такий вигляд (просто за означенням визначника):
+\begin{align*}
+\pm (\Delta_{\mu_0} R) \left( \Delta_{\mu_1} \dfrac{1}{1!} \dfrac{\partial}{\partial x_p} R \right) \dots \left( \Delta_{\mu_{l-1}} \dfrac{1}{(l-1)!} \left( \dfrac{\partial}{\partial x_p} \right)^{l-1} R \right)
+\end{align*}
+Індекс кожного такого доданка $\geq \displaystyle\sum_{v=0}^{l-1} \max \left\{ 0,\ \theta_{R\left( \frac{h_1}{q_1},\dots,\frac{h_p}{q_p} \right)}^{r_1,\dots,r_p} - \dfrac{v}{r_p} \right\} - l \delta$ (за властивістю індекса).\\
+Надалі припускаємо, що $\theta r_p > 10$ (якщо це не так, тобто $\theta r_p \leq 10$, то ми маємо $\theta \leq 10r_p^{-1} < \delta < 2 \sqrt{\delta}$, тобто наш індекс задовольняє нерівність, яку сформулювали в лемі). Розглянемо останній отриманий індекс, а конкретніше на $\displaystyle\sum_{v=0}^{l-1} \max \left\{ 0, \theta - \dfrac{v}{r_p} \right\}$.\\
+Якщо $\theta r_p < l$, то звідси
+\begin{align*}
+\sum_{v=0}^{l-1} \max \left\{ 0,\theta - \dfrac{v}{r_p} \right\} = r_p^{-1} \sum_{0 \leq v \leq \theta r_p} (\theta r_p - v) \geq \dfrac{1}{2} r_p^{-1} (\theta r_p)^2
+\end{align*}
+Якщо $\theta r_p \geq l$, то звідси
+\begin{align*}
+\sum_{v=0}^{l-1} \max \left\{ 0,\theta - \dfrac{v}{r_p} \right\} = \sum_{v=0}^{l-1} \left( \theta - \dfrac{v}{r_p} \right) \geq \dfrac{1}{2} l \theta.
+\end{align*}
+Таким чином,
+\begin{align*}
+\theta_F \geq \min \left\{ \dfrac{1}{2}l \theta,\ \dfrac{1}{3} r_p \theta^2 \right\} - l \delta.
+\end{align*}
+Згадуючи нерівність про верхню грань $\theta_F$, отримуємо
+\begin{align*}
+\min \left\{ \dfrac{1}{2}l \theta,\ \dfrac{1}{3}r_p \theta^2 \right\} \leq l \delta + l \Phi.
+\end{align*}
+Отже, або $\theta \leq 2(\Phi + \delta)$ (це вже задовольняє нерівність, що сформулювали в лемі), або буде в нас нерівність $\dfrac{1}{3}r_p \theta^2 \leq l (\Phi + \delta)$. Однак $l \leq r_p+1$, а також $r_{p} + 1 < \dfrac{4}{3}r_p$ (TODO: за тими нерівностями, що в лемі, але як?), то звідси $\theta < 2(\Phi+\delta)^{\frac{1}{2}} \leq 2 (\sqrt{\Phi} + \sqrt{\delta})$.
+\end{proof}
+
+\begin{lemma}
+Нехай $m \in \mathbb{N}$ та $\delta$ обрано так, що $0 < \delta < m^{-1}$. Розглянемо числа $r_1,\dots,r_m \in \mathbb{N}$ таким чином, що
+\begin{align*}
+r_m > 10\delta^{-1},\quad \dfrac{r_{j-1}}{r_j} > \delta^{-1}.
+\end{align*}
+Розглянемо числа $q_1,\dots,q_m \in \mathbb{N}$ таким чином, що
+\begin{align*}
+\log q_1 > \delta^{-1} m (2m+1), \quad r_j \log q_j \geq r_1 \log q_1.
+\end{align*}
+Тоді при $B = q_1^{\delta r_1}$ справедлива нерівність:
+\begin{align*}
+\Theta_m(B;q_1,\dots,q_m;r_1,\dots,r_m) < 10^m \delta^{\left(\frac{1}{2}\right)^m}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Доведення проведемо за МІ за числом $m \in \mathbb{N}$.\\
+І. \textit{База індукції}. При $m = 1$ маємо 
+\begin{align*}
+\Theta_1(B;q_1,r_1) \leq \dfrac{\log B}{r_1 \log q_1} = \dfrac{\log q_1^{\delta r_1}}{r_1 \log q_1} = \delta \leq 10 \delta^{\frac{1}{2}}.
+\end{align*}
+II. \textit{Припущення індукції}. Нехай лема виконується для числа $p-1$.\\
+III. \textit{Крок індукції}. Доведемо це для числа $p$. Отже, обрали $r_1,\dots,r_p \in \mathbb{N}$, які задовольняють нерівності. Ми можемо застосувати попередню лему. Звідси в нас була літера $M$, яка
+\begin{align*}
+M & = (r_1+1)^{pl} \cdot l! \cdot B^l \cdot 2^{pl r_1} = (r_1+1)^{pl} \cdot l! \cdot q_1^{\delta r_1 l} \cdot 2^{pl r_1} \\
+& \overset{l! \leq l^l}{\leq} \left[(r_1+1)^{p} \cdot l \cdot q_1^{\delta r_1} \cdot 2^{p r_1}\right]^l.
+\end{align*}
+Відомо, що $l \leq r_p + 1 < r_1 + 1 \leq 2^{r_1}$. Внаслідок чого
+\begin{align*}
+M & < \left[(2^{r_1})^{p} \cdot 2^{r_1} \cdot 2^{pr_1} \cdot q_1^{\delta r_1} \right]^l = \left[ 2^{(2p+1)r_1} q_1^{\delta r_1} \right]^l \\
+& < \left[ e^{(2p+1)r_1} \cdot q_1^{\delta r_1} \right]^l.
+\end{align*}
+Із нерівності $\log q_1 > \delta^{-1} p (2p+1)$ випливає, що $2p+1 < \delta p^{-1} \log q_1$, тому далі
+\begin{align*}
+M & < \left[ e^{r_1 \cdot \delta p^{-1} \log q_1} \cdot q_1^{\delta r_1} \right]^l = q_1^{l r_1 \cdot \delta (1+p^{-1})}.
+\end{align*}
+Для зручності позначу $\delta (1+p^{-1}) = \delta_1$. Врешті-решт здобудемо
+\begin{align*}
+\Theta_1(M;q_p;lr_p) \leq \Theta_1(q_1^{\delta_1 lr_1};q_p;lr_p). \\
+\Theta_{p-1}(M;q_1,\dots,q_{p-1};lr_1,\dots,lr_{p-1}) \leq \Theta_{p-1}(q_1^{\delta_1 l r_1};q_1,\dots,q_{p-1};lr_1,\dots,lr_{p-1}).
+\end{align*}
+За позапопередньою лемою
+\begin{align*}
+\Theta_1(q_1^{\delta_1 lr_p};q_p;lr_p) \leq \dfrac{\log q_1^{\delta_1 l r_1}}{l r_p \log q_p} \overset{\text{нерівності з леми}}{\leq} \dfrac{\delta_1 l r_1 \log q_1}{l r_1 \log q_1} = \delta_1.
+\end{align*}
+Для другої нерівності скористаємось припущенням індукції:
+\begin{align*}
+\Theta_{p-1}(q_1^{\delta_1 l r_1};q_1,\dots,q_{p-1};lr_1,\dots,lr_{p-1}) < 10^{p-1} \cdot \delta_1^{\left( \frac{1}{2} \right)^{p-1}}.
+\end{align*}
+Однак варто перевірити, що $\tilde{r}_1 = lr_1,\dots, \tilde{r}_{p-1} = lr_{p-1}$ задовольняють нерівності леми, тобто
+\begin{align*}
+\tilde{r}_{p-1} > 10\delta_1^{-1},\quad \dfrac{\tilde{r}_{j-1}}{\tilde{r}_j} > \delta_1^{-1}.
+\end{align*}
+Аналогічно для $q_1,\dots,q_{p-1}$ варто перевірити нерівності
+\begin{align*}
+\log q_1 > \delta_1^{-1} (p-1) (2p-1), \quad \tilde{r}_j \log q_j \geq \tilde{r}_1 \log q_1.
+\end{align*}
+Достовірність цих нерівностей продемонструвати неважко. Звідси
+\begin{align*}
+\Phi < \delta_1 + 10^{p-1} \delta_1^{\left( \frac{1}{2} \right)^{p-1}} \overset{\delta_1 < 2 \delta}{<} 2 \delta + 2 \left( 10^{p-1} \delta^{\left( \frac{1}{2} \right)^{p-1}} \right) \overset{TODO:?}{<} 3 \left( 10^{p-1} \delta^{\left( \frac{1}{2} \right)^{p-1}} \right).
+\end{align*}
+Із попередньої леми відомо, що
+\begin{align*}
+\Theta_p(B;q_1,\dots,q_p,r_1,\dots,r_p) & \leq 2 \max_{\substack{l \in \mathbb{N}: \\ 1 \leq l \leq r_p+1 }} (\Phi + \sqrt{\Phi} + \sqrt{\delta}) \\
+& < 2 \left[ 3 \left( 10^{p-1} \delta^{\left( \frac{1}{2} \right)^{p-1}} \right) + \left( 3 \left( 10^{p-1} \delta^{\left( \frac{1}{2} \right)^{p-1}} \right) \right)^{\frac{1}{2}} + \delta^{\frac{1}{2}} \right] \\
+& < 2 \cdot \left( \dfrac{3}{10} + \dfrac{3^{\frac{1}{2}}}{10^{\frac{3}{2}}} + \dfrac{1}{10^2} \right) 10^p \delta^{\frac{1}{2}} < 10^{p} \delta^{\left( \frac{1}{2} \right)^p}.
+\end{align*}
+МІ доведено.
+\end{proof}
+
+\end{document}

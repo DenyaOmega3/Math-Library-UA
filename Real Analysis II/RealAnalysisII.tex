@@ -13,6 +13,7 @@
 \usepackage{nccmath}
 \usepackage{gnuplottex}
 
+\renewcommand{\qedsymbol}{$\blacksquare$}
 
 \usepackage{enumitem}
 \usepgfplotslibrary{fillbetween}
@@ -40,8 +41,6 @@
 \def\seconddepartial#1#2#3{\ifthenelse{\equal{#2}{#3}}{\dfrac{\partial^2 {#1}}{\partial {#2}^2}}{\dfrac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}}
 \def\huge{\displaystyle}
 \def\bigline{\vspace{5mm}\\}
-
-\def\qed{$\blacksquare$}
 
 \def\rightproof{$\boxed{\Rightarrow}$ }
 \def\leftproof{$\boxed{\Leftarrow}$ }
@@ -94,6 +93,8 @@
 \newcommand\rmref[1]{\textbf{Rm.~\ref{#1}}}
 \newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
 \newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
 
 \makeatletter
 \renewenvironment{proof}[1][Proof.\\]{\par
@@ -6718,15 +6719,15 @@ $\vec{f}' = -(\vec{F}'_y)^{-1} \vec{F}'_x = \dfrac{1}{2y_1+y_2} \begin{pmatrix}
 \section{Інтеграли з параметром}
 \subsection{Основні означення та властивості}
 \begin{definition}
-Задана функція $f \colon [a,b] \times [c,d] \to \mathbb{R}$, така, що $\forall y \in [c,d]: f \in \mathcal{R}([a,b])$.\\
-\textbf{Інтегралом з параметром} називають таку функцію $J \colon [c,d] \to \mathbb{R}$:
+Задана функція $f \colon [a,b] \times [c,d] \to \mathbb{R}$, така, що $f(\cdot,y) \in \mathcal{R}([a,b])$ для кожного $y \in [c,d]$.\\
+\textbf{Інтегралом з параметром} називають функцію $J \colon [c,d] \to \mathbb{R}$, яка визначена ось так:
 \begin{align*}
 J(y) = \int_a^b f(x,y)\,dx
 \end{align*}
 \end{definition}
 
 \begin{remark}
-Зауважимо, що якщо додатково вимагати $f \in C([a,b] \times [c,d])$, то отримаємо $\forall y \in [c,d]: f \in C([a,b])$. Таким чином, $\forall y \in [c,d]: f \in \mathcal{R}([a,b])$, а тому функція $J(y) = \displaystyle\int_a^b f(x,y)\,dx$ буде визначеною коректно.
+Зауважимо, що якщо додатково вимагати $f \in C([a,b] \times [c,d])$, то отримаємо $f(\cdot,y) \in C([a,b])$ для кожного $y \in [c,d]$. Таким чином, $\forall y \in [c,d]: f(\cdot,y) \in \mathcal{R}([a,b])$, а тому функція $J(y)$ буде визначеною коректно.
 \end{remark}
 
 \begin{proposition}[Про неперервність інтеграла з параметром]
@@ -6735,59 +6736,112 @@ J(y) = \int_a^b f(x,y)\,dx
 \end{proposition}
 
 \begin{proof}
-$f(x,y) \in C([a,b] \times [c,d]) \implies f(x,y) \in C_{\text{unif}}([a,b] \times [c,d]) \implies \\
+Оскільки $f \in C([a,b] \times [c,d])$ на компакті, то $f \in C_{\text{unif}}([a,b] \times [c,d])$, звідси
+\begin{align*}
 \forall \varepsilon > 0: \exists \delta(\varepsilon) > 0: \forall (x_1,y_1),(x_2,y_2) \in [a,b] \times [c,d]: \\
-\|(x_1,y_1)-(x_2,y_2)\| = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2} < \delta \Rightarrow |f(x_1,y_1)-f(x_2,y_2)| < \dfrac{\varepsilon}{b-a}$.\\
-Тоді $|J(y_1)-J(y_2)| = \huge \abs{\int_a^b f(x,y_1)\,dx - \int_a^b f(x,y_2)\,dx} \leq \int_a^b |f(x,y_1)-f(x,y_2)| \boxed{<}$\\
-Якщо я оберу $(x,y_1),(x,y_2)$ так, що $\|(x,y_1)-(x,y_2)\| = \sqrt{(y_1-y_2)^2} = |y_1-y_2|<\delta$, то тоді \\ $|f(x,y_1)-f(x,y_2)| < \dfrac{\varepsilon}{b-a}$.\\
-$\boxed{<} \huge \int_a^b \dfrac{\varepsilon}{b-a} = \varepsilon$.\\
-Збираючи пазл, отримаємо $J \in C_{\text{unif}}([c,d]) \implies J \in C([c,d])$.
+\|(x_1,y_1)-(x_2,y_2)\| = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2} < \delta \Rightarrow |f(x_1,y_1)-f(x_2,y_2)| < \dfrac{\varepsilon}{b-a}.
+\end{align*}
+
+Тоді справедлива оцінка:
+\[
+|J(y_1)-J(y_2)| = \abs{\int_a^b f(x,y_1)\,dx - \int_a^b f(x,y_2)\,dx} \leq \int_a^b |f(x,y_1)-f(x,y_2)| \boxed{<}
+\]
+Якщо оберемо точки $(x,y_1),(x,y_2)$ так, що $\|(x,y_1)-(x,y_2)\| = \sqrt{(y_1-y_2)^2} = |y_1-y_2|<\delta$, то тоді одержимо нерівність $|f(x,y_1)-f(x,y_2)| < \dfrac{\varepsilon}{b-a}$. Продовжуємо ланцюг нерівностей:
+\[
+\boxed{<} \huge \int_a^b \dfrac{\varepsilon}{b-a} = \varepsilon.
+\]
+Збираючи пазл, отримаємо $J \in C_{\text{unif}}([c,d])$, внаслідок чого $J \in C([c,d])$.
 \end{proof}
 
 \begin{proposition}[Про диференційованість інтеграла з параметром]
 \label{differentiability_of_parametric_integral}
-Задана функція $f \colon [a,b] \times [c,d] \to \mathbb{R}$, така, що $f \in C([a,b] \times [c,d])$. Відомо, що $\exists \departial{f}{y} \in C([a,b] \times [c,d])$.
-Тоді $J$ -- диференційована на $[c,d]$, причому $J'(y) = \huge\int_a^b \departial{f}{y}(x,y)\,dx$.
+Задана функція $f \colon [a,b] \times [c,d] \to \mathbb{R}$, така, що $f \in C([a,b] \times [c,d])$. Відомо, що існує частинна похідна $\departial{f}{y} \in C([a,b] \times [c,d])$. Тоді $J$ -- диференційована на $[c,d]$, причому 
+\begin{align*}
+J'(y) = \int_a^b \departial{f}{y}(x,y)\,dx.
+\end{align*}
 \end{proposition}
 
 \begin{proof}
-Диференційованість означає існування похідної, тобто необхідно довести її існування.\\
-$\dfrac{J(y+\Delta y) - J(y)}{\Delta y} = \dfrac{1}{\Delta y} \huge \int_a^b f(x,y+\Delta y) - f(x,y)\,dx \boxed{=}$\\
-Згадаємо Ньютона-Ляйбніца та властивості інтеграла, розпишемо підінтегральний вираз ось так:\\
-$f(x,y+\Delta y) - f(x,y) = \huge\int_y^{y+\Delta y} f'_y(x,t)\,dt = \int_y^{y+\Delta y} \departial{f}{y}(x,t)\,dt$\\
-$\boxed{=} \huge \dfrac{1}{\Delta y} \int_a^b \left( \int_y^{y+\Delta y} \departial{f}{y}(x,t)\,dt \right)dx$\\
-Тепер зафіксуємо точку $y_0$ та розпишемо праву частину рівності, що ми доводимо:\\
-$\huge \int_a^b \departial{f}{y}(x,y_0)\,dx = \int_a^b \dfrac{1}{\Delta y} \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,y_0) \,dt \right)dx = \dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,y_0) \,dt \right)dx$\\
-Ну а тепер час доводити існування похідної:\\
-$\huge \abs{\dfrac{J(y_0+\Delta y) - J(y_0)}{\Delta y} - \huge\int_a^b \departial{f}{y}(x,y_0)\,dx}
-= \abs{\dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,t)\,dt \right)dx - \dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,y_0) \,dt \right)dx} = \\
-= \abs{\dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0 + \Delta y} \departial{f}{y}(x,t) - \departial{f}{y}(x,y_0) \,dt \right)dx} \boxed{<}$\\
-За умовою твердження, $\departial{f}{y}(x,y) \in C([a,b] \times [c,d]) \implies \departial{f}{y}(x,y) \in C_{\text{unif}}([a,b] \times [c,d]) \implies$\\
-$\forall \varepsilon > 0: \exists \delta(\varepsilon) > 0: \forall (x,t),(x,y_0) \in [a,b]\times [c,d]: \|(x,t)-(x,y_0)\| < \delta \Rightarrow \abs{\departial{f}{y}(x,t) - \departial{f}{y}(x,y_0)} < \dfrac{\varepsilon}{b-a}$\\
-$\boxed{<} \huge\int_a^b \int_{y_0}^{y_0+\Delta y} \dfrac{1}{\Delta y} \dfrac{\varepsilon}{b-a} \,dt \,dx = \varepsilon$\\
-Збираємо пазл -- отримаємо, що: $\forall y_0 \in [c,d]: \exists \huge \lim_{\Delta y \to 0} \dfrac{J(y_0+\Delta y)-J(y_0)}{\Delta y} = \int_a^b \departial{f}{y}(x,y_0)\,dx = J'(y_0)$. Отже, $J$ -- диференційована на $[c,d]$.
+Диференційованість означає існування похідної, тобто необхідно довести її існування.
+\[
+\dfrac{J(y+\Delta y) - J(y)}{\Delta y} = \dfrac{1}{\Delta y}  \int_a^b f(x,y+\Delta y) - f(x,y)\,dx \boxed{=}
+\]
+Згадаємо формулу Ньютона-Ляйбніца та властивості інтеграла. Розпишемо підінтегральний вираз ось так:\\
+\[
+f(x,y+\Delta y) - f(x,y) = \int_y^{y+\Delta y} f'_y(x,t)\,dt = \int_y^{y+\Delta y} \departial{f}{y}(x,t)\,dt.
+\]
+Продовжуємо ланцюг рівностей:
+\[
+\boxed{=} \dfrac{1}{\Delta y} \int_a^b \left( \int_y^{y+\Delta y} \departial{f}{y}(x,t)\,dt \right)dx.
+\]
+Тепер зафіксуємо точку $y_0$ та розпишемо праву частину рівності, що ми доводимо:
+\[
+\int_a^b \departial{f}{y}(x,y_0)\,dx = \int_a^b \dfrac{1}{\Delta y} \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,y_0) \,dt \right)dx = \dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,y_0) \,dt \right)dx.
+\]
+Ну а тепер час доводити існування похідної:
+\begin{multline*}
+\abs{\dfrac{J(y_0+\Delta y) - J(y_0)}{\Delta y} - \huge\int_a^b \departial{f}{y}(x,y_0)\,dx} \\
+ = \abs{\dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,t)\,dt \right)dx - \dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0+\Delta y} \departial{f}{y}(x,y_0) \,dt \right)dx} \\
+= \abs{\dfrac{1}{\Delta y} \int_a^b \left( \int_{y_0}^{y_0 + \Delta y} \departial{f}{y}(x,t) - \departial{f}{y}(x,y_0) \,dt \right)dx} \boxed{<}
+\end{multline*}
+За умовою твердження $\departial{f}{y}(x,y) \in C([a,b] \times [c,d])$, оскільки неперервність на компакті, то $\departial{f}{y}(x,y) \in C_{\text{unif}}([a,b] \times [c,d])$. Значить,
+\[
+\forall \varepsilon > 0: \exists \delta(\varepsilon) > 0: \forall (x,t),(x,y_0) \in [a,b]\times [c,d]: \|(x,t)-(x,y_0)\| < \delta \Rightarrow \abs{\departial{f}{y}(x,t) - \departial{f}{y}(x,y_0)} < \dfrac{\varepsilon}{b-a}.
+\]
+Продовжуючи ланцюг нерівностей, одержимо
+\[
+\boxed{<} \int_a^b \int_{y_0}^{y_0+\Delta y} \dfrac{1}{\Delta y} \dfrac{\varepsilon}{b-a} \,dt \,dx = \varepsilon.
+\]
+Збираємо пазл -- отримаємо, що:
+\[
+\forall y_0 \in [c,d]: \exists \lim_{\Delta y \to 0} \dfrac{J(y_0+\Delta y)-J(y_0)}{\Delta y} = \int_a^b \departial{f}{y}(x,y_0)\,dx = J'(y_0).
+\]
+Отже, $J$ -- диференційована на $[c,d]$.
 \end{proof}
 
 \begin{proposition}[Про інтегрованість інтеграла з параметром]
-Задана функція $f \colon [a,b] \times [c,d] \to \mathbb{R}$, така, що $f \in C([a,b] \times [c,d])$. Тоді $J \in \mathcal{R}([c,d])$, причому $\huge \int_c^d \underbrace{\int_a^b f(x,y)\,dx}_{=J(y)}\,dy = \int_a^b \int_c^d f(x,y)\,dy \,dx$.
+Задана функція $f \colon [a,b] \times [c,d] \to \mathbb{R}$, така, що $f \in C([a,b] \times [c,d])$. Тоді $J \in \mathcal{R}([c,d])$, причому
+\begin{align*}
+\int_c^d \underbrace{\int_a^b f(x,y)\,dx}_{=J(y)}\,dy = \int_a^b \int_c^d f(x,y)\,dy \,dx.
+\end{align*}
 \end{proposition}
 
 \begin{proof}
-Розглянемо дві функції: $h(t) = \huge \int_c^t \int_a^b f(x,y) \,dx \,dy \hspace{0.5cm} g(t) = \int_a^b \int_c^t f(x,y)\,dy\,dx$. \\
-У нашому випадку $t \in [c,d]$. Якщо $t = c$, то маємо $h(c) = g(c) = 0$. Ми \textcolor{red}{хочемо зараз} довести, що $g'(t) = h'(t)$, і тоді за наслідком теореми Лагранжа, $h(t) = g(t) + C$. Підставивши $t = c$, отримаємо $C = 0$, тому $h(t) = g(t)$, зокрема $h(d) = g(d)$ -- бажана рівність.\\
-Доведемо те, що \textcolor{red}{хочемо}. Зробимо позначення: $h(t) = \huge \int_c^t J(y) \,dy, \qquad g(t) = \int_a^b F(x,t)\,dx$. У цьому випадку $F(x,t) = \displaystyle\int_c^t f(x,y)\,dy$\\
+Розглянемо дві функції:
+\[
+h(t) = \int_c^t \int_a^b f(x,y) \,dx \,dy, \qquad g(t) = \int_a^b \int_c^t f(x,y)\,dy\,dx.
+\]
+Аргумент $t \in [c,d]$. Якщо $t = c$, то маємо $h(c) = g(c) = 0$. Ми \textcolor{red}{хочемо зараз} довести, що $g'(t) = h'(t)$, і тоді за наслідком теореми Лагранжа $h(t) = g(t) + C$. Підставивши $t = c$, отримаємо $C = 0$, тому $h(t) = g(t)$, зокрема $h(d) = g(d)$ -- бажана рівність.\\
+Доведемо те, що \textcolor{red}{хочемо}. Зробимо позначення: 
+\[
+h(t) = \int_c^t J(y) \,dy, \qquad g(t) = \int_a^b F(x,t)\,dx.
+\]
+У цьому випадку $F(x,t) = \displaystyle\int_c^t f(x,y)\,dy$.\\
 Перший -- це інтеграл від верхньої межі, тому $h'(t) = J(t)$.\\
-Покажемо, що другий інтеграл задовольняє умові \prpref{differentiability_of_parametric_integral}, тоді можемо знайти похідну.\\
-Спочатку доведемо, що підінтегральна функція $F \in C([a,b] \times [c,d])$ (нижче припускаю $t > t_0$).\\
-$\displaystyle \left|F(x,t) - F(x_0,t_0)\right| = \abs{\int_c^t f(x,y)\,dy - \int_c^{t_0} f(x_0,y)\,dy} =\abs{\int_c^t f(x,y)-f(x_0,y)\,dy - \int_{t_0}^t f(x_0,y)\,dy} \leq \\
-\leq \int_c^t \abs{ f(x,y) - f(x_0,y) }\,dy + \int_{t_0}^t \abs{f(x_0,y)}\,dy$.\\
-Оскільки $f \in C([a,b] \times [c,d])$, то вона обмежена, тож $\exists M > 0: \forall (x,y) \in [a,b] \times [c,d]: |f(x,y)| \leq M$.\\
-Оберемо $\varepsilon > 0$. Оскільки $f \in C([a,b] \times [c,d])$, то $\exists \delta > 0: \forall (x,y): \| (x,y) - (x_0,y_0) \| < \delta \implies |f(x,y) - f(x_0,y_0)| < \varepsilon$. Зокрема оберемо $y_0 = y$, тоді $\forall x: |x-x_0| < \delta \implies |f(x,y) - f(x_0,y)| < \dfrac{\varepsilon}{d-c}$.\\
-Отже, $|F(x,t) - F(x_0,t_0)| < (t-c) \dfrac{\varepsilon}{d-c} + (t-t_0) M \leq \varepsilon + \tilde{\delta} M$.\\
+Покажемо, що другий інтеграл задовольняє умову \prpref{differentiability_of_parametric_integral}, тоді можемо знайти похідну. Спочатку доведемо, що підінтегральна функція $F \in C([a,b] \times [c,d])$ (нижче припускаю $t > t_0$).
+\begin{multline*}
+\left|F(x,t) - F(x_0,t_0)\right| = \abs{\int_c^t f(x,y)\,dy - \int_c^{t_0} f(x_0,y)\,dy} = \abs{\int_c^t f(x,y)-f(x_0,y)\,dy - \int_{t_0}^t f(x_0,y)\,dy} \\
+\leq \int_c^t \abs{ f(x,y) - f(x_0,y) }\,dy + \int_{t_0}^t \abs{f(x_0,y)}\,dy.
+\end{multline*}
+Оскільки $f \in C([a,b] \times [c,d])$, то вона обмежена, тож $\forall (x,y) \in [a,b] \times [c,d]$ маємо $|f(x,y)| \leq M$ для деякого $M>0$.\\
+Оберемо $\varepsilon > 0$. Оскільки $f \in C([a,b] \times [c,d])$, то 
+\[
+\exists \delta > 0: \forall (x,y): \| (x,y) - (x_0,y_0) \| < \delta \implies |f(x,y) - f(x_0,y_0)| < \varepsilon.
+\]
+Зокрема оберемо $y_0 = y$, тоді 
+\[
+\forall x: |x-x_0| < \delta \implies |f(x,y) - f(x_0,y)| < \dfrac{\varepsilon}{d-c}.
+\]
+Разом одержимо 
+\[
+|F(x,t) - F(x_0,t_0)| < (t-c) \dfrac{\varepsilon}{d-c} + (t-t_0) M \leq \varepsilon + \tilde{\delta} M.
+\]
 Оберемо $\tilde{\delta} = \min\left\{\delta,\dfrac{\varepsilon}{M}\right\}$. Тоді якщо обрати кожну точку $(x,t)$ так, що $\| (x,t) - (x_0,t_0) \| < \tilde{\delta}$, отримаємо $|F(x,t) - F(x_0,t_0)| < 2 \varepsilon$ (при $t < t_0$ все працюватиме).\\
 Тепер зауважимо, що $\departial{F}{t}(x,t) = f(x,t) \in C([a,b] \times [c,d])$.\\
-Отже, дійсно, $g$ можна продиференціювати за \prpref{differentiability_of_parametric_integral}, отримаємо наступне:\\
-$g'(t) = \displaystyle\int_a^b \departial{F}{t}(x,t)\,dt = \int_a^b f(x,t)\,dx = J(t)$.\\
+Отже, дійсно, $g$ можна продиференціювати за \prpref{differentiability_of_parametric_integral}, отримаємо наступне:
+\[
+g'(t) = \displaystyle\int_a^b \departial{F}{t}(x,t)\,dt = \int_a^b f(x,t)\,dx = J(t).
+\]
 Разом ми довели, що хотіли, а саме $g'(t) = h'(t)$ для всіх $t \in [c,d]$. Завершили доведення.
 \end{proof}
 
@@ -6863,11 +6917,11 @@ $F'(\alpha) = \dfrac{\ln (1+\alpha^3)}{\alpha^2} \cdot 2\alpha - \dfrac{\ln(1+\a
 Задана функція $f \colon A \times B \to \mathbb{R}$, де $A,B \subset \mathbb{R}$, та $y_0 \in \mathbb{R}$ -- гранична точка для $B$.\\
 Функція $f$ \textbf{поточково збігається} до функцї $\varphi$ при $y \to y_0$, якщо
 \begin{align*}
-\forall x \in A: \lim_{y \to y_0} f(x,y) = \varphi(x)
+\forall x \in A: \lim_{y \to y_0} f(x,y) = \varphi(x).
 \end{align*}
 Функція $f$ \textbf{збігається рівномірно} до функції $\varphi$ при $y \to y_0$ на множині $A$, якщо
 \begin{align*}
-\huge\sup_{x \in A} |f(x,y) - \varphi(x)| \to 0, y \to y_0
+\sup_{x \in A} |f(x,y) - \varphi(x)| \to 0, y \to y_0.
 \end{align*}
 Позначення: $f(x,y)^\rightarrow_\rightarrow \varphi(x), y \to y_0$.
 \end{definition}
@@ -6875,12 +6929,13 @@ $F'(\alpha) = \dfrac{\ln (1+\alpha^3)}{\alpha^2} \cdot 2\alpha - \dfrac{\ln(1+\a
 Новий вигляд збіжності можна звести до збіжності функціональних послідовностей таким твердженням.
 
 \begin{proposition}
-$f(x,y)^\rightarrow_\rightarrow \varphi(x), y \to y_0$ на множині $A$ $\iff \forall \{y_n, n \geq 1\} \subset B: \forall n \geq 1: y_n \neq y_0: f(x,y_n)^\rightarrow_\rightarrow \varphi(x), n \to \infty$ на множині $A$.\\
+$f(x,y)^\rightarrow_\rightarrow \varphi(x),\ y \to y_0$ на множині $A \iff \\
+\forall \{y_n, n \geq 1\} \subset B: \forall n \geq 1: y_n \neq y_0: f(x,y_n)^\rightarrow_\rightarrow \varphi(x), n \to \infty$ на множині $A$.\\
 \textit{Випливає з означення рівномірної збіжності.}
 \end{proposition}
 
 \begin{theorem}[Критерій Коші]
-$f(x,y)^\rightarrow_\rightarrow \varphi(x), y \to y_0$ на $A$ $\iff \forall \varepsilon > 0: \exists \delta(\varepsilon) > 0: \forall y_1,y_2 \in B, y_1,y_2 \neq y_0: \begin{cases} |y_1-y_0| < \delta \\ |y_2-y_0| < \delta \end{cases} \implies \huge\sup_{x \in A} |f(x,y_1)-f(x,y_2)| < \varepsilon$.\\
+$f(x,y)^\rightarrow_\rightarrow \varphi(x), y \to y_0$ на $A$ $\iff \\ \forall \varepsilon > 0: \exists \delta(\varepsilon) > 0: \forall y_1,y_2 \in B, y_1,y_2 \neq y_0: \begin{cases} |y_1-y_0| < \delta \\ |y_2-y_0| < \delta \end{cases} \implies \huge\sup_{x \in A} |f(x,y_1)-f(x,y_2)| < \varepsilon$.\\
 \end{theorem}
 
 \begin{proof}
@@ -6893,10 +6948,13 @@ $f(x,y)^\rightarrow_\rightarrow \varphi(x), y \to y_0$ на $A$ $\iff \forall \v
 Тепер уже до суті цього підрозділу.
 
 \begin{definition}
-Задана функція $f \colon [a,\omega) \times A$, така, що $\forall y \in A: \forall c \in [a,\omega): f\in \mathcal{R}([a,c])$. Також маємо збіжний невласний інтеграл із параметром $J(y)= \huge \int_a^\omega f(x,y)\,dx$, $\forall y \in A$.\\
+Задана функція $f \colon [a,\omega) \times A$, така, що $\forall y \in A: \forall c \in [a,\omega): f\in \mathcal{R}([a,c])$. Також маємо збіжний невласний інтеграл із параметром
+\[
+J(y)= \int_a^\omega f(x,y)\,dx,\ \forall y \in A.
+\]
 Невласний інтеграл \textbf{збігається рівномірно} на множині $A$, якщо
 \begin{align*}
-\huge \sup_{y \in A} \abs{\int_a^\omega f(x,y)\,dx - \int_a^c f(x,y)\,dx} \overset{c \to \omega}{\to} 0
+\sup_{y \in A} \abs{\int_a^\omega f(x,y)\,dx - \int_a^c f(x,y)\,dx} \overset{c \to \omega}{\to} 0.
 \end{align*}
 \end{definition}
 
@@ -6910,16 +6968,21 @@ $\huge \int_a^\omega f(x,y)\,dx$ -- збіжний рівномірно на $A 
 \end{theorem}
 
 \begin{theorem}[Ознака Ваєрштраса]
-Задані функції $f \colon [a,\omega) \times A \to \mathbb{R}$, $g \colon [a,\omega) \to \mathbb{R}$ такі, що виконується наступне:
-\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
-\item $\forall x \in [a,\omega): \forall y \in A: |f(x,y)| \leq g(x)$;
-\item $\huge \int_a^\omega g(x)\,dx$ -- збіжний.
-\end{enumerate}
+Задані функції $f \colon [a,\omega) \times A \to \mathbb{R}$, $g \colon [a,\omega) \to \mathbb{R}$ такі, що виконуються умови:
+\begin{center}
+\begin{tabular}{ll}
+1) & $\forall x \in [a,\omega): \forall y \in A: |f(x,y)| \leq g(x)$; \\
+2) & $\displaystyle \int_a^\omega g(x)\,dx$ -- збіжний.
+\end{tabular}
+\end{center}
 Тоді $\huge \int_a^\omega f(x,y)\,dx$ -- збіжний рівномірно на $A$.
 \end{theorem}
 
 \begin{proof}
-$\huge \sup_{y \in A} \abs{\int_c^\omega f(x,y)\,dx} \leq \abs{\int_c^\omega g(x)\,dx} \overset{c \to \omega}{\to} 0$.
+Вистачає всього одного рядка:
+\[
+\sup_{y \in A} \abs{\int_c^\omega f(x,y)\,dx} \leq \abs{\int_c^\omega g(x)\,dx} \overset{c \to \omega}{\to} 0. \qedhere
+\]
 \end{proof}
 
 \begin{example}
@@ -6939,7 +7002,7 @@ $\huge \sup_{y \in A} \abs{\int_c^\omega f(x,y)\,dx} \leq \abs{\int_c^\omega g(x
 $\huge\int_a^A f(x,y)\,dx$ -- рівномірно обмежена на $[a,\omega)$. & $\huge\int_a^\omega f(x,y)\,dx$ -- збіжний рівномірно на $A$. \\
 $g$ -- монотонна на $[a,\omega)$ ($\forall y \in A$) та  & $g$ -- монотонна на $[a,\omega)$ ($\forall y \in A$) та \\
  $g(x,y)^\rightarrow_\rightarrow 0$, $x \to \omega$. & рівномірно обмежена на $[a,\omega) \times A$. \\
-\textit{ознака Діріхлє} & \textit{ознака Абеля}
+\textit{ознаки Діріхлє} & \textit{ознаки Абеля}
 \end{tabular}\\
 Тоді $\huge \int_a^\omega f(x,y) g(x,y)\,dx$ -- рівномірно збіжний на $A$.\\
 \textit{Доведення теореми Діріхлє анаголігно доводиться, як це було в розділі про прості невласні інтеграли (TODO: лінкування). Так само із Діріхлє випливає Абеля аналогічним чином.}
@@ -6963,8 +7026,7 @@ $\arctg xy$ -- монотонна по $x$, а також $\forall x: \forall y:
 \end{example}
 
 \begin{theorem}[Ознака Діні]
-Задано функцію $f \in C([a,\omega) \times [c,d])$. Також відомо, що $f \geq 0$ та $J(y) = \huge\int_a^\omega f(x,y)\,dx \in C([c,d])$.\\
-Тоді $J$ -- збіжний рівномірно на $[c,d]$.
+Задано функцію $f \in C([a,\omega) \times [c,d])$. Також відомо, що $f \geq 0$ та $J\in C([c,d])$. Тоді $J$ -- збіжний рівномірно на $[c,d]$.
 \end{theorem}
 
 \begin{proof}

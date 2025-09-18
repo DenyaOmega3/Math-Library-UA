@@ -1,4 +1,4 @@
-\documentclass[a4paper, 14pt]{extarticle}
+\documentclass[a4paper, 10pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsfonts, 
 			amsmath, 
@@ -57,7 +57,7 @@
 \theoremstyle{theoremdd}
 \newtheorem{corollary}[theorem]{Corollary}
 
-\def\qed{$\blacksquare$}
+\renewcommand{\qedsymbol}{$\blacksquare$}
 \def\rightproof{$\boxed{\Rightarrow}$ }
 \def\leftproof{$\boxed{\Leftarrow}$ }
 
@@ -86,6 +86,12 @@
 \newcommand\lmref[1]{\textbf{Lm.~\ref{#1}}}
 \newcommand\crlref[1]{\textbf{Crl.~\ref{#1}}}
 
+\newcommand\nospacebeforeitem{
+\vspace{-\topsep}
+\vspace{-\topsep}
+\vspace{-\topsep}
+}
+
 
 \begin{document}
 \includepdf{preview.png}
@@ -103,13 +109,12 @@
 \section{Основи теорії чисел}
 \subsection{Подільність}
 \begin{definition}
-Задані числа $a,b \in \mathbb{Z}$, де $a \neq 0$.\\
-Кажуть, що число $a$ \textbf{ділить число} $b$, якщо
+Кажуть, що ненулеве число $a \in \mathbb{Z}$ \textbf{ділить число} $b \in \mathbb{Z}$, якщо
 \begin{align*}
-\exists c \in \mathbb{Z}: b = ac
+\exists c \in \mathbb{Z}: b = ac.
 \end{align*}
 Позначення: $a \mid b$.\\
-Інколи кажуть, що $b$ \textbf{ділиться націло на} $a$,  позначають за $b \, \vdots \, a$.
+Інколи кажуть, що $b$ \textbf{ділиться націло на} $a$, та позначають за $b \, \vdots \, a$.
 \end{definition}
 
 \begin{example}
@@ -117,94 +122,131 @@
 \end{example}
 
 \begin{remark}
-$a \mid 0$, де $a$ -- будь-яке ненульове число. Справді, $0 = 0 \cdot a$.
+$a \mid 0$, де $a$ -- будь-яке ненульове число.
 \end{remark}
 
 \begin{remark}
 Кожне число $b \neq 0$ має скінченну кількість дільників.\\
-Дійсно, візьмімо якийсь дільник $a$ числа $b$, тобто $a \mid b$, то звідси $b = ac$, а тому $|b| = |a||c| \implies |b| \geq |a|$. Остання нерівність і підтверджує слова.
+Дійсно, візьмімо якийсь дільник $a$ числа $b$, тобто $a \mid b$, то звідси $b = ac$, а тому 
+\[
+|b| = |a||c| \implies |b| \geq |a|.
+\]
+Остання нерівність підтверджує слова.
 \end{remark}
 
 \begin{proposition}
 Задані числа $a,b,c \in \mathbb{N}$. Тоді:
 \begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
 \item $a \mid a$;
-\item $a \mid b$, $b \mid a \implies a = b$;
-\item $b \mid a$, $c \mid b \implies c \mid a$.   
+\item $a \mid b,\ b \mid a \implies a = b$;
+\item $b \mid a,\ c \mid b \implies c \mid a$.   
 \end{enumerate}
 Тобто ділення формує відношення нестрогого порядку.
 \end{proposition}
 
 \begin{proof}
-Маємо таке доведення:
+\nospacebeforeitem
 \begin{enumerate}[wide=0pt,label={\arabic*)}]
 \item $a = 1 \cdot a \implies a \mid a$.
-\item Маємо $a \mid b, b \mid a$. За означенням, існують такі числа $x,y \in \mathbb{N}$, для яких $b = ax$, $a = by$. Тоді $a = axy \implies xy = 1$. Єдиний варіант -- це одночасно $x = y = 1$. Підставляючи отримані значення, маємо $a = b$.
-\item $b \mid a \implies a = bx$. $c \mid b \implies b = yc \implies a = bx = xy \cdot c \implies c \mid a$.
+\item Маємо $a \mid b, b \mid a$. За означенням існують такі числа $x,y \in \mathbb{N}$, для яких $b = ax$, $a = by$. Тоді $a = axy \implies xy = 1$. Єдиний варіант -- це одночасно $x = y = 1$. Підставляючи отримані значення, маємо $a = b$.
+\item $b \mid a \implies a = bx$. $c \mid b \implies b = yc \implies a = bx = xy \cdot c \implies c \mid a$. \qedhere
 \end{enumerate}
-Відношення порядку доведено.
 \end{proof}
 
 \begin{example}
-Довести, що різниця послідовних кубів ніколи не ділиться на $2$.\\
-Різниця сусідніх кубів $(a+1)^3 - a^3 = 3a^2+3a+1 = 3a(a+1)+1$. Зауважимо, що $2 \mid a(a+1)$, і дійсно:\\
-якщо $a = 2k, k \in \mathbb{Z}$, то отримаємо $2 \mid 2k(2k+1)$;\\
-якщо $a = 2k+1, k \in \mathbb{Z}$, то отримаємо $2 \mid (2k+1)(2k+2)$.\\
-Отже, $a(a+1) = 2x$, тоді звідси $3a(a+1) = 2 \cdot (3x) = 2u$. Тобто $(a+1)^3 - a^3 = 2u+1$, а значить $2 \nmid (a+1)^3-a^3$.
+Будь-який добуток двох сусідніх чисел ділиться на $2$.\\
+Нехай $a \in \mathbb{Z}$, розглянемо добуток $a(a+1)$. Маємо кілька випадків:
+\begin{itemize}[nosep,wide=0pt]
+\item якщо $a = 2k, k \in \mathbb{Z}$, то отримаємо $2 \mid 2k(2k+1)$;
+\item якщо $a = 2k+1, k \in \mathbb{Z}$, то отримаємо $2 \mid (2k+1)(2k+2)$.
+\end{itemize}
+Звідси випливає, що $a(a+1) = 2x$, тобто $2 \mid a(a+1)$.
+\end{example}
+
+\begin{example}
+Довести, що різниця послідовних кубів ніколи не ділиться на $2$.
+\begin{align*}
+(a+1)^3 - a^3 = 3a^2+3a+1 = 3a(a+1)+1.
+\end{align*}
+Зауважимо, що $2 \mid a(a+1)$, ми щойно доводили. Тобто права частина -- непарне число, тобто $2 \nmid (a+1)^3 - a^3$.
+\end{example}
+
+\begin{example}
+Довести, що кількість дільників квадрата натурального числа -- непарна.\\
+Розглянемо число $n^2$. Нехай $d \mid n^2$, тоді звідси $\dfrac{n^2}{d} \mid n^2$. Отже, маючи дільник $d$, ми отримуємо інший дільник $\dfrac{n^2}{d}$ -- отримуємо парне число дільників. Плюс, ще $n \mid n^2$, тому загалом буде непарне число.
+\bigskip \\
+До речі, навпаки теж працює. Нехай $m$ -- число, яке містить непарне число дільників. Тоді $m$ -- квадрат деякого числа.
 \end{example}
 
 \begin{lemma}[Ділення з остачею]
-Для довільних $a,b \in \mathbb{Z}$, де число $a > 0$, існують єдині $q,r \in \mathbb{Z}$, для яких $b = qa + r$, де $r$ задовольняє нерівності $0 \leq r < a$.\\ 
-Число $r$ називають \textbf{остачею} від ділення $b$ числом $a$.
+Для довільних $a,b \in \mathbb{Z}$, де число $a > 0$, існують єдині $q,r \in \mathbb{Z}$, для яких \[
+b = qa + r
+\]
+де $r$ задовольняє нерівність $0 \leq r < a$. Число $r$ називають \textbf{остачею} від ділення $b$ числом $a$.
 \end{lemma}
 
 \begin{proof}
 I. \textit{Існування}.\\
-Розглянемо множину $S = \{b - qa : q \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}$. Ясно, що вона непорожня, оскільки там лежить число в залежності від числа $b$:\\
-або $b = b - 0 \cdot a$, якщо $b \geq 0$;\\
-або $b-b \cdot a = b(1-a)$, якщо $b < 0$.\\
-Також ця множина обмежена знизу, оскільки кожне число -- невід'ємне. Значить, існує $\min S$. Цей мінімум позначимо за число $r$, яке шукали.\\
+Розглянемо множину \[
+S = \{b - qa : q \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}. 
+\]
+Ясно, що вона непорожня, оскільки там лежить число в залежності від числа $b$:
+\begin{itemize}[nosep,wide=0pt]
+\item або $b \in S$ при $b \geq 0$, тому що $b = b - 0 \cdot a$;
+\item або $b - ba \in S$ при $b < 0$, тому що $b-b \cdot a = b(1-a)$.
+\end{itemize}
+Також ця множина обмежена знизу, оскільки кожне число -- невід'ємне. Значить, існує найменше число $\min S$. Цей мінімум позначимо за число $r$, яке шукали.\\
 Отже, $r \geq 0$, а також $\exists q \in \mathbb{Z}: r = b -qa$. Залшилося показати, що $r < a$.\\
-!Якщо припустити, що $r \geq a$, то тоді $r - a \geq 0$, а число \\ $r - a = b-qa - a = b - (q+1)a \overset{q+1 = q^*}{=} b-q^*a$. \\
+!Якщо припустити, що $r \geq a$, то тоді $r - a \geq 0$, а число
+\[
+r - a = b-qa - a = b - (q+1)a \overset{q+1 = q^*}{=} b-q^* a.
+\]
 Таким чином, $r-a \in S$. Але ми знаємо, що $r$ -- мінімальне число цієї множини та при цьому $r - a < r$. Суперечність!
 \bigskip \\
 II. \textit{Єдиність}.\\
-!Припустімо, що окрім $q,r$, для яких $b = qa + r$, існує ще одна інша пара $q',r'$, для яких $b = q'a + r'$. Ми тут вважаємо, що $r' < r$, для іншого випадку аналогічно. Тоді\\
-$qa + r = q'a + r' \implies a(q'-q) = r - r'$. \\
-Із цієї рівності випливає, що $a \mid (r-r')$. Але ми водночас маємо, що $0 < r - r' < r < a$, тоді єдиний варіант під час ділення -- це випадок $r-r' = 0 \implies r = r'$. Тоді вже звідси $q' = q$. Суперечність!
+!Припустімо, що окрім $q,r$, для яких $b = qa + r$, існує ще одна інша пара $q',r'$, для яких $b = q'a + r'$. Ми тут вважаємо, що $r' < r$, для іншого випадку аналогічно. Тоді
+\[
+qa + r = q'a + r' \implies a(q'-q) = r - r'.
+\]
+Із цієї рівності випливає, що $a \mid (r-r')$. Але ми водночас маємо, що $0 < r - r' < r < a$, тоді єдиний варіант під час ділення -- це випадок $r-r' = 0 \implies r = r'$. Тоді $q' = q$. Суперечність!
 \end{proof}
 
 \begin{example}
-От уже $4 \nmid 14$, але за попередньою лемою, $4 = 3 \cdot 4 + 2$, де число $2$ -- остача.
+От уже $4 \nmid 14$, але за попередньою лемою $4 = 3 \cdot 4 + 2$, де число $2$ -- остача.
 \end{example}
 
+Для даної леми існують певні модифікації на остачі, які ще знадобляться пізніше, тож я їх сформулюю.
+
 \begin{corollary}
-Для довільних $a,b \in \mathbb{Z}$, де число $a \neq 0$, існують єдині $q,r \in \mathbb{Z}$, для яких $b = qa+r$, де число $0 \leq r < |a|$.\\
+Для довільних $a,b \in \mathbb{Z}$, де число $a \neq 0$, існують єдині $q,r \in \mathbb{Z}$, для яких \[
+b = qa+r,
+\] де число $r$ задовольняє нерівність $0 \leq r < |a|$.\\
 \textit{Вказівка: розглянути випадок $a >0$, а при $a < 0$ звести до першого випадку.}
 \end{corollary}
 
-Оскільки тут ще буде теорія чисел з абстрактної точки зору, я вимушений залишити таку лему.
-
-\begin{lemma}
-Для довільних $a,b \in \mathbb{Z}$, де число $a \neq 0$, існують єдині $q,r \in \mathbb{Z}$, для яких $b = qa+r$, де число $-\dfrac{1}{2}|a| < r \leq \dfrac{1}{2}|a|$.
-\end{lemma}
+\begin{corollary}
+Для довільних $a,b \in \mathbb{Z}$, де число $a \neq 0$, існують єдині $q,r \in \mathbb{Z}$, для яких \[
+b = qa+r,
+\]
+де число $r$ задовольняє нерівність $-\dfrac{1}{2}|a| < r \leq \dfrac{1}{2}|a|$.
+\end{corollary}
 
 \begin{proof}
-Маємо $b = q'a+r'$, де $0 \leq r' < |a|$.\\
-Якщо $0 \leq r' < \dfrac{|a|}{2}$, то тоді $r = r'$ та $q = q'$.\\
-Якщо $\dfrac{|a|}{2} \leq r' < |a|$, то тоді $r = r' - |a|$ та $q = q'+\text{sgn } a$.\\
-У обох випадках ми знайшли $r,q$ єдиним чином, для яких $b = qa+r$. Причому в цьому випадку $\dfrac{-|a|}{2} < r \leq \dfrac{|a|}{2}$.
+Маємо $b = q'a+r'$, де $0 \leq r' < |a|$. Остача має кілька можливих сценарїїв:
+\begin{itemize}[nosep,wide=0pt]
+\item $0 \leq r' < \dfrac{|a|}{2}$, то тоді $r = r'$ та $q = q'$;
+\item $\dfrac{|a|}{2} \leq r' < |a|$, то тоді $r = r' - |a|$ та $q = q'+\text{sgn } a$.
+\end{itemize}
+У обох випадках ми знайшли $r,q$ єдиним чином, для яких $b = qa+r$. Причому $\dfrac{-|a|}{2} < r \leq \dfrac{|a|}{2}$.
 \end{proof}
 
 \subsection{Найбільший спільний дільник}
 \begin{definition}
-Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$.\\
-\textbf{Найбільшим спільним дільником} чисел $a,b$ назвемо таке число:
+\textbf{Найбільшим спільним дільником} чисел $a,b \in \mathbb{Z} \setminus \{0\}$ назвемо таке число:
 \begin{align*}
-\gcd(a,b) = \max\{c \in \mathbb{N}: c \mid a, c \mid b\}
+\gcd(a,b) = \max\{c \in \mathbb{N}: c \mid a, c \mid b\}.
 \end{align*}
-Альтернативні позначення: $\text{НСД}(a,b)$ або $(a,b)$. \\
-Останнє позначення частіше можна зустріти в сучасних книгах.
+Альтернативні позначення: $\text{НСД}(a,b)$ або $(a,b)$. Останнє позначення частіше можна зустріти в сучасних книгах.
 \end{definition}
 
 \begin{example}
@@ -212,10 +254,9 @@ $qa + r = q'a + r' \implies a(q'-q) = r - r'$. \\
 \end{example}
 
 \begin{definition}
-Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$.\\
-Числа $a,b$ називаються \textbf{взаємно простими}, якщо
+Числа $a,b \in \mathbb{Z} \setminus \{0\}$ називаються \textbf{взаємно простими}, якщо
 \begin{align*}
-\gcd(a,b) = 1
+\gcd(a,b) = 1.
 \end{align*}
 \end{definition}
 
@@ -226,95 +267,122 @@ $qa + r = q'a + r' \implies a(q'-q) = r - r'$. \\
 \begin{remark}
 Можна визначити НСД для чисел $a_1,\dots,a_n \in \mathbb{Z} \setminus \{0\}$ аналогічним чином:
 \begin{align*}
-\gcd(a_1,\dots,a_n) = \max\{c \in \mathbb{Z}: c \mid a_i, i = \overline{1,n}\}
+\gcd(a_1,\dots,a_n) = \max\{c \in \mathbb{Z}: c \mid a_i, i = \overline{1,n}\}.
 \end{align*}
 Також аналогічно визначається взаємна простота цих чисел:
 \begin{align*}
-\gcd(a_1,\dots,a_n) = 1
+\gcd(a_1,\dots,a_n) = 1.
 \end{align*}
 \end{remark}
 
 \begin{example}
-До прикладу, $\gcd(49,35,28,2023) = 7$.\\
-Також $\gcd(11,13,21) = 1$, тобто вони взаємно прості.
+Зокрема $\gcd(49,35,28,2023) = 7$. Також $\gcd(11,13,21) = 1$, тобто вони взаємно прості.
 \end{example}
 
 \begin{proposition}
 \label{gcd(a,b) = xa+yb}
-Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$. Тоді існують $x,y \in \mathbb{Z}$, для яких $\gcd(a,b) = x \cdot a + y \cdot b$.\\ Тобто НСД $a,b$ можна розкласти як лінійну комбінацію чисел $a$ та $b$.
+Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$. Тоді існують $x,y \in \mathbb{Z}$, для яких
+\begin{equation}
+\label{eq:gcd(a,b)_as_linear_combination}
+\gcd(a,b) = x \cdot a + y \cdot b.
+\end{equation}
+Тобто НСД чисел $a,b$ можна розкласти як лінійну комбінацію чисел $a$ та $b$.
 \end{proposition}
 
 \begin{proof}
-Розглянемо множину $S = \{xa+yb: x,y \in \mathbb{Z}\} \cap \mathbb{N}$. Вона непорожня, бо: \\
-при $a > 0, b > 0$ можна взяти $x = a, y = b$; \\
-при $a <0, b >0$ можна взяти $x = -a, y = b$; \\
-при $a <0, b<0$ можна взяти $x = -a, y = -b$;\\
-при $a >0, b <0$ можна взяти $x = a, y = -b$. \\
-Також обмежена знизу, оскільки всі числа -- додатні. Тому існує $\min S$, цей мінімум позначимо за $c$. Тоді $\exists x_0,y_0 \in \mathbb{Z}: c = ax_0 + by_0$.\\
-А тепер покажемо, що $c = \gcd(a,b)$.\\
-Поділимо $a,c$ з остачею. Маємо $a = cq + r$, де число $0 \leq r < c$. Водночас $c = x_0a+y_0b$. Тоді\\
-$r = a - cq = a - (x_0a+y_0b)q = (1-x_0q)\cdot a - qy_0 \cdot b$.\\
+Розглянемо множину \[
+S = \{xa+yb: x,y \in \mathbb{Z}\} \cap \mathbb{N}.
+\]
+Вона непорожня, однак який елемент там існує точно, залежить від ситуації:
+\begin{itemize}[nosep,wide=0pt]
+\item при $a > 0, b > 0$ елемент $a \cdot a + b \cdot b \in S$; (тобто взяли $x = a,\ y = b$);
+\item при $a < 0, b > 0$ елемент $(-a) \cdot a + b \cdot b \in S$; (тобто взяли $x = -a,\ y = b$);
+\item при $a > 0, b < 0$ елемент $a \cdot a + (-b) \cdot b \in S$; (тобто взяли $x = a,\ y = -b$);
+\item при $a < 0, b < 0$ елемент $(-a) \cdot a + (-b) \cdot b \in S$; (тобто взяли $x = -a,\ y = -b$).
+\end{itemize}
+Також множина $S$ обмежена знизу, оскільки всі числа -- додатні. Тому існує найменше число $\min S$, цей мінімум позначимо за $c$. Для цього числа існують $x_0,y_0 \in \mathbb{Z}$, для яких $c = ax_0 + by_0$. А тепер покажемо, що $c = \gcd(a,b)$.\\
+Поділимо $a$ на $c$ з остачею. Маємо $a = cq + r$, де число $0 \leq r < c$. Водночас $c = x_0a+y_0b$. Тоді
+\[
+r = a - cq = a - (x_0a+y_0b)q = (1-x_0q)\cdot a - qy_0 \cdot b.
+\]
 !Якщо припустити $r \neq 0$, то маємо $r \in S$, але тоді звідси $r \geq c$. Тобто варіант $r \neq 0$ не канає!\\
 Значить, $r = 0$, а тому звідси $a = cq \implies a \mid c$.\\
-Поділимо $b,c$ з остачею. Абсолютно аналогічно доводиться, що $b \mid c$.\\
+Поділимо $b$  на $c$ з остачею. Абсолютно аналогічно доводиться, що $b \mid c$.\\
 Таким чином, $c$ буде вже спільним дільником. Покажемо, що цей дільник -- справді найбільший.\\
-Візьмемо інший спільний дільник $d$ чисел $a,b$, тобто $d \mid a$ та $d \mid b$. Тому \\ $a = ud$, $b = vd$. А нам вже відомо, що $c = ax_0 + by_0$, тоді\\
-$c = udx_0 + vdy_0 = (ux_0 + vy_0)d$, \\
-а ця рівність каже про те, що $d \mid c$, а звідси $d \leq c$. Тобто кожний інший спільний дільник $a,b$ менший за $c$.\\
-А тому $c$ -- НСД, тобто $c = \gcd(a,b)$.
+Візьмемо інший спільний дільник $d$ чисел $a,b$, тобто $d \mid a$ та $d \mid b$. Тому $a = ud$, $b = vd$. А нам вже відомо, що $c = ax_0 + by_0$, тоді
+\[ 
+c = udx_0 + vdy_0 = (ux_0 + vy_0)d,
+\]
+а ця рівність каже про те, що $d \mid c$, а звідси $d \leq c$. Тобто кожний інший спільний дільник $a,\ b$ менший за $c$.\\
+Тому $c$ -- НСД, тобто $c = \gcd(a,b)$.
 \end{proof}
 
 \begin{corollary}
-Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$. Припустімо, що $d$ - якийсь спільний дільник чисел $a,b$. Тоді $d \mid \gcd(a,b)$.
+Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$. Припустімо, що $d$ -- якийсь спільний дільник чисел $a,b$. Тоді $d \mid \gcd(a,b)$.
 \end{corollary}
 
 \begin{proof}
-За щойно доведеним твердженням, $\gcd(a,b) = xa + yb$ для $x,y \in \mathbb{Z}$.\\
-Маємо $d \mid a, d \mid b \implies d \mid xa + yb = \gcd(a,b)$.
+За щойно доведеним твердженням $\gcd(a,b) = xa + yb$ для $x,y \in \mathbb{Z}$. Маємо
+\[
+d \mid a,\ d \mid b \implies d \mid xa + yb = \gcd(a,b). \qedhere
+\]
 \end{proof}
 
 \begin{corollary}
-Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$ та число $d = \gcd(a,b)$.\\
-Тоді $\gcd(a_1,b_1) = 1$, де числа $a_1,b_1$ взялись від того факту, що\\
-$a = da_1$ та $b = db_1$ -- означення подільності.\\
+Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$ та число $d = \gcd(a,b)$.
+Тоді $\gcd(a_1,b_1) = 1$, де числа $a_1,b_1$ взялись від того факту, що $a = da_1$ та $b = db_1$ -- означення подільності. \\
 Простіше кажучи, $\gcd\left( \dfrac{a}{d}, \dfrac{b}{d} \right) = 1$.
 \end{corollary}
 
 \begin{proof}
-За \prpref{gcd(a,b) = xa+yb}, $\gcd (a_1,b_1) = a_1 x + b_1 y$. Помножимо на $d$ -- отримаємо:\\
-$d \gcd (a_1,b_1) = d(a_1x+b_1y) = (da_1) \cdot x + (db_1) \cdot y = ax + by = \gcd (a,b) = d$.\\
+За \prpref{gcd(a,b) = xa+yb} маємо $\gcd (a_1,b_1) = a_1 x + b_1 y$. Помножимо на $d$ -- одержимо:
+\[
+d \gcd (a_1,b_1) = d(a_1x+b_1y) = (da_1) \cdot x + (db_1) \cdot y = ax + by = \gcd (a,b) = d.
+\]
 Отже, $\gcd(a_1,b_1) = 1$.
 \end{proof}
 
-\begin{example}
-Маємо $\gcd(a,b) = 1$ та $\gcd(a,c) = 1$. Довести, що $\gcd(a,bc) = 1$ (доволі важливий приклад).\\
-!Припустімо, що $\gcd(a,bc) = d$, причому $d \neq 1$. За означенням, $d \mid a$ та $d \mid bc$. Але за \prpref{gcd(a,b) = xa+yb}, ми маємо:\\
-$\gcd(a,b) = 1 = ax + by \implies c = cax + cby$.\\
-Із цієї рівності випливає, що $d \mid c$, але тоді звідси $d$ -- спільний дільник чисел $a,c$. Тож отримаємо $d \mid \gcd(a,c) = 1 \implies d = 1$. Суперечність!\\
+\begin{corollary}
+Маємо $\gcd(a,b) = 1$ та $\gcd(a,c) = 1$. Тоді $\gcd(a,bc) = 1$.
+\end{corollary}
+
+\begin{proof}
+!Припустімо, що $\gcd(a,bc) = d$, причому $d \neq 1$. За означенням $d \mid a$ та $d \mid bc$. Але за \prpref{gcd(a,b) = xa+yb} ми маємо:
+\[
+\gcd(a,b) = 1 = ax + by \implies c = cax + cby.
+\]
+Із цієї рівності випливає, що $d \mid c$, але тоді звідси $d$ -- спільний дільник чисел $a,c$. Тож одержимо $d \mid \gcd(a,c) = 1 \implies d = 1$. Суперечність!\\
 Аналогічними міркуваннями, розписавши $\gcd(a,c) = 1$, ми можемо отримати $d \mid b$, що так само дає суперечність $d = 1$.
-\end{example}
+\end{proof}
 
 \subsection{Алгоритм Евкліда}
 Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$, де число $a > 0$. Мета: знайти $\gcd(a,b)$.
 
 \begin{lemma}
-$\gcd(a,b) = \gcd(b, b-a)$.
+Справедлива рівність:
+\begin{equation}
+\gcd(a,b) = \gcd(b, b-a).
+\end{equation}
 \end{lemma}
 
 \begin{proof}
 Зробимо позначення: $d_1 = \gcd(a,b)$ та $d_2 = \gcd(b,b-a)$.\\
 Маємо $d_1 \mid a, d_1 \mid b$. Тоді звідси $d_1 \mid b -a$. Отже, $d_1$ -- спільний дільник чисел $b, b-a$. Тоді $d_1 \mid d_2$.\\
-Маємо $d_2 \mid b, d_2 \mid b-a$. Тоді звідси $d_2 \mid a = b-(b-a)$. Отже, $d_2$ -- спільний дільник чисел $a,b$. Тоді $d_2 \mid d_1$.\\
-Остаточно, за антисиметричністю, $d_1 = d_2$.
+Маємо $d_2 \mid b, d_2 \mid b-a$. Тоді $d_2 \mid a = b-(b-a)$. Отже, $d_2$ -- спільний дільник чисел $a,b$. Тож $d_2 \mid d_1$.\\
+Остаточно за антисиметричністю $d_1 = d_2$.
 \end{proof}
 
 \begin{corollary}
 \label{gcd(a,b) = gcd(b,b-xa)}
-$\gcd(a,b) = \gcd(b, b-xa)$, де $x \in \mathbb{Z}$.
+Справедлива рівність:
+\begin{align*}
+\gcd(a,b) = \gcd(b, b-xa), \qquad x \in \mathbb{Z}.
+\end{align*}
 \end{corollary}
 
 \begin{theorem}[Алгоритм Евкліда]
-Задані числа $a,b \in \mathbb{N}$ та припустімо $b > a$. Ми послідовно використаємо ділення за остачею таким чином:\\
+Задані числа $a,b \in \mathbb{N}$, де $b > a$. Послідовно використаємо ділення за остачею таким чином:
+\begin{center}
 \begin{tabular}{ll}
 $b = aq_1 + r_1$ & $0 < r_1 < a$ \\
 $a = r_1q_2 + r_2$ & $0 < r_2 < r_1$ \\
@@ -322,7 +390,8 @@ $r_1 = r_2q_3 + r_3$ & $0 < r_3 < r_2$ \\
 \vdots \\
 $r_{k-2} = r_{k-1}q_k + r_k$ & $0 < r_k < r_{k-1}$ \\
 $r_{k-1} = r_k q_k$. &
-\end{tabular}\\ 
+\end{tabular}
+\end{center}
 Тоді $\gcd(a,b) = r_k$ -- остання ненульова остача.
 \end{theorem}
 
@@ -333,87 +402,115 @@ $r_{k-1} = r_k q_k$. &
 \vdots \\
 В силу строгої нерівності, рано чи пізно буде $r_k = 0$.
 \bigskip \\
-Маємо $\gcd(b,a) \overset{\crlref{gcd(a,b) = gcd(b,b-xa)}}{=} \gcd(a,b-aq_1) = \gcd(a,r_1)$. Позначимо ще $a = r_0$. Тоді отримаємо $\gcd(b,a) = \gcd(r_0,r_1)$.\\
-Далі припустимо, що $\gcd(a,b) = \gcd(r_n,r_{n+1})$. Доведемо звідси, що \\ $\gcd(a,b) = \gcd(r_{n+1},r_{n+2})$.\\
-Дійсно, $\gcd(r_{n},r_{n+1}) \overset{\crlref{gcd(a,b) = gcd(b,b-xa)}}{=} \gcd(r_{n+1}, r_n - r_{n+1}q_n) = \gcd(r_{n+1}, r_{n+2})$.\\
-Тобто за МІ, $\gcd(b,a) = \gcd(r_{n},r_{n+1})$. А тому звідси випливає, що\\
-$\gcd(b,a) = \gcd(r_k,r_{k-1}) = r_k$.
+Маємо наступну рівність: \[
+\gcd(b,a) \overset{\crlref{gcd(a,b) = gcd(b,b-xa)}}{=} \gcd(a,b-aq_1) = \gcd(a,r_1).
+\]
+Позначимо $a = r_0$. Тоді отримаємо $\gcd(b,a) = \gcd(r_0,r_1)$.\\
+Далі припустимо, що $\gcd(a,b) = \gcd(r_n,r_{n+1})$. Доведемо звідси, що $\gcd(a,b) = \gcd(r_{n+1},r_{n+2})$. Дійсно, \[
+\gcd(r_{n},r_{n+1}) \overset{\crlref{gcd(a,b) = gcd(b,b-xa)}}{=} \gcd(r_{n+1}, r_n - r_{n+1}q_n) = \gcd(r_{n+1}, r_{n+2}).
+\]
+Тобто за МІ $\gcd(b,a) = \gcd(r_{n},r_{n+1})$. А тому звідси випливає, що $\gcd(b,a) = \gcd(r_k,r_{k-1}) = r_k$.
 \end{proof}
 
 \begin{example}
 \label{gcd using Euclidean}
 Знайти $\gcd(392, 693)$.\\
-$693 =´392 \cdot 1 + 301$\\
-$392 = 301 \cdot 1 + 91$\\
-$301 = 91 \cdot 3 + 28$\\
-$91 = 28 \cdot 3 + 7$\\
-$28 = 7 \cdot 4$.\\
-А число $7$ -- остання ненульова остача. Тоді за алгоритмом Евкліда, \\ $\gcd(392, 693) = 7$.
+Скористаємось алгоритмом Евкліда -- одержимо такі рівності:
+\begin{gather*}
+693 =´392 \cdot 1 + 301; \\
+392 = 301 \cdot 1 + 91; \\
+301 = 91 \cdot 3 + 28; \\
+91 = 28 \cdot 3 + \textcolor{red}{7}; \\
+28 = 7 \cdot 4.
+\end{gather*}
+Число $\textcolor{red}{7}$ -- остання ненульова остача. Тоді $\gcd(392, 693) = 7$.
 \end{example}
 
-\begin{example}
-\label{gcd as linear combination using Euclidean}
 Маючи той факт, що $\gcd(392, 693) = 7$ та рівняння з алгоритму Евкліда, ми можемо записати $\gcd(392, 693)$ як лінійну комбінацію цих двох чисел. Це ще називають розширеним алгоритмом Евкліда.\\
-Починаючи з першого рівняння, ми будемо виражати остачі. Кожна з остач буде в подальшому записана як лінійна комбінація $392, 693$ ось так:\\
-$301 = 693 \cdot 1 - 392 \cdot 1$\\
-$91 = 392 \cdot 1 - \textcolor{red}{301} \cdot 1 = 392 \cdot 1 - \textcolor{red}{(693 \cdot 1 - 392 \cdot 1)} \cdot 1 = 2 \cdot 392 - 1 \cdot 693$.\\
-$28 = \textcolor{red}{301} \cdot 1 - \textcolor{red}{91} \cdot 3 = \textcolor{red}{(639 \cdot 1 - 392 \cdot 1)} \cdot 1 - \textcolor{red}{(2 \cdot 392 - 1 \cdot 693)} \cdot 3 = 4 \cdot 693 - 7 \cdot 392$.\\
-$7 = \textcolor{red}{91} \cdot 1 - \textcolor{red}{28} \cdot 3 = \textcolor{red}{(2 \cdot 392 - 1 \cdot 693)} \cdot 1 - \textcolor{red}{(4 \cdot 693 - 7 \cdot 392)} \cdot 3 = 23 \cdot 392 - 13 \cdot 693$.\\
-Таким чином, $7 = \gcd(392, 693) = 23 \cdot 392 - 13 \cdot 693$.
-\end{example}
+Починаючи з першого рівняння, ми будемо виражати остачі. Кожна з остач буде в подальшому записана як лінійна комбінація $392, 693$ ось так:
+\begin{gather*}
+301 = 693 \cdot 1 - 392 \cdot 1. \\
+91 = 392 \cdot 1 - \textcolor{red}{301} \cdot 1 = 392 \cdot 1 - \textcolor{red}{(693 \cdot 1 - 392 \cdot 1)} \cdot 1 = 2 \cdot 392 - 1 \cdot 693.\\
+28 = \textcolor{red}{301} \cdot 1 - \textcolor{red}{91} \cdot 3 = \textcolor{red}{(639 \cdot 1 - 392 \cdot 1)} \cdot 1 - \textcolor{red}{(2 \cdot 392 - 1 \cdot 693)} \cdot 3 = 4 \cdot 693 - 7 \cdot 392.\\
+7 = \textcolor{red}{91} \cdot 1 - \textcolor{red}{28} \cdot 3 = \textcolor{red}{(2 \cdot 392 - 1 \cdot 693)} \cdot 1 - \textcolor{red}{(4 \cdot 693 - 7 \cdot 392)} \cdot 3 = 23 \cdot 392 - 13 \cdot 693.
+\end{gather*}
+Таким чином, $\gcd(392, 693) = 23 \cdot 392 - 13 \cdot 693$.
 
 \subsection{Лінійні діофантові рівняння}
 Розглянемо рівняння такого вигляду:
-$$ax + by = c,$$
-де $x,y \in \mathbb{Z}$ -- невідомі; $a,b,c \in \mathbb{Z}$, причому $a,b \neq 0$. Мета: знайти роз'язок в цілих числах.
+\begin{equation*}
+ax + by = c,
+\end{equation*}
+де $x,y \in \mathbb{Z}$ -- невідомі; $a,b,c \in \mathbb{Z} \setminus \{0\}$. Мета: знайти роз'язок в цілих числах.
 \bigskip \\
-Для цього розглянемо два випадки:\\
-I. $\gcd(a,b) \nmid c$. Тоді розв'язків нема.\\
-!Припустімо, що $x_0,y_0 \in \mathbb{Z}$ - деякий розв'язок рівняння $ax_0 + by_0 = c$. Відомо, що $\gcd(a,b) \mid a$ та $\gcd(a,b) \mid b$, а тому звідси $\gcd(a,b) \mid ax_0 + by_0 = c$. Суперечність!
+I. \textit{$\gcd(a,b) \nmid c$.}\\
+У такому разі розв'язків нема. Поступимо від супротивного.\\
+!Припустімо, що $x_0,y_0 \in \mathbb{Z}$ -- деякий розв'язок рівняння $ax+by=c$. Відомо, що $\gcd(a,b) \mid a$ та $\gcd(a,b) \mid b$, а тому звідси $\gcd(a,b) \mid ax_0 + by_0 = c$. Суперечність!
 \bigskip \\
-II. $\gcd(a,b) \mid c$.\\
-Оскільки всі числа $a,b,c$ діляться націло на $\gcd(a,b)$, то можна обидві частини поділити на це число -- отримаємо:\\
-$a_1x + b_1y = c_1$, \\
-причому тут $\gcd(a_1,b_1) = 1$. Але $\gcd(a_1,b_1) = a_1 x + b_1 y = 1$ для деяких $x,y \in \mathbb{Z}$. Помножимо на число $c_1$ - отримаємо:\\
-$a_1 (c_1x) + b_1 (c_1y) = c_1$\\
-А потім ще на $\gcd (a,b)$ -- отримаємо:\\
-$a_1 x_0 + b_1 y_0 = c$.\\
+II. \textit{$\gcd(a,b) \mid c$.}\\
+Оскільки всі числа $a,b,c$ діляться націло на $\gcd(a,b)$, то можна обидві частини поділити на це число -- отримаємо
+\[
+a_1x + b_1y = c_1,
+\]
+причому тут $\gcd(a_1,b_1) = 1$. Однак $\gcd(a_1,b_1) = a_1 x + b_1 y = 1$ для деяких $x,y \in \mathbb{Z}$. Помножимо на число $c_1$ -- одержимо:
+\[
+a_1 (c_1x) + b_1 (c_1y) = c_1.
+\]
+А потім ще помножимо на $\gcd (a,b)$ -- отримаємо:
+\[
+a_1 x_0 + b_1 y_0 = c.
+\]
 Тобто знайшли деякий розв'язок $(x_0,y_0)$, для яких спрацьовує рівняння.
 \bigskip \\
-Припустимо, що $(x_1,y_1)$ -- якийсь інший розв'язок рівняння. Тоді \\
-$a(x_1-x_0) + b(y_1-y_0) = 0$. \\
-Поділимо на $\gcd(a,b)$, буде\\
-$a_1 (x_1-x_0) + b_1(y_1-y_0) = 0 \implies a_1(x_1-x_0) = b_1(y_0-y_1)$.\\
-Числа $a_1,b_1$ - взаємно прості. Тому для рівності треба вимагати, щоб $b_1 \mid (x_1-x_0)$. Звідси $x_1 - x_0 = mb_1$ для $m \in \mathbb{Z}$. Тоді звідси $y_0 - y_1 = ma_1$. Тобто \\
-$\begin{cases} x_1 = x_0 + mb_1 \\ y_1 = y_0 - ma_1 \end{cases}$, де $m \in \mathbb{Z}$ -- ще один розв'язок.\\
-Підсумуємо:
+Припустимо, що $(x_1,y_1)$ -- якийсь інший розв'язок рівняння. Тоді \[
+a(x_1-x_0) + b(y_1-y_0) = 0.
+\]
+Поділимо на $\gcd(a,b)$, тоді матимемо наступне:
+\[
+a_1 (x_1-x_0) + b_1(y_1-y_0) = 0 \implies a_1(x_1-x_0) = b_1(y_0-y_1).
+\]
+Числа $a_1,b_1$ -- взаємно прості. Тому для рівності треба вимагати, щоб $b_1 \mid (x_1-x_0)$. Звідси матимео $x_1 - x_0 = mb_1$ для $m \in \mathbb{Z}$. Тоді звідси $y_0 - y_1 = ma_1$. Тобто
+\[
+\begin{cases} x_1 = x_0 + mb_1 \\ y_1 = y_0 - ma_1 \end{cases},
+\] де $m \in \mathbb{Z}$ -- ще один розв'язок.
+\bigskip \\
+Ми щойно одержили такий результат.
 \begin{theorem}
-Рівняння $ax + by = c$, де $a,b,c \in \mathbb{Z}$, має розв'язок $\iff \gcd(a,b) \mid c$. Причому якщо $(x_0,y_0)$ -- деякий розв'язок, то\\
-$\begin{cases} x_1 = x_0 + mb_1 \\ y_1 = y_0 - ma_1 \end{cases}, m \in \mathbb{Z}$ - інші розв'язки. $b_1 = \dfrac{b}{\gcd(a,b)}, a_1 = \dfrac{a}{\gcd(a,b)}$.
+Нехай $a,b,c \in \mathbb{Z}$. Лінійне діофантове рівняння
+\begin{equation}
+ax + by = c
+\end{equation}
+має розв'язок $\iff \gcd(a,b) \mid c$.\\ Якщо $(x_0,y_0)$ -- деякий розв'язок, то\\
+\[ \begin{cases} x_1 = x_0 + mb_1, \\ y_1 = y_0 - ma_1, \end{cases} m \in \mathbb{Z}, \]
+задають інші розв'язки, де $b_1 = \dfrac{b}{\gcd(a,b)},\ a_1 = \dfrac{a}{\gcd(a,b)}$.
 \end{theorem}
 
-Єдине питання полягає в тому, а як на практичному рівні знайти $(x_0,y_0)$, щоб врешті-решт знайти інші розв'язки. Для цього треба використовувати алгоритм Евкліда.
+Єдине питання полягає в тому, як на практичному рівні знайти перший розв'язок $(x_0,y_0)$, щоб врешті-решт знайти інші. Для цього треба скористатися алгоритмом Евкліда.
 
 \begin{example}
 Розв'язати рівняння $392x + 693y = 14$.\\
-За прикладом \exref{gcd using Euclidean}, $\gcd(392,693) = 7 \mid 14$. Тобто рівняння розв'язок точно має. Але з прикладу \exref{gcd as linear combination using Euclidean}, ми отримали розклад $\gcd(392, 693)$ на лінійну комбінацію таким чином:\\
-$392 \cdot 23 + 693 \cdot (-13) = 7$.\\
-Залишилось помножити на число $2$ - отримаємо:\\
-$392 \cdot 46 + 693 \cdot (-26) = 14$.\\
-Таким чином, маємо $(x_0,y_0) = (46,-26)$. А тому загальний розв'язок такий:\\
-$\begin{cases}
-x = 46 + 99m \\
-y = -26 - 56m
-\end{cases}$,\\
+У прикладі \exref{gcd using Euclidean} ми обчислили $\gcd(392,693) = 7 \mid 14$. Тобто рівняння розв'язок точно має. Але з прикладу \exref{gcd as linear combination using Euclidean}, ми отримали розклад $\gcd(392, 693)$ на лінійну комбінацію таким чином:
+\[
+392 \cdot 23 + 693 \cdot (-13) = 7.
+\]
+Залишилось помножити на число $2$ -- отримаємо:\\
+\[
+392 \cdot 46 + 693 \cdot (-26) = 14.
+\]
+Таким чином, маємо $(x_0,y_0) = (46,-26)$. А тому загальний розв'язок такий:
+\[
+\begin{cases}
+x = 46 + 99m, \\
+y = -26 - 56m,
+\end{cases} \]
 де числа $56,99$ взялись після того, як кожне з чисел $392,693$ поділили на їхній $\gcd(392, 693)$.
 \end{example}
 
 \subsection{Найменше спільне кратне}
 \begin{definition}
-Задані числа $a,b \in \mathbb{Z} \setminus \{0\}$.\\
-\textbf{Найменшим спільним кратним} чисел $a,b$ назвемо таке число:
+\textbf{Найменшим спільним кратним} чисел $a,b \in \mathbb{Z} \setminus \{0\}$ назвемо таке число:
 \begin{align*}
-\lcm(a,b) = \min \{c \in \mathbb{N}: a \mid c,b \mid c\}
+\lcm(a,b) = \min \{c \in \mathbb{N}: a \mid c,b \mid c\}.
 \end{align*}
 Альтернативні позначення: $\text{НСК}(a,b)$ або $[a,b]$.
 \end{definition}
@@ -426,25 +523,30 @@ y = -26 - 56m
 \end{remark}
 
 \begin{theorem}
-Задані $a,b \in \mathbb{N}$. Тоді $\gcd(a,b) \cdot \lcm(a,b) = ab$.
+Задані $a,b \in \mathbb{N}$. Тоді
+\begin{equation}
+\label{eq:lcm_times_gcd}
+\gcd(a,b) \cdot \lcm(a,b) = ab.
+\end{equation}
 \end{theorem}
 
 \begin{proof}
-Позначимо $d = \gcd(a,b)$. Звідси $a=dr$ та $b=ds$ для деяких $r,s \in \mathbb{N}$.\\
-Позначимо $m = \dfrac{ab}{d}$, ми хочемо показати, що $m = \lcm(a,b)$.\\
-$m = \dfrac{ab}{d} = \dfrac{drb}{d} = rb \implies b \mid m$\\
-$m = \dfrac{ab}{d} = \dfrac{ads}{d} = sa \implies a \mid m$.\\
+Позначимо $d = \gcd(a,b)$. Звідси $a=dr$ та $b=ds$ для деяких $r,s \in \mathbb{N}$. Позначимо $m = \dfrac{ab}{d}$. Ми хочемо показати, що $m = \lcm(a,b)$.
+\begin{gather*}
+m = \dfrac{ab}{d} = \dfrac{drb}{d} = rb \implies b \mid m. \\
+m = \dfrac{ab}{d} = \dfrac{ads}{d} = sa \implies a \mid m.
+\end{gather*}
 Отже, $m$ -- спільне кратне чисел $a,b$. Покажемо, що найменше.\\
-Нехай $c$ -- інше спільне кратне чисел $a,b$. Тобто $c = au, c =bv$ для деяких $u,v \in \mathbb{N}$. Ми знаємо, що $d = ax+by$ для деяких $x,y \in \mathbb{Z}$. Звідси випливає, що\\
-$\dfrac{c}{m} = \dfrac{cd}{ab} = \dfrac{c}{ab}(ax+by) = \dfrac{cx}{b} + \dfrac{cy}{a} = vx+uy$.\\
-$\implies c = m(vx+uy) \implies m \mid c$. \\
-І так для кожного іншого спільного кратного. Тобто фактично ми довели, що $m = \lcm(a,b)$. Повертаючи все на місце, маємо\\
-$\lcm(a,b) = \dfrac{ab}{\gcd(a,b)}$.
+Нехай $c$ -- інше спільне кратне чисел $a,b$. Тобто $c = au, c =bv$ для деяких $u,v \in \mathbb{N}$. Ми знаємо, що $d = ax+by$ для деяких $x,y \in \mathbb{Z}$. Звідси випливає, що
+\[
+\dfrac{c}{m} = \dfrac{cd}{ab} = \dfrac{c}{ab}(ax+by) = \dfrac{cx}{b} + \dfrac{cy}{a} = vx+uy \implies c = m(vx+uy) \implies m \mid c.
+\]
+І так для кожного іншого спільного кратного. Тобто фактично ми довели, що $m = \lcm(a,b)$. Повертаючи все на місце, маємо $\lcm(a,b) = \dfrac{ab}{\gcd(a,b)}$.
 \end{proof}
 
 \begin{example}
-Зокрема, із \exref{gcd using Euclidean}, маємо, що \\
-$\lcm(392,693) = \dfrac{392 \cdot 693}{\gcd(392,693)} = \dfrac{392 \cdot 693}{7} = 38808$.
+$\lcm(392,693) = \dfrac{392 \cdot 693}{\gcd(392,693)} = \dfrac{392 \cdot 693}{7} = 38808$.\\
+Значення $\gcd(392,693)$ отримали ми в \exref{gcd using Euclidean}.
 \end{example}
 
 \begin{proposition}
@@ -452,8 +554,10 @@ $\lcm(392,693) = \dfrac{392 \cdot 693}{\gcd(392,693)} = \dfrac{392 \cdot 693}{7}
 \end{proposition}
 
 \begin{proof}
-Маємо $k = q \lcm(a,b) + r$, де остача $0 \leq r < \lcm(a,b)$. Виразимо остачу:\\
-$r = k - q \lcm(a,b)$.\\
+Маємо $k = q \lcm(a,b) + r$, де остача $0 \leq r < \lcm(a,b)$. Виразимо остачу:
+\[
+r = k - q \lcm(a,b).
+\]
 Із цієї рівності зауважимо, що $a \mid r$, $b \mid r$, тобто $r$ -- спільне кратне чисел $a,b$, а значить, $r \geq \lcm(a,b)$. Тому необхідно вимагати $r = 0$. Отримаємо $k = q \lcm(a,b) \implies \lcm(a,b) \mid k$.
 \end{proof}
 
@@ -461,26 +565,32 @@ $r = k - q \lcm(a,b)$.\\
 \begin{definition}
 Число $p > 1$ називається \textbf{простим}, якщо
 \begin{align*}
-\text{лише $1,p$ -- дільники числа $p$.}
+\text{лише $1,\ p$ є дільниками числа $p$.}
 \end{align*}
 В інашкому випадку таке число називають \textbf{складеним}.
 \end{definition}
 
 \begin{example}
-Числа $2,3,5,7$ - прості.\\
-Число $8$ -- складене, бо окрім дільників $1,8$ ще має дільник $2$.
+Числа $2,3,5,7$ -- прості.\\
+Число $8$ -- складене, бо окрім дільників $1,8$ ще має дільник $2,4$.
 \end{example}
 
 \begin{proposition}
-Задано $p$ -- просте. Відомо, що $p \mid ab$. Тоді або $p \mid a$, або $p \mid b$.
+Число $p$ -- просте $\iff$ якщо $p \mid ab$, то звідси або $p \mid a$, або $p \mid b$.
 \end{proposition}
 
 \begin{proof}
-Якщо $p \mid a$, то автоматично закінчили доведення.\\
-Якщо $p \nmid a$, тоді маємо $\gcd(a,p) = 1$, але ми знаємо, що $\gcd (a,p) = ax+py = 1$ для якихось $x,y \in \mathbb{Z}$. Помножимо на $b$ -- отримаємо\\
-$abx + pby = b$.\\
-Оскільки $p \mid ab$, то звідси $ab = kp$ при $k \in \mathbb{Z}$. Звідси\\ $kpx + pby = p(kx+py) = b \implies p \mid b$.\\
+\rightproof Дано $p$ -- просте. Нехай $p \mid ab$. Розіб'ємо на два можливих випадки.\\
+I. $p \mid a$. (насправді, ми тоді автоматично закінчимо доведення)
+\bigskip \\
+II. $p \nmid a$.\\
+Маємо $\gcd(a,p) = 1$, але ми знаємо, що $\gcd (a,p) = ax+py = 1$ для якихось $x,y \in \mathbb{Z}$. Помножимо на $b$ -- отримаємо $abx + pby = b$. Оскільки $p \mid ab$, то звідси $ab = kp$ при $k \in \mathbb{Z}$. Звідси \[
+kpx + pby = p(kx+py) = b \implies p \mid b.
+\]
 Отже, принаймні одне з чисел $a,b$ зобов'язано ділитись націло на $p$.
+\bigskip \\
+\leftproof Дано: $p \mid ab \implies p \mid a$ або $p \mid b$.\\
+!Припустимо, що $p$ -- складене, тобто $p = ab$ для деяких $a > 2,\ b > 2$. Але тоді $p \mid ab$, звідси $p \mid a$ (якби був $p \mid b$, мали б аналогічну картину). Тоді $a = pq$, тому звідси $p = pqb$ -- суперечність!
 \end{proof}
 
 \begin{corollary}
@@ -489,91 +599,113 @@ $abx + pby = b$.\\
 \end{corollary}
 
 \begin{theorem}[Основна теорема арифметики]
-Будь-яке число $n > 1$ має єдиний розклад на добуток простих чисел з точністю до їхніх перестановок.
+Будь-яке натуральне число $n > 1$ має єдиний розклад на добуток простих чисел з точністю до їхніх перестановок.
 \end{theorem}
 
 \begin{proof}
 Доведення проведемо за МІ за числом $n \in \mathbb{N}$.\\
-\textit{База індукції} (їх буде аж три для розуміння теореми): \\
+I. \textit{База індукції} (їх будуть аж три для розуміння теореми): \\
 $n = 2$ -- нічого цікавого, розклад уже є.\\
 $n = 3$ -- нічого цікавого, розклад уже є.\\
 $n = 6 = 3 \cdot 2 = 2 \cdot 3$ -- інших пар нема (це можна ручками перебрати).\\
-\textit{Припущення індукції}: для чисел $1 < k < n$ ця теорема виконується.\\
-\textit{Крок індукції}: доведемо теорему для числа $n$. Спочатку покажемо, що взагалі-то можна розкласти.
+II. \textit{Припущення індукції}: для чисел $1 < k < n$ ця теорема виконується.\\
+III. \textit{Крок індукції}: доведемо теорему для числа $n$. Спочатку покажемо, що взагалі-то можна розкласти, а вже згодом порушимо питання єдиності.
 \bigskip \\
-I. \textit{Існування}.\\
-Випадок $n$ -- просте число -- закінчили доведення.\\
-Випадок $n$ -- складене число, тоді має знайтись інший дільник $1 < a < n$, для якого $n = ab$. За припущенням МІ, оскільки $1 < a < n, 1 < b < n$, ми можемо їх розкласти на добуток простих чисел. Тобто\\
-$a = s_1 \dots s_m$\\
-$b = t_1 \dots t_l$.\\
-Тому $n = s_1 \dots s_m t_1 \dots t_l$ -- всі ці числа прості.
+i. \textit{Існування}.\\
+Якщо $n$ -- уже просте число, то ми закінчили доведення.\\
+Тож нехай $n$ -- складене число, тоді має знайтись інший дільник $1 < a < n$, для якого $n = ab$. За припущенням МІ, оскільки $1 < a < n, 1 < b < n$, ми можемо їх розкласти на добуток простих чисел. Тобто
+\begin{gather*}
+a = s_1 \dots s_m,\\
+b = t_1 \dots t_l
+\end{gather*}
+Тому отримуємо ось такий розклад: 
+\[
+n = s_1 \dots s_m t_1 \dots t_l,
+\] всі ці числа, які в розкладі, є простими.
 \bigskip \\
-II. \textit{Єдиність}. \\
-!Припустімо, що $n$ розкладається двома різними способами:\\
-$n = p_1 \dots p_r$;\\
-$n = q_1 \dots q_s$.\\
-Зауважимо, що $p_r \mid n \implies p_r \mid q_1 \dots q_s \implies \exists 1 \leq j \leq s: p_r \mid q_j$. Оскільки вони обидва прості, то звідси $p_r = q_j$.\\
-Розглянемо інше число $n' = p_1 \dots p_{r-1} = q_1 \dots q_{j-1} q_{j+1} \dots q_s$.\\
+ii. \textit{Єдиність}. \\
+!Припустімо, що $n$ розкладається двома різними способами:
+\begin{gather*}
+n = p_1 \dots p_r;\\
+n = q_1 \dots q_s.\\
+\end{gather*}
+Зауважимо, що \[
+p_r \mid n \implies p_r \mid q_1 \dots q_s \implies \exists 1 \leq j \leq s: p_r \mid q_j. \]
+Оскільки вони обидва прості, то звідси $p_r = q_j$.\\
+Розглянемо інше число: \[
+n' = p_1 \dots p_{r-1} = q_1 \dots q_{j-1} q_{j+1} \dots q_s.
+\]
 Маємо $n' < n$, а тому можна використати припущення МІ. А воно каже, що ці два вирази рівні з точністю до перестановки. Помножимо обидві частини на $p_r$, а справа $p_r = q_j$ (відмічено червоним) -- тоді\\
-$p_1 \dots p_{r-1} \textcolor{red}{p_r} = q_1 \dots \textcolor{red}{q_j} \dots q_s = n$\\
+\[
+p_1 \dots p_{r-1} \textcolor{red}{p_r} = q_1 \dots \textcolor{red}{q_j} \dots q_s = n.
+\]
 Отримали єдиний розклад з точністю до перестановок. Суперечність!\\
 Висновок: фіксоване число $n$ можна розкласти на добуток простих чисел, причому єдиним чином з точністю до перестановки.\\
 МІ доведено.
 \end{proof}
 
 \begin{remark}
-Із цього випливає канонічний розклад числа $n$:\\
-$n = p_1^{r_1} p_2^{r_2} \dots p_k^{r_k}$,\\
+Із цього випливає канонічний розклад числа $n$:
+\begin{equation*}
+n = p_1^{r_1} p_2^{r_2} \dots p_k^{r_k},
+\end{equation*}
 де $p_1, p_2, \dots, p_k$ -- різні прості числа та $r_1,r_2,\dots,r_k > 0$.
 \end{remark}
 
 \begin{corollary}
-Припустімо, що два числа $a,b$ розклалися на прості числа таким чином:\\
-$a = p_1^{r_1} \dots p_k^{r_k}$\\
-$b = p_1^{s_1} \dots p_k^{s_k}$\\
-Тоді $\gcd (a,b) = p_1^{\min \{r_1,s_1\}} \dots p_k^{\min \{r_k,s_k\}}$.\\
-Тоді $\lcm(a,b) = p_1^{\max \{r_1,s_1\}} \dots p_k^{\max \{r_k,s_k\}}$.
+Припустімо, що два числа $a,b$ розклалися на прості числа таким чином:
+\begin{align*}
+a = p_1^{r_1} \dots p_k^{r_k}; \qquad b = p_1^{s_1} \dots p_k^{s_k}.
+\end{align*}
+Тоді 
+\begin{gather*}
+\gcd (a,b) = p_1^{\min \{r_1,s_1\}} \dots p_k^{\min \{r_k,s_k\}}, \\
+\lcm(a,b) = p_1^{\max \{r_1,s_1\}} \dots p_k^{\max \{r_k,s_k\}}.
+\end{gather*}
 \end{corollary}
 
 \begin{example}
-Маємо два числа:\\
-$3444 = 2^2 \cdot 3 \cdot 7 \cdot 41$\\
-$244496 = 2^4 \cdot 7 \cdot 37 \cdot 59$.\\
-Тоді $\gcd(3444, 244496) = 2^2 \cdot 7 = 28$.\\
-Тоді $\lcm(3444, 244496) = 2^4 \cdot 3 \cdot 7 \cdot 37 \cdot 41 \cdot 59 = 30073008$.
+Маємо два числа:
+\[
+3444 = 2^2 \cdot 3 \cdot 7 \cdot 41, \qquad 244496 = 2^4 \cdot 7 \cdot 37 \cdot 59.
+\]
+Тоді
+\begin{gather*}
+\gcd(3444, 244496) = 2^2 \cdot 7 = 28.\\
+\lcm(3444, 244496) = 2^4 \cdot 3 \cdot 7 \cdot 37 \cdot 41 \cdot 59 = 30073008.
+\end{gather*}
 \end{example}
 
 \begin{theorem}
-Задано число $n = p_1^{k_1} \dots p_k^{k_r}$. Тоді\\
-$d \mid n \iff d = p_1^{a_1} \dots p_r^{a_r}$, причому $0 \leq d_i \leq k_i$.
+Задано число $n = p_1^{k_1} \dots p_k^{k_r}$. Тоді
+\[
+d \mid n \iff d = p_1^{a_1} \dots p_r^{a_r},
+\] причому $0 \leq d_i \leq k_i$.
 \end{theorem}
 
 \begin{proof}
 При $d = 1$ маємо $a_i = 0, i = \overline{1,r}$, а при $d = n$ маємо $a_i = k_i, i = \overline{1,r}$.\\
-Тому розглянемо випадок $d > 1$, тож тоді $n = dd'$. За основною теоремою арифметики, $d = q_1\dots q_s$, а також $d' = t_1 \dots t_u$. Всі ці числа прості.\\
-Отже, $p_1^{k_1} \dots p_k^{k_r} = q_1 \dots q_s t_1 \dots t_u$.\\
-Оскільки розклад єдиний, то тоді кожний $q_j$ має один з $p_i$. А тому звідси ми й отримаємо, що\\
-$d = p_1^{a_1} \dots p_r^{a_r}$.\\
-І навпаки, якщо $d = p_1^{a_1} \dots p_r^{a_r}$, то тоді маємо: \\ $n = p_1^{k_1} \dots p_k^{k_r} = (p_1^{a_1} \dots p_r^{a_r}) p_1^{k_1 - a_1} \dots p_r^{k_r - a_r}$.\\
-Отже, $d \mid n$.
+Розглянемо випадок $d > 1$, тож $n = dd'$. За основною теоремою арифметики $d = q_1\dots q_s$, а також $d' = t_1 \dots t_u$. Всі ці числа прості. Отже, $p_1^{k_1} \dots p_k^{k_r} = q_1 \dots q_s t_1 \dots t_u$.\\
+Оскільки розклад єдиний, то тоді кожний $q_j$ має один з $p_i$. А тому звідси ми й отримаємо, що $d = p_1^{a_1} \dots p_r^{a_r}$.\\
+І навпаки, якщо $d = p_1^{a_1} \dots p_r^{a_r}$, то $n = p_1^{k_1} \dots p_k^{k_r} = (p_1^{a_1} \dots p_r^{a_r}) p_1^{k_1 - a_1} \dots p_r^{k_r - a_r}$. Отже, $d \mid n$.
 \end{proof}
 
 \subsection{Решето Ератосфена}
 \begin{proposition}
-Задано $n \in \mathbb{N}$ - складене число. Тоді існує просте число $p \leq \sqrt{n}$, для якого $p \mid n$.
+Задано $n \in \mathbb{N}$ -- складене число. Тоді існує просте число $p \leq \sqrt{n}$, для якого $p \mid n$.
 \end{proposition}
 
 \begin{proof}
-Оскільки $n$ - складене, то тоді $n = bc$ при $1 < b < n$, $1 < c < n$. Не втрачаючи загальності, ми скажемо, що $b \leq c$. Звідси отримаємо $b^2 \leq bc = n$, а тому $b \leq \sqrt{n}$.\\
-Оскільки $b > 1$, то за основною теоремою арифметики, існує просте число $p \mid b$, де $p \leq b \leq \sqrt{n}$. Але водночас $b \mid n$, а тому звідси $p \mid n$.
+Оскільки $n$ -- складене, то тоді $n = bc$ при $1 < b < n$, $1 < c < n$. Не втрачаючи загальності, ми скажемо, що $b \leq c$. Звідси отримаємо $b^2 \leq bc = n$, а тому $b \leq \sqrt{n}$.\\
+Оскільки $b > 1$, то за основною теоремою арифметики існує просте число $p \mid b$, де $p \leq b \leq \sqrt{n}$. Але водночас $b \mid n$, а тому звідси $p \mid n$.
 \end{proof}
 
 \begin{remark}
-Завдяки цього твердження, можна трохи ефективніше з'ясувати, чи буде якесь число простим.
+Завдяки цьому твердженню можна трохи ефективніше з'ясувати, чи буде якесь число простим.
 \end{remark}
 
 \begin{example}
-Розглянемо число $n = 509$. Зауважимо: $22 < \sqrt{n} < 23$, тож ми запишемо прості числа, що не більші за $22$. Тобто \\ $p \in \{2,3,5,7,11,13,17,19\}$. Можна пересвідчитись, що жодне з цих простих чисел $p \nmid n$. Таким чином, за твердженням вище, $n = 509$ - просте.
+Розглянемо число $n = 509$. Зауважимо: $22 < \sqrt{n} < 23$, тож ми запишемо прості числа, що не більші за $22$. Тобто $p \in \{2,3,5,7,11,13,17,19\}$. Можна пересвідчитись, що жодне з цих простих чисел $p \nmid n$. Таким чином, за твердженням вище, $n = 509$ -- просте.
 \end{example}
 
 \subsubsection*{Решето Ератосфена}
@@ -655,9 +787,14 @@ $41$ & $\centernot{42}$ & $43$ & $\centernot{44}$ & $\centernot{45}$ & $\centern
 \end{theorem}
 
 \begin{proof}
-!Припустімо, що всього $k$ простих чисел, тобто маємо набір $p_1,p_2,\dots,p_k$. Побудуємо число $n = p_1 \dots p_k + 1$.  Розглянемо два сценарії:\\
-1) $n$ -- просте -- автоматична суперечність нашому припущенню.\\
-2) $n$ -- складене, тому $p_j \mid n$, бо ми можемо $n$ розкласти як добуток простих чисел. Тоді звідси $p_j \mid n - (p_1\dots p_k) = 1$. Тоді $p_j = 1$, але то вже непросте число. Суперечність!
+!Припустімо, що всього $k$ простих чисел, тобто маємо набір $p_1,p_2,\dots,p_k$. Побудуємо число \[
+n = p_1 \dots p_k + 1.
+\]
+Розглянемо два сценарії:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $n$ -- просте -- автоматична суперечність нашому припущенню.
+\item $n$ -- складене, тому $p_j \mid n$, бо ми можемо $n$ розкласти як добуток простих чисел. Тоді звідси $p_j \mid n - (p_1\dots p_k) = 1$. Тоді $p_j = 1$, але то вже непросте число. Суперечність! \qedhere
+\end{enumerate}
 \end{proof}
 
 %Інше красиве доведення
@@ -677,33 +814,16 @@ $m = \left( 1 + \dfrac{1}{p_1} + \dfrac{1}{p_1^2} + \dots \right) \left( 1 + \df
 \end{proposition}
 
 \begin{proof}
-Для фіксованого $n \in \mathbb{N}$ будуються такі числа:\\
-$(n+1)! + 2$\\
-$(n+1)! + 3$\\
-$\vdots$\\
-$(n+1)! + (n+1)$.\\
-Всього $n$ штук, послідовні та складені.
-\end{proof}
-
-\begin{proposition}
-Не існує неконстантного многочлена $f \in \mathbb{Z}[x]$, для якого $\forall n \in \mathbb{N}: f(n)$ -- просте.
-\end{proposition}
-
-\begin{proof}
-!Припустимо, що такий многочлен $f \in \mathbb{Z}[x]$ існує. Маємо $f(x) = \displaystyle\sum_{k=1}^N a_k x^k$ -- неконстантний многочлен.\\
-$f(1) \overset{\text{позн.}}{=} p$ -- просте.\\
-Розглянемо ось таку різницю:\\
-$f(1+mp) - f(1) = \displaystyle\sum_{k=1}^N a_k (1+mp)^k - \sum_{k=1}^N a_k = \sum_{k=1}^N a_k \left[ (1+mp)^k-1 \right] = \\ = \sum_{k=1}^N a_k \left[ \sum_{l=1}^k C_k^l m^l p^l \right] = \sum_{k=1}^N \sum_{l=1}^k C_k^l a_k m^l p^l$.\\
-Винесемо з-під суми число $p$ за дужки а суму позначимо за якесь число $M$. Тоді\\
-$f(1+mp) - f(1) = pM \implies f(1+mp) = f(1) + pM = p + pM = p(M+1)$\\
-Оскільки $f(1+mp)$ - просте число, то нам треба вимагати, щоб $M=0$.\\
-В результаті $\forall m \in \mathbb{N}: f(1+mp) = p$.\\
-А далі розглянемо многочлен $g(x) = f(x) - p$, де $g \in \mathbb{Z}[x]$. Отримаємо, що $g(1+mp) = 0, \forall m \in \mathbb{N}$. Многочлен степені $k$ може мати до $k$ коренів рівняння, а тому єдиний можливий варіант - це $g(x) \equiv 0$, звідси $f(x) \equiv p$ - константний многочлен. Суперечність!
+Для фіксованого $n \in \mathbb{N}$ будуються такі числа:
+\begin{align*}
+(n+1)! + 2, \quad (n+1)! + 3, \quad \dots, (n+1)! + (n+1).
+\end{align*}
+Їх всього $n$ штук вони послідовні та складені.
 \end{proof}
 
 \begin{theorem}
 Нехай число $2^n+1$ -- просте. Тоді або $n = 0$, або $n = 2^k$.\\
-Можна сказати ще так: якщо $2^n+1$ -- просте, то єдиний простий множник числа $n$ - це $2$.
+Можна сказати ще так: якщо $2^n+1$ -- просте, то єдиний простий множник числа $n$ -- це $2$.
 \end{theorem}
 
 \begin{remark}
@@ -713,10 +833,15 @@ $f(1+mp) - f(1) = pM \implies f(1+mp) = f(1) + pM = p + pM = p(M+1)$\\
 
 \begin{proof}
 Доведемо еквівалентну теорему: якщо $n$ має не лише множник $2$, то тоді $2^n+1$ -- складене.\\
-Нехай $p \mid n$ та $p$ - непарне просте (взяли з розкладу числа $n$). Тоді $n = mp$, а звідси $2^n+1 = (2^m)^p +1$. Для непарних степеней маємо формулу:\\
-$x^p + 1 = (x+1)(x^{p-1} - x^{p-2} + x^{p-3} - \dots + 1)$\\
-$\implies (2^m)^p + 1 = (2^m+1)(2^{m(p-1)} - 2^{m(p-2)} + \dots + 1)$.\\
-Таким чином, число $2^n + 1$ - складене.
+Нехай $p \mid n$ та $p$ -- непарне просте (взяли з розкладу числа $n$). Тоді $n = mp$, а звідси $2^n+1 = (2^m)^p +1$. Для непарних степеней маємо формулу:
+\[
+x^p + 1 = (x+1)(x^{p-1} - x^{p-2} + x^{p-3} - \dots + 1).
+\]
+Підставляючи $x = 2^m$, одержимо
+\[
+(2^m)^p + 1 = (2^m+1)(2^{m(p-1)} - 2^{m(p-2)} + \dots + 1).
+\]
+Таким чином, число $2^n + 1$ -- складене.
 \end{proof}
 
 \begin{theorem}
@@ -728,22 +853,48 @@ $\implies (2^m)^p + 1 = (2^m+1)(2^{m(p-1)} - 2^{m(p-2)} + \dots + 1)$.\\
 \end{remark}
 
 \begin{proof}
-Припустимо, що $n$ -- складене, тобто $n = ab$. Тоді $2^n - 1 = (2^a)^b - 1$. Схожий крок доведення, але тут застосуємо формулу:\\
-$x^n - 1 = (x-1)(x^{n-1}+x^{n-2}+\dots + 1)$\\
-$\implies 2^n - 1 = (2^a-1)(2^{a(b-1)} + 2^{a(b-2)} + \dots + 1)$.\\
+Припустимо, що $n$ -- складене, тобто $n = ab$. Тоді $2^n - 1 = (2^a)^b - 1$. Схожий крок доведення, але тут застосуємо формулу:
+\[
+x^n - 1 = (x-1)(x^{n-1}+x^{n-2}+\dots + 1).
+\]
+Підставляючи $x = 2^n$, одержимо
+\[
+2^n - 1 = (2^a-1)(2^{a(b-1)} + 2^{a(b-2)} + \dots + 1).
+\]
 Отже, звідси $2^n-1$ -- також складене.
 \end{proof}
 
 \begin{remark}
-Якщо $n$ -- просте, то не обов'язково $2^n-1$ -- просте число. Зокрема $11$ - просте число, але $2^{11}-1 = 2047 = 23 \cdot 89$ - тобто складене.
+Якщо $n$ -- просте, то не обов'язково $2^n-1$ -- просте число.\\ Зокрема $11$ -- просте, але $2^{11} - 1$ -- складене, оскільки \[
+2^{11}-1 = 2047 = 23 \cdot 89.
+\]
 \end{remark}
+
+\begin{proposition}
+Не існує неконстантного многочлена $f \in \mathbb{Z}[x]$, для якого $\forall n \in \mathbb{N}: f(n)$ -- просте.
+\end{proposition}
+
+\begin{proof}
+!Припустимо, що такий несталий многочлен $f(x) = \displaystyle\sum_{k=1}^N a_k x^k$ існує. Тоді $f(1) \overset{\text{позн.}}{=} p$ -- просте.\\
+Розглянемо ось таку різницю:
+\begin{align*}
+f(1+mp) - f(1) & = \displaystyle\sum_{k=1}^N a_k (1+mp)^k - \sum_{k=1}^N a_k = \sum_{k=1}^N a_k \left[ (1+mp)^k-1 \right] = \\ & = \sum_{k=1}^N a_k \left[ \sum_{l=1}^k C_k^l m^l p^l \right] = \sum_{k=1}^N \sum_{l=1}^k C_k^l a_k m^l p^l.
+\end{align*}
+Винесемо з-під суми число $p$ за дужки а суму позначимо за якесь число $M$. Тоді
+\[
+f(1+mp) - f(1) = pM \implies f(1+mp) = f(1) + pM = p + pM = p(M+1).
+\]
+Оскільки $f(1+mp)$ -- просте число, то нам треба вимагати, щоб $M=0$. В результаті \[
+\forall m \in \mathbb{N}: f(1+mp) = p.
+\]
+А далі розглянемо многочлен $g(x) = f(x) - p$, де $g \in \mathbb{Z}[x]$. Отримаємо, що $\forall m \in \mathbb{N}: g(1+mp) = 0$. Многочлен степені $k$ може мати до $k$ коренів рівняння, а тому єдиний можливий варіант -- це $g(x) \equiv 0$, звідси $f(x) \equiv p$ -- константний многочлен. Суперечність!
+\end{proof}
 \newpage
 
 \section{Модульна арифметика}
 \subsection{Основи конгруенцій}
 \begin{definition}
-Задані числа $a,b \in \mathbb{Z}$ та число $n \in \mathbb{N}$.\\
-Числа $a,b$ називаються \textbf{рівними за модулем $n$}, якщо
+Числа $a,b \in \mathbb{Z}$ називаються \textbf{рівними за модулем $n \in \mathbb{N}$}, якщо
 \begin{align*}
 \text{під час ділення $a$ та $b$ на $n$ отримаємо однакові остачі.}
 \end{align*}
@@ -752,22 +903,31 @@ $\implies 2^n - 1 = (2^a-1)(2^{a(b-1)} + 2^{a(b-2)} + \dots + 1)$.\\
 \end{definition}
 
 \begin{example}
-Зокрема $14 \equiv 5 \pmod 3$, тому що\\
-$14$ ділимо на $3$ -- дає остачу $2$. \qquad $5$ ділимо на $3$ -- дає остачу $2$.
+Зокрема $14 \equiv 5 \pmod 3$, тому що
+\begin{align*}
+14 = 4 \cdot 3 + 2; \\
+5 = 1 \cdot 3 + 2,
+\end{align*}
+отже отримали однакові остачі при діленні.
 \end{example}
 
 \begin{proposition}
-$a \equiv b \pmod n \iff n \mid a-b$.
+\begin{equation*}
+a \equiv b \pmod n \iff n \mid a-b.
+\end{equation*}
 \end{proposition}
 
 \begin{proof}
-\rightproof Дано: $a \equiv b \pmod n$, тоді звідси $a = nq_1 + r$ та $b = nq_2 + r$. За означенням, у них однакові остачі. Отже,\\
-$n \mid a - b = nq_1 + r - nq_2 - r = n(q_1-q_2)$.
-\bigskip \\
-\leftproof Дано: $n \mid a-b$. Припустимо, що $a = nq_1+r_1$ та $b = nq_2 + r_2$, тобто в них дві різні остачі, тоді:\\
-$a - b = n(q_1-q_2) + (r_1-r_2) \implies r_1 - r_2 = (a-b) - n(q_1-q_2)$.\\
-Із цієї рівності та умови $n \mid a-b$ випливає, що $r_1 - r_2 \mid n$, але оскільки $0 \leq r_1 < n, 0 \leq r_2 < n$, то звідси $-n < r_1 - r_2 < n$. Єдиний варіант, який нас влаштовує, -- це $r_1 - r_2 = 0 \implies r_1 = r_2$.\\
-Отримали, що $a,b$ зобов'язані мати однакову остачу при діленні на $n$, а тому звідси $a \equiv b \pmod n$.
+\rightproof Дано: $a \equiv b \pmod n$, тоді звідси $a = nq_1 + r$ та $b = nq_2 + r$. Внаслідок чого
+\[
+n \mid a - b = nq_1 + r - nq_2 - r = n(q_1-q_2).
+\]
+
+\leftproof Дано: $n \mid a-b$. Припустимо, що $a = nq_1+r_1$ та $b = nq_2 + r_2$, тобто в них дві різні остачі, тоді:
+\[
+a - b = n(q_1-q_2) + (r_1-r_2) \implies r_1 - r_2 = (a-b) - n(q_1-q_2).
+\]
+Із цієї рівності та умови $n \mid a-b$ випливає, що $r_1 - r_2 \mid n$, але оскільки $0 \leq r_1 < n, 0 \leq r_2 < n$, то звідси $-n < r_1 - r_2 < n$. Єдиний варіант, який нас влаштовує, -- це $r_1 - r_2 = 0 \implies r_1 = r_2$. Отримали, що $a,b$ зобов'язані мати однакову остачу при діленні на $n$, а тому $a \equiv b \pmod n$.
 \end{proof}
 
 \begin{corollary}
@@ -778,97 +938,109 @@ $a - b = n(q_1-q_2) + (r_1-r_2) \implies r_1 - r_2 = (a-b) - n(q_1-q_2)$.\\
 Тоді ми можемо знайти неперетинні класи еквівалентності, а потім профакторизувати множину $\mathbb{Z}$.
 
 \begin{example}
-Розглянемо $n = 4$, як число, на яке будемо ділити. Отримаємо такі класи еквівалентності:\\
-$\overline{0} = \{\dots,-8,-4,0,4,8,\dots\}$\\
-$\overline{1} = \{\dots,-7,-3,1,5,9,\dots\}$\\
-$\overline{2} = \{\dots,-6,-2,2,6,10,\dots\}$\\
-$\overline{3} = \{\dots,-5,-1,3,7,11,\dots\}$.\\
+Розглянемо $n = 4$, як число, на яке будемо ділити. Отримаємо такі класи еквівалентності:
+\begin{align*}
+\overline{0} = \{\dots,-8,-4,0,4,8,\dots\};\\
+\overline{1} = \{\dots,-7,-3,1,5,9,\dots\};\\
+\overline{2} = \{\dots,-6,-2,2,6,10,\dots\};\\
+\overline{3} = \{\dots,-5,-1,3,7,11,\dots\}.
+\end{align*}
 Ну а оскільки вони неперетинні, то звідси $\overline{0} \cup \overline{1} \cup \overline{2} \cup \overline{3} = \mathbb{Z}$.
 \end{example}
 
 \begin{definition}
-Множина $\{a_1,\dots,a_n\}$ називається \textbf{повною системою лишків} (mod $n$), якщо
+Множина $\{a_1,\dots,a_n\}$ називається \textbf{повною системою лишків} за $\!\! \pmod n$, якщо
 \begin{align*}
-\overline{a_1} \cup \dots \cup \overline{a_n} = \mathbb{Z}
+\overline{a_1} \cup \dots \cup \overline{a_n} = \mathbb{Z}.
 \end{align*}
 \end{definition}
 
 \begin{example}
-Зокрема з попереденього прикладу, $\{0,1,2,3\}$ утворюють повну систему лишків за (mod $4$). Але можна взяти інші: $\{4,6,7,9\}$ або $\{-2,-1,0,1\}$.
+Зокрема з попереденього прикладу $\{0,1,2,3\}$ утворюють повну систему лишків за $\!\! \pmod 4$. Але можна взяти інші: $\{4,6,7,9\}$ або $\{-2,-1,0,1\}$.
 \end{example}
 
 \begin{proposition}
-Задані $a \equiv b \pmod n$ та $c \equiv d \pmod n$. Тоді\\
-$a + c \equiv b + d \pmod n$;\\
-$ac \equiv bc \pmod n$.\\
-\textit{Вправа: довести.}
+Справедливі наступне:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Нехай $a \equiv b \pmod n,\ c \equiv d \pmod n$. Тоді $a + c \equiv b + d \pmod n$;
+\item Нехай $a \equiv b \pmod n,\ c \equiv d \pmod n$. Тоді $ac \equiv bc \pmod n$;
+\item Нехай $a \equiv b \pmod n$, а також $d \mid n$. Тоді $a \equiv b \pmod d$;
+\item Нехай $a \equiv b \pmod n$, а також $c \in \mathbb{N}$. Тоді $ac \equiv bc \pmod {nc}$;
+\item Нехай $a \equiv b \pmod n$. Тоді $a^m \equiv b^m \pmod n, m \in \mathbb{N}$;
+\item Нехай $ad \equiv bd \pmod n$ та $\gcd(d,n) = 1$. Тоді $a \equiv b \pmod n$.
+\item Нехай $a \equiv b \pmod c$ та $a \equiv b \pmod d$. Тоді $a \equiv b \pmod {\lcm(c,d)}$.
+\end{enumerate}
+\textit{Вправа: довести (а я доведу лише передостанній пункт).}
 \end{proposition}
 
-\begin{proposition}
-Нехай $a \equiv b \pmod n$, а також $d \mid n$. Тоді \\
-$a \equiv b \pmod d$.\\
-\textit{Вправа: довести.}
-\end{proposition}
+\begin{proof}
+Маємо $dx+ny = 1$, а також $n \mid d(a-b) \implies n \mid dx(a-b)$. Маємо наступне:
+\begin{gather*}
+n \mid (1-ny)(a-b) = (a-b) - ny(a-b) \implies n \mid a-b \implies a \equiv b \pmod n. \qedhere
+\end{gather*}
+\end{proof}
 
 \begin{example}
 Зокрема $3 \equiv 7 \pmod 4$, але також $2 \mid 4$, а тому звідси $3 \equiv 7 \pmod 2$.
 \end{example}
 
-\begin{proposition}
-Нехай $a \equiv b \pmod n$, а також $c \in \mathbb{N}$. Тоді \\
-$ac \equiv bc \pmod {nc}$.\\
-\textit{Вправа: довести.}
-\end{proposition}
-
-\begin{corollary}
-Нехай $a \equiv b \pmod n$. Тоді $a^m \equiv b^m \pmod n, m \in \mathbb{N}$.
-\end{corollary}
+\begin{remark}
+Про останню властивість. Для ділення обох частин умова $\gcd(d,n) = 1$ є важливою. Зокрема $2 \cdot 3 \equiv 2 \cdot 18 \pmod {10}$, але в жодному разі з цього НЕ випливає, що $3 \equiv 18 \pmod {10}$.
+\end{remark}
 
 \begin{corollary}
 Задано многочлен $f \in \mathbb{Z}[x]$, а також $a \equiv b \pmod n$. Тоді $f(a) \equiv f(b) \pmod n$.
 \end{corollary}
 
-\begin{proposition}
-Нехай $ad \equiv bd \pmod n$ та $\gcd(d,n) = 1$. Тоді \\
-$a \equiv b \pmod n$.
-\end{proposition}
+Зараз наведу деякі (доволі важливі!) приклади про квадрати та куби цілих чисел.
 
-\begin{proof}
-Маємо $dx+ny = 1$, а також $n \mid d(a-b) \implies n \mid dx(a-b)$.\\
-$n \mid (1-ny)(a-b) = (a-b) - ny(a-b) \implies n \mid a-b \implies a \equiv b \pmod n$.
-\end{proof}
+\begin{example}
+Довести, що $x^2 \equiv 0 \pmod 4$ або $x^2 \equiv 1 \pmod 4$ для будь-якого $x \in \mathbb{Z}$.\\
+Розглянемо $x \in \{0,1,2,3\}$. Зводячи в квадрат, одержимо $x^2 \in \{0,1,4,9\}$. Якщо від кожного взяти $\!\! \pmod 4$, отримуємо $\{0,1,1,1\} = \{0,1\}$.
+\end{example}
 
-\begin{remark}
-Для ділення обох частин умова $\gcd(d,n) = 1$ є важливою. Зокрема $2 \cdot 3 \equiv 2 \cdot 18 \pmod {10}$, але в жодному разі з цього НЕ випливає, що $3 \equiv 18 \pmod {10}$.
-\end{remark}
+\begin{example}
+Довести, що $x^2 \equiv 0 \pmod 3$ або $x^2 \equiv 1 \pmod 3$ для будь-якого $x \in \mathbb{Z}$.\\
+\textit{Приклад аналогічний, тому не розписую.}
+\end{example}
 
-\begin{proposition}
-Нехай $a \equiv b \pmod c$ та $a \equiv b \pmod d$. Тоді \\
-$a \equiv b \pmod {\lcm(c,d)}$.\\
-\textit{Зворотний бік також виконується. Вправа: довести.}
-\end{proposition}
+\begin{example}
+Довести, що $(2k+1)^2 \equiv 1 \pmod 8$ для будь-якого $k \in \mathbb{Z}$ (ліворуч непарне число).\\
+Розглянемо числа $\{1,3,5,7\}$, після зведення в квадрат отримуємо $\{1,9,25,49\}$, а після взяття $\!\! \pmod 8$ всюди отримуємо значення $1$.
+\end{example}
 
-\begin{proof}
-Із умови маємо $c \mid a-b$ та $d \mid a-b$, тобто маємо $a-b$ -- спільне кратне чисел $c,d$. Тоді звідси $\lcm(c,d) \mid a-b$, тож $a \equiv b \pmod {\lcm(c,d)}$.
-\end{proof}
+\begin{example}
+Довести, що $m^3 \equiv 0 \pmod 7$ або $m^3 \equiv 1 \pmod 7$ або $m^3 \equiv 6 \pmod 7$ для будь-якого $m \in \mathbb{Z}$.\\
+\textit{Залишаю як вправу.}
+\end{example}
+
+\begin{example}
+Довести, що $m^3 \equiv 0 \pmod 9$ або $m^3 \equiv 1 \pmod 9$ або $m^3 \equiv 8 \pmod 9$ для будь-якого $m \in \mathbb{Z}$.\\
+\textit{Залишаю як вправу.}
+\end{example}
 
 \begin{example}
 Довести, що числа вигляду $11, 111, 1111, \dots$ не можуть бути представлені як квадрат натурального числа.\\
-Спочатку зауважимо, що рівняння $4k+3 = x^2$ не має цілих розв'язків. Тому що якби були розв'язки, то $x^2 \equiv 3 \pmod 4$. Достатньо перевірити рівність при $x \in \{0,1,2,3\}$. Перебравши всі, отримаємо, що жодний не задовольняє.\\
-Тобто це означає, що жодне число виду $4k+3$ не можна представити як повний квадрат. Перефразувавши, якщо $a \equiv 3 \pmod 4$, то тоді $a$ -- не повний квадрат. Зокрема\\
-$11 \equiv 3 \pmod 4$\\
-$111 = 100 + 11 \equiv 0 + 3 = 3 \pmod 4$\\
-$1111 = 1000 + 111 \equiv 0 + 3 = 3 \pmod 4$\\
-$\vdots$
+Спочатку зауважимо, що рівняння $4k+3 = x^2$ не має цілих розв'язків. Тому що якби були розв'язки, то $x^2 \equiv 3 \pmod 4$. Приклад вище показує, що це неможливо. Тобто це означає, що жодне число виду $4k+3$ не можна представити як повний квадрат. Перефразувавши, якщо $a \equiv 3 \pmod 4$, то тоді $a$ -- неповний квадрат. Зокрема
+\begin{align*}
+11 \equiv 3 \pmod 4; \\
+111 = 100 + 11 \equiv 0 + 3 = 3 \pmod 4; \\
+1111 = 1000 + 111 \equiv 0 + 3 = 3 \pmod 4; \\
+\vdots
+\end{align*}
 \end{example}
 
-\subsection{Репрезентація числа в іншій системі числення}
+\subsection{Представлення числа в іншій системі числення}
 \begin{theorem}
-Нехай $b > 1$ -- ціле та $N \in \mathbb{N}$. Тоді число $N$ можна розкласти єдиним чином ось так:\\
-$N = a_m b^m + a_{m-1} b^{m-1} + \dots + a_2 b^2 + a_1 b + a_0$,\\
-де кожний $a_i \in \{0,1,2,\dots,b-1\}$.\\
-Ця теорема дозволяє записати $N$ в так звану $b$-ічну систему числення.
+Нехай $b > 1$ -- ціле та $N \in \mathbb{N}$. Тоді число $N$ розкладається єдиним так:
+\begin{equation}
+\label{integer_representation}
+N = a_m b^m + a_{m-1} b^{m-1} + \dots + a_2 b^2 + a_1 b + a_0,
+\end{equation}
+де кожний $a_i \in \{0,1,2,\dots,b-1\}$.
 \end{theorem}
+
+Ця теорема дозволяє записати $N$ в так звану $b$-ічну систему числення.
 
 \begin{remark}
 Внаслідок чого ми можемо записувати числа в десятковій системі числення (у звичному для нас вигляді), а також в двійковій системи числення (це більше для інформатики треба).
@@ -876,56 +1048,96 @@ $N = a_m b^m + a_{m-1} b^{m-1} + \dots + a_2 b^2 + a_1 b + a_0$,\\
 
 \begin{proof}
 I. \textit{Існування}.\\
-Поділимо число $N$ на $b$ -- отримаємо:\\
-$N = q_1 b + a_0,\ 0 \leq a_0 < b$.\\
+Поділимо число $N$ на $b$ -- отримаємо:
+\[
+N = q_1 b + a_0, \quad 0 \leq a_0 < b.
+\]
 Якщо $q_1 \geq b$, то ми можемо число $q_1$ поділити на $b$ -- отримаємо:\\
-$q_1 = q_2 b + a_1,\ 0 \leq a_1 < b$.\\
-Підставляючи дане число $q_1$ в перше рівняння, буде вже такий розклад:\\
-$N = q_2b^2 + a_1b + a_0$.\\
-Якщо $q_2 \geq b$, то робимо аналогічну процедуру -- отримаємо в результаті\\
-$N = q_3 b^3 + a_2 b^2 + a_1 b + a_0$.\\
-\vdots \\
-Оскільки $N > q_1 > q_2 > \dots \geq 0$, тобто $q_i$ -- строго спадна послідовність чисел, то рано чи пізно ітерацію ми закінчимо. Скажімо, ми закінчимо на $m-1$ кроці:\\
-$q_{m-1} = q_m b + a_{m-1},\ 0 \leq a_{m-1} < b$.\\
-У цьому випадку $0 \leq q_m < b$. Якщо покласти $a_m = q_m$, отримаємо:\\
-$N = a_m b^m + a_{m-1} b^{m-1} + \dots + a_2 b^2 + a_1 b + a_0$.
-\bigskip \\
+\[
+q_1 = q_2 b + a_1, \quad 0 \leq a_1 < b.
+\]
+Підставляючи дане число $q_1$ в перше рівняння, буде вже такий розклад:
+\[
+N = q_2b^2 + a_1b + a_0.
+\]
+Якщо $q_2 \geq b$, то робимо аналогічну процедуру -- отримаємо в результаті
+\[
+N = q_3 b^3 + a_2 b^2 + a_1 b + a_0
+\]
+\vdots
+Оскільки $N > q_1 > q_2 > \dots \geq 0$, тобто $q_i$ -- строго спадна послідовність чисел, то рано чи пізно ітерацію ми закінчимо. Скажімо, ми закінчимо на $m-1$ кроці:
+\[
+q_{m-1} = q_m b + a_{m-1},\quad 0 \leq a_{m-1} < b.
+\]
+У цьому випадку $0 \leq q_m < b$. Якщо покласти $a_m = q_m$, одержимо:
+\[
+N = a_m b^m + a_{m-1} b^{m-1} + \dots + a_2 b^2 + a_1 b + a_0.
+\]
+
 II. \textit{Єдиність.}\\
-!Припустимо, що число $N$ має дві репрезентації:\\
-$N = a_m b^m + a_{m-1} b^{m-1} + \dots + a_2 b^2 + a_1 b + a_0$,\\
-$N = c_m b^m + c_{m-1} b^{m-1} + \dots + c_2 b^2 + c_1 b + c_0$.\\
+!Припустимо, що число $N$ має дві репрезентації:
+\begin{gather*}
+N = a_m b^m + a_{m-1} b^{m-1} + \dots + a_2 b^2 + a_1 b + a_0; \\
+N = c_m b^m + c_{m-1} b^{m-1} + \dots + c_2 b^2 + c_1 b + c_0.
+\end{gather*}
 (насправді, не обов'язково, щоб в двох репрезентаціях були однакові індекси в кінці, але, наприклад, якщо в другій репрезентації індекс менший за $m$, то можна доповнити $c_j = 0$ до $m$-го індексу).\\
-Взявши різницю з двох репрезентацій, отримаємо\\
-$0 = d_m b^m + \dots + d_1 b + d_0,\ d_i = a_i - c_i$.\\
-Оскільки репрезентації різні, то має існувати $d_k \neq 0$ (серед всіх існуючих індексів оберемо найменший можливий). Тоді\\
-$0 = d_mb^m + \dots + d_{k+1}b^{k+1} + d_k b^k$.\\
-$d_k = -b(d_m b^{m-k-1} + \dots + d_{k+1})$.\\
+Взявши різницю з двох репрезентацій, отримаємо
+\[
+0 = d_m b^m + \dots + d_1 b + d_0,\quad d_i = a_i - c_i.
+\]
+Оскільки репрезентації різні, то має існувати $d_k \neq 0$ (серед всіх існуючих індексів оберемо найменший можливий). Тоді
+\begin{align*}
+0 = d_mb^m + \dots + d_{k+1}b^{k+1} + d_k b^k;
+d_k = -b(d_m b^{m-k-1} + \dots + d_{k+1}).
+\end{align*}
 Отже, $b \mid d_k$. Утім водночас $\begin{gathered} 0 \leq a_k < b \\ 0 \leq c_k < b \end{gathered}$, тож $-b < a_k - c_k < b \implies |d_k| < b$. Щоб ці умови виконувалися одночасно, треба $d_k = 0$ -- суперечність!
 \end{proof}
 
-Коли записуємо $N \in \mathbb{N}$ в $b$-ічну систему числення, то зазвичай пишуть ось так: $N = (a_m a_{m-1} \dots a_0)_{b}$, де кожний $a_i$ ще називають цифрою.
+Коли записуємо $N \in \mathbb{N}$ в $b$-ічну систему числення, то зазвичай пишуть ось так: 
+\[
+N = (a_m a_{m-1} \dots a_0)_{b},
+\]
+де кожний $a_i$ ще називають \textbf{цифрою}.
 
 \begin{theorem}
-Нехай $p$ -- просте число. Тоді для кожного $a \in \mathbb{N}$ та $h \in \mathbb{N}$ справедливе $a^h \equiv a^{\Sigma (h)} \pmod p$, де число $\Sigma (h)$ -- сума цифр числа $h$ у $p$-ічній системі числення.\\
+Нехай $p$ -- просте число. Тоді для кожного $a \in \mathbb{N}$ та $h \in \mathbb{N}$ справедливе
+\begin{equation}
+\label{eq:congruence_using_base_representation}
+a^h \equiv a^{\Sigma (h)} \pmod p,
+\end{equation}
+де число $\Sigma (h)$ -- сума цифр числа $h$ у $p$-ічній системі числення.\\
 \textit{до доведення теореми можна повернутися після ознайомлення з малою теоремою Ферма (див.\ нижче).}
 \end{theorem}
 
 \begin{proof}
-Маємо $h = a_k p^k + \dots + a_1 p + a_0$. За малою теоремою Ферма, відомо, що $a^p \equiv a \pmod p$, внаслідок чого $a^{d_i p^i} \equiv a^{d_i} \pmod p$. Отже,\\
-$a^h = a^{d_k p^k} a^{d_1 p} a^{d_0} \equiv a^{d_k} \dots a^{d_1} a^{d_0} = a^{d_k + \dots + d_1 + d_0} = a^{\Sigma(h)} \pmod p$.
+Маємо 
+\[
+h = a_k p^k + \dots + a_1 p + a_0. 
+\]
+За малою теоремою Ферма відомо, що $a^p \equiv a \pmod p$, внаслідок чого $a^{d_i p^i} \equiv a^{d_i} \pmod p$. Отже,
+\begin{gather*}
+a^h = a^{d_k p^k} a^{d_1 p} a^{d_0} \equiv a^{d_k} \dots a^{d_1} a^{d_0} = a^{d_k + \dots + d_1 + d_0} = a^{\Sigma(h)} \pmod p. \qedhere
+\end{gather*}
 \end{proof}
 
 \begin{example}
 Знайти остачу від ділення $3^{12345}$ на $7$.\\
-Для початку розпишемо число $12345$ в $7$-ковій системі числення.\\
-$12345 = 1763 \cdot 7 + 4$;\\
-$1763 = 251 \cdot 7 + 6$;\\
-$251 = 35 \cdot 7 + 6$;\\
-$35 = 5 \cdot 7 + 0$;\\
-$5 = 0 \cdot 7 + 5$.\\
-Таким чином, $12345 = (50664)_7$. За щойно доведеною теоремою,\\
-$3^{12345} \equiv 3^{5 + 0 + 6 + 6 + 4} = 3^{21} \pmod 7$.\\
-Можна повторити процедуру та розписати $21$ в $7$-кову систему числення. Отримаємо $21 = (30)_7$, а звідси $3^{21} \equiv 3^{3+0} = 27 \equiv 6 \pmod 7$.\\
+Для початку розпишемо число $12345$ в $7$-ковій системі числення:
+\begin{gather*}
+12345 = 1763 \cdot 7 + 4;\\
+1763 = 251 \cdot 7 + 6;\\
+251 = 35 \cdot 7 + 6;\\
+35 = 5 \cdot 7 + 0;\\
+5 = 0 \cdot 7 + 5.
+\end{gather*}
+Таким чином, $12345 = (50664)_7$. За рівнянням \eqref{eq:congruence_using_base_representation} маємо
+\[
+3^{12345} \equiv 3^{5 + 0 + 6 + 6 + 4} = 3^{21} \pmod 7.
+\]
+Можна повторити процедуру та розписати $21$ в $7$-кову систему числення. Отримаємо $21 = (30)_7$, а звідси 
+\[
+3^{21} \equiv 3^{3+0} = 27 \equiv 6 \pmod 7.
+\]
 Остаточно отримали $3^{12345} \equiv 6 \pmod 7$.
 \end{example}
 
@@ -2234,8 +2446,8 @@ $10^{\frac{\varphi(11)}{\gcd(4,\varphi(11))}} = 10^{\frac{10}{\gcd(4,10)}} = 10^
 \end{example}
 \newpage
 
-\section{Квадратичний закон взаємності}
-\subsection{Квадратичні лишки}
+\section{Квадратичні лишки}
+\subsection{Вступ до квадратичних лишків}
 \begin{definition}
 Число $a \neq 0$ називається \textbf{квадратичним лишком} $\pmod n$, якщо існує розв'язок рівняння
 \begin{align*}
@@ -2285,6 +2497,8 @@ Michael Penn допустився помилки під час визначен�
 Деякі автори вимагають додаткову умову $\gcd(a,n) = 1$ під час означення квадратичного лишка.
 \end{remark}
 
+%Example taken from MathMajor
+\iffalse
 \begin{example}[Більш цікава задача]
 Знайти всі $m,n \in \mathbb{N}$, для яких виконується рівність: $1! + 2! + \dots + n! = m^2$.\\
 Запишемо ліву частину за модулем $5$ -- отримаємо при $n \geq 4$:\\
@@ -2296,6 +2510,7 @@ $n = 2$ маємо $3 = m^2$, але розв'язків в натуральни
 $n = 3$ маємо $9 = m^2 \implies m = 3$.\\
 Отже, $(m,n) \in \{(1,1),(3,3)\}$ -- єдина пара розв'язків.
 \end{example}
+\fi
 
 \begin{theorem}
 Задано $p$ -- непарне просте число. Тоді в кожній скороченій системі лишків всього $\dfrac{p-1}{2}$ квадратичних лишків $\!\! \pmod p$ та $\dfrac{p-1}{2}$ квадратичних нелишків $\!\! \pmod p$.
@@ -2380,7 +2595,7 @@ $a$ -- квадратичний лишок $\pmod n \implies a^{\frac{\varphi(n)
 \item $\left( \dfrac{1}{p} \right) = 1$;
 \item $\left( \dfrac{-1}{p} \right) = \begin{cases} 1, & p \equiv 1 \pmod 4 \\ -1, & p \equiv 3 \pmod 4 \end{cases}$.
 \end{enumerate}
-\textit{В принципі, довести неважко.}
+\textit{Усі випливають з критерія Ойлера. У принципі, довести неважко.}
 \end{corollary}
 
 \begin{example}
@@ -2395,8 +2610,17 @@ $\boxed{=} \left( \dfrac{3}{23} \right) = 3^{11} = 3^2 (3^3)^3 \equiv 9 \cdot 4^
 \begin{example}
 Якщо $a$ -- квадратичний лишок $\!\! \pmod p$, де $p$ -- непарне просте, довести:\\
 $(p-a)$ -- квадратичний лишок $\!\! \pmod p \iff p \equiv 1 \pmod 4$.\\
-Дійсно, $\left( \dfrac{p-a}{p} \right) \overset{p-a \equiv -a}{=} \left( \dfrac{-a}{p} \right) = \left( \dfrac{-1}{p} \right) \left( \dfrac{a}{p} \right) \overset{a \text{-- лишок}}{=} \left( \dfrac{-1}{p} \right)$.\\
+Дійсно, $\left( \dfrac{p-a}{p} \right) \overset{p-a \equiv -a}{=} \left( \dfrac{-a}{p} \right) = \left( \dfrac{-1}{p} \right) \left( \dfrac{a}{p} \right) \overset{a \text{ -- лишок}}{=} \left( \dfrac{-1}{p} \right)$.\\
 Тоді $\left( \dfrac{p-a}{p} \right) =1 \iff p \equiv 1 \pmod 4$.
+\end{example}
+
+\begin{example}
+Нехай $p$ -- непарне просте число та $a$, де $p \nmid a$. Розглянемо діофантове рівняння нижче.\\
+$x^2 + py + a = 0$ має цілий розв'язок $(x_0,y_0) \iff \left( \dfrac{-a}{p} \right) = 1$.
+\bigskip \\
+\rightproof Дано: $x_0^2 + py_0^2 + a = 0$, тобто є розв'язок. Звідси $0 = x_0^2 + py_0 + a \equiv x_0^2 + a \pmod p$. Звідси випливає, що $x_0^2 \equiv -a \pmod p$, тобто $(-a)$ -- квадратичний лишок $\!\! \pmod p$. Отже, $\left( \dfrac{-a}{p} \right) = 1$.
+\bigskip \\
+\leftproof Дано: $\left( \dfrac{-a}{p} \right) = 1$. Значить, існує розв'язок $x^2 \equiv -a \pmod p$. Позначимо його за $x_0$. Звідси $x_0^2 + a = pk$ для деякого $k \in \mathbb{Z}$. Звідси $x_0^2 - pk + a = 0$. Якщо позначити $y_0 = -k$, то отримуємо бажане.  
 \end{example}
 
 %An important example how to find quadratic residues based on having a primitive root
@@ -2411,7 +2635,17 @@ $(p-a)$ -- квадратичний лишок $\!\! \pmod p \iff p \equiv 1 \pm
 \textit{Випливає з того факту, що кількість квадратичних лишків та нелишків однакова.}
 \end{theorem}
 
-\subsection{Квадратичний закон взаємності}
+\begin{theorem}
+Кількість простих чисел формату $4k+1$ -- нескінченна.
+\end{theorem}
+
+\begin{proof}
+!Припустимо, що їх скінченна кількість. Маємо лише $p_1,p_2,\dots,p_k$ -- всі прості числа формату $4k+1$. Іншими словами, всі вони $\equiv 1 \pmod 4$.\\
+Розглянемо число $N = (2p_1\dots p_k)^2 + 1$. Воно за припущенням буде складеним. Також $N$ -- непарне, тож існує непарне просте число $p \mid N$. Звідси $N \equiv 0 \pmod p$, тобто $(2p_1 \dots p_k)^2 \equiv -1 \pmod p$. Отже, $-1$ -- квадратичний лишок $\!\! \pmod p$, тобто $\left( \dfrac{-1}{p} \right) = 1$. Але даний символ Лежандра одиниця, якщо $p \equiv 1 \pmod 4$. Висновок: просте число $p = p_i$ -- один з простих чисел в списку вище.\\
+$p_i \mid N$ та $p_i \mid ( 2 p_1 \dots p_k)^2$, значить $p_i \mid 1$ -- суперечність!
+\end{proof}
+
+\subsection{Закон квадратичної взаємності}
 \begin{lemma}[Лема Гауса]
 Задано $p$ -- непарне просте число та таке $a$, що $p \nmid a$. Позначимо $n$ -- кількість чисел зі списка $a,2a,\dots, \dfrac{p-1}{2}a$, чиї остачі при діленні на $p$ більші за $\dfrac{p}{2}$. Тоді $\left( \dfrac{a}{p} \right) = (-1)^n$.
 \end{lemma}
@@ -2517,16 +2751,21 @@ $\left( \dfrac{p}{q} \right) \left( \dfrac{q}{p} \right) = (-1)^{t_1} (-1)^{t_2}
 $\left( \dfrac{p}{q} \right) \left( \dfrac{q}{p} \right) = \begin{cases} 1, & p \equiv 1 \pmod 4 \text{ або } q \equiv 1 \pmod 4 \\ -1, & p \equiv 3 \pmod 4 \text{ та } q \equiv 3 \pmod 4 \end{cases}$.
 \end{corollary}
 
+\begin{remark}
+Практичніше буде використовувати такі зауваження:\\
+якщо $p \equiv 1 \pmod 4$ або $q \equiv 1 \pmod 4$, то за наслідком $\left( \dfrac{p}{q} \right) = \left( \dfrac{q}{p} \right)$;\\
+якщо $p \equiv 3 \pmod 4$ та $q \equiv 3 \pmod 4$, то за наслідком $\left( \dfrac{p}{q} \right) = -\left( \dfrac{q}{p} \right)$.
+\end{remark}
+
 \begin{example}
 Обчислити $\left( \dfrac{-79}{101} \right)$.\\
 Зауважимо, що $-79 \equiv 22 \pmod{101}$, тож\\
  $\left( \dfrac{-79}{101} \right) = \left( \dfrac{22}{101} \right) = \left( \dfrac{2}{101} \right) \left( \dfrac{11}{101} \right) \boxed{=}$\\
-Далі треба побачити, що $101 \equiv -3 \pmod 8$, а тому $\left( \dfrac{2}{101} \right) = -1$\\
-$\boxed{=} - \left( \dfrac{11}{101} \right) \boxed{=}$\\
-Я ще заздалегідь зауважу, що $11 \equiv 3 \pmod 4$, але $101 \equiv 3 \pmod 1$. Значить, $\left( \dfrac{11}{101} \right) \left( \dfrac{101}{11} \right) = 1$. Це суттєво спростить обчислення ось так:\\
-$\boxed{=} - \left( \dfrac{11}{101} \right) \cdot \left( \dfrac{11}{101} \right) \left( \dfrac{101}{11} \right) = -\left( \dfrac{101}{11} \right) = -\left( \dfrac{2}{11} \right) = -(-1) = 1$.
+Далі треба побачити, що $101 \equiv -3 \pmod 8$, а тому $\left( \dfrac{2}{101} \right) = -1$;\\
+$\boxed{=} - \left( \dfrac{11}{101} \right) \overset{101 \equiv 1 \pmod 4}{=} -\left( \dfrac{101}{11} \right) = -\left( \dfrac{2}{11} \right) \overset{11 \equiv 3 \pmod 8}{=} -(-1) = 1$.
 \end{example}
 
+\iffalse
 \begin{example}
 З'ясувати, при яких простих числах $p>3$ число $3$ буде квадратичним лишком $\!\! \pmod p$.\\
 Перефразую питання: при яких $p$ вираз $\left( \dfrac{3}{p} \right) = 1$?\\
@@ -2538,6 +2777,7 @@ $\left( \dfrac{3}{p} \right) = \begin{cases} +\left( \dfrac{p}{3} \right), & p \
 2. $\left( \dfrac{3}{p} \right) = -\left( \dfrac{p}{3} \right) = -(-1) = 1$, це працює при $\begin{cases} p \equiv 3 \pmod 4 \\ p \equiv 1 \pmod 3 \end{cases}$. \\Інакше кажучи, $p \equiv 11 \pmod {12}$.\\
 Резюмуючи, $\left( \dfrac{3}{p} \right) = 1$ при $p \equiv \pm 1 \pmod {12}$.
 \end{example}
+\fi
 
 \begin{example}
 Довести, що $397$ -- просте число.\\
@@ -2564,6 +2804,159 @@ $\left( \dfrac{-2}{p} \right) = \begin{cases} 1, & p \equiv 1,3 \pmod 8 \\ -1, &
 Отже, якщо $p \mid N$, то обов'язково $p \equiv 1,3 \pmod 8$. Серед цих простих чисел існує просте $q$, для якого якраз $q \equiv 3 \pmod 8$. Бо якби абсолютно всі прості числа були $\equiv 1 \pmod 8$, то тоді число $N \equiv 1 \pmod 8$, якщо $N$ розкласти в добуток простих чисел, що суперечить нашій умові.\\
 Отже, принаймні якийсь $q \equiv 3 \pmod 8$, але тоді $q = p_j$. Отже, \\
 $p_j \mid N, p_j \mid (p_1\dots p_n)^2 \implies p_j \mid 2 \implies p_j = 2$. Суперечність!
+\end{proof}
+
+\subsection{Всі можливі прості числа, при яких деяке число -- квадратичний лишок}
+Нехай $a \in \mathbb{N}$. Поставимо таке питання: при яких простих $p$ число $a$ буде квадратичним лишком за $\!\! \pmod {p}$?\\
+Почнемо з випадку, коли $a = q$ -- просте число.
+
+\begin{theorem}
+Нехай $q \equiv 1 \pmod 4$. Тоді\\
+$q$ -- квадратичний лишок $\!\! \pmod p \iff p \equiv r \pmod {q}$, де $r$ -- квадратичний лишок $\pmod q$. 
+\end{theorem}
+
+\begin{proof}
+$q$ -- квадратичний лишок $\!\! \pmod p \iff  \left( \dfrac{q}{p} \right) = 1 \overset{\substack{\text{з-н квадратичної} \\ \text{взаємності}}}{\iff} \\ \iff \left( \dfrac{p}{q} \right) = 1 \iff p$ -- квадратичний лишок $\!\! \pmod q \iff p \equiv r \pmod q$, де $r$ -- квадратичний лишок $\pmod q$.
+\end{proof}
+
+\begin{example}
+Розглянемо $q = 5$, яке потрапляє в умову $q \equiv 1 \pmod 4$. Ми вже знаємо, при яких $p$ це число $q$ буде квадратичним лишком $\!\! \pmod p$. Нам треба взяти всі квадратичні лишки за $\!\! \pmod q$, це будуть наші $p$.\\
+За $\!\! \pmod q$, тобто $\!\! \pmod 5$ у нас числа $1,4$ -- квадратичні лишки.
+\bigskip \\
+Отже, $\left( \dfrac{5}{p} \right) = \begin{cases} 1, & p \equiv 1 \pmod 5 \text{ або } p \equiv 4 \pmod 5 \\ -1, & p \equiv 2 \pmod 5 \text{ або } p \equiv 3 \pmod 5  \end{cases}$. 
+\end{example}
+
+\begin{theorem}
+Нехай $q \equiv 3 \pmod 4$. Тоді\\
+$q$ -- квадратичний лишок $\!\! \pmod p \iff p \equiv \pm b^2 \pmod {4q}$, де $b$ -- непарне число, причому $q \nmid b$. 
+\end{theorem}
+
+\begin{remark}
+Окремо зроблю вставку. Нехай $q \equiv 3 \pmod 4$. Тоді \\ $s$ -- квадратичний нелишок $\!\!\pmod q \iff (-s)$ -- квадратичний лишок $\!\!\pmod q$.
+\end{remark}
+
+\begin{proof}
+\rightproof Дано: $q$ -- квадратичний лишок $\!\! \pmod p$, тобто $\left( \dfrac{q}{p} \right) = 1$. Закон про квадратичну взаємність каже, що $\left( \dfrac{q}{p} \right) = 1 = (-1)^{\frac{p-1}{2}} \left( \dfrac{p}{q} \right)$. Існують два випадки, які треба розглянути ретельно.
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Нехай $(-1)^{\frac{p-1}{2}} = -1$, а також $\left( \dfrac{p}{q} \right) = -1$. Із цих умов випливають, що $p \equiv 3 \pmod 4$, а також $p$ -- нелишок $\!\! \pmod q$. Але за зауваженням $(-p)$ буде лишком $\!\! \pmod q$, тож існує число $b$, для якого $b^2 \equiv -p \pmod q$. Можемо припускати, що $b$ -- непарне. Адже якщо $b$ -- парне, то замінимо на $b' = b+q$. Дане припущення дає нам $b^2 \equiv 1 \pmod 4$, тобто $p \equiv 3 \equiv -b^2 \pmod 4$. Оскільки ще $p \equiv -b^2 \pmod q$, то звідси $p \equiv -b^2 \pmod {4q}$.
+
+\item Нехай $(-1)^{\frac{p-1}{2}} = 1$, а також $\left( \dfrac{p}{q} \right) = 1$. Із двох умов випливають, що $p \equiv 1 \pmod 4$, а також $p$ -- квадратичний лишок $\!\! \pmod q$, тобто існує $b$ (яке аналогічно припускається як непарне), для якого $p \equiv b^2 \pmod q$. Тоді миттєво $p \equiv b^2 \pmod {4q}$. 
+\end{enumerate}
+
+\leftproof Дано: $p \equiv \pm b^2 \pmod {4q}$, де $b$ -- непарне.\\
+Якщо $p \equiv b^2 \pmod {4q}$, то звідси $\begin{cases} p \equiv b^2 \overset{b \text{ -- непарне}}{\equiv} 1 \pmod 4 \\ p \equiv b^2 \pmod q \end{cases}$. Перше рівняння каже, що $(-1)^{\frac{p-1}{2}} = 1$, а друге -- що $\left( \dfrac{p}{q} \right) = 1$. Тоді за квадратичною взаємністю $\left( \dfrac{q}{p} \right) = 1$.\\
+Якщо $p \equiv -b^2 \pmod {4q}$, то десь аналогічно $\left( \dfrac{q}{p} \right) = 1$.
+\end{proof}
+
+\begin{example}
+Розглянемо число $q = 3$, яке потрапляє в умову $q \equiv 3 \pmod 4$. Ми вже знаємо, при яких $p$ це число $q$ буде квадратичним лишком $\!\! \pmod p$. Нам треба взяти всі можливі $b^2$ за $\!\! \pmod {4q}$, тобто $\!\! \pmod {12}$, де $b$ -- непарне число, яке не ділиться на $3$. Числа $1^2,5^2,7^2,11^2$ -- всі вони $\equiv 1 \pmod {12}$.
+\bigskip \\
+Отже, $\left( \dfrac{3}{p} \right) = \begin{cases} 1, & p \equiv \pm 1 \pmod {12} \\ -1, & p \equiv \pm 5 \pmod {12} \end{cases}$.
+\end{example}
+
+\subsection{Символ Якобі}
+\begin{definition}
+Нехай $a$ -- будь-яке число та $b$ -- непарне додатне число, нехай його розклад $b = p_1 p_2 \dots p_m$ (тут не обов'язково різні).\\
+\textbf{Символ Якобі} визначається таким чином:
+\begin{align*}
+\left( \dfrac{a}{b} \right) = \left( \dfrac{a}{p_1} \right) \left( \dfrac{a}{p_2} \right) \dots \left( \dfrac{a}{p_m} \right)
+\end{align*}
+У правій частині стоять символи Лежандра за кожним простим.
+\end{definition}
+
+\begin{proposition}
+Нехай символ Якобі $\left( \dfrac{a}{b} \right) = -1$. Тоді $a$ -- квадратичний нелишок $\!\! \pmod b$.
+\textit{Вправа: довести.}
+\end{proposition}
+
+\begin{remark}
+Якщо символ Якобі $\left( \dfrac{a}{b} \right) = 1$, то \textcolor{red}{не обов'язково} $a$ -- квадратичний лишок $\!\! \pmod b$.
+\end{remark}
+
+\begin{example}
+Зокрема $\left( \dfrac{2}{15} \right) = \left( \dfrac{2}{3} \right) \left( \dfrac{2}{5} \right) = (-1)(-1) = 1$. Проте можна перевірити, що $2$ -- квадратичний нелишок $\!\! \pmod {15}$.
+\end{example}
+
+\begin{proposition}[Властивості]
+Справедливе наступне:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $a_1 \equiv a_2 \pmod b \implies \left( \dfrac{a_1}{b} \right) = \left( \dfrac{a_2}{b} \right)$;
+\item $\left( \dfrac{a_1 a_2}{b} \right) = \left( \dfrac{a_1}{b} \right) \left( \dfrac{a_2}{b} \right)$;
+\item $\left( \dfrac{a}{b_1 b_2} \right) = \left( \dfrac{a}{b_1}\right) \left( \dfrac{a}{b_1}\right)$.
+\end{enumerate}
+\textit{Перші два випливають з властивостей символа Лежандра, третя легко доводиться.}
+\end{proposition}
+
+\begin{proposition}
+$\left( \dfrac{-1}{b} \right) = (-1)^{\frac{b-1}{2}}$.
+\end{proposition}
+
+\begin{proof}
+Нехай $b = p_1 \dots p_m$ -- розклад на прості множники (не обов'язково різні). Тоді\\
+$\left( \dfrac{-1}{b} \right) = \left( \dfrac{-1}{p_1} \right) \dots \left( \dfrac{-1}{p_m}\right) = (-1)^{\frac{p_1-1}{2}} \dots (-1)^{\frac{p_m-1}{2}} = (-1)^{\frac{p_1 -1}{2} + \dots + \frac{p_m -1}{2}} \textcolor{red}{\overset{?}{=}} \\ = (-1)^{\frac{p_1\dots p_m-1}{2}} = (-1)^{\frac{b-1}{2}}$.
+\bigskip \\
+Червона рівність буде правдивою, тільки треба довести наступне: якщо $r,s$ -- непарні числа, то $\dfrac{rs-1}{2} \equiv \dfrac{r-1}{2} + \dfrac{s-1}{2} \pmod 2$ (це можна узагальнити для кількох непарних простих за МІ).\\
+Оскільки $r,s$ -- прості, то $(r-1)(s-1) \equiv 0 \pmod 4$, а тому $rs - 1 \equiv (r-1) + (s-1) \pmod {4}$, а тому звідси $\dfrac{r-1}{2} + \dfrac{s-1}{2} \equiv \dfrac{rs-1}{2} \pmod {4}$.
+\end{proof}
+
+\begin{proposition}
+$\left( \dfrac{2}{b} \right) = (-1)^{\frac{b^2-1}{2}}$.
+\end{proposition}
+
+\begin{proof}
+Нехай $b = p_1 \dots p_m$ -- розклад на прості множники (не обов'язково різні). Тоді\\
+$\left( \dfrac{-2}{b} \right) = \left( \dfrac{-2}{p_1} \right) \dots \left( \dfrac{-2}{p_m}\right) = (-1)^{\frac{p^2_1-1}{8}} \dots (-1)^{\frac{p^2_m-1}{8}} = (-1)^{\frac{p^2_1 -1}{8} + \dots + \frac{p^2_m -1}{2}} \textcolor{red}{\overset{?}{=}} \\ = (-1)^{\frac{p^2_1\dots p^2_m-1}{8}} = (-1)^{\frac{b^2-1}{8}}$.
+\bigskip \\
+Червона рівність буде правдивою, тільки треба довести наступне: якщо $r,s$ -- непарні числа, то $\dfrac{r^2 s^2-1}{8} \equiv \dfrac{r^2-1}{8} + \dfrac{s^2-1}{8} \pmod 2$ (це можна узагальнити для кількох непарних простих за МІ).\\
+Оскільки $r,s$ -- непарні, то $4 \mid r^2-1$ та $4 \mid s^2-1$, тож $(r^2-1)(s^2-1) \equiv 0 \pmod {16}$, а тому $r^2s^2 - 1 \equiv (r^2-1) + (s^2-1) \pmod {16}$, а тому звідси $\dfrac{r^2-1}{8} + \dfrac{s^2-1}{8} \equiv \dfrac{rs-1}{8} \pmod {16}$.
+\end{proof}
+
+\begin{theorem}[Узагальнений квадратичний закон взаємності]
+Нехай $a,b$ -- обидва додатні непарні числа. Тоді $\left( \dfrac{a}{b} \right) \left( \dfrac{b}{a} \right) = (-1)^{\frac{a-1}{2} \frac{b-1}{2}}$.
+\end{theorem}
+
+\begin{proof}
+Нехай в нас такі розклади на прості (не обов'язково різні):\\
+$a = q_1 \dots q_l$;\\
+$b = p_1 \dots p_m$.\\
+Звідси $\left( \dfrac{a}{b} \right) \left( \dfrac{b}{a} \right) = \displaystyle\prod_i \prod_j \left( \dfrac{q_i}{p_j} \right) \left( \dfrac{p_j}{q_i} \right) = (-1)^{\sum_i \sum_j \frac{q_1-1}{2} \frac{p_j-1}{2}}$.\\
+Утім в позапопередньому твердженні був факт на останньому абзаці, який можна тут використати. Зокрема\\
+$\displaystyle\sum_i \sum_j \dfrac{q_i-1}{2} \dfrac{p_j-1}{2} \equiv \dfrac{a-1}{2} \sum_j \dfrac{p_j - 1}{2} \equiv \dfrac{a-1}{2} \dfrac{b-1}{2} \pmod 2$.\\
+Отже, $\left( \dfrac{a}{b} \right) \left( \dfrac{b}{a} \right) = (-1)^{\frac{a-1}{2} \frac{b-1}{2}}$.
+\end{proof}
+
+\begin{theorem}
+Нехай $a$ -- число, що не є квадратом. Тоді існує нескінченне число простих чисел $p$, для яких $a$ -- квадратичний нелишок $\!\!\pmod p$. 
+\end{theorem}
+
+\begin{remark}
+Досить цю теорему довести для випадку, коли $a$ -- вільне від квадратів.\\
+Якщо $\tilde{a}$ -- інше число, що не квадрат, то можна записати як $\tilde{a} = c^2 a$, де $a$ -- вільне від квадратів. Далі просто треба розписати через символ Якобі.
+\end{remark}
+
+\begin{proof}
+Отже, маємо $a$ -- вільне від квадратів, тобто $a = 2^e q_1 \dots q_n$, де всі $q_i$ -- різні непарні прості та $e \in \{0,1\}$.\\
+I. \textit{Випадок, коли $a > 2$.}\\
+Тобто тоді існує непарний простий множник в розкладі.\\
+!Припустимо, що в нас скінченна кількість простих чисел, для яких $a$ -- квадратичний нелишок $\pmod p$. Серед них оберемо ті прості числа, які не потрапили в розклад $a$. Це буде множина $\{l_1,\dots,l_k\}$.\\
+Оскільки $q_n$ -- непарне просте, то існує квадратичний нелишок $s$. Далі розглянемо систему:
+$\begin{cases}
+x \equiv 1 \pmod {l_j},\ j = 1,\dots,k \\
+x \equiv 1 \pmod {8} \\
+x \equiv 1 \pmod {q_i},\ i = 1,\dots,n-1 \\
+x \equiv s \pmod {q_n}
+\end{cases}$.\\
+За китайською теоремою про остачі маємо розв'язок системи $b$. Число $b$ непарне в силу другого рівняння (тому можна символ Якобі використати). Нехай $b = p_1 \dots p_m$ має такий розклад.\\
+Оскільки $b \equiv 1 \pmod {8}$, то $\left( \dfrac{2}{b} \right) = 1$ та $\left( \dfrac{q_i}{b} \right) = \left( \dfrac{b}{q_i} \right)$. Отже,\\
+$\left( \dfrac{a}{b}\right) = \left( \dfrac{2}{b} \right)^e \left( \dfrac{q_1}{b}\right) \dots \left( \dfrac{q_{n-1}}{b} \right) \left( \dfrac{q_n}{b} \right) = \left( \dfrac{b}{q_1} \right) \dots \left( \dfrac{b}{q_{n-1}} \right) \left( \dfrac{b}{q_n} \right) =
+\\ = \left( \dfrac{1}{q_1} \right) \dots \left( \dfrac{1}{q_{n-1}} \right) \left( \dfrac{s}{q_n} \right) = -1$.\\
+Із іншого боку, маємо\\
+$\left( \dfrac{a}{b} \right) = \left( \dfrac{a}{p_1} \right) \dots \left( \dfrac{a}{p_m} \right)$.\\
+Внаслідок чого $\left( \dfrac{a}{p_i} \right) = -1$ для деякого $i$. Із першого рівняння системи випливає, що жодний $l_j \nmid b$. Значить, жодний $l_j \neq p_i$, тоді звідси $p_i \notin \{l_1,\dots,l_k\}$.\\
+Отже, для вільного від квадрату числа $a > 2$ існує просте число $p \notin \{2,l_1,\dots,l_k\}$, для якого $\left( \dfrac{a}{p} \right) = -1$ -- суперечність!
+\bigskip \\
+II. \textit{Випадок, коли $a = 2$.}\\
+Робимо те аме припущення. Беремо схожу множину $\{l_1,\dots,l_k\}$, але викинемо $3$. Розглянемо число $b = 8 l_1 \dots l_k + 3$, яке не ділиться на $3$ та на жодний $l_j$. Оскільки $b \equiv 3 \pmod 8$, то $\left( \dfrac{2}{b}\right) = (-1)^{\frac{b^2-1}{8}} = -1$. Далі розкладемо $b = p_1 \dots p_m$. Тоді аналогічними міркуваннями отримуємо $\left( \dfrac{2}{p_i} \right) = -1$ для деякого $i$, тому так само $p_i \notin \{3,l_1,\dots,l_k\}$ -- така сама суперечність. 
 \end{proof}
 
 \subsection{Квадратні конгруенції}
@@ -3284,7 +3677,7 @@ $\dfrac{19}{51} = \dfrac{1}{\dfrac{51}{19}} = \dfrac{1}{2 + \dfrac{13}{19}} = \d
 
 \begin{remark}
 Репрезентація раціонального числа на ланцюговий дріб не єдина.\\
-Для $a_n > 1$ маємо $a_n = (a_n-1)+1 = (a_n-1) + \dfrac{1}{1}$\\
+Для $a_n > 1$ маємо $a_n = (a_n-1)+1 = (a_n-1) + \dfrac{1}{1}$.\\
 Отже, $[a_0;a_1,\dots,a_n] = [a_0;a_1,\dots,a_{n}-1,1]$.\\
 Для $a_n = 1$ маємо $a_{n-1} + \dfrac{1}{a_n} = a_{n-1}+1$.\\
 Отже, $[a_0;a_1,\dots,a_{n-1},a_n] = [a_0;a_1,\dots,a_{n-1},a_{n-1}+1]$.
@@ -3307,9 +3700,15 @@ $u_3 = 2 u_2$.\\
 $\dfrac{u_{n+1}}{u_n} = [1;1,1,\dots,1,1,1]$, причому тут $n+1$ одиничок.
 \end{example}
 
-Нехай задано $[a_0;a_1,\dots,a_n]$. Зробимо певні позначення:\\
-$C_k = [a_0;a_1,\dots,a_k], 0 \leq k \leq n$ - ланцюговий дріб, який отримали, відрізаючи розклад після $a_k$.\\
-Число $C_k$ хтось називає \textbf{$k$-им раціональним вкороченням} або \textbf{$k$-им підхідним дробом}. Англійською це називають \textbf{$k$-th convergent}.
+\begin{definition}
+Нехай задано $[a_0;a_1,\dots,a_n]$. Зробимо позначення:
+\begin{align*}
+C_k = [a_0;a_1,\dots,a_k],\ 0 \leq k \leq n,
+\end{align*}
+тобто $C_k$ -- ланцюговий дріб, що на початку, але без частини після $a_k$.\\
+Число $C_k$ хтось називає \textbf{$k$-им раціональним вкороченням} або \textbf{$k$-им підхідним дробом}. Англійською це називають \textbf{$k$-th convergent}.\\
+Мені подобається $C_k$ називати \textbf{$k$-тим збіжником}.
+\end{definition}
 
 \begin{example}
 Зокрема маємо $\dfrac{19}{51} = [0;2,1,2,6]$, тож звідси\\
@@ -3322,7 +3721,7 @@ $C_4 = [0;2,1,2,6] = \dfrac{19}{51}$.
 
 \begin{theorem}
 \label{convergent written as rational}
-Задано $[a_0;a_2,\dots,a_n]$ - ланцюговий дріб. Тоді $C_k = \dfrac{p_k}{q_k}$, де числа $p_k,q_k$ задаються так:\\
+Задано $[a_0;a_2,\dots,a_n]$ -- ланцюговий дріб. Тоді $C_k = \dfrac{p_k}{q_k}$, де числа $p_k,q_k$ задаються так:\\
 \begin{tabular}{ll}
 $p_0 = a_0$ & $q_0 = 1$\\
 $p_1 = a_1a_0 + 1$ & $q_1 = a_1$\\
@@ -3332,8 +3731,9 @@ $p_k = a_kp_{k-1}+p_{k-2}$ & $q_k = a_kq_{k-1} + q_{k-2}$.
 
 \begin{proof}
 База індукції при $C_0,C_1$ буде неважко.\\
-Крок індукції: нехай для $2 \leq m < n$ виконується \\ $C_m = [a_0;a_1,\dots,a_{m-1},a_m] =\dfrac{p_m}{q_m} = \dfrac{a_m p_{m-1} + p_{m-2}}{a_m q_{m-1} + q_{m-2}}$. Доведемо це твердження для $C_{m+1}$.\\
-Зазначимо, що $p_{m-1},q_{m-1},p_{m-2},q_{m-2}$ напряму залежать від $a_1,\dots,a_{m-1}$, але жодним чином не залежать від $a_m$. Отже, в рівнянні вище ми $a_m$ замінимо на $a_m + \dfrac{1}{a_{m+1}}$ - отримаємо:\\
+Крок індукції: нехай для будь-якого ланцюгового дробу та для $2 \leq m < n$ виконується теорема, зокрема й рівність \\ $C_m = [a_0;a_1,\dots,a_{m-1},a_m] =\dfrac{p_m}{q_m} = \dfrac{a_m p_{m-1} + p_{m-2}}{a_m q_{m-1} + q_{m-2}}$. \\
+Доведемо це твердження для $C_{m+1}$.\\
+Зазначимо, що $p_{m-1},q_{m-1},p_{m-2},q_{m-2}$ напряму залежать від $a_1,\dots,a_{m-1}$, але жодним чином не залежать від $a_m$. Отже, в рівнянні вище ми $a_m$ замінимо на $a_m + \dfrac{1}{a_{m+1}}$ -- отримаємо:\\
 $\left[a_0;a_1,\dots,a_{m-1},a_m+\dfrac{1}{a_{m+1}} \right] = \dfrac{\left( a_m + \dfrac{1}{a_{m+1}} \right)p_{m-1} + p_{m-2}}{\left( a_m + \dfrac{1}{a_{m+1}} \right)q_{m-1} + q_{m-2}}$.\\
 $\left[a_0;a_1,\dots,a_{m-1},a_m + \dfrac{1}{a_{m+1}}\right] = [a_0;a_1,\dots,a_{m-1},a_m,a_{m+1}] = C_{m+1}$.\\
 $C_{m+1} = \dfrac{\left( a_m + \dfrac{1}{a_{m+1}} \right)p_{m-1} + p_{m-2}}{\left( a_m + \dfrac{1}{a_{m+1}} \right)q_{m-1} + q_{m-2}} = \dfrac{a_{m+1}(a_m p_{m-1}+p_{m-2}) + p_{m-1}}{a_{m+1}(a_m q_{m-1} + q_{m-2}) + q_{m-1}} = \\ = \dfrac{a_{m+1}p_m + p_{m-1}}{a_{m+1}q_m + q_{m-1}}$.\\
@@ -3342,7 +3742,7 @@ $C_{m+1} = \dfrac{\left( a_m + \dfrac{1}{a_{m+1}} \right)p_{m-1} + p_{m-2}}{\lef
 
 \begin{theorem}
 \label{p_k q_k-1 - q_k p_k-1 = (-1)^k-1}
-Задано $[a_0;a_1,\dots,a_n]$ - ланцюговий дріб та $C_k$. Тоді \\ $p_k q_{k-1} - q_k p_{k-1} = (-1)^{k-1}$ при $1 \leq k \leq n$.
+Задано $[a_0;a_1,\dots,a_n]$ -- ланцюговий дріб та $C_k$. Тоді \\ $p_k q_{k-1} - q_k p_{k-1} = (-1)^{k-1}$ при $1 \leq k \leq n$.
 \end{theorem}
 
 \begin{proof}
@@ -3353,7 +3753,8 @@ $p_{m+1}q_m - q_{m+1}p_m = (a_{m+1}p_m + p_{m-1})q_m - (a_{m+1}q_m + q_{m-1})p_m
 \end{proof}
 
 \begin{corollary}
-$\gcd(p_k,q_k) = 1$ при $1 \leq k \leq n$.
+$\gcd(p_k,q_k) = 1$ при $1 \leq k \leq n$.\\
+Коротше, збіжник $C_k = \dfrac{p_k}{q_k}$ уже нескоротимий дріб.
 \end{corollary}
 
 \begin{example}
@@ -3369,7 +3770,7 @@ $43 \cdot 500 + 5 (-4250) = 250$.\\
 \end{example}
 
 \begin{lemma}
-Задано $[a_0;a_1,\dots,a_n]$ - ланцюговий дріб. Нехай $q_k$ - знаменник $C_k$. Тоді $q_{k-1} \leq q_k$, причому нерівність строга при $k > 1$.
+Задано $[a_0;a_1,\dots,a_n]$ -- ланцюговий дріб. Нехай $q_k$ -- знаменник $C_k$. Тоді $q_{k-1} \leq q_k$, причому нерівність строга при $k > 1$.
 \end{lemma}
 
 \begin{proof}
@@ -3380,7 +3781,7 @@ $q_{m+1} = a_{m+1}q_m + q_{m-1} > a_{m+1}q_m \geq 1 \cdot q_m = q_m$.\\
 \end{proof}
 
 \begin{theorem}
-Послідовність $\{C_{2k}, k \geq 0\}$ - строго зростає. Послідовність $\{C_{2k+1}, k \geq 0\}$ - строго спадає.
+Послідовність $\{C_{2k}, k \geq 0\}$ -- строго зростає. Послідовність $\{C_{2k+1}, k \geq 0\}$ -- строго спадає.
 \end{theorem}
 
 \begin{proof}
@@ -3426,14 +3827,14 @@ a_0 + \dfrac{1}{a_1 + \dfrac{1}{a_2 + \dfrac{1}{\ddots }}},
 \end{proposition}
 
 \begin{proof}
-Із попереднього підрозділу, маємо такі ланцюги нерівностей\\
+Із попереднього підрозділу, маємо такий ланцюг нерівностей:\\
 $C_0 < C_2 < C_4 < \dots < C_{2n} < C_{2n+1} < \dots < C_5 < C_3 < C_1$.\\
-Таким чином, послідовність $\{C_{2n}, n \geq 1\}$ не лише монотонно зростає, а ще й обмежена сверху числом $C_1$; послідовність $\{C_{2n+1}, n \geq 1\}$ не лише монотонно спадає, а ще й обмежена знизу числом $C_0$. У такому разі обидва мають границю за Вейєрштрассом. \\
-Позначимо $\alpha = \displaystyle\lim_{n \to \infty} C_{2n}$ та $\alpha' = \displaystyle\lim_{n \to \infty} C_{2n+1}$. Зауважимо, що $\alpha' \leq C_{2n+1}$ та $\alpha \geq C_{2n}$. Отже, маємо\\
+Таким чином, послідовність $\{C_{2n}, n \geq 1\}$ не лише монотонно зростає, а ще й обмежена сверху числом $C_1$; послідовність $\{C_{2n+1}, n \geq 1\}$ не лише монотонно спадає, а ще й обмежена знизу числом $C_0$. Отже, обидва мають границю за Ваєрштрасом: $\alpha = \displaystyle\lim_{n \to \infty} C_{2n}$ та $\alpha' = \displaystyle\lim_{n \to \infty} C_{2n+1}$. \\
+Зауважимо, що $\alpha' \leq C_{2n+1}$ та $\alpha \geq C_{2n}$. Отже, маємо\\
 $\alpha' - \alpha \leq C_{2n+1} - C_{2n} = \dfrac{p_{2n+1}}{q_{2n+1}} - \dfrac{p_{2n}}{q_{2n}} = \dfrac{1}{q_{2n}q_{2n+1}}$.\\
 А тому звідси випливає, що\\
 $0 \leq |\alpha'-\alpha| \leq \dfrac{1}{q_{2n}q_{2n+1}} < \dfrac{1}{q_{2n}^2}$.\\
-Зрозуміло, що $q_k$ строго зростає, а тому й $q_{2n}$. Таким чином, $\forall \varepsilon > 0: \exists N: 0 \leq |\alpha'-\alpha| < \dfrac{1}{q_{2N}^2} < \varepsilon$. Таким чином, маємо $\alpha = \alpha'$. Звідси абсолютно всі часткові границі послідовності $\{C_n, n \geq 0\}$ дорівнюють $\alpha$, а тому звідси $\displaystyle\lim_{n \to \infty} C_n = \alpha$.
+Зрозуміло, що $q_k$ строго зростає, а тому й $q_{2n}$. Таким чином, $\forall \varepsilon > 0: \exists N: 0 \leq |\alpha'-\alpha| < \dfrac{1}{q_{2N}^2} < \varepsilon$. Звідси маємо $\alpha = \alpha'$. Звідси абсолютно всі часткові границі послідовності $\{C_n, n \geq 0\}$ дорівнюють $\alpha$, а тому звідси $\displaystyle\lim_{n \to \infty} C_n = \alpha$.
 \end{proof}
 
 \begin{example}
@@ -3444,15 +3845,6 @@ $x = \displaystyle\lim_{n \to \infty} \dfrac{u_{n+1}}{u_n} = \lim_{n \to \infty}
 Отже, $[1;1,1,1,\dots] = \dfrac{1+\sqrt{5}}{2}$.
 \end{example}
 
-\begin{definition}
-\textbf{Періодичним} нескінченним ланцюговим дробом назвемо ось це:
-\begin{align*}
-[a_0; a_1,\dots,a_m,b_1,\dots,b_n,b_1,\dots,b_n,b_1,\dots,b_n,\dots]
-\end{align*}
-Позначення: $[a_0;a_1,\dots,a_m, \overline{b_1,\dots,b_n}]$.\\
-$b_1,\dots,b_n$ називають тут \textbf{періодом}, а число $n$ називають \textbf{довжиною} даного періода.
-\end{definition}
-
 \begin{theorem}
 $[a_0;a_1,\dots] \not\in \mathbb{Q}$.
 \end{theorem}
@@ -3461,13 +3853,12 @@ $[a_0;a_1,\dots] \not\in \mathbb{Q}$.
 Позначимо $x = [a_0;a_1,\dots]$.\\
 !Припустимо, що $x \in \mathbb{Q}$, тобто $x = \dfrac{a}{b}$. Із попереднього твердження, $C_n \leq x \leq C_{n+1}$, а тому\\
 $0 < |x-C_n| < |C_{n+1}-C_n| = \left| \dfrac{p_{n+1}}{q_{n+1}} - \dfrac{p_n}{q_n} \right| = \dfrac{1}{q_n q_{n+1}}$.\\
-$0 < \left| \dfrac{a}{b} - \dfrac{p_n}{q_n} \right| < \dfrac{1}{q_n q_{n+1}}$\\
-$0 < |aq_n - bp_n| < \dfrac{b}{q_{n+1}}$.\\
+$0 < \left| \dfrac{a}{b} - \dfrac{p_n}{q_n} \right| < \dfrac{1}{q_n q_{n+1}} \implies 0 < |aq_n - bp_n| < \dfrac{b}{q_{n+1}}$.\\
 Оскільки $q_k$ строго зростає, то знайдеться номер $N$, щоб $\dfrac{b}{q_{N+1}} < 1$, а тому $0 < |aq_n - bp_n| < 1$. Проте при $a,b,q_n,p_n \in \mathbb{Z}$ отримали суперечність! Бо в середині модуля ціле число, яке не може мати таку оцінку.
 \end{proof}
 
 \begin{theorem}
-Задані $[a_0;a_1,\dots] = [b_0;b_1,\dots]$ - два нескінченні ланцюгові дроби. Тоді $a_n = b_n, n \geq 0$.
+Задані $[a_0;a_1,\dots] = [b_0;b_1,\dots]$ -- два нескінченні ланцюгові дроби. Тоді $a_n = b_n, n \geq 0$.
 \end{theorem}
 
 \begin{remark}
@@ -3483,13 +3874,9 @@ $a_0 + \dfrac{1}{[a_1;a_2,\dots]} = x = b_0 + \dfrac{1}{[b_1;b_2,\dots]}$.\\
 А далі повторюються буквально ті самі кроки, що приводить до рівності $a_n = b_n, n \geq 0$.
 \end{proof}
 
-\begin{example}
-Знайдемо число, що є репрезентацією $x = [3;6,\overline{1,4}]$.\\
-Позначимо $x = [3;6,y]$, де $y = [\overline{1,4}] = [\overline{1,4},y]$. Тоді \\
-$y = 1 + \dfrac{1}{4+\dfrac{1}{y}} = \dfrac{5y+1}{4y+1}$.\\
-Отримаємо квадратне рівняння $4y^2-4y-1=0$, що має лише корінь $y = \dfrac{1+\sqrt{2}}{2}$ в силу того, що $y > 0$. Звідси маємо\\
-$x = 3 + \dfrac{1}{6 + \dfrac{1}{y}} = \dots = \dfrac{14-\sqrt{2}}{4}$.
-\end{example}
+\begin{corollary}
+Два різних ланцюгових дроби представляють два різних ірраціональних числа.
+\end{corollary}
 
 \begin{theorem}
 Будь-яке ірраціональне число можна розписати як нескінченний ланцюговий дріб єдиним чином.
@@ -3514,10 +3901,34 @@ $|x_0-C_n| = \dfrac{1}{(x_{n+1}q_n+q_{n-1})q_n} < \dfrac{1}{(a_{n+1}q_n + q_{n-1
 Знову $q_n$ строго зростає, а тому існує $\displaystyle\lim_{n \to \infty} C_n = [a_0;a_1,a_2,\dots] = x_0$.
 \end{proof}
 
+\begin{example}
+За даним алгоритмом можна показати наступне:\\
+$\pi = [3;7,15,1,292,\dots]$ -- тут взагалі певного патерну нема;\\
+$e = [2;1,2,1,1,4,1,1,6,1,1,8,\dots]$ -- нециклічний, але є патерн.
+\end{example}
+
 \begin{corollary}
 \label{if convergent, then estimation}
 $\left| x_0 - C_n \right| < \dfrac{1}{q_{n+1}q_n} < \dfrac{1}{q_{n}^2}$.
 \end{corollary}
+
+\subsection{Періодичний ланцюговий дріб}
+\begin{definition}
+\textbf{Періодичним} нескінченним ланцюговим дробом назвемо ось це:
+\begin{align*}
+[a_0; a_1,\dots,a_m,b_1,\dots,b_n,b_1,\dots,b_n,b_1,\dots,b_n,\dots]
+\end{align*}
+Позначення: $[a_0;a_1,\dots,a_m, \overline{b_1,\dots,b_n}]$.\\
+$b_1,\dots,b_n$ називають тут \textbf{періодом}, а число $n$ називають \textbf{довжиною} даного періода.
+\end{definition}
+
+\begin{example}
+Знайдемо число, що є репрезентацією $x = [3;6,\overline{1,4}]$.\\
+Позначимо $x = [3;6,y]$, де $y = [\overline{1,4}] = [\overline{1,4},y]$. Тоді \\
+$y = 1 + \dfrac{1}{4+\dfrac{1}{y}} = \dfrac{5y+1}{4y+1}$.\\
+Отримаємо квадратне рівняння $4y^2-4y-1=0$, що має лише корінь $y = \dfrac{1+\sqrt{2}}{2}$ в силу того, що $y > 0$. Звідси маємо\\
+$x = 3 + \dfrac{1}{6 + \dfrac{1}{y}} = \dots = \dfrac{14-\sqrt{2}}{4}$.
+\end{example}
 
 \begin{example}
 Розпишемо число $x = \sqrt{23}$ як нескінченний ланцюговий дріб за алгоритмом вище.\\
@@ -3532,17 +3943,15 @@ $x_4 = \dfrac{1}{x_3 - [x_3]} = \dfrac{7}{\sqrt{23} - 4} = 8 + (\sqrt{23}-4)$ & 
 $\sqrt{23} = [4;\overline{1,3,1,8}]$.
 \end{example}
 
-\begin{remark}
-Можна показати, що \\
-$x \not\in \mathbb{Q}$ має періодичний ланцюговий дріб $\iff$ $x$ має формат числа $r + s\sqrt{d}$, де $r,s \in \mathbb{Q}$ та $s \neq 0$, а також $d$ - не квадрат числа.
-\end{remark}
+\begin{theorem}
+$x \not\in \mathbb{Q}$ має періодичний ланцюговий дріб $\iff$ $x$ має формат числа $r + s\sqrt{d}$, де $r,s \in \mathbb{Q}$ та $s \neq 0$, а також $d$ -- вільне від квадратів.
+\end{theorem}
 
-\begin{example}
-Ще кілька прикладів:\\
-$\pi = [3;7,15,1,292,\dots]$ - тут взагалі певного патерну нема;\\
-$e = [2;1,2,1,1,4,1,1,6,1,1,8,\dots]$ - нециклічний, але є патерн.
-\end{example}
+\begin{definition}
+Число формата $r + s \sqrt{d}$ при $r,s \in \mathbb{Q},\ s \neq 0$ та $d$ -- вільне від квадрата, називають \textbf{квадратичне ірраціональним числом}.
+\end{definition}
 
+\subsection{Оцінки для ланцюгових дробів}
 \begin{lemma}
 Задано $C_n = \dfrac{p_n}{q_n}$, що взято від розкладу в ланцюговий дріб числа $x \not\in \mathbb{Q}$. Задані також $a,b \in \mathbb{Z}$, де $1 \leq b < q_{n+1}$. Тоді \\ $|q_nx - p_n| \leq |bx-a|$.
 \end{lemma}

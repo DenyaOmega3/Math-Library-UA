@@ -81,6 +81,12 @@
 \makeatother
 \newcommand{\symdif}{\,\triangle\,} % symmetric difference
 
+\newcommand\nospacebeforeitem{
+\vspace{-\topsep}
+\vspace{-\topsep}
+\vspace{-\topsep}
+}
+
     	
 \begin{document}
 \thispagestyle{empty}
@@ -92,61 +98,65 @@
 \section{Класи множин}
 \subsection{Основні класи множин}
 \begin{definition}
-Задано $X$ -- деяка множина та $\mathcal{K} \subset 2^X$ -- клас підмножин.\\
-Непорожній клас $\mathcal{K}$ називається \textbf{кільцем}, якщо
+Нехай $X$ -- деяка множина та $\mathcal{K} \subset 2^X$ -- непорожній клас підмножин.\\
+Клас $\mathcal{K}$ називається \textbf{кільцем}, якщо
 \begin{align*}
-\forall A,B \in \mathcal{K}: A \cup B \in \mathcal{K} \\
-\forall A,B \in \mathcal{K}: A \setminus B \in \mathcal{K}
+\forall A,B \in \mathcal{K}: A \cup B \in \mathcal{K}; \\
+\forall A,B \in \mathcal{K}: A \setminus B \in \mathcal{K}.
 \end{align*}
 \end{definition}
 
 \begin{proposition}[Властивості кільця]
-Задано $X$ та $\mathcal{K}$ -- кільце на цій множині. Тоді виконуються такі пункти:
+Нехай $X$ -- деяка множина та $\mathcal{K}$ -- кільце на цій множині. Тоді:
 \begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
 \item $\emptyset \in \mathcal{K}$;
 \item $\forall A,B \in \mathcal{K}: A \cap B \in \mathcal{K}$;
-\item $\forall A_k \in \mathcal{K}, k = \overline{1,n}: \displaystyle\bigcup_{k=1}^n A_k \in \mathcal{K}, \displaystyle\bigcap_{k=1}^n A_k \in \mathcal{K}$.
+\item $\forall A_k \in \mathcal{K},\ k = \overline{1,n}: \displaystyle\bigcup_{k=1}^n A_k \in \mathcal{K},\ \displaystyle\bigcap_{k=1}^n A_k \in \mathcal{K}$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-Покажемо виконання кожної властивості:
+\nospacebeforeitem
 \begin{enumerate}[wide=0pt,label={\arabic*)}]
 \item Оскільки $\mathcal{K}$ -- непорожня, то існує елемент $A \in \mathcal{K}$. Зокрема $A \setminus A = \emptyset \in \mathcal{K}$;
-\item $\forall A,B \in \mathcal{K}: A \cap B = A \setminus (A \setminus B)$. За умовою кільця, $A \setminus B \in \mathcal{K}$ та $A \in \mathcal{K}$, а тому $A \cap B \in \mathcal{K}$.
-\item Перше випливає з означення кільця, а друге випливає з властивості 2).
+\item $\forall A,B \in \mathcal{K}: A \cap B = A \setminus (A \setminus B)$. За умовою кільця $A \setminus B \in \mathcal{K}$ та $A \in \mathcal{K}$, а тому $A \cap B \in \mathcal{K}$.
+\item Перше випливає з означення кільця, а друге випливає з властивості 2). \qedhere
 \end{enumerate}
-Всі властивості доведені.
 \end{proof}
 
 \begin{definition}
-Задано $X$ -- деяка множина та $\mathcal{A} \subset 2^X$ -- клас підмножин.\\
-Непорожній клас $\mathcal{A}$ називається \textbf{алгеброю}, якщо
+Нехай $X$ -- деяка множина та $\mathcal{A} \subset 2^X$ -- непорожній клас підмножин.\\
+Клас $\mathcal{A}$ називається \textbf{алгеброю}, якщо
 \begin{align*}
-\mathcal{A} \text{ -- кільце} \\
-X \in \mathcal{A}
+\mathcal{A} \text{ -- кільце}; \\
+X \in \mathcal{A}.
 \end{align*}
 \end{definition}
 
 \begin{definition}
-Задано $X$ -- деяка множина та $\mathcal{P}$ -- клас підмножин.\\
-Непорожній клас $\mathcal{P}$ назвемо \textbf{півкільцем}, якщо
+Нехай $X$ -- деяка множина та $\mathcal{P}$ -- непорожній клас підмножин.\\
+Клас $\mathcal{P}$ назвемо \textbf{півкільцем}, якщо
 \begin{align*}
-\forall A,B \in \mathcal{P}: A \cap B \in \mathcal{P} \\
-\forall A,B \in \mathcal{P}: A \setminus B = \bigsqcup_{i=1}^n C_i,\ C_i \in \mathcal{P}
+\forall A,B \in \mathcal{P}: A \cap B \in \mathcal{P}; \\
+\forall A,B \in \mathcal{P}: A \setminus B = \bigsqcup_{i=1}^n C_i,\ C_i \in \mathcal{P}.
 \end{align*}
 \end{definition}
 
 \begin{remark}
-$\emptyset \in \mathcal{P}$, тому що в силу непорожньості $A \in \mathcal{P}$, а тому за другою умовою, з одного боку, $A \setminus A = \displaystyle\bigsqcup_{i=1}^n C_i$ при $C_i \in \mathcal{P}$; а з іншого боку, $A \setminus A = \emptyset$. Тому рівність виконується лише при $C_i = \emptyset \in \mathcal{P}$.
+$\emptyset \in \mathcal{P}$. 
+Дійсно, в силу непорожньості $A \in \mathcal{P}$, а тому за другою умовою, з одного боку, $A \setminus A = \displaystyle\bigsqcup_{i=1}^n C_i$ при $C_i \in \mathcal{P}$; а з іншого боку, $A \setminus A = \emptyset$. Тому рівність виконується лише при $C_i = \emptyset \in \mathcal{P}$.
 \end{remark}
 
 \begin{example}
-Розглянемо $\mathcal{P}_1 = \{ (a,b] \mid a,b \in \mathbb{R} \}$ -- клас підмножин $\mathbb{R}$. Воно утворює півкільце.\\
-Нехай $(a,b] \in \mathcal{P}_1$ та $(c,d] \in \mathcal{P}_1$. Тоді звідси $(a,b] \cap (c,d]$ кілька опцій:\\
-1) $(a,b] \cap (c,d] = \emptyset \in \mathcal{P}_1$, якщо ці напівінтервали не перетинаються;\\
-2) $(a,b] \cap (c,d] = (c,b] \in \mathcal{P}_1$, якщо (не втрачаючи загальності) $a < c < b < d$;\\
-3) $(a,b] \cap (c,d] = (c,d] \in \mathcal{P}_1$, якщо (не втрачаючи загальності) $(c,d] \subset (a,b]$.
+Клас \[
+\mathcal{P}_1 = \{ (a,b] \mid a,b \in \mathbb{R} \}
+\] підмножин $\mathbb{R}$ утворює півкільце.\\
+Справді, нехай $(a,b] \in \mathcal{P}_1$ та $(c,d] \in \mathcal{P}_1$. Тоді звідси $(a,b] \cap (c,d]$ має кілька опцій:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $(a,b] \cap (c,d] = \emptyset \in \mathcal{P}_1$, якщо ці напівінтервали не перетинаються;
+\item $(a,b] \cap (c,d] = (c,b] \in \mathcal{P}_1$, якщо (не втрачаючи загальності) $a < c < b < d$;
+\item $(a,b] \cap (c,d] = (c,d] \in \mathcal{P}_1$, якщо (не втрачаючи загальності) $(c,d] \subset (a,b]$.
+\end{enumerate}
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -187,46 +197,64 @@ $\emptyset \in \mathcal{P}$, тому що в силу непорожньост�
 \caption*{Відповідно зліва направо: 1), 2), 3).}
 \end{figure}
 \noindent
-Далі розглянемо $(a,b] \setminus (c,d]$. Знову кілька опцій:\\
-1) $(a,b] \setminus (c,d] = (a,b]$, якщо ці напівінтервали не перетинаються;\\
-2) $(a,b] \setminus (c,d] = (a,c]$, якщо (не втрачаючи загальності) $a < c < b < d$;\\
-3) $(a,b] \setminus (c,d] = (a,c] \sqcup (b,d]$, якщо (не втрачаючи загальності) $(c,d] \subset (a,b]$.\\
+Далі розглянемо $(a,b] \setminus (c,d]$. Знову кілька опцій:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $(a,b] \setminus (c,d] = (a,b]$, якщо ці напівінтервали не перетинаються;
+\item $(a,b] \setminus (c,d] = (a,c]$, якщо (не втрачаючи загальності) $a < c < b < d$;
+\item $(a,b] \setminus (c,d] = (a,c] \sqcup (b,d]$, якщо (не втрачаючи загальності) $(c,d] \subset (a,b]$.
+\end{enumerate}
 Усі вони розклалися не неперетинне об'єднання елементів з $\mathcal{P}_1$.\\
 Отже, $\mathcal{P}_1$ -- дійсно утворює півкільце.
 \end{example}
 
 \begin{theorem}
 \label{product_of_semirings_is_semiring}
-Задані $\mathcal{P}'$ та $\mathcal{P}''$ -- два півкільця на відповідних множинах $X_1,X_2$. Визначимо $\mathcal{P}' \times \mathcal{P}'' = \{ A_1 \times A_2 \mid A_1 \in \mathcal{P}', A_2 \in \mathcal{P}'' \}$. Тоді $\mathcal{P}' \times \mathcal{P}''$ буде півкільцем на множині $X_1 \times X_2$.
+Задані $\mathcal{P}'$ та $\mathcal{P}''$ -- два півкільця на відповідних множинах $X_1,X_2$. Визначимо 
+\[
+\mathcal{P}' \times \mathcal{P}'' = \{ A_1 \times A_2 \mid A_1 \in \mathcal{P}', A_2 \in \mathcal{P}'' \}.
+\] 
+Тоді $\mathcal{P}' \times \mathcal{P}''$ буде півкільцем на множині $X_1 \times X_2$.
 \end{theorem}
 
 \begin{proof}
-Нехай $A,B \in \mathcal{P}' \times \mathcal{P}''$, тобто $A = A_1 \times A_2$ та $B = B_1 \times B_2$, де $A_1,B_1 \in \mathcal{P}'$ та $A_2,B_2 \in \mathcal{P}''$.\\
-$A \cap B = (A_1 \times A_2) \cap (B_1 \times B_2) = (A_1 \cap B_1) \times (A_2 \cap B_2)$.\\
-Причому $A_1 \cap B_1 \in \mathcal{P}'$ та $A_2 \cap B_2 \in \mathcal{P}''$ за визначеннями півкілець. А за визначенням $\mathcal{P}' \times \mathcal{P}''$, звідси $A \cap B \in \mathcal{P}' \times \mathcal{P}''$.\\
-$A \setminus B = [(A_1 \setminus B_1) \times A_2] \sqcup [(A_1 \cap B_1) \times (A_2 \setminus B_2)]$ (вправа: довести рівність).\\
-Зауважимо, що $A_1 \setminus B_1 = \displaystyle\bigsqcup_{i=1}^n C_i$ та $A_2 \setminus B_2 = \displaystyle\bigsqcup_{k=1}^m D_k$, причому $C_i \in \mathcal{P}',D_k \in \mathcal{P}''$. Значить, рівність можна дописати:\\
-$A \setminus B = \displaystyle\bigsqcup_{i=1}^n (C_i \times A_2) \sqcup \bigsqcup_{k=1}^m ((A_1 \cap B_1) \times D_k)$.\\
+Нехай $A,B \in \mathcal{P}' \times \mathcal{P}''$, тобто $A = A_1 \times A_2$ та $B = B_1 \times B_2$, де $A_1,B_1 \in \mathcal{P}'$ та $A_2,B_2 \in \mathcal{P}''$. Тоді
+\[
+A \cap B = (A_1 \times A_2) \cap (B_1 \times B_2) = (A_1 \cap B_1) \times (A_2 \cap B_2).
+\]
+Причому $A_1 \cap B_1 \in \mathcal{P}'$ та $A_2 \cap B_2 \in \mathcal{P}''$ за визначеннями півкілець. А за визначенням $\mathcal{P}' \times \mathcal{P}''$ отримуємо, що $A \cap B \in \mathcal{P}' \times \mathcal{P}''$.\\
+\[
+A \setminus B = [(A_1 \setminus B_1) \times A_2] \sqcup [(A_1 \cap B_1) \times (A_2 \setminus B_2)].
+\] 
+\textit{(вправа: довести рівність)}. Зауважимо, що $A_1 \setminus B_1 = \displaystyle\bigsqcup_{i=1}^n C_i$ та $A_2 \setminus B_2 = \displaystyle\bigsqcup_{k=1}^m D_k$, причому тут $C_i \in \mathcal{P}',D_k \in \mathcal{P}''$. Значить, рівність можна дописати:\\
+\[
+A \setminus B = \displaystyle\bigsqcup_{i=1}^n (C_i \times A_2) \sqcup \bigsqcup_{k=1}^m ((A_1 \cap B_1) \times D_k).
+\]
 У нас записані елементи з $\mathcal{P}' \times \mathcal{P}''$, а сама множина $A \setminus B$ записалася як неперетинне об'єднання елементів з $\mathcal{P}' \times \mathcal{P}''$.\\
 Висновок: $\mathcal{P}' \times \mathcal{P}''$ задає півкільце на $X_1 \times X_2$.
 \end{proof}
 
 \begin{remark}
-Зрозуміло, що твердження працює для скінченного числа півкілець.
+Це твердження працює й для скінченного числа півкілець (не лише для двох).
 \end{remark}
 
 \begin{example}
-Зокрема $\mathcal{P}_1$ -- півкільце на $\mathbb{R}$. Визначимо нову множну $\mathcal{P}_d = \left\{ \displaystyle\prod_{i=1}^d (a_i,b_i] \mid a_i,b_i \in \mathbb{R} \right\}$. Тоді $\mathcal{P}_d$ буде півкільцем множини $\mathbb{R}^d$, просто тому що $\mathcal{P}_d = \mathcal{P}_1 \times \dots \times \mathcal{P}_1$.
+Зокрема ми вже знаємо, що $\mathcal{P}_1$ -- півкільце на $\mathbb{R}$. Визначимо 
+\[
+\mathcal{P}_d = \left\{ \displaystyle\prod_{i=1}^d (a_i,b_i] \mid a_i,b_i \in \mathbb{R} \right\}. 
+\]
+Тоді $\mathcal{P}_d$ буде півкільцем множини $\mathbb{R}^d$, просто тому що \[
+\mathcal{P}_d = \mathcal{P}_1 \times \dots \times \mathcal{P}_1.
+\]
 \end{example}
 
 \begin{remark}
 Будь-яке кільце $\mathcal{K}$ -- автоматично півкільце.\\
-Адже перша умова виконана за властивістю 2) кільця. А також за означенням, $A \setminus B = A \setminus B$, де $A \setminus B \in \mathcal{K}$ -- тобто цей елемент розписали не неперетинне об'єднання з одного елемента з даного класу.
+Адже перша умова виконана за властивістю 2) кільця. А також за означенням $A \setminus B = A \setminus B$, де $A \setminus B \in \mathcal{K}$ -- тобто цей елемент розписали не неперетинне об'єднання з одного елемента з даного класу.
 \end{remark}
 
 \begin{definition}
-Задано $X$ -- деяка множина та $\sigma \mathcal{K} \subset 2^X$ -- клас підмножин.\\
-Непорожній клас $\sigma \mathcal{K}$ називається \textbf{$\sigma$-кільцем}, якщо
+Нехай $X$ -- деяка множина та $\sigma \mathcal{K} \subset 2^X$ -- непорожній клас підмножин.\\
+Клас $\sigma \mathcal{K}$ називається \textbf{$\sigma$-кільцем}, якщо
 \begin{align*}
 \forall A_n \in \sigma\mathcal{K}, n \geq 1: \bigcup_{n=1}^\infty A_n \in \sigma\mathcal{K} \\
 \forall A,B \in \sigma\mathcal{K}: A \setminus B \in \sigma\mathcal{K}
@@ -234,7 +262,7 @@ $A \setminus B = \displaystyle\bigsqcup_{i=1}^n (C_i \times A_2) \sqcup \bigsqcu
 \end{definition}
 
 \begin{proposition}[Властивості $\sigma$-кільця]
-Задано $X$ та $\sigma\mathcal{K}$ -- $\sigma$-кільце на цій множині. Тоді виконуються такі пункти:
+Нехай $X$ -- деяка множина та $\sigma\mathcal{K}$ -- $\sigma$-кільце на цій множині. Тоді:
 \begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
 \item $\sigma \mathcal{K}$ -- буде (просто) кільецм;
 \item $\forall A_n \in \sigma\mathcal{K}, n \geq 1: \displaystyle\bigcap_{n=1}^\infty A_n \in \sigma\mathcal{K}$.
@@ -242,37 +270,56 @@ $A \setminus B = \displaystyle\bigsqcup_{i=1}^n (C_i \times A_2) \sqcup \bigsqcu
 \end{proposition}
 
 \begin{proof}
-Покажемо виконання кожної властивості:
+\nospacebeforeitem
 \begin{enumerate}[wide=0pt,label={\arabic*)}]
 \item Візьмемо $A,B \in \sigma \mathcal{K}$, тоді звідси $A \cup B = A \cup B \cup B \cup B \cup \dots \in \sigma \mathcal{K}$.
-\item $\forall A_n \in \sigma \mathcal{K}, n \geq 1: \displaystyle\bigcap_{n=1}^\infty A_n = A_1 \setminus \bigcup_{n=2}^\infty (A_1 \setminus A_n) \in \sigma \mathcal{K}$.
+\item $\forall A_n \in \sigma \mathcal{K}, n \geq 1: \displaystyle\bigcap_{n=1}^\infty A_n = A_1 \setminus \bigcup_{n=2}^\infty (A_1 \setminus A_n) \in \sigma \mathcal{K}$. \qedhere
 \end{enumerate}
-Всі властивості доведені.
 \end{proof}
 
 \begin{definition}
-Задано $X$ -- деяка множина та $\sigma\mathcal{A} \subset 2^X$ -- клас підмножин.\\
-Непорожній клас $\sigma\mathcal{A}$ називається $\sigma$-\textbf{алгеброю}, якщо
+Нехай $X$ -- деяка множина та $\sigma\mathcal{A} \subset 2^X$ -- непорожній клас підмножин.\\
+Клас $\sigma\mathcal{A}$ називається $\sigma$-\textbf{алгеброю}, якщо
 \begin{align*}
 \sigma\mathcal{A} \text{ -- $\sigma$-кільце} \\
 X \in \sigma\mathcal{A}
 \end{align*}
 \end{definition}
 
+\begin{example}
+Зокрема якщо $X$ -- деяка множина, то
+\begin{itemize}[nosep,wide=0pt]
+\item $\mathcal{H} = \{ \text{скінченні та зліченні підмножини $X$} \}$ -- $\sigma$-кільце.
+\item $\mathcal{H}' = \{ \text{скінченні та зліченні підмножини $X$} \} \cup \{ \text{їхні доповнення} \}$ -- $\sigma$-алгебра.
+\end{itemize}
+\end{example}
+
+\begin{example}
+Існує, так би мовити, тривіальна $\sigma$-алгебра $\mathcal{H} = \{\emptyset,X\}$ множини $X$.
+\end{example}
+
 \begin{definition}
 Задамо послідовність множин $\{A_n, n \geq 1\}$.\\
-Вона буде називатися \textbf{зростаючою}, якщо $A_{n+1} \supset A_n$. \\
-У такому випадку ми позначимо $\displaystyle\bigcup_{n=1}^\infty A_n \overset{\text{def.}}{=} \lim_{n \to \infty} A_n$.\\
-Вона буде називатися \textbf{спадною}, якщо $A_{n+1} \subset A_n$. \\
-У такому випадку ми позначимо $\displaystyle\bigcap_{n=1}^\infty A_n \overset{\text{def.}}{=} \lim_{n \to \infty} A_n$.\\
+Послідовність буде називатися \textbf{зростаючою}, якщо
+\begin{align*}
+A_{n+1} \supset A_n.
+\end{align*}
+У такому випадку ми позначимо $\displaystyle\bigcup_{n=1}^\infty A_n \overset{\text{def.}}{=} \lim_{n \to \infty} A_n$.
+\bigskip \\
+Послідовність буде називатися \textbf{спадною}, якщо
+\begin{align*}
+A_{n+1} \subset A_n.
+\end{align*}
+У такому випадку ми позначимо $\displaystyle\bigcap_{n=1}^\infty A_n \overset{\text{def.}}{=} \lim_{n \to \infty} A_n$.
+\bigskip \\
 Обидві послідовності множин будемо називати \textbf{монотонними}.
 \end{definition}
 
 \begin{definition}
-Задано $X$ -- деяка множина та $\mathcal{M} \subset 2^X$ -- клас підмножин.\\
-Непорожній клас $m$ називається \textbf{монотонним}, якщо
+Нехай $X$ -- деяка множина та $\mathcal{M} \subset 2^X$ -- непорожній клас підмножин.\\
+Клас $\mathcal{M}$ називається \textbf{монотонним}, якщо
 \begin{align*}
-\forall \{A_n \in \mathcal{M}, n \geq 1\} \text{ -- монотонна}: \displaystyle\lim_{n \to \infty} A_n \in \mathcal{M}
+\forall \{A_n \in \mathcal{M}, n \geq 1\} \text{ -- монотонна}: \displaystyle\lim_{n \to \infty} A_n \in \mathcal{M}.
 \end{align*}
 \end{definition}
 
@@ -282,35 +329,36 @@ X \in \sigma\mathcal{A}
 \end{theorem}
 
 \begin{proof}
-Нехай $A_n \in \mathcal{H}, n \geq 1$. Розглянемо послідовність множин $\{B_n, n \geq 1\}$, що задається таким чином:\\
-$B_1 = A_1$,\ $B_1 = A_1 \cup A_2$,\ $B_3 = A_1 \cup A_2 \cup A_3$, \dots\\
-Зауважимо, що $\{B_n \overset{!}{\in} \mathcal{H}\}$ зростає, а в силу монотонності, звідси $\displaystyle\bigcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty A_n \in \mathcal{P}$.\\
-Ну й якщо $A,B \in \mathcal{H}$, то за означенням кільце, $A \setminus B \in \mathcal{H}$.\\
+Нехай $A_n \in \mathcal{H}, n \geq 1$. Розглянемо послідовність множин $\{B_n, n \geq 1\}$, що задається таким чином:
+\begin{align*}
+B_1 = A_1,\quad B_2 = A_1 \cup A_2,\quad  B_3 = A_1 \cup A_2 \cup A_3, \quad \dots
+\end{align*}
+Зауважимо, що $\{B_n \overset{!}{\in} \mathcal{H}\}$ зростає, а в силу монотонності, звідси $\displaystyle\bigcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty A_n \in \mathcal{P}$. Ну й якщо $A,B \in \mathcal{H}$, то за означенням кільця $A \setminus B \in \mathcal{H}$.\\
 Висновок: $\mathcal{H}$ -- $\sigma$-кільце.
 \end{proof}
 
 \subsection{Породжені класи множин}
 \begin{definition}
-Задано $X$ -- множина та $\mathcal{H}$ -- непорожня множина.\\
+Нехай $X$ -- деяка множина та $\mathcal{H}$ -- непорожній клас.\\
 \textbf{Кільцем, породженим класом $\mathcal{H}$}, називається така множина:
 \begin{align*}
-k(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{\mathcal{K}_\alpha \supset \mathcal{H} \\ \mathcal{K}_\alpha \text{ -- кільце}}} \mathcal{K}_\alpha
+k(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{\mathcal{K}_\alpha \supset \mathcal{H} \\ \mathcal{K}_\alpha \text{ -- кільце}}} \mathcal{K}_\alpha.
 \end{align*}
 \textbf{$\sigma$-кільцем, породженим класом $\mathcal{H}$}, називається така множина:
 \begin{align*}
-\sigma k(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{(\sigma\mathcal{K})_\alpha \supset \mathcal{H} \\ (\sigma\mathcal{K})_\alpha \text{ -- $\sigma$-кільце}}} (\sigma\mathcal{K})_\alpha
+\sigma k(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{(\sigma\mathcal{K})_\alpha \supset \mathcal{H} \\ (\sigma\mathcal{K})_\alpha \text{ -- $\sigma$-кільце}}} (\sigma\mathcal{K})_\alpha.
 \end{align*}
 \textbf{Алгеброю, породженим класом $\mathcal{H}$}, називається така множина:
 \begin{align*}
-a(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{\mathcal{A}_\alpha \supset \mathcal{H} \\ \mathcal{A}_\alpha \text{ -- алгебра}}} \mathcal{A}_\alpha
+a(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{\mathcal{A}_\alpha \supset \mathcal{H} \\ \mathcal{A}_\alpha \text{ -- алгебра}}} \mathcal{A}_\alpha.
 \end{align*}
 \textbf{$\sigma$-алгеброю, породженим класом $\mathcal{H}$}, називається така множина:
 \begin{align*}
-\sigma a(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{(\sigma\mathcal{A})_\alpha \supset \mathcal{H} \\ (\sigma\mathcal{A})_\alpha \text{ -- $\sigma$-алгебра}}} (\sigma\mathcal{A})_\alpha
+\sigma a(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{(\sigma\mathcal{A})_\alpha \supset \mathcal{H} \\ (\sigma\mathcal{A})_\alpha \text{ -- $\sigma$-алгебра}}} (\sigma\mathcal{A})_\alpha.
 \end{align*}
 \textbf{Монотонним класом, породженим класом $\mathcal{H}$}, називається така множина:
 \begin{align*}
-m(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{\mathcal{M}_\alpha \supset \mathcal{H} \\ \mathcal{M}_\alpha \text{ -- монотонний клас}}} \mathcal{M}_\alpha
+m(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{\mathcal{M}_\alpha \supset \mathcal{H} \\ \mathcal{M}_\alpha \text{ -- монотонний клас}}} \mathcal{M}_\alpha.
 \end{align*}
 \end{definition}
 
@@ -319,89 +367,122 @@ m(\mathcal{H}) \overset{\text{def.}}{=} \bigcap_{\substack{\mathcal{M}_\alpha \s
 \end{remark}
 
 \begin{remark}
-Зауважимо, що $k(\mathcal{H}) \neq \emptyset$. Оскільки $\mathcal{K}_\alpha$ -- кільця, то тоді $\emptyset \in \mathcal{K}_\alpha$ при всіх $\alpha$, а тому $\emptyset \in k(\mathcal{H})$.
+$k(\mathcal{H}) \neq \emptyset$. \\
+Оскільки $\mathcal{K}_\alpha$ -- кільця, то тоді $\emptyset \in \mathcal{K}_\alpha$ при всіх $\alpha$, а тому $\emptyset \in k(\mathcal{H})$.
 \end{remark}
 
 \begin{proposition}[Властивості породженого кільця]
-Задано $X$ -- множина та $\mathcal{H}$ -- непорожня множина. Тоді виконуються такі пункти:
+Нехай $X$ -- деяка множина та $\mathcal{H}$ -- непорожій клас. Тоді:
 \begin{enumerate}[nosep, wide=0pt, label={\arabic*)}]
-\item $k(\mathcal{H})$ -- дійсно, кільце;
+\item $k(\mathcal{H})$ -- дійсно кільце;
 \item $k(\mathcal{H}) \supset \mathcal{H}$;
 \item Нехай $\mathcal{K}$ -- якесь кільце, де $\mathcal{K} \supset \mathcal{H}$. Тоді звідси $\mathcal{K} \supset k(\mathcal{H})$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-Доведемо виконання всіх пунктів:
+\nospacebeforeitem
 \begin{enumerate}[wide=0pt, label={\arabic*)}]
 \item Нехай $A,B \in k(\mathcal{H})$, тобто звідси $A,B \in \mathcal{K}_\alpha$ при всіх $\alpha$. Оскільки $\mathcal{K}_\alpha$ -- кільце при всіх $\alpha$, то звідси $A \cup B \in \mathcal{K}_\alpha$ при всіх $\alpha$. Тобто звідси $A \cup B \in k(\mathcal{H})$.\\
 Аналогічно доводимо, що $A \setminus B \in k(\mathcal{H})$.
 
-\item це випливає з того, що всі $\mathcal{K}_\alpha \supset \mathcal{H}$, а далі перетнути треба по $\alpha$.
+\item Це випливає з того, що всі $\mathcal{K}_\alpha \supset \mathcal{H}$, а далі перетнути треба по $\alpha$.
 
-\item Маємо $\mathcal{K} \supset \mathcal{H}$ -- якесь кільце. Тоді $\mathcal{K}$ бере участь у перетинні всіх кілець в $k(\mathcal{H})$, просто за умовою такого кільця. Значить, $k(\mathcal{H}) = \displaystyle\bigcap_{\substack{\mathcal{K}_\alpha \supset \mathcal{H} \\ \mathcal{K}_\alpha \text{ -- кільце} \\ \mathcal{K}_\alpha \neq \mathcal{K}}} \mathcal{K}_\alpha \cap \mathcal{K} \subset \mathcal{K}$.
+\item Маємо $\mathcal{K} \supset \mathcal{H}$ -- якесь кільце. Тоді $\mathcal{K}$ бере участь у перетинні всіх кілець в $k(\mathcal{H})$, просто за умовою такого кільця. Значить, $k(\mathcal{H}) = \displaystyle\bigcap_{\substack{\mathcal{K}_\alpha \supset \mathcal{H} \\ \mathcal{K}_\alpha \text{ -- кільце} \\ \mathcal{K}_\alpha \neq \mathcal{K}}} \mathcal{K}_\alpha \cap \mathcal{K} \subset \mathcal{K}$. \qedhere
 \end{enumerate}
-Всі властивості доведені.
 \end{proof}
 
 \begin{corollary}
-$k(\mathcal{H})$ -- найменше кільце, що містить $\mathcal{H}$ -- непорожній клас підмножин $X$.
+$k(\mathcal{H})$ -- найменше кільце, що містить непорожній клас $\mathcal{H}$ підмножин $X$.
 \end{corollary}
+
+\begin{example}
+Нехай $X$ -- деяка множина та $\mathcal{H}$ -- клас всіх скінченних підмножин $X$. Знайти $\sigma k(\mathcal{H})$.
+\bigskip \\
+Оскільки $\sigma k(\mathcal{H})$ -- $\sigma$-кільце, то він містить зліченні об'єднання своїх елементів, але оскільки $\sigma k(\mathcal{H}) \supset \mathcal{H}$, то містить зліченні об'єднання елементів $\mathcal{H}$. Причому $\mathcal{H}$ містить одноточкові множини, тому $\sigma k(\mathcal{H})$ містить скінченні та зліченні підмножини $X$.\\
+Однак з іншого боку, $\{\text{зліченні та скінченні підмножини $X$}\}$ -- $\sigma$-кільце.\\
+Отже, $\sigma k(\mathcal{H})$ -- набір всіх зліченних та скінченних підмножин $X$.
+\end{example}
+
+\begin{example}
+Нехай $X$ -- деяка множина та $\mathcal{H}$ -- клас всіх скінченних підмножин $X$. Тоді майже аналогічно $\sigma a(\mathcal{H})$ -- набір всіх зліченних та скінченних підмножин $X$ з їхніми доповненнями.
+\end{example}
 
 \begin{theorem}
 \label{ring_generated_by_semiring}
-Задано $\mathcal{P}$ -- півкільце. Тоді $k(\mathcal{P}) = \{ A_1 \sqcup \dots \sqcup A_k \mid A_n \in \mathcal{P} \}$.
+Нехай $\mathcal{P}$ -- півкільце. Тоді
+\begin{equation}
+\label{eq:ring_generated_by_a_semiring}
+k(\mathcal{P}) = \{ A_1 \sqcup \dots \sqcup A_k \mid A_n \in \mathcal{P} \}.
+\end{equation}
 \end{theorem}
 
 \begin{proof}
-Для спрощення позначимо клас множин $\mathcal{L} = \{A_1 \sqcup \dots \sqcup A_k \mid A_n \in \mathcal{P}\}$. Хочемо довести, що $k(\mathcal{P}) = \mathcal{L}$.\\
-$\mathcal{L} \subset k(\mathcal{P})$.\\
-Дійсно, якщо $D \in \mathcal{D}$, то звідси $D = A_1 \sqcup \dots \sqcup A_k$, де всі $A_n \in \mathcal{P}$. Але $\mathcal{P} \subset k(\mathcal{P})$, звідси, за означенням кільця, $D \in k(\mathcal{H})$.\\
-$\mathcal{L} \supset k(\mathcal{P})$.\\
-Зрозуміло цілком, що $\mathcal{L} \supset \mathcal{P}$. Нам треба довести, що $\mathcal{L}$ буде кільцем -- і тоді звідси, за властивістю 3) породжених кілець, $\mathcal{L} \supset k(\mathcal{P})$.\\
+Позначимо праву частину за \[
+\mathcal{L} = \{A_1 \sqcup \dots \sqcup A_k \mid A_n \in \mathcal{P}\}.
+\]
+Хочемо довести, що $k(\mathcal{P}) = \mathcal{L}$.
+\bigskip \\
+I. $\mathcal{L} \subset k(\mathcal{P})$.\\
+Дійсно, якщо $D \in \mathcal{D}$, то звідси $D = A_1 \sqcup \dots \sqcup A_k$, де всі $A_n \in \mathcal{P}$. Але $\mathcal{P} \subset k(\mathcal{P})$, звідси за означенням кільця $D \in k(\mathcal{H})$.
+\bigskip \\
+II. $\mathcal{L} \supset k(\mathcal{P})$.\\
+Зрозуміло цілком, що $\mathcal{L} \supset \mathcal{P}$. Нам треба довести, що $\mathcal{L}$ буде кільцем -- і тоді за властивістю 3) породжених кілець $\mathcal{L} \supset k(\mathcal{P})$.\\
 Нехай $A,B \in \mathcal{L}$, тобто звідси $A = \displaystyle\bigsqcup_{i=1}^n C_i,\ B = \displaystyle\bigsqcup_{k=1}^m D_k$ та всі $C_i, D_k \in \mathcal{P}$.\\
 $A \sqcup B \in \mathcal{L}$ (це якщо $A \cap B = \emptyset$, а тому звідси кожний $C_i \cap D_k = \emptyset$). Дійсно, $A \sqcup B = C_1 \sqcup \dots \sqcup D_m$, всі ці елементи з $\mathcal{P}$.\\
 $A \cap B \in \mathcal{L}$. Дійсно, $A \cap B = \displaystyle\bigsqcup_{\substack{1 \leq i \leq n \\ 1 \leq k \leq m}} (C_i \cap D_k)$, причому кожний $C_i \cap D_k \in \mathcal{P}$ за означенням півкільця.\\
-$A \setminus B \in \mathcal{L}$ (перша вимога кільця). Спочатку зауважимо, що $A \setminus B = \displaystyle\bigsqcup_{i=1}^n (C_i \setminus B)$, а далі кожний $C_i \setminus B = \displaystyle\bigcap_{k=1}^m (C_i \setminus D_k)$. Але оскільки $C_i,D_k \in \mathcal{P}$, то тоді $C_i \setminus D_k = \displaystyle\bigsqcup_{r=1}^{s_{ik}} G_r$ та кожний $G_r \in \mathcal{P}$. Звідси випливає $C_i \setminus D_k \in \mathcal{L}$, а тому далі $C_i \setminus B \in \mathcal{L}$ як перетин, а після $A \setminus B \in \mathcal{L}$ як диз'юнктивне об'єднання.\\
-$A \cup B \in \mathcal{L}$ (друга вимога кільця). Дійсно, розпишемо $A \cup B = (A \setminus B) \sqcup (A \cap B) \sqcup (B \setminus A)$.\\
+$A \setminus B \in \mathcal{L}$ \textit{(перша вимога кільця)}. Спочатку зауважимо, що $A \setminus B = \displaystyle\bigsqcup_{i=1}^n (C_i \setminus B)$, а далі кожний $C_i \setminus B = \displaystyle\bigcap_{k=1}^m (C_i \setminus D_k)$. Але оскільки $C_i,D_k \in \mathcal{P}$, то тоді $C_i \setminus D_k = \displaystyle\bigsqcup_{r=1}^{s_{ik}} G_r$ та кожний $G_r \in \mathcal{P}$. Звідси випливає $C_i \setminus D_k \in \mathcal{L}$, а тому далі $C_i \setminus B \in \mathcal{L}$ як перетин, а після $A \setminus B \in \mathcal{L}$ як диз'юнктивне об'єднання.\\
+$A \cup B \in \mathcal{L}$ \textit{(друга вимога кільця)}. Дійсно, розпишемо $A \cup B = (A \setminus B) \sqcup (A \cap B) \sqcup (B \setminus A)$.\\
 Отже, нарешті довели, що $\mathcal{L}$ утворює кільце, що завершує доведення.
 \end{proof}
 
 \begin{example}
-Зокрема $k(\mathcal{P}_1) = \displaystyle\left\{ \bigsqcup_{k=1}^n (a_k,b_k] \mid (a,k,b_k] \subset \mathbb{R} \right\}$. Аналогічно визначається $k(\mathcal{P}_d)$.
+Зокрема \[
+k(\mathcal{P}_1) = \displaystyle\left\{ \bigsqcup_{k=1}^n (a_k,b_k] \mid (a,k,b_k] \subset \mathbb{R} \right\}.
+\]
+Аналогічно визначається $k(\mathcal{P}_d)$.
 \end{example}
 
 \begin{theorem}
 \label{monotonic_class_generated_by_ring_is_sigma_ring_generated_by_ring}
-Задано $\mathcal{K}$ -- кільце. Тоді $m(\mathcal{K}) = \sigma k(\mathcal{K})$.
+Нехай $\mathcal{K}$ -- кільце. Тоді
+\begin{align*}
+m(\mathcal{K}) = \sigma k(\mathcal{K}).
+\end{align*}
 \end{theorem}
 
 \begin{proof}
-$m(\mathcal{K}) \subset \sigma k(\mathcal{K})$.\\
-Дійсно, $\sigma k(\mathcal{K}) \supset \mathcal{K}$, за властивістю породжених $\sigma$-кілець. Також $\sigma k(\mathcal{K})$ буде монотонним класом, тому що під $\displaystyle\lim_{n \to \infty} A_n, A_n \in \mathcal{K}$, ми маємо на увазі зліченне об'єдання або перетин, що допустимо. Звідси випливає, що $\sigma k(\mathcal{K}) \supset m(\mathcal{K})$.
+I. $m(\mathcal{K}) \subset \sigma k(\mathcal{K})$.\\
+Дійсно, $\sigma k(\mathcal{K}) \supset \mathcal{K}$ за властивістю породжених $\sigma$-кілець. Також $\sigma k(\mathcal{K})$ буде монотонним класом, тому що під $\displaystyle\lim_{n \to \infty} A_n,\ A_n \in \mathcal{K}$, ми маємо на увазі зліченне об'єдання або перетин, що допустимо. Звідси випливає, що $\sigma k(\mathcal{K}) \supset m(\mathcal{K})$.
 \bigskip \\
-$m(\mathcal{K}) \supset \sigma k(\mathcal{K})$.\\
-Маємо $m(\mathcal{K}) \supset \mathcal{K}$, за властивістю породжених монотонних класів. Нам треба довести, що $m(\mathcal{K})$ буде $\sigma$-кільцем -- і тоді звідси $m(\mathcal{K}) \supset \sigma k(\mathcal{K})$. А щоб довести, що $m(\mathcal{K})$ буде $\sigma$-кільцем, достатньо за \thref{monotonic_ring_is_sigma_ring} довести, що $m(\mathcal{K})$ -- просто кільце.\\
-Нехай $A \in m(\mathcal{K})$. Розглянемо клас множин $\mathcal{L}(A) = \{B \subset X \mid A \cup B, A \setminus B, B \setminus A \in m(\mathcal{K})\}$. Покажемо, що це -- монотонний клас.\\
-Нехай $C_n \in \mathcal{L}(A)$, причому $C_n$ зростає. Позначимо $\displaystyle\bigcup_{n=1}^\infty C_n = C$. Тоді\\
-$A \cup C = \displaystyle\bigcup_{n=1}^\infty (A \cup C_n)$, причому $(A \cup C_n) \in m(\mathcal{K})$ (за визначенням $\mathcal{L}(A)$), а також $(A \cup C_n)$ монотонно зростає до $(A \cup C)$, звідси $A \cup C \in m(\mathcal{K})$.\\
-$A \setminus C = \displaystyle\bigcap_{n=1}^\infty (A \setminus C_n)$, причому $A \setminus C_n \in m(\mathcal{K})$ (за визначенням $\mathcal{L}(A)$), а також $(A \setminus C_n)$ монотонно спадає до $(A \setminus C)$, звідси $A \setminus C \in m(\mathcal{K})$.\\
-$C \setminus A = \displaystyle\bigcup_{n=1}^\infty (C_n \setminus A)$, причому $C_n \setminus A \in m(\mathcal{K})$ (за визначенням $\mathcal{L}(A)$), а також $(A \setminus C_n)$ монотонно зростає до $(C \setminus A)$, звідси $C \setminus A \in m(\mathcal{K})$.\\
-Із цих трьох випливає, що $C \in \mathcal{L}(A)$. Цілком аналогічно доводиться, що якщо $C_n \in \mathcal{L}(A)$ та $C_n$ спадає, то $C = \displaystyle\bigcap_{n=1}^\infty C_n \in \mathcal{L}(A)$ (тут $A \in \mathcal{K}$!).\\
-Нехай $A \in \mathcal{K}$. Оскільки $\mathcal{K}$ -- це кільце, то для кожної $B \in \mathcal{K}$ отримаємо $A \cup B, A \setminus B, B \setminus A \in \mathcal{K}$, а звідси $A \cup B, A \setminus B, B \setminus A \in m(\mathcal{K})$. Із цього випливає, що $B \in \mathcal{L}(A)$. Тобто із цього випливає, що для фіксованого $A \in \mathcal{K}$ маємо $\mathcal{K} \subset \mathcal{L}(A)$. Але оскільки $\mathcal{L}(A)$ -- монотонний, то $m (\mathcal{K}) \subset \mathcal{L}(A)$.\\
-Отже, для фіксованого $A \in \mathcal{K}$ і для будь-якої множини $B \in m(\mathcal{K})$, маємо $B \in \mathcal{L}(A)$, тобто $A \cup B, A \setminus B, B \setminus A \in m(\mathcal{K})$. Але конкретно цей запис означає, що $A \in \mathcal{L}(B)$. Тобто $A \in \mathcal{K} \implies A \in \mathcal{L}(B)$, а тому звідси $\mathcal{K} \subset \mathcal{L}(B)$. Аналогічно отримаємо $m(\mathcal{K}) \subset \mathcal{L}(B)$ (тут $A \in m(\mathcal{K})$! Важлива різниця!).\\
-Тепер нехай $A \in m(\mathcal{K})$, тоді $A \in \mathcal{L}(B)$. Це означає, що $A \cup B, A \setminus B \in m(\mathcal{K})$. Дана штука виконується для будь-яких $A,B \in m(\mathcal{K})$, що й доводить означення кільця.
+II. $m(\mathcal{K}) \supset \sigma k(\mathcal{K})$.\\
+Маємо $m(\mathcal{K}) \supset \mathcal{K}$ за властивістю породжених монотонних класів. Нам треба довести, що $m(\mathcal{K})$ буде $\sigma$-кільцем -- і тоді звідси $m(\mathcal{K}) \supset \sigma k(\mathcal{K})$. А щоб довести, що $m(\mathcal{K})$ буде $\sigma$-кільцем, достатньо за \thref{monotonic_ring_is_sigma_ring} показати, що $m(\mathcal{K})$ -- просто кільце.\\
+Нехай $A \in m(\mathcal{K})$. Розглянемо клас множин \[
+\mathcal{L}(A) = \{B \subset X \mid A \cup B, A \setminus B, B \setminus A \in m(\mathcal{K})\}.
+\]
+Покажемо, що $\mathcal{L}(A)$ буде монотонним класом. Нехай $C_n \in \mathcal{L}(A)$, причому $C_n$ зростає. Позначимо $\displaystyle\bigcup_{n=1}^\infty C_n = C$. Тоді:
+\begin{itemize}[nosep,wide=0pt]
+\item $A \cup C = \displaystyle\bigcup_{n=1}^\infty (A \cup C_n)$, причому $(A \cup C_n) \in m(\mathcal{K})$ (за визначенням $\mathcal{L}(A)$), а також $(A \cup C_n)$ монотонно зростає до $(A \cup C)$, звідси $A \cup C \in m(\mathcal{K})$.
+\item $A \setminus C = \displaystyle\bigcap_{n=1}^\infty (A \setminus C_n)$, причому $A \setminus C_n \in m(\mathcal{K})$ (за визначенням $\mathcal{L}(A)$), а також $(A \setminus C_n)$ монотонно спадає до $(A \setminus C)$, звідси $A \setminus C \in m(\mathcal{K})$.
+\item $C \setminus A = \displaystyle\bigcup_{n=1}^\infty (C_n \setminus A)$, причому $C_n \setminus A \in m(\mathcal{K})$ (за визначенням $\mathcal{L}(A)$), а також $(A \setminus C_n)$ монотонно зростає до $(C \setminus A)$, звідси $C \setminus A \in m(\mathcal{K})$.
+\end{itemize}
+Із цих трьох випливає, що $C \in \mathcal{L}(A)$. Цілком аналогічно доводиться, що якщо $C_n \in \mathcal{L}(A)$ та $C_n$ спадає, то $C = \displaystyle\bigcap_{n=1}^\infty C_n \in \mathcal{L}(A)$.
+\bigskip \\
+Нехай $C \in \mathcal{K}$. Оскільки $\mathcal{K}$ -- це кільце, то для кожної $D \in \mathcal{K}$ отримаємо $C \cup D,\ C \setminus D,\ D \setminus C \in \mathcal{K}$, а звідси $C \cup D,\ C \setminus D,\ D \setminus C \in m(\mathcal{K})$. Із цього випливає, що $D \in \mathcal{L}(C)$. Тобто із цього випливає, що для фіксованого $C \in \mathcal{K}$ маємо $\mathcal{K} \subset \mathcal{L}(C)$ (тут $C \in \mathcal{K}$!) Але оскільки $\mathcal{L}(C)$ -- монотонний, то $m (\mathcal{K}) \subset \mathcal{L}(C)$.\\
+Отже, для фіксованого $C \in \mathcal{K}$ і для будь-якої множини $D \in m(\mathcal{K})$, маємо $D \in \mathcal{L}(C)$, тобто тоді отримуємо $C \cup D,\ C \setminus D,\ D \setminus C \in m(\mathcal{K})$. Але конкретно цей запис означає, що $C \in \mathcal{L}(D)$. Тобто $C \in \mathcal{K} \implies C \in \mathcal{L}(D)$, а тому звідси $\mathcal{K} \subset \mathcal{L}(D)$. Аналогічно отримаємо $m(\mathcal{K}) \subset \mathcal{L}(D)$ (тут $D \in m(\mathcal{K})$ -- важлива різниця!)
+\bigskip \\
+Ще раз, нехай $A \in m(\mathcal{K})$ та також $B \in m(\mathcal{K})$. Тоді $A \in \mathcal{L}(B)$, звідси $A \cup B, A \setminus B \in m(\mathcal{K})$, що й доводить означення кільця.
 \end{proof}
 
 \subsection{Борельові множини}
 \begin{definition}
-Задано $(X,\rho)$ -- метричний простір та $\mathcal{G}$ -- набір усіх відкритих підмножин $X$.\\
+Нехай $(X,\rho)$ -- метричний простір та $\mathcal{G}$ -- клас усіх відкритих підмножин $X$.\\
 \textbf{Борельовою $\sigma$-алгеброю} в $X$ називається наступна $\sigma$-алгебра:
 \begin{align*}
-\mathcal{B}(X) \overset{\text{def.}}{=} \sigma a(\mathcal{G})
+\mathcal{B}(X) \overset{\text{def.}}{=} \sigma a(\mathcal{G}).
 \end{align*}
-Тобто ми взяли клас відкритих підмножин в $Y$ та породили $\sigma$-алгебру.\\
-Всі множини з $\mathcal{B}(X)$ називаються \textbf{борельовими}.
+Тобто ми взяли клас відкритих підмножин в $X$ та породили $\sigma$-алгебру.\\
+Всі множини із $\mathcal{B}(X)$ називаються \textbf{борельовими}.
 \end{definition}
 
 \begin{remark}
@@ -409,42 +490,152 @@ $C \setminus A = \displaystyle\bigcup_{n=1}^\infty (C_n \setminus A)$, прич�
 \end{remark}
 
 \begin{example}
-Розглянемо кілька прикладів борельових множин:\\
-1) Якщо $U$ -- відкрита, то $U$ -- борельова.\\
+Розглянемо кілька прикладів борельових множин:
+\begin{enumerate}[wide=0pt,label={\arabic*)}]
+\item Якщо $U$ -- відкрита, то $U$ -- борельова.\\
 Дійсно, $U$ -- відкрита, тобто $U \in \mathcal{G}$, але звідси $U \in \sigma a(\mathcal{G}) = \mathcal{B}(X)$ за властивістю породжених $\sigma$-алгебр.
-\bigskip \\
-2) Якщо $V$ -- замкнена, то $U$ -- борельова.\\
-Дійсно, $V$ -- замкнена, тому $X \setminus V$ -- відкрита. Розпишемо $V = X \setminus (X \setminus V)$. У нас множина $X \setminus V$ уже борельова за 1). Також $X$ -- відкрита множина, а тому знову борельова. Значить, $X, X \setminus V \in \sigma a(\mathcal{G}) \implies X \setminus (X \setminus V) = V \in \sigma a(\mathcal{G}) = \mathcal{B}(X)$ -- борельова.
-\bigskip \\
-3. Одноточкова множина $\{x\}$ -- борельова.\\
-Дійсно, $\{x\}$ -- замкнена множина, а тому за 2), уже борельова.
-\bigskip \\
-4. Скінченні, зліченні множини -- всі вони борельові.\\
+
+\item Якщо $V$ -- замкнена, то $V$ -- борельова.\\
+Дійсно, $V$ -- замкнена, тому $X \setminus V$ -- відкрита. Розпишемо $V = X \setminus (X \setminus V)$. У нас множина $X \setminus V$ уже борельова за 1). Також $X$ -- відкрита множина, а тому борельова. Значить, $X, X \setminus V \in \sigma a(\mathcal{G}) \implies X \setminus (X \setminus V) = V \in \sigma a(\mathcal{G}) = \mathcal{B}(X)$ -- борельова.
+
+\item Одноточкова множина $\{x\}$ -- борельова.\\
+Дійсно, $\{x\}$ -- замкнена множина, а тому за 2) уже борельова.
+
+\item Скінченні, зліченні множини -- всі вони борельові.\\
 Усі ці множини отримуються через одноточкові множин, а далі 3).
+\end{enumerate}
 \end{example}
 
 \begin{theorem}
-Для півкільця $\mathcal{P}_d$ підмножин $\mathbb{R}^d$ виконується $\sigma k(\mathcal{P}_d) = \sigma a(\mathcal{P}_d) = \mathcal{B}(\mathbb{R}^d)$.
+Для півкільця $\mathcal{P}_d$ підмножин $\mathbb{R}^d$ виконується
+\begin{equation}
+\label{eq:sigma_ring_and_sigma_algebra_of_P_d_is_a_borel_sigma_algebra_of_R^d}
+\sigma k(\mathcal{P}_d) = \sigma a(\mathcal{P}_d) = \mathcal{B}(\mathbb{R}^d).
+\end{equation}
 \end{theorem}
 
 \begin{proof}
-$\sigma k(\mathcal{P}_d) = \sigma a(\mathcal{P}_d)$.\\
+I. $\sigma k(\mathcal{P}_d) = \sigma a(\mathcal{P}_d)$.\\
 Дійсно, $\sigma a(\mathcal{P}_d) \supset \mathcal{P}_d$, але $\sigma$-алгебра уже є $\sigma$-кільцем, тому звідси $\sigma a(\mathcal{P}_d) \supset \sigma k(\mathcal{P}_d)$.\\
-Далі $\sigma k(\mathcal{P}) \supset \mathcal{P}_d$, залишилося довести, що $\sigma k(\mathcal{P})$ утворює $\sigma$-алгебру -- і тоді $\sigma k(\mathcal{P}_d) \supset \sigma a(\mathcal{P}_d)$. \\
-Для цього зауважимо, що $\mathbb{R}^d = \displaystyle\bigcup_{n =1}^\infty (-n,n]^d$, де всі $(-n,n]^d \in k(\mathcal{P}_d)$, а тому звідси $\mathbb{R}^d \in k(\mathcal{P}_d)$.
+Далі $\sigma k(\mathcal{P}_d) \supset \mathcal{P}_d$, залишилося довести, що $\sigma k(\mathcal{P})$ утворює $\sigma$-алгебру -- і тоді $\sigma k(\mathcal{P}_d) \supset \sigma a(\mathcal{P}_d)$. \\
+Для цього зауважимо, що \[
+\mathbb{R}^d = \displaystyle\bigcup_{n =1}^\infty (-n,n]^d,
+\]
+де всі $(-n,n]^d \in \mathcal{P}_d \subset \sigma k(\mathcal{P}_d)$, а тому звідси $\mathbb{R}^d \in \sigma k(\mathcal{P}_d)$.
 \bigskip \\
-$\sigma a(\mathcal{P}_d) = \mathcal{B}(\mathbb{R}^d)$.\\
+II. $\sigma a(\mathcal{P}_d) = \mathcal{B}(\mathbb{R}^d)$.\\
 Спочатку покажемо, що $\mathcal{B}(\mathbb{R}^d) \supset \sigma a(\mathcal{P}_d)$. Щоб це довести, необіхдно довести, що $\mathcal{B}(\mathbb{R}^d) \supset \mathcal{P}_d$. А далі, зважаючи на той факт, що $\mathcal{B}(\mathbb{R}^d)$ утворює $\sigma$-алгебру, доведемо, що $\mathcal{B}(\mathbb{R}^d) \supset \sigma a(\mathcal{P}_d)$.\\
-Нехай $A \in \mathcal{P}_d$, тобто $A = \displaystyle\prod_{i=1}^d (a_i,b_i]$. Зауважимо, що $(a_i,b_i] = \displaystyle\bigcap_{n=1}^\infty \left(a_i,b_i+\dfrac{1}{n}\right)$. Далі\\
-$A = \displaystyle\prod_{i=1}^d \bigcap_{n=1}^\infty \left( a_i, b_i + \dfrac{1}{n} \right) = \bigcap_{n=1}^\infty \prod_{i=1}^d \left( a_i, b_i+\dfrac{1}{n}\right)$.\\
+Нехай $A \in \mathcal{P}_d$, тобто $A = \displaystyle\prod_{i=1}^d (a_i,b_i]$. Зауважимо, що $(a_i,b_i] = \displaystyle\bigcap_{n=1}^\infty \left(a_i,b_i+\dfrac{1}{n}\right)$. Далі
+\[
+A = \displaystyle\prod_{i=1}^d \bigcap_{n=1}^\infty \left( a_i, b_i + \dfrac{1}{n} \right) = \bigcap_{n=1}^\infty \prod_{i=1}^d \left( a_i, b_i+\dfrac{1}{n}\right).
+\]
 Декартів добуток відкритих множин -- відкрита, а кожна відкрита -- уже борельова. А оскільки там $\sigma$-алгебра, то допускається зліченний перетин, звідси $A \in \mathcal{B}(\mathbb{R}^d)$. Отже, $\mathcal{B}(\mathbb{R}^d) \supset \mathcal{P}_d$.\\
 Нарешті, покажемо, що $\mathcal{B}(\mathbb{R}^d) \subset \sigma a(\mathcal{P}_d)$. Щоб це довести, треба довести, що $\sigma a(\mathcal{P}_d) \supset \mathcal{G}$, де $\mathcal{G}$ -- всі відкриті підмножини $\mathbb{R}^d$. Після цього ми отримуємо $\sigma a(\mathcal{P}_d) \supset \sigma a(\mathcal{G}) = \mathcal{B}(\mathbb{R}^d)$.\\
-Отже, нехай $U \in \mathcal{G}$, тобто нехай $U$ -- відкрита множина. Запишемо її таким чином:\\
-$U = \displaystyle\bigcup_{\substack{\prod_{i=1}^d (p_i,q_i] \subset U \\ p_i,q_i \in \mathbb{Q}}} \prod_{i=1}^d (p_i,q_i]$.\\
+Отже, нехай $U \in \mathcal{G}$, тобто нехай $U$ -- відкрита множина. Запишемо її таким чином:
+\[
+U = \displaystyle\bigcup_{\substack{\prod_{i=1}^d (p_i,q_i] \subset U \\ p_i,q_i \in \mathbb{Q}}} \prod_{i=1}^d (p_i,q_i].
+\]
 Якщо $\vec{x}$ лежить в цьому об'єднанні, то тоді автоматично $\vec{x} \in U$.\\
-Якщо $\vec{x} \in U$, то вона внутрішня, тож існує куля $B(\vec{x},\varepsilon) \subset U$. А там $\forall \vec{y}: \| \vec{x} - \vec{y} \| < \varepsilon$. Тобто звідси $|x_i-y_i| < \dfrac{\varepsilon}{\sqrt{d}} \implies y_i - \dfrac{\varepsilon}{\sqrt{d}} < x_i < y_i + \dfrac{\varepsilon}{\sqrt{d}}$. Між кожним з цих нерівностей можна знайти раціональні числа $p_i,q_i \in \mathbb{Q}$, тоді звідси $p_i < x_i < q_i$. Звідси $\vec{x} \in \displaystyle\prod_{i=1}^d (p_i,q_i]$. Але також важливо зауважити, що $\displaystyle\prod_{i=1}^d (p_i,q_i] \subset U$. Отже, $\vec{x}$ лежить в цьому об'єднанні.\\
-Множина $U$ записалась як зліченне об'єднання елементів з $\mathcal{P}_d \subset \sigma a(\mathcal{P}_d$. Отже, звідси $U \in \sigma a(\mathcal{P}_d)$. Отже, $\mathcal{G} \subset \sigma a(\mathcal{P}_d)$.
+Якщо $\vec{x} \in U$, то вона внутрішня, тож існує куля $B(\vec{x},\varepsilon) \subset U$. А там $\forall \vec{y}: \| \vec{x} - \vec{y} \| < \varepsilon$. Тобто звідси 
+\[
+|x_i-y_i| < \dfrac{\varepsilon}{\sqrt{d}} \implies y_i - \dfrac{\varepsilon}{\sqrt{d}} < x_i < y_i + \dfrac{\varepsilon}{\sqrt{d}}.
+\] Між кожним з цих нерівностей можна знайти раціональні числа $p_i,q_i \in \mathbb{Q}$, тоді звідси $p_i < x_i < q_i$. Звідси $\vec{x} \in \displaystyle\prod_{i=1}^d (p_i,q_i]$. Але також важливо зауважити, що $\displaystyle\prod_{i=1}^d (p_i,q_i] \subset U$. Отже, $\vec{x}$ лежить в цьому об'єднанні.\\
+Множина $U$ записалась як зліченне об'єднання елементів з $\mathcal{P}_d \subset \sigma a(\mathcal{P}_d)$. Отже, звідси $U \in \sigma a(\mathcal{P}_d)$. Отже, $\mathcal{G} \subset \sigma a(\mathcal{P}_d)$.
 \end{proof}
+
+\subsection{Верхня та нижня границі послідовності множин}
+Нехай задана послідовність множин $\{A_n,\ n \geq 1\}$. Маємо ось таке спостереження:
+\begin{center}
+\begin{tabular}{rcl}
+$A_1 \cap A_2 \cap A_2 \cap \dots = L_1$ & $\subset A_1 \subset$ & $U_1 = A_1 \cup A_2 \cup A_3 \cup \dots$; \\
+$A_2 \cap A_2 \cap \dots = L_2$ & $\subset A_2 \subset$ & $U_2 = A_2 \cup A_3 \cup \dots$; \\
+$A_3 \cap \dots = L_3$ & $\subset A_3 \subset$ & $U_3 = A_3 \cup \dots$; \\
+$\vdots$ & $\vdots$ & $\vdots$
+\end{tabular}
+\end{center}
+Тут утворилися дві послідовності множин: $\{ L_n, n \geq 1\}$, яка зростає та $\{S_n, n \geq 1\}$, яка спадає. Тобто від них можна взяти границі:
+\begin{align*}
+\lim_{n \to \infty} L_n = \displaystyle\bigcup_{n=1}^\infty \bigcap_{k=n}^{\infty} A_k, \qquad \lim_{n \to \infty} U_n = \displaystyle\bigcap_{n=1}^\infty \bigcup_{k=n}^{\infty} A_k.
+\end{align*}
+Сформулюємо нові означення:
+
+\begin{definition}
+Нехай $\{A_n,\ n \geq 1\}$ -- послідовність множин.\\
+\textbf{Верхньою границею послідовності} множин $\{A_n\}$ назвемо множину
+\begin{align*}
+\limsup_{n \to \infty} A_n = \displaystyle\bigcap_{n=1}^\infty \bigcup_{k=n}^{\infty} A_k
+\end{align*}
+\textbf{Нижньою границею послідовності} множин $\{A_n\}$ назвемо множину
+\begin{align*}
+\liminf_{n \to \infty} A_n = \displaystyle\bigcup_{n=1}^\infty \bigcap_{k=n}^{\infty} A_k.
+\end{align*}
+\end{definition}
+
+\begin{proposition}[Еквівалентні означення]
+Верхню та нижню границю послідовності $\{A_n, n \geq 1\}$ можна визначити ось так:
+\begin{align*}
+\limsup_{n \to \infty} A_n & = \{x \mid x \in A_n \text{ для нескінченного числа $n$}\}; \\
+\liminf_{n \to \infty} A_n & = \{x \mid x \in A_n \text{ для всіх, крім скінченного числа $n$}\}.
+\end{align*}
+\textit{Вправа: довести.}
+\end{proposition}
+
+\begin{corollary}
+Справедливе вкладення:
+\begin{equation*}
+\liminf_{n \to \infty} A_n \subset \limsup_{n \to \infty} A_n.
+\end{equation*}
+\end{corollary}
+
+\begin{corollary}
+Якщо послідовність $\{A_n,n \geq 1\}$ монотонна, то
+\begin{align*}
+\lim_{n \to \infty} A_n = \limsup_{n \to \infty} A_n = \liminf_{n \to \infty} A_n.
+\end{align*}
+\end{corollary}
+
+\begin{proposition}
+Нехай $\sigma \mathcal{K}$ -- $\sigma$-кільце та $\{A_n \in \sigma \mathcal{K}, n \geq 1\}$ -- послідовність множин. Тоді $\displaystyle \limsup_{n \to \infty} A_n,\\ \liminf_{n \to \infty} \in \sigma \mathcal{K}$.\\
+\textit{Просто випливає з того, що допускається зліченні об'єднання та перетин.}
+\end{proposition}
+
+\begin{example}
+Знайти верхню та нижню границі послідовності \[
+\{A_n, n \geq 1\} = \{A,B,C,A,B,C,\dots\}.
+\]
+\begin{align*}
+\limsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_n = \bigcap_{n=1}^\infty ( \dots \cup A \cup B \cup C \cup A \cup B \cup C \cup \dots) = \bigcap_{n=1}^\infty (A \cup B \cup C) = A \cup B \cup C. \\
+\liminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \bigcap_{k=n}^\infty A_n = \bigcup_{n=1}^\infty (\dots \cap A \cap B \cap C \cap A \cap B \cap C \cap \dots) = \bigcup_{n=1}^\infty (A \cap B \cap C) = A \cap B \cap C.
+\end{align*}
+\end{example}
+
+\begin{example}
+Знайти верхню та нижню границі послідовності
+\begin{align*}
+A_n = \left\{ 0, \dfrac{1}{n}, \dfrac{2}{n}, \dots, \dfrac{n-1}{n}, 1 \right\}.
+\end{align*}
+Спочатку розглянемо $\displaystyle\limsup_{n \to \infty} A_n$. Якщо розписати його друге об'єднання, то буде
+\begin{align*}
+\bigcup_{k=n}^\infty A_k = \left\{ 0,\dfrac{1}{n},\dfrac{1}{n+1},\dfrac{1}{n+2}, \dots, \dfrac{2}{n}, \dfrac{2}{n+1}, \dfrac{2}{n+2}, \dots, \dfrac{n-1}{n}, \dfrac{n}{n+1}, \dfrac{n+1}{n+2}, \dots, 1 \right\}.
+\end{align*}
+Зауважимо, що всі дроби вигляду $\dfrac{1}{p}$ при $p < n$ належать цій множині. Дійсно, $\dfrac{1}{p} = \dfrac{k}{kp}$, де $k > 1$. Ми обрали таке $k$, щоб $kp \geq n$, а дріб $\dfrac{k}{kp}$ в такому разі там знайдеться. Аналогічно міркування проводяться для дробів $\dfrac{2}{p}, \dfrac{3}{p},\dots,\dfrac{p-1}{p}$. Отже,
+\begin{align*}
+\bigcup_{k=n}^\infty A_k = \mathbb{Q} \cap [0,1].
+\end{align*}
+Робимо тоді висновок, що
+\begin{align*}
+\limsup_{n \to \infty} = \mathbb{Q} \cap [0,1].
+\end{align*}
+Тепер розглянемо $\displaystyle\liminf_{n \to \infty} A_n$. Детальніше глянемо на його другий перетин. Покажемо, що
+\begin{align*}
+A_n \cap A_{n+1} = \{0,1\}.
+\end{align*}
+Дійсно, припустимо, що $\dfrac{k}{n} \in A_{n+1}$, де число $1 \leq k < n$. Тоді звідси $\dfrac{k}{n} = \dfrac{p}{n+1}$ для деякого $0 \leq p \leq n+1$. Єдиний можливий варіант, коли $k$ буде натуральним, -- це коли $p = n+1$, тоді $k = n$, що не підходить.\\
+Робимо тоді висновок, що
+\begin{align*}
+\liminf_{n \to \infty} A_n = \{0,1\}.
+\end{align*}
+\end{example}
 
 \subsection{$\pi$-системи та $\lambda$-системи}
 \begin{definition}
@@ -570,49 +761,51 @@ IV. \textit{$\mathcal{L}_0$ -- $\pi$-система}.\\
 \section{Міри}
 \subsection{Основні функції множин}
 \begin{definition}
-Задано $X$ -- деяка множина та $\mathcal{H} \subset 2^X$ -- клас підмножин.\\
-\textbf{Функцією множин} називатимемо відображення $f \colon \mathcal{H} \to (-\infty,+\infty]$. Ми будемо вважати надалі, що $-\infty$ неможливий.
+Нехай $X$ -- деяка множина та $\mathcal{H} \subset 2^X$ -- клас підмножин.\\
+\textbf{Функцією множин} називатимемо відображення
+\begin{align*}
+f \colon \mathcal{H} \to (-\infty,+\infty].
+\end{align*}
+Ми будемо вважати надалі, що $-\infty$ неможливий.
 \end{definition}
 
 \begin{definition}
-Задано функцію множин $f$ на $\mathcal{H} \subset 2^X$.\\
+Нехай $f$ -- функція множин на $\mathcal{H} \subset 2^X$.\\
 Функція множин $f$ називається \textbf{невід'ємною}, якщо
 \begin{align*}
-\forall A \in \mathcal{H}: f(A) \geq 0
+\forall A \in \mathcal{H}: f(A) \geq 0.
 \end{align*}
 Функція множин $f$ називається \textbf{адитивною}, якщо
 \begin{align*}
-\forall A_1,\dots,A_k \in \mathcal{H}, \text{причому } \bigsqcup_{n=1}^k A_n \in \mathcal{H}: f\left( \bigsqcup_{n=1}^k A_n \right) = \sum_{n=1}^k f(A_n)
+\forall A_1,\dots,A_k \in \mathcal{H}, \text{ причому } \bigsqcup_{n=1}^k A_n \in \mathcal{H}: f\left( \bigsqcup_{n=1}^k A_n \right) = \sum_{n=1}^k f(A_n).
 \end{align*}
 Функція множин $f$ називається \textbf{$\sigma$-адитивною}, якщо
 \begin{align*}
-\forall A_1,A_2,\dots \in \mathcal{H}, \text{причому } \bigsqcup_{n=1}^\infty A_n \in \mathcal{H}: f\left( \bigsqcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty f(A_n)
+\forall A_1,A_2,\dots \in \mathcal{H}, \text{ причому } \bigsqcup_{n=1}^\infty A_n \in \mathcal{H}: f\left( \bigsqcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty f(A_n).
 \end{align*}
 Функція множин $f$ називається \textbf{напівадитивною}, якщо
 \begin{align*}
-\forall A_1,\dots,A_k \in \mathcal{H}, \text{причому } \bigcup_{n=1}^k A_n \in \mathcal{H}: f\left( \bigcup_{n=1}^k A_n \right) \leq \sum_{n=1}^k f(A_n)
+\forall A_1,\dots,A_k \in \mathcal{H}, \text{ причому } \bigcup_{n=1}^k A_n \in \mathcal{H}: f\left( \bigcup_{n=1}^k A_n \right) \leq \sum_{n=1}^k f(A_n).
 \end{align*}
 Функція множин $f$ називається \textbf{$\sigma$-напівадитивною}, якщо
 \begin{align*}
-\forall A_1,A_2,\dots \in \mathcal{H}, \text{причому } \bigcup_{n=1}^\infty A_n \in \mathcal{H}: f\left( \bigcup_{n=1}^\infty A_n \right) \leq \sum_{n=1}^\infty f(A_n)
+\forall A_1,A_2,\dots \in \mathcal{H}, \text{ причому } \bigcup_{n=1}^\infty A_n \in \mathcal{H}: f\left( \bigcup_{n=1}^\infty A_n \right) \leq \sum_{n=1}^\infty f(A_n).
 \end{align*}
 Функція множин $f$ називається \textbf{скінченною}, якщо
 \begin{align*}
-\forall A \in \mathcal{H}: f(A) < +\infty
+\forall A \in \mathcal{H}: f(A) < +\infty.
 \end{align*}
 Функція множин $f$ називається \textbf{$\sigma$-скінченною}, якщо
 \begin{align*}
-\exists A_1,A_2, \dots \in \mathcal{H}: \bigcup_{n=1}^\infty A_n = X,\ f(A_n) < +\infty
+\exists A_1,A_2, \dots \in \mathcal{H}: \bigcup_{n=1}^\infty A_n = X,\ f(A_n) < +\infty.
 \end{align*}
 Функція множин $f$ називається \textbf{монотонною}, якщо
 \begin{align*}
-\forall A,B \in \mathcal{H}: A \subset B \implies f(A) \leq f(B)
+\forall A,B \in \mathcal{H}: A \subset B \implies f(A) \leq f(B).
 \end{align*} 
 \end{definition}
-
-\begin{remark}
-Домовленість: ми не будемо далі розглядати функції множин $f$, для яких $f \equiv +\infty$. Це означає, що в кожній функції множин $f$ буде існувати множина $A \in \mathcal{H}$, для якої $f(A) < +\infty$.
-\end{remark}
+\noindent
+\textit{Домовленість}: ми не будемо далі розглядати функції множин $f$, для яких $f \equiv +\infty$. Це означає, що в кожній функції множин $f$ буде існувати множина $A \in \mathcal{H}$, для якої $f(A) < +\infty$.
 
 \begin{remark}
 Зрозуміло, що якщо функція множин скінченна, то вона автоматично $\sigma$-скінченна.
@@ -620,81 +813,144 @@ IV. \textit{$\mathcal{L}_0$ -- $\pi$-система}.\\
 
 \subsection{Означення міри}
 \begin{definition}
-Задане $\mathcal{P}$ -- півкільце.\\
-\textbf{Мірою} називатимемо функцію множин $\lambda \colon \mathcal{P} \to [0,+\infty]$, де 
+Нехай $\mathcal{P}$ -- півкільце.\\
+\textbf{Мірою} називатимемо функцію множин
 \begin{align*}
-\lambda \text{ -- невід'ємною та $\sigma$-адитивна.}
+\lambda \colon \mathcal{P} \to [0,+\infty], \text{ де } \lambda \text{ -- невід'ємна та $\sigma$-адитивна.}
 \end{align*}
 \end{definition}
 
 \begin{proposition}[Властивості мір]
-Задана $\lambda$ -- міра на півкільці $\mathcal{P}$. Тоді виконуються такі пункти:
+Нехай $\lambda$ -- міра на півкільці $\mathcal{P}$. Тоді:
 \begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
 \item $\lambda(\emptyset) = 0$;
 \item $\lambda$ -- адитивна;
 \item $\lambda$ -- монотонна;
 \item $\lambda$ -- $\sigma$-напівадитивна;
-\item $\forall A \in \mathcal{P}, \forall A_1,A_2,\dots \in \mathcal{P}: A \subset \displaystyle\bigcup_{n=1}^\infty A_n: \lambda(A) \leq \displaystyle\sum_{n=1}^\infty \lambda(A_n)$.
+\item $\forall A \in \mathcal{P},\ \forall A_1,A_2,\dots \in \mathcal{P}: A \subset \displaystyle\bigcup_{n=1}^\infty A_n: \lambda(A) \leq \displaystyle\sum_{n=1}^\infty \lambda(A_n)$.
 \end{enumerate}
 
 \begin{proof}
-Доведемо виконання всіх пунктів:
+\nospacebeforeitem
 \begin{enumerate}[wide=0pt, label={\arabic*)}]
-\item Тут на допомогу приходить домовленість в підпункті вище. У нас існує $A \in \mathcal{P}$, де $\lambda(A) < +\infty$. Розпишемо $A =  A \sqcup \emptyset \sqcup \emptyset \sqcup \dots$, причому $\emptyset \in \mathcal{P}$. Звідси, за $\sigma$-адитивністю, $\lambda(A) = \lambda(A) + \lambda(\emptyset) + \lambda(\emptyset) + \dots$ Але оскільки $\lambda(A) < +\infty$, то ряд збіжний, а для рівності треба вимагати $\lambda(\emptyset) = 0$.
+\item Тут на допомогу приходить домовленість в підпункті вище. У нас існує $A \in \mathcal{P}$, де $\lambda(A) < +\infty$. Розпишемо 
+\[
+A =  A \sqcup \emptyset \sqcup \emptyset \sqcup \dots,
+\]
+причому $\emptyset \in \mathcal{P}$. Звідси за $\sigma$-адитивністю \[
+\lambda(A) = \lambda(A) + \lambda(\emptyset) + \lambda(\emptyset) + \dots,
+\] Але оскільки $\lambda(A) < +\infty$, то ряд збіжний, а для рівності треба вимагати $\lambda(\emptyset) = 0$.
 
-\item Нехай $A_1,\dots,A_k \in \mathcal{P}$, причому $\displaystyle\bigcup_{n=1}^k A_n \in \mathcal{P}$. Тоді за $\sigma$-адитивністю міри та за властивістю 1),\\ $\displaystyle\lambda\left( \bigsqcup_{n=1}^\infty A_n \right) = \lambda(A_1 \sqcup \dots \sqcup A_n \sqcup \emptyset \sqcup \emptyset \sqcup \dots) = \lambda(A_1) + \dots + \lambda(A_n) + \lambda(\emptyset) + \dots = \sum_{n=1}^k \lambda(A_n)$.
+\item Нехай $A_1,\dots,A_k \in \mathcal{P}$, причому $\displaystyle\bigcup_{n=1}^k A_n \in \mathcal{P}$. Тоді за $\sigma$-адитивністю міри та за властивістю 1) 
+\[
+\displaystyle\lambda\left( \bigsqcup_{n=1}^\infty A_n \right) = \lambda(A_1 \sqcup \dots \sqcup A_n \sqcup \emptyset \sqcup \emptyset \sqcup \dots) = \lambda(A_1) + \dots + \lambda(A_n) + \lambda(\emptyset) + \dots = \sum_{n=1}^k \lambda(A_n).
+\]
 
-\item Нехай $A,B \in \mathcal{P}$ таким чином, що $A \subset B$. Тоді звідси $B = (B \setminus A) \sqcup A$. На півкільці $A \setminus B = \displaystyle\bigsqcup_{i=1}^n C_i$ при $C_i \in \mathcal{P}$. Отже, звідси $B = \displaystyle\bigsqcup_{i=1}^n C_i \sqcup A$, а за властивістю 2) та невід'ємності міри, маємо \\ $\lambda(B) = \displaystyle\sum_{i=1}^n \lambda(C_i) + \lambda(A) \geq \lambda(A)$.
+\item Нехай $A,B \in \mathcal{P}$ задані так, що $A \subset B$. Тоді звідси $B = (B \setminus A) \sqcup A$. На півкільці $A \setminus B = \displaystyle\bigsqcup_{i=1}^n C_i$ при $C_i \in \mathcal{P}$. Отже, звідси $B = \displaystyle\bigsqcup_{i=1}^n C_i \sqcup A$, а за властивістю 2) та невід'ємності міри, маємо: 
+\[
+\lambda(B) = \displaystyle\sum_{i=1}^n \lambda(C_i) + \lambda(A) \geq \lambda(A).
+\]
 
-\item Нехай $A_1,A_2,\dots \in \mathcal{P}$, причому $\displaystyle\bigcup_{n=1}^\infty A_n \in \mathcal{P}$. Ми розглянемо $B_1 = A_1,\ B_2 = A_2 \setminus A_1,\ B_1 = A_3 \setminus (A_1 \cup A_2), \dots$ -- перейшли до системи неперетинних множин. Зауважимо, що $\displaystyle\bigsqcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty A_n \in \mathcal{P}$ (але при цьому неправильно казати, що $B_n \in \mathcal{P}$, тому не юзаємо $\sigma$-адитивність!). Всі $A_n \in k(\mathcal{P})$, а тому звідси всі $B_n \in k(\mathcal{P})$, але тоді звідси $B_n = \displaystyle\bigsqcup_{i=1}^{i_n} C_{in}$ при $C_{in} \in \mathcal{P}$. Також зауважимо, що $A_n \setminus B_n \in k(\mathcal{P})$, а тому звідси $A_n \setminus B_n = \displaystyle\bigsqcup_{j=1}^{j_n} D_{jn}$ при $D_{jn} \in \mathcal{P}$.\\
-Разом уже маємо $\displaystyle\bigcup_{n=1}^\infty A_n = \bigsqcup_{n=1}^\infty \bigsqcup_{i=1}^{i_n} C_{in} \in \mathcal{P}$, причому всі $C_{in} \in \mathcal{P}$, тому скористаємось $\sigma$-адитивністю:\\
-$\displaystyle\lambda\left( \bigcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty \sum_{i=1}^{i_n} \lambda(C_{in})$.\\
-Водночас $A_n = A_n \setminus B_n \sqcup B_n = \displaystyle\bigsqcup_{j=1}^{j_n} D_{jn} \sqcup \bigsqcup_{i=1}^{i_n} C_{in} \in \mathcal{P}$, причому всі $C_{in},D_{jn} \in \mathcal{P}$ -- дійсно неперетинні всі між собою. Тому можна скористатися $\sigma$-адитивністю:\\
-$\displaystyle\sum_{n=1}^\infty \lambda(A_n) = \sum_{n=1}^\infty \left( \sum_{j=1}^{j_n} \lambda(D_{jn}) + \sum_{i=1}^{i_n} \lambda(C_{in}) \right) \geq \sum_{n=1}^\infty \sum_{i=1}^{i_n} \lambda(C_{in}) = \lambda\left( \bigcup_{n=1}^\infty A_n \right)$.
+\item Нехай $A_1,A_2,\dots \in \mathcal{P}$, причому $\displaystyle\bigcup_{n=1}^\infty A_n \in \mathcal{P}$. Ми розглянемо 
+\[
+B_1 = A_1,\ B_2 = A_2 \setminus A_1,\ B_1 = A_3 \setminus (A_1 \cup A_2), \dots
+\] Перейшли до системи неперетинних множин. Зауважимо, що 
+\[
+\displaystyle\bigsqcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty A_n \in \mathcal{P}
+\] 
+(але при цьому неправильно казати, що $B_n \in \mathcal{P}$, тому не юзаємо $\sigma$-адитивність!). Всі $A_n \in k(\mathcal{P})$, а тому звідси всі $B_n \in k(\mathcal{P})$, але тоді звідси $B_n = \displaystyle\bigsqcup_{i=1}^{i_n} C_{in}$ при $C_{in} \in \mathcal{P}$. Також зауважимо, що $A_n \setminus B_n \in k(\mathcal{P})$, а тому звідси $A_n \setminus B_n = \displaystyle\bigsqcup_{j=1}^{j_n} D_{jn}$ при $D_{jn} \in \mathcal{P}$. Разом уже маємо 
+\[
+\displaystyle\bigcup_{n=1}^\infty A_n = \bigsqcup_{n=1}^\infty \bigsqcup_{i=1}^{i_n} C_{in} \in \mathcal{P},
+\]
+причому всі $C_{in} \in \mathcal{P}$, тому скористаємось $\sigma$-адитивністю:
+\[
+\displaystyle\lambda\left( \bigcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty \sum_{i=1}^{i_n} \lambda(C_{in}).
+\]
+Водночас 
+\[
+A_n = A_n \setminus B_n \sqcup B_n = \displaystyle\bigsqcup_{j=1}^{j_n} D_{jn} \sqcup \bigsqcup_{i=1}^{i_n} C_{in} \in \mathcal{P},
+\]
+причому всі $C_{in},D_{jn} \in \mathcal{P}$ -- дійсно неперетинні всі між собою. Тому можна скористатися $\sigma$-адитивністю:
+\[
+\displaystyle\sum_{n=1}^\infty \lambda(A_n) = \sum_{n=1}^\infty \left( \sum_{j=1}^{j_n} \lambda(D_{jn}) + \sum_{i=1}^{i_n} \lambda(C_{in}) \right) \geq \sum_{n=1}^\infty \sum_{i=1}^{i_n} \lambda(C_{in}) = \lambda\left( \bigcup_{n=1}^\infty A_n \right).
+\]
 
-\item Нехай $A \in \mathcal{P}$, а також задане покриття $A \subset \displaystyle\bigcup_{n=1}^\infty A_n$, де $A_n \in \mathcal{P}$. Зауважимо, що $A = A \cap \displaystyle\bigcup_{n=1}^\infty A_n = \bigcup_{n=1}^\infty (A \cap A_n)$, де $A \in \mathcal{P}$, а також $A \cap A_n \in \mathcal{P}$ за означенням півкільця. Тоді за 4),\\
-$\displaystyle\lambda(A) = \lambda\left( \bigcup_{n=1}^\infty (A \cap A_n) \right) \leq \sum_{n=1}^\infty \lambda(A \cap A_n) \leq \sum_{n=1}^\infty \lambda(A_n)$.\\
-\textit{До речі, властивість 5) -- це певне узагальнення властивості 4), тобто $\sigma$-напівадитивності.}
+\item Нехай $A \in \mathcal{P}$, а також задане покриття $A \subset \displaystyle\bigcup_{n=1}^\infty A_n$, де $A_n \in \mathcal{P}$. Зауважимо, що 
+\[
+A = A \cap \displaystyle\bigcup_{n=1}^\infty A_n = \bigcup_{n=1}^\infty (A \cap A_n),
+\]
+де $A \in \mathcal{P}$, а також $A \cap A_n \in \mathcal{P}$ за означенням півкільця. Тоді за 4)
+\[
+\displaystyle\lambda(A) = \lambda\left( \bigcup_{n=1}^\infty (A \cap A_n) \right) \leq \sum_{n=1}^\infty \lambda(A \cap A_n) \leq \sum_{n=1}^\infty \lambda(A_n).
+\]
+\textit{До речі, властивість 5) -- це певне узагальнення властивості 4), тобто $\sigma$-напівадитивності.} \qedhere
 \end{enumerate} 
-Всі властивості доведені.
 \end{proof}
 \end{proposition}
 
 \begin{remark}
-Якби $\lambda$ була невід'ємною та просто адитивною, то властивості 1),3),4),5) також би виконувалися, тільки там скінченна кількість замість зліченної.
+Якби $\lambda$ була невід'ємною та просто адитивною, то властивості 1), 3), 4), 5) також би виконувалися, тільки там скінченна кількість замість зліченної.
 \end{remark}
 
 \begin{corollary}
-Якщо $\lambda$ задана на кільці $\mathcal{K}$, то $\forall A,B \in \mathcal{K}: A \subset B: \lambda(A \setminus B) = \lambda(A) - \lambda(B)$.\\
+Якщо $\lambda$ задана на кільці $\mathcal{K}$, то
+\begin{equation*}
+\forall A,B \in \mathcal{K}: A \subset B: \lambda(A \setminus B) = \lambda(A) - \lambda(B).
+\end{equation*}
 \textit{Вказівка: $A \sqcup (B \setminus A) = B$, у цьому випадку $B \setminus A \in \mathcal{K}$, тому все легітимно.}
 \end{corollary}
 
 \begin{theorem}[Неперервність міри знизу]
-Задана $\lambda$ -- міра уже на кільці $\mathcal{K}$. Нехай задана зростаюча послідовність $\{A_n \in \mathcal{K}, n \geq 1\}$, причому $\displaystyle\lim_{n \to \infty} A_n \in \mathcal{K}$. Тоді $\displaystyle\lambda\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \lambda(A_n)$.
+Нехай $\lambda$ -- міра уже на кільці $\mathcal{K}$. Нехай задана зростаюча послідовність $\{A_n \in \mathcal{K}, n \geq 1\}$, причому $\displaystyle\lim_{n \to \infty} A_n \in \mathcal{K}$. Тоді
+\begin{equation*}
+\displaystyle\lambda\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \lambda(A_n).
+\end{equation*}
 \end{theorem}
 
 \begin{proof}
-Розглянемо $B_1 = A_1,\ B_2 = A_2 \setminus A_1,\ B_3 = A_3 \setminus A_2, \dots$ -- система неперетинних множин в силу зростання $\{A_n, n \geq 1\}$. Зауважимо, що всі $B_n \in \mathcal{K}$, а також $\displaystyle\bigsqcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty A_n \in \mathcal{K}$. Тоді\\
-$\displaystyle\lambda\left(\lim_{n \to \infty} A_n\right) = \lambda\left( \bigsqcup_{n=1}^\infty B_n \right) = \sum_{n=1}^\infty \lambda(B_n) = \\ =\lim_{j \to \infty} \sum_{n=1}^j \lambda(B_n) = \lim_{j \to \infty} (\lambda(A_1) + \lambda(A_2) - \lambda(A_1) + \lambda(A_3) - \lambda(A_2) + \dots + \lambda(A_j) - \lambda(A_{j-1})) = \lim_{j \to \infty} \lambda(A_j)$.\\
+Розглянемо множини 
+\[
+B_1 = A_1,\ B_2 = A_2 \setminus A_1,\ B_3 = A_3 \setminus A_2, \dots
+\]
+Тут система неперетинних множин в силу зростання $\{A_n, n \geq 1\}$. Зауважимо, що всі $B_n \in \mathcal{K}$, а також $\displaystyle\bigsqcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty A_n \in \mathcal{K}$. Тоді
+\begin{align*}
+\lambda\left(\lim_{n \to \infty} A_n\right) & = \lambda\left( \bigsqcup_{n=1}^\infty B_n \right) = \sum_{n=1}^\infty \lambda(B_n)  = \lim_{j \to \infty} \sum_{n=1}^j \lambda(B_n) \\
+& = \lim_{j \to \infty} (\lambda(A_1) + \lambda(A_2) - \lambda(A_1) + \lambda(A_3) - \lambda(A_2) + \dots + \lambda(A_j) - \lambda(A_{j-1})) = \lim_{j \to \infty} \lambda(A_j).
+\end{align*}
 Мабуть, окремо зауважу, що в сумі я скористався наслідком вище.
 \end{proof}
 
 \begin{theorem}[Неперервність міри зверху]
-Задана $\lambda$ -- міра уже на кільці $\mathcal{K}$. Нехай спадна зростаюча послідовність $\{A_n \in \mathcal{K}, n \geq 1\}$, причому $\displaystyle\lim_{n \to \infty} A_n \in \mathcal{K}$, а також $\lambda(A_1) < +\infty$! Тоді $\displaystyle\lambda\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \lambda(A_n)$.
+Нехай $\lambda$ -- міра уже на кільці $\mathcal{K}$. Нехай задана спадна послідовність $\{A_n \in \mathcal{K}, n \geq 1\}$, причому $\displaystyle\lim_{n \to \infty} A_n \in \mathcal{K}$, а також $\lambda(A_1) < +\infty$! Тоді
+\begin{equation*}
+\lambda\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \lambda(A_n).
+\end{equation*}
 \end{theorem}
 
 \begin{proof}
-Позначимо $A = \displaystyle\bigcap_{n=1}^\infty A_n$ та розглянемо послідовність $\{C_n \in \mathcal{K}, n \geq 1\}$ як $C_n = A_1 \setminus A_n$. Тепер послідовність зростає, при цьому $\displaystyle\bigcup_{n=1}^\infty C_n = A_1 \setminus A \in \mathcal{K}$. Тоді за неперервністю міри знизу,\\
-$\lambda(A_1 \setminus A) = \displaystyle\lambda\left( \bigcup_{n=1}^\infty C_n \right) = \lim_{n \to \infty} \lambda\left(C_n\right) = \lim_{n \to \infty} \lambda(A_1 \setminus A_n)$.\\
-Скорситавшись зауваженням вище, а також фактом, що $\lambda(A_1) < +\infty$, маємо\\
-$\displaystyle\lambda(A_1) - \lambda(A) = \lambda(A_1) - \lim_{n \to \infty} \lambda(A_n) \implies \lambda(A) = \lambda\left( \lim_{n \to \infty} A_n \right) = \lim_{n \to \infty} \lambda(A_n)$.
+Позначимо $A = \displaystyle\bigcap_{n=1}^\infty A_n$ та розглянемо послідовність $\{C_n \in \mathcal{K}, n \geq 1\}$ як $C_n = A_1 \setminus A_n$. Тепер послідовність зростає, при цьому $\displaystyle\bigcup_{n=1}^\infty C_n = A_1 \setminus A \in \mathcal{K}$. Тоді за неперервністю міри знизу
+\[
+\lambda(A_1 \setminus A) = \displaystyle\lambda\left( \bigcup_{n=1}^\infty C_n \right) = \lim_{n \to \infty} \lambda\left(C_n\right) = \lim_{n \to \infty} \lambda(A_1 \setminus A_n).
+\]
+Скорситавшись зауваженням вище, а також фактом, що $\lambda(A_1) < +\infty$, маємо:
+\begin{gather*}
+\displaystyle\lambda(A_1) - \lambda(A) = \lambda(A_1) - \lim_{n \to \infty} \lambda(A_n) \implies \lambda(A) = \lambda\left( \lim_{n \to \infty} A_n \right) = \lim_{n \to \infty} \lambda(A_n). \qedhere
+\end{gather*}
 \end{proof}
 
 \begin{example}
 Наведу приклад, де умова $\lambda(A_1) < +\infty$ є дуже важливою.\\
-Розглянемо міру $\lambda(A) = \card (A \cap \mathbb{Z})$ на $2^{\mathbb{R}}$. Далі розглянемо спадну послідовність $\{ [n,+\infty), n \geq 1 \}$, причому в цьому випадку $\lambda([1,+\infty)) = \card \mathbb{N} = +\infty$. Тоді\\
-$\displaystyle\lambda\left( \lim_{n \to \infty} [n,+\infty) \right) = \lambda\left( \bigcap_{n=1}^\infty [n,+\infty) \right) = \lambda(\emptyset) = 0$.\\
-$\displaystyle\lim_{n \to \infty} \lambda([n,+\infty)) = \lim_{n \to \infty} \card (\mathbb{N} \setminus \{1,2,\dots,n\}) = +\infty$.\\
+На класі $2^{\mathbb{R}}$ розглянемо міру \[
+\lambda(A) = \card (A \cap \mathbb{Z}).
+\]
+Далі розглянемо спадну послідовність \[
+\{ [n,+\infty), n \geq 1 \},
+\]
+причому в цьому випадку $\lambda([1,+\infty)) = \card \mathbb{N} = +\infty$. Тоді
+\begin{gather*}
+\lambda\left( \lim_{n \to \infty} [n,+\infty) \right) = \lambda\left( \bigcap_{n=1}^\infty [n,+\infty) \right) = \lambda(\emptyset) = 0.\\
+\lim_{n \to \infty} \lambda([n,+\infty)) = \lim_{n \to \infty} \card (\mathbb{N} \setminus \{1,2,\dots,n\}) = +\infty.
+\end{gather*}
 Отже, $\displaystyle\lambda\left( \lim_{n \to \infty} [n,+\infty) \right) \neq \lim_{n \to \infty} \lambda([n,+\infty))$, порушується неперервність міри зверху.
 \end{example}
 
@@ -702,21 +958,25 @@ $\displaystyle\lim_{n \to \infty} \lambda([n,+\infty)) = \lim_{n \to \infty} \ca
 Із курсу математичного аналізу відомо, що з себе представляє міра Жордана та клас вимірних множин $\mathcal{K}_d$. Даний контент можна подивитися в іншому пдф більш детально. Однак я зазначу, що міра Жордана $m$ -- ще не міра в сенсі означення, що було задане вище. Нам бракує лише $\sigma$-адитивності. Це питання розв'яжеться згодом.
 
 \begin{lemma}
-Нехай $A \in \mathcal{K}_d$. Тоді $\forall \varepsilon > 0: \exists F_\varepsilon, U_\varepsilon \in \mathcal{K}_d$ -- відповідно замкнена та відкрита множина: $\begin{cases} m(A) - m(F_\varepsilon) < \varepsilon \\ m(U_\varepsilon) - m(A) < \varepsilon \end{cases}$. Причому до всього цього $F_\varepsilon \subset A \subset U_\varepsilon$.\\
+Нехай $A \in \mathcal{K}_d$. Тоді $\forall \varepsilon > 0: \exists F_\varepsilon, U_\varepsilon \in \mathcal{K}_d$ -- відповідно замкнена та відкрита множина: $\begin{cases} m(A) - m(F_\varepsilon) < \varepsilon; \\ m(U_\varepsilon) - m(A) < \varepsilon. \end{cases}$ Причому до всього цього $F_\varepsilon \subset A \subset U_\varepsilon$.\\
 Тобто вимірну за Жорданом множину можна наблизити замкненим всередині множиною та відкритою зовні множиною.
 \end{lemma}
 
 \begin{proof}
 I. \textit{Існування замкненої множини}.\\
-$A$ -- вимірна за Жорданом, тоді $m(A) = \displaystyle\sup_{n \geq 0} m(F_{(n)})$, тоді існує $N$, для якого $m(F_{(N)}) > m(A) - \varepsilon$. Покладемо $F_\varepsilon = F_{(N)} \subset A$. Тоді звідси миттєво $m(A) - m(F_\varepsilon) < \varepsilon$. Ясно, що $F_\varepsilon$ вимірна за Жорданом.
+$A$ -- вимірна за Жорданом, тоді $m(A) = \displaystyle\sup_{n \geq 0} m(F_{(n)})$, тоді існує $N$, для якого виконується нерівність $m(F_{(N)}) > m(A) - \varepsilon$. Покладемо $F_\varepsilon = F_{(N)} \subset A$. Тоді звідси миттєво $m(A) - m(F_\varepsilon) < \varepsilon$. Ясно, що $F_\varepsilon$ вимірна за Жорданом.
 \bigskip \\
 II. \textit{Існування відкритої множини}.\\
 Знову $A$ вимірна за Жорданом, то $m(A) = \displaystyle\inf_{n \geq 0} m(F^{(n)})$, тоді існує $\tilde{N}$, для якого $m(F^{(\tilde{N})}) < m(A) + \dfrac{\varepsilon}{2}$. У нас зараз $F^{(\tilde{N})} \supset A$, але поки що замкнена множина.\\
-Згадаємо, що $F^{(\tilde{N})}$ складається зі скінченного об'єднання брусів вигляду $R = \displaystyle\prod_{i=1}^d \left[ \dfrac{k_i}{2^{\tilde{N}}}, \dfrac{k_i+1}{2^{\tilde{N}}} \right]$. Нехай $\delta > 0$ та замінимо замкнені бруси $R$ на відкриті бруси $R(\delta) =\displaystyle \prod_{i=1}^d \left( \dfrac{k_i}{2^{\tilde{N}}} - \delta, \dfrac{k_i+1}{2^{\tilde{N}}}+\delta \right)$. Зрозуміло, що $R(\delta) \supset R$, а тому звідси $F^{(\tilde{N})}(\delta) \supset F^{(\tilde{N})}$, де ось $F^{(\tilde{N})}(\delta)$ -- об'єднання відкритих брусів. Оскільки $m$ -- монотонна міра, то $m(F^{(\tilde{N})}) \leq m(F^{(\tilde{N})}(\delta))$. Звідси маємо наступне:\\
-$m(F^{(\tilde{N})}) \leq m(F^{(\tilde{N})}(\delta)) \overset{m \text{ -- напівадитивна}}{\leq} \displaystyle\sum m(R(\delta)) = \sum \prod_{i=1}^d \left( \dfrac{k_i+1}{2^{\tilde{N}}} + \delta - \left(\dfrac{k_i}{2^{\tilde{N}}} - \delta  \right)\right) = \\ = \sum \left( \dfrac{1}{2^{\tilde{N}}} + 2 \delta \right)^d \xrightarrow{\delta \to 0} \sum \left( \dfrac{1}{2^{\tilde{N}}} \right)^d = \sum \prod_{i=1}^d \left[ \dfrac{k_i+1}{2^{\tilde{N}}} - \dfrac{k_i}{2^{\tilde{N}}} \right] = \sum m(R) = m(F^{(\tilde{N})})$.\\
+Згадаємо, що $F^{(\tilde{N})}$ складається зі скінченного об'єднання брусів вигляду $R = \displaystyle\prod_{i=1}^d \left[ \dfrac{k_i}{2^{\tilde{N}}}, \dfrac{k_i+1}{2^{\tilde{N}}} \right]$. Нехай $\delta > 0$ та замінимо замкнені бруси $R$ на відкриті бруси $R(\delta) =\displaystyle \prod_{i=1}^d \left( \dfrac{k_i}{2^{\tilde{N}}} - \delta, \dfrac{k_i+1}{2^{\tilde{N}}}+\delta \right)$. Зрозуміло, що $R(\delta) \supset R$, а тому звідси $F^{(\tilde{N})}(\delta) \supset F^{(\tilde{N})}$, де ось $F^{(\tilde{N})}(\delta)$ -- об'єднання відкритих брусів. Оскільки $m$ -- монотонна міра, то $m(F^{(\tilde{N})}) \leq m(F^{(\tilde{N})}(\delta))$. Звідси маємо наступне
+\begin{align*}
+m(F^{(\tilde{N})}) \leq m(F^{(\tilde{N})}(\delta)) \overset{m \text{ -- напівадитивна}}{\leq} \displaystyle\sum m(R(\delta)) = \sum \prod_{i=1}^d \left( \dfrac{k_i+1}{2^{\tilde{N}}} + \delta - \left(\dfrac{k_i}{2^{\tilde{N}}} - \delta  \right)\right) = \\ = \sum \left( \dfrac{1}{2^{\tilde{N}}} + 2 \delta \right)^d \xrightarrow{\delta \to 0} \sum \left( \dfrac{1}{2^{\tilde{N}}} \right)^d = \sum \prod_{i=1}^d \left[ \dfrac{k_i+1}{2^{\tilde{N}}} - \dfrac{k_i}{2^{\tilde{N}}} \right] = \sum m(R) = m(F^{(\tilde{N})}).
+\end{align*}
 Значить, звідси існує $\delta_1 > 0$, для якого $m(F^{(\tilde{N})}(\delta_1)) - m(F^{(\tilde{N})}) < \dfrac{\varepsilon}{2}$.\\
-Нарешті, покладемо $U_\varepsilon = F^{(\tilde{N})}(\delta_1) \supset F^{(\tilde{N})} \supset A$. Ясно, що це відкрита множина (як об'єднання відкритих) та вимірна за Жорданом. Тоді звідси\\
-$m(U_\varepsilon) - m(A) = (m(U_\varepsilon) - m(F^{(\tilde{N})})) + (m(F^{(\tilde{N})}) - m(A)) < \varepsilon$.
+Нарешті, покладемо $U_\varepsilon = F^{(\tilde{N})}(\delta_1) \supset F^{(\tilde{N})} \supset A$. Ясно, що це відкрита множина (як об'єднання відкритих) та вимірна за Жорданом. Тоді звідси
+\begin{gather*}
+m(U_\varepsilon) - m(A) = (m(U_\varepsilon) - m(F^{(\tilde{N})})) + (m(F^{(\tilde{N})}) - m(A)) < \varepsilon. \qedhere
+\end{gather*}
 %TODO see text and format brackets
 \end{proof}
 
@@ -728,13 +988,19 @@ $m(U_\varepsilon) - m(A) = (m(U_\varepsilon) - m(F^{(\tilde{N})})) + (m(F^{(\til
 Уже відомо, що $m$ -- невід'ємна функція множин, тому залишається $\sigma$-адитивність.\\
 Нехай $A_n \in \mathcal{K}_d$ -- неперетинні, причому $\displaystyle\bigsqcup_{n=1}^\infty A_n = A \in \mathcal{K}_d$. Ми хочемо довести $m(A) = \displaystyle\sum_{n=1}^\infty m(A_n)$.\\
 Зауважимо, що $\displaystyle\bigsqcup_{n=1}^j A_n \subset A$, тоді за монотонністю та скінченною адитивністю міри Жордана, $\displaystyle\sum_{n=1}^j m(A_n) \leq m(A)$. Якщо спрямуємо $j \to \infty$, то отримаємо $m(A) \geq \displaystyle\sum_{n=1}^\infty m(A_n)$.\\
-Далі застосуємо щойно доведену лему кілька разів. Нехай $\varepsilon > 0$. Для множини $A$ оберемо замкнену вимірну за Жорданом множину $F_\varepsilon \subset A$, для якої $m(A) - m(F_\varepsilon) < \varepsilon$. Для кожної множини $A_n$ оберемо відкриту вимірну за Жорданом множину $U_{\frac{\varepsilon}{2^n}} \supset A_n$, для якої $m(U_{\frac{\varepsilon}{2^n}}) - m(A) < \dfrac{\varepsilon}{2^n}$. Зауважимо, що $\displaystyle\bigcup_{n=1}^\infty U_{\frac{\varepsilon}{2^n}} \supset \bigcup_{n=1}^\infty A_n = A \supset F_\varepsilon$, тобто для $F_\varepsilon$ у нас є відкрите покриття $\left\{ U_{\frac{\varepsilon}{2^n}}, n \geq 1\right\}$. Оскільки $F_\varepsilon$ замкнена та обмежена, то вона є компактом. Значить, за лемою Гейне-Бореля, ми можемо відокремити скінченне підпокриття $\{U_1,\dots,U_k\}$, тобто $\displaystyle\bigcup_{i=1}^k U_i \supset F_\varepsilon$. Таким чином,\\
-$m(F_\varepsilon) \leq \displaystyle\sum_{i=1}^k m(U_i) \leq \sum_{i=1}^\infty m(U_i) < \sum_{i=1}^\infty \left(m(A) + \dfrac{\varepsilon}{2^i} \right) = \sum_{i=1}^\infty m(A) + \varepsilon$.\\
+Далі застосуємо щойно доведену лему кілька разів. Нехай $\varepsilon > 0$. Для множини $A$ оберемо замкнену вимірну за Жорданом множину $F_\varepsilon \subset A$, для якої $m(A) - m(F_\varepsilon) < \varepsilon$. Для кожної множини $A_n$ оберемо відкриту вимірну за Жорданом множину $U_{\frac{\varepsilon}{2^n}} \supset A_n$, для якої $m(U_{\frac{\varepsilon}{2^n}}) - m(A) < \dfrac{\varepsilon}{2^n}$. Зауважимо, що $\displaystyle\bigcup_{n=1}^\infty U_{\frac{\varepsilon}{2^n}} \supset \bigcup_{n=1}^\infty A_n = A \supset F_\varepsilon$, тобто для $F_\varepsilon$ у нас є відкрите покриття $\left\{ U_{\frac{\varepsilon}{2^n}}, n \geq 1\right\}$. Оскільки $F_\varepsilon$ замкнена та обмежена, то вона є компактом. Значить, за лемою Гайне-Бореля, ми можемо відокремити скінченне підпокриття $\{U_1,\dots,U_k\}$, тобто $\displaystyle\bigcup_{i=1}^k U_i \supset F_\varepsilon$. Таким чином,
+\[
+m(F_\varepsilon) \leq \displaystyle\sum_{i=1}^k m(U_i) \leq \sum_{i=1}^\infty m(U_i) < \sum_{i=1}^\infty \left(m(A) + \dfrac{\varepsilon}{2^i} \right) = \sum_{i=1}^\infty m(A) + \varepsilon.
+\]
 Отже, $\displaystyle m(A) < \varepsilon + m(F_\varepsilon) < \sum_{i=1}^\infty m(A) + 2 \varepsilon$, а тому при $\varepsilon \to 0+0$ отримаємо $m(A) \leq \displaystyle\sum_{i=1}^\infty m(A_n)$.
 \end{proof}
 
 \begin{corollary}
-Розглянемо півкільце $\mathcal{P}_d = \displaystyle \left\{ \prod_{k=1}^d (a_k,b_k] \mid a_k,b_k \in \mathbb{R} \right\}$, а на ній функцію множин $\displaystyle \lambda_d \left( \prod_{k=1}^d (a_k,b_k] \right) = \prod_{k=1}^d (b_k-a_k)$. Тоді $\lambda_d$ задає міру на $\mathcal{P}_d$.
+На півкільці $\mathcal{P}_d = \displaystyle \left\{ \prod_{k=1}^d (a_k,b_k] \mid a_k,b_k \in \mathbb{R} \right\}$ функція множин
+\begin{equation}
+\lambda_d \left( \prod_{k=1}^d (a_k,b_k] \right) = \prod_{k=1}^d (b_k-a_k)
+\end{equation} 
+задає міру.
 \end{corollary}
 
 \begin{proof}
@@ -743,21 +1009,23 @@ $m(F_\varepsilon) \leq \displaystyle\sum_{i=1}^k m(U_i) \leq \sum_{i=1}^\infty m
 
 \subsection{Зовнішні міри}
 \begin{definition}
-Задано $X$ -- деяка множина та $\lambda^*$ -- функція множин на $2^X$.\\
+Нехай $X$ -- деяка множина та $\lambda^*$ -- функція множин на $2^X$.\\
 Функція множин $\lambda^* \colon [0,+\infty]$ називається \textbf{зовнішньою мірою}, якщо
 \begin{align*}
-\lambda^*(\emptyset) = 0 \\
-\forall A \subset X: \forall A_1,A_2,\dots \subset X: A \subset \displaystyle\bigcup_{n=1}^\infty A_n: \lambda^*(A) \leq \sum_{n=1}^\infty \lambda^*(A_n)
+\lambda^*(\emptyset) = 0; \\
+\forall A \subset X: \forall A_1,A_2,\dots \subset X: A \subset \displaystyle\bigcup_{n=1}^\infty A_n: \lambda^*(A) \leq \sum_{n=1}^\infty \lambda^*(A_n).
 \end{align*}
 Друга умова -- це узагальнення $\sigma$-напівадитивності.
 \end{definition}
 
+\noindent
+Для зручності наведу друге означення.
 \begin{definition}
-Задано $X$ -- деяка множина та $\lambda^*$ -- функція множин на $2^X$.\\
-Функція множин $\lambda^* \colon [0,+\infty]$ називається \textbf{зовнішньою мірою}, якщо
+Нехай $X$ -- деяка множина та $\lambda^*$ -- функція множин на $2^X$.\\
+Функція множин $\lambda^* \colon 2^X \to [0,+\infty]$ називається \textbf{зовнішньою мірою}, якщо
 \begin{align*}
-\lambda^*(\emptyset) = 0 \\
-\lambda^* \text{ -- монотонна та $\sigma$-напівадитивна}
+\lambda^*(\emptyset) = 0; \\
+\lambda^* \text{ -- монотонна та $\sigma$-напівадитивна}.
 \end{align*}
 \end{definition}
 
@@ -777,12 +1045,15 @@ $m(F_\varepsilon) \leq \displaystyle\sum_{i=1}^k m(U_i) \leq \sum_{i=1}^\infty m
 \end{proof}
 
 \begin{remark}
-Поняття "зовнішня міра" не пов'язана з тим, що це -- міра, із властивістю зовнішньості. Це просто вже такий сталий термін.
+Поняття ''зовнішня міра'' не пов'язана з тим, що це -- міра, із властивістю зовнішньості. Це просто вже такий сталий термін.
 \end{remark}
 
 \begin{example}
-Розглянемо $\lambda^*(A) = \begin{cases} 0, & A = \emptyset \\ 1, & \text{інакше} \end{cases}$. Вона -- зовнішня міра (неважко довести).\\
-Водночас вона не є мірою, тому що, обравши $A,B \neq \emptyset$ -- неперетинні, порушиться адитивність.
+Розглянемо зовнішню міру (\textit{вправа: довести, що це зовнішня міра})
+\begin{align*}
+\lambda^*(A) = \begin{cases} 0, & A = \emptyset \\ 1, & \text{інакше}. \end{cases}
+\end{align*}
+Водночас вона не є мірою, тому що, беручи неперетинні множини $A,B \neq \emptyset$, ми отримуємо порушення адитивності.
 \end{example}
 
 \begin{remark}
@@ -790,16 +1061,16 @@ $m(F_\varepsilon) \leq \displaystyle\sum_{i=1}^k m(U_i) \leq \sum_{i=1}^\infty m
 \end{remark}
 
 \begin{definition}
-Задано $\lambda$ -- міра на півкільці $\mathcal{P}$.\\
+Нехай $\lambda$ -- міра на півкільці $\mathcal{P}$.\\
 \textbf{Зовнішньою мірою, породженою мірою $\lambda$}, називається функція множин $\lambda^*$, яка визначається таким правилом:
 \begin{align*}
-\lambda^*(A) = \begin{cases} \displaystyle\inf_{\substack{A \subset \bigcup_{n=1}^\infty A_n \\ A_n \in \mathcal{P}}} \sum_{n=1}^\infty \lambda(A_n), & \text{якщо існує хоча б одне зліченне покриття множини $A$ елементами з $\mathcal{P}$} \\
-+\infty, & \text{інакше} \end{cases}
+\lambda^*(A) = \begin{cases} \displaystyle\inf_{\substack{A \subset \bigcup_{n=1}^\infty A_n \\ A_n \in \mathcal{P}}} \sum_{n=1}^\infty \lambda(A_n), & \text{існує хоча б одне зліченне покриття множини $A$ елементами з $\mathcal{P}$;} \\
++\infty, & \text{інакше}. \end{cases}
 \end{align*}
 \end{definition}
 
 \begin{proposition}
-Задано $\lambda$ -- міра на півкільці $\mathcal{P}$. Маємо $\lambda^*$ -- зовнішня міра, породжена мірою $\lambda$. Тоді $\lambda^*$ -- справді зовнішня міра (за означенням).
+Нехай $\lambda$ -- міра на півкільці $\mathcal{P}$. Маємо $\lambda^*$ -- зовнішня міра, породжена мірою $\lambda$. Тоді $\lambda^*$ -- справді зовнішня міра (за означенням).
 \end{proposition}
 
 \begin{proof}
@@ -810,10 +1081,11 @@ $\lambda^*(\emptyset) = \emptyset$.\\
 \bigskip \\
 Нехай тепер $A \subset X$, а також $A_1,A_2,\dots \subset X$, причому $A \subset \displaystyle\bigcup_{n=1}^\infty A_n$. Треба $\lambda^*(A) \leq \displaystyle\sum_{n=1}^\infty \lambda^*(A_n)$.\\
 Нехай існує $A_N$, для якого не знайдеться покриття елементами з $\mathcal{P}$. Тоді $\lambda^*(A_N) = +\infty$, а тому $\lambda^*(A) \leq +\infty$ автоматично. Тому надалі припускається, що для всіх $A_n$ є покриття.\\
-Нехай $\varepsilon > 0$, тоді для $A_n$ існує покриття $A_n \subset \displaystyle\bigcup_{k=1}^\infty B_{kn}$, для якого $\displaystyle\sum_{k=1}^\infty \lambda(B_{kn}) < \lambda^*(A_n) + \dfrac{\varepsilon}{2^n}$. Зауважимо, що $A \subset \displaystyle\bigcup_{n=1}^\infty A_n \subset \bigcup_{n=1}^\infty \bigcup_{k=1}^\infty B_{kn}$, тобто є таке покриття. Тоді звідси\\
-$\lambda^*(A) \leq \displaystyle\sum_{n=1}^\infty \sum_{k=1}^\infty \lambda(B_{kn}) < \sum_{n=1}^\infty \left( \lambda^*(A_n) + \dfrac{\varepsilon}{2^n} \right) = \sum_{n=1}^\infty \lambda^*(A_n) + \varepsilon$.\\
-Якщо далі $\varepsilon \to 0+0$, то отримаємо бажану оцінку:\\
-$\lambda^*(A) \leq \displaystyle\sum_{n=1}^\infty \lambda^*(A_n)$.
+Нехай $\varepsilon > 0$, тоді для $A_n$ існує покриття $A_n \subset \displaystyle\bigcup_{k=1}^\infty B_{kn}$, для якого $\displaystyle\sum_{k=1}^\infty \lambda(B_{kn}) < \lambda^*(A_n) + \dfrac{\varepsilon}{2^n}$. Зауважимо, що $A \subset \displaystyle\bigcup_{n=1}^\infty A_n \subset \bigcup_{n=1}^\infty \bigcup_{k=1}^\infty B_{kn}$, тобто є таке покриття. Тоді звідси
+\[
+\lambda^*(A) \leq \displaystyle\sum_{n=1}^\infty \sum_{k=1}^\infty \lambda(B_{kn}) < \sum_{n=1}^\infty \left( \lambda^*(A_n) + \dfrac{\varepsilon}{2^n} \right) = \sum_{n=1}^\infty \lambda^*(A_n) + \varepsilon.
+\]
+Якщо далі $\varepsilon \to 0+0$, то отримаємо бажану оцінку.
 \end{proof}
 
 \begin{remark}
@@ -830,12 +1102,12 @@ $\lambda(A_n) = \displaystyle\sum_{i=1}^{i_n} \lambda(C_{in}) + \sum_{j=1}^{j_n}
 
 \subsection{Вимірність за Каратеодорі}
 \begin{definition}
-Задано $\lambda^*$ -- зовнішня міра.\\
+Нехай $\lambda^*$ -- зовнішня міра.\\
 Множина $A \subset X$ називається \textbf{вимірною за Каратеодорі відносно $\lambda^*$}, якщо
 \begin{align*}
-\forall E \subset X: \lambda^*(E) = \lambda^*(E \cap A) + \lambda^*(E \cap \tilde{A})
+\forall E \subset X: \lambda^*(E) = \lambda^*(E \cap A) + \lambda^*(E \cap \bar{A}).
 \end{align*}
-Позначення: $\mathcal{S}$ -- клас усіх вимірних множин за Каратеодорі (відносно зовнішньої міри).
+Позначення: $\mathcal{S}_{\lambda^*}$ -- клас усіх вимірних множин за Каратеодорі (відносно зовнішньої міри).
 \end{definition}
 
 \begin{remark}
@@ -845,67 +1117,109 @@ $\mathcal{S} \neq \emptyset$, тому що порожня множина $\empt
 \begin{remark}
 Означення вимірних множин за Каратеодорі можна дещо послабити ось так:
 \begin{align*}
-\forall E \subset X: \lambda^*(E) \geq \lambda^*(E \cap A) + \lambda^*(E \cap \tilde{A})
+\forall E \subset X: \lambda^*(E) \geq \lambda^*(E \cap A) + \lambda^*(E \cap \bar{A}).
 \end{align*}
-Дійсно, зауважимо, що $(E \cap A) \cup (E \cap \bar{A}) = E$, тобто мається покриття для множини $E$, а тому за напівадитивністю зовнішьої міри,\\
-$\lambda^*(E) \leq \lambda^*(E \cap A) + \lambda^*(E \cap \bar{A})$.
+Дійсно, зауважимо, що
+\[
+(E \cap A) \cup (E \cap \bar{A}) = E,
+\] тобто мається покриття для множини $E$, а тому за напівадитивністю зовнішьої міри
+\[
+\lambda^*(E) \leq \lambda^*(E \cap A) + \lambda^*(E \cap \bar{A}).
+\]
 \end{remark}
 
 \begin{theorem}[Теорема Каратеодорі]
-Задано $\lambda^*$ -- зовнішня міра. Тоді $\mathcal{S}$ утворює $\sigma$-алгебру, а також $\lambda^*|_{\mathcal{S}}$ буде мірою.
+Нехай $\lambda^*$ -- зовнішня міра. Тоді $\mathcal{S} = \mathcal{S}_{\lambda^*}$ утворює $\sigma$-алгебру, а також $\lambda^*|_{\mathcal{S}}$ буде мірою.
 \end{theorem}
 
 \begin{proof}
-Доведення даної теореми будемо розбивати на три етапи.\\
+Доведення даної теореми розіб'ємо на три етапи.\\
 I. \textit{$\mathcal{S}$ буде алгеброю.}\\
-Нехай $A,B \in \mathcal{S}$, тобто $A,B$ -- вимірні за Каратеодорі, а тому $\forall E \subset X$:\\
-$\lambda^*(E) = \lambda^*(E \cap A) + \lambda^*(E \cap \overline{A})$ \qquad $\lambda^*(E) = \lambda^*(E \cap B) + \lambda^*(E \cap \overline{B})$.\\
-Ми хочемо довести, що $\lambda^*(E) = \lambda^*(E \cap (A \cup B)) + \lambda^*(E \cap \overline{A \cup B})$, це й буде означати $A \cup B \in \mathcal{S}$.\\
-$\lambda^*(E) = \lambda^*(E \cap A) + \lambda^*(E \cap \overline{A}) \overset{B \in \mathcal{S}}{=} \lambda^*(E \cap A) + [\lambda^*(E \cap \overline{A} \cap B) + \lambda^*(E \cap \overline{A} \cap \overline{B})] = \\
-= [\lambda^*(E \cap A) + \lambda^*(E \cap \overline{A} \cap B)] + \lambda^*(E \cap \overline{A \cup B})$.\\
-Хочеться показати, що ця дужка $[\lambda^*(E \cap A) + \lambda^*(E \cap \overline{A} \cap B)] = \lambda^*(E \cap (A \cup B))$. Дійсно,
-$\lambda^*(E \cap (A \cup B)) \overset{A \in \mathcal{S}}{=} \lambda^*(E \cap (A \cup B) \cap A) + \lambda^*(E \cap (A \cup B) \cap \overline{A}) = \lambda^*(E \cap A) + \lambda^*(E \cap \overline{A} \cap B)$.\\
+Нехай $A,B \in \mathcal{S}$, тобто $A,B$ -- вимірні за Каратеодорі, а тому $\forall E \subset X$:
+\[
+\lambda^*(E) = \lambda^*(E \cap A) + \lambda^*(E \cap \overline{A}), \qquad \lambda^*(E) = \lambda^*(E \cap B) + \lambda^*(E \cap \overline{B}).
+\]
+Ми хочемо довести, що 
+\[
+\lambda^*(E) = \lambda^*(E \cap (A \cup B)) + \lambda^*(E \cap \overline{A \cup B}),
+\] це й буде означати $A \cup B \in \mathcal{S}$.
+\begin{align*}
+\lambda^*(E) = \lambda^*(E \cap A) + \lambda^*(E \cap \overline{A}) & \overset{B \in \mathcal{S}}{=} \lambda^*(E \cap A) + [\lambda^*(E \cap \overline{A} \cap B) + \lambda^*(E \cap \overline{A} \cap \overline{B})] \\
+& = [\lambda^*(E \cap A) + \lambda^*(E \cap \overline{A} \cap B)] + \lambda^*(E \cap \overline{A \cup B}).
+\end{align*}
+Хочеться показати, що ця дужка \[
+[\lambda^*(E \cap A) + \lambda^*(E \cap \overline{A} \cap B)] = \lambda^*(E \cap (A \cup B)).
+\] 
+Дійсно, маємо такий ланцюг рівностей:
+\[
+\lambda^*(E \cap (A \cup B)) \overset{A \in \mathcal{S}}{=} \lambda^*(E \cap (A \cup B) \cap A) + \lambda^*(E \cap (A \cup B) \cap \overline{A}) = \lambda^*(E \cap A) + \lambda^*(E \cap \overline{A} \cap B).
+\]
 Отже, $\lambda^*(E) = \lambda^*(E \cap (A \cup B)) + \lambda^*(E \cap \overline{A \cup B})$ виконано для всіх $E \subset X$. Довели $A \cup B \in \mathcal{S}$.\\
 Із означення вимірності за Каратеодорі випливає, що $A \in \mathcal{S} \iff \overline{A} \in \mathcal{S}$. Оскільки $\emptyset \in \mathcal{S}$, то $X \in \mathcal{S}$.\\
 Нарешті, якщо $A,B \in \mathcal{S}$, то звідси $A \setminus B = A \cap \overline{B} = \overline{A \cup \overline{B}} \in \mathcal{S}$.
 \bigskip \\
 II. \textit{$\mathcal{S}$ буде $\sigma$-алгеброю.}\\
-Нехай $A_1,A_2,\dots \in \mathcal{S}$ -- поки неперетинні множини. Хочемо довести, що $\displaystyle\bigsqcup_{n=1}^\infty A_n \in \mathcal{S}$, тобто $\forall E \subset X$:\\
-$\displaystyle\lambda^*(E) \geq \lambda^*\left( E \cap \bigsqcup_{n=1}^\infty A_n \right) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right)$.\\
-Спочатку доведемо рівність $\displaystyle\lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \right) = \sum_{n=1}^k \lambda^*(E \cap A_n)$ за МІ по числу $k \geq 1$.\\
-База індукції: $k = 1$ -- нема шо доводити.\\
-Припущення індукції: нехай задана нерівність виконується для $k-1$.\\
-Крок індукції: $\displaystyle\lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \right) \overset{A_k \in \mathcal{S}}{=} \lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \cap A_k \right) + \lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \cap \overline{A_k}\right) = \\
-= \lambda^*(E \cap A_k) + \lambda^*\left( E \cap \bigsqcup_{n=1}^{k-1} A_n \right) \overset{\text{припущення МІ}}{=} \lambda^*(E \cap A_k) + \sum_{n=1}^{k-1} \lambda^*(A_n) = \sum_{n=1}^k \lambda^*(E \cap A_n)$.\\
+Нехай $A_1,A_2,\dots \in \mathcal{S}$ -- поки неперетинні множини. Хочемо довести, що $\displaystyle\bigsqcup_{n=1}^\infty A_n \in \mathcal{S}$, тобто $\forall E \subset X$:
+\[
+\displaystyle\lambda^*(E) \geq \lambda^*\left( E \cap \bigsqcup_{n=1}^\infty A_n \right) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right).
+\]
+Спочатку доведемо рівність за МІ по числу $k \geq 1$: 
+\[
+\displaystyle\lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \right) = \sum_{n=1}^k \lambda^*(E \cap A_n).
+\]
+i. \textit{База індукції}: $k = 1$ -- нема шо доводити.\\
+ii. \textit{Припущення індукції}: задана нерівність виконується для $k-1$.\\
+iii. \textit{Крок індукції}: маємо 
+\begin{align*}
+\displaystyle\lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \right) \overset{A_k \in \mathcal{S}}{=} \lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \cap A_k \right) + \lambda^*\left( E \cap \bigsqcup_{n=1}^k A_n \cap \overline{A_k}\right) \\
+= \lambda^*(E \cap A_k) + \lambda^*\left( E \cap \bigsqcup_{n=1}^{k-1} A_n \right) \overset{\text{припущення МІ}}{=} \lambda^*(E \cap A_k) + \sum_{n=1}^{k-1} \lambda^*(A_n) = \sum_{n=1}^k \lambda^*(E \cap A_n).
+\end{align*}
 МІ доведено. Тепер повернімось до бажаного.\\
-Нам, за кроком І, уже відомо, що $\bigsqcup_{n=1}^k A_n \in \mathcal{S}$, тому звідси маємо:\\
-$\displaystyle\lambda^*(E) = \lambda^*\left(E \cap \bigsqcup_{n=1}^k A_n \right) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^k A_n} \right) \geq \sum_{n=1}^k \lambda^*(E \cap A_n) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right)$ \quad (!).\\
-Остання нерівність отрималась за монотонністю, бо $\displaystyle E \cap \overline{\bigsqcup_{n=1}^k A_n} \supset E \cap \overline{\bigsqcup_{n=1}^\infty A_n}$. Нарешті, спрямуємо $k \to \infty$ -- отримаємо:\\
-$\displaystyle\lambda^*(E) \geq \sum_{n=1}^\infty \lambda^*(E \cap A_n) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right) \geq \lambda^*\left( E \cap \bigsqcup_{n=1}^\infty A_n \right) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right)$.\\
+Нам за кроком І уже відомо, що $\displaystyle\bigsqcup_{n=1}^k A_n \in \mathcal{S}$, тому звідси маємо:
+\begin{equation}
+\label{eq:inequality_in_Caratheodory}
+\lambda^*(E) = \lambda^*\left(E \cap \bigsqcup_{n=1}^k A_n \right) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^k A_n} \right) \geq \sum_{n=1}^k \lambda^*(E \cap A_n) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right).
+\end{equation}
+Остання нерівність отрималась за монотонністю, бо 
+\[
+E \cap \overline{\bigsqcup_{n=1}^k A_n} \supset E \cap \overline{\bigsqcup_{n=1}^\infty A_n}.
+\] 
+Нарешті, спрямуємо $k \to \infty$ -- отримаємо:
+\[
+\displaystyle\lambda^*(E) \geq \sum_{n=1}^\infty \lambda^*(E \cap A_n) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right) \geq \lambda^*\left( E \cap \bigsqcup_{n=1}^\infty A_n \right) + \lambda^*\left( E \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right).
+\]
 Остання нерівність випливає з $\sigma$-напівадитивності зовнішньої міри.\\
 Власне, отримали $\displaystyle\bigsqcup_{n=1}^\infty A_n \in \mathcal{S}$, це був лише випадок неперетинних множин.\\
-Нехай $A_1,A_2,\dots \in \mathcal{S}$ -- уже довільні. Розглянемо множини $B_1 = A_1,\ B_2 = A_2 \setminus A_1,\ B_3 = A_3 \setminus (A_1 \cup A_2), \dots$ -- система неперетинних множин. Причому всі $B_1,B_2,\dots \in \mathcal{S}$, а звідси $\displaystyle \bigcup_{n=1}^\infty A_n = \bigsqcup_{n=1}^\infty B_n \in \mathcal{S}$.
+Нехай $A_1,A_2,\dots \in \mathcal{S}$ -- уже довільні. Розглянемо множини 
+\[
+B_1 = A_1,\ B_2 = A_2 \setminus A_1,\ B_3 = A_3 \setminus (A_1 \cup A_2), \dots
+\] 
+Отримали систему неперетинних множин. Причому всі $B_1,B_2,\dots \in \mathcal{S}$, а звідси $\displaystyle \bigcup_{n=1}^\infty A_n = \bigsqcup_{n=1}^\infty B_n \in \mathcal{S}$.
 \bigskip \\
-\textit{III. $\lambda^*|_{\mathcal{S}}$ утворює міру.}\\
+III. \textit{$\lambda^*|_{\mathcal{S}}$ утворює міру.}\\
 Залишилося довести, що $\lambda^*$ буде $\sigma$-адитивною на $\mathcal{S}$.\\
-Нехай $A_1,A_2,\dots \in \mathcal{S}$ -- неперетинні (уже автоматично $\displaystyle\bigsqcup_{n=1}^\infty A_n \in \mathcal{S}$). Скористаємося нерівністю (!) при $k \to \infty$, але замість $E$ підставимо $E = \displaystyle\bigsqcup_{n=1}^\infty A_n$ -- отримаємо наступне:\\
-$\displaystyle\lambda^*\left(\bigsqcup_{n=1}^\infty A_n \right) \geq \sum_{n=1}^\infty \lambda^*\left(\bigsqcup_{n=1}^\infty A_n \cap A_n\right) + \lambda^*\left(\bigsqcup_{n=1}^\infty A_n \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right) = \sum_{n=1}^\infty \lambda^*(A_n)$.\\
-Водночас, за $\sigma$-напівадитивністю зовнішьої міри, $\displaystyle\lambda^*\left(\bigsqcup_{n=1}^\infty A_n\right) \leq \sum_{n=1}^\infty \lambda^*(A_n)$. А тому звідси\\
-$\displaystyle\lambda^*\left(\bigsqcup_{n=1}^\infty A_n\right) = \sum_{n=1}^\infty \lambda^*(A_n)$.
+Нехай $A_1,A_2,\dots \in \mathcal{S}$ -- неперетинні (уже автоматично $\displaystyle\bigsqcup_{n=1}^\infty A_n \in \mathcal{S}$). Скористаємося нерівністю \eqref{eq:inequality_in_Caratheodory} при $k \to \infty$, але замість $E$ підставимо $E = \displaystyle\bigsqcup_{n=1}^\infty A_n$ -- отримаємо наступне:
+\[
+\displaystyle\lambda^*\left(\bigsqcup_{n=1}^\infty A_n \right) \geq \sum_{n=1}^\infty \lambda^*\left(\bigsqcup_{n=1}^\infty A_n \cap A_n\right) + \lambda^*\left(\bigsqcup_{n=1}^\infty A_n \cap \overline{\bigsqcup_{n=1}^\infty A_n} \right) = \sum_{n=1}^\infty \lambda^*(A_n).
+\]
+Водночас за $\sigma$-напівадитивністю зовнішьої міри
+\begin{gather*}
+\displaystyle\lambda^*\left(\bigsqcup_{n=1}^\infty A_n\right) \leq \sum_{n=1}^\infty \lambda^*(A_n) \implies \lambda^*\left(\bigsqcup_{n=1}^\infty A_n\right) = \sum_{n=1}^\infty \lambda^*(A_n). \qedhere
+\end{gather*}
 \end{proof}
 
 \begin{definition}
-Задано $\lambda$ -- міра на $\sigma$-алгебрі $\mathcal{F}$.\\
+Нехай $\lambda$ -- міра на $\sigma$-алгебрі $\mathcal{F}$.\\
 Міра $\lambda$ називається \textbf{повною}, якщо
 \begin{align*}
-\forall A \in \mathcal{F}: \lambda(A) = 0: \forall B \subset A: B \in \mathcal{F}
+\forall A \in \mathcal{F}: \lambda(A) = 0: \forall B \subset A: B \in \mathcal{F}.
 \end{align*}
 Із цього випливає, що $\lambda(B) = 0$.\\
 Інколи ще говорять, що $\sigma$-алгебра $\mathcal{F}$ \textbf{повна відносно міри $\lambda$}.
 \end{definition}
 
 \begin{example}
-Зокрема маємо $\mathcal{F} = \{\emptyset,X\}$, а міра $\lambda$ на ній визначається як $\lambda(X) = \lambda(\emptyset) = 0$. У цьому випадку міра $\lambda$ не буде повною, бо якщо $\{x\} \subset X$, то не випливає $\{x\} \notin \mathcal{F}$.
+Зокрема маємо $\mathcal{F} = \{\emptyset,X\}$, а міра $\lambda$ на ній визначається як $\lambda(X) = \lambda(\emptyset) = 0$. У цьому випадку міра $\lambda$ не буде повною, бо якщо $\{x\} \subset X$, то не маємо $\{x\} \notin \mathcal{F}$.
 \end{example}
 
 \begin{corollary}
@@ -914,23 +1228,34 @@ $\displaystyle\lambda^*\left(\bigsqcup_{n=1}^\infty A_n\right) = \sum_{n=1}^\inf
 
 \begin{proof}
 Нехай $A \in \mathcal{S}$ так, щоб $\lambda^*(A) = 0$ та оберемо множину $B \subset A$. Доведемо, що $B \in \mathcal{S}$.\\
-Зауважимо, що $B \subset A, E \subset X$, звідси $E \cap B \subset A$, тому $\lambda^*(E \cap B) \leq \lambda^*(A) = 0 \implies \lambda^*(E \cap B) = 0$.\\
-$\lambda^*(E \cap B) + \lambda^*(E \setminus B) = \lambda^*(E \setminus B) \leq \lambda^*(E)$.
+Зауважимо, що $B \subset A, E \subset X$, звідси $E \cap B \subset A$, тому
+\begin{gather*}
+\lambda^*(E \cap B) \leq \lambda^*(A) = 0 \implies \lambda^*(E \cap B) = 0. \\
+\lambda^*(E \cap B) + \lambda^*(E \setminus B) = \lambda^*(E \setminus B) \leq \lambda^*(E). \qedhere
+\end{gather*}
 \end{proof}
 
 \subsection{Продовження міри}
 \begin{theorem}
-Задано $\lambda$ -- міра на півкільці $\mathcal{P}$ та $\lambda^*$ -- зовнішня міра, породжена мірою $\lambda$. Тоді $\mathcal{P} \subset \mathcal{S}$, а також $\lambda^*|_\mathcal{P} \equiv \lambda$.
+Нехай $\lambda$ -- міра на півкільці $\mathcal{P}$ та $\lambda^*$ -- зовнішня міра, породжена мірою $\lambda$. Тоді $\mathcal{P} \subset \mathcal{S}_{\lambda^*}$, а також $\lambda^*|_\mathcal{P} \equiv \lambda$.
 \end{theorem}
 
 \begin{proof}
+Для зручності перепозначу $\mathcal{S} = \mathcal{S}_{\lambda^*}$.
+\bigskip \\
 $\mathcal{P} \subset \mathcal{S}$.\\
 Нехай $A \in \mathcal{P}$, нам треба довести, що $A \in \mathcal{S}$, інакше кажучи, $\lambda^*(E) \geq \lambda^*(E \cap A) + \lambda^*(E \cap \overline{A})$.\\
-Маємо $E \subset X$, якщо для нього не існує покриття, то $\lambda*(E) = +\infty$, тоді автоматично нерівність виконана. Тому залишилося розглянути $E \subset X$, для яких є покриття.\\
+Маємо $E \subset X$, якщо для нього не існує покриття, то $\lambda_*(E) = +\infty$, тоді автоматично нерівність виконана. Тому залишилося розглянути $E \subset X$, для яких є покриття.\\
 Нехай $\varepsilon > 0$, тоді існує покриття $E \subset \displaystyle\bigcup_{n=1}^\infty E_n$, де $E_n \in \mathcal{P}$, для яких $\displaystyle\sum_{n=1}^\infty \lambda(E_n) < \lambda^*(E) + \varepsilon$. Тобто звідси $\lambda^*(E) > \displaystyle\sum_{n=1}^\infty \lambda(E_n) - \varepsilon$. Тепер розглянемо праву частину нерівності з Каратеодорі.\\
-Зауважимо, що $E \cap A \subset \displaystyle\bigcup_{n=1}^\infty (E_n \cap A)$, а також $E \cap \overline{A} \subset \displaystyle\bigcup_{n=1}^\infty (E_n \cap \overline{A})$, причому $E_n \cap A \in \mathcal{P}$, водночас $E_n \cap \overline{A} = E \setminus A = \displaystyle\bigsqcup_{i=1}^{i_n} B_{in}$, тож $E \cap \overline{A} \subset \displaystyle\bigcup_{n=1}^\infty \bigsqcup_{i=1}^{i_n} B_{in}$, де $B_{in} \in \mathcal{P}$. За визначенням зовнішьої міри,\\
-$\lambda^*(E \cap A) + \lambda^*(E \cap \overline{A}) \leq \displaystyle\sum_{n=1}^\infty \lambda(E_n \cap A) + \sum_{n=1}^\infty \sum_{i=1}^{i_n} \lambda(B_{in}) = \sum_{n=1}^\infty \lambda(E_n)$.\\
-Окремо варто пояснити, чому $\lambda(E_n \cap A) + \displaystyle\sum_{i=1}^{i_n} \lambda(B_{in}) = \lambda(E_n)$. У нас $E_n \in \mathcal{P}$, але водночас $\displaystyle E_n = (E_n \cap A) \sqcup (E_n \cap \overline{A}) = (E_n \cap A) \sqcup \bigsqcup_{i=1}^{i_n}B_{in}$, тут $E_n \cap A, B_{in} \in \mathcal{P}$, а тому можна застосовувати $\sigma$-адитивність міри.\\
+Зауважимо, що $E \cap A \subset \displaystyle\bigcup_{n=1}^\infty (E_n \cap A)$, а також $E \cap \overline{A} \subset \displaystyle\bigcup_{n=1}^\infty (E_n \cap \overline{A})$, причому $E_n \cap A \in \mathcal{P}$, водночас $E_n \cap \overline{A} = E \setminus A = \displaystyle\bigsqcup_{i=1}^{i_n} B_{in}$, тож $E \cap \overline{A} \subset \displaystyle\bigcup_{n=1}^\infty \bigsqcup_{i=1}^{i_n} B_{in}$, де $B_{in} \in \mathcal{P}$. За визначенням зовнішьої міри
+\[
+\lambda^*(E \cap A) + \lambda^*(E \cap \overline{A}) \leq \displaystyle\sum_{n=1}^\infty \lambda(E_n \cap A) + \sum_{n=1}^\infty \sum_{i=1}^{i_n} \lambda(B_{in}) = \sum_{n=1}^\infty \lambda(E_n).
+\]
+Окремо варто пояснити, чому $\lambda(E_n \cap A) + \displaystyle\sum_{i=1}^{i_n} \lambda(B_{in}) = \lambda(E_n)$. У нас $E_n \in \mathcal{P}$, але водночас 
+\[
+\displaystyle E_n = (E_n \cap A) \sqcup (E_n \cap \overline{A}) = (E_n \cap A) \sqcup \bigsqcup_{i=1}^{i_n}B_{in},
+\]
+тут $E_n \cap A, B_{in} \in \mathcal{P}$, а тому можна застосовувати $\sigma$-адитивність міри.\\
 Отже, $\lambda^*(E \cap A) + \lambda^*(E \cap \overline{A}) < \lambda^*(E) + \varepsilon$, а далі $\varepsilon \to 0+0$ -- отримали бажану нерівність.
 \bigskip \\
 $\lambda^*|_\mathcal{P} \equiv \lambda$.\\

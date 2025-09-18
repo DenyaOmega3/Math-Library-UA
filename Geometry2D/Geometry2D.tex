@@ -27,7 +27,7 @@
 \def\huge{\displaystyle}
 \def\rightproof{$\boxed{\Rightarrow}$ }
 \def\leftproof{$\boxed{\Leftarrow}$ }
-\def\qed{$\blacksquare$}
+\renewcommand{\qedsymbol}{$\blacksquare$}
 
 \usepackage{pdfpages}
 
@@ -102,6 +102,8 @@
 \tableofcontents
 \newpage
 
+% COMMENT
+\iffalse
 \section{Найпростіші геометричні фігури, їхні властивості}
 \subsection{Точки та прямі}
 Будуть три поняття, яким зазвичай не дають означення. Але малюнок дає представлення, що це.\\
@@ -115,7 +117,7 @@
 \end{tikzpicture}
 \end{figure}
 
-На наступному малюнку побудована \textbf{пряма}. Такий геометричний об'єкт матиме такі властивості.
+На наступному малюнку побудована \textbf{пряма}. Такий геометричний об'єкт матиме певні властивості, але кожну з них будемо поступово описувати.
 \begin{axiom}
 Через будь-які дві точки можна провести єдину пряму. Та яку б пряму ми не провели, існують точки, що належать цій прямій, та існують точки, що не належать цій прямій.
 \end{axiom}
@@ -128,8 +130,13 @@
 \fill[black] (2,1) circle (2pt) node[anchor = south] {$B$};
 \fill[black] (2,2) circle (2pt) node[anchor = south] {$C$};
 \end{tikzpicture}
-\caption*{В цьому малюнку маємо пряму $a$ або ще називають пряму $AB$, яка проведена через точки $A$,$B$.}
+\caption*{В цьому малюнку маємо пряму $a$ або ще називають пряму $AB$, яка проведена через точки $A,\ B$.}
 \end{figure}
+
+\begin{axiom}
+Яка б не була пряма, існують точки, що належать даній прямій, та точки, що не належать даній прямій.
+\end{axiom}
+
 Точку, яка належить прямій, позначатимемо так: $A \in a, B \in a$. \\
 Точку, яка належить прямій, позначатимемо так: $C \notin a$.
 
@@ -153,13 +160,13 @@
 
 \begin{proof}
 Задано дві прямі $a,b$, що перетинаються в спільній точці $O_1$.\\
-!Припустимо, що $O_2$ -- ще одна спільна точка. Але тоді через ці дві точки $O_1,O_2$ проведені дві різні прямі (і саме $a,b$), коли за властивістю прямої, лише єдина пряма можлива. Суперечність!\\
+!Припустимо, що $O_2$ -- ще одна спільна точка. Але тоді через ці дві точки $O_1,O_2$ проведені дві різні прямі (і саме $a,b$), коли за першою аксіомою прямої, лише єдина пряма можлива. Суперечність!\\
 (малюнку не буде, бо неможливо таку ситуацію уявити.)
 \end{proof}
 
 \subsection{Відрізок, довжина}
 \begin{definition}
-Задана пряма $a$, що проходить через т. $A,B$.\\
+Задана пряма $a$, що проходить через точки $A,B$.\\
 \textbf{Відрізком} назвемо частину прямої, що обмежена двома точками, які називають \textbf{кінцями}.\\
 Позначення: $AB$
 \begin{figure}[H]
@@ -173,11 +180,11 @@
 \caption*{Червоним маємо відрізок $AB$, де точки $A,B$ -- два кінця.}
 \end{figure}
 \end{definition}
-Зрозуміло, що для кожних двох точок буде існувати єдиний відрізок, оскільки між ними існує єдина пряма.
+Зрозуміло, що для кожних двох точок буде існувати єдиний відрізок, оскільки між ними існує єдина пряма за першою аксіомою.
 
 \begin{definition}
-Задан відрізок $AB$.\\
-Точку $X$ назвемо \textbf{внутрішньою}, якщо вона лежить між кінцями відрізка.
+Задано відрізок $AB$.\\
+Точку $X$ назвемо \textbf{внутрішньою}, якщо вона лежить між кінцями відрізка (така точка існує згідно другій аксіомі).
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -198,7 +205,14 @@
 Серед трьох точок, що лежать на одній прямій, лише одна з них лежить між двома точками.
 \end{axiom}
 
-\iffalse
+\begin{axiom}
+Кожен відрізок має певну довжину.
+\end{axiom}
+
+Для того щоб виміряти \textbf{довжину} відрізка, треба буде задати \textbf{відрізки одиничної довжини}.\\
+Зазвичай це: $1$см, $1$м, $1$дм.\\
+Наприклад, вимірюють довжину відрізку, завдяки лінійці. Там відрізок одиничної довжини $1$см.
+
 \begin{definition}
 Задані відрізки $A_1B_1, A_2B_2$.\\
 Їх назвемо \textbf{рівними}, якщо їх можна сумістити накладанням.\\
@@ -216,27 +230,24 @@
 \end{figure}
 
 \begin{remark}
-Можуть виникнути два можливих випадки під час накладання двох відрізків:\\
-- $A_1$ співпадає з $A_2$ та $B_1$ співпадає з $B_2$;\\
-- $A_1$ співпадає з $B_2$ та $B_1$ співпадає з $A_2$.
+Можуть виникнути два можливих випадки під час накладання двох відрізків:
+\begin{itemize}[nosep,wide=0pt]
+\item $A_1$ співпадає з $A_2$ та $B_1$ співпадає з $B_2$;
+\item $A_1$ співпадає з $B_2$ та $B_1$ співпадає з $A_2$.
+\end{itemize}
 \end{remark}
 
-У разі, якщо вони не рівні, то може виникнути один із двох випадків:\\
-- відрізок $A_1B_1$ більший за $A_2B_2$: $A_1B_1 > A_2B_2$;\\
-- відрізок $A_1B_1$ менший за $A_2B_2$: $A_1B_1 < A_2B_2$.
-\end{definition}
-\fi
-Для того щоб виміряти \textbf{довжину} відрізка, треба буде задати \textbf{відрізки одиничної довжини}.\\
-Зазвичай це: $1$см, $1$м, $1$дм.\\
-Наприклад, вимірюють довжину відрізку, завдяки лінійці. Там відрізок одиничної довжини $1$см.\\
-На відрізку має бути така властиість:
-\iffalse
-\begin{corollary}
 Відрізки рівні тоді й тільки тоді, коли їхні довжини рівні.
-\end{corollary}
-\fi
+
+У разі, якщо вони не рівні, то може виникнути один із двох випадків:
+\begin{itemize}[nosep,wide=0pt]
+\item $A_1B_1 > A_2B_2$ (відрізок $A_1B_1$ більший за $A_2B_2$) або
+\item $A_1B_1 < A_2B_2$ (відрізок $A_1B_1$ менший за $A_2B_2$).
+\end{itemize}
+\end{definition}
+
 \begin{axiom}
-Кожен відрізок має довжину більше нуля. Якщо точка $C$ -- внутіршня точка відрізка $AB$, то довжину відрізка $AB$ можна знати таким чином:
+Якщо точка $C$ -- внутіршня точка відрізка $AB$, то довжину відрізка $AB$ можна знати таким чином:
 \begin{align*}
 AB = AC + CB
 \end{align*}
@@ -286,7 +297,10 @@ AC = CB
 \subsection{Півплощина}
 \textbf{Площину} можна сприймати як стіл нескінченної довжини, де малюються всі геометричні фігури. Якщо намалювати пряму (яка нескінченна), то планується, щоб вона мала таку властивість:
 \begin{axiom}
-Пряма розбиває площину на дві півплощини.
+Пряма розбиває площину на дві півплощини. \\
+Якщо кінці відрізка належать одній півплощині, то відрізок не перетинає пряму. Якщо кінці відрізка належать різним півплощинам, то відрізок перетинає пряму.
+\end{axiom}
+
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -300,7 +314,6 @@ AC = CB
 \end{tikzpicture}
 \caption*{На малюнку точки $A,B,C$ лежать на одній півплощині. Водночас точки $C,D$ лежать на різних півплощинах. Відрізок $AB$ не перетинає пряму, тому що $A,B$ лежать на одній півплощині. Відрізок $CD$ водночас перетинає пряму, оскільки $C,D$ лежать на різних півплощинах.}
 \end{figure}
-\end{axiom}
 
 \subsection{Промінь, кут, вимірювання кутів}
 \begin{definition}
@@ -328,10 +341,10 @@ AC = CB
 \begin{definition}
 Два промені називаються \textbf{доповняльними}, якщо вони мають спільний початок і лежать на одній прямій.
 \end{definition}
-У попередньому малюнку, першому, промені $AO$, $OB$ - доповняльні. Тому що спільний початок $O$ та, об'єднавши, отримаємо пряму $AB$.
+У попередньому малюнку, першому, промені $AO$, $OB$ -- доповняльні. Тому що спільний початок $O$ та, об'єднавши, отримаємо пряму $AB$.
 
 \begin{example}
-Задано відрізок $AB$ та точка $C$, що лежить на відрізку. Серед півпроменів $AB,AC,CA,CB$ назвати ці, що збігаються, та ці, що доповняльні.\\
+Задано відрізок $AB$ та точка $C$, що лежить на відрізку. Серед півпроменів $AB,\ AC,$ $CA,\ CB$ назвати ці, що збігаються, та ці, що доповняльні.\\
 Точка $C$ лежить між $A,B$. Отже, точка $A$ уже не може лежати між $B,C$. Отже, $B,C$ лежать по одну сторону від точки $A$. Тому промені $AB,AC$ збігаються.\\
 Оскільки точка $C$ лежить між $A,B$, то тоді $A,B$ лежать по різні сторони від $C$. Також якщо об'єднати $CA,CB$, то ми отримаємо пряму $AB$. Отже, $CA,CB$ -- доповняльні.
 \end{example}
@@ -404,8 +417,13 @@ AC = CB
 \textbf{Axiom.} Для кута $ABC$ та променя $B_1C_1$ існує єдиний кут $A_1B_1C_1$, який дорівнює куту $ABC$. Причому т. $C_1$ лежить у заданій півплощині відносно прямої $B_1C_1$.
 \fi
 Для того щоб виміряти \textbf{міру} кута, це можна зробити за допомогою транспортира, що повертає значення в градусах. Є ще так звані мінути (не хвилини), що дорівнюють $\dfrac{1}{60}$ градуса.
+
 \begin{axiom}
-Кожен кут має градусну міру більше нуля. Розгорнутий кут дорівнює $180^\circ$. Якщо в $\angle AOB$ є промінь $OC$, що проходить між сторонами $OA,OB$, то градусну міру $\angle AOB$ можна записати таким чином:
+Кожен кут має градусну міру більше нуля. Розгорнутий кут дорівнює $180^\circ$.
+\end{axiom}
+
+\begin{axiom}
+Якщо в $\angle AOB$ є промінь $OC$, що проходить між сторонами $OA,\ OB$, то градусну міру $\angle AOB$ можна записати таким чином:
 \begin{align*}
 \angle AOB = \angle AOC + \angle COB
 \end{align*}
@@ -429,7 +447,7 @@ AC = CB
 
 \subsection{Відкладення відрізків та кутів}
 \begin{axiom}
-\label{set_a_segment_with_length}
+\label{set_a_unique_segment_with_length}
 На кожну півпряму від початкової точки можна відкласти лише один відрізок заданої довжини.
 \begin{figure}[H]
 \centering
@@ -439,7 +457,7 @@ AC = CB
 \end{axiom}
 
 \begin{axiom}
-\label{set_an_angle_with_degree}
+\label{set_a_unique_angle_with_degree}
 Від кожній півпрямій в задану півплощину можна відкласти лише один кут із заданою градусною мірою, менший за $180^\circ$.
 \begin{figure}[H]
 \centering
@@ -486,10 +504,12 @@ AC = CB
 \fi
 
 \begin{definition} Задано кут $\angle AOB$.
-Кут називається:\\
-- \textbf{прямим}, якщо $\angle AOB = 90^{\circ}$;\\
-- \textbf{гострим}, якщо $\angle AOB < 90^{\circ}$;\\
-- \textbf{тупим}, якщо $\angle AOB > 90^{\circ}$.
+Кут називається:
+\begin{itemize}[nosep,wide=0pt]
+\item \textbf{прямим}, якщо $\angle AOB = 90^{\circ}$;
+\item \textbf{гострим}, якщо $\angle AOB < 90^{\circ}$;
+\item \textbf{тупим}, якщо $\angle AOB > 90^{\circ}$.
+\end{itemize}
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -631,7 +651,7 @@ $\angle AOB, \angle BOC$ -- суміжні, а тому $\angle AOB + \angle COB
 \end{figure}
 \end{definition}
 
-\begin{definition} Задані відрізки $AB,CD$.\\
+\begin{definition} Задані відрізки $AB,\ CD$.\\
 Вони називаються \textbf{перпендикулярними}, якщо вони лежать на перпендикулярних прямих.
 \begin{figure}[H]
 \centering
@@ -671,78 +691,36 @@ $\angle AOB, \angle BOC$ -- суміжні, а тому $\angle AOB + \angle COB
 \end{theorem}
 
 \begin{proof}
-Нехай є пряма $AB$, на якій я позначу точку $M$. Відкладемо від промення $MB$ кут $CMB$, який буде прямим. Отже, $CM \perp AB$.\\
-!Припустимо, що існує ще одна пряма, якась пряма $DM$, що перпендикулярна $AB$. Нехай точка $D$ лежить у тій самій півплощині відносно прямої $AB$, що й точка $C$. Отримали прямий кут, який відкладений також від прямої $AB$. Але від неї в заданій півплощині можна відкласти лише єдиний кут -- суперечність!
+Нехай є пряма $AB$, на якій я позначу точку $M$. Відкладемо від промення $MB$ кут $CMB$, який буде прямим (можливо за \axref{set_a_unique_angle_with_degree}). Отже, $CM \perp AB$.\\
+!Припустимо, що існує ще одна пряма, якась пряма $DM$, що перпендикулярна $AB$. Нехай точка $D$ лежить у тій самій півплощині відносно прямої $AB$, що й точка $C$. Отримали прямий кут, який відкладений також від прямої $AB$. Але від неї в заданій півплощині можна відкласти лише єдиний кут (знову ж таки за \axref{set_a_unique_angle_with_degree}) -- суперечність!
 \end{proof}
 
-\textcolor{red}{\textit{Надалі будуть наведені теореми, у деяких з яких їхні доведення будуть продемонстровані пізніше, коли опануємо певну теорію про трикутників. Я вирішив увесь фундамент планіметрії засунути в один розділ, а не розкидувати на різні розділи.}}
+\textcolor{red}{\textit{Надалі будуть наведені теореми, доведення яких буде продемонстровано пізніше, оскільки тут необхідні певні знання про трикутники. Там буде зазначено, коли я відповідну теорему доведу. Я вирішив увесь фундамент планіметрії засунути в один розділ, а не розкидувати на різні розділи.}}
 
 \begin{theorem}
 \label{line_point_not_in_line_draw_perpendicular}
 Через точку, що не належить прямій, можна провести іншу єдину пряму, що перпендикулярна першій прямій.\\
-\textit{Доведення читати пізніше.}
-\end{theorem}
-
-\begin{proof}
-Розглянемо пряму $MN$ та точку $O \not\in MN$. Покажемо, що ми можемо провести пряму через точку $O$, що перпендикулярна $MN$.
+\textcolor{red}{\textit{Доведення буде нижче.}}
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
+\draw[white] (1,-1)--(1,1);
 \draw (0,0)--(2,0);
 \node at (0,-0.3) {$M$};
 \node at (2,-0.3) {$N$};
 \fill (1,1) circle (1pt) node[anchor = south] {$O$};
 \end{tikzpicture}
-\end{figure}
-Для початку ми створимо кут $\angle OMN$ (це можна зробити, бо ми проводимо $MO$). А далі відкладемо від променя $MN$ єдиний кут $O_1MN$ так, щоб $\angle OMN = \angle O_1MN$ за \axref{set_an_angle_with_degree}. Причому точку $O_1$ ми оберемо так, щоб $OM=O_1M$ за \axref{set_a_segment_with_length}.
-\begin{figure}[H]
-\centering
+\qquad
 \begin{tikzpicture}
 \draw (0,0)--(2,0);
-\draw[red] (0,0)--(1,1);
-\draw[red] (0,0)--(1,-1);
-\node at (0,-0.3) {$M$};
-\node at (2,-0.3) {$N$};
-\fill (1,1) circle (1pt) node[anchor = south] {$O$};
-\fill (1,-1) circle (1pt) node[anchor = north] {$O_1$};
-\end{tikzpicture}
-\end{figure}
-Проведемо пряму $OO_1$, яка перетинається з прямою $MN$. Позначу точкою перетину точку $A$. Залишилось довести, що $\angle MAO = 90^\circ$.
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\draw (0,0)--(2,0);
-\draw (0,0)--(1,1);
-\draw (0,0)--(1,-1);
 \draw[red] (1,-1)--(1,1);
 \node at (0,-0.3) {$M$};
 \node at (2,-0.3) {$N$};
 \fill (1,1) circle (1pt) node[anchor = south] {$O$};
-\fill (1,-1) circle (1pt) node[anchor = north] {$O_1$};
-\fill (1,0) circle (1pt) node[anchor = north west] {$A$};
+\draw (1,0) rectangle (1.25,0.25);
 \end{tikzpicture}
 \end{figure}
-Маємо $\triangle OMA$ та промінь $MA$. Тоді за \axref{equal_triangle_existence}, можна знайти рівний трикутний $\triangle O_2MA = \triangle O_1MA$. Із рівності отримаємо, що $\angle AMO_1 = \angle AMO_2$, а тому точка $O_2$ належить куту $\angle AMO_1$.\\ 
-Також із рівності отримаємо, що $MO_1 = MO_2$, тоді $MO_2 = MO$. Таким чином, точка $O_1$ співпадає з точкою $O_2$, а тому звідси $\triangle O_1MA, \triangle O_2MA$ збігаються. Оскільки $\triangle O_1AM = \triangle OAM$, то тоді $\angle MAO_1 = \angle MAO$, причому ці кути суміжні. Отже, $\angle MAO = 90^\circ$. Все, довели.
-\bigskip \\
-!Припустимо, що через точку $O \not \in MN$ можна провести другу пряму, що перпендикулярна $MN$.
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\draw (0,0)--(2,0);
-\draw (1,1)--(1,0);
-\draw (1,1)--(1.5,0);
-\draw (1,0) rectangle (0.75,0.25);
-\draw (1.5,0) rectangle (1.75,0.25);
-\node at (0,-0.3) {$M$};
-\node at (2,-0.3) {$N$};
-\fill (1,1) circle (1pt) node[anchor = south] {$O$};
-\fill (1,0) circle (1pt) node[anchor = north west] {$A$};
-\fill (1.5,0) circle (1pt) node[anchor = north west] {$B$};
-\end{tikzpicture}
-\end{figure}
-За \axref{equal_triangle_existence}, існує трикутник $\triangle O_1AB = \triangle OAB$. Значить, $\angle OAB = \angle O_1AB = 90^\circ$. Звідси $\angle OAO_1 = 180^\circ$, тож точки $O,A,O_1$ лежать на одній прямій. Аналогічно доводимо, що $O,B,O_1$ лежать на одній прямій. Але тоді прямі $OA,OB$ мають дві точки перетину -- це точки $O,O_1$ -- суперечність!
-\end{proof}
+\end{theorem}
 
 \begin{definition}
 \textbf{Серединним перпендикуляром} відрізка називають пряму, що перпендикулярна до відрізка та проходить через його середину.
@@ -778,58 +756,14 @@ $\angle AOB, \angle BOC$ -- суміжні, а тому $\angle AOB + \angle COB
 \end{tikzpicture}
 \caption*{Обрали точку $X$ -- довільна точка серединного перпендикуляра $a$. Тобто $XA = XB$.}
 \end{figure}
-\textit{Доведення читати пізніше.}
+\textcolor{red}{\textit{Доведення читати пізніше.}}
 \end{theorem}
-
-\begin{proof}
-Задано пряму $a$ -- серединний перпендикуляр відрізка $AB$. Оберемо будь-яку точку $X \in a$. Хочемо довести, що $AX = BX$.
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\draw[thick] (-1,-0.5)--(1,-0.5);
-\draw[thick,red] (0,-1)--(0,1.5) node[anchor = south east] {$a$};
-\draw (0,-0.5) rectangle (0.25,-0.25);
-\fill[black] (-1,-0.5) circle (2pt) node [anchor = north] {$A$};
-\fill[black] (1,-0.5) circle (2pt) node [anchor = north] {$B$};
-\draw (0.5,-0.5-0.1)--(0.5,-0.5+0.1); \draw (-0.5,-0.5-0.1)--(-0.5,-0.5+0.1);
-\fill[black] (0,1) circle (2pt) node [anchor = west] {$X$};
-\draw (0,1)--(-1,-0.5); \draw (0,1)--(1,-0.5);
-\node at (0.2,-0.7) {$M$};
-\end{tikzpicture}
-\end{figure}
-Із точки $X$ проведемо $AX$ та $BX$. На малюнку будуть $\triangle AMX$ та $\triangle BMX$. Про них відомо, що $AM = MB$, існує спільна сторона $MX$ та $\angle AMX = \angle BMX$. Отже, за першою ознакою, $\triangle AMX = \triangle BMX$.\\
-Остаточно, $AX = BX$.
-\end{proof}
 
 \begin{theorem}
 \label{point_in_perpendicular_bisector_theorem}
 Якщо точка рівновіддалена від кінців відрізка, то ця точка належить серединном перпендикуляру відрізка.\\
-\textit{Доведення читати пізніше.}
+\textcolor{red}{\textit{Доведення читати пізніше.}}
 \end{theorem}
-
-\begin{proof}
-Задано точку $X$ та відрізок $AB$. Відомо, що $XA =XB$.\\
-На відрізку $AB$ оберемо середину $M$. А далі проведемо $XM$. Тоді $\triangle AXM = \triangle BXM$ за ІІІ ознакою. Тоді $\angle XMA = \angle XMB$, а ще вони суміжні, тому $\angle XMA = 90^\circ$.\\
-Таким чином, $XM \perp AB$, тому $X$ належить серединному перпендикуляру.
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\coordinate (a) at (0,0);
-\coordinate (b) at (1,2);
-\coordinate (c) at (2,0);
-\draw[thick] (a)--(b)--(c)--(a);
-\fill[black] (a) circle (0pt) node [anchor = north] {$A$};
-\fill[black] (b) circle (0pt) node [anchor = south] {$X$};
-\fill[black] (c) circle (0pt) node [anchor = north] {$B$};
-\draw (0.4,1.05)--(0.6,0.95);
-\draw (1.4,0.95)--(1.6,1.05);
-\draw[dashed] (b)--(1,0) node [anchor = north] {$M$};
-
-\draw[red] (0.5,-2pt)--(0.5,2pt);
-\draw[red] (1.5,-2pt)--(1.5,2pt);
-\end{tikzpicture}
-\end{figure}
-\end{proof}
 
 \subsection{Паралельні прямі}
 \begin{definition}
@@ -845,7 +779,8 @@ $\angle AOB, \angle BOC$ -- суміжні, а тому $\angle AOB + \angle COB
 \end{figure}
 \end{definition}
 
-Для паралельних прямих існує властивість:
+Для паралельних прямих існує властивість (це ще називають постулатом Евкліда):
+
 \begin{axiom}
 Через точку, що не належить прямій, можна провести єдину пряму, паралельна заданій прямій.
 \end{axiom}
@@ -959,33 +894,8 @@ $\angle AOB, \angle BOC$ -- суміжні, а тому $\angle AOB + \angle COB
 \begin{theorem}
 \label{versatile angles_and_parallel_lines}
 Якщо різносторонні кути, що утворені при перетині двох прямих січною, рівні, то ці прямі паралельні.\\
-\textit{Доведення читати пізніше.}
+\textcolor{red}{\textit{Доведення читати пізніше.}}
 \end{theorem}
-
-\begin{proof}
-Задані прямі $a,b$ та січна $c$ цих прямих. Відомо, що $\angle B = \angle A$.
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\draw[thick] (-0.5,0)--(2,0) node[anchor = south] {$a$};
-\draw[thick] (-0.5,1)--(2,1) node[anchor = south] {$b$};
-\draw[thick] (1.5,1.5)--(-0.5,-0.5) node[anchor = north] {$c$};
-\fill (0.5,0.5) circle(1pt) node[anchor = north west] {$M$};
-\fill (1,1) circle(1pt) node[anchor = south] {$B$};
-\fill (0,0) circle(1pt) node[anchor = north] {$A$};
-\draw (0.2+0.45,0.2+0.55)--(0.2+0.55,0.2+0.45);
-\draw (-0.2+0.45,-0.2+0.55)--(-0.2+0.55,-0.2+0.45);
-\draw [dashed] (0.5,1)--(0.5,0);
-\node at (0.5,1.2) {$E$};
-\node at (0.5,-0.2) {$F$};
-\draw (0.5,1) rectangle (0.65,0.85);
-\end{tikzpicture}
-\end{figure}
-Якщо $c \perp a, c \perp b$, то автоматично $a \parallel b$. Тому ми розглядаємо інший випадок.\\
-Позначу $A,B$ -- точку перетину $c$ з прямимим $a,b$. На відрізку $AB$ можна позначити $M$ -- середину відрізка. А з точки $M$ можна провести перпендикуляр $ME$ до прямої $b$. Також $c$ перетинає $a$ в точці $F$.\\
-Отримали два трикутника: $\triangle EMB, \triangle FMA$, які рівні за ІІ ознакою, бо $\angle MAF = \angle EBM$ як різносторонні, $\angle AMF = \angle EMB$ як вертикальні, та $AM = MB$.\\
-Таким чином, звідси $\angle BEM = \angle MFA = 90^\circ$. Тому мало того, що $c \perp b$, так ще $c \perp a$, а тому звідси $a \parallel b$.
-\end{proof}
 
 \begin{theorem}
 Якщо сума односторонніх кутів, що утворені при перетині двох прямих січною, дорівнює $180^\circ$, то ці прямі паралельні.\\
@@ -1055,31 +965,8 @@ $\angle AOB, \angle BOC$ -- суміжні, а тому $\angle AOB + \angle COB
 \end{tikzpicture}
 \caption*{Відмітили точки $M,N \in a$ та провели перпендикуляри. Тоді $MP = NQ$.}
 \end{figure}
-\textit{Доведення читати пізніше}.
+\textcolor{red}{\textit{Доведення читати пізніше}.}
 \end{lemma}
-
-\begin{proof}
-Задано $a \parallel b$ та відмічени точки $M,N \in a$. Далі провели перпендикуляр з т. $M$ та т. $N$ на пряму $b$.
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\draw[thick] (0,0)--(2,0) node[anchor = south] {$a$};
-\draw[thick] (0,1)--(2,1) node[anchor = south] {$b$};
-\draw[red,thick] (0.5,1)--(0.5,0);
-\draw[red,thick] (1.5,1)--(1.5,0);
-\fill (0.5,1) circle (2pt) node[anchor = south] {$M$}; 
-\draw (0.5,0) rectangle (0.25,0.25);
-\fill (1.5,1) circle (2pt) node[anchor = south] {$N$};
-\draw (1.5,0) rectangle (1.75,0.25);
-\draw[dashed] (0.5,0)--(1.5,1);
-
-\fill (0.5,0) circle (2pt) node[anchor = north] {$P$};
-\fill (1.5,0) circle (2pt) node[anchor = north] {$Q$};  
-\end{tikzpicture}
-\end{figure}
-Ми розглянемо $\triangle MPN$ та $\triangle PQN$. Вони рівні за ІІ ознакою, бо $PN$ - спільна сторона, $\angle MPN = \angle PNQ$ як різносторонні та $\angle PNQ = \angle MPN = \angle NPQ$ як різносторонні.\\
-Отже, $MP = NQ$.
-\end{proof}
 
 Ця лема буде необхідною, щоб можна було визначити наступне:
 
@@ -1178,7 +1065,68 @@ $\triangle A_1B_1C_1 = \triangle ABC$.
 \end{figure}
 \end{axiom}
 
-\textit{Тепер можна повернутися до \thref{line_point_not_in_line_draw_perpendicular} та спокійно прочитати доведення.}
+\textit{Тепер можна повернутися до \thref{line_point_not_in_line_draw_perpendicular}, згадати формулювання та спокійно довести.}
+
+\begin{proof}
+Розглянемо пряму $MN$ та точку $O \not\in MN$. Покажемо, що ми можемо провести пряму через точку $O$, що перпендикулярна $MN$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw (0,0)--(2,0);
+\node at (0,-0.3) {$M$};
+\node at (2,-0.3) {$N$};
+\fill (1,1) circle (1pt) node[anchor = south] {$O$};
+\end{tikzpicture}
+\end{figure}
+Для початку ми створимо кут $\angle OMN$ (це можна зробити, бо ми проводимо $MO$). А далі відкладемо від променя $MN$ єдиний кут $O_1MN$ так, щоб $\angle OMN = \angle O_1MN$ за \axref{set_a_unique_angle_with_degree}. Причому точку $O_1$ ми оберемо так, щоб $OM=O_1M$ за \axref{set_a_unique_segment_with_length}.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw (0,0)--(2,0);
+\draw[red] (0,0)--(1,1);
+\draw[red] (0,0)--(1,-1);
+\node at (0,-0.3) {$M$};
+\node at (2,-0.3) {$N$};
+\fill (1,1) circle (1pt) node[anchor = south] {$O$};
+\fill (1,-1) circle (1pt) node[anchor = north] {$O_1$};
+\end{tikzpicture}
+\end{figure}
+Проведемо пряму $OO_1$, яка перетинається з прямою $MN$. Позначу точкою перетину точку $A$. Залишилось довести, що $\angle MAO = 90^\circ$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw (0,0)--(2,0);
+\draw (0,0)--(1,1);
+\draw (0,0)--(1,-1);
+\draw[red] (1,-1)--(1,1);
+\node at (0,-0.3) {$M$};
+\node at (2,-0.3) {$N$};
+\fill (1,1) circle (1pt) node[anchor = south] {$O$};
+\fill (1,-1) circle (1pt) node[anchor = north] {$O_1$};
+\fill (1,0) circle (1pt) node[anchor = north west] {$A$};
+\end{tikzpicture}
+\end{figure}
+Маємо $\triangle OMA$ та промінь $MA$. Тоді за \axref{equal_triangle_existence}, можна знайти рівний трикутний $\triangle O_2MA = \triangle O_1MA$. Із рівності отримаємо, що $\angle AMO_1 = \angle AMO_2$, а тому точка $O_2$ належить куту $\angle AMO_1$.\\ 
+Також із рівності отримаємо, що $MO_1 = MO_2$, тоді $MO_2 = MO$. Таким чином, точка $O_1$ співпадає з точкою $O_2$, а тому звідси $\triangle O_1MA, \triangle O_2MA$ збігаються. Оскільки $\triangle O_1AM = \triangle OAM$, то тоді $\angle MAO_1 = \angle MAO$, причому ці кути суміжні. Отже, $\angle MAO = 90^\circ$. Все, довели.
+\bigskip \\
+!Припустимо, що через точку $O \not \in MN$ можна провести другу пряму, що перпендикулярна $MN$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw (0,0)--(2,0);
+\draw (1,1)--(1,0);
+\draw (1,1)--(1.5,0);
+\draw (1,0) rectangle (0.75,0.25);
+\draw (1.5,0) rectangle (1.75,0.25);
+\node at (0,-0.3) {$M$};
+\node at (2,-0.3) {$N$};
+\fill (1,1) circle (1pt) node[anchor = south] {$O$};
+\fill (1,0) circle (1pt) node[anchor = north west] {$A$};
+\fill (1.5,0) circle (1pt) node[anchor = north west] {$B$};
+\end{tikzpicture}
+\end{figure}
+За \axref{equal_triangle_existence}, існує трикутник $\triangle O_1AB = \triangle OAB$. Значить, $\angle OAB = \angle O_1AB = 90^\circ$. Звідси $\angle OAO_1 = 180^\circ$, тож точки $O,A,O_1$ лежать на одній прямій. Аналогічно доводимо, що $O,B,O_1$ лежать на одній прямій. Але тоді прямі $OA,OB$ мають дві точки перетину -- це точки $O,O_1$ -- суперечність!
+\end{proof}
 
 \begin{definition}
 \textbf{Висотою} трикутника називають перпендикуляр, що опущений із вершини трикутника на пряму, яка містить протилежну сторону
@@ -1286,7 +1234,27 @@ $\triangle A_1B_1C_1 = \triangle ABC$.
 Оскільки $A_1B_1 = A_2B_2$, $B_1C_1 = B_2C_2$, то тоді сторони теж сумістяться. Отже, трикутники повністю сумістяться $\implies \triangle A_1B_1C_1 = \triangle A_2B_2C_2$.
 \end{proof}
 
-\textit{Тепер можна повернутися до \thref{perpendicular_bisector_and_equal_segments} та спокійно прочитати доведення.}
+\textit{Тепер можна повернутися до \thref{perpendicular_bisector_and_equal_segments}, згадати формулювання та спокійно довести.}
+
+\begin{proof}
+Задано пряму $a$ -- серединний перпендикуляр відрізка $AB$. Оберемо будь-яку точку $X \in a$. Хочемо довести, що $AX = BX$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (-1,-0.5)--(1,-0.5);
+\draw[thick,red] (0,-1)--(0,1.5) node[anchor = south east] {$a$};
+\draw (0,-0.5) rectangle (0.25,-0.25);
+\fill[black] (-1,-0.5) circle (2pt) node [anchor = north] {$A$};
+\fill[black] (1,-0.5) circle (2pt) node [anchor = north] {$B$};
+\draw (0.5,-0.5-0.1)--(0.5,-0.5+0.1); \draw (-0.5,-0.5-0.1)--(-0.5,-0.5+0.1);
+\fill[black] (0,1) circle (2pt) node [anchor = west] {$X$};
+\draw (0,1)--(-1,-0.5); \draw (0,1)--(1,-0.5);
+\node at (0.2,-0.7) {$M$};
+\end{tikzpicture}
+\end{figure}
+Із точки $X$ проведемо $AX$ та $BX$. На малюнку будуть $\triangle AMX$ та $\triangle BMX$. Про них відомо, що $AM = MB$, існує спільна сторона $MX$ та $\angle AMX = \angle BMX$. Отже, за першою ознакою, $\triangle AMX = \triangle BMX$.\\
+Остаточно, $AX = BX$.
+\end{proof}
 
 \begin{theorem}[Друга ознака]
 Нехай сторона та прилеглі до неї кути одного трикутника дорівнюють стороні та прилеглим до неї кутам другого трикутника. Тоді ці трикутники рівні.
@@ -1632,7 +1600,80 @@ $AM = BC, AM = AB \implies AB = BC$. Отже, $\triangle ABC$ -- рівнобе
 Але доведення аналогічні першому випадку.
 \end{proof}
 
+\subsection*{Повертаємо багато боргу}
 \textit{Тепер можна повернутися до \thref{point_in_perpendicular_bisector_theorem}, потім до \thref{versatile angles_and_parallel_lines}, а згодом до \lmref{definition_correctness_of_distance_between_parallel_lines} та спокійно прочитати доведення.}
+
+\begin{proof}
+Задано точку $X$ та відрізок $AB$. Відомо, що $XA =XB$.\\
+На відрізку $AB$ оберемо середину $M$. А далі проведемо $XM$. Тоді $\triangle AXM = \triangle BXM$ за ІІІ ознакою. Тоді $\angle XMA = \angle XMB$, а ще вони суміжні, тому $\angle XMA = 90^\circ$.\\
+Таким чином, $XM \perp AB$, тому $X$ належить серединному перпендикуляру.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\coordinate (a) at (0,0);
+\coordinate (b) at (1,2);
+\coordinate (c) at (2,0);
+\draw[thick] (a)--(b)--(c)--(a);
+\fill[black] (a) circle (0pt) node [anchor = north] {$A$};
+\fill[black] (b) circle (0pt) node [anchor = south] {$X$};
+\fill[black] (c) circle (0pt) node [anchor = north] {$B$};
+\draw (0.4,1.05)--(0.6,0.95);
+\draw (1.4,0.95)--(1.6,1.05);
+\draw[dashed] (b)--(1,0) node [anchor = north] {$M$};
+
+\draw[red] (0.5,-2pt)--(0.5,2pt);
+\draw[red] (1.5,-2pt)--(1.5,2pt);
+\end{tikzpicture}
+\end{figure}
+\end{proof}
+
+\begin{proof}
+Задані прямі $a,b$ та січна $c$ цих прямих. Відомо, що $\angle B = \angle A$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (-0.5,0)--(2,0) node[anchor = south] {$a$};
+\draw[thick] (-0.5,1)--(2,1) node[anchor = south] {$b$};
+\draw[thick] (1.5,1.5)--(-0.5,-0.5) node[anchor = north] {$c$};
+\fill (0.5,0.5) circle(1pt) node[anchor = north west] {$M$};
+\fill (1,1) circle(1pt) node[anchor = south] {$B$};
+\fill (0,0) circle(1pt) node[anchor = north] {$A$};
+\draw (0.2+0.45,0.2+0.55)--(0.2+0.55,0.2+0.45);
+\draw (-0.2+0.45,-0.2+0.55)--(-0.2+0.55,-0.2+0.45);
+\draw [dashed] (0.5,1)--(0.5,0);
+\node at (0.5,1.2) {$E$};
+\node at (0.5,-0.2) {$F$};
+\draw (0.5,1) rectangle (0.65,0.85);
+\end{tikzpicture}
+\end{figure}
+Якщо $c \perp a, c \perp b$, то автоматично $a \parallel b$. Тому ми розглядаємо інший випадок.\\
+Позначу $A,B$ -- точку перетину $c$ з прямимим $a,b$. На відрізку $AB$ можна позначити $M$ -- середину відрізка. А з точки $M$ можна провести перпендикуляр $ME$ до прямої $b$. Також $c$ перетинає $a$ в точці $F$.\\
+Отримали два трикутника: $\triangle EMB, \triangle FMA$, які рівні за ІІ ознакою, бо $\angle MAF = \angle EBM$ як різносторонні, $\angle AMF = \angle EMB$ як вертикальні, та $AM = MB$.\\
+Таким чином, звідси $\angle BEM = \angle MFA = 90^\circ$. Тому мало того, що $c \perp b$, так ще $c \perp a$, а тому звідси $a \parallel b$.
+\end{proof}
+
+\begin{proof}
+Задано $a \parallel b$ та відмічени точки $M,N \in a$. Далі провели перпендикуляр з т. $M$ та т. $N$ на пряму $b$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (0,0)--(2,0) node[anchor = south] {$a$};
+\draw[thick] (0,1)--(2,1) node[anchor = south] {$b$};
+\draw[red,thick] (0.5,1)--(0.5,0);
+\draw[red,thick] (1.5,1)--(1.5,0);
+\fill (0.5,1) circle (2pt) node[anchor = south] {$M$}; 
+\draw (0.5,0) rectangle (0.25,0.25);
+\fill (1.5,1) circle (2pt) node[anchor = south] {$N$};
+\draw (1.5,0) rectangle (1.75,0.25);
+\draw[dashed] (0.5,0)--(1.5,1);
+
+\fill (0.5,0) circle (2pt) node[anchor = north] {$P$};
+\fill (1.5,0) circle (2pt) node[anchor = north] {$Q$};  
+\end{tikzpicture}
+\end{figure}
+Ми розглянемо $\triangle MPN$ та $\triangle PQN$. Вони рівні за ІІ ознакою, бо $PN$ - спільна сторона, $\angle MPN = \angle PNQ$ як різносторонні та $\angle PNQ = \angle MPN = \angle NPQ$ як різносторонні.\\
+Отже, $MP = NQ$.
+\end{proof}
 
 \subsection{Сума кутів трикутників, нерівність трикутника}
 \begin{theorem}
@@ -1694,9 +1735,10 @@ $AM = BC, AM = AB \implies AB = BC$. Отже, $\triangle ABC$ -- рівнобе
 
 \begin{proof}
 Маємо $\triangle ABC$. Хочемо довести, що $AB < AC + CB$.\\
-!Припустимо, що така нерівність не виконується. Маємо дві опції:\\
-I. $AB > AC + CB$.\\
-Тоді на стороні $AB$ відкладемо точки $C_1,C_2$ таким чином, що $AC = AC_1$ та $BC = BC_2$. Звідси отримаємо нерівність $AB > AC_1 + C_2B$, тобто відрізки $AC_1,C_2B$ не мають спільних точок.
+!Припустимо, що така нерівність не виконується. Маємо дві опції:
+\bigskip \\
+I. \textit{$AB > AC + CB$}.\\
+На стороні $AB$ відкладемо точки $C_1,C_2$ таким чином, що $AC = AC_1$ та $BC = BC_2$. Звідси отримаємо нерівність $AB > AC_1 + C_2B$. Дана нерівність каже, що відрізки $AC_1,C_2B$ не мають спільних точок (а це дає змогу розташувати точки $C_1$,$C_2$ так, як на малюнку нижче).
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -1716,10 +1758,10 @@ I. $AB > AC + CB$.\\
 \draw[red] (c)--(c1); \draw[red] (c)--(c2);
 \end{tikzpicture}
 \end{figure}
-Маємо два рівнобедрені трикутники -- це $\triangle ACC_1,\ \triangle BCC_2$. Тоді кути $\angle AC_1C,\angle BC_2C$ -- гострі кути, бо вони є кутами при основі своїх рівнобедрених трикутників. Значить, $\angle CC_1B, \angle CC_2A$ -- тупі кути всередині $\triangle CC_1C_2$ -- суперечність!
+Маємо два рівнобедрені трикутники $\triangle ACC_1,\ \triangle BCC_2$. Тоді кути $\angle AC_1C,\angle BC_2C$ -- гострі кути, бо вони є кутами при основі своїх рівнобедрених трикутників. Значить, $\angle CC_1B, \angle CC_2A$ -- тупі кути всередині $\triangle CC_1C_2$ -- суперечність!
 \bigskip \\
-II. $AB = AC + CB$.\\
-Тоді на стороні $AB$ відкладемо точки $C_1,C_2$ таким чином, що $AC = AC_1$ та $BC = BC_2$. Звідси отримаємо рівність $AB = AC_1 + C_2B$, тобто точки $C_1,C_2$ збігаються.
+II. \textit{$AB = AC + CB$}.\\
+На стороні $AB$ відкладемо точки $C_1,C_2$ таким чином, що $AC = AC_1$ та $BC = BC_2$. Звідси отримаємо рівність $AB = AC_1 + C_2B$, тобто точки $C_1,C_2$ збігаються.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -1735,18 +1777,18 @@ II. $AB = AC + CB$.\\
 \draw[red] (c)--(c1);
 \end{tikzpicture}
 \end{figure}
-Маємо два рівнобедрені трикутники -- це $\triangle ACC_1,\ \triangle BCC_1$. Тоді кути $\angle AC_1C,\angle BC_1C$ -- гострі кути, бо вони є кутами при основі своїх рівнобедрених трикутників. Значить, $\angle AC_1C + \angle BC_1C < 180^\circ$, проте водночас ті кути -- суміжні -- суперечність!
-\bigskip \\
-Інші нерівності (як-от $AB < AC + CB$ та $AB < AC + CB$) доводяться аналогічно.
+Маємо два рівнобедрені трикутники $\triangle ACC_1,\ \triangle BCC_1$. Тоді кути $\angle AC_1C,\angle BC_1C$ -- гострі кути, бо вони є кутами при основі своїх рівнобедрених трикутників. Значить, $\angle AC_1C + \angle BC_1C < 180^\circ$, проте водночас ті кути суміжні -- суперечність! \qedhere
+\\
+\textit{Інші нерівності (як-от $AB < AC + CB$ та $AB < AC + CB$) доводяться аналогічно.}
 \end{proof}
 
 \begin{theorem}
-У трикутнику проти більшої сторони лежить менший кут, і навпаки.
+У трикутнику проти більшої сторони лежить більший кут, і навпаки.
 \end{theorem}
 
 \begin{proof}
 Задано $\triangle ABC$. Відомо, що $AB > BC$.\\
-Тоді на стороні $AB$ можна знайти точку $M$, щоб $BM = MC$. Ми отримали рівнобедрений $\triangle MBC$.\\
+Тоді на стороні $AB$ можна знайти точку $M$, щоб $BM = BC$. Ми отримали рівнобедрений $\triangle MBC$.\\
 Також ми маємо, що $\angle CMB$ -- зовнішній кут $\triangle AMC$, а тому за \crlref{outer_angle_bigger_than_not_adjacent}, $\angle CMB > \angle A$.\\
 Далі $\angle C = \angle ACM + \angle CMB > \angle CMB < \angle A$.
 \begin{figure}[H]
@@ -1760,8 +1802,7 @@ II. $AB = AC + CB$.\\
 \end{tikzpicture}
 \end{figure}
 Тепер нехай навпаки відомо, що $\angle C > \angle A$.\\
-Тоді $\angle C$ можна розбити на суму двох кутів таким чином: $\angle C = \angle ACM + \angle CMB$, причому $\angle ACM = \angle A$. Отримаємо рівнобедрений $\triangle AMC$, з якого візьмемо $AM = MC$.\\
-Ну а далі $AB = AM + MB = MC + MB \overset{\text{нер-ть трикутника}}{>} BC$.
+Тоді $\angle C$ можна розбити на суму двох кутів: $\angle C = \angle ACM + \angle CMB$, причому розбити можна так, щоб $\angle ACM = \angle A$. Отримаємо рівнобедрений трикутник $\triangle AMC$, з якого візьмемо $AM = MC$. Далі $AB = AM + MB = MC + MB \overset{\text{нер-ть трикутника}}{>} BC$.
 \end{proof}
 
 \subsection{Прямокутні трикутники}
@@ -1898,7 +1939,7 @@ II. $AB = AC + CB$.\\
 \end{proof}
 
 \begin{theorem}
-Якщо катет дорівнює половині гіпотенузі, то протилежний до катета кут дорівнює $30^\circ$.\\
+Якщо катет дорівнює половині гіпотенузі, то протилежний до катета кут $ = 30^\circ$.\\
 \textit{Малюнок аналогічний, а міркування провести самостійно.}
 \end{theorem}
 \newpage
@@ -3182,16 +3223,97 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \section{Коло та круг}
 \subsection{Геометричне місце точок}
 \begin{definition}
-\textbf{Геометричним місцем точок} (ГМТ) називають множину всіх точок, що мають певну властивість.
+\textbf{Геометричним місцем точок} (ГМТ) називають множину всіх точок на площині, що мають певну властивість.
 \end{definition}
-Щоб якусь множину точок назвати ГМТ, треба довести дві взаємно обернені теореми:\\
-- кожна точка заданої множини має задану властивість;\\
-- якщо точка має задану властивість, то вона належить даній множині.\\
-(TODO)
+
+\begin{example}
+Розглянемо множину $P_1 = \{\text{точки } P \mid P \in \text{промінь } AB,\ P \in \text{промінь } BA \}$. Дана множина задає ГМТ, яка описує відрізок $AB$.
+\end{example}
+
+\begin{remark}
+Із теорії множин випливає наступне. Щоб якусь множину точок назвати ГМТ, треба довести дві взаємно обернені теореми:
+\begin{itemize}[nosep,label={-}]
+\item кожна точка заданої множини має задану властивість;
+\item якщо точка має задану властивість, то вона належить даній множині. 
+\end{itemize}
+\end{remark}
+
+\begin{proposition}
+Серединний перпендикуляр відрізка є ГМТ, рівновіддалених від кінців його відрізка.
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: точка, яка лежить на серединному перпендикулярі відрізка. Тоді за \thref{perpendicular_bisector_and_equal_segments} ця точка рівновіддалена від кінців його відрізка.
+\bigskip \\
+\leftproof Дано: точка, яка рівновіддалена від кінців відрізка. Тоді за \thref{point_in_perpendicular_bisector_theorem} ця точка належить серединному перпендикуляру цього відрізка.
+\end{proof}
+
+\begin{proposition}
+Бісектриса кута є ГМТ, які належать куту та рівновіддалені від його сторін.
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: точка, яка лежить на бісектрисі кута. Якщо точка лежить на вершині, то тут все автоматично. Якщо кут розгорнутий, то автоматично видно, що відстань від точки до однієї сторони дорівнює відстані від точки до іншої сторони.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (-2,-0.5)--(2,-0.5);
+\draw[thick,red] (0,-0.5)--(0,1.5);
+\draw (0,-0.5) rectangle (0.25,-0.25);
+\fill[black] (-1,-0.5) circle (0pt) node [anchor = north] {$A$};
+\fill[black] (1,-0.5) circle (0pt) node [anchor = north] {$B$};
+%\draw (0.5,-0.5-0.1)--(0.5,-0.5+0.1); \draw (-0.5,-0.5-0.1)--(-0.5,-0.5+0.1);
+\fill[black] (0,1) circle (2pt) node [anchor = west] {$X$};
+%\draw (0,1)--(-1,-0.5); \draw (0,1)--(1,-0.5);
+\node at (0.2,-0.7) {$M$};
+\end{tikzpicture}
+\end{figure}
+Тепер нехай точка (не вершина) належить бісектрисі нерозгорнутого кута. Із даної точки проведемо перпендикуляри на сторони.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (0,0)--(2,0);
+\draw[thick] (0,0)--(1,{sqrt(3)});
+\draw[thick,red] (0,0)--(2,{2/sqrt(3)});
+\fill[black] (1,{1/sqrt(3)}) circle (2pt) node [anchor = north west] {$X$};
+\draw[thick,dashed] (1,{1/sqrt(3)})--(1,0);
+\draw[thick,dashed] (1,{1/sqrt(3)})--({1/sqrt(3)},1);
+\end{tikzpicture}
+\end{figure}
+За гострим кутом та спільною гіпотенузою утворяться рівні прямокутні трикутники, внаслідок чого ця точка рівновіддалена від сторін.
+\bigskip \\
+\leftproof Дано: точка кута (скажімо, точка $X$), яка рівновіддалена від сторін. Опустимо перпендикуляри $XN,XM$, при цьому $XN = XM$. Оскільки рівновіддалена від сторін, то точки $M,N$ мають належати саме стороні. Не може бути ось такого малюнку, як внизу.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (0,0)--(2,0);
+\draw[thick] (0,0)--(-3,{3/sqrt(3)});
+\draw[thick,red] (0,0)--(-1.5,{1.5*sqrt(3)});
+\draw[thick,dashed] (-1,{1*sqrt(3)})--(-1,0) node[anchor = north] {$N$};
+\draw[thick,dashed] (-1,{1*sqrt(3)})--(-1.5,{1.5/sqrt(3)}) node[anchor = north] {$M$};
+\draw[dashed] (0,0)--(-2,0);
+\fill[black] (-1,{1*sqrt(3)}) circle (2pt) node [anchor = north west] {$X$};
+\node at (0,-0.2) {$O$};
+\end{tikzpicture}
+\end{figure}
+Щоб довести, що точка $X$ належить бісектрисі, варто розглянути трикутники $\triangle MXO,\ \triangle NXO$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (0,0)--(2,0);
+\draw[thick] (0,0)--(1,{sqrt(3)});
+\draw[thick,red] (0,0)--(2,{2/sqrt(3)});
+\fill[black] (1,{1/sqrt(3)}) circle (2pt) node [anchor = north west] {$X$};
+\draw[thick,dashed] (1,{1/sqrt(3)})--(1,0) node[anchor = north] {$N$};
+\draw[thick,dashed] (1,{1/sqrt(3)})--({1/sqrt(3)},1) node[anchor = east] {$M$};
+\node at (0,-0.2) {$O$};
+\end{tikzpicture}
+\end{figure}
+Це -- два рівних прямокутних трикутники за спільною гіпотенузою та рівними катетами (в нас $MX=NX$). Зокрема звідси кути $\angle MOX = \angle NOX$, тому $OX$ відіграє роль бісектриси.
+\end{proof}
 
 \begin{definition}
-\textbf{Колом} називають ГМТ, відстані від яких до заданої точки дорівнює заданому додатному числу.\\
-Задану точку називають \textbf{центром кола}.\\
+\textbf{Колом} називають ГМТ, відстані від яких до заданої точки (яка називатиметься \textbf{центром кола}) дорівнює заданому додатному числу.\\
 Відрізок, що сполучає точку кола з центром, називають \textbf{радіусом} кола.
 \begin{figure}[H]
 \centering
@@ -3226,7 +3348,21 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \end{remark}
 
 \begin{definition}
-\textbf{Кругом} називають ГМТ, відстані від яких до заданої точки не більші за дане додатному числу.
+\textbf{Кругом} називають ГМТ, відстані від яких до заданої точки (тобто до центра круга) не більші за дане додатному числу.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\fill[black!20] (0,0) circle (1cm);
+\fill (0,0) circle (1pt) node[anchor = south west] {$O$}; 
+%\draw ({sqrt(3)/2},{-1/2})--({sqrt(2)/2},{sqrt(2)/2});
+%\fill ({sqrt(2)/2},{sqrt(2)/2}) circle (1pt) node[anchor = south] {$A$};
+%\fill ({sqrt(3)/2},{-1/2}) circle (1pt) node[anchor = north] {$B$};
+%\draw (0,-1)--(0,1);
+%\fill (0,-1) circle (1pt) node[anchor = north] {$C$};
+%\fill (0,1) circle (1pt) node[anchor = south] {$D$}; 
+\end{tikzpicture}
+\caption*{Сіра зона -- це якраз задає круг.}
+\end{figure}
 \end{definition}
 
 \subsection{Властивості кола}
@@ -3235,7 +3371,7 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \end{theorem}
 
 \begin{proof}
-Із центра кола треба провести радіуси таким чином. А далі все ясно в обох випадках.
+Із центра кола проведемо радіуси таким чином (див. рисунок). А далі все ясно в обох випадках. \qedhere
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -3276,7 +3412,7 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \begin{proof}
 Задано дотичну $a$, точка $X$ -- точка дотику. До цій точці проведемо радіус.\\
 !Припустимо, що $OX \not \perp a$. Тоді з точки $O$ опустимо перпендикуляр на пряму $a$. Точка, куди упав перпендикуляр, позначимо за $M$, причому $M$ не співпадає з $X$.\\
-Там утвориться прямокутний $\triangle OMK$, де $\angle M = 90^\circ > \angle X$, тоді звідси $OX > OM$. Суперечність! Тому що $OM$ -- це радіус плюс ще деякий відрізок.\\
+Там утвориться прямокутний $\triangle OMX$, де $\angle M = 90^\circ > \angle X$, тоді звідси $OX > OM$. Суперечність! Тому що $OM$ -- це радіус плюс ще деякий відрізок.\\
 Таким чином, $OX \perp a$.
 \begin{figure}[H]
 \centering
@@ -3289,7 +3425,7 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \draw (0,{sqrt(2)})--({sqrt(2)},0) node[anchor =north] {$a$};
 \end{tikzpicture}
 \end{figure}
-А тепер нехай задано пряму $a$, точка $X \in a$ -- точка кола. До цій точці проведемо радіус.\\
+Навпаки: тепер нехай задано пряму $a$, точка $X \in a$ -- точка кола. До цій точці проведемо радіус.\\
 !Припустимо, що $X' \in a$ -- теж точка кола, тобто ми цим кажемо, що $a$ -- НЕ дотична. Утвориться $\triangle XOX'$, де $OX,OX'$ -- радіуси. Але $\angle X = 90^\circ > \angle X' \implies OX > OX'$. Суперечність!\\
 Таким чином, $X$ -- точка дотику, а точка $a$ -- дотична.
 \end{proof}
@@ -3344,7 +3480,11 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \end{definition}
 
 \begin{remark}
-Центр описаного кола є рівновіддаленою від всіх вершин трикутника.
+Звідси центр описаного кола є рівновіддаленою від всіх вершин трикутника.
+\end{remark}
+
+\begin{remark}
+Я поки нічого не сказав про те, що описане коло проходить \textit{лише} через вершини трикутника, як видно на малюнку. Однак я це пізніше прокоментую.
 \end{remark}
 
 \begin{theorem}
@@ -3371,15 +3511,18 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \draw[dashed] (0,0)--({(sqrt(2)+sqrt(3))/4},{(sqrt(2)-1)/4}) node[anchor = west] {$k$};
 \draw[dashed] (0,0)--({(sqrt(2)-1)/4},{sqrt(2)/2}) node[anchor = south] {$l$};
 \end{tikzpicture}
+\caption*{Тупокутний трикутник, де точка $O$ -- поза межами трикутника. \qedhere}
 \end{figure}
 \end{proof}
+
+Оскільки ми довели, що $OB = OC$, тобто точка $O$ рівновіддалена від кінців $BC$, то $O$ має належати серединному перпендикуляру, який проходить через $BC$. Отже:
 
 \begin{corollary}
 Три серединних перпендикуляри сторін трикутника перетинаються в одній точці.
 \end{corollary}
 
 \begin{corollary}
-Центр кола, описаного навколо трикутника, - точка перетину серединних перпендикулярів сторін трикутника.
+Центр кола, описаного навколо трикутника, -- точка перетину серединних перпендикулярів сторін трикутника.
 \end{corollary}
 
 \begin{definition}
@@ -3409,11 +3552,8 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \end{theorem}
 
 \begin{proof}
-Задано $\triangle ABC$.\\
-Проведемо бісектриси кута $A,B$. Позначимо $O$ - точка перетину бісектрис. Через т. $O$ проведемо перпендикуляри на $AB,BC,AC$ Точки перетину перпендикулярів та сторін: $M,N,P$.\\
-Точка $O \in$ бісектриса кута $A$, тоді $OM = OP$. Аналогічно $o \in$ бісектриса кута $B$, тоді $OM = ON$. (додати цю теорему).\\
-Таким чином, $OM = OP = ON = r$, тоді $O$ рівновіддалена від сторін трикутника. Звідси за \textbf{Crl 4.2.4}, ці сторони є дотичними, а точка $O$ - центр точки вписаного кола.
-(TODO)
+Задано $\triangle ABC$. Проведемо бісектриси кута $A,B$. Позначимо $O$ -- точка перетину бісектрис. Через точку $O$ проведемо перпендикуляри на $AB,BC,AC$ Точки перетину перпендикулярів та сторін: $M,N,P$.\\
+Точка $O$ належить бісектрисі кута $A$, тоді $OM = OP$ (ГМТ бісектриси). Аналогічно $o$ бісектриса кута $B$, тоді $OM = ON$. Таким чином, $OM = OP = ON = r$, тоді точка $O$ рівновіддалена від сторін трикутника. За \textbf{Crl 4.2.4} ці сторони є дотичними, а точка $O$ -- центр вписаного кола.
 \end{proof}
 
 \begin{corollary}
@@ -3421,11 +3561,11 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \end{corollary}
 
 \begin{corollary}
-Центр кола, вписаного в трикутник, - точка перетин бісектрис трикутника.
+Центр кола, вписаного в трикутник, -- точка перетин бісектрис трикутника.
 \end{corollary}
 
 \begin{remark}
-Із двох теорем випливає, що описати та вписати можна єдине коло. Просто тому що серединні перпендикуляри перетинаються в одній точці. Аналогічно з бісектрисами трикутника.
+Із двох теорем випливає, що описати та вписати можна єдине коло. Просто тому що серединні перпендикуляри та бісектриси перетинаються в одній точці.
 \end{remark}
 
 \subsection{Центральні та вписані кути}
@@ -3501,8 +3641,8 @@ $\angle A, \angle B$ називають \textbf{кутами при основі
 \draw (a)--(c);
 \draw (b)--(c);
 \fill (a) circle (1pt) node[anchor = south] {$A$};
-\fill (b) circle (1pt) node[anchor = north] {$B$};
-\fill (c) circle (1pt) node[anchor = east] {$C$};
+\fill (b) circle (1pt) node[anchor = north] {$C$};
+\fill (c) circle (1pt) node[anchor = east] {$B$};
 \end{tikzpicture}
 \end{figure}
 I. \textit{Точка $O$ належить одній зі сторін кута.}\\
@@ -3619,6 +3759,10 @@ III. \textit{Точка $O$ не належжить куту.}
 \end{remark}
 
 \begin{proposition}
+Нехай дано відрізок $AB$ та кут $\alpha$. Тоді ГМТ точок $X$, для яких кут $\angle AXB = \alpha$, будуть дуги $ACB$ та $AC_1B$, не включаючи точки $A,B$. 
+\end{proposition}
+
+\begin{proposition}
 Кут між хордою та дотичною дорівнює половині тієї дуги, куди дивиться кут.
 \end{proposition}
 
@@ -3730,6 +3874,83 @@ III. \textit{Точка $O$ не належжить куту.}
 \end{figure}
 Аналогічно можна довести, що якщо $\arc{AKB} = \arc{CND}$, то звідси $AB = CD$.\\
 \textit{Там тільки рівність трикутників уже буде через І ознаку}.
+\end{example}
+
+\begin{example}
+Довести, що сторона трикутника, яка лежить проти кута $30^\circ$, дорівнює радіусу кола, описаного навколо трикутника.
+\bigskip \\
+Із кінців відрізка, який навпроти кута $30^\circ$, проведемо радіуси.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\fill (0,0) circle (1pt) node[anchor = south] {$O$}; 
+\coordinate (a) at ({-sqrt(2)/2},{-sqrt(2)/2});
+\coordinate (b) at ({sqrt(3)/2},{-sqrt(1)/2});
+\coordinate (c) at ({-sqrt(1)/2},{sqrt(3)/2}); 
+\draw (a)--(b)--(c)--(a);
+\draw[red,dashed] (b)--(o);
+\draw[red,dashed] (c)--(o);
+\draw (0,0) circle (1cm);
+\fill (a) circle (1pt) node[anchor = north] {$A$};
+\fill (b) circle (1pt) node[anchor = south west] {$B$};
+\fill (c) circle (1pt) node[anchor = south] {$C$};
+\end{tikzpicture}
+\end{figure}
+Утвориться рівнобедрений трикутник, кут при вершині якого $60^\circ$ (як центральний кут, дуга якої вдвічі більша за вписаний кут $30^\circ$). Тоді даний трикутник -- рівносторонній, а тому основа буде дорівнювати радіусу, що й хотіли довести.\\
+(даний розв'язок працює для випадку, коли центр кола розташований на стороні трикутника та поза трикутника)
+\end{example}
+
+\subsection{Деякі задачі на описані та вписані кути}
+\begin{example}
+Хорди $AB,\ CD$ кола перетинаються в точці $M$. Довести, що $\angle AMC = \dfrac{\arc{AC} + \arc{BD}}{2}$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\coordinate (b) at ({sqrt(2)/2},{sqrt(2)/2});
+\coordinate (d) at ({sqrt(3)/2},{-1/2});
+\coordinate (c) at (-1,0);
+\coordinate (a) at ({-1/2},{-sqrt(3)/2});
+\coordinate (m) at (0,0);
+\draw (0,0) circle (1cm);
+
+\draw (a)--(b);
+\draw (c)--(d);
+\fill (a) circle (1pt) node[anchor = north] {$A$};
+\fill (b) circle (1pt) node[anchor = south] {$B$};
+\fill (c) circle (1pt) node[anchor = east] {$C$};
+\fill (d) circle (1pt) node[anchor = north] {$D$};
+\node[anchor = south] at (-0.1,-0.2) {$M$};
+\draw[red,dashed] (a)--(d);
+\end{tikzpicture}
+\end{figure}
+Проведемо хорду $AD$. Зауважимо, що $\angle AMC$ -- це зовнішній кут для $\triangle AMD$, а тому\\
+$\angle AMC = \angle DAB + \angle ADC = \dfrac{1}{2} \arc{DB} + \dfrac{1}{2} \arc{AC}$.
+\end{example}
+
+\begin{example}
+Хорди $AB,\ CD$ кола не перетинаються, але їхні прямі перетинаються в точці $M$. Довести, що $\angle AMC = \dfrac{\arc{AC} - \arc{BD}}{2}$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\coordinate (d) at ({sqrt(2)/2},{sqrt(2)/2});
+\coordinate (b) at ({sqrt(3)/2},{-1/2});
+\coordinate (c) at (-1,0);
+\coordinate (a) at ({-sqrt(3)/2},{-1/2});
+\coordinate (m) at ({(-3*sqrt(2)-2)/(2*sqrt(2))},{-1/2});
+\draw (0,0) circle (1cm);
+
+\draw (m)--(b);
+\draw (m)--(d);
+\fill (a) circle (1pt) node[anchor = north] {$A$};
+\fill (b) circle (1pt) node[anchor = north] {$B$};
+\fill (c) circle (1pt) node[anchor = south east] {$C$};
+\fill (d) circle (1pt) node[anchor = south] {$D$};
+\node[anchor = north] at (m) {$M$};
+\draw[red,dashed] (a)--(d)--(b);
+\end{tikzpicture}
+\end{figure}
+Проведемо хорди $AB,\ BD$. Зауважимо, що $\angle ADC$ буде зовнішнім кутом для $\triangle ADM$. Звідси $\angle ADC = \angle DAM + \angle AMD$. Отже,\\
+$\angle AMD = \angle ADC - \angle DAM = \dfrac{1}{2} \arc{AC} - \dfrac{1}{2} \arc{BD}$.
 \end{example}
 
 \subsection{Описане та вписане кола чотирикутника}
@@ -5369,7 +5590,12 @@ S = \dfrac{\pi R^2}{360^\circ} \cdot n^\circ
 \end{align*}
 \newpage
 
+% COMMENT
+\fi
+
 \section{Теми для поглибленого вивчення геометрії}
+Перш ніж читати додаткові теми, переконайтеся, що ви пройшли всі попередні розділі з нуля.
+
 \subsection{Зовнівписане коло трикутника}
 Задамо трикутник $\triangle ABC$. Ми проведемо бісектриси двох зовнішніх кутів із вершини $A,C$. Точку перетину цих бісектрис позначимо за $O$.
 \begin{figure}[H]
@@ -5617,6 +5843,147 @@ S = \dfrac{\pi R^2}{360^\circ} \cdot n^\circ
 \caption*{Точка $H$ є нашим ортоцентром.}
 \end{figure}
 \end{definition}
+
+\subsection{Деякі факти, пов'язані з колом}
+\begin{theorem}[Ознака належності чотирьох точок одному колу]
+Нехай $A,X,Y,B$ -- такі точки, що $\angle AXB = \angle AYB$, при цьому точки $X,Y$ розташовані на одній півплощині відносно прямої $AB$. Тоді $A,X,Y,B$ лежать на одному колі.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\coordinate (A) at ({-2*sqrt(2)/2},{-2*sqrt(2)/2});
+\coordinate (B) at ({2*sqrt(2)/2},{-2*sqrt(2)/2});
+\coordinate (X) at ({-2*sqrt(3)/2},{2*sqrt(1)/2});
+\coordinate (Y) at ({2*sqrt(1)/2},{2*sqrt(3)/2});
+\draw (A)--(X)--(B)--(Y)--cycle;
+\draw[dashed] (A)--(B);
+\draw[red] (0,0) circle(2);
+\fill[red] (A) circle (1pt) node[black, anchor = north] {$A$};
+\fill[red] (B) circle (1pt) node[black, anchor = north] {$B$};
+\fill[red] (X) circle (1pt) node[black, anchor = south] {$X$};
+\fill[red] (Y) circle (1pt) node[black,anchor = south] {$Y$};
+\node[scale=0.8] at ({-2*sqrt(3)/2+0.2},{2*sqrt(1)/2-0.3}) {$\alpha$};
+\node[scale=0.8] at ({2*sqrt(1)/2 - 0.1},{2*sqrt(3)/2 - 0.4}) {$\alpha$};
+\end{tikzpicture}
+\end{figure}
+\end{theorem}
+
+\begin{proof}
+Маємо $\angle AXB = \angle AYB$. Навколо трикутника $AXB$ опишемо коло. Нехай $Z$ -- довільна точка кола, що не належить $\arc{AXB}$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\coordinate (A) at ({-2*sqrt(2)/2},{-2*sqrt(2)/2});
+\coordinate (B) at ({2*sqrt(2)/2},{-2*sqrt(2)/2});
+\coordinate (X) at ({-2*sqrt(3)/2},{2*sqrt(1)/2});
+\coordinate (Y) at ({2*sqrt(1)/2},{2*sqrt(3)/2});
+\coordinate (Z) at (0,-2);
+\draw (A)--(X)--(B)--(Y)--cycle;
+\draw (A)--(Z)--(B);
+\draw[dashed] (A)--(B);
+\draw[red] (0,0) circle(2);
+\fill[red] (A) circle (1pt) node[black, anchor = north] {$A$};
+\fill[red] (B) circle (1pt) node[black, anchor = north] {$B$};
+\fill[red] (Z) circle (1pt) node[black, anchor = north] {$Z$};
+\fill[red] (X) circle (1pt) node[black, anchor = south] {$X$};
+\fill[red] (Y) circle (1pt) node[black,anchor = south] {$Y$};
+\node[scale=0.8] at ({-2*sqrt(3)/2+0.2},{2*sqrt(1)/2-0.3}) {$\alpha$};
+\node[scale=0.8] at ({2*sqrt(1)/2 - 0.1},{2*sqrt(3)/2 - 0.4}) {$\alpha$};
+\end{tikzpicture}
+\end{figure}
+Маємо чотирикутник $AZBX$, навколо якого описали коло, тому $\angle AXB + \angle AZB = 180^\circ$. Але за дано отримуємо $\angle AYB + \angle AZB = 180^\circ$, тоді звідси навколо $AZBY$ можна описати коло. Це буде те саме коло, оскільки навколо трикутника $ABZ$ описується єдине коло.\\
+Висновок: точки $A,X,Y,B$ лежать на одному колі.
+\end{proof}
+
+\begin{example}
+Висоти $AA_1$ і $CC_1$ гострокутного $\triangle ABC$ перетинаються в точці $H$. Довести, що
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item точки $H,C_1,B,A_1$ лежать на одному колі;
+\item точки $A,C_1,A_1,C$ лежать на одному колі. \\
+\end{enumerate}
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Оскільки $\angle BCH + \angle BA_1H = 180^\circ$, то опишемо коло навколо $C_1HA_1B$ -- довели бажане.
+\item Оскільки $\angle AC_1C = \angle AA_1 C = 90^\circ$ та точки $C_1,A_1$ лежать на одній півплощині відносно прямої $AC$, то за ознакою точки $A,C_1,A_1,C$ лежать на одному колі. 
+\end{enumerate}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,4);
+\coordinate (C) at (6,0);
+\coordinate (B_1) at (2,0);
+\coordinate (C_1) at (1.2,2.4);
+\coordinate (A_1) at (3,3);
+\coordinate (H) at (2,2);
+\draw (A)--(B)--(C)--cycle;
+\draw (B)--(B_1);
+\draw (A)--(A_1);
+\draw (C)--(C_1);
+\draw (2,0) rectangle (2.2,0.2);
+\draw[blue] (2,3) circle (1);
+\draw[red] (3,0) circle (3);
+\node[anchor = north east] at (A) {$A$};
+\node[anchor = south] at (B) {$B$};
+\node[anchor = north west] at (C) {$C$};
+\node[anchor = south west] at (A_1) {$A_1$};
+\node[anchor = north] at (B_1) {$B_1$};
+\node[anchor = south east] at (C_1) {$C_1$};
+\node[anchor = north] at (H) {$H$};
+\end{tikzpicture}
+\end{figure}
+\end{example}
+
+\subsection{Коло Аполлонія}
+\begin{lemma}
+Нехай $A,C$ -- точки. Тоді існує такий $\Delta ABC$, що виконується
+\begin{align*}
+\dfrac{AB}{BC} = k,
+\end{align*}
+для будь-якого додатного числа $k \neq 1$.
+\end{lemma}
+
+\begin{proof}
+I. \textit{$k > 1$}.\\
+Маємо вже відрізок $AC$. Від точки $C$ на інший промінь відкладемо відрізок $BC$, довжина якої задовольнятиме нерівність
+\begin{align*}
+\dfrac{1}{k+1} AC < BC < \dfrac{1}{k-1} AC.
+\end{align*}
+Нарешті, покладемо третій відрізок
+\begin{align*}
+AB = k \cdot BC.
+\end{align*}
+Для того, щоб побудувати $\Delta ABC$, треба переконатися, що справедливі нерівності:
+\begin{align*}
+BC < BA + AC; \\
+AC < AB + BC; \\
+AB < BC + AC.
+\end{align*}
+Перша нерівність виконується, оскільки $k > 1$, а тому $AB > BC$. Друга нерівність спрацьовує через вибір відрізка $BC$. Справді,
+\begin{align*}
+AB + BC = (k+1) \cdot BC > (k+1) \cdot \dfrac{1}{k+1} AC = AC.
+\end{align*}
+Аналогічним чином доводиться третя нерівність.
+\bigskip \\
+II. \textit{$0 < k < 1$}.\\
+Розглянемо число $s = \dfrac{1}{k}$, в цьому випадку $s > 1$. Тоді існує $\Delta ABC$, для якого $\dfrac{AB}{AC} = s = \dfrac{1}{k}$ за пунктом І. Але тоді існує $\Delta ACB$, для якого $\dfrac{AC}{AB} = k$. Замінюючи місцями точки $B,C$, одержимо бажане. 
+\end{proof}
+
+\begin{lemma}
+Нехай $A,C$ -- точки. Тоді існують точка $D_1$, яка належить відрізку $AC$, та точка $D_2$, яка не належить $AC$, для яких
+\begin{align*}
+\dfrac{AD_1}{D_1C} = \dfrac{AD_2}{D_2C} = k
+\end{align*}
+для будь-якого додатного числа $k \neq 1$.
+\end{lemma}
+
+\begin{proof}
+Розглянемо деяке додатне число $k \neq 1$ та точки $A,C$. За попередньою лемою можна побудувати $\Delta ABC$, для якого $\dfrac{AB}{BC} = k$.\\
+Нехай $BD_1$ -- бісектриса кута $B$ та $BD_2$ -- бісектриса зовнішнього кута при вершині $B$. Тоді сторони пов'язані співвідношенням:
+\begin{gather*}
+\dfrac{AD_1}{D_1C} = \dfrac{AB}{BC} = k; \\
+\dfrac{AD_2}{AB} = \dfrac{D_2 C}{BC} \implies \dfrac{AD_2}{D_2 C} = \dfrac{AB}{BC} = k. \qedhere
+\end{gather*}
+\end{proof}
+
 \newpage
 
 %Geoma 3D
