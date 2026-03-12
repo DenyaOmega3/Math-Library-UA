@@ -105,6 +105,7 @@
 \DeclareMathOperator{\linspan}{span}
 \DeclareMathOperator{\sign}{sgn}
 \DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\inv}{inv}
 
 %delete
 
@@ -1246,34 +1247,43 @@ $|g_n(x) - g_m(x)| \leq |g_n(x) - g_n(s)| + |g_n(s) - g_m(s)| + |g_m(s) - g_m(x)
 \section{Початок функціонального аналізу}
 \subsection{Лінійні нормовані простори}
 \begin{definition}
-Задано $L$ --- лінійний простір над $\mathbb{R}$ або $\mathbb{C}$.\\
-Задамо функцію $\| \cdot \| \colon L \to \mathbb{R}$, що називається \textbf{нормою}, якщо виконуються умови:
+Нехай $L$ --- лінійний простір над $\mathbb{R}$ або $\mathbb{C}$.\\
+Функцію $\| \cdot \| \colon L \to \mathbb{R}$ називається \textbf{нормою}, якщо виконуються умови:
 \begin{align*}
-\text{1) } \forall x \in L: \|x\| \geq 0 \qquad \|x\| = 0 \iff x = 0 \\
-\text{2) } \forall x \in L: \forall \alpha \in \mathbb{R} \text{ або } \mathbb{C}: \|\alpha x\| = |\alpha| \|x\| \\
-\text{3) } \forall x,y \in L: \|x+y\| \leq \|x\| + \|y\|
+\text{1) } \forall x \in L: \|x\| \geq 0, \qquad \|x\| = 0 \iff x = 0; \\
+\text{2) } \forall x \in L: \forall \alpha \in \mathbb{R} \text{ або } \mathbb{C}: \|\alpha x\| = |\alpha| \|x\|; \\
+\text{3) } \forall x,y \in L: \|x+y\| \leq \|x\| + \|y\|.
 \end{align*}
 Тоді пару $(L, \|\cdot \|)$ назвемо \textbf{нормованим простором}.\\
-Функцію $\| \cdot \| \colon L \to \mathbb{R}$ ще називають \textbf{переднормою}, якщо всі умови виконуються, окрім умови $\|x\| = 0 \iff x = 0$.
+Функцію $\| \cdot \| \colon L \to \mathbb{R}$ ще називають \textbf{переднормою}, якщо всі умови виконуються, окрім умови
+\[
+\|x\| = 0 \iff x = 0.
+\]
 \end{definition}
 
-\begin{proposition}
-Задано $(L, \| \cdot \|)$ --- нормований простір. Тоді $\forall x,y \in L: \|x-y\| \geq \left| \|x\| - \|y\| \right|$.\\
+\begin{corollary}
+Нехай $(L, \| \cdot \|)$ --- нормований простір. Тоді $\forall x,y \in L:$
+\begin{align*}
+\|x-y\| \geq \left| \|x\| - \|y\| \right|.
+\end{align*}
 \textit{Вказівка: $\|x\| = \|x + y - x\|$ та $\|y\| = \|y + x -y \|$.}
-\end{proposition}
+\end{corollary}
 
 \begin{proposition}
-Задано $(L, \| \cdot \|)$ --- нормований простір. Тоді $L$ з метрикою $\rho(x,y) = \|x-y\|$ утворює метричний простір $(L,\rho)$.\\
+Нехай $(L, \| \cdot \|)$ --- нормований простір. Тоді $(L,\rho)$ --- метричний простір разом з метрикою
+\begin{align*}
+\rho(x,y) = \|x-y\|.
+\end{align*}
 \textit{Вправа: перевірити три аксіоми.}
 \end{proposition}
 
-\begin{corollary}
+\begin{remark}
 У такому разі справедливі додаткові властивості для заданої метрики:
 \begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
-\item $\forall x,y,z \in L: \rho(x+z,y+z) = \rho(x,y)$ (інваріантність по відношенню до зсуву);
-\item $\forall x,y \in L, \forall \alpha \in \mathbb{R} \text{ або } \mathbb{C}: \rho(\alpha x, \alpha y) = |\alpha| \rho(x,y)$ (однорідність).
+\item $\forall x,y,z \in L: \rho(x+z,y+z) = \rho(x,y)$ (\textit{інваріантність по відношенню до зсуву});
+\item $\forall x,y \in L, \forall \alpha \in \mathbb{R} \text{ або } \mathbb{C}: \rho(\alpha x, \alpha y) = |\alpha| \rho(x,y)$ (\textit{однорідність}).
 \end{enumerate}
-\end{corollary}
+\end{remark}
 
 \begin{example}
 Зокрема дані простори будуть нормованими:\\
@@ -1291,52 +1301,65 @@ $|g_n(x) - g_m(x)| \leq |g_n(x) - g_n(s)| + |g_n(s) - g_m(s)| + |g_m(s) - g_m(x)
 \end{example}
 
 \begin{definition}
-Задано $(L, \|\cdot\|)$ --- лінійний нормований простір. Оскільки в неї запроваджена метрика, то можна щось казати про присутність чи відсутність повноти метричного простору.\\
+Нехай $(L, \|\cdot\|)$ --- лінійний нормований простір (\textit{оскільки в неї запроваджена метрика, то можна щось казати про присутність чи відсутність повноти метричного простору}).\\
 Повний нормований простір називається \textbf{банаховим}.
 \end{definition}
 
 \begin{example}
-Зокрема нормований простір $C([a,b])$ зі стандартною нормою $\|x\| = \displaystyle\max_{t \in [a,b]} |x(t)|$ --- банехів. Це випливає з курсу математичного аналізу 2 семестру.
+Зокрема нормований простір $C([a,b])$ зі стандартною нормою
+\[
+\|x\| = \max_{t \in [a,b]} |x(t)|
+\]
+буде банаховим. Це випливає з курсу математичного аналізу 2 семестру.
 \end{example}
 
 \begin{example}
 Задамо підпростір $C([0,1])$ із нормою із $L_2([0,1],\lambda_1)$, де $\lambda_1$ --- міра Лебега. Доведемо, що в такому разі $C([0,1])$ уже не буде банаховим.\\
-Розглянемо таку функціональну послідовність $\{x_n,n \geq 1\} \subset C([0,1])$, що задається таким чином:\\
-$x_n(t) \begin{cases}
+Розглянемо таку функціональну послідовність $\{x_n,n \geq 1\} \subset C([0,1])$, що задається таким чином:
+\[
+x_n(t) \begin{cases}
 0, & 0 \leq x \leq \dfrac{1}{2} - \dfrac{1}{n} \\
 \dfrac{nx}{2} - \dfrac{n}{4} + \dfrac{1}{2}, & \dfrac{1}{2} - \dfrac{1}{n} \leq x \leq \dfrac{1}{2} + \dfrac{1}{n} \\
 1, & \dfrac{1}{2} + \dfrac{1}{n} \leq x \leq 1
-\end{cases}$.\\
-Це набір функцій, де похила частина зі збільшенням $n$ перетворюється в вертикальну лінію. Зауважимо, що якщо вязти поточкову границю, то отримаємо $x(t) = \begin{cases} 0, & 0 \leq x \leq \dfrac{1}{2} \\1, & \dfrac{1}{2} < x \leq 1 \end{cases}$. При цьому\\
-$\|x_n - x\|_2^2 = \displaystyle\int_{[0,1]} |x_n-x|^2\,d\lambda_1 = \int_0^1 |x_n(t)-x(t)|^2\,dt = \dots = \dfrac{1}{6n} \to 0$ при $n \to \infty$.\\
+\end{cases}.
+\]
+Це набір функцій, де похила частина зі збільшенням $n$ перетворюється в вертикальну лінію. Зауважимо, що якщо вязти поточкову границю, то отримаємо $x(t) = \begin{cases} 0, & 0 \leq x \leq \dfrac{1}{2} \\1, & \dfrac{1}{2} < x \leq 1 \end{cases}$. При цьому
+\[
+\|x_n - x\|_2^2 = \displaystyle\int_{[0,1]} |x_n-x|^2\,d\lambda_1 = \int_0^1 |x_n(t)-x(t)|^2\,dt = \dots = \dfrac{1}{6n} \to 0,\quad n \to \infty.
+\]
 Отже, $\{x_n\}$ в просторі $C([0,1])$ із нормою $L_2$ збігається до точки $x \notin C([0,1])$, але при цьому буде граничною для $C([0,1])$. Тобто $C([0,1])$ не буде замкненим, тож $C([0,1])$ --- не повний, або не банахів.
 \end{example}
 
 \begin{proposition}
-Задано $(L, \|\cdot \|)$ --- нормований простір. Тоді норма $\| \cdot \| \colon L \to \mathbb{R}$ --- неперервна.\\
+Нехай $(L, \|\cdot \|)$ --- нормований простір. Тоді норма $\| \cdot \| \colon L \to \mathbb{R}$ --- неперервна.\\
 \textit{Вказівка: оскільки $\rho(x,y) = \|x-y\|$, то звідси $\|x\| = \rho(x,0)$. Далі \prpref{continuity_of_metric_function_of_one_argument}.}
 \end{proposition}
 
 \begin{definition}
-Задані $(X,\|\cdot\|_1)$ та $(X,\|\cdot\|_2)$ --- два нормовані простори.\\
+Нехай $(X,\|\cdot\|_1)$ та $(X,\|\cdot\|_2)$ --- два нормовані простори.\\
 Ці два нормовані простори називаються \textbf{ізометричними}, якщо
 \begin{align*}
 \exists A \colon X \to Y \text{ --- ізоморфізм між просторами}: \|Ax\|_2 = \|x\|_1
 \end{align*}
 \end{definition}
+\noindent
+Приклади ізометрій будуть нижче, починаючи з \prpref{isometry_between_bounded_maps_and_normed_space}. Вимушений був їх розкидати по сторінках, оскільки треба дещо попередньо довчити.
 
 \begin{remark}
-Ізоморфізм $L$ --- автоматично ізометрія, це випливає зі збережння норми. Саме тому слово ''ізометричні'' в означенні вище виправдане.
+Ізоморфізм $L$ --- автоматично ізометрія, це випливає зі збережння норми. Саме тому слово ''\textit{ізометричні}'' в означенні вище виправдане.
 \end{remark}
 
 \begin{remark}
-У метричному просторі був критерій Кантора, який я переформулюю під нормований простір.\\
-$(L,\|\cdot \|)$ --- банахів $\iff$ виконується умова Кантора (тобто будь-яка послідовність замкнених куль, що стягується, має непорожній перетин).\\
-Так ось, в нормованому просторі не обов'язково вимагати умову $r_n \to 0$.
+У метричному просторі був критерій Кантора, який я переформулюю нижче під нормований простір. У випадку нормованих просторів не обов'язково вимагати умову $r_n \to 0$.
 \end{remark}
 
+\begin{theorem}
+$(L,\|\cdot \|)$ --- банахів $\iff$ виконується умова Кантора (\textit{тобто будь-яка послідовність замкнених куль, що стягується, має непорожній перетин}).
+\end{theorem}
+
+\subsection{Ряди в нормованому просторі}
 \begin{definition}
-Задано $(L, \|\cdot\|)$ --- нормований простір та $\sequence{x_n} \subset L$.\\
+Нехай $(L, \|\cdot\|)$ --- нормований простір та $\sequence{x_n} \subset L$.\\
 Вираз $S_k = \displaystyle\sum_{n=1}^k x_n$ називають \textbf{частковою сумою}. Припустимо, що послідовність часткових сум збігається --- тоді границю позначають за ряд $\displaystyle\sum_{n=1}^\infty x_n$, а сам ряд називають \textbf{збіжним}.
 \end{definition}
 
@@ -1437,7 +1460,9 @@ $\|x+M\|_{L/_M} = 0 \implies \|x\| = 0 \implies x \in M \implies x+M=M$.
 \begin{example}
 Маємо простір $C^1([a,b])$ із напівнормою $\|x\| = \displaystyle\max_{t \in [a,b]} |x'(t)|$. Зауважимо, що лише функції $x(t) = const$ задовольняють умові $\|x\| = 0$. Тобто в нашому випадку підпростір $M = \{x \in C^1([a,b]) : \|x\| = 0\} = \{c \mid c \in \mathbb{R}\} = \mathbb{R}$. Тоді звідси маємо факторпростір $C^1([a,b])/_{\mathbb{R}}$ --- функції, що рівні з точністю до константи. 
 \end{example}
+\newpage
 
+\section{Оператори в нормованих просторах}
 \subsection{Обмежені та неперервні лінійні оператори}
 \begin{definition}
 Нехай $(X, \|\cdot \|_X),(Y, \| \cdot \|_Y)$ --- нормовані простори.\\
@@ -1672,7 +1697,7 @@ III. \textit{$A_n \to A$}. \quad Згадаємо нерівність $\|(A_n-A
 \end{proof}
 
 \begin{proposition}
-Нехай $A,B \in \mathcal{B}(X,Y)$. Тоді композиція $AB \in \mathcal{B}(X,Y)$.
+Нехай $A \in \mathcal{B}(X,Y),\ B \in \mathcal{B}(Y,Z)$. Тоді композиція $BA \in \mathcal{B}(X,Z)$.
 \end{proposition}
 
 \begin{proof}
@@ -1681,6 +1706,31 @@ III. \textit{$A_n \to A$}. \quad Згадаємо нерівність $\|(A_n-A
 \|BA x\| \leq \|B\| \|Ax\| \leq \|B\| \|A\| \|x\|.
 \]
 Звідси, окрім обмеженості, ми бонусом довели оцінку $\|BA\| \leq \|B\| \cdot \|A\|$.
+\end{proof}
+
+Наостанок закінчу ось таким твердженням:
+\begin{proposition}
+\label{isometry_between_bounded_maps_and_normed_space}
+Простори $\mathcal{B}(\mathbb{R},F)$ та $F$ задають природну ізометрію. Тому надалі
+\begin{align*}
+\mathcal{B}(\mathbb{R},F) = F.
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+\rightproof Кожному елементу $y \in F$ поставимо в відповідність відображення $\mathbb{R} \to F$, яке працює як $\lambda \mapsto \lambda y$ та яке є обмеженим, оскільки $\| \lambda y\| = \|y\| |\lambda|$. Отже, побудували відображення
+\begin{align*}
+\varphi \colon F \to \mathcal{B}(\mathbb{R},F), \qquad \varphi(y) = (\lambda \mapsto \lambda y).
+\end{align*}
+Думаю, неважко переконатися, що це лінійне відображення.
+\bigskip \\
+\leftproof Кожному елементу $f \in \mathcal{B}(\mathbb{R},F)$ поставимо в відповідність елемент $f(1) \in F$. Отже, побудували відображення
+\begin{align*}
+\psi \colon \mathcal{B}(\mathbb{R},F) \to F,\qquad \psi(f) = f(1).
+\end{align*}
+Тут теж нескладно довести, що це --- лінійне відображеня.
+\bigskip \\
+Нарешті, по-перше, зауважимо, що $\varphi,\ \psi$ --- взаємно оборотні. По-друге, $\|\varphi(y)\| = \|y\|$. Із даної рівності випливає, що $\varphi$ --- бієктивна ізометрія.
 \end{proof}
 
 \subsection{Деякі гучні теореми}
@@ -1703,29 +1753,28 @@ X = \bigcup_{n =1}^\infty \overline{A(B(0;n))}.
 Тоді за теоремою Бера існує одне замикання $\overline{A(B(0;n_0))}$, яке містить відкриту кулю. Оскільки $A$ --- лінійний оператор, то можемо записати $\overline{A(B(0;n_0))} = n_0 \overline{A(B(0;1))}$, звідси $\overline{A(B(0;1))}$ теж містить відкриту кулю.
 \bigskip \\
 II. \textit{$\overline{A(B(0;1))}$ містить відкриту кулю з цетром в точці $0$}.\\
-Коротше, хотілось би, щоб існувала куля $B(r;0) \subset \overline{A(B(0;1))}$. Наразі відомо лише, що $B(v_0;4r) \subset \overline{A(B(0;1))}$. Оберемо допоміжну точку $v_1 \in A(B(0;1))$, для якої $\| v_0 - v_1 \| < 2r$ (\textit{таке можливо зробити в силу замкненості, якщо взяти послідовність, яка прямує до $v_0$}). Тоді маємо тепер вкладення $B(v_1;2r) \subset \overline{A(B(0;1))}$.\\
-Тепер нехай $v \in B(0;r)$, тоді дивна точка $\dfrac{1}{2} (2v + v_1) \in \dfrac{1}{2}B(v;2r)$. Оскільки $v_1 \in A(B(0;1))$, тобто $v_1 = A(u_1)$ для деякого $u_1 \in B(0;1)$, то запишемо точку $v$ у вигляді
+Коротше, хотілось би, щоб існувала куля $B(r;0) \subset \overline{A(B(0;1))}$. Наразі відомо лише, що $B(v_0;4r) \subset \overline{A(B(0;1))}$. Оберемо допоміжну точку $v_1 \in A(B(0;1))$, для якої $\| v_0 - v_1 \| < 2r$ (\textit{таке можливо зробити в силу замкненості, якщо взяти послідовність, яка прямує до $v_0$}). Тоді маємо тепер вкладення $B(v_1;2r) \subset \overline{A(B(0;1))}$. Ідея тут полягала в тому, що ми хотіли коло з центром, який вже лежить в $A(B(0;1))$ (бо точка $v_0$ могла туди й не потрапити).\\
+Доведемо, що $B(0;r) \subset \overline{A(B(0;1))}$. Нехай $v \in B(0;r)$, тоді $2v + v_1 \in B(v_1;2r)$. Оскільки $v_1 \in A(B(0;1))$, то звідси $u_1 = Av_1$ для деякого $u_1 \in B(0;1)$. Точку $2v$ запишемо в такому вигляді:
 \[
-v = - A\left( \dfrac{u_1}{2}\right) + \dfrac{1}{2} (2v + v_1).
+2v = (2v+v_1) -v_1 = (2v+v_1) - Au_1.
 \]
-Отже, $v \in -A\left (\dfrac{u_1}{2} \right) + \dfrac{1}{2} \overline{A\left(B\left(0; \dfrac{1}{2}\right)\right)} \overset{A \text{ --- лінійний}}{=} \overline{A\left( -\dfrac{u_1}{2} + B\left(0; \dfrac{1}{2}\right)\right)}$.\\
-Нарешті, оскільки $u_1 \in B(0;1)$, тобто $\| u_1 \| < 1$, то звідси тоді $\overline{A\left( -\dfrac{u_1}{2} + B\left(0; \dfrac{1}{2}\right)\right)} \subset \overline{A(B(0;1))}$. Отже, ми довели, що $B(r;0) \subset \overline{A(B(0;1))}$.
+Тоді $2v \in \overline{A(B(0;1))} - Au_1 \overset{A \text{ -- лінійний}}{=} \overline{A(B(0;1) - u_1)} \subset A(B(0;2))$. Останнє вкладення отримали через те, що $\|u_1\| < 1$. Якщо $2v \in \overline{A(B(0;2))}$, то звідси $v \in \overline{A(B(0;1))}$.
 \bigskip \\
 III. \textit{$A(B(0;1))$ містить відкриту кулю з центром в точці $0$}.\\
 Ми доведемо насправді, що $B\left( 0; \dfrac{r}{2} \right) \subset A(B(0;1))$. Перш ніж це зробити, зауважимо, що справедливе ось таке вкладення:
 \[
 B(0; 2^{-n}r) = 2^{-n} B(0;r) \subset 2^{-n} \overline{A(B(0;1))} = \overline{A(B(0;2^{-n}))}.
 \]
-Нехай $v \in B\left( 0; \dfrac{r}{2} \right)$, тобто $\| v \| < \dfrac{r}{2}$, але тоді із того зауваження отримуємо $v \in \overline{A\left( B \left( 0;\dfrac{1}{2} \right) \right)}$. Значить, існує точка $b_1 \in B\left( 0;\dfrac{1}{2} \right)$, для якої $\| v - Ab_1 \| < \dfrac{r}{4}$ (\textit{це можливо за аналогічними міркуваннями, як ми тоді шукали точку $v_1$}). Звідси $v - Tb_1 \in \overline{A\left(B\left( 0;\dfrac{1}{4} \right) \right)}$, тому існує точка $b_2 \in B\left(0;\dfrac{1}{4}\right)$, для якої $\| v - Ab_1 - Ab_2 \| < \dfrac{r}{8}$...\\
+Нехай $v \in B\left( 0; \dfrac{r}{2} \right)$, тобто $\| v \| < \dfrac{r}{2}$, але тоді із того зауваження отримуємо $v \in \overline{A\left( B \left( 0;\dfrac{1}{2} \right) \right)}$. Значить, існує точка $b_1 \in B\left( 0;\dfrac{1}{2} \right)$, для якої $\| v - Ab_1 \| < \dfrac{r}{4}$ (\textit{це можливо за аналогічними міркуваннями, як ми тоді шукали точку $v_1$}). Звідси $v - Ab_1 \in \overline{A\left(B\left( 0;\dfrac{1}{4} \right) \right)}$, тому існує точка $b_2 \in B\left(0;\dfrac{1}{4}\right)$, для якої $\| v - Ab_1 - Ab_2 \| < \dfrac{r}{8}$...\\
 Побудували послідовність $(b_k)_{k \in \mathbb{N}}$, де маємо
 \[
 \| b_k\| < 2^{-k}, \qquad \left\| v - \sum_{k=1}^n A b_k \right\| < 2^{-n-1} r.
 \]
 Із першої оцінки випливає, що ряд $\displaystyle\sum_{k=1}^\infty b_k$ збіжний абсолютно, але оскільки $X$ --- банахів, то $\displaystyle\sum_{k=1}^\infty b_k = b$ --- просто збіжний. Причому
 \[
-\| b \| = \lim_{n \to \infty} \left\| \sum_{k=1}^n b_k \right\| \leq \lim_{n \to \infty} \sum_{k=1}^\infty \|b_k\| = \sum_{k=1}^\infty \|b_k\| \leq \sum_{k=1}^\infty 2^{-k} = 1.
+\| b \| = \lim_{n \to \infty} \left\| \sum_{k=1}^n b_k \right\| \leq \lim_{n \to \infty} \sum_{k=1}^\infty \|b_k\| = \sum_{k=1}^\infty \|b_k\| < \sum_{k=1}^\infty 2^{-k} = 1.
 \]
-Однак $A$ --- обмежений оператор, тому неперервний, тож
+(\textit{там нерівність справді строга, попри граничний перехід, треба трошки за додатні ряди згадати}). Однак $A$ --- обмежений оператор, тому неперервний, тож
 \[
 Ab = \lim_{n \to \infty} A\left( \sum_{k=1}^n b_k \right) = \lim_{n \to \infty} \sum_{k=1}^n Ab_k = v.
 \] 
@@ -1759,7 +1808,7 @@ C_k = \{ x \in X \mid \|x\| \leq 1,\ \sup_{n \in \mathbb{N}} \| A_n x\| \leq k \
 \]
 Кожна множина $C_k$ є замкненою. Дійсно, нехай є послідовність $(x_n)_{n \in \mathbb{N}} \subset C_k$ така, що $x_n \to x$. По-перше, в силу неперервності норми
 \[
-\|x \| = \lim_{n \to \infty} \|x_n\| = 1.
+\|x \| = \lim_{n \to \infty} \|x_n\| \leq 1.
 \]
 По-друге, оскільки $x_n \in C_k$, то звідси $\| A_m x_n \| \leq k$ для всіх $m \in \mathbb{N}$. Спрямуємо $n \to \infty$, тоді в силу неперервності норми та операторів маємо
 \[
@@ -1767,9 +1816,9 @@ C_k = \{ x \in X \mid \|x\| \leq 1,\ \sup_{n \in \mathbb{N}} \| A_n x\| \leq k \
 \]
 Із двох умов одержимо $x \in C_k$. Далі зазначимо, що справедлива така рівність:
 \[
-\bigcup_{n \geq k} C_k = B[0;1].
+\bigcup_{k =1}^\infty C_k = B[0;1].
 \]
-Такий розклад випливає з умови теореми. Оскільки $B[0;1]$ -- замкнений та $X$ -- банахів, то підпростір $B[0;1]$ теж буде повним. Тоді за теоремою Бера один із $C_k$ міститиме відкриту кулю $B(x_0;\delta_0)$.\\
+Такий розклад випливає з умови теореми. Оскільки $B[0;1]$ -- замкнений та $X$ -- банахів, то підпростір $B[0;1]$ теж буде повним. Тоді за теоремою Бера один із $C_k$ міститиме відкриту кулю $B(x_0;\delta_0)$. Треба цю кулю трошки посунути, принаймні до центра $0$, а зробимо це ось так.\\
 Для кожного $x \in B(0;\delta_0)$ маємо $x_0 + x \in B(x_0;\delta_0) \subset C_k$, тобто $\displaystyle\sup_{n \in \mathbb{N}} \|A_n(x_0+x)\| \leq k$. Звідси маємо такий ланцюг нерівностей:
 \[
 \sup_{n \in \mathbb{N}} \|A_n x\| = \sup_{n \in \mathbb{N}} \| -A_n x_0 + A_n (x_0 + x) \| \leq \sup_{n \in \mathbb{N}} \| A_n x_0\| + \sup_{n \in \mathbb{N}} \| A_n(x_0+x)\| \leq k + k.
@@ -1820,6 +1869,22 @@ $A$ оборотно-обмежений та бієктивний $\iff \exists 
 \leftproof Дано: $\exists m > 0: \forall x \in X: \|Ax\| \geq m\|x\|$. Якщо взяти елемент $x \in \ker A$, то одержимо нерівність $\|Ax\| = 0 \geq m \|x\|$, тож автоматично $x = 0$. Отже, існує оборотний оператор $A^{-1} \colon Y \to X$. Залишилося переконатися, що $A^{-1} \in \mathcal{B}(Y,X)$. Ми маємо $x = A^{-1}y$, тоді звідси $\|AA^{-1}y\| = \|y\| \geq m \|A^{-1}y\|$, внаслідок чого $\|A^{-1}y\| \leq m^{-1} \|y\|$.
 \end{proof}
 
+\begin{example}
+Розглянемо оператор $A \colon C[0,1] \to C[0,1]$, який задається формулою
+\[
+(Ax)(t) = t \int_0^t x(s)\,ds
+\]
+(\textit{довести, що $A \in \mathcal{B}(C[0,1])$ та $\|A\| = 1$}). Даний оператор буде ін'єктивним (\textit{довести це}). Отже, існує оборотний оператор $A^{-1} \colon \Im A \to C[0,1]$, однак доведемо, що $A^{-1} \notin \mathcal{B}(\Im A, C[0,1])$.\\
+Нехай $m \in (0,1]$. Цілком ясно, що існує такий номер $n$, для якого $\dfrac{1}{n+1} < m$. Розглянемо функції $x_n(t) = t^n$, тоді звідси $(Ax_n)(t) = \dfrac{1}{n+1} t^{n+2}$. Зауважимо, що $\|x_n\| = 1$, а також
+\[
+\| Ax_n \| = \dfrac{1}{n+1} < m \| x_n\|.
+\]
+При $m > 1$ автоматично \[
+\|A x \| \leq \|A\| \|x\| = 1 \cdot \|x\| < m \|x\|.
+\]
+Таким чином, за теоремою вище не існує оборотно-обмеженого оператора. 
+\end{example}
+
 \begin{theorem}
 \label{invertible_and_geometric_progression}
 Нехай $X$ --- банахів простір та $A \in \mathcal{B}(X)$, причому $\|A\| = q < 1$. Тоді оператор $I-A$ буде оборотно-обмеженим, причому
@@ -1831,7 +1896,7 @@ $A$ оборотно-обмежений та бієктивний $\iff \exists 
 
 \begin{definition}
 Нехай $X,Y$ --- лінійні нормовані простори.\\
-Послідовність операторів $(A_n)_{n=1}^\infty$ називається \textbf{рівномірно збіжною} до $A$, якщо
+Послідовність операторів $(A_n)_{n=1}^\infty \subset \mathcal{B}(X,Y)$ називається \textbf{рівномірно збіжною} до $A$, якщо
 \begin{align*}
 \lim_{n \to \infty}\|A_n - A\| = 0.
 \end{align*}
@@ -3939,6 +4004,505 @@ $\|A\|^{2^m} = \left\|A^{2^m}\right\| \leq \|A^m\| \left\| A^{2^m -m} \right\| <
 \vdots \\
 Покладемо $H' = \displaystyle\bigoplus_{\substack{\lambda_k \in \sigma(A) \\ \lambda_k \ne 0 }} H_{\lambda_k}$, який інваріантний. Покладемо $H_0 = (H')^\perp$ --- теж інваріантний. Тоді звідси $H_0 = \ker A$.\\
 !Якби це не так, то існував би вектор $x \in H_0: Ax \neq 0$, тому $\|A|_{H_0}\| > 0$, внаслідок чого існувало би власне число $\lambda_0 \neq 0$, що суперечить! (бо ми всі перебрали вже).
+\end{proof}
+\newpage
+
+\section{Диференційовані відображення}
+\textit{Для спрощення ситуації всюди, де задається нормований простір, припускатимемо, що він --- банахів.}
+
+\subsection{Основні означення}
+\begin{definition}
+Нехай $E,F$ --- простори, $U \subset E$ --- відкрита підмножина.\\
+Кажуть, що два відображення $f_1 \colon U \to F$ та $f_2 \colon U \to F$ \textbf{дотикаються одне одного в точці $a \in U$}, якщо функція
+\begin{align*}
+m(r) = \sup_{x \in B[a;r]} \| f_1(x) - f_2(x) \|,
+\end{align*}
+яка визначена для всіх достатньо малих $r>0$, задовольняє умову:
+\begin{align*}
+m(r) = o(r),\ r \to 0+0.
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Умова дотикання двох відображень в точці задає відношення еквівалентності.\\
+\textit{Вправа: довести.}
+\end{proposition}
+
+\begin{remark}
+Із означення випливає, що $f_1 - f_2$ --- неперервна в точці $a$ та дорівнює нулю.
+\end{remark}
+
+\begin{example}
+\label{tangent_at_zero_then_zero_operator}
+Нехай $g \in \mathcal{L}(E,F)$. Покладемо функцію $f(x) = g(x-a)$. Доведемо, що якщо $f$ дотикається в точці $a$, то тоді $g \equiv 0$.
+\bigskip \\
+Спершу зауважимо, що має місце ланцюг рівностей:
+\[
+m(r) = \sup_{x \in B[a;r]} \|f(x)\| = \sup_{x \in B[a;r]} \|g(x-a)\| = r \sup_{\frac{x-a}{r} \in B[0,1]} \left\| g\left( \dfrac{x-a}{r} \right) \right\| = r \cdot \|g\|.
+\]
+(\textit{оператор $g$ не обов'язково обмежений, але формально це нормою позначив}). Звідси випливає, що
+\[
+\dfrac{m(r)}{r} = \|g\| \to 0,\ r \to 0+0,
+\]
+внаслідок чого $g \equiv 0$.
+\end{example}
+
+\begin{definition}
+Відображення $f \colon U \to F$ \textbf{дотикається в точці $a$}, якщо
+\begin{center}
+$f$ та $0$ (\textit{нулеве відображення}) дотикаються в точці $a$.
+\end{center}
+\end{definition}
+
+\begin{remark}
+Нехай $f_1$ та $f_2$ дотикаютсья в точці $a$. Тоді $f_1(a) = f_2(a)$. Зокрема якщо $f_1$ --- неперервне в точці $a$, то $f_2$ --- неперервна в точці $a$.
+\end{remark}
+
+\begin{definition}
+Нехай $E,F$ --- простори, $U \subset E$ --- відкрита та $a \in U$.\\
+Відображення $f \colon U \to E$ називається \textbf{диференційованою в точці $a \in U$}, якщо
+\begin{center}
+1) $f$ --- неперервна в точці $a$;\\
+2) існує такий оператор $g \in \mathcal{L}(E,F)$, для якого відображення $x \mapsto f(x) - f(a)$ та $x \mapsto g(x-a)$ дотикаються в точці $a$.
+\end{center}
+Остання умова еквівалентним чином переписується ось так:
+\begin{align*}
+\| f(x) - f(a) - g(x-a) \| = o(\|x-a\|).
+\end{align*}
+\end{definition}
+
+Наведу інше більш звичне означення диференційованості.
+
+\begin{definition}
+Нехай $E,F$ --- простори $U \subset E$ --- відкрита та $a \in U$.\\ Відображення $f$ називається \textbf{диференційованою в $a \in U$}, якщо існує єдине $g \in \mathcal{B}(E,F)$, для якого
+\begin{align*}
+\|f(x)-f(a)-g(x-a)\| = o(\|x-a\|),\ x \to a.
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Нехай $f$ --- диференційована в точці $a$ (\textit{в сенсі першого означення}). Тоді $g \in \mathcal{B}(E,F)$, причому такий оператор єдиний.
+\end{proposition}
+
+\begin{proof}
+Досить довести, що $g$ --- неперервна в точці $a$. Дійсно,
+\[
+\| g(x) - g(a) \| \leq \|f(x) - f(a) \| + \|-f(x) - f(a) + g(x-a)\| = \|f(x) - f(a)\| + o(\|x-a\|) \to 0,\ x \to a.
+\]
+Перша норма зникла в силу неперервності $f$.\\
+Припустимо, що $f(x)-f(a)$ дотикається як і до $g(x-a)$, так і до $h(x-a)$ в точці $a$. Тоді за транзитивністю $g(x-a)$ дотикається до $h(x-a)$ в точці $a$, або $g(x-a)-h(x-a)$ дотикається в точці $a$. Однак за \exref{tangent_at_zero_then_zero_operator}, оскільки $g-h \in \mathcal{L}(E,F)$, то тоді $g-h \equiv 0 \implies g = h$.
+\end{proof}
+
+\begin{proposition}
+Нехай $f$ --- диференційована в точці $a$ (\textit{в сенсі другого означення}). Тоді $f$ --- неперервна в точці $a$.
+\end{proposition}
+
+\begin{proof}
+Дійсно, маємо наступне:
+\[
+\| f(x) - f(a) \| \leq \| f(x) - f(a) - g(x-a) \| + \| g(x-a) \| = o(\|x-a\|) + \| g(x-a) \| \to 0,\ x \to a. \qedhere
+\]
+\end{proof}
+
+\begin{remark}
+Таким чином, із друого означення диференційованості випливає перше означення диференційованості.
+\end{remark}
+\noindent
+Отже, ці два означення є еківалентними. Регулярніше використатимемо друге, а перше --- то була певна мотивація.
+
+\begin{definition}
+Оператор $g \in \mathcal{B}(E,F)$ із означення диференційованої функції $f$ в точці $a$ будемо називати \textbf{похідною $f$ в точці $a$} та позначати ось так:
+\begin{align*}
+g = f'(a).
+\end{align*}
+Ще раз наголошу ось тут, $f'(a) \in \mathcal{B}(E,F)$. Часто це називають \textbf{похідною Фреше}.
+\end{definition}
+
+Тоді означення диференційованої функції перепишеться ще звичніше:
+\begin{align*}
+\|f(x) - f(a) - f'(a) (x-a) \| = o(\|x-a\|),\ x \to a.
+\end{align*}
+
+\begin{example}
+Нехай $F$ --- простір, $U \subset \mathbb{R}$ --- відкрита та $f \colon U \to F$ --- функція дійсного аргументу. Уже відомо, що $\mathcal{B}(\mathbb{R},F) = F$ (\textit{канонічна ізометрія}), тож диференційованість $f$ в точці $a$ еквівалетно існуванню $c \in F$, для якого
+\[
+\| f(x) - f(a) - (x-a)c \| = o(\|x-a\|),\ x \to a.
+\]
+Або з цього випливатиме наступна рівність:
+\[
+\lim_{x \to a} \dfrac{f(x)-f(a)}{x-a} = c = f'(a).
+\]
+Одержали стандартне означення похідної функції $f$ в точці $a$.
+\end{example}
+
+\begin{definition}
+Відображення $f \colon E \supset U \to F$ називається \textbf{диференційованою на $U$}, якщо
+\begin{center}
+$f$ --- диференційована для всіх $a \in U$.
+\end{center}
+\end{definition}
+
+\begin{remark}
+Отже, кожному $a \in U$ відповідає похідна $f'(a)$, а тому маємо відображення
+\begin{align*}
+f' \colon U \to \mathcal{B}(E,F),
+\end{align*}
+яке називається \textbf{похідним відображеннях} від $f \colon U \to F$.
+\end{remark}
+
+\begin{definition}
+Відображення $f$ називається \textbf{неперервно-диференційованим} (\textit{тобто належить класу $C^1$}), якщо
+\begin{center}
+$f$ --- диференційована на $U$ та $f' \colon U \to \mathcal{B}(E,F)$ --- неперервне. 
+\end{center}
+\end{definition}
+
+\begin{proposition}
+Нехай $E,F$ --- простори. Замінимо старі норми $\| \cdot \|$ еквівалентним чином на нові норми $\| \cdot \|_1$ в $E$ та в $F$.
+Нехай $f$ --- диференційована в точці $a \in U$ відносно старої норми. Тоді $f$ --- диференційована в точці $a \in U$ відносно нової норми. Причому похідна від зміни норми не змінюється.
+\end{proposition}
+
+\begin{proof}
+Отже, станом на зараз відома лише границя відносно старої норми:
+\[
+\lim_{x \to a} \dfrac{\|f(x) - f(a) - g(x-a)\|}{\|x-a\|} = 0.
+\]
+Оскільки $\| \cdot \| \sim \| \cdot \|_1$ в просторі $E$, то справедлива нерівність
+\[
+\dfrac{1}{\|x-a\|_1} \leq M \dfrac{1}{\|x-a\|},\ M > 0.
+\]
+Оскільки $\| \cdot \| \sim \| \cdot \|_1$ в просторі $F$, то справедлива нерівність
+\[
+\|f(x) - f(a) - g(x-a)\|_1 \leq M' \|f(x) - f(a) - g(x-a)\|.
+\]
+Внаслідок чого маємо оцінку:
+\[
+\dfrac{\|f(x) - f(a) - g(x-a)\|_1}{\|x-a\|_1} \leq MM' \dfrac{\|f(x) - f(a) - g(x-a)\|}{\|x-a\|} \to 0. \qedhere
+\]
+\end{proof}
+
+\subsection{Диференціювання складеної функції}
+\begin{theorem}
+Нехай $E,F,G$ --- простори, $U \subset E,\ V \subset F$ --- відкриті підмножини. Розглянемо неперервні відображення $f \colon U \to F$ та $g \colon V \to G$. Оберемо точки $a \in U$ та $b = f(a) \in V$ (\textit{тоді прообраз $U' = f^{-1}(V) \subset U$ буде відкритою та містити точку $a$}). Припустимо, що $f$ --- диференційована в $a$ та $g$ --- диференційована в $b$. Тоді $h = g \circ f$ --- диференційована в $a$, причому
+\begin{align*}
+h'(a) = g'(b) \circ f'(a).
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Умова теореми дає нам такі рівності:
+\begin{align*}
+f(x) = f(a) + f'(a)(x-a) + \varphi(x-a),\quad \| \varphi(x-a)\| = o(\|x-a\|); \\
+g(y) = g(b) + g'(b)(y-b) + \psi(y-b),\quad \|\psi(y-b)\| = o(\|y-b\|).
+\end{align*}
+Тепер розглянемо різницю $h(x) - h(a)$. Маємо наступне:
+\begin{align*}
+h(x) - h(a) & = g(f(x) - g(f(a)) = g'(f(a))(f(x)-f(a)) + \psi(f(x)-f(a)) \\
+& = g'(f(a)) (f'(a)(x-a) + \varphi(x-a)) + \psi(f(x)-f(a)).
+\end{align*}
+Хочу довести, що
+\[
+\| h(x) - h(a) - g'(f(a)) f'(a) (x-a)\| = o(\|x-a\|),\ x \to a.
+\]
+Для цього буде досить довести, що виконуються
+\begin{align*}
+\| g'(f(a)) \varphi(x-a) \| = o(\|x-a\|),\ x \to a; \\
+\| \psi(f(x)-f(a))\| = o(\|x-a\|),\ x \to a.
+\end{align*}
+Перша рівність виконується, оскільки
+\[
+\dfrac{\|g'(f(a)) \varphi(x-a)\|}{\|x-a\|} \leq \dfrac{\|g'(f(a))\| \|\varphi(x-a)\|}{\|x-a\|} = \dfrac{\|g'(f(a))\| o(\|x-a\|)}{\|x-a\|} \to 0.
+\]
+Друга рівність трохи складніше. Для початку зауважимо, що
+\[
+\|f(x)-f(a)\| = \|f'(a)(x-a) + \varphi(x-a)\| \leq \|f'(a)(x-a)\| + o(\|x-a\|) \leq \|f'(a)\| \|x-a\| + o(\|x-a\|).
+\]
+Тоді якщо $\|x-a\| \to 0$, то також $\|f(x)-f(a)\| \to 0$, але тоді
+\[
+\dfrac{\|\psi(f(x)-f(a))\|}{\|x-a\|} = \dfrac{o(\|f(x)-f(a)\|)}{\|f(x)-f(a)\|} \cdot \dfrac{\|f(x)-f(a)\|}{\|x-a\|} = \dfrac{o(\|f(x)-f(a)\|)}{\|f(x)-f(a)\|} \left( \|f'(a)\| + \dfrac{o(\|x-a\|)}{\|x-a\|} \right) \to 0.
+\]
+Разом довели диференційованість $h$.
+\end{proof}
+
+\subsection{Лінійність операції диференціювання}
+\begin{proposition}
+Нехай $f,g \colon U \to F$, де $U$ --- відкрита підмножина $E$. Нехай $f,g$ --- диференційовані в точці $a$. Тоді
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $f+g$ --- диференційована в точці $a$, причому
+\begin{align*}
+(f+g)'(a) = f'(a) + g'(a).
+\end{align*}
+\item $\lambda f$ --- диференційована в точці $a$ при $\lambda \in \mathbb{R}$, причому
+\begin{align*}
+(\lambda f)'(a) = \lambda \cdot f'(a).
+\end{align*}
+\end{enumerate}
+\textit{Вправа: довести.}
+\end{proposition}
+
+\begin{remark}
+$D_a(U, F)$ --- множина всіх диференційованих відображень в точці $a$ --- задає підпростір простору всіх відображень $U \to F$, а оператор
+\[ 
+V_a \to \mathcal{B}(E,F), \qquad f \mapsto f'(a)
+\]
+задає лінійне відображення.
+\end{remark}
+
+\begin{remark}
+Аналогічні міркування можна провести про $C^1_a(U, F)$ --- множину всіх вдіображень класу $C^1$ в точці $a$, яке буде підпростором $D_a(U, F)$.
+\end{remark}
+
+\subsection{Похідні від деяких функцій}
+\begin{proposition}
+Нехай $f \colon U \to F$ --- стале відображення. Тоді $f'(x) = 0$ для всіх $x \in U$.\\
+\textit{Вправа: довести.}
+\end{proposition}
+
+\begin{proposition}
+Нехай $g \colon U \to F$ буде звуженням деякого $f \colon E \to F$, причому $f \in \mathcal{B}(E,F)$. Тоді $g'(x) = f$ для всіх $x \in U$.\\
+\textit{Тобто похідна від лінійної функції --- стала.}
+\end{proposition}
+
+\begin{proposition}
+Нехай $f \in \mathcal{B}(E_1 \times E_2, F)$. Тоді $f$ --- диференційована в точці $(a_1,a_2)$, причому
+\begin{align*}
+f'(a_1,a_2) (h_1,h_2) = f(h_1,a_2) + f(a_1,h_2).
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+Справді, маємо ось таку різницю:
+\begin{align*}
+f(a_1+h_1,a_2+h_2) - f(a_1,a_2) = f(h_1,a_2) + f(a_1,h_2) + f(h_1,h_2).
+\end{align*}
+Все, що треба довести, так це $\|f(h_1,h_2)\| = o(\|(h_1,h_2)\|)$ при $(h_1,h_2) \to (0,0)$. Ну дійсно,
+\[
+\dfrac{\|f(h_1,h_2)\|}{\|(h_1,h_2)\|} \leq \dfrac{\|f\| \|h_1\| \|h_2\|}{\| (h_1,h_2\|} \leq \dfrac{\|f\| (\|h_1\| + \|h_2\|)^2}{\|h_1\| + \|h_2\|} \to 0. \qedhere
+\]
+\end{proof}
+
+\begin{remark}
+Авжеж, це можна узагальнити для полілінійних відображень.
+\end{remark}
+
+Перед одним результатом маю навести одну корисну теорему.
+\begin{theorem}
+Нехай $E,F$ --- (\textit{тут обов'язкові банахові}) простори. Позначимо $\mathcal{B}_{\inv}(E,F)$ за підмножину $\mathcal{B}(E,F)$ всіх оборотно-обмежених операторів. Тоді
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $\mathcal{B}_{\inv}(E,F)$ --- відкрита в $\mathcal{B}(E,F)$;
+\item Відображення $\varphi \colon \mathcal{B}_{\inv}(E,F) \to \mathcal{B}(F,E)$, яке задається як $\varphi(u) = u^{-1}$, буде неперервним.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Допускається, що $\mathcal{B}_{\inv}(E,F) = \emptyset$, коли простори $E,F$ неізоморфні, але тут все тривіально.\\
+Нехай $u_0 \in \mathcal{B}_{\inv}(E,F)$. Покажемо, що $B\left(u_0, \dfrac{1}{\|u_0^{-1}\|}\right) \subset \mathcal{B}_{\inv}(E,F)$, тоді це доведе відкритість.\\
+Нехай $u \in \mathcal{B}(E,F)$ таке, що $\|u-u_0\| < \dfrac{1}{\|u_0^{-1}\|}$. Тоді розглянемо ось такий оператор:
+\[
+v = 1 - u_0^{-1} u = u_0^{-1}(u_0 - u).
+\]
+Звідси виплливає, що
+\[
+\|v\| \leq \|u_0^{-1}\| \|u-u_0\| < 1,
+\]
+а тому оператор $1-v = u_0^{-1}u \in \mathcal{B}_{\inv}(E,E)$ (\textit{тут банаховість $E$ необхідна}). Тоді $u \in \mathcal{B}_{\inv}(E,F)$.
+\bigskip \\
+Тепер маємо наступне:
+\[
+u^{-1} = (u_0(1-v))^{-1}
+ = (1-v)^{-1} u_0^{-1} \implies u^{-1} - u_0^{-1} = ((1-v)^{-1}-1) u_0^{-1} = \left(\sum_{n=1}^\infty v^n \right)u_0^{-1}.
+ \]
+Отже, тоді
+\[
+\|u^{-1} - u_0^{-1}\| \leq \|u_0^{-1}\| \left\| \sum_{n=1}^\infty \right\| \leq \|u_0^{-1}\| \dfrac{\|v\|}{1-\|v\|}.
+\]
+Нехай $u \to u_0$. Із нерівності $\|v\| \leq \|u_0^{-1}\| \|u-u_0\|$ випливає, що $\|v\| \to 0$, але тоді $u^{-1} \to u_0^{-1}$.
+\end{proof}
+
+Тепер природне питання постає, чи можна буде продиференціювати функцію з тої теореми.
+
+\begin{theorem}
+Нехай $E,F$ --- простори. Тоді відображення $\varphi(u) = u^{-1}$ належить класу $C^1(\mathcal{B}_{\inv}(E,F))$. Причому її похідна обчислюється за формулою:
+\begin{align*}
+\varphi'(u) h = -u^{-1} \circ h \circ u^{-1},\quad h \in \mathcal{B}(E,F).
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+I. \textit{$\varphi$ --- диференційоване}.\\
+Для початку зазначимо, що функція $u-^{-1} \circ h \circ u^{-1} \in \mathcal{B}(F,E)$. Далі будемо доводити, що
+\[
+\varphi(u+h) - \varphi(u) = -u^{-1} \circ h \circ u^{-1} + o(\|h\|),\ h \to 0.
+\]
+Дійсно, маємо наступне:
+\[
+\varphi(u+h) - \varphi(u) = (u+h)^{-1} - u^{-1} = (u+h)^{-1} \circ (u-(u+h)) \circ u^{-1} = -(u+h)^{-1} \circ h \circ u^{-1}.
+\]
+Тоді маємо таку різницю:
+\[
+\varphi(u+h) - \varphi(u) - (-u^{-1} \circ h \circ u^{-1}) = u^{-1} \circ h \circ u^{-1} - (u+h)^{-1} \circ h \circ u^{-1} = (u^{-1} - (u+h)^{-1}) \circ h \circ u^{-1}.
+\]
+Нарешті, оцінимо ось цей вираз:
+\[
+\dfrac{\| (u^{-1} - (u+h)^{-1}) \circ h \circ u^{-1} \|}{\|h\|} \leq \dfrac{\|u^{-1} - (u+h)^{-1}\| \|u^{-1}\| \|h\|}{\|h\|} = \| \varphi(u) - \varphi(u+h) \| \|\varphi(u)\| \to 0,\ h \to 0.
+\]
+Тут дійсно все прямує до нуля, оскільки доводили, що $\varphi$ --- неперервне.\\
+Довели, що $\varphi$ --- диференційована в кожній точці $u \in \mathcal{B}_{\inv}(E,F)$.
+\bigskip \\
+II. \textit{$\varphi'$ --- неперервне}.\\
+Для відображень $u,v \in \mathcal{B}(F,E)$ розглянемо інше відображення $\psi(v,w) \colon \mathcal{B}(E,F) \to \mathcal{B}(F,E)$, яке задається формулою:
+\[
+\psi(v,w) h = -v \circ h \circ w.
+\]
+Таким чином, установили білінійне відображення $\mathcal{B}(F,E) \times \mathcal{B}(F,E) \to \mathcal{B}(\mathcal{B}(E,F),\mathcal{B}(F,E))$, яке працює як $(v,w) \mapsto psi(v,w)$. Ба більше, воно буде обмеженим. Маємо
+\[
+\| \psi(v,w) h \| = \| v \circ h \circ w \| \leq \|v\| \|h\| \|w\|.
+\]
+Оскільки це виконується для всіх $h$, то зокрема для таких, що $\|h\| = 1$, тому
+\[
+\| \psi(v,w)\| \leq \|v\| \|w\|.
+\]
+Тепер для чого ми пішли так здалеку? Тому що насправді
+\[
+\phi'(u)h = -u^{-1} \circ h \circ u^{-1} = \psi(u^{-1},u^{-1}) h.
+\]
+Отже, відображення $u \mapsto \varphi'(u)$ буде композицією неперервних відображень
+\[
+u \mapsto (u^{-1},u^{-1}) \mapsto \psi(u^{-1},u^{-1}) = \varphi'(u).
+\]
+Отже, $\varphi'$ --- неперервне як композиція.
+\end{proof}
+
+\begin{example}
+Розглянемо частинний випадок, коли $E = F = \mathbb{R}$. Беремо відображення $\varphi(u) = u^{-1}$, де $u \in \mathcal{B}_{\inv}(E,F)$, яке можна ототожнити з ненулевим числом $u \in \mathbb{R}$. Тоді $\mathcal{B}_{\inv}(E,F)$ можна ототожнити її з відкритою підмножиною $\mathbb{R}$, утворений елементами $u \neq 0$. За доведеною теоремою
+\[
+\varphi'(u) h = -u^{-1} \circ h \circ u^{-1}.
+\]
+Оператор $h \in \mathcal{B}(E,F)$ ототожнюється також з числом $h \in \mathbb{R}$. Тому можемо скоротити на дане число та одержати звичну формулу:
+\[
+\varphi'(u) = -\dfrac{1}{u^2}.
+\]
+Тобто щойно доведена теорема була певним узагальненням, як диференціювати обернені вирази.
+\end{example}
+
+\subsection{Функції зі значеннями в добутку}
+\begin{proposition}
+Нехай $F = F_1 \times \dots \times F_k$. Розглянемо $f \in \mathcal{B}(U,F)$. Тоді $f$ --- диференційована в точці $a \in U \iff f_i = \pi_i \circ f$ --- диференційовані в точці $a$, причому
+\begin{align*}
+f'(a) = \imath_1 \circ f_1'(a) + \dots + \imath_k \circ f_k'(a).
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $f$ --- диференційована. Також $\pi_i$ буде диференційованою (\textit{це неважко довести}), тому за композицією $f_i$ --- диференційована.
+\bigskip \\
+\leftproof Дано: всі $f_i$ --- диференційовані. Тоді $f = \imath_1 \circ f_1 + \dots + \imath_k \circ f_k$. Оскільки $\imath_j$ --- диференційовані (\textit{неважко довести}), то за композицією та лінійністю $f$ --- диференційована також, причому
+\[
+f'(a) = \imath_1'(f_1(a)) \circ f_1'(a) + \dots + \imath_k'(f_k(a)) \circ f_k(a) = \imath_1 \circ f_1'(a) + \dots + \imath_k \circ f_k'(a). \qedhere
+\]
+\end{proof}
+
+\begin{proposition}
+Нехай фукнції $u,v$ --- диференційовані в точці $a \in U$. Також нехай $f \in \mathcal{B}(E_1,E_2;F)$, визначимо відображення $w \colon U \to F$ за формулою:
+\begin{align*}
+w(x) = f(u(x),v(x)).
+\end{align*}
+Тоді $w$ --- диференційована в точці $a \in U$, причому
+\begin{align*}
+w'(a) h = f(u'(a) h, v(a)) + f(u(a), v'(a)h),\quad h \in E.
+\end{align*}
+
+\begin{proof}
+Відомо, що відображення $h \mapsto (u(x),v(x))$ тоді буде диференційованою в точці $a \in U$, а його похідна задається відображенням
+\[
+h \mapsto (u'(a)h, v'(a)h).
+\]
+Також відображення $f \colon E_1 \times E_2 \to F$ --- диференційована всюди через обмеженість. Відображення $\omega$ є насправді композицією
+\[
+U \overset{(u,v)}{\to} E_1 \times E_2 \overset{f}{\to} F.
+\]
+Тоді $w$ --- також диференційована в точці $a$, а похідна тоді дорівнює
+\[
+w'(a)h = f'(u(a),v(a)) \circ (u'(a)h,v'(a)h) = f'(u(a),v(a))\, (u'(a)h, v'(a)h) = f(u'(a)h, v(a)) + f(u(a), v'(a)h. \qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\subsection{Функції з областю визначення як добуток}
+Нехай $E = E_1 \times \dots \times E_n$ та $U$ --- відкрита підмножина $E$. Розглянемо відображення $f \in \mathcal{L}(U,F)$, а для кожного $a = (a_1,\dots,a_n) \in U$ розглянемо відображення $\lambda_i \colon E_i \to E$
+\begin{align*}
+\lambda_i(x_i) = (a_1,\dots,a_{i-1},x_i,a_{1+1},\dots,a_n).
+\end{align*}
+Тоді композиція $f \circ \lambda_i$ визначена в $\lambda_i^{-1}(U) \subset E_i$, який містить $a_i \in E_i$. Цю композицію назвемо \textbf{частинним відображенням} в точці $a$.
+
+\begin{definition}
+Похідну від частинного відображення $f \circ \lambda_i$ в точці $a$ назвемо \textbf{частинною похідною}.\\
+Позначення: $f'_{x_i}(a)$ або $\dfrac{\partial f}{\partial x_i}(a)$. 
+\end{definition}
+
+\begin{proposition}
+Нехай $f$ --- диференційована в точці $a$. Тоді $f$ має всі частині похідні $f_{x_i}'(a_i)$, причому
+\begin{align*}
+f'(a) (h_1,\dots,h_n) = f_{x_1}'(a)h_1 + \dots + f_{x_n}'(a)h_n.
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+Отже, маємо наступний переписаний вигляд $\lambda_i$:
+\[
+\lambda_i(x_i) = a + \imath_i(x_i-a_i),\ \lambda_i(a) = a.
+\]
+Звідси одержимо, що
+\[
+\lambda'_i(x_i) = \imath_i,
+\]
+просто тому що беремо похідну від сталої $a$ та від відображення $\imath_i \in \mathcal{B}(E_i,E)$.\\
+Таким чином, $f \circ \lambda_i$ --- диференційована в точці $a_i$ як композиція, причому
+\[
+f'_{x_i}(a) = (f \circ \lambda_i)'(a) = f'(a) \circ \imath_i.
+\]
+Знаючи, що справедлива рівність
+\[
+\imath_1 \circ \pi_1 + \dots + \imath_n \circ \pi_n = 1_F,
+\]
+якщо підставити значення $f'(a)(h_1,\dots,h_n) \in F$, одержимо бажане. 
+\end{proof}
+
+\begin{remark}
+Як було в матані, із існування $f'_{x_i}(a)$ ще не випливає диференційованість $f'(a)$.
+\end{remark}
+
+\begin{proposition}
+Нехай $f$ --- диференційована на $U$. Тоді
+\begin{center}
+$f \in C^1 \iff f'_{x_i}$ --- неперервні відображення.
+\end{center}
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $f \in C^1$. Зауважимо, що частинно-похідне відображення $f'_{x_i} \colon U \to \mathcal{B}(E_i,F)$ можна подати як композицію двох відображень
+\begin{align*}
+U \overset{f'}{\to} \mathcal{B}(E,F) \overset{A_i}{\to} \mathcal{B}(E_i,F).
+\end{align*}
+Останнє відображення діє ось таким чином:
+\begin{align*}
+A_i(\varphi) = \varphi \circ \imath_i.
+\end{align*}
+Відомо за умовою, що $f'$ --- неперервне. Також $A_i$ --- неперервне, оцінити норму нескладно. Отже, $f'_{x_i}$ --- неперервні як композиція.
+\bigskip \\
+\leftproof Дано: $f'_{x_i}$ --- неперервні. Оскільки $f$ --- диференційована, то
+\begin{align*}
+f'(a) = (f'(a) \circ \imath_1) \circ \pi_1 + \dots + (f'(a) \circ \imath_n) \circ \pi_n.
+\end{align*}
+Значить, $f'$ можна подати як суму композицій двох відображень:
+\begin{align*}
+U \overset{f'_{x_i}}{\to} \mathcal{B}(E_i,F) \overset{B_i}{\to} \mathcal{B}(E,F).
+\end{align*}
+Останнє відображення діє ось таким чином:
+\begin{align*}
+B_i(\varphi_i) = \varphi_i \circ \pi_i.
+\end{align*}
+Відомо, що $f'_{x_i}$ --- неперервне, також $B$ --- неперервне (\textit{ручками неважко}). Тоді сума неперервних дає неперервне відображення $f'$.
 \end{proof}
 
 \newpage

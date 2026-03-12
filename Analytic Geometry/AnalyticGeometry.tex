@@ -129,17 +129,18 @@
 \end{definition}
 
 \begin{definition}
-Два вектори $\vec{a},\vec{b}$, що лежать на паралельних прямих (або на одній прямій), називають \textbf{колінеарними}.\\
-Позначення: $\vec{a} \parallel \vec{b}$.\\
+Два вектори $\vec{a},\vec{b}$, що лежать на паралельних прямих (\textit{або на одній прямій}), називають \textbf{колінеарними}.\\
+\textit{Позначення}: $\vec{a} \parallel \vec{b}$.
+\bigskip \\
 Інші позначення для колінеарних векторів: \\ 
 $\vec{a} \uparrow \uparrow \vec{b}$ -- колінеарні вектори в одному напрямку, вони ще називаються \textbf{співнапрямленими};\\
 $\vec{a} \uparrow \downarrow \vec{b}$ -- колінеарні вектори в протилежних напрямках, вони ще називаються \textbf{протилежнонапрямленими}.
 \bigskip \\
-Позначення: $|\vec{a}|$ -- довжина вектора.
+\textit{Позначення}: $|\vec{a}|$ -- довжина вектора.
 \end{definition}
 
 \begin{definition}
-Вектори $\vec{a}$ та $\vec{b}$ називають \textbf{рівними}, якщо:
+Вектори $\vec{a}$ та $\vec{b}$ називають \textbf{рівними}, якщо
 	\begin{align*}
 	\vec{a} \uparrow \uparrow \vec{b};\\
 	|\vec{a}| = |\vec{b}|.
@@ -150,7 +151,7 @@ $\vec{a} \uparrow \downarrow \vec{b}$ -- колінеарні вектори в 
 \begin{definition}
 Задамо ілюстративним чином операції над векторами:
 	\begin{itemize}[nosep,wide=0pt]
-	\item \textbf{додавання;} (є два способи, як додавати);
+	\item \textbf{додавання;} (\textit{є два способи, як додавати});
 \begin{figure}[H]
 \centering
 	\begin{tikzpicture}
@@ -201,7 +202,7 @@ $\vec{a} \uparrow \downarrow \vec{b}$ -- колінеарні вектори в 
 	\draw[thick, ->] (2,2)--(4,2) node at (2.5,2.5) {$\vec{b}$};
 	\draw[thick, red, ->] (0,0)--(4,2) node at (2,0.5) {$\vec{a}+\vec{b}$};
 	\end{tikzpicture}
-	\qquad
+	\qquadє два способи, як додавати
 	\begin{tikzpicture}
 	\draw[thick, ->] (2,0)--(4,2) node at (2.5,0) {$\vec{a}$};
 	\draw[thick, ->] (0,0)--(2,0) node at (1.5,0.5) {$\vec{b}$};
@@ -259,19 +260,25 @@ $\vec{a} \uparrow \downarrow \vec{b}$ -- колінеарні вектори в 
 	\end{enumerate}
 
 \begin{definition}
-	Два вектори, що лежать на перпендикулярних прямих, називають \textbf{ортогональними}.\\
-Позначення: $\vec{a} \perp \vec{b}$.
+	Вектори, що лежать на перпендикулярних прямих, називають \textbf{ортогональними}.\\
+\textit{Позначення}: $\vec{a} \perp \vec{b}$.
 \end{definition}
 
 \subsection{Вступ до поняття базису}
 \begin{proposition}
 \label{collinear_vectors}
 $\vec{a} \parallel \vec{b} \iff \exists \lambda \in \mathbb{R}: \vec{a} = \lambda \vec{b}$.\\
+(\textit{іншими словами, вектори колінеарні тоді й лише тоді, коли один вектор можна масштабувати до іншого})
 \end{proposition}
 
 \begin{proof}
-$\vec{a} \parallel \vec{b} \iff \left[ \begin{gathered} \vec{a} \uparrow \uparrow \vec{b} \\ \vec{a} \uparrow \downarrow \vec{b} \end{gathered} \right. \iff \exists \lambda: \left[ \begin{gathered} \vec{a} = \underset{=\lambda}{\dfrac{|\vec{a}|}{|\vec{b}|}} \vec{b} \\ \vec{a} = \underset{=\lambda}{-\dfrac{|\vec{a}|}{|\vec{b}|}} \vec{b} \end{gathered} \right.$\\
-Ці значення $\lambda$ отримали з огляду на відношення двох "відрізків".
+\rightproof Дано: $\vec{a} \parallel \vec{b}$. Тоді виникають два варіанти:\\
+I. $\vec{a} \uparrow \uparrow \vec{b}$.\\
+Тоді геометрично можна підібрати число $\lambda = \dfrac{|\vec{a}|}{|\vec{b}|}$, для якого $\vec{a} = \lambda \vec{b}$.\\
+II. $\vec{a} \uparrow \downarrow \vec{b}$.\\
+Тоді геометрично можна підібрати число $\lambda = -\dfrac{|\vec{a}|}{|\vec{b}|}$, для якого $\vec{a} = \lambda \vec{b}$.
+\bigskip \\
+\leftproof Дано: $\vec{a} = \lambda \vec{b}$ для деякого $\lambda \in \mathbb{R}$. Звідси ясно, що $\vec{a} \parallel \vec{b}$.
 \end{proof}
 
 \begin{remark}
@@ -281,12 +288,15 @@ $\vec{0} \parallel \vec{b}$ для будь-якого $\vec{b}$.
 \subsubsection{Випадок на площині}
 \begin{theorem}
 \label{basis_on_plane}
-Задані два вектори $\vec{a}$, $\vec{b}$, що не колінеарні. Тоді для кожного вектора $\vec{c}$ на площині існують єдині числа $\alpha, \beta \in \mathbb{R}$, для яких $\vec{c} = \alpha \vec{a} + \beta \vec{b}$.\\
-Тобто третій вектор на площині завжди єдиним чином виражається через два неколінеарні вектори.
+Задані два вектори $\vec{a}$, $\vec{b}$, які неколінеарні. Тоді для кожного вектора $\vec{c}$ на площині існують єдині числа $\alpha, \beta \in \mathbb{R}$, для яких 
+\begin{align*}
+\vec{c} = \alpha \vec{a} + \beta \vec{b}
+\end{align*}
+(\textit{тобто третій вектор на площині завжди єдиним чином виражається через два неколінеарних вектори}).
 \end{theorem}
 
 \begin{proof}
-	Маємо довільні вектори $\vec{a}$, $\vec{b}$, $\vec{c}$ на площині. Ми перемістимо їх, щоб лежали на одному спільному початку
+	Маємо вектори $\vec{a}$, $\vec{b}$, $\vec{c}$ на площині. Ми перемістимо їх, щоб лежали на одному спільному початку.
 \begin{figure}[H]
 \centering
 	\begin{tikzpicture}
@@ -299,23 +309,27 @@ $\vec{0} \parallel \vec{b}$ для будь-якого $\vec{b}$.
 	\draw[thick, dashed] (4,2)--(2,2) node [anchor = south] {$B$};
 	\end{tikzpicture}
 \end{figure}
-	Уздовж векторів $\vec{a}$, $\vec{b}$ ми також провели заштриховані лінії для зручності.\\
+	Уздовж векторів $\vec{a},\vec{b}$ ми також провели заштриховані лінії для зручності.\\
 І. \textit{Існування.}\\
 	Із малюнку видно, що $\vec{c} = \overrightarrow{AC} = \overrightarrow{AB} + \overrightarrow{AD}$.\\
-	Також з малюнку зауважимо, що $\left. \begin{gathered} \overrightarrow{AD} \parallel \vec{b} \\ \overrightarrow{AB} \parallel \vec{a} \end{gathered} \right. \overset{\textrm{\prpref{collinear_vectors}}}{\implies} \exists \alpha, \beta: \left. \begin{gathered} \overrightarrow{AD} = \beta \vec{b} \\ \overrightarrow{AB} = \alpha \vec{a} \end{gathered} \right.$.\\
+	Також із малюнку зауважимо, що $\overrightarrow{AD} \parallel \vec{b}$, звідси $\overrightarrow{AD} = \beta \vec{b}$ для деякого $\beta \in \mathbb{R}$. Аналогічно $\overrightarrow{AB} \parallel \vec{a}$, звідси $\overrightarrow{AB} = \alpha \vec{a}$ для деякого $\alpha \in \mathbb{R}$.\\
 	Отже, $\vec{c} = \alpha \vec{a} + \beta \vec{b}$.
 \bigskip \\
 II. \textit{Єдиність.}\\
-!Припустимо, що розклад не є єдиним, тобто $\exists \alpha', \beta': \vec{c} = \alpha' \vec{a} + \beta' \vec{b}$.\\
-	Тоді $\vec{0} = \vec{c} - \vec{c} = (\alpha-\alpha') \vec{a} + (\beta - \beta') \vec{b}$.\\
-	$\implies (\alpha-\alpha')\vec{a} = (\beta' - \beta)\vec{b} \overset{\textrm{\prpref{collinear_vectors}}}{\implies} \vec{a} \parallel \vec{b}$.\\
-	Але за умовою теореми, $\vec{a} \centernot\parallel \vec{b}$. Суперечність!\\ Тому та рівність виконується лише при $\alpha = \alpha'$, $\beta = \beta'$, що й доводить єдиність.
+!Припустимо, що розклад не є єдиним, тобто існують числа $\alpha', \beta'$, для яких $\vec{c} = \alpha' \vec{a} + \beta' \vec{b}$. Тоді 
+\[
+\vec{0} = \vec{c} - \vec{c} = (\alpha-\alpha') \vec{a} + (\beta - \beta') \vec{b} \implies (\alpha-\alpha')\vec{a} = (\beta' - \beta)\vec{b} \overset{\textrm{\prpref{collinear_vectors}}}{\implies} \vec{a} \parallel \vec{b}.
+\]
+	Але за умовою теореми $\vec{a} \centernot\parallel \vec{b}$. Суперечність!\\ Тому та рівність виконується лише при $\alpha = \alpha'$, $\beta = \beta'$, що й доводить єдиність.
 \end{proof}
 
 \begin{definition}
-\textbf{Базисом на площині} будемо називати пару неколінеарних векторів $\vec{a},\vec{b}$.\\
-Уже довели, що кожний вектор $\vec{c}$ виражається через базисні вектори як $\vec{c} = \alpha \vec{a} + \beta \vec{b}$ -- це \textbf{розклад за базисом}. Коефіцієнти $\alpha, \beta$ задають \textbf{координати} вектора $\vec{c}$ в базисі $\vec{a},\vec{b}$.
+\textbf{Базисом на площині} будемо називати пару неколінеарних векторів $\vec{a},\vec{b}$.
 \end{definition}
+
+\begin{remark}
+Уже довели, що кожний вектор $\vec{c}$ виражається через базисні вектори як $\vec{c} = \alpha \vec{a} + \beta \vec{b}$. Одержали розклад за базиом. Коефіцієнти $\alpha, \beta$ задають \textbf{координати} вектора $\vec{c}$ в базисі $\vec{a},\vec{b}$.
+\end{remark}
 	
 \subsubsection{Випадок в просторі}
 \begin{definition}

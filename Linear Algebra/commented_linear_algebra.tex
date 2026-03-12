@@ -1,0 +1,976 @@
+\iffalse
+\begin{corollary}
+Кількість нільпотентних клітин Жордана задається числом $\dim (\ker B)$. Тобто в даному випадку, всього $p$ клітин, бо $\dim (\ker B) = p$.
+\end{corollary}
+\fi
+
+%GB approach
+\iffalse
+\subsection{Приєднаний власний вектор (старий)}
+\begin{remark}
+Надалі ми будемо враховувати комплексні корені з характеристичного полінома, щоб ми мали змогу завжди знайти власні числа.
+\end{remark}
+
+\iffalse
+Розглянемо особливий випадок, коли $A: L \to L$ має єдиний (взагалі єдиний л.н.з.) власний вектор $f$, що відповідає власному числу $\lambda$. При цьому $\dim L = n$. Це один з випадків, де оператор $A$ не може бути діагоналізованим.\\
+За вимогою, $\dim (\ker(A - \lambda I)) = \dim L_{\lambda} = 1$. Отже, за рівністю про зв'язок з ядром та образом, $\dim (\Im (A - \lambda I)) = n-1$.\\
+Задамо таку множину $M=\ker(A-\lambda I) \cap \Im(A-\lambda I)$. Оскільки $M \subset \ker (A-\lambda I)$, то за одною лемою, $\dim M \leq \dim(\ker (A-\lambda I)) = 1$.
+Тоді звідси або $\dim M = 0$, або $\dim M = 1$.
+\bigskip \\
+Перед цим доведемо, що $\ker(A - \lambda I), \Im(A-\lambda I)$ - інваріантні підпростори для оператора $A$. За вимогою, $\ker(A-\lambda I) = L_{\lambda} = \linspan\{f\}$.\\
+Тоді $\forall g \in \linspan\{f\}: g = \alpha f \implies Ag = A(\alpha f) = \alpha Af = (\alpha \lambda) f \implies Ag \in \linspan\{f\}$. Або теж саме, що $\forall g \in (\ker(A - \lambda I)) \implies Ag \in  \ker(A - \lambda I))$.
+\bigskip \\
+Тоді $\forall y \in \Im(A-\lambda I): \exists x \in L: y = (A-\lambda I)x \implies \\ Ay = A(A-\lambda I)x = (A^2-\lambda A)x = (A-\lambda I)(Ax) \in \Im(A-\lambda I)$.\\
+Отже, $\ker(A-\lambda I)$ та $\Im(A-\lambda I)$ - два інваріантних підпростори.
+\bigskip \\
+Розглянемо випадок $\dim M = 0$. Звідси маємо $M = \ker(A-\lambda I) \cap \Im(A-\lambda I) = \{0\}$.\\
+Розглянемо $A |_{\ker(A-\lambda I)}: \ker(A-\lambda I) \to \ker(A-\lambda I)$ - звужений оператор. У нього є власний вектор $f$.\\
+Також розглянемо $A |_{\Im(A-\lambda I)}: \Im(A-\lambda I) \to \Im(A-\lambda I)$ - звужений оператор. У цього оператора є власне число $\mu$ та власний вектор $g$ (згідно з нашим зауваженням).\\
+$Ag = A |_{\Im(A-\lambda I)} g = \mu g$\\
+Таким чином, $f \in \ker(A-\lambda I)$ та $g \in \Im(A-\lambda I)$. Оскільки $\ker \{ A-\lambda I \} \cap \Im \{ A - \lambda I \} = \{ 0 \}$, то вони утворюють пряму суму, а водночас $\{f,g\}$ - л.н.з. і є власними векторами для $A$ - суперечність. Отже, $\dim M \neq 0$.
+\bigskip \\
+Залишається єдиний випадок - це $\dim M = 1$.\\
+$\begin{cases}
+M \subset \ker(A-\lambda I)\\
+\dim{(\ker(A-\lambda I))} = 1
+\end{cases}
+\implies M = \ker(A-\lambda I)$
+\bigskip \\
+Тоді як можна побачити, $\ker(A-\lambda I) = \ker(A-\lambda I) \cap \Im (A - \lambda I)$, тобто $\ker(A-\lambda I) \subset \Im(A-\lambda I)$\\
+$f \in \ker{A- \lambda I} \implies f \in \Im(A - \lambda I)$\\
+Тоді $\exists h \in L: f = (A-\lambda I)h$. Ми прийшли до нового означення:
+
+\begin{definition}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - власний вектор з власним числом $\lambda$.\\
+Елемент $h \in L$ називається \textbf{приєднаним вектором} до власного вектора $f$ (висоти 1), якщо
+\begin{align*}
+(A-\lambda I)h = f
+\end{align*}
+\end{definition}
+
+\begin{lemma}
+Задано $A: L \to L$ - лінійний оператор. Він має єдиний власний вектор $f$ та $\dim L > 1$. Тоді для $f$ існує приєднаний власний вектор $h$.\\
+\textit{Доведення було перед означенням приєданого вектора.}
+\end{lemma}
+
+\begin{definition}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - власний вектор з власним числом $\lambda$.\\
+Елемент $h^{(k)} \in L$ називається \textbf{приєднаним вектором} до власного вектора $f$ \textbf{висоти $k$}, якщо
+\begin{align*}
+(A-\lambda I)h^{(k)} = h^{(k-1)}
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Буду позначати $h^{(1)} = h$.
+\end{remark}
+
+\begin{remark}
+Рівняння для приєднаного висоти $k$ можна записати наступним чином:\\
+$(A-\lambda I)f = 0$\\
+$(A-\lambda I)h^{(1)} = f \Rightarrow (A-\lambda I)^2 h^{(1)} = 0$\\
+$(A-\lambda I)h^{(2)} = h \Rightarrow (A-\lambda I)^3 h^{(2)} = 0$\\
+$\vdots$\\
+$(A-\lambda I)^{k+1}h^{(k)} = 0$\\
+Остаточно отримаємо таку форму:
+\begin{align*}
+(A-\lambda I)^{k+1}h^{(k)} = 0
+\end{align*}
+Взагалі-то кажучи, можна це проілюструвати ось так
+\begin{figure}[H]
+\centering
+\begin{tikzcd}
+0 & f \arrow{l}{A-\lambda I} & h^{(1)} \arrow{l}{A-\lambda I} & h^{(2)} \arrow{l}{A-\lambda I} & \dots \arrow{l}{A-\lambda I} & h^{(k)} \arrow{l}{A-\lambda I}
+\end{tikzcd}
+\end{figure}
+\end{remark}
+
+\begin{theorem}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - власний вектор з власним числом $\lambda$. Відомо, що $\{f,h,h^{(2)},\dots,h^{(k)}\}$ - ланцюг власного та приєднаних до нього векторів.\\
+Тоді $\{f,h,h^{(2)},\dots,h^{(k)}\}$ - л.н.з.
+\end{theorem}
+
+\begin{proof}
+$\alpha_0 f + \alpha_1 h^{(1)} + \dots + \alpha_k h^{(k)} = 0$.\\
+Подіємо оператором $(A-\lambda I)$ покроково $k$ разів:\\
+$(A-\lambda I)(\alpha_0 f + \alpha_1 h^{(1)} + \dots + \alpha_k h^{(k)}) = 0$\\
+$\alpha_1 f + \alpha_2 h^{(1)} + \dots + \alpha_k h^{(k-1)} = 0$\\
+$\alpha_2 f + \dots + \alpha_k h^{(k-2)} = 0$\\
+$\dots$\\
+$\alpha_{k-1} f + \alpha_k h^{(1)} = 0$\\
+$\alpha_k f = 0$\\
+$\Rightarrow \alpha_k = 0 \Rightarrow \alpha_{k-1} = 0 \Rightarrow \dots \Rightarrow \alpha_2 = 0 \Rightarrow \alpha_1 = 0 \Rightarrow \alpha_0 = 0$.\\
+Отже, система $\{f,h,h^{(2)},\dots,h^{(k)}\}$ - л.н.з.
+\end{proof}
+
+\begin{theorem}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - єдиний власний вектор з власним числом $\lambda$ та нехай $\dim L = n$. Відомо, що $\{f,h,h^{(2)},\dots,h^{(k)}\}$ - ланцюг власного та приєднаних до нього векторів.
+Тоді $\{f,h,\dots,h^{(n-1)}\}$ - базис в просторі $L$.
+\end{theorem}
+
+\begin{proof}
+Лінійна незалежність вже є. Але єдине, що залишається довести, - це те, що існує ланцюг саме довжини $n$\\
+Ми вже в курсі, що $\dim(\ker(A-\lambda I)) = 1$ та $\Im(A-\lambda I) \overset{\textrm{позн.}}{=} L_1$ - інваріантний підпростір для $A$, $\dim L_1 = n-1$\\
+Більш того, $\ker(A-\lambda I) \subset \Im(A-\lambda I)$
+\bigskip \\
+Розглянемо оператор $A_1 = A |_{L_1}: L_1 \to L_1$\\
+У нього єдиний л.н.з. власний вектор $f$, оскільки $\ker(A-\lambda I) \subset L_1 \subset L$\\
+Тоді $\ker(A_1-\lambda I) = \ker(A-\lambda I) = \linspan\{f\}$\\
+Тому $\dim(\ker(A_1 - \lambda I)) = 1 \Rightarrow \dim (\Im(A_1-\lambda I)) = (n-1)-1=n-2$\\
+$L_2 = \Im(A_1-\lambda I)$ - інваріантний підпростір для $A_1$, а отже, й для $A$. Доводиться аналогічним чином як на початку цього пункту\\
+Зауважимо, що $\forall y \in L_2: \exists z \in L_1: \\ y = (A_1 - \lambda I)z = (A-\lambda I)z \boxed{=}$\\
+$z \in L_1 = \Im(A-\lambda I) \Rightarrow \exists x \in L: z = (A-\lambda I)x$\\
+$\boxed{=} (A-\lambda I)^2 x$\\
+Отримали, що $\Im(A_1 - \lambda I) = \Im(A-\lambda I)^2 = L_2$, $\dim L_2 = n-2$
+\bigskip \\
+Розглянемо оператор $A_2 = A |_{L_2}: L_2 \to L_2$\\
+У нього єдиний л.н.з. власний вектор $f$ за аналогічними міркуваннями\\
+Тоді $\ker(A_2-\lambda I) = \ker(A-\lambda I) = \linspan\{f\}$\\
+Тому $\dim(\ker(A_2 - \lambda I)) = 1 \Rightarrow \dim (\Im(A_2-\lambda I)) = (n-2)-1=n-3$\\
+$L_3 = \Im(A_2-\lambda I)$ - інваріантний підпростір для $A_2$, а отже, й для $A$\\
+Отримаємо, що $\dim (A_2 - \lambda I) = \dim (A-\lambda I)^3$\\
+І знову теж саме...
+\bigskip \\
+Тоді остаточно, $L \supset \underset{=\Im(A-\lambda I)}{L_1} \supset \underset{=\Im(A-\lambda I)^2}{L_2} \supset \dots \supset \underset{=\Im(A-\lambda I)^{n-1}}{L_{n-1}} \supset \{0\}$\\
+Зауважимо,\\
+$\begin{cases}
+\dim (\Im(A-\lambda I)^{n-1}) = 1\\
+\dim (\ker (A-\lambda I)) = 1\\
+\ker (A-\lambda I) \subset \Im(A-\lambda I)^{n-1}
+\end{cases} \Rightarrow \Im(A-\lambda I)^{n-1} = \ker(A-\lambda I)
+$\\
+Знайдемо ланцюг власного та приєднаного векторів довжини $n$\\
+$f$ - власний\\
+$f \in L_{n-1} \Rightarrow f \in L_1 \Rightarrow \exists h^{(1)} \in L_1 \Rightarrow h^{(1)} \in L: (A-\lambda I)h = f$\\
+$f \in L_{n-1} \Rightarrow f \in L_2 \Rightarrow \exists h^{(2)} \in L_2 \Rightarrow h^{(2)} \in L: (A-\lambda I)^2 h^{(2)} = f$\\
+$\dots$\\
+$f \in L_{n-1} \Rightarrow \exists h^{(n-1)} \in L_{n-1} \Rightarrow h^{(n-1)} \in L: (A-\lambda I)^{(n-1)}h^{(n-1)} = f$
+\end{proof}
+
+Тоді можемо отримати матрицю оператора $A: L \to L$ в базисі $\{f,h,h^{(2)},\dots,h^{(k)}\}$\\
+$(A-\lambda I)f = 0$\\
+$(A-\lambda I)h = f = f + 0h + \dots + 0h^{(k)}$\\
+$(A-\lambda I)h^{(2)} = h = 0f + h + \dots + 0h^{(k)}$\\
+$\dots$\\
+$(A-\lambda I)h^{(k)} = h^{(k-1)} = 0f + 0h + \dots + h^{(k-1)} + 0h^{(k)}$\\
+$(\mathbb{A}- \lambda \mathbb{I}) = \begin{pmatrix}
+0 & 1 & 0 & 0 & \dots & 0 \\
+0 & 0 & 1 & 0 & \dots & 0 \\
+0 & 0 & 0 & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & 0 & \dots & 1 \\
+0 & 0 & 0 & 0 & \dots & 0 \\
+\end{pmatrix}$\\
+Ну а звідси випливає, що:\\
+$\mathbb{A} = (\mathbb{A} - \lambda \mathbb{I}) + \lambda \mathbb{I}$\\
+Тут $\lambda \mathbb{I} = \begin{pmatrix}
+\lambda & \dots & 0\\
+\vdots & \ddots & \vdots\\
+0 & \dots & \lambda
+\end{pmatrix}$\\
+$\Rightarrow \mathbb{A} = \begin{pmatrix}
+\lambda & 1 & 0 & 0 & \dots & 0 \\
+0 & \lambda & 1 & 0 & \dots & 0 \\
+0 & 0 & \lambda & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & 0 & \dots & 1 \\
+0 & 0 & 0 & 0 & \dots & \lambda \\
+\end{pmatrix} \overset{\textrm{позн.}}{=} J(\lambda)$\\
+Таку матрицю називають \textbf{клітиною Жордана}
+\fi
+
+Розглянемо особливий випадок, коли $A: L \to L$ має єдиний (взагалі єдиний л.н.з.) власний вектор $f$, що відповідає власному числу $\lambda$. При цьому $\dim L = n$. Це один з випадків, де оператор $A$ не може бути діагоналізованим.\\
+Наведемо декілька лем:
+
+\begin{lemma}
+$\ker(A - \lambda I), \Im(A-\lambda I)$ - інваріантні підпростори відносно оператора $A$.
+\end{lemma}
+
+\begin{proof}
+За вимогою, $\ker(A-\lambda I) = L_{\lambda} = \linspan\{f\}$.\\
+Тоді $\forall g \in \linspan\{f\}: g = \alpha f \implies Ag = A(\alpha f) = \alpha Af = (\alpha \lambda) f \implies Ag \in \linspan\{f\}$. Або теж саме, що $\forall g \in (\ker(A - \lambda I)) \implies Ag \in  \ker(A - \lambda I))$.
+\bigskip \\
+Тоді $\forall y \in \Im(A-\lambda I): \exists x \in L: y = (A-\lambda I)x \implies \\ Ay = A(A-\lambda I)x = (A^2-\lambda A)x = (A-\lambda I)(Ax) \in \Im(A-\lambda I)$.\\
+Отже, $\ker(A-\lambda I)$ та $\Im(A-\lambda I)$ - два інваріантних підпростори.
+\end{proof}
+
+\begin{definition}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - власний вектор з власним числом $\lambda$.\\
+Елемент $h \in L$ називається \textbf{приєднаним вектором} до власного вектора $f$ (висоти 1), якщо
+\begin{align*}
+(A-\lambda I)h = f
+\end{align*}
+\end{definition}
+
+\begin{lemma}
+Для $f$ існує приєднаний власний вектор $h$.
+\end{lemma}
+
+\begin{proof}
+За вимогою, $\dim (\ker(A - \lambda I)) = \dim L_{\lambda} = 1$. Отже, за рівністю про зв'язок з ядром та образом, $\dim (\Im (A - \lambda I)) = n-1$.\\
+Задамо таку множину $M=\ker(A-\lambda I) \cap \Im(A-\lambda I)$. Оскільки $M \subset \ker (A-\lambda I)$, то за одною лемою, $\dim M \leq \dim(\ker (A-\lambda I)) = 1$.
+Тоді звідси або $\dim M = 0$, або $\dim M = 1$.
+\bigskip \\
+Розглянемо випадок $\dim M = 0$. Звідси маємо $M = \ker(A-\lambda I) \cap \Im(A-\lambda I) = \{0\}$.\\
+Розглянемо $A |_{\ker(A-\lambda I)}: \ker(A-\lambda I) \to \ker(A-\lambda I)$ - звужений оператор. У нього є власний вектор $f$, оскільки $f \in \ker (A-\lambda I)$.\\
+Також розглянемо $A |_{\Im(A-\lambda I)}: \Im(A-\lambda I) \to \Im(A-\lambda I)$ - звужений оператор. У цього оператора є власне число $\mu$ та власний вектор $g$ (згідно з першим зауваженням цього підрозділу):\\
+$Ag = A |_{\Im(A-\lambda I)} g = \mu g$\\
+Таким чином, $f \in \ker(A-\lambda I)$ та $g \in \Im(A-\lambda I)$. Оскільки $\ker ( A-\lambda I ) \cap \Im ( A - \lambda I ) = \{ 0 \}$, то вони утворюють пряму суму, а водночас $\{f,g\}$ - л.н.з. і є власними векторами для $A$ - суперечність. Отже, $\dim M \neq 0$.
+\bigskip \\
+Залишається єдиний випадок - це $\dim M = 1$.\\
+$\begin{cases}
+M \subset \ker(A-\lambda I)\\
+\dim{(\ker(A-\lambda I))} = 1
+\end{cases}
+\implies M = \ker(A-\lambda I)$.
+\bigskip \\
+Тоді як можна побачити, $\ker(A-\lambda I) = \ker(A-\lambda I) \cap \Im (A - \lambda I)$, тобто $\ker(A-\lambda I) \subset \Im(A-\lambda I)$.\\
+$f \in \ker (A- \lambda I) \implies f \in \Im(A - \lambda I)$.\\
+Тоді $\exists h \in L: f = (A-\lambda I)h$, тобто знайшли приєднаний вектор.
+\end{proof}
+
+\begin{corollary}
+Виділю окремо отриманий результат: $\ker (A-\lambda I) \subset \Im (A - \lambda I)$.
+\end{corollary}
+
+\begin{definition}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - власний вектор з власним числом $\lambda$.\\
+Елемент $h^{(k)} \in L$ називається \textbf{приєднаним вектором} до власного вектора $f$ \textbf{висоти $k$}, якщо
+\begin{align*}
+(A-\lambda I)h^{(k)} = h^{(k-1)}
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Буду позначати $h^{(1)} = h$.
+\end{remark}
+
+\begin{remark}
+Рівняння для приєднаного висоти $k$ можна записати таким чином:\\
+$(A-\lambda I)f = 0$\\
+$(A-\lambda I)h^{(1)} = f \implies (A-\lambda I)^2 h^{(1)} = 0$\\
+$(A-\lambda I)h^{(2)} = h \implies (A-\lambda I)^3 h^{(2)} = 0$\\
+$\vdots$\\
+$(A-\lambda I)^{k+1}h^{(k)} = 0$\\
+Остаточно отримаємо таку форму:
+\begin{align*}
+(A-\lambda I)^{k+1}h^{(k)} = 0
+\end{align*}
+Взагалі-то кажучи, можна це проілюструвати ось так:
+\begin{figure}[H]
+\centering
+\begin{tikzcd}
+0 & f \arrow{l}{A-\lambda I} & h^{(1)} \arrow{l}{A-\lambda I} & h^{(2)} \arrow{l}{A-\lambda I} & \dots \arrow{l}{A-\lambda I} & h^{(k)} \arrow{l}{A-\lambda I}
+\end{tikzcd}
+\end{figure}
+\end{remark}
+
+\begin{lemma}
+Нехай $\{f,h,h^{(2)},\dots,h^{(k)}\}$ - ланцюг власного та приєднаних до нього векторів.\\
+Тоді $\{f,h,h^{(2)},\dots,h^{(k)}\}$ - л.н.з.
+\end{lemma}
+
+\begin{proof}
+$\alpha_0 f + \alpha_1 h^{(1)} + \dots + \alpha_k h^{(k)} = 0$.\\
+Подіємо оператором $(A-\lambda I)$ покроково $k$ разів:\\
+$(A-\lambda I)(\alpha_0 f + \alpha_1 h^{(1)} + \dots + \alpha_k h^{(k)}) = 0$\\
+$\alpha_1 f + \alpha_2 h^{(1)} + \dots + \alpha_k h^{(k-1)} = 0$\\
+$\alpha_2 f + \dots + \alpha_k h^{(k-2)} = 0$\\
+$\vdots$\\
+$\alpha_{k-1} f + \alpha_k h^{(1)} = 0$\\
+$\alpha_k f = 0$\\
+$\Rightarrow \alpha_k = 0 \Rightarrow \alpha_{k-1} = 0 \Rightarrow \dots \Rightarrow \alpha_2 = 0 \Rightarrow \alpha_1 = 0 \Rightarrow \alpha_0 = 0$.\\
+Отже, система $\{f,h,h^{(2)},\dots,h^{(k)}\}$ - л.н.з.
+\end{proof}
+
+\begin{theorem}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - єдиний л.н.з. власний вектор, $\dim L = n$. Тоді для власного вектора $f$ знайдеться ланцюг власного та приєднаних до нього векторів $\{f,h,h^{(2)},\dots,h^{(n-1)}\}$.
+\end{theorem}
+
+\begin{proof}
+Спочатку доведемо лему:
+\begin{lemma}
+Позначимо $L_k = \Im (A-\lambda I)^k$. Тоді $L \supset L_1 \supset L_2 \supset \dots \supset L_{n-1} \supset \{0\}$.
+\iffalse \textit{Дана лема притаманна будь-якому оператору $A: L \to L$.} \fi
+\end{lemma}
+
+\begin{proof}
+Розглянемо оператор $A_1 = A |_{L_1}: L_1 \to L_1$ ($L_1$ - інваріантний за лемою).\\
+У нього єдиний л.н.з. власний вектор $f$, оскільки $\ker(A-\lambda I) \subset L_1 \subset L$. \\
+Тоді $\ker(A_1-\lambda I) = \ker(A-\lambda I) = \linspan\{f\}$. \\ Тому $\dim(\ker(A_1 - \lambda I)) = 1 \implies \dim (\Im(A_1-\lambda I)) = (n-1)-1=n-2$.\\
+$\Im(A_1-\lambda I)$ - інваріантний підпростір для $A_1$, а отже, й для $A$ за лемою.\\
+Зауважимо, що $\forall y \in L_2: \exists z \in L_1: y = (A_1 - \lambda I)z = (A-\lambda I)z \boxed{=}$\\
+$z \in L_1 = \Im(A-\lambda I) \Rightarrow \exists x \in L: z = (A-\lambda I)x$\\
+$\boxed{=} (A-\lambda I)^2 x$.\\
+Отримали, що $\Im(A_1 - \lambda I) = \Im(A-\lambda I)^2 = L_2$, $\dim L_2 = n-2$.
+\bigskip \\
+Розглянемо оператор $A_2 = A |_{L_2}: L_2 \to L_2$.\\
+У нього єдиний л.н.з. власний вектор $f$ за аналогічними міркуваннями.\\
+Тоді $\ker(A_2-\lambda I) = \ker(A-\lambda I) = \linspan\{f\}$ \\
+Тому $\dim(\ker(A_2 - \lambda I)) = 1 \implies \dim (\Im(A_2-\lambda I)) = (n-2)-1=n-3$.\\
+$\Im(A_2-\lambda I)$ - інваріантний підпростір для $A_2$, а отже, й для $A$. Отримаємо, що $\dim (A_2 - \lambda I) = \dim (A-\lambda I)^3$. І знову теж саме...
+\bigskip \\
+Тоді остаточно, $L \supset \underset{=\Im(A-\lambda I)}{L_1} \supset \underset{=\Im(A-\lambda I)^2}{L_2} \supset \dots \supset \underset{=\Im(A-\lambda I)^{n-1}}{L_{n-1}} \supset \{0\}$.
+\end{proof}
+Додатково зауважимо, що
+$\begin{cases}
+\dim (\Im(A-\lambda I)^{n-1}) = 1\\
+\dim (\ker (A-\lambda I)) = 1\\
+\ker (A-\lambda I) \subset \Im(A-\lambda I)^{n-1}
+\end{cases} \implies \Im(A-\lambda I)^{n-1} = \ker(A-\lambda I)
+$.\\
+Знайдемо ланцюг власного та приєднаного векторів довжини $n$.\\
+Маємо $f$ - власний вектор.\\
+$f \in L_{n-1} \implies f \in L_1 \Rightarrow \exists h^{(1)} \in L_1 \Rightarrow h^{(1)} \in L: (A-\lambda I)h = f$\\
+$f \in L_{n-1} \implies f \in L_2 \Rightarrow \exists h^{(2)} \in L_2 \Rightarrow h^{(2)} \in L: (A-\lambda I)^2 h^{(2)} = f$\\
+$\vdots$\\
+$f \in L_{n-1} \implies \exists h^{(n-1)} \in L_{n-1} \Rightarrow h^{(n-1)} \in L: (A-\lambda I)^{(n-1)}h^{(n-1)} = f$.\\
+Таким чином, ми знайшли ланцюг \begin{tikzcd}
+0 & f \arrow{l}{A-\lambda I} & h^{(1)} \arrow{l}{A-\lambda I} & h^{(2)} \arrow{l}{A-\lambda I} & \dots \arrow{l}{A-\lambda I} & h^{(n-1)} \arrow{l}{A-\lambda I}
+\end{tikzcd}.
+\end{proof}
+
+\begin{theorem}
+Задано $A: L \to L$ - лінійний оператор, в якому $f$ - єдиний власний вектор з власним числом $\lambda$ та нехай $\dim L = n$. Відомо, що $\{f,h,h^{(2)},\dots,h^{(n-1)}\}$ - ланцюг власного та приєднаних до нього векторів.
+Тоді $\{f,h,\dots,h^{(n-1)}\}$ - базис в просторі $L$.\\
+\textit{Зрозуміло.}
+\end{theorem}
+
+Тоді можемо отримати матрицю оператора $A: L \to L$ в базисі $\{f,h,h^{(2)},\dots,h^{(n-1)}\}$.\\
+$(A-\lambda I)f = 0$\\
+$(A-\lambda I)h = f = f + 0h + \dots + 0h^{(k)}$\\
+$(A-\lambda I)h^{(2)} = h = 0f + h + \dots + 0h^{(k)}$\\
+$\vdots$\\
+$(A-\lambda I)h^{(n-1)} = h^{(n-2)} = 0f + 0h + \dots + h^{(n-2)} + 0h^{(n-1)}$\\
+$(\mathbb{A}- \lambda \mathbb{I}) = \begin{pmatrix}
+0 & 1 & 0 & 0 & \dots & 0 \\
+0 & 0 & 1 & 0 & \dots & 0 \\
+0 & 0 & 0 & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & 0 & \dots & 1 \\
+0 & 0 & 0 & 0 & \dots & 0 \\
+\end{pmatrix}$\\
+Ну а звідси випливає, що $\mathbb{A} = (\mathbb{A} - \lambda \mathbb{I}) + \lambda \mathbb{I}$. Тут $\lambda \mathbb{I} = \begin{pmatrix}
+\lambda & \dots & 0\\
+\vdots & \ddots & \vdots\\
+0 & \dots & \lambda
+\end{pmatrix}$.\\
+$\implies \mathbb{A} = \begin{pmatrix}
+\lambda & 1 & 0 & 0 & \dots & 0 \\
+0 & \lambda & 1 & 0 & \dots & 0 \\
+0 & 0 & \lambda & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & 0 & \dots & 1 \\
+0 & 0 & 0 & 0 & \dots & \lambda \\
+\end{pmatrix} \overset{\textrm{позн.}}{=} J(\lambda)$ - так звана \textbf{клітина Жордана}.
+
+\subsection{Теорема Жордана}
+\begin{theorem}[Теорема Жордана]
+Задано $A: L \to L$ - лінійний оператор. Тоді в $L$ є базис з власних та приєднаних векторів:\\
+$\{f_1, h_1^1, \dots ,h_1^{k_1}, \hspace{1cm} f_2, h_2^1, \dots, h_2^{k_2}, \hspace{1cm} \dots \hspace{1cm} f_m, h_m^{1}, \dots, h_m^{k_m}\}$.
+\end{theorem}
+
+\begin{proof}
+Доведення за індукцією за $\dim L$. Але перед цим маємо оператор $A: L \to L$ - у нього існує деяке власне число $\lambda$. Тому в подальшому розглядатимемо оператор $B = A -\lambda I: L \to L$.\\
+База індукції: $\dim L = 1$.\\
+Тоді $L = \linspan\{f\}$, $Af \in L \implies Af = \alpha f \implies f$ - власний вектор.
+\bigskip \\
+Ще одна база індуції: $\dim L = 2$.\\
+Тоді $\exists f_1: Af = \lambda f_1$. А ось далі є два варіанти:\\
+1) $\exists f_2$ - другий власний вектор, щоб $\{f_1,f_2\}$ були л.н.з. Тоді $\{f_1,f_2\}$ - базис одразу.\\
+2) $f_1$ - єдиний л.н.з. власний вектор, тоді за попередньою теоремою, існує приєднаний вектор $h_1$. Тоді $\{f,h_1\}$ - базис.\\
+\\
+Крок індукції: нехай твердження виконується для $\dim L < n$.\\
+Доведемо існування базису для випадку $\dim L = n$.\\
+Оскільки для оператора $B$ існує власне число $\lambda$, то звідси $\ker B \neq \{0\}$, а тому \\ $\dim \Im B = \dim L - \dim \ker B < n$.\\
+\iffalse
+Зауважимо, що $\Im B$ - інваріантний простір відносно оператора $A$. Справді,\\
+$\forall y \in \Im B \implies y = Bx \implies Ay = ABx = A(A-\lambda I)x = (A^2-\lambda A)x = (A-\lambda I) (Ax) = B(Ax) \in \Im B$.\\
+А тому зараз розглянемо звужений оператор $A |_{\Im B}: \Im B\to \Im B$.\\
+\fi
+Зауважимо, що $\Im B$ - інваріантний відносно оператора $B$ (уже доводили). А тому розглянемо звужений оператор $B |_{\Im B}: \Im B\to \Im B$.\\
+За припущенням індукції, в $\Im B$ існує базис з власних та приєднаних, оскільки $\dim \Im B < n$.\\
+$ \lambda: \begin{cases}
+\begin{tikzcd}
+0 & f_1 \arrow{l}{B} & h_1^1 \arrow{l}{B} & \dots \arrow{l}{B} & h_1^{k_1} \arrow{l}{B}
+\end{tikzcd}\\
+\vdots \\
+\begin{tikzcd}
+0 & f_s \arrow{l}{B} & h_s^1 \arrow{l}{B} & \dots \arrow{l}{B} & h_s^{k_s} \arrow{l}{B}
+\end{tikzcd}
+\end{cases}
+\\
+\lambda_{s+1}: f_{s+1}, h_{s+1}^1,\dots,h_{s+1}^{k_{s+1}}\\
+\vdots\\
+\lambda_m: f_{m}, h_{m}^1,\dots,h_{m}^{k_{m}}\\
+$
+Це все - базис в $\Im B$. Важливо, що в $\lambda_{s+1},\dots,\lambda_m$ власні числа можуть співпадати, але жодна з цих не дорівнює $\lambda$. Також зауважу, що може навіть таке бути, що нема ланцюга, що відповідає $\lambda$, або абсолютно всі башти відповідають власному числу $\lambda$.\\
+Тепер нам необхідно розширити до базису $L$, але яким чином це відбувається, зараз дізнаємось. Заздалегідь позначу $L_j = \linspan\{f_j,h_j^{1},\dots,h_j^{k_j}\}$, де $j=\overline{1,s} \cup \overline{s+1,m}$.
+
+\begin{lemma}
+$L_j$ - інваріантні підпростори відносно $B$.
+\end{lemma}
+
+\begin{proof}
+Позначу $x = \alpha_j^0 f_j + \alpha_j^1 h_j^1 + \dots + \alpha_j^{k_j} h_j^{k_j}$.\\
+При $j=\overline{1,s}$ якщо $x \in L_j$, то звідси\\
+$Bx = (A-\lambda I)x = \alpha_j^1 f_j + \alpha_j^2 h_j^1 + \dots + \alpha_j^{k_j}h_j^{k_j-1} \implies Bx \in L_j$.
+\bigskip \\
+При $j=\overline{s+1,m}$ маємо\\
+$Bf_j = (A-\lambda I)f_j = Af_j - \lambda f_j = (\lambda_j - \lambda)f_j$;\\
+$Bh_j^1 = (A-\lambda I)h_j^1 = (A-\lambda_j I+\lambda_j I-\lambda I)h_j^1 = (A-\lambda_jI)h_j^1 + (\lambda_jI-\lambda I)h_j^1 = f_j + (\lambda_j-\lambda)h_j^1$;\\
+$\vdots$\\
+$Bh_j^{k_j} = (A-\lambda I)h_j^{k_j} = (A-\lambda_j I+\lambda_j I-\lambda I)h_j^{k_j} = (A-\lambda_jI)h_j^{k_j} + (\lambda_jI-\lambda I)h_j^{k_j} = h_j^{k_j-1} + (\lambda_j-\lambda)h_j^{k_j}$.\\
+Отримані $Bf_j,Bh_j^1,\dots,B_j^{k_j} \in L_j$, а тому отримаємо:\\
+$Bx = \alpha_j^0 Bf_j + \alpha_j^1 Bh_j^1 + \dots + \alpha_j^{k_j}Bh_j^{k_j} \implies Bx \in L_j$.\\
+Все, ми довели інваріантність $L_j$ відносно $B$.
+\end{proof}
+
+\iffalse
+\begin{lemma}
+$\Im B = L_1  \oplus  L_2  \oplus  \dots  \oplus  L_m$.
+\end{lemma}
+
+\begin{proof}
+Покажемо, що $L_j \cap L_i = \{0\}, j \neq i$. Справді,\\
+$z \in L_j \cap L_i \Rightarrow z = \left[\begin{gathered} z^0_j f_j + z^1_j h^1_j + \dots + z_j^{k_j} h_j^{k_j} \\ z_i^0f_i + z_i^1 h_i^1 + \dots + z_i^{k_i} h_i^{k_i} \end{gathered} \right.$\\
+$\implies z^0_j f_j + z^1_j h^1_j + \dots + z_j^{k_j} h_j^{k_j} + (-z_i^0)f_i + (-z_i^1) h_i^1 + \dots + (-z_i^{k_i}) h_i^{k_i} = 0$\\
+За побудовою, $\{L_j, L_i\}$ - елементи з базису $\Im B$, тому є л.н.з.\\
+$\implies z^0_j = z^1_j = \dots = z^{k_j}_j = z^0_i = z^1_i = \dots = z^{k_i}_i = 0$\\
+Отже, $z = 0$, а тому $L_j \cap L_i = \{0\}$.\\
+Таким чином, отримали, що $\Im B = L_1  \oplus  L_2  \oplus  \dots  \oplus  L_m$.
+\end{proof}
+\fi
+
+\begin{lemma}
+Ланцюги, що відповідають власному числу $\lambda$, будуть подовженими на один новий приєднаний вектор із простору $L$. А ланцюги, що відповідають власному числу $\lambda_2,\dots,\lambda_m$, не будуть подовженими.
+\end{lemma}
+
+\begin{proof}
+А тепер розглянемо звужений оператор $B|_{L_j}: L_j \to L_j$. Знову розіб'ємо на два випадки.\\
+При $j=\overline{1,s}$ зауважимо, що оскільки $B|_{L_j}f_j = 0$, то звідси $\ker B|_{L_j} \neq \{0\}$. Отже, оператор $B|_{L_j}$ не має оберненого. Тоді елемент $h_j^{k_j}$ не є прообразом жодного елементу в просторі $L_j$ (!)\\
+\textit{Інакше якщо припустити, що $h_j^{k_j}$ є прообразом деякого елемента $x \in L_j$, тобто щоб $B|_{L_j}h_j^{k_j} = x$, то ми прийдемо факту, що $\{f_j,h_j^1,\dots,h_j^{k_j}\}$ буде л.з. що суперечить попередньому підрозділу.}\\
+Оскільки $h_j^{k_j} \in \Im B$, просто тому що $L_j \subset \Im B$, то ми можемо знайти елемент $h_j^{k_j+1}$, що лежить за межами $L_j$, власне $h_j^{k_j+1} \in L$, щоб $Bh_j^{k_j+1} = h_j^{k_j}$. Тобто ми змогли подовжити ланцюг.\\
+\textit{Чи можемо ми подовжити один ланцюг на два нових приєднаних або більше? Ні. Можна припустити, що $Bh_j^{k_j+2} = h_j^{k_j+1}$, тобто є друге подовження, але тоді $h_j^{k_j+1} \in \Im B$, ми швиденько прийдемо до суперечності.}
+\bigskip \\
+При $j=\overline{s+1,m}$ спробуємо довести, що $\ker B|_{L_j} = \{0\}$.
+\iffalse
+$x \in \ker B|{L_j} \implies B|_{L_j} x = 0 \implies Bx = 0 \implies Ax = \lambda x$, тобто $x$ - власний вектор для числа $\lambda$. А оскільки $L_j$ не містить власних векторів для $\lambda$, то звідси $x = 0$.\\
+Це означає, що існує $(B|_{L_j})^{-1}$. А тому будь-який елемент $L_j$ при дії $B|_{L_j}$ має прообраз з $L_j$. А це означає, що $h_{s+1}^{k_{s+1}},\dots,h_m^{k_m}$ не мають продовження за межами $L_{s+1},\dots,L_m$.
+\fi
+Якщо $x \in \ker B|_{L_j}$, то звідси $B|_{L_j}x = 0$.\\
+Але оскільки $\ker B|_{L_j} \subset L_j$, то звідси $x \in L_j \implies x = \alpha_j^0 f_j + \alpha_j^1 h_j^1 + \dots + \alpha_j^{k_j}h_j^{k_j}$.\\
+$B|_{L_j}x = \alpha_j^0 B|_{L_j}f_j + \alpha_j^1 B|_{L_j}h_j^1 + \dots + \alpha_j^{k_j} B|_{L_j}h_j^{k_j} = 0$ (*).\\
+Нагадаю з попередньої леми, що в цьому випадку $B|_{L_j}f_j = (\lambda_j-\lambda)f_j$, $B|_{L_j}h_j^1 = f_j + (\lambda_j - \lambda)h_j^1$, \dots $B|_{L_j}h_j^{k_j} = h_j^{k_j-1} + (\lambda_j - \lambda)h_j^{k_j}$. Я позначу $\lambda-\lambda_j = \mu_j \neq 0$. Підставимо це все в наш вираз (*):
+$\alpha_j^0 \mu_j f_j + \alpha_j^1 (f_j+\mu_j h_j^1) + \dots + \alpha_j^{k_j} (h_j^{k_j-1}+\mu_j h_j^{k_j}) = \\ =(\alpha_j^0 \mu_j + \alpha_j^1) f_j + (\alpha_j^1 \mu_j + \alpha_j^2) h_j^1 + \dots + (\alpha_j^{k_j-1}\mu_j + \alpha_j^{k_j})h_j^{k_j-1} + \alpha_j^{k_j} \mu_j h_j^{k_j} = 0$.\\
+У силу л.н.з. системи з $L_j$ ми маємо $\alpha_j^{k_j} = 0 \implies \alpha_j^{k_j-1} = 0 \implies \dots \implies \alpha_j^0 = 0$.\\
+Підставимо ці коефіцієнти в $x$ та отримаємо $x = 0$. Отже, $\ker B|_{L_j} = \{0\}$.\\
+Це означає, що існує $(B|_{L_j})^{-1}$. А тому будь-який елемент $L_j$ при дії $B|_{L_j}$ має прообраз з $L_j$. А це означає, що $h_{s+1}^{k_{s+1}},\dots,h_m^{k_m}$ не мають продовження за межами $L_{j}$.
+\end{proof}
+
+Додатково до цього ми маємо таку штуку. Оскільки $\ker B|_{\Im B} = \linspan \{f_1,\dots,f_s\}$ та $\ker B \supset \ker B|_{\Im B}$, то система $\{f_1,\dots,f_s\}$ в просторі $\ker B$ є л.н.з., тому розширимо до базису $\{f_1,\dots,f_s,g_1,\dots,g_r\}$.\\
+Навіщо нам ці $g_1,\dots,g_r$? Це ті власні вектори, що відповідають власному числу $\lambda$, але вони не потрапили до $\Im B$. Бо в базисі $\Im B$, нагадаю, може й не бути ланцюга з власним числом $\lambda$.
+\bigskip \\
+Таким чином, ми розширили систему в лінійному просторі $L$ до такой системи:\\
+$ \lambda: \begin{cases}
+\begin{tikzcd}
+0 & f_1 \arrow{l}{B} & h_1^1 \arrow{l}{B} & \dots \arrow{l}{B} & h_1^{k_1} \arrow{l}{B} & \textcolor{red}{h_1^{k_1+1}} \arrow{l}{B}
+\end{tikzcd}\\
+\vdots \\
+\begin{tikzcd}
+0 & f_s \arrow{l}{B} & h_s^1 \arrow{l}{B} & \dots \arrow{l}{B} & h_s^{k_s} \arrow{l}{B} & \textcolor{red}{h_s^{k_s+1}} \arrow{l}{B}
+\end{tikzcd}\\
+\begin{tikzcd}
+0 & \textcolor{red}{g_1} \arrow{l}{B} & \dots & 0 & \textcolor{red}{g_r} \arrow{l}{B} &
+\end{tikzcd}
+\end{cases}
+\\
+\lambda_{s+1}: f_{s+1}, h_{s+1}^1,\dots,h_{s+1}^{k_{s+1}}\\
+\vdots\\
+\lambda_m: f_{m}, h_{m}^1,\dots,h_{m}^{k_{m}}
+$.\\
+Нарешті, лишилось довести таку лему:
+\begin{lemma}
+Система $\{f_1,h_1^1,\dots,h_1^{k_1},\textcolor{red}{h_1^{k_1+1}}, \hspace{0.5cm} \dots \hspace{0.5cm} f_s, h_s^{1}, \dots,h_s^{k_s}, \textcolor{red}{h_s^{k_s+1}}, \\ f_{s+1}, h_{s+1}^1, \dots, h_{s+1}^{k_{s+1}} \hspace{0.5cm} \dots \hspace{0.5cm} f_{m}, h_{m}^1, \dots, h_{m}^{k_m}, \hspace{0.5cm} \textcolor{red}{g_1, \dots, g_r}\}$ утворює базис в лінійному просторі $L$.
+\end{lemma}
+
+\begin{proof}
+I. Перевіримо на л.н.з.\\
+$\left(\alpha_1^0 f_1 + \alpha_1^1 h_1^1 + \dots + \alpha_1^{k_1}h_1^{k_1} + \alpha_1^{k_1+1} h_1^{k_1+1}\right) + \dots + \left(\alpha_s^0 f_s + \alpha_s^1 h_s^1 + \dots + \alpha_s^{k_s}h_s^{k_s} + \alpha_s^{k_s+1} h_s^{k_s+1} \right) + \\
++\left(\alpha_{s+1}^0 f_{s+1} + \alpha_{s+1}^1 h_{s+1}^1 + \dots + \alpha_{s+1}^{k_{s+1}}h_{s+1}^{k_{s+1}} \right) + \dots + \left(\alpha_m^0 f_m + \alpha_m^1 h_m^1 + \dots + \alpha_m^{k_m}h_m^{k_m}\right) + \\ +\beta_1 g_1 + \dots + \beta_r g_r = 0$\\
+Подіємо це чудо оператором $B = A - \lambda I$ - отримаємо:\\
+$\left(\alpha_1^0 0 + \alpha_1^1 f_1 + \dots + \alpha_1^{k_1}h_1^{k_1-1} + \alpha_1^{k_1+1} h_1^{k_1}\right) + \dots + \left(\alpha_s^0 0 + \alpha_s^1 f_1 + \dots + \alpha_s^{k_s}h_s^{k_s-1} + \alpha_s^{k_s+1} h_s^{k_s}\right) + \\
+B\left(\alpha_{s+1}^0 f_{s+1} + \alpha_{s+1}^1 h_{s+1}^1 + \dots + \alpha_{s+1}^{k_{s+1}}h_{s+1}^{k_{s+1}} \right) + \dots + B\left(\alpha_m^0 f_m + \alpha_m^1 h_m^1 + \dots + \alpha_m^{k_m}h_m^{k_m}\right) + \\
++B(\beta_1 g_1 + \dots + \beta_r g_r) = 0$\\
+У нас $B\left(\alpha_{s+1}^0 f_{s+1} + \alpha_{s+1}^1 h_{s+1}^1 + \dots + \alpha_{s+1}^{k_{s+1}} h_{s+1}^{k_{s+1}} \right) \in L_{s+1}$, звідси можна розкласти за базисом в $L_{s+1}$, тобто\\
+$B\left(\alpha_{s+1}^0 f_{s+1} + \alpha_{s+1}^1 h_{s+1}^1 + \dots + \alpha_{s+1}^{k_{s+1}} h_{s+1}^{k_{s+1}} \right) = \widetilde{\alpha_{s+1}^0}f_{s+1} + \widetilde{\alpha_{s+1}^1}f_{s+1}^1+\dots + \widetilde{\alpha_{s+1}^{k_{s+1}}}h_{s+1}^{k_{s+1}}$;\\
+\vdots \\
+У нас $B\left(\alpha_{m}^0 f_{m} + \alpha_{m}^1 h_{m}^1 + \dots + \alpha_{m}^{k_m} h_{m}^{k_m} \right) \in L_{m}$, звідси можна розкласти за базисом в $L_{m}$, тобто\\
+$B\left(\alpha_{m}^0 f_{m} + \alpha_{m}^1 h_{m}^1 + \dots + \alpha_{m}^{k_m} h_{m}^{k_m} \right) = \widetilde{\alpha_{m}^0}f_{m} + \widetilde{\alpha_{m}^1}f_{m}^1+\dots + \widetilde{\alpha_{m}^{k+1}}h_{m}^{k_{m}}$.\\
+Нарешті, $B(\beta_1 g_1 + \dots + \beta_r g_r) = 0$, оскільки $g_1,\dots,g_r \in \ker B$.\\
+Отже, матимемо таке рівняння:\\
+$\left(\alpha_1^0 0 + \alpha_1^1 f_1 + \dots + \alpha_1^{k_1}h_1^{k_1-1} + \alpha_1^{k_1+1} h_1^{k_1}\right) + \dots + \left(\alpha_s^0 0 + \alpha_s^1 f_1 + \dots + \alpha_s^{k_s}h_s^{k_s-1} + \alpha_s^{k_s+1} h_s^{k_s}\right) + \\
+\left(\widetilde{\alpha_{s+1}^0}f_{s+1} + \widetilde{\alpha_{s+1}^1}f_{s+1}^1+\dots + \widetilde{\alpha_{s+1}^{k_{s+1}}}h_{s+1}^{k_{s+1}}\right) + \dots + \left(\widetilde{\alpha_{m}^0}f_{m} + \widetilde{\alpha_{m}^1}f_{m}^1+\dots + \widetilde{\alpha_{m}^{k+1}}h_{m}^{k_{m}}\right) + 0 = 0$.\\
+Оскільки $\{f_1, h_1^1, \dots ,h_1^{k_1}, \hspace{0.5cm} f_2, h_2^1, \dots, h_2^{k_2}, \hspace{0.5cm} \dots \hspace{0.5cm} f_m, h_m^{1}, \dots, h_m^{k_m}\}$ - базиси $\Im B$, то вона л.н.з. в просторі $L$, звідси\\
+$\alpha_1^1 = \dots = \alpha_1^{k_1} = \alpha_1^{k_1+1} = \dots = \alpha_s^1 = \dots = \alpha_s^{k_s} = \alpha_s^{k_s+1} = \\
+=\widetilde{\alpha_{s+1}^0} = \widetilde{\alpha_{s+1}^1} = \dots = \widetilde{\alpha_{s+1}^{k_{s+1}}} = \dots = \widetilde{\alpha_m^0} = \widetilde{\alpha_m^1} = \dots = \widetilde{\alpha_m^{k_m}} = 0$\\
+Підставимо ці коефіцієнти в початкове рівняння - отримаємо:\\
+$\alpha_1^0f_1 + \dots + \alpha_s^0 f_s + \beta_1 g_1 + \dots + \beta_r g_r = 0$.\\
+А оскільки $\{f_1,\dots,f_s,g_1,\dots,g_r\}$ - базис $\ker B$, тоді вона л.н.з. в просторі $L$, тоді миттєво \\ $\alpha_1^0 = \dots = \alpha_s^0 = \beta_1 = \dots = \beta_r = 0$.\\
+Отже, наша початкова система - л.н.з.
+\bigskip \\
+II. Перевіримо на повноту.\\
+$\forall z \in L: Bz \in \Im B \implies \\ Bz = \alpha_1^0 f_1 + \alpha_1^1 h_1^1 + \dots + \alpha_1^{k_1}h_1^{k_1} + \dots + \alpha_s^0 f_s + \alpha_s^1 h_s^1 + \dots + \alpha_s^{k_s} h_s^{k_s} + \\ + \alpha_{s+1}^0 f_{s+1} + \alpha_{s+1}^1 h_{s+1}^1 + \dots + \alpha_{s+1}^{k_{s+1}}h_{s+1}^{k_{s+1}} + \dots + \alpha_m^0 f_m + \alpha_m^1 h_m^1 + \dots + \alpha_m^{k_m}h_m^{k_m}$.\\
+Розглянемо елемент $w \in L$, що має таку формулу:\\
+$w = \alpha_1^0 h_1^1 + \alpha_1^1 h_1^2 + \dots + \alpha_1^{k_1}h_1^{k_1+1} + \dots + \alpha_s^0 h_s^1 + \alpha_s^1 h_s^2 + \dots + \alpha_s^{k_s}h_s^{k_s+1} + \\
++ \widetilde{\alpha_{s+1}^0} f_{s+1} + \widetilde{\alpha_{s+1}^1} h_{s+1}^1 + \dots + \widetilde{\alpha_{s+1}^{k_{s+1}}} h_{s+1}^{k_{s+1}} + \dots + \widetilde{\alpha_{m}^0} f_{m} + \widetilde{\alpha_{m}^1} h_{m}^1 + \dots + \widetilde{\alpha_{m}^{k_{m}}} h_{m}^{k_{m}}$.\\
+Спеціально ми так підібрали, щоб подіявши оператором $B$, ми могли отримати елемент $z$.\\
+Тут $\widetilde{\alpha}$ підібрані так, що:\\
+$B(\widetilde{\alpha_j^0} f_j + \dots + \widetilde{\alpha_j^{k_j}} h_j^{k_j}) = \alpha_j^0 f_j + \dots + \alpha_j^{k_j}h_j^{k_j}, j = \{s+1, \dots, m\}$.\\
+$\implies B(z-w) = Bz - Bw = 0$, отже, $z-w \in \ker B$.\\
+$\implies z = w + \tau_1 f_1 + \dots + \tau_s f_s + \gamma_1 g_1 + \dots + \gamma_r g_r$.\\
+Завершальний етап - підставити $w$ в наш вираз:\\
+$z = \left(\tau_1 f_1 + \alpha_1^0 h_1^1 + \alpha_1^1 h_1^2 + \dots + \alpha_1^{k_1}h_1^{k_1+1}\right) + \dots + \left(\tau_s f_s + \alpha_s^0 h_s^1 + \alpha_s^1 h_s^2 + \dots + \alpha_s^{k_s}h_s^{k_s+1}\right) + \\
++ \left(\widetilde{\alpha_{s+1}^0} f_{s+1} + \widetilde{\alpha_{s+1}^1} h_{s+1}^1 + \dots + \widetilde{\alpha_{s+1}^{k_{s+1}}} h_{s+1}^{k_{s+1}}\right) + \dots + \left(\widetilde{\alpha_{m}^0} f_{m} + \widetilde{\alpha_{m}^1} h_{m}^1 + \dots + \widetilde{\alpha_{m}^{k_{m}}} h_{m}^{k_{m}} \right)+\\
++\gamma_1 g_1 + \dots + \gamma_r g_r$.\\
+Тобто будь-який елемент $z \in L$ розклався як лінійна комбінація нашої системи.\\
+Остаточно: наша початкова система утворює базис в $L$.
+\end{proof}
+
+Після доведення останньої леми, ми можемо стверджувати, що для випадку $\dim L = n$ знайшовся базис власних та приєднаних векторів.\\
+МІ доведено (нарешті).
+\end{proof}
+
+\begin{remark}
+Доведення повноти досить неприємна штука. Можна цього кроку уникнути таким чином.\\
+Із самого початку ми мали $\dim \Im B \overset{\text{позн}}{=} r < n$. За МІ, там є $r$ елементів, що описують власні та приєднані до них вектори. Зауважимо, що $\dim \Im B|_{L_j} = k_j$, якщо $j = \overline{1,s}$, а також $\dim \Im B|_{L_j} = k_j + 1$, якщо $j = \overline{s+1,m}$. Простори $\Im B_{L_1},\dots, \Im B_{L_m}$ утворюють пряму суму, а тому $\dim B|_{\Im B} = k_1 + \dots + k_s + (k_{s+1}+1) + \dots + (k_m+1) = (k_1 + 1) + \dots + (k_s + 1) + (k_{s+1}+1) + \dots + (k_m+1) - s = r - s$. Таким чином, $\dim \ker B|_{\Im B} = s$, та $\ker B|_{\Im B} \subset \ker B$ має базис $\{f_1,\dots,f_s\}$, тому розширяється ця система до $\{f_1,\dots,f_s, g_1,\dots,g_p\}$, де число $p = n-r-s$.\\
+Потім доводиться подовження деяких ланцюгів на одну висоту.\\
+Сумарна кількість: $(k_1+2)+ \dots + (k_s+2) + (k_{s+1}+1) + \dots + (k_m+1) + p = s+r + (n-r-s) = n$.\\
+Оскільки $\dim L = n$, то нам достатньо довести л.н.з.
+\end{remark}
+
+\begin{theorem}
+Задано $A: L \to L$ - лінійний оператор, маємо базис власних та приєднаних $\{\underset{\lambda_1}{f_1, h_1^1, \dots ,h_1^{k_1}}, \hspace{1cm} \underset{\lambda_2}{f_2, h_2^1, \dots, h_2^{k_2}}, \hspace{1cm} \dots \hspace{1cm} \underset{\lambda_m}{f_m, h_m^{1}, \dots, h_m^{k_m}}\}$.\\
+Позначимо $L_j = \linspan\{f_j, h_j^1,\dots, h_j^{k_j}\}$. Тоді $L_j$ - інваріантні відносно $A$ та $L = L_1  \oplus  L_2  \oplus  \dots  \oplus  L_m$.
+\end{theorem}
+
+\begin{proof}
+Нагадаю, що $L_j$ - інваріантний відносно оператору $B = A-\lambda I$, де $\lambda$ - деяке власне число. Але зрозуміло, що $L_j$ - інваріантний відносно $A$, оскільки\\
+$\forall x \in L_j: Bx \in L_j \implies Ax = (A-\lambda I)x + \lambda Ix = Bx + \lambda x \in L_j$.\\
+Покажемо, що $L_j \cap L_i = \{0\}, j \neq i$. Справді,\\
+$z \in L_j \cap L_i \Rightarrow z = \left[\begin{gathered} z^0_j f_j + z^1_j h^1_j + \dots + z_j^{k_j} h_j^{k_j} \\ z_i^0f_i + z_i^1 h_i^1 + \dots + z_i^{k_i} h_i^{k_i} \end{gathered} \right.$\\
+$\implies z^0_j f_j + z^1_j h^1_j + \dots + z_j^{k_j} h_j^{k_j} + (-z_i^0)f_i + (-z_i^1) h_i^1 + \dots + (-z_i^{k_i}) h_i^{k_i} = 0$\\
+За побудовою, $\{L_j, L_i\}$ - елементи з базису, тому є л.н.з.\\
+$\implies z^0_j = z^1_j = \dots = z^{k_j}_j = z^0_i = z^1_i = \dots = z^{k_i}_i = 0$\\
+Отже, $z = 0$, а тому $L_j \cap L_i = \{0\}$.\\
+Таким чином, отримали, що $L = L_1  \oplus  L_2  \oplus  \dots  \oplus  L_m$.
+\end{proof}
+
+А тепер знову задамо $A: L \to L$ - лінійний оператор. За теоремою Жордана, в просторі $L$ є базис з власних приєднаних до них векторів.\\
+$\{\underset{\lambda_1}{f_1, h_1^1, \dots ,h_1^{k_1}}, \hspace{1cm} \underset{\lambda_2}{f_2, h_2^1, \dots, h_2^{k_2}}, \hspace{1cm} \dots \hspace{1cm} \underset{\lambda_m}{f_m, h_m^{1}, \dots, h_m^{k_m}}\}$\\
+Щойно довели, що $L = L_1  \oplus  \dots +  \oplus  L_m$. Тому матриця оператора $A$ в цьому базисі має вигляд:\\
+$ \mathbb{A}_{J} =
+  \tikz[baseline=(M.west)]{%
+    \node[matrix of math nodes,matrix anchor=west,left delimiter=(,right delimiter=),ampersand replacement=\&] (M) {%
+      \mathbb{A}_{|_{L_1}} \& \mathbb{O} \& \dots \& \mathbb{O} \\
+      \mathbb{O} \& \mathbb{A}_{|_{L_2}} \& \dots \& \mathbb{O} \\
+      \vdots \& \vdots \& \ddots \& \vdots \\
+      \mathbb{O} \& \mathbb{O} \& \dots \& \mathbb{A}_{|_{L_m}} \\
+    };
+    \node[draw,fit=(M-1-1)(M-1-1),inner sep=-1pt] {};
+    \node[draw,fit=(M-2-2)(M-2-2),inner sep=-1pt] {};
+    \node[draw,fit=(M-4-4)(M-4-4),inner sep=-1pt] {};
+  }
+$\\ 
+Розглянемо матриці звужених операторів $A|_{L_j}$, $j = 1,\dots,m$ в силу інваріантності.\\
+$L_j = \linspan\{f_j,h_j^1,\dots,h_j^{k_j}\}$ - базис з одного власного вектора та приєднаних до нього. Тоді матриця $A|_{L_j}$ в цьому базисі має вигляд: $\mathbb{A}|_{L_j} = J(\lambda_j)$ - клітина Жордана.\\
+Остаточний вигляд матриці:\\
+$ \mathbb{A}_{J} =
+  \tikz[baseline=(M.west)]{%
+    \node[matrix of math nodes,matrix anchor=west,left delimiter=(,right delimiter=),ampersand replacement=\&] (M) {%
+      J(\lambda_1) \& \mathbb{O} \& \dots \& \mathbb{O} \\
+      \mathbb{O} \& J(\lambda_2) \& \dots \& \mathbb{O} \\
+      \vdots \& \vdots \& \ddots \& \vdots \\
+      \mathbb{O} \& \mathbb{O} \& \dots \& J(\lambda_m) \\
+    };
+    \node[draw,fit=(M-1-1)(M-1-1),inner sep=-1pt] {};
+    \node[draw,fit=(M-2-2)(M-2-2),inner sep=-1pt] {};
+    \node[draw,fit=(M-4-4)(M-4-4),inner sep=-1pt] {};
+  }
+$ - \textbf{Жорданова форма матриці}.
+\\
+\bigskip \\
+\fi
+
+\iffalse
+\begin{example}
+Маємо матрицю оператора $\mathbb{A} = \begin{pmatrix}
+2 & 1 & -1 & 8 & -3 & 1 & -1 & 1 & -1 & 1 \\
+0 & 2 & 0 & 7 & 5 & 1 & -1 & 1 & -1 & 1 \\
+0 & 0 & 2 & 7 & 5 & 1 & -1 & 1 & -1 & 1 \\
+0 & 0 & 0 & 2 & 0 & 1 & -1 & 1 & -1 & 1 \\
+0 & 0 & 0 & 0 & 2 & 1 & -1 & 1 & -1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & -1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 2 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+\end{pmatrix}$ - страшна матриця. Знайдемо її Жорданову форму.\\
+Зауважимо, що ми можемо застосувати формулу $\det \begin{pmatrix}
+ \mathbb{D} & \vline & \mathbb{C} \\
+ \hline
+ \mathbb{O} & \vline & \mathbb{B}
+\end{pmatrix} = \det \mathbb{A} \det \mathbb{B}$ під час обшуку власних чисел. Тоді отримаємо (пропущу деякі прості кроки обчислень):\\
+$\det (\mathbb{A} - \lambda \mathbb{I}) = (\lambda - 2)^5 (\lambda-1)^5 = 0$. Отже, маємо $\lambda = 2, \lambda = 1$.
+\end{example}
+\fi
+
+%GB approach
+\iffalse
+\subsection{Квадратичні форми}
+\begin{definition}
+Задано $(E,(\cdot,\cdot))$ - евклідів простір та $A: E \to E$ - лінійний оператор.\\
+\textbf{Квадратичною формою} на $E$ називають таке відображення $S: E \to \mathbb{R} (\mathbb{C})$, що:
+\begin{align*}
+\forall x \in E: S(x) = (x,Ax)
+\end{align*}
+\end{definition}
+
+\begin{proposition}[Поляризаційна тотожність]
+Задано $(E,(\cdot,\cdot))$ - евклідів простір та $S: E \to \mathbb{R}(\mathbb{C})$ - квадратична форма. Тоді за квадратичною формою можна відновити півторалінійну форму $\varphi(x,y)$ такою формулою:\\
+$4 \varphi(x,y) = S(x+y) - S(x-y) + i(S(x+iy)-S(x-iy))$.
+\iffalse
+В дійсному випадку $2\varphi(x,y) - 2\varphi(y,x) = S(x+y)- S(x-y)$.
+\fi
+\end{proposition}
+
+\begin{proof}
+\iffalse
+1) Випадок $\mathbb{C}$\\
+$S(x+y) - S(x-y) + i(S(x+iy)-S(x-iy)) = \\ \varphi(x+y, x+y) - \varphi(x-y,x-y) + i(\varphi(x+iy,x+iy)-\varphi(x-iy,x-iy)) = \\
+= \varphi(x,x) + \varphi(x,y) + \varphi(y,x) + \varphi(y,y) - \\
+- (\varphi(x,x)-\varphi(x,y)-\varphi(y,x)+\varphi(y,y)) + \\
++ i(\varphi(x,x)-i\varphi(x,y)-i\varphi(y,x)-i i\varphi(y,y)) - \\
+- i(\varphi(x,x)+i\varphi(x,y)-i\varphi(y,x)-ii\varphi(y,y)) = \\
+= 2 \varphi(x,y) + 2 \varphi(y,x) + 2 \varphi(x,y) - 2 \varphi(y,x) = 4 \varphi(x,y)$
+\bigskip \\
+2) Випадок $\mathbb{R}$ - аналогічно
+\fi
+Маємо $S(x) = (Ax,x)$ для деякого оператора $A$. Тоді\\
+$S(x+y) - S(x-y) + i(S(x+iy)-S(x-iy)) = \\ 
+= (x+y,A(x+y)) - (x-y,A(x-y)) + i[(x+iy,A(x+iy)) - (x-iy,A(x-iy))] = \\
+= (x+y, Ax+Ay) - (x-y,Ax-Ay) + i[(x+iy, Ax+iAy) - (x-iy,Ax-iAy)] = \\
+= (x,Ax)+(x,Ay)+(y,Ax)+(y,Ay) - (x,Ax) + (x,Ay) + (y,Ax) - (y,Ay) + \\
++i[(x,Ax)+ \overline{i}(x,Ay) + i(y,Ax) + i \overline{i} (y,Ay) - (x,Ax) + \overline{i}(x,Ay) + i(y,Ax) - i \overline{i} (y,Ay)] = \\
+= 2 (x,Ay) + 2 (y,Ax) + i[2\overline{i}(x,Ay) + 2i(y,Ax)] = 2(x,Ay)+2(y,Ax) + 2(x,Ay) - 2(y,Ax) = 4(x,Ay)$.\\
+За теоремою Ріса, можна встановити функціонал $\varphi(x,y) = 4(x,Ay)$.
+\end{proof}
+
+\begin{remark}
+В дійсному випадку поляризаційна тотожність має такий вигляд:\\
+$S(x+y) - S(x-y) = 2 (\varphi(x,y) + \varphi(y,x))$.
+\end{remark}
+
+\begin{corollary}
+В комплексному випадку в нас виникає однозначна відповідність\\
+ \begin{tikzcd}[every arrow/.append style={shift left}, column sep = huge]
+\underset{\textrm{лін. опер.}}{A} \arrow{r}{\textrm{побудова}} & \underset{\textrm{півторалінійний ф-л}}{\varphi(x,y) = (x,Ay)} \arrow{r}{\textrm{побудова}} \arrow{l}{\textrm{Th. Ріса}} & \underset{\textrm{квадр. форма}}{S(x) = \varphi(x,x)} \arrow{l}{\textrm{поляр. тотожн.}} \\
+\end{tikzcd}
+\end{corollary}
+
+Випадок дійсно значної квадратичної форми:\\
+$\forall x \in E: S(x) = \varphi(x,x) = (x,Ax) \in \mathbb{R}$\\
+Покажемо, що $A$ - самоспряжений\\
+$\boxed{\Rightarrow}$ Дано: $A$ - самоспряжений\\
+$S(x) = (x,Ax)$\\
+$\overline{S(x)} = \overline{(x,Ax)} = \overline{(Ax,x)} = (x,Ax) = S(x)$\\
+Тобто $S(x) \in \mathbb{R}$
+\bigskip \\
+$\boxed{\Leftarrow}$ Дано: $(x,Ax) \in \mathbb{R}$\\
+Скористаємось розкладом: $\forall B: E \to E: \exists ! B_1,B_2$ - самоспряжені: $B = B_1 + i B_2$ (згодом доведу)\\
+$A = A_1 + i A_2$\\
+$S(x) = (x,Ax)= (x,A_1x) + (x,iA_2x) = (x,A_1x) - i(x,A_2x) \in \mathbb{R}$\\
+$\Rightarrow (x,A_2x) = 0 \Rightarrow A_2 = 0$\\
+Отже, $A = A_1$ - самоспряжений
+\bigskip \\
+Заданий $E$ - евклідів простір із $(\cdot, \cdot)$ над $\mathbb{R}$\\
+$S(X) = \varphi(x,x)$\\
+Ми отримали рівність:\\
+$S(x+y)-S(x-y) = 2\varpi(x,y) + 2\varphi(y,x)$\\
+Таким чином, за квадратичною формою відновлюється симетрична частина півторалінійного (білінійного) функціоналу:\\
+$\varphi(x,y)$ - білінійний\\
+$\varphi(x,y) =  \underbrace{\dfrac{1}{2} \left(\varphi(x,y) + \varphi(y,x) \right)}_{= \varphi_{sim}} + \underbrace{\dfrac{1}{2} \left(\varphi(x,y) - \varphi(y,x) \right)}_{= \varphi_{cosim}}$\\
+Маємо, що $\varphi_{sim}(y,x) = \varphi_{sim}(x,y)$ - симетричний\\
+А $\varphi_{cosim}(y,x) = -\varphi_{cosim}(x,y)$ - кососиметричний\\
+Отже, $\varphi = \varphi_{sim} + \varphi_{cosim}$\\
+Пригадаємо, що $\varphi(x,y) = (x,Ay)$\\
+$\Rightarrow \varphi_{sim}(x,y) = \dots = \left(x, \dfrac{A+A^*}{2}x \right)$\\
+Отже, отримали, що в дійсному випадку квадратичній формі однозначно відповідає\\
+\begin{tikzcd}[every arrow/.append style={shift left}, column sep = huge]
+S(x) \arrow{r}{\textrm{поперед.}} & \varphi_{sim}(x,y) \arrow{l}{\textrm{побудова}} \arrow{r}{\textrm{Th. Ріса}} & \underset{самоспряжений}{A} \arrow{l}{\textrm{побудова}}
+\end{tikzcd}
+\bigskip \\
+Розглянемо таку квадратичну форму:\\
+$S_B(x) = (x,Bx) = (x,B_1x) + (x,B_2x) \boxed{=} $\\
+$(x,B_2x) = (B_2*x,x) = -(B_2x,x) = -(x,B_2x) \Rightarrow (x,B_2x) = 0$\\
+Тобто квадратична форма для кососиметричного оператору $\equiv 0$\\
+$\boxed{=} (x,B_1x)$
+\bigskip \\
+\textbf{Приведення квадратичної форми до канонічного вигляду}\\
+Заданий $E$ - евклідів простір із $(\cdot,\cdot)$\\
+$S(x) = (x,Ax)$ - дійсно значна, і $A$ - самоспряжений\\
+Тоді в $E$ існує ортонормований базис з власних векторів $A$ - $\{f_1,\dots,f_n\}$\\
+$\mathbb{A}_f = \begin{pmatrix}
+\lambda_1 & \dots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \dots & \lambda_n
+\end{pmatrix}$\\
+$U$ - перехід від розкладу за $\{f_1,\dots,f_n\}$ до розкладу в стандартний базис\\
+Тоді\\
+$A = U \mathbb{A}_{f} U^{-1} = U \mathbb{A}_{f} U^{*}$\\
+Тоді\\
+$S(x) = (x,Ax) = (x,U \mathbb{A}_{f} U^{*} x) = (U^*x, \mathbb{A}_{f} U^{*} x) =$\\
+$U^* x = y = y_1f_1 + \dots + y_nf_n$\\
+$= \displaystyle \left(\sum_{j=1}^n y_jf_j, \mathbb{A}_{f} \sum_{k=1}^n y_k f_k \right) \sum_{j=1}^n \sum_{k=1}^n y_j \overline{y_k} (f_j, \mathbb{A}_f f_k) = \sum_{j=1}^n \sum_{k=1}^n y_j \overline{y_k} \lambda_k (f_j,f_k) = \sum_{j=1}^n \lambda_j (y_j)^2$\\
+Висновок: дійснозначна квадратична форма $S(x) = (x,Ax)$ має канонічний вигляд:\\
+$S(x) = \displaystyle \sum_{j=1}^n \lambda_j (y_j)^2$\\
+$U^*x = y = \displaystyle \sum_{j=1}^n y_j f_j$\\
+\subsection{Знаковизначеність лінійного оператора, матриці}
+Заданий $E$ - евклідів простір із $(\cdot,\cdot)$ і $A$ - самоспряжений оператор\\
+(Або заданий $E = \mathbb{R}^n (\mathbb{C}^n)$ - евклідів простір із $(\cdot,\cdot)$ і $\mathbb{A}$ - симетрична матриця)\\
+\defin{5.10.1.} Оператор $A$ (матриця $\mathbb{A}$) називається:\\
+- \textbf{строго додатньо визначеною}, якщо $\forall x \neq 0: S(x) = (x,Ax) > 0$\\
+- \textbf{строго від'ємно визначеною}, якщо $\forall x \neq 0: S(x) = (x,Ax) < 0$\\
+- \textbf{невід'ємно визначеною}, якщо $\forall x \neq 0: S(x) = (x,Ax) \geq 0$\\
+- \textbf{недодатньо визначеною}, якщо $\forall x \neq 0: S(x) = (x,Ax) \leq 0$\\
+Позначення: $A > 0$ і т.д.
+\bigskip \\
+\th{5.10.2. Критерій знаковизначеності}\\
+Заданий $E$ - евклідів простір із $(\cdot,\cdot)$ і $A$ - самоспряжений оператор\\
+Тоді:\\
+$A > 0 \iff$ всі власні числа $\lambda_j > 0$\\
+$A < 0 \iff$ всі власні числа $\lambda_j < 0$\\
+Для нестрогих нерівностей теж саме\\
+\proof
+$S(x) = (Ax,x) = \displaystyle \sum_{j=1}^n \lambda_j |y_j|^2$\\
+$A > 0 \Rightarrow \forall x \Rightarrow \forall \vec{y} = \begin{pmatrix}
+y_1 \\ \dots \\ y_n
+\end{pmatrix}: \displaystyle \sum_{j=1}^n \lambda_j |y_j|^2 > 0 \Rightarrow$\\
+$\vec{y} = \begin{pmatrix}
+1 \\ 0 \\ \dots \\ 0
+\end{pmatrix}, \lambda_1 > 0 \dots \vec{y} = \begin{pmatrix}
+0 \\ 0 \\ \dots \\ 1
+\end{pmatrix}, \lambda_n > 0$\\
+А якщо $\lambda_1,\dots,\lambda_n > 0$, то автоматично $S(x) > 0$, тоді $A>0$\\
+Решта випадків аналогічні \qed
+\bigskip \\
+\prp{5.10.3.} $A \leq 0 \iff (-A) \geq 0$\\
+\textit{За визначенням}
+\bigskip \\
+\th{5.10.4. Критерій Сільвестра} (знаковизначеність матриці)\\
+Задана матриця $A$ - симетрична\\
+Обчислимо $\Delta_1 = M_1^1, \Delta_2 = M_{12}^{12}, \dots, \Delta_k = M^{12\dots k}_{12 \dots, k}$ - головні кутові мінори\\
+$A>0 \iff \forall k: \Delta_k > 0$\\
+$A < 0 \iff \forall k: (-1)^k \Delta_k > 0$\\
+Для нестрогої визначеності теж саме\\
+\textit{Без доведення (див. підручник Гантмахер "Теория матриц")}
+\bigskip \\
+\fi
+
+\iffalse
+\subsection{Зведення кривих та поверхонь 2-го порядку до канонічного вигляду}
+Маємо загальний вигляд кривої другого порядку:
+\begin{align*}
+a_{11}x^2 + 2a_{12}xy + a_{22}y^2 + b_1x + b_2y + c = 0
+\end{align*}
+Розглянемо квадратну частину:\\
+$a_{11}x^2 + 2a_{12}xy + a_{22}y^2 = \left( \begin{pmatrix}
+ a_{11} & a_{12} \\
+ a_{12} & a_{22}
+\end{pmatrix} \begin{pmatrix}
+x \\ y
+\end{pmatrix}, \begin{pmatrix}
+x \\ y
+\end{pmatrix} \right)$ - квадратична форма, а матриця $\mathbb{A} = \begin{pmatrix}
+a_{11} & a_{12} \\
+a_{12} & a_{22}
+\end{pmatrix}$ - відповідно самоспряжена матриця.
+\bigskip \\
+Також маємо загальний вигляд поверхну другого порядку:
+\begin{align*}
+a_{11}x^2 + a_{22}y^2 + a_{33}z^2 + 2a_{12}xy + 2a_{13}xz + 2a_{23}yz + b_1x + b_2y + b_3z + c = 0
+\end{align*}
+Аналогічно розглянемо квадратну частину:\\
+$a_{11}x^2 + a_{22}y^2 + a_{33}z^2 + 2a_{12}xy + 2a_{13}xz = \left(\begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{12} & a_{22} & a_{23} \\
+a_{13} & a_{23} & a_{33}
+\end{pmatrix} \begin{pmatrix}
+x \\ y \\ z
+\end{pmatrix}, \begin{pmatrix}
+x \\ y \\ z
+\end{pmatrix} \right)$ - квадратична форма, зі самоспряженою матрицею $\mathbb{A} = \begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{12} & a_{22} & a_{23} \\
+a_{13} & a_{23} & a_{33}
+\end{pmatrix}$.
+\bigskip \\
+Тоді рівняння кривої (випадок $\mathbb{R}^2$) та поверхні (випадок $\mathbb{R}^3$) другого порядку записується таким чином:\\
+$(\vec{x}, A \vec{x}) + (\vec{b}, \vec{x}) + c = 0$.\\
+Це рівняння зведемо до канонічного вигляду:\\
+1. Оскільки $A$ - самоспряжений, то існує ортонормований базис із власних векторів $A$.\\
+$U$ - унітарна матриця переходу: $\mathbb{A} = U \mathbb{A}_{\textrm{diag}} U^*$. Тоді маємо:\\
+$(A\vec{x}, \vec{x}) = (U A_{\textrm{diag}} U^* \vec{x}, \vec{x}) = (A_{\textrm{diag}} U^* \vec{x}, U^* \vec{x}) = (A_{\textrm{diag}}\vec{y}, \vec{y}) = \left[ \begin{gathered} \lambda_1 y_1^2 + \lambda_2 y_2^2 \\
+\lambda_1 y_1^2 + \lambda_2 y_2^2 + \lambda_3 y_3^2
+ \end{gathered} \right.$
+
+2. $(\vec{b}, \vec{x}) = (U^* \vec{b}, U^* \vec{x}) = (U^*\vec{b}, \vec{y})$.
+Знаходимо $\vec{\widetilde{b}} = U^* \vec{b}$, тоді\\
+$(\vec{b}, \vec{x}) = (\vec{\widetilde{b}}, \vec{y}) = \left[ \begin{gathered} \widetilde{b_1}y_1 + \widetilde{b_2}y_2 \\ \widetilde{b_1}y_1 + \widetilde{b_2}y_2 + \widetilde{b_3}y_3 \end{gathered} \right.$\\
+Остаточно отримаємо:\\
+$\lambda_1 y_1^2 + \lambda_2 y_2^2 + \lambda_3 y_3^2 + \widetilde{b_1}y_1 + \widetilde{b_2}y_2 + \widetilde{b_3}y_3 + c = 0$.
+\bigskip \\
+Нехай $\lambda_1, \lambda_2, \lambda_3 \neq 0$. Тоді виділимо повні квадрати:\\
+$\lambda_1 \left( y_1 + \dfrac{\widetilde{b_1}}{2\lambda_1} \right)^2 + \lambda_2 \left( y_2 + \dfrac{\widetilde{b_2}}{2\lambda_2} \right)^2  + \lambda_3 \left( y_3 + \dfrac{\widetilde{b_3}}{2\lambda_3} \right)^2 = - c + \dfrac{\widetilde{b_1}^2}{4 \lambda_1} + \dfrac{\widetilde{b_2}^2}{4 \lambda_2} + \dfrac{\widetilde{b_3}^2}{4 \lambda_3}$\\
+Зробимо заміни:\\
+$
+z_1 = y_1 + \dfrac{\widetilde{b_1}}{2\lambda_1} \hspace{0.5cm}
+z_2 = y_2 + \dfrac{\widetilde{b_2}}{2\lambda_2} \hspace{0.5cm}
+z_3 = y_3 + \dfrac{\widetilde{b_3}}{2\lambda_3} \hspace{0.5cm}
+\widetilde{c} = -c + \dfrac{\widetilde{b_1}^2}{4 \lambda_1} + \dfrac{\widetilde{b_2}^2}{4 \lambda_2} + \dfrac{\widetilde{b_3}^2}{4 \lambda_3}
+$\\
+Отримаємо:\\
+$\lambda_1 z_1^2 + \lambda_2 z_2^2 + \lambda_3 z_3^2 = \widetilde{c}$.
+\bigskip \\
+Випадок, коли лише $\lambda_1 = 0$. Тоді робимо ті самі процедури та отримаємо:\\
+$\lambda_2 \left( y_2 + \dfrac{\widetilde{b_2}}{2\lambda_2} \right)^2  + \lambda_3 \left( y_3 + \dfrac{\widetilde{b_3}}{2\lambda_3} \right)^2 + \widetilde{b_1}y_1 = - c + \dfrac{\widetilde{b_1}^2}{4 \lambda_1} + \dfrac{\widetilde{b_2}^2}{4 \lambda_2} + \dfrac{\widetilde{b_3}^2}{4 \lambda_3}$\\
+Зробимо заміни:\\
+$
+z_2 = y_2 + \dfrac{\widetilde{b_2}}{2\lambda_2} \hspace{0.5cm}
+z_3 = y_3 + \dfrac{\widetilde{b_3}}{2\lambda_3} \hspace{0.5cm}
+\widetilde{c} = -c + \dfrac{\widetilde{b_2}^2}{4 \lambda_2} + \dfrac{\widetilde{b_3}^2}{4 \lambda_3} \hspace{0.5cm}
+z_1 = y_1 - \dfrac{\widetilde{c}}{\widetilde{b_1}}
+$\\
+$\lambda_2 z_2^2 + \lambda_3 z_3^2 + \widetilde{b_1}z_1 = 0$ - а це є параболоїдом.\\
+Випадок $\widetilde{b_1} = 0$: в $\mathbb{R}^3$ - циліндр, а в $\mathbb{R}^2$ - пара прямих.
+\bigskip \\
+Випадок, коли $\lambda_1 = \lambda_2 = 0$ (це вже лише для $\mathbb{R}^3$):\\
+$\lambda_3 y_3^2 + \widetilde{b_1}y_1 + \widetilde{b_2}y_2 + \widetilde{b_3}y_3 + c = 0$\\
+Виникає одна мрія: $\widetilde{b_1} = 0$\\
+$\vec{\widetilde{b}} = U^* \vec{b}$\\
+$U = (\vec{f_1}, \vec{f_2}, \vec{f_3})$, де $\vec{f_1}, \vec{f_2}$ - власні числа для $\lambda_1 = \lambda_2$, а $\vec{f_3}$ - для $\lambda_3 \neq 0$\\
+$U^* \vec{b} = \begin{pmatrix}
+ \overset{\leftarrow}{f_1} \cdot \vec{b} \\ \overset{\leftarrow}{f_2} \cdot \vec{b} \\ \overset{\leftarrow}{f_3} \cdot \vec{b}
+\end{pmatrix} = \begin{pmatrix}
+ (\vec{f_1}, \vec{b}) \\ (\vec{f_2}, \vec{b}) \\ (\vec{f_3}, \vec{b})
+\end{pmatrix} = \begin{pmatrix}
+ \widetilde{b_1} \\ \widetilde{b_2} \\ \widetilde{b_3}
+\end{pmatrix}$\\
+Щоб здійснити мрію, треба, щоб $(\vec{f_1}, \vec{b}) = 0$\\
+Знаходимо $\vec{f_3}$ - власний для $\lambda_3$\\
+Тоді $\linspan\{e_3\}^{\perp}$ - простір власних векторів для $\lambda_1 = \lambda_2 = 0$\\
+Тоді $\vec{f_1} = [\vec{f_3}, \vec{b}] \perp \vec{b} \Rightarrow \widetilde{b_1} = 0$\\
+$f_1$ - власний для $\lambda = 0$ та $f_2 = [\vec{f_1}, \vec{f_3}] \perp \vec{f_1}, \vec{f_3}$\\
+Параметризуємо $\vec{f_1}, \vec{f_2}, \vec{f_3}$ - отримаємо ортонормований базис\\
+$U$ - матриця перехода $\vec{\widetilde{b}} = \begin{pmatrix}
+0 \\ \widetilde{b_2} \\ \widetilde{b_3}
+\end{pmatrix}$\\
+Тоді:\\
+$\lambda_3 y_3^2 + \widetilde{b_3} y_3 + \widetilde{b_2} y_2 + c = 0$\\
+$\lambda_3 \left(y_3 + \dfrac{\widetilde{b_3}}{2 \lambda_3} \right)^2 + \widetilde{b_2} \left(y_2 + \dfrac{c - \dfrac{\widetilde{b_3}^2}{4\lambda_3}}{\widetilde{b_2}} \right) = 0$\\
+Зробимо заміни:\\
+$z_1 = y_1 \hspace{0.5cm}
+z_2 = y_2 + \dfrac{c - \dfrac{\widetilde{b_3}^2}{4\lambda_3}}{\widetilde{b_2}} \hspace{0.5cm}
+z_3 = y_3 + \dfrac{\widetilde{b_3}}{2 \lambda_3}
+$\\
+Отримаємо:\\
+$\lambda_3 z_3^2 + \widetilde{b_2} z_2 = 0$ - а це є параболічним циліндром\\
+При $\widetilde{b_2} = 0$ отримаємо пару площин.\\
+$\scaleobj{5}{\blacksquare}$
+\fi
+
+\iffalse
+\section{Додаткові факти}
+Дани розділ присвячений виключно для тих, хто володіє фактами з теорії метричних просторів та функціонального аналізу. Всі нові означення, які були наведені там, я нагадувати не буду. Із ними можна ознайомитися в іншому pdf файлі.
+\bigskip \\
+Перша теорема дає пояснення, чому в лінійній алгебрі (де досліджуються скінченні простори) не вводилися норми, на відміну від функціонального аналізу (де вже нескінченні простори).
+\begin{theorem}
+У кожному скінченно вимірному просторі всі норми еквівалентні.
+\end{theorem}
+
+\begin{proof}
+Ми знаємо, що всі скінченні простори ізоморфні до $\mathbb{R}^d$, тому будемо тут досліджувати це питання. Досить буде довести, що всі норми еквівалентні до $\| \cdot \|_2$.\\
+Нехай $\{\vec{e}_1,\dots,\vec{e}_d\}$ -- стандартний базис $\mathbb{R}^d$, тоді звідси $\vec{x} = \displaystyle\sum_{i=1}^d x_i \vec{e}_i$. Оберемо довільну норму $\|\cdot \|$.\\
+$\displaystyle\left\| \sum_{i=1}^d x_i \vec{e}_i
+ \right\| \leq \sum_{i=1}^d \| x_i e_i \| = \sum_{i=1}^d |x_i| \|e_i\| = \sqrt{\left( \sum_{i=1}^d |x_i| \|\vec{e}_i\| \right)^2} \overset{\text{К-Б}}{\leq} \sqrt{\sum_{i=1}^d \|e_i\|^2} \sqrt{\sum_{j=1}^d |x_j|^2} \leq \sqrt{\sum_{i=1}^d \|e_i\|^2} \sqrt{\sum_{j=1}^\infty |x_j|^2} = \sqrt{\sum_{i=1}^d \|e_i\|^2} \|\vec{x}\|_2 = M \|\vec{x}\|_2$.\\
+Зауважимо, що $M \in \mathbb{R}_{\geq 0}$ та не залежить від $\vec{x}$. Отже, $\|\vec{x}\| \leq M \|\vec{x}\|_2$.
+\bigskip \\
+Розглянемо тепер $\mathcal{S}$ -- одинична сфера на $(\mathbb{R}^d, \|\cdot \|_2)$. Відомо, що $S$ -- замкнена множина та обмежена. Тож за лемою Гайне-Бореля, $S$ -- компактна множина. Відомо, що відображення $\| \cdot \| \colon \mathcal{S} \to \mathbb{R}_{\geq 0}$ -- неперервне відображення, тож вона досягає найменшого значення $m$ для деякого $\vec{y} \in S$.\\
+Припустимо $m = 0$, тоді звідси $\|\vec{y}\| = 0 \implies \vec{y} = \vec{0} \implies \vec{y} \notin \mathcal{S}$ -- неможливо. Отже, $m > 0$.\\
+Значить, $\forall \vec{y} \in \mathbb{R}^d: \|\vec{y}\|_2 = 1: \|y\| \geq m$. Треба довести те саме для інших векторів.\\
+Якщо $\vec{x} = \vec{0}$, то це виконано. Тому $\vec{x} \neq \vec{0}$. Покладемо вектор $\vec{y} = \dfrac{\vec{x}}{\| \vec{x} \|_2}$, причому $\|\vec{y}\|_2 = 1$. Із цього випливає, що $\| \vec{y} \|_2 \leq m \implies m \|\vec{x}\|_2 \leq \|\vec{x}\|$.
+\bigskip \\
+Всі інші норми будуть еквівалентними в силу транзитивності.
+\end{proof}
+
+\begin{theorem}
+Лінійні оператори між скінченно вимірними векторними просторами -- обмежені.\\
+\textit{Це, насправді, наслідок твердження нижче.}
+\end{theorem}
+
+\begin{proposition}
+Задано $X,Y$ -- нормовані простори, $\dim X < \infty$ та $A \in \mathcal{L}(X,Y)$. Тоді $A \in \mathcal{B}(X,Y)$.
+\end{proposition}
+
+\begin{proof}
+Дійсно, нехай $\{e_1,\dots,e_n\}$ -- базис $X$, нехай на неї стоїть норма $\|x\|_2$, тоді маємо наступне:\\
+$\|Ax\| = \|A (x_1 e_1 + \dots + x_n e_n) \| = \| x_1 A e_1 + \dots + x_n A e_n \| \leq |x_1| \|A e_1 \| + \dots + |x_n| \|A e_n \| \leq \\
+\leq \sqrt{|x_1|^2 + \dots + |x_n|^2} \sqrt{\|Ae_1\|^2 + \dots + \|Ae_n\|^2} = C \|x\|_2$.\\
+Якби була би інша норма $\| \cdot \|$, то вона еквівалентна $\| \cdot \|_2$, а тому обмеженість зберігається.
+\end{proof}
+
+\begin{theorem}
+Задано $E$ -- нормований простір.\\
+$\dim E < \infty \iff$ кожна підмножина $E$ -- передкомпактна.
+\end{theorem}
+
+\begin{proof}
+\leftproof Дано: $\dim E = \infty$. Ми хочемо довести, що замкнена куля $B[0;1]$ не буде компактом.\\
+У якості $x_1$ оберемо будь-який вектор одиничної сфери та покладемо $G_1 = \linspan\{x_1\}$. За лемою Ріса, знайдеться вектор $x_2 = y_{\frac{1}{2}} \notin G_1$ такий, що $\|x_2\| = 1$ та $\forall x \in G_1: \|x_2-x\| > \dfrac{1}{2}$, зокрема звідси $\|x_2 - x_1\| > \dfrac{1}{2}$.\\
+Покладемо $G_2 = \linspan\{x_1,x_2\}$. Тоді знову за лемою Ріса, знайдеться вектор $x_3 = y_{\frac{1}{2}}$ такий, що $\|x_3\| = 1$ та $\forall x \in G_2: \|x_3-x\| > \dfrac{1}{2}$. Зокрема $\|x_3 - x_1\| > \dfrac{1}{2},\ \|x_3 - x_2\| > \dfrac{1}{2}$.\\
+\vdots \\
+У силу того, що $\dim E = \infty$, то цей процес буде продовжуватися. Побудуємо послідовність $(x_n)_{n=1}^\infty \subset B[1;0]$ таку, що $\forall m,n \geq 1: \| x_m - x_n \| > \dfrac{1}{2}$. Така обмежена послідовність не містить збіжної підпослідовності.
+\bigskip \\
+\rightproof Дано: $\dim E < \infty$, тоді відомо, що $E \cong \mathbb{C}^n$. Будь-яка обмежена підмножина $\mathbb{R}^n$ -- передкомпактна за Больцано-Ваєрштраса.
+\end{proof}
+\newpage
+\fi
+
+\iffalse
+\section*{Постскриптум}
+\subsection*{Про теорему Ріса}
+Під час розгляду евклідових чи унітарних просторів я навів теорему в такій формі:
+\begin{theorem}[Теорема Ріса]
+Задано $(E,(\cdot,\cdot))$ -- унітарний (евклідів) простір та лінійний функціонал $\varphi \colon E \to \mathbb{C} (\mathbb{R})$. Тоді $\exists ! f \in E: \forall x \in E: \varphi(x) = (x,f)$.
+\end{theorem}
+\noindent
+Чесна та правильна версія виглядає саме таким чином:
+\begin{theorem}[Теорема Ріса]
+Задано $(H,(\cdot,\cdot))$ -- гілбертів простір та лінійний обмежений функціонал $l \colon H \to \mathbb{C} (\mathbb{R})$. Тоді $\exists ! f \in H: \forall x \in H: l(x) = (x,f)$.
+\end{theorem}
+\noindent
+По-перше, тут тепер вимагається, щоб простір був гілбертовим. По суті, різниця між гілбертовим та унітарним полягає лише в тому, що унітарний обов'зяково скінченновимірний простір, водночас в гілбертовому це не обов'язково.\\
+По-друге, крім лінійності функціонала тепер ще накладається умова обмеженості. Будь-який функціонал, що визначений на скінченномовимірному просторі, автоматично обмежений. Тому я цю вимогу окремо не розписував.\\
+По-третє, важливе зауваження: існуючий єдиний $f$ не залежить більше ні від чого, крім від вибору функціоналу (коли ми доводили цю теорему в цьому пдф, то там залежність ще була від базису). Це означає, що $H \cong H^*$ канонічним чином та прийнято писати тоді $H = H^*$.
+\fi
+
+\iffalse
+\section*{Використані джерела}
+\begin{enumerate}
+\item \href{https://www.youtube.com/watch?v=Lcy5VDYMM4Q&list=PLgAugiET8rrIGTphP-IfbxixpAZDO3UHC&index=3}{DanielChanMaths: Properties of tensors products of vector spaces}
+\item \href{https://www.youtube.com/watch?v=KnSZBjnd_74&ab_channel=MuPrimeMath}{Mu Prime Math: A Concrete Introduction to Tensor Products}
+\item \href{https://www.youtube.com/watch?v=vZzZhdLC_YQ&t=0s&ab_channel=MuPrimeMath}{Mu Prime Math: Complete Derivation: Universal Property of the Tensor Product}
+\item \href{https://www.youtube.com/watch?v=5i8tp0rD2EA&ab_channel=MuPrimeMath}{My Prime Math: Tensor Product Basis With the Universal Property}
+\item \href{https://www.youtube.com/watch?v=K7f2pCQ3p3U}{Michael Penn: What is a tensor anyway?? (from a mathematician)}
+\end{enumerate}
+\fi

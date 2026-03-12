@@ -1669,6 +1669,41 @@ $\mathbb{Q}$ -- зліченна множина.
 Установимо відображення $\phi \colon \mathbb{Q} \to \mathbb{Z} \times \mathbb{N}$ таким чином: $\phi\left( \dfrac{p}{q} \right) = (p,q)$. Цілком зрозуміло, що це -- ін'єктивне відображення. Далі треба пригадати, що $\mathbb{Z}, \mathbb{N}$ обидва зліченні, а тому $\mathbb{Z} \times \mathbb{N}$ -- також зліченна, звідси $\exists g \colon \mathbb{Z} \times \mathbb{N} \to \mathbb{N}$ -- ін'єкція. Тоді композиція $g \circ \phi \colon \mathbb{Q} \to \mathbb{N}$ задає ін'єкцію, що й доводить наслідок. 
 \end{proof}
 
+\subsection{Найменше відношення еквівалентності}
+\begin{lemma}
+Нехай $\sim_1,\ \sim_2$ --- відношення еквівалентності на $X$. Тоді $\sim = \sim_1 \cap \sim_2$ --- відношення еквівалентності на $X$.\\
+\textit{Вправа: довести}.
+\end{lemma}
+
+\begin{definition}
+Нехай $R \colon X \to X$ --- відношення.\\
+\textbf{Відношенням еквівалентності, породженим відношенням $R$}, називають наступне:
+\begin{align*}
+\sim_R = \bigcap_{\sim \supset R} \sim,
+\end{align*}
+тобто тут перетин всіх відношень еквівалентності, що містять $R$.
+\end{definition}
+
+\begin{remark}
+Отже, $\sim_R$ --- найменше відношення еквівалентності, що містить відношення $R$.
+\end{remark}
+
+\begin{proposition}
+$x \sim_R y \iff \exists n \in \mathbb{N}: \exists x = x_0,\dots,x_n = y: \forall 1 \leq k < n: \left[ \begin{gathered} x_k R x_{k+1} \\ x_{k+1} R x_k \end{gathered} \right.$
+\end{proposition}
+
+\begin{proof}
+\rightproof Дано: $x \sim_R y$. Розглянемо множину
+\[
+S = \{ (x,y) \in X \times X: \text{задовольняє праву частину твердження} \} \cup \{(x,x)\}.
+\]
+$S$ --- рефлексивне з означення. $S$ --- симетричне, оскільки якщо $(x,y) \in S$, тобто $\exists n \in \mathbb{N}: \exists x = x_0,\dots, x_n = y: x_kRx_{k+1}$ або $x_{k+1} R x_k$, то тоді, прочитавши справа наліво, одержимо $(y,x) \in S$. Нарешті, $S$ --- транзитивне, оскільки ланцюг іксів можна об'єднати.\\
+Отже, $S$ --- відношення еквівалентності, причому $S \supset R$, тому $\sim_R \subset S$. Тобто якщо $x \sim_R y$, то виконується права умова.
+\bigskip \\
+\leftproof Дано: виконується права умова.\\
+Оскільки $x_k R x_{k+1}$, то звідси $x_k \sim x_{k+1}$ для кожного відношення еквівалентності, що містить $R$. Внаслідок чого $x \sim y$ для кожного відношення еквівалентності, що містить $R$, тому $x \sim_R y$.
+\end{proof}
+
 \subsection{Поняття відображення та функції}
 	\begin{definition}
 	Задано дві множини $X,Y$.\\

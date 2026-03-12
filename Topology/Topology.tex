@@ -1010,6 +1010,31 @@ $\mathbb{R} = \displaystyle\bigcup_{n \in \mathbb{N}} (-n,n)$.\\
 Отже, $\mathcal{B}$ утворює базу $\mathbb{R}$, а тому звідси породжує топологію
 \fi
 \end{example}
+\noindent
+Часто буває зручно виділити базу вже з існуючої топології.
+
+\begin{lemma}
+Нехай $(X,\tau)$ -- топологічний простір та $\mathcal{C}$ -- клас таких  відкритих множин, що $\forall U \in \tau: \forall x \in U: \exists C \in \mathcal{C}: x \in C \subset U$. Тоді $\mathcal{C}$ задає базу топології $X$.
+\end{lemma}
+
+\begin{proof}
+По-перше, $X = \displaystyle\bigcup_{U \in \mathcal{C}} U$. Справді, якщо $x \in X$ та $X$ -- відкрита, то існує $U \in \mathcal{C}$, де $x \in U$.\\
+По-друге, якщо $x \in C_1 \cap C_2$, де $C_1,C_2 \in \mathcal{C}$, то оскільки $C_1 \cap C_2$ -- відкрита, то існує $C_3 \in \mathcal{C}$, для якого $x \in C_3 \subset C_1 \cap C_2$. 
+\end{proof}
+
+\begin{lemma}
+Нехай $(X,\tau),\ (X,\tau')$ -- два топологічних простори на одному $X$ та $\mathcal{B},\mathcal{B}'$ -- відповідні бази. Тоді
+\begin{center}
+$\tau'$ сильніша за $\tau \iff \forall x \in X: \forall B \in \mathcal{B}, x \in B: \exists B' \in \mathcal{B}': x \in B' \subset B$.
+\end{center}
+\end{lemma}
+
+\begin{proof}
+\rightproof Дано: $\tau'$ слабший за $\tau$. Нехай $x \in X$ та $B \in \mathcal{B}$ при $x \in B$. Оскільки $B \in \tau$ за означенням, то $B \in \tau'$ за умовою. Тоді існує елемент $B' \in \mathcal{B}$, для якого $x \in B' \subset B$ за щойно доведеною лемою.
+\bigskip \\
+\leftproof Дано: умова праворуч. Нехай $U \in \tau$. Хочемо, щоб $U \in \tau'$.\\
+Якщо обрати $x \in U$, то існує елемент $B \in \mathcal{B}$, для якого $x \in B \subset U$. Але за умовою існує $B' \in \mathcal{B}'$, для якого $x \in B' \subset B$. Тоді звідси $x \in B' \subset U$, тож $U \in \tau'$.
+\end{proof}
 
 \subsection{Конструкція топології за передбазою}
 \begin{definition}
@@ -1878,6 +1903,55 @@ f(s,t) = (\cos (2\pi s),\ \sin(2\pi s),\ t).
 \includegraphics[scale=0.3]{Klein_bottle.png}
 \end{figure}
 \end{example}
+
+\subsection{Прикріплення простору}
+(\textit{поки думаю над перекладом, англійською це adjunction space або attaching space})
+
+\begin{definition}
+Нехай $X,Y$ --- топологічні простори, $A \subset Y$ --- замкнена та $f \colon A \to X$ --- неперервне.\\
+\textbf{Прикріпленням простору} назвемо топологічний простір
+\begin{align*}
+X \cup_f Y = (X \sqcup Y)/_\sim,
+\end{align*}
+де в $\sim$ ми ідентифікусємо наступні точки:
+\begin{align*}
+a \sim f(a),\ \forall a \in A.
+\end{align*}
+\end{definition}
+
+\begin{definition}
+Відображення $f \colon X \to Y$ називається вкладенням, якщо
+\begin{align*}
+X \cong f(X),
+\end{align*}
+при цьому $f(X)$ має топологію як у підпростора $Y$ (\textit{інтуїтивно кажучи, це дозволяє сприймати $X$ як підпростір $Y$}).
+\end{definition}
+
+\begin{proposition}
+Нехай $f \colon X \to Y$ --- неперервне відображення, яке ін'єктивне та відкрите (або замкнене). Тоді $f$ --- вкладення.
+\end{proposition}
+
+\begin{proof}
+Оскільки $f$ --- ін'єктивне, то відображення $X \to f(X)$ уже має бути бієктивним. Це відображення досі неперервне, якщо $f(X)$ сприймати як підпростір топологічного простору $Y$.\\
+Нарешті, нам відомо, що бієктивне відображення задає гомеоморфізм $\iff$ дане відображення відкрите (або замкнене).
+\end{proof}
+
+\begin{proposition}
+Нехай $X \cup_f Y$ --- прикріплений простір із факторвідображенням $q \colon X \sqcup Y \to X \cup_f Y$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $q|_X$ --- вкладення, образ якого замкнене;
+\item $q|_{Y \setminus A}$ --- вкладення, образ якого відкрите.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}[topsep=0pt,wide=0pt,label={\arabic*)}]
+\item Зауважимо, що відображення $q|_X$ є композицією
+\begin{align*}
+X \hookrightarrow X \sqcup Y \overset{q}{\to} X \cup_f Y.
+\end{align*}
+\end{enumerate}
+\end{proof}
 
 \newpage
 \section{Компактні простори}
@@ -3372,6 +3446,79 @@ $A \in \mathcal{F} \iff \forall F \in \mathcal{F}: A \cap F \neq \emptyset$.
 \includegraphics[scale=0.2]{example_3.png}
 \end{figure}
 \end{example}
+
+\newpage
+
+\section{Простори функцій}
+\subsection{Компактно-відкрита топологія}
+\begin{definition}
+Нехай $X,Y$ --- гаусдорфові простори, розглянемо простір неперервних відображень $C(X,Y)$. Для $A \subset X,\ B \subset Y$ позначимо
+\begin{align*}
+S(A,B) = \{ f \in C(X,Y) \mid f(A) \subset B \}.
+\end{align*}
+Тепер визначимо на $C(X,Y)$ передбазу
+\begin{align*}
+\mathcal{S} = \{ S(K,V) \mid K \text{ --- компактна},\ V \text{ --- відкрита} \}.
+\end{align*}
+Тоді утвориться $\tau_{\mathcal{S}}$, яка називається \textbf{компактно-відкритою топологією}.
+\end{definition}
+
+\begin{example}
+Нехай $X$ --- дискретна топологія. Тоді всі відображення $X \to Y$ --- неперервні, тобто $C(X,Y) = Y^X$. Тоді компактно-відкритою топологією буде насправді добуток топологій. Таку топологію ще називають \textbf{топологією поточкової збіжності}.
+\end{example}
+
+\begin{lemma}
+Нехай $X,Z$ --- гаусдорфові та $h \colon Z \to X$ --- неперервне відображення. Тоді можна індукувати відображення
+\begin{align*}
+h^* \colon C(X,Y) \to C(Z,Y); \\
+h^*(g) = g \circ h.
+\end{align*}
+Таке відображення неперервне відносно компактно-відкритих топологій.
+\end{lemma}
+
+\begin{proof}
+Дійсно, нехай $S(K,W) \in \mathcal{S}_{C(Z,Y)}$, де множини $K \subset Z,\ W \subset Y$ --- відповідно компактна та відкрита. Розглянемо детально прообраз
+\begin{align*}
+(h^*)^{-1}(S(K,W)) & = \{ g \in C(X,Y) \mid g \circ h \in S(K,W) \} = \{ g \in C(X,Y) \mid g(h(K)) \subset W \} \\
+& \overset{h(K) \text{ --- компактна}}{=} S(h(K),W).
+\end{align*}
+Отже, $(h^*)^{-1}(S(K,W)) \in \mathcal{S}_{C(X,Y)}$, тобто одержали відкриту множину.
+\end{proof}
+
+\begin{corollary}
+$C(X,Y)$ --- гаусдорфів.
+\end{corollary}
+
+\begin{proof}
+Покладемо $Z = X$ з дискретною топологією та $h = \id_X$. Тоді відображення $C(X,Y) \to Y^X$ неперервне за лемою та ін'єктивне. Крім того, $Y^X$ --- гаусдорфів, оскільки $Y$ --- гаусдорфів. Тоді $C(X,Y)$ має бути також гаусдорфовим.
+\end{proof}
+
+\begin{remark}
+Можемо покласти $Z = \{x\}$ та $h(x) = x$. Тоді утвориться відображення $\text{ev}_x \colon C(X,Y) \to Y^{\{x\}} \cong Y$, яке неперервне.
+\end{remark}
+
+\begin{proposition}
+Нехай $X,Z$ --- гаусдорфові та $Y$ --- локально компактні. Тоді відображення
+\begin{align*}
+C(X,Y) \times C(Y,Z) \to C(X,Z), \qquad (f,h) \mapsto h \circ f
+\end{align*}
+неперервне відносно комактно-відкритих топологій.
+\end{proposition}
+
+\begin{proof}
+(треба переглянути топологічні групи).
+\end{proof}
+
+\begin{corollary}
+Нижче відображення буде неперервним:
+\begin{align*}
+\text{ev} \colon Y \times C(Y,Z) \to Z, \qquad (y,h) \mapsto \text{ev}_y(h) = h(y).
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+Розглянемо $X = \{0\}$, тоді існує гомеоморфізм $Y \to C(X,Y)$, що відображає $y \in Y$ на відображення $[0 \mapsto y]$. Тоді $(y,f) \mapsto \text{ev}_0([0 \mapsto y] \circ f) = f(y)$ --- неперервне.
+\end{proof}
 
 \newpage
 
