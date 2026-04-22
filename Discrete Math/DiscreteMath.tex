@@ -2523,6 +2523,60 @@ $(a_1+a_2+\dots+a_m)^n = \displaystyle\sum_{\substack{k_1,k_2,\dots,k_m \geq 0 \
 $C_{132}^{129,1,1,0} = \dfrac{132!}{130!1!1!0!} = 17292$.\\
 До речі, загальна кількість доданків становить $\tilde{C}_4^{132} = 400995$.
 \end{example}
+
+\subsection{Трохи абстрагування}
+Ми вже знаємо про сполучення та його формулу, зокрема
+\[
+{n \choose k} = \dfrac{n!}{k! (n-k)!} = \dfrac{n (n-1) \dots (n-(k-1))}{k!}
+\]
+для кожного $n \in \mathbb{N}$. Насправді, можна це поняття узагальнити для будь-якого іншого числа $x \in \mathbb{R}$.
+
+\begin{definition}
+\textbf{Біноміальним коефіцієнтом} назвемо функцію
+\begin{align*}
+{x \choose k} = \dfrac{x(x-1) \dots (x-(k-1))}{k!},
+\end{align*}
+де $k \in \mathbb{N}$. Якщо буде $k = 0$, то покладемо
+\begin{align*}
+{x \choose 0} = 1.
+\end{align*}
+\end{definition}
+
+\begin{proposition}[Властивості біноміальних коефіцієнтів]
+Справедливе наступне:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $\displaystyle {x+1 \choose k} = {x \choose k} + {x \choose k-1}$.
+\item $\displaystyle {x+y \choose n} = \sum_{k=0}^n {x \choose k} {y \choose n-k}$ (так звана формула додавання або тотожність Вандермонда);
+\item Якщо $k \in \mathbb{N}$, то звідси $\displaystyle {-k \choose n} = (-1)^n {k+n-1 \choose n}$.
+\end{enumerate}
+Інші важливі властивості або не пишу (бо поки особисто до них не дійшов), або вони вже були вище.
+\end{proposition}
+
+\begin{proof}
+Перше та третє залишаю в якості вправи, лише доведу друге за МІ.
+\begin{enumerate}[wide=0pt,label={\Roman*.}]
+\item \textit{База індукції}. При $n = 1$ маємо наступне:
+\[
+{x+y \choose 1} = \dfrac{x+y}{1!} = \dfrac{x}{1!} + \dfrac{y}{1!} = {x \choose 1} {y \choose 0} + {x \choose 0} {y \choose 1}
+\]
+(\textit{взагалі кажучи, треба починати з $n = 0$, але там все дуже ясно}).
+
+\item \textit{Припущення індукції}. При деякому $n$ формула додавання виконується.
+
+\item \textit{Крок індукції}. Залишається довести це при $n+1$. Маємо
+\begin{align*}
+{x + y \choose n+1} = \dfrac{x+y-n}{n+1} { x+y \choose n } \overset{\text{MI}}{=} \dfrac{x+y-n}{n+1} \sum_{k=0}^n { x \choose k} { y \choose n-k} \\
+= \sum_{k=0}^n \dfrac{x-k}{n+1} { x \choose k} { y \choose n-k} + \sum_{k=0}^n \dfrac{y-n+k}{n+1} { x \choose k} { y \choose n-k} \\
+= \sum_{k=0}^n \dfrac{k+1}{n+1} { x \choose k+1} { y \choose n-k} + \sum_{k=0}^n \dfrac{n-k+1}{n+1} { x \choose k} { y \choose n-k+1} \boxed{=}
+\end{align*}
+Із першої суми заберемо $n$-тий член, а з другої суми --- $0$-ий член. Крім того, для другої суми індекс $k$ замінимо на $k-1$, зрештою одержимо
+\begin{align*}
+\boxed{=} {x \choose n+1} {y \choose 0} + \sum_{k=0}^{n-1} \dfrac{k+1}{n+1} { x \choose k+1} { y \choose n-k} + \sum_{k=0}^{n-1} \dfrac{n-k}{n+1} { x \choose k} { y \choose n-k} \\
++ {x \choose 0} {y \choose n+1} = \sum_{k=0}^{n+1} {x \choose k} {y \choose n+1-k}
+\end{align*}
+\end{enumerate}
+МІ доведено.
+\end{proof}
 \newpage
 
 \section{Теорія графів}
@@ -3091,6 +3145,117 @@ $G \sqcup \overline{G}$ дає повний граф.
 $v_4e_1v_1e_2v_2e_2e_3v_3e_4v_5e_5v_1e_6v_3e_7v_4e_8v_5$.\\
 Важливо зауважити, що це не єдиний можливий напівойлерів шлях.
 \end{example}
+\newpage
+
+\section{Щось додаткове}
+\subsection{Символ Погхаммера}
+Ідея полягає в тому, щоб узагальнити поняття факторіалу.
+
+\begin{definition}
+Нехай $n \in \mathbb{N} \cup \{0\}$.\\
+Визначимо так званий \textbf{спадний факторіал}:
+\begin{align*}
+x^{\underline{n}} = x (x-1) (x-2) \dots (x-n+1).
+\end{align*}
+Існує також позначення $(x)_n$.\\
+Визначимо так званий \textbf{зростаючий факторіал}, або ще кажуть \textbf{символ Погхаммера}:
+\begin{align*}
+x^{\overline{n}} = x(x+1)(x+2) \dots (x+n-1).
+\end{align*}
+Існує також позначення $x^{(n)}$. Хоча часто можу бачити $(x)_n$ як символ Погхаммера, тому тут треба уточнювати.
+\bigskip \\
+Також існує домовленість:
+\begin{align*}
+x^{\underline{0}} = x^{\overline{0}} = 1.
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+Справедливе наступне:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $x^{\underline{n}} = (-1)^n (-x)^{\overline{n}}$, \qquad $x^{\overline{n}} = (-1)^n (-x)^{\underline{n}}$;
+\item $m^{\underline{n}} = A_{m}^n$, якщо $m \in \mathbb{N}$;
+\item $m^{\overline{n}} = \dfrac{(m+n-1)!}{(m-1)!}$, якщо $m \in \mathbb{N}$.
+\end{enumerate}
+\textit{Вправа: довести}.
+\end{proposition}
+
+\begin{remark}
+Отже, вираз $x^{\overline{n}}$ за маскою описує розміщення за умови, що $x$ --- натуральне число.
+\end{remark}
+
+\subsection{$q$-символ Погхаммера}
+Для позначення символа Погхаммера тут буду використовувати $(x)_n$. 
+\begin{definition}
+\textbf{$q$-символом Погхаммера} (або ще кажуть \textbf{зсунутий $q$-факторіал}) називають ось це:
+\begin{align*}
+(a;q)_n \overset{\text{def.}}{=} (1-aq^0)(1-aq^1) \dots (1-aq^{n-1}) = \prod_{m=0}^{n-1} (1-aq^m).
+\end{align*}
+Домовленість, що $(a;q)_0 = 1$.
+\end{definition}
+
+\begin{remark}
+Вираз $(a;q)_n$ є так званим $q$-аналогом стандартного символа Погхаммера, оскільки
+\[
+\lim_{q \to 1} \dfrac{(q^x;q)_n}{(1-q)^n} = x^{(n)}.
+\]
+\end{remark}
+
+\begin{remark}
+Ми можемо також визначити нескінченний варіант $q$-символа Погхаммера
+\begin{align*}
+(a;q)_{\infty} = \prod_{m=0}^\infty (1-aq^m).
+\end{align*}
+Просто варто зауважити, що цей добуток збіжний абсолютно, оскільки $|q| < 1$ (\textit{добуток типу $\prod_{n=0}^\infty a_n$ збіжний абсолютно, якщо $\sum_{n=0}^\infty |a_n|$ збіжний}).
+\end{remark}
+
+\begin{theorem}[$q$-біноміальна теорема]
+Нехай $|q|,\ |z| < 1$. Тоді справедлива формула:
+\begin{align*}
+\dfrac{(az;q)_\infty}{(z;q)_\infty} = \sum_{n=0}^\infty \dfrac{(a;q)_n}{(q;q)_n} z^n.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Ліву частину рівності позначимо за $A(z)$, яку розкладемо ось так:
+\[
+A(z) = \sum_{n=0}^\infty A_n z^n.
+\]
+Задача буде довести, що
+\[
+A_n = \dfrac{(a;q)_n}{(q;q)_n}.
+\]
+Зробимо шифтінг на $qz$, так би мовити --- коротше, розглянемо
+\begin{align*}
+(1-az) A(qz) = (1-az) \prod_{m=0}^\infty \dfrac{1-azq^{m+1}}{1-zq^{m+1}} = \dfrac{(1-az)(1-azq)(1-azq^2) \dots}{(1-zq)(1-zq^2) \dots} \\
+= \dfrac{\textcolor{red}{(1-z)} (1-az)(1-azq)(1-azq^2) \dots}{\textcolor{red}{(1-z)}(1-zq)(1-zq^2) \dots} = \dfrac{(az;q)_\infty \cdot (1-z)}{(z;q)_\infty} = (1-z) A(z).
+\end{align*}
+Якщо коротко, то ми одержали
+\[
+(1-az) A(qz) = (1-z)A(z),
+\]
+а тепер розпишемо через ряд:
+\[
+\sum_{n=0}^\infty A_n q^n z^n - \sum_{n=0}^\infty a A_n q^n z^{n+1} = \sum_{n=0}^\infty A_n z^n - \sum_{n=0}^\infty A_n z^{n+1}.
+\]
+Якщо відняти з двох сторін $A_0$, то одержимо, що
+\[
+\sum_{n=1}^\infty A_n q^n z^n - \sum_{n=0}^\infty a A_n q^n z^{n+1} = \sum_{n=1}^\infty A_n z^n - \sum_{n=0}^\infty A_n z^{n+1}.
+\]
+За допомогою заміною індексів в другому та четвертому рядах отримаємо
+\[
+\sum_{n=1}^\infty A_n q^n z^n - \sum_{n=1}^\infty a A_{n-1} q^{n-1} z^{n} = \sum_{n=1}^\infty A_n z^n - \sum_{n=1}^\infty A_{n-1} z^{n}.
+\]
+Тепер прирівнюємо коефіцієнти:
+\[
+A_n q^n - a A_{n-1} q^{n-1} = A_n - A_{n-1}.
+\]
+Нарешті, виражаємо, чому дорівнює $A_n$:
+\[
+A_n = \dfrac{1-aq^{n-1}}{1-q^n} A_{n-1},
+\]
+це виконується для всіх $n \geq 1$. Далі використо
+\end{proof}
 
 \end{document}
 

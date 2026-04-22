@@ -1471,11 +1471,11 @@ $\|x+M\|_{L/_M} = 0 \implies \|x\| = 0 \implies x \in M \implies x+M=M$.
 \exists C > 0: \forall x \in X: \| Ax \|_Y \leq C \| x \|_X.
 \end{align*}
 (\textit{надалі ми ці норми розрізняти не будемо, бо буде з контексту зрозуміло}).\\
-Позначення: $\mathcal{B}(X,Y)$ --- множина всіх обмежених операторів $X \to Y$.
+\textit{Позначення}: $\mathcal{B}(X,Y)$ --- множина всіх обмежених операторів $X \to Y$.
 \end{definition}
 
 \begin{remark}
-Нехай $A \in \mathcal{B}(X,Y)$. Зауважимо, що множина всіх констант, які обмежують оператор, тобто множина 
+Якщо $A \in \mathcal{B}(X,Y)$, то зауважимо, що множина всіх констант, які обмежують оператор, тобто множина 
 \[
 \{C > 0 \mid \forall x \in X: \| Ax\| \leq C \|x\|\},
 \]
@@ -1492,9 +1492,10 @@ $\|x+M\|_{L/_M} = 0 \implies \|x\| = 0 \implies x \in M \implies x+M=M$.
 
 \begin{corollary}
 $\|A\|$ --- найменше число, яке обмежує оператор $A \in \mathcal{B}(X,Y)$. Внаслідок чого для кожного оператора $A \in \mathcal{B}(X,Y)$ виконується нерівність
-\[
+\begin{align*}
 \| Ax \| \leq \|A\| \cdot \|x\|,\ \forall x \in X.
-\] 
+\end{align*}
+(\textit{коротше, ось цей інфімум має, насправді кажучи, мінімум.})
 \end{corollary}
 
 \begin{proof}
@@ -1526,7 +1527,7 @@ $\|A\|$ --- найменше число, яке обмежує оператор 
 \[
 \forall x \in X \setminus \{0\}: \dfrac{\|Ax\| }{\|x\|} \leq \|A\| - \varepsilon \implies \forall x \in X: \|Ax\| \leq (\|A\|-\varepsilon) \|x\|.
 \]
-Таким чином, $\|A\|-\varepsilon$ --- це константа, яка обмежує оператор, тоді за означенням норми, $\|A\| - \varepsilon \geq \|A\|$, а це --- суперечність!
+Отже, $\|A\|-\varepsilon$ --- це константа, яка обмежує оператор, тоді за означенням норми $\|A\| - \varepsilon \geq \|A\|$, а це --- суперечність!
 \end{proof}
 
 \begin{theorem}
@@ -1563,7 +1564,7 @@ A(x_1,x_2,\dots) = (x_2,x_3,\dots).
 \[
 \|A (x_1,x_2,\dots)\| = \|(x_2,x_3,\dots)\| = \sqrt{|x_2|^2 + |x_3|^2 + \dots} \leq \sqrt{|x_1|^2 + |x_2|^2 + |x_3|^2 + \dots} = 1 \cdot \|(x_1,x_2,\dots)\|.
 \]
-Отже, $A$ --- обмежений оператор, бо знайшли константу $C = 1$, що обмежує. Далі,\\
+Отже, $A$ --- обмежений оператор, бо знайшли константу $C = 1$, що обмежує. Далі,
 \begin{align*}
 \|A\| & = \displaystyle\sup_{\|(x_1,x_2,\dots)\| = 1} \|A(x_1,x_2,\dots)\| = \displaystyle\sup_{\|(x_1,x_2,\dots)\| = 1} \|(x_2,x_3,\dots)\| \\
 & = \sup_{\|(x_1,x_2,\dots)\| = 1} \sqrt{|x_2|^2 + |x_3|^2 + \dots} = \sup_{\|(x_1,x_2,\dots)\| = 1} \sqrt{1 - \|x_1\|^2} = 1.
@@ -1571,7 +1572,7 @@ A(x_1,x_2,\dots) = (x_2,x_3,\dots).
 \end{example}
 
 \begin{example}
-Задано лінійний оператор $A \colon C([0,1]) \to C([0,1])$, таким чином: 
+Задано лінійний оператор $A \colon C([0,1]) \to C([0,1])$ таким чином: 
 \[
 (Ax)(t) = \displaystyle\int_0^t \tau x(\tau)\,d\tau.
 \]
@@ -1604,10 +1605,10 @@ A(x_1,x_2,\dots) = (x_2,x_3,\dots).
 \end{example}
 
 \noindent
-Повернемось до питання, чому в лінійній алгебрі (де переважно досліджувалися оператори між скінченновимірними просторами) ми не розглядали обмежені оператори. Бо для таких випадків уже все відомо.
+Повернемось до питання, чому в лінійній алгебрі (\textit{де переважно досліджувалися оператори між скінченновимірними просторами}) ми не розглядали обмежені оператори. Бо для таких випадків уже все відомо.
 
 \begin{proposition}
-Нехай $X,Y$ --- нормовані простори, $\dim X < \infty$ та $A \in \mathcal{L}(X,Y)$. Тоді $A \in \mathcal{B}(X,Y)$.\\
+Нехай $X,Y$ --- нормовані, $\dim X \!<\! \infty$ та $A \in \mathcal{L}(X,Y)$. Тоді $A \in \mathcal{B}(X,Y)$.\\
 (\textit{отже, всі лінійні оператори між скінченновимірними векторними просторами --- обмежені})
 \end{proposition}
 
@@ -1663,6 +1664,18 @@ $\|A\| \geq 0$ --- зрозуміло. Також якщо $\|A\| = 0$, то з�
 Ми вже маємо оцінку $\| (A+B) x\| \leq (\|A\| + \|B\|) \|x\|$ при всіх $x \in X$, тому й при всіх $x$ з умовою $\|x\| = 1$. Таким чином, $\|A+B\| = \displaystyle\sup_{\|x\| = 1} \|(A+B)x\| \leq \|A\| + \|B\|$ --- третя властивість норми.
 \end{proof}
 
+\begin{proposition}
+Нехай $A \in \mathcal{B}(X,Y),\ B \in \mathcal{B}(Y,Z)$. Тоді композиція $BA \in \mathcal{B}(X,Z)$.
+\end{proposition}
+
+\begin{proof}
+Можна опиратися на композицію неперервних відображень. Але доведемо обмеженість інакше.
+\[
+\|BA x\| \leq \|B\| \|Ax\| \leq \|B\| \|A\| \|x\|.
+\]
+Звідси, окрім обмеженості, ми бонусом довели оцінку $\|BA\| \leq \|B\| \cdot \|A\|$.
+\end{proof}
+
 \begin{theorem}
 Якщо $Y$ --- банахів, то простір $\mathcal{B}(X,Y)$ --- теж банахів.
 \end{theorem}
@@ -1696,37 +1709,25 @@ II. \textit{Обмеженість}. \quad Оскільки $\sequence{A_n}$ ---
 III. \textit{$A_n \to A$}. \quad Згадаємо нерівність $\|(A_n-A_m)x\| < \varepsilon \|x\|$ при всіх $x \in X$, при всіх $\varepsilon > 0$ та $n,m \geq N$. Спрямуємо $m \to \infty$, тоді отримаємо $\|(A_n-A)x\| \leq \varepsilon \|x\|$, тому й $\|A_n-A\| \leq \varepsilon < 2\varepsilon$.
 \end{proof}
 
-\begin{proposition}
-Нехай $A \in \mathcal{B}(X,Y),\ B \in \mathcal{B}(Y,Z)$. Тоді композиція $BA \in \mathcal{B}(X,Z)$.
-\end{proposition}
-
-\begin{proof}
-Можна опиратися на композицію неперервних відображень. Але доведемо обмеженість інакше.
-\[
-\|BA x\| \leq \|B\| \|Ax\| \leq \|B\| \|A\| \|x\|.
-\]
-Звідси, окрім обмеженості, ми бонусом довели оцінку $\|BA\| \leq \|B\| \cdot \|A\|$.
-\end{proof}
-
 Наостанок закінчу ось таким твердженням:
 \begin{proposition}
 \label{isometry_between_bounded_maps_and_normed_space}
-Простори $\mathcal{B}(\mathbb{R},F)$ та $F$ задають природну ізометрію. Тому надалі
+Простори $\mathcal{B}(\mathbb{R},X)$ та $X$ задають природну ізометрію. Тому надалі
 \begin{align*}
-\mathcal{B}(\mathbb{R},F) = F.
+\mathcal{B}(\mathbb{R},X) = X.
 \end{align*}
 \end{proposition}
 
 \begin{proof}
-\rightproof Кожному елементу $y \in F$ поставимо в відповідність відображення $\mathbb{R} \to F$, яке працює як $\lambda \mapsto \lambda y$ та яке є обмеженим, оскільки $\| \lambda y\| = \|y\| |\lambda|$. Отже, побудували відображення
+\rightproof Кожному елементу $y \in X$ поставимо в відповідність відображення $\mathbb{R} \to F$, яке працює як $\lambda \mapsto \lambda y$ та яке є обмеженим, оскільки $\| \lambda y\| = \|y\| |\lambda|$. Отже, побудували відображення
 \begin{align*}
-\varphi \colon F \to \mathcal{B}(\mathbb{R},F), \qquad \varphi(y) = (\lambda \mapsto \lambda y).
+\varphi \colon X \to \mathcal{B}(\mathbb{R},X), \qquad \varphi(y) = (\lambda \mapsto \lambda y).
 \end{align*}
 Думаю, неважко переконатися, що це лінійне відображення.
 \bigskip \\
-\leftproof Кожному елементу $f \in \mathcal{B}(\mathbb{R},F)$ поставимо в відповідність елемент $f(1) \in F$. Отже, побудували відображення
+\leftproof Кожному елементу $f \in \mathcal{B}(\mathbb{R},X)$ поставимо в відповідність елемент $f(1) \in X$. Отже, побудували відображення
 \begin{align*}
-\psi \colon \mathcal{B}(\mathbb{R},F) \to F,\qquad \psi(f) = f(1).
+\psi \colon \mathcal{B}(\mathbb{R},X) \to X,\qquad \psi(f) = f(1).
 \end{align*}
 Тут теж нескладно довести, що це --- лінійне відображеня.
 \bigskip \\
@@ -1734,7 +1735,10 @@ III. \textit{$A_n \to A$}. \quad Згадаємо нерівність $\|(A_n-A
 \end{proof}
 
 \subsection{Деякі гучні теореми}
-\begin{theorem}[Open mapping theorem]
+Тут обговорюються три ключові речі: принцип відкритості відображення, принцип рівномірної обмеженості та принцип замкненості графіка.
+
+\begin{theorem}[Теорема про відкрите відображення]
+\label{open_mapping_theorem}
 Нехай $X,Y$ --- банахові простори та $A \in \mathcal{B}(X,Y)$ --- сюр'єктивне. Тоді $A$ --- вікдрите відображення. 
 \end{theorem}
 \noindent
@@ -1748,13 +1752,13 @@ III. \textit{$A_n \to A$}. \quad Згадаємо нерівність $\|(A_n-A
 I. \textit{$\overline{A(B(0;1))}$ містить якусь відкриту кулю}.\\
 Оскільки $A$ --- сюр'єктивне відображення, то тоді
 \begin{align*}
-X = \bigcup_{n =1}^\infty \overline{A(B(0;n))}.
+Y = \bigcup_{n =1}^\infty \overline{A(B(0;n))}.
 \end{align*}
 Тоді за теоремою Бера існує одне замикання $\overline{A(B(0;n_0))}$, яке містить відкриту кулю. Оскільки $A$ --- лінійний оператор, то можемо записати $\overline{A(B(0;n_0))} = n_0 \overline{A(B(0;1))}$, звідси $\overline{A(B(0;1))}$ теж містить відкриту кулю.
 \bigskip \\
 II. \textit{$\overline{A(B(0;1))}$ містить відкриту кулю з цетром в точці $0$}.\\
 Коротше, хотілось би, щоб існувала куля $B(r;0) \subset \overline{A(B(0;1))}$. Наразі відомо лише, що $B(v_0;4r) \subset \overline{A(B(0;1))}$. Оберемо допоміжну точку $v_1 \in A(B(0;1))$, для якої $\| v_0 - v_1 \| < 2r$ (\textit{таке можливо зробити в силу замкненості, якщо взяти послідовність, яка прямує до $v_0$}). Тоді маємо тепер вкладення $B(v_1;2r) \subset \overline{A(B(0;1))}$. Ідея тут полягала в тому, що ми хотіли коло з центром, який вже лежить в $A(B(0;1))$ (бо точка $v_0$ могла туди й не потрапити).\\
-Доведемо, що $B(0;r) \subset \overline{A(B(0;1))}$. Нехай $v \in B(0;r)$, тоді $2v + v_1 \in B(v_1;2r)$. Оскільки $v_1 \in A(B(0;1))$, то звідси $u_1 = Av_1$ для деякого $u_1 \in B(0;1)$. Точку $2v$ запишемо в такому вигляді:
+Доведемо, що $B(0;r) \subset \overline{A(B(0;1))}$. Нехай $v \in B(0;r)$, тоді $2v + v_1 \in B(v_1;2r)$. Оскільки $v_1 \in A(B(0;1))$, то звідси $v_1 = Au_1$ для деякого $u_1 \in B(0;1)$. Точку $2v$ запишемо в такому вигляді:
 \[
 2v = (2v+v_1) -v_1 = (2v+v_1) - Au_1.
 \]
@@ -1765,7 +1769,8 @@ III. \textit{$A(B(0;1))$ містить відкриту кулю з центр�
 \[
 B(0; 2^{-n}r) = 2^{-n} B(0;r) \subset 2^{-n} \overline{A(B(0;1))} = \overline{A(B(0;2^{-n}))}.
 \]
-Нехай $v \in B\left( 0; \dfrac{r}{2} \right)$, тобто $\| v \| < \dfrac{r}{2}$, але тоді із того зауваження отримуємо $v \in \overline{A\left( B \left( 0;\dfrac{1}{2} \right) \right)}$. Значить, існує точка $b_1 \in B\left( 0;\dfrac{1}{2} \right)$, для якої $\| v - Ab_1 \| < \dfrac{r}{4}$ (\textit{це можливо за аналогічними міркуваннями, як ми тоді шукали точку $v_1$}). Звідси $v - Ab_1 \in \overline{A\left(B\left( 0;\dfrac{1}{4} \right) \right)}$, тому існує точка $b_2 \in B\left(0;\dfrac{1}{4}\right)$, для якої $\| v - Ab_1 - Ab_2 \| < \dfrac{r}{8}$...\\
+Нехай $v \in B\left( 0; \dfrac{r}{2} \right)$, тобто $\| v \| < \dfrac{r}{2}$, але тоді із того зауваження отримуємо $v \in \overline{A\left( B \left( 0;\dfrac{1}{2} \right) \right)}$. Значить, існує точка $b_1 \in B\left( 0;\dfrac{1}{2} \right)$, для якої $\| v - Ab_1 \| < \dfrac{r}{4}$ (\textit{це можливо за аналогічними міркуваннями, як ми тоді шукали точку $v_1$}). Звідси $v - Ab_1 \in \overline{A\left(B\left( 0;\dfrac{1}{4} \right) \right)}$, тому існує точка $b_2 \in B\left(0;\dfrac{1}{4}\right)$, для якої $\| v - Ab_1 - Ab_2 \| < \dfrac{r}{8}$.\\
+\vdots \\
 Побудували послідовність $(b_k)_{k \in \mathbb{N}}$, де маємо
 \[
 \| b_k\| < 2^{-k}, \qquad \left\| v - \sum_{k=1}^n A b_k \right\| < 2^{-n-1} r.
@@ -1785,9 +1790,9 @@ Ab = \lim_{n \to \infty} A\left( \sum_{k=1}^n b_k \right) = \lim_{n \to \infty} 
 
 \begin{proof}
 Нехай $U$ --- відкрита в $X$. Хочу довести, що $A(U)$ --- відкрита в $Y$.\\
-Оберемо точку $b_2 \in A(U)$, тобто $b_2 = Ab_1$ для деякого $b_1 \in U$. За відкритістю знайдеться куля $B(b_1;\varepsilon) \subset U$. За лемою $A(B_1(0;1)) \supset B(0;\delta)$ для деякої кулі. Звідси
+Оберемо точку $y \in A(U)$, тобто $y = Ax$ для деякого $x \in U$. За відкритістю знайдеться куля $B(x;\varepsilon) \subset U$. За лемою $A(B_1(0;1)) \supset B(0;\delta)$ для деякої кулі. Звідси
 \[
-B(b_2, \varepsilon \delta) = b_2 + \varepsilon B(0;\delta) \subset b_2 + \varepsilon A(B(0;1)) = A(b_1) + \varepsilon A(B(0;1)) = A(b_1 + B(0;\varepsilon)) = T(B(b_1;\varepsilon)).
+B(y, \varepsilon \delta) = y + \varepsilon B(0;\delta) \subset y + \varepsilon A(B(0;1)) = Ax + \varepsilon A(B(0;1)) = A(x + B(0;\varepsilon)) = A(B(x;\varepsilon)).
 \]
 Отже, знайшли відкриту кулю з центром $b_2$, який міститься в $A(U)$.
 \end{proof}
@@ -1798,7 +1803,7 @@ B(b_2, \varepsilon \delta) = b_2 + \varepsilon B(0;\delta) \subset b_2 + \vareps
 \end{theorem}
 
 \begin{remark}
-Умова $\displaystyle\sup_{n \in \mathbb{N}} \| A_n x \| < +\infty$ для всіх $x \in X$ означає, що послідовність $(A_n x)_{n \in \mathbb{N}}$ -- обмежена для всіх $x \in X$. Аналогічно умова $\displaystyle\sup_{n \in \mathbb{N}} \| A_n\| < +\infty$ означає, що послідовність $(\|A_n\|)_{n \in \mathbb{N}}$ -- обмежена.
+Умова $\displaystyle\sup_{n \in \mathbb{N}} \| A_n x \| < +\infty$ для всіх $x \in X$ означає, що послідовність $(A_n x)_{n \in \mathbb{N}}$ --- обмежена для всіх $x \in X$. Аналогічно умова $\displaystyle\sup_{n \in \mathbb{N}} \| A_n\| < +\infty$ означає, що послідовність $(\|A_n\|)_{n \in \mathbb{N}}$ --- обмежена.
 \end{remark}
 
 \begin{proof}
@@ -1824,28 +1829,49 @@ C_k = \{ x \in X \mid \|x\| \leq 1,\ \sup_{n \in \mathbb{N}} \| A_n x\| \leq k \
 \sup_{n \in \mathbb{N}} \|A_n x\| = \sup_{n \in \mathbb{N}} \| -A_n x_0 + A_n (x_0 + x) \| \leq \sup_{n \in \mathbb{N}} \| A_n x_0\| + \sup_{n \in \mathbb{N}} \| A_n(x_0+x)\| \leq k + k.
 \]
 Тобто для кожного $x \in B(0;\delta_0)$ маємо $\displaystyle\sup_{n \in \mathbb{N}} \| A_n x \| \leq 2k$.\\
-Нехай $x$ такий, що $\|x\| = 1$. Тоді цілком ясно, що $\dfrac{\delta_0}{2}x \in B(0;\delta_0)$, що дає оцінку $\displaystyle \left\| A_n \left( \dfrac{\delta_0}{2} x\right) \right\| \leq 2k$ для кожного $n \in \mathbb{N}$. Іншими словами, $\| A_n x \| \leq \dfrac{4k}{\delta_0}$. Оскільки це виконується для всіх $x$, де $\|x\| = 1$, то звідси $\|T_n\| \leq \dfrac{4k}{\delta_0}$ для всіх $n \in \mathbb{N}$.
+Нехай $x$ такий, що $\|x\| = 1$. Тоді цілком ясно, що $\dfrac{\delta_0}{2}x \in B(0;\delta_0)$, що дає оцінку $\displaystyle \left\| A_n \left( \dfrac{\delta_0}{2} x\right) \right\| \leq 2k$ для кожного $n \in \mathbb{N}$. Іншими словами, $\| A_n x \| \leq \dfrac{4k}{\delta_0}$. Оскільки це виконується для всіх $x$, де $\|x\| = 1$, то звідси $\|A_n\| \leq \dfrac{4k}{\delta_0}$ для всіх $n \in \mathbb{N}$.
 \end{proof}
 
-%TODO обдумати
-\iffalse
 \begin{remark}
-У теоремі Банаха-Штайнгауза умова того, що $X$ --- банахів, --- суттєва.
+У теоремі Банаха-Штайнгауза умова того, що $X$ --- банахів, є суттєвою.
 \end{remark}
 
 \begin{example}
-Зокрема розглянемо простір $c_0$ --- послідовності, що збігаються до нуля. Далі розглянемо небанахів підпростір $c_{00} \subset c_0$ --- послідовності, де всі члени нулі, починаючи з деякого номера.\\
-Задамо послідовність операторів $l_n \colon c_{00} \to c_{00}$, що задається як
+Зокрема розглянемо простір $\mathfrak{c}_0$ --- послідовності, що збігаються до нуля. Далі розглянемо небанахів підпростір $\mathfrak{c}_{00} \subset \mathfrak{c}_0$ --- послідовності, де всі члени нулі, починаючи з деякого номера (\textit{вправа: переконатися, що це дійсно небанахів}). Задамо послідовність операторів $l_n \colon \mathfrak{c}_{00} \to \mathfrak{c}_{00}$, визначені як
 \[
-l_n(x) = (x_1, 2x_2, \dots, n x_n, 0, 0, \dots).
+l_n(x_1,x_2,\dots,x_n,0,0,\dots) = (x_1, 2x_2, \dots, n x_n, 0, 0, \dots).
 \]
-Зауважимо, що $l_n \in \mathcal{B}(c_{00})$, оскільки
+Зауважимо, що $l_n \in \mathcal{B}(\mathfrak{c}_{00})$ із нормою $\|l_n\| = n$ (\textit{вправа: довести}). Крім того, для кожного $x \in \mathfrak{c}_{00}$ послідовність $(l_n(x))_{n\in \mathbb{N}}$ --- обмежена, але $(\|l_n\|)_{n\in \mathbb{N}}$ уже не обмежена.
+\iffalse
 \[
 \|l_n(x)\| = \| (x_1,2x_2,\dots,n x_n, 0, 0,\dots) \| = \sqrt{x_1^2 + 2x_2^2 + \dots + n x_n^2} \leq n \| x \|.
 \]
-Крім того, для кожного $x \in c_{00}$ послідовність $(l_n(x))$ -- обмежена
-\end{example}
 \fi
+\end{example}
+
+\iffalse
+% remark for myself
+\begin{remark}
+Обмеженість та поточкова обмеженість --- це не одне й те саме. Можна взяти простір $\mathfrak{c}_0$ відносно норми $l^\infty$ та оператор $A_n \colon \mathfrak{c}_0 \to \mathfrak{c}_0$, що задається як
+\[
+A(x_1,x_2,\dots) = (nx_n,0,0,\dots)
+\]
+Кожен $A_n \in \mathcal{B}(\mathfrak{c}_0)$, проте послідовність $(A_n(x))$ не обов'язково оюмежена, зокрема при $x = \left(1, \dfrac{1}{\sqrt{2}}, \dfrac{1}{\sqrt{3}},\dots\right)$.
+\end{remark}
+\fi
+
+\begin{theorem}[Теорема про замкнений графік]
+\label{closed_graph_theorem}
+Нехай $X_1,X_2$ --- банахові простори та $A \in \mathcal{L}(X_1,X_2)$. \textbf{Графіком} даного оператора назвемо множину
+\begin{align*}
+\Gamma(A) = \{ (x, Ax) \mid x \in X \}.
+\end{align*}
+Тоді справедливе наступне:
+\begin{center}
+$A \in \mathcal{B}(X_1,X_2) \iff \Gamma(A)$ --- замкнена на $X_1 \times X_2$.
+\end{center}
+(\textit{доведення очікується після обговорення обернених операторів})
+\end{theorem}
 
 \subsection{Обернені оператори}
 \begin{definition}
@@ -1961,18 +1987,8 @@ I + A^{-1}B \colon X \to X.
 Доведемо, що $A^{-1}$ --- неперервне відображення (із топологічного означення). Справді, якщо $U$ --- відкрита в $X$, то його прообраз $(A^{-1})^{-1}(U) = A(U)$ --- відкрита в $Y$ (наш оператор $A$ задовольняє open mapping theorem). Власне, тоді $A^{-1} \in \mathcal{B}(Y,X)$.
 \end{proof}
 \noindent
-Ще один гучний результат, який мав би бути минулого розділу потому, однак щойно доведена теорема буде потрібна на допомогу.
 
-\begin{theorem}[Теорема про замкнений графік]
-Нехай $X_1,X_2$ -- банахові простори та $A \in \mathcal{L}(X_1,X_2)$. \textbf{Графіком} даного оператора назвемо множину
-\begin{align*}
-\Gamma(A) = \{ (x, Ax) \mid x \in X \}.
-\end{align*}
-Тоді справедливе наступне:
-\begin{center}
-$A \in \mathcal{B}(X_1,X_2) \iff \Gamma(A)$ -- замкнена на $X_1 \times X_2$.
-\end{center}
-\end{theorem}
+Тепер ми готові, нарешті, довести теорему про замкнений графік \thref{closed_graph_theorem}.
 
 \begin{proof}
 \rightproof Дано: $A \in \mathcal{B}(X_1,X_2)$. Розглянемо послідовність $( (x_n, Ax_n) )_{n \in \mathbb{N}} \subset \Gamma(A)$, де $x_n \to x$ та $Ax_n \to y$. Однак оскільки $A$ -- неперервний, то насправді $Ax_n \to Ax = y$. Звідси точка $(x,Ax) \in \Gamma(A)$.
