@@ -134,6 +134,9 @@
 \end{enumerate}
 
 \subsection{Суміжні класи}
+\begin{enumerate}[wide=0pt,label=\thesubsection.\arabic*]
+\item Нехай $G$ --- група та $H,K \leq G$, що мають скінченний індекс. Тоді $H \cap K$ також має скінченний індекс.
+\end{enumerate}
 
 \subsection{Нормальні підгрупи}
 \begin{enumerate}[wide=0pt,label=\thesubsection.\arabic*]
@@ -143,7 +146,7 @@
 
 \item Для груп $\left< G, * \right>$ нехай відомо, що $K \triangleleft H$ та $H \triangleleft G$. Чи випливає з цього, що $K \triangleleft G$? (\textit{вказівка: подивитись на групу $D_4$ та на якісь дві підгрупи}).
 
-\item Нехай $G$ --- група та $H \triangleleft G$. Довести, що $G/_H$ --- абелева $\iff [g,h] \in H$ (\textit{елемент $[g,h] = g*h*g^{-1}*h^{-1}$ називається комутатором}). 
+\item Нехай $G$ --- група та $H \triangleleft G$. Довести, що $G/_H$ --- абелева $\iff [g,h] \in H$ (\textit{елемент $[g,h] = g*h*g^{-1}*h^{-1}$ називається комутатором}).
 \end{enumerate}
 
 \subsection{Факторгрупи}
@@ -159,6 +162,15 @@
 
 \item Нехай $G$ --- скінченна група, причому кожен елемент є сам собі оборотним. Довести, що $G \cong \mathbb{Z}_2 \times \dots \times \mathbb{Z}_2$.
 \end{enumerate}
+
+\subsection{Теореми про ізоморфізми}
+\begin{enumerate}[wide=0pt,label=\thesubsection.\arabic*]
+\item Нехай $G$ --- скінченна група та $n > 1$, причому $(xn)^n = x^n y^n$ для всіх $x,y \in G$. Позначимо
+\[
+G[n] = \{g \in G: g^n = 1\}, \qquad G^n = \{ g^n \mid g \in G\}.
+\]
+Довести, що $G[n], G^n \triangleleft G$. Крім того, показати, що $|G^n| = [G:G[n]]$.
+\end{enumerate}
 \newpage
 
 \section{Теорія групової дії}
@@ -169,7 +181,13 @@
 \subsection{•}
 \subsection{•}
 \subsection{•}
-\subsection{•}
+\subsection{Нормалізатори}
+\begin{enumerate}[wide=0pt,label=\thesubsection.\arabic*]
+\item Нехай $H \leq K \leq G$. Довести, що $N_K(H) = N_G(H) \cap K$.
+
+\item Довести, що $N_G(aHa^{-1}) = aN_G(H)a^{-1}$. Іншими словами це сформулювати можна так: якщо $H_1,H_2$ --- спряжені підгрупи, то $N_G(H_1),N_G(H_2)$ --- спряжені також.
+\end{enumerate}
+
 \subsection{$p$-групи та деякі результати}
 \begin{enumerate}[wide=0pt,label=\thesubsection.\arabic*]
 \item Спростувати твердження: якщо $G$ --- група, де $|G| = p^k$, то $G$ --- абелева при $k \geq 3$ (\textit{при $k \in \{0,1,2\}$  всім же відомо, що це виконується?}). Для цього:
@@ -189,6 +207,9 @@ H(p) = \left\{ \begin{pmatrix}
 \end{itemize}
 \end{enumerate}
 \subsection{Теорема Коші та теореми Сілова}
+\begin{enumerate}[wide=0pt,label=\thesubsection.\arabic*]
+\item Нехай $G$ --- скінченна група, причому для кожного $p \mid |G|$ існує лише одна $p$-Сіловська підгрупа. Довести, що $G$ є (внутрішнім) прямим добутком його Сіловських підгруп.
+\end{enumerate}
 \newpage
 
 \section{Ряди підгруп}
