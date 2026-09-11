@@ -189,10 +189,14 @@
 \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Out}{Out}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\ncl}{ncl}
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\GL}{GL}
+
 
 % field theory
 \DeclareMathOperator{\charac}{char}

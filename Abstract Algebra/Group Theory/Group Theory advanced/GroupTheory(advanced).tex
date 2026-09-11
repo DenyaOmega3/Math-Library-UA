@@ -492,6 +492,170 @@ a^{2^{n-1}} = 1, \qquad bab^{-1} = a^{-1}, \qquad b^2 = a^{2^r}.
 (TODO: додати теорему: $p$-група $G$ циклічна $\iff$ $G$ --- абелева, що містить єдину підгрупу порядка $p$.
 \newpage
 
+\section{Автоморфізми}
+\subsection{Група автоморфізмів}
+\textit{Позначення}: $\Aut(G)$ --- група автоморфізмів відносно взяття композиції.
+
+\begin{remark}
+$\Aut(G) \leq S_G$, тому стає миттєво ясно, чому це група.
+\end{remark}
+
+\begin{definition}
+Автоморфізм $\varphi \in \Aut(G)$ називається \textbf{внутрішнім}, якщо
+\begin{align*}
+\exists g \in G: \varphi(x) = g x g^{-1}
+\end{align*}
+Інакше такий автоморфізм $\varphi$ називається \textbf{зовнішнім}.
+\bigskip \\
+\textit{Позначення}: $\Inn(G)$ --- множина всіх внутрішніх автоморфізмів.
+\end{definition}
+
+\begin{theorem}
+$\Inn(G) \triangleleft \Aut(G)$, причому $G/_{Z(G)} \cong \Inn(G)$.
+\end{theorem}
+
+\begin{proof}
+Дійсно, нехай $f \in \Aut(G)$ та $\varphi \in \Inn(G)$. Розглянемо відображення $f \circ \varphi \circ f^{-1}$ більш детально:
+\begin{align*}
+f \circ \varphi \circ f^{-1}(x) = f(\varphi(f^{-1}(x))) = f(g f^{-1}(x) g^{-1}) = f(g) x f(g)^{-1}.
+\end{align*}
+Тобто $f \circ \varphi \circ f^{-1}$ поводить себе як спряження, тобто $f \circ \varphi \circ f^{-1} \in \Aut(G)$.
+\bigskip \\
+Для останнього розглянемо відображення $G \to \Inn(G)$, що відображає $g \mapsto \varphi_g$, де $\varphi_g(x) = gxg^{-1}$. Можемо зауважити, що воно сюр'єктивне та $\ker = Z(G)$, а далі І теорема про ізоморфізм\footnote{Схожим доведенням можемо показати більш загальний результат:\\
+Нехай $H \leq G$, тоді $Z_G(H) \triangleleft N_G(H)$ та $N_G(H)/_{Z_G(H)}$ може бути вкладений в $\Aut(H)$.}.
+\end{proof}
+
+\begin{definition}
+Нехай $G$ --- група. Тоді можемо визначити \textbf{групу зовнішніх автоморфізмів}:
+\begin{align*}
+\Out(G) = \Aut(G)/_{\Inn(G)}.
+\end{align*}
+\end{definition}
+
+\begin{definition}
+Група $G$ називається \textbf{повною}, якщо
+\begin{center}
+група має тривіальний центр та всі автоморфізми внутрішні.
+\end{center}
+Внаслідок чого $\Aut(G) \cong G$.
+\end{definition}
+
+Зараз награємось кількома прикладами.
+
+\begin{example}
+Зокрема $\Aut(V) \cong \Aut(S_3) \cong S_3$.
+\bigskip \\
+Щодо групи Кляйна, то зауважимо, що кожен $\varphi \in \Aut(V)$ переставляє три інволюції. Далі побудуємо ізоморфізм $\Aut(V) \to S_{V \setminus \{e\}} \cong S_3$ ось таким чином: $\Aut(V) \ni \varphi \mapsto \varphi|_{V \setminus \{e\}} \in S_3$.
+\bigskip \\
+Щодо групи $S_3$, то зауважимо, що кожен $\varphi \in \Aut(S_3)$ переставляє інволюції. Тому побудуємо ізоморфізм $\Aut(S_3) \to S_{\{(12),(13),(23)\}} \cong S_3$ ось таким чином: $\varphi \mapsto \varphi|_{\{(12),(13),(23)\}}$.
+\end{example}
+
+\begin{remark}
+Незважаючи на те, що $V \not\cong S_3$, ми все одно отримали $\Aut(V) \cong \Aut(S_3)$.
+\end{remark}
+
+\begin{example}
+Якщо $G$ --- елементарна абелева група порядка $p^n$, то звідси $\Aut(G) \cong \GL(n,p)$.
+\end{example}
+
+\begin{example}
+Також маємо $\Aut(\mathbb{Z}) \cong \mathbb{Z}_2$.
+\bigskip \\
+Нехай $G = \left<x\right>$ --- циклічна група. Якщо $\varphi \in \Aut(G)$, то $\varphi(x)$ породжує групу $G$. Лише $x,x^{-1}$ будуть твірними групи $G$, тому лише два можливих автоморфізми $G$, тобто $\Aut(\mathbb{Z}) \cong \Aut(G) \cong \mathbb{Z}_2$.
+\end{example}
+
+\begin{example}
+Тут взагалі цікавіше: $\Aut(G) = 1 \iff |G| \leq 2$.
+\bigskip \\
+\rightproof Дано $\Aut(G) = 1$. Тоді кожний автоморфізм спряження $\varphi_g = \id$ для кожного $g \in G$, тобто $G$ --- абелева група. Значить, відображення $a \mapsto a^{-1}$ буде автоморфізмом $G$ (\textit{такий існує при $|G| \neq 1$}), а звідси $a = a^{-1}$ для кожного $a \in G$. Отже, $G$ --- елементарна абелева $2$-група, $|G| = 2^n$, тому $1 = \Aut(G) \cong GL(n,2)$. Останнє можливо лише при $n = 1$, тобто $|G| = 2$.
+\bigskip \\
+\leftproof Дано: $|G| \leq 2$. Ситуація з $|G| = 1$ нецікава. Ситуація з $|G| = 2$ тут в тому, що лише один ізоморфізм існує так, що $e \mapsto e$ та $x \mapsto x$.
+\end{example}
+
+\subsection{Обчислення інших груп автоморфізмів}
+\subsubsection{$\Aut(\mathbb{Z}_n)$ для кожного $n \in \mathbb{N}$}
+\begin{lemma}
+Нехай $G$ --- циклічна група порядка $n$. Тоді $\Aut(G) \cong U_n$.
+\end{lemma}
+
+\begin{proof}
+Треба лише побудувати ізоморфізм $\Aut(G) \to U_n$. Розглянемо $\varphi \in \Aut(G)$ та нехай $G = \left<a\right>$. Звідси $\varphi(a) = a^k$ для деякого $k$. Ба більше, $a^k$ сам є твірним групи $G$, значить $\gcd(k,n) = 1$. Тому одержали $\bar{k} \in U_n$.
+\end{proof}
+
+\begin{theorem}
+Справедливе наступне:
+\begin{enumerate}[nosep,label={\arabic*)}]
+\item $\Aut(\mathbb{Z}_2) = 1, \qquad \Aut(\mathbb{Z}_4) \cong \mathbb{Z}_2, \qquad \Aut(\mathbb{Z}_{2^m}) \cong \mathbb{Z}_2 \times \mathbb{Z}_{2^{m-2}}$ при $m \geq 3$.
+\item $\Aut(\mathbb{Z}_{p^m}) \cong \mathbb{Z}_{(p-1)p^{m-1}}$, якщо $p$ --- непарне просте число.
+\item Якщо $n = p_1^{e_1} \dots p_t^{e_t}$, то звідси $\Aut(\mathbb{Z}_n) \cong \prod_i \Aut(\mathbb{Z}_{p_i^{e_i}})$.
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{$\Aut(S_n)$ для кожного $n \in \mathbb{N}$}
+\begin{lemma}
+$\varphi \in \Aut(S_n)$ зберігає транспозиції (\textit{тобто $\varphi(\tau)$ є транспозицією, якщо $\tau$ --- транспозиція}) $\iff \varphi \in \Inn(S_n)$.
+\end{lemma}
+
+\begin{proof}
+\rightproof Дано: $\varphi$ зберігає транспозиції. Спочатку за індукцією доведемо наступне: для $t \geq 2$ існують спряжені відображення $\gamma_2,\dots,\gamma_t$ так, що $\gamma_t^{-1} \dots \gamma_2^{-1} \varphi$ залишають перестановки $(1,\ 2), \dots , (1,\ t)$ нерухомими.
+\begin{enumerate}[wide=0pt,label={\Roman*.}]
+\item \textit{База індукції}. При $t = 2$ маємо $\varphi(1,\ 2) = (i,\ j)$ я деяких $i,j$. Тоді розглянемо $\gamma_2$ як відображення спряження на $(i,\ i)(2,\ j)$. Тож $\gamma_2^{-1} \varphi$ дійсно не буде рухати $(1,\ 2)$.
+
+\item \textit{Припущення індукції}. При деякому $t$ відображення $\psi = \gamma_t^{-1} \dots \gamma_2^{-1} \varphi$ залишають перестановки $(1,\ 2), \dots , (1,\ t)$ нерухомими.
+
+\item \textit{Крок індукції}. Досі $\psi$ зберігає транспозиції, тому $\psi(1,\ t+1) = (l,\ k)$ для деяких $l,k$. При цьому $(1,\ t+1)$ та $(l,\ k)$ перетинаються (\textit{у протилежному випадку $\psi((1,\ 2)(1,\ t+1)) = (1,\ 2)(1,\ k)$, у цих перестановках різні порядки, а ізоморфізм його зберігає}). Значить, або $\psi(1,\ t+1) = (1,\ k)$, або $\psi(1,\ t+1) = (2,\ k)$. Тоді обов'язково $k \geq t+1$ (\textit{у протилежному випадку в силу ін'єкції $\varphi$ одержимо або суперечність $(1,\ t+1) = (1,\ k)$, або суперечність $(1,\ t+1) = (2,\ k) = (1,\ 2)(1,\ k)(1,\ 2)$}).\\
+Отже, визначимо $\gamma_{t+1}$ як спряження елементом $(k,\ t+1)$. Тоді $\gamma_{t+1}$ залишає $(1,\ 2), \dots, (1,\ t+1)$ нерухомими, а тож МІ доведено.
+\end{enumerate}
+Нарешті, $S_n = \left< (1,\ 2), \dots, (1,\ n) \right>$, звідси одержимо $\gamma_n^{-1} \dots \gamma_2^{-1} \varphi = \id$. Тобто $\varphi = \gamma_2 \dots \gamma_n \in \Inn(S_n)$.
+\bigskip \\
+\leftproof Дано: $\varphi \in \Inn(S_n)$. Тобто $\varphi$ працює як спряження, а спряження зберігає структуру цикла. Тому транспозиція після спряження буде транспозицією.
+\end{proof}
+
+\begin{theorem}
+Група $S_n$ повна при $n \notin \{2,6\}$.
+\end{theorem}
+
+Одразу скажу, що при $n = 2$ отримаємо $S_2 \cong \mathbb{Z}_2$, тобто $S_2$ не має тривіальний центр.
+
+\begin{proof}
+Позначення: $T_k$ --- клас спряженості в $S_n$, який містить всі добутки із $k$ неперетинних транспозицій. Відомо, що $\sigma \in S_n$ є інволюцією $\iff \sigma \in T_k$ для деякого $k$.\\
+Нехай $\theta \in \Aut(S_n)$, відображення зберігає порядок, тож $\theta(T_1) = T_k$ для деякого $k$. Залишилося довести, що $|T_k| \neq |T_1|$ при $k \neq 1$ та $n \neq 6$. Звідси випливатиме $\theta(T_1) = T_1$, а за лемою вище це дає $\theta \in \Inn(S_n)$.
+\bigskip \\
+Знайдемо $|T_k|$. Всього існують рівно
+\begin{align*}
+\dfrac{n(n-1)}{2} \cdot \dfrac{(n-2)(n-3)}{2} \cdots \dfrac{(n-2k+2)(n-2k+1)}{2}
+\end{align*}
+$k$-кортежів із неперетинних транспозицій. Прибираємо $k!$ можливих перестановок цих транспозицій в силу комутативності, тому
+\begin{align*}
+|T_k| = \dfrac{n(n-1) \dots (n-2k+1)}{k! 2^k}.
+\end{align*}
+Далі хочемо розв'язати рівняння:
+\begin{align*}
+|T_1| = |T_k| \iff (n-2) \dots (n-2k+1) = k! 2^{k-1}.
+\end{align*}
+Оскільки права частина рівності додатна, то $n \geq 2k$. Значить, ліва частина щонайменше $(2k-2)!$, але при $k \geq 4$ за МІ можна довести, що $(2k-2)! > k! 2^{k-1}$. Отже, рівність може виконуватися при $k \in \{2,3\}$.\\
+Якщо $k = 2$, то отримаємо $(n-2)(n-3) = 4$, що неможливо.\\
+Якщо $k = 3$, то тоді $n \geq 6$. Припускаючи, що $k > 6$, одержимо, що ліва частина щонайменше $120$, а права частина дорівнює $24$ --- неможливо.\\
+Отже, $n \geq 6$, тоді $|T_1| \neq |T_k|$.
+\end{proof}
+
+\begin{corollary}
+Нехай $\theta$ є зовнішнім автоморфізмом $S_6$ та $\tau \in S_6$ --- транспозиція. Тоді $\theta(\tau)$ є добутком трьох неперетинних транспозицій.
+\end{corollary}
+
+\begin{remark}
+Внаслідок чого довели, що $\Aut(S_n) \cong S_n$ при $n \notin \{2,6\}$.
+\end{remark}
+
+\begin{corollary}
+Нехай $\theta \in \Out(S_6)$ та $\tau \in S_6$ --- транспозиція. Тоді $\theta(\tau)$ є добутком трьох неперетинних транспозицій.
+\end{corollary}
+
+\begin{proof}
+
+\end{proof}
+
+\newpage
 \section*{Задачі, які я ще не розв'язав}
 \begin{itemize}[wide=0pt]
 \item $S_n$ при $n \geq 5$ не має підгрупи $H$ з індексом $2 < [S_n:H] < n$ (\textit{розв'язана}).

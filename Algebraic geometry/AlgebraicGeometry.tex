@@ -1,0 +1,250 @@
+\documentclass{math_library}
+
+\usetikzlibrary{decorations.markings}
+
+\counterwithin{equation}{section}
+
+\usepackage{accents}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\begin{document}
+%\includepdf[scale=1]{preview.jpg}
+
+\tableofcontents
+\newpage
+
+\section{Алгебричні многовиди}
+Надалі всюди позначатиму $k$ за алгебраїчно замкнене поле (\textit{якщо окремо десь не пропишеться})
+
+\subsection{Афінні многовиди}
+
+\subsection{Проєктивні многовиди}
+
+\subsubsection{Добутки в квазі-проєктивних многовидах}
+
+\subsubsection{Вкладення Сегре}
+Нехай $\psi \colon \mathbb{P}^r \times \mathbb{P}^s \to \mathbb{P}^{(r+1)(s+1)-1}$ задається формулою:
+\begin{align*}
+[X_0: \ldots :X_r] \times [Y_0: \ldots : Y_s] \mapsto [X_0Y_0: X_0Y_1: \dots X_0Y_s: X_1Y_0: X_1Y_1: \dots X_rY_s].
+\end{align*}
+\begin{enumerate}[wide=0pt,label={\Roman*.}]
+\item $\psi$ \textit{коректно визначене}.\\
+Дійсно, масштабуючи точку $[X_0:\ldots:X_r]$ на $\lambda$ та точку $[Y_0:\ldots:Y_s]$ на $\mu$ (\textit{це ми взяли еквівалентні точки}), то звідси $[X_0Y_0: \ldots: X_r Y_s]$ масштабується на $\lambda \mu$, еквівалентність виконується.
+
+\item \textit{$\psi$ ін'єктивне}.\\
+Нехай $[X_0Y_0:X_0Y_1:\ldots:X_rY_s] = [A_0B_0:A_0B_1:\ldots:A_rB_s]$. Хочемо довести, що насправді $[X_0:\ldots:X_r] \times [Y_0:\ldots:Y_s] = [A_0:\ldots:A_r] \times [B_0:\ldots:B_s]$. Однак наприклад, однорідні координати
+\[
+X_0 = X_0 Y_0 = A_0 B_0 = A_0, \qquad Y_0 = X_0 Y_0 = A_0 B_0 = B_0.
+\]
+Із іншими координатами аналогічно.
+
+\item \textit{$\psi(\mathbb{P}^r \times \mathbb{P}^s)$ задає проєктивний многовид в $\mathbb{P}^{(r+1)(s+1)-1}$}.\\
+Для початку розглянемо гомоморфізм $k[Z_{00}: Z_{01}: \ldots : Z_{rs}] \to k[x_0,\dots,x_r,y_0,\dots,y_s]$, що задається як $Z_{ij} \mapsto x_i y_j$. Доведемо, що $\psi(\mathbb{P}^r \times \mathbb{P}^s) = Z(\ker f)$. Можна вже зазначити, що многочлени $u_{ijkl}(Z_{00},\dots,Z_{rs}) = Z_{ij} Z_{kl} - Z_{kj} Z_{il}$ уже потрапляють в $\ker f$.\\
+Нехай $P \in Z(\ker f)$, де $P = [Z_{00}: \ldots: Z_{rs}]$. Зокрема розглянемо многочлен $u_{ijkl} \in \ker f$, звідси (TODO:?)
+\end{enumerate}
+
+\subsubsection{Проєктивне замикання афінного многовида}
+\begin{definition}
+Нехай $Y \subset \mathbb{A}^n$ --- афінний многовид. Ототожнимо $\mathbb{A}^n$ із відкритою множиною $U_0 \subset \mathbb{P}^n$ гомоморфізмом $\varphi_0$. Тоді ототожнимо $Y$ та візьмемо його замикання, позначу так само $\Cl Y$. Ось це й називається \textbf{проєктивним замиканням $Y$}.
+\end{definition}
+
+\begin{proposition}
+Нехай $Y \subset \mathbb{A}^n$ --- афінний многовид та розглянемо його проєктивне замикання $\Cl Y$. Тоді
+\begin{align*}
+I( \Cl Y) = \left< \beta(I(Y)) \right>,
+\end{align*}
+де $\beta$ є перетворювачем в однорідний многочлен.
+\end{proposition}
+
+\begin{proof}
+Для бажаного доведемо, що $Z(\beta(I(Y))) = \Cl Y$.
+\begin{enumerate}[wide=0pt,label={\Roman*.}]
+\item \textit{$Z(\beta(I(Y)))$ містить $Y$}.\\
+Дійсно, нехай $P = [a_0:a_1:\ldots:a_n] \in Y$, цю точку ототожнимо з $\left( \dfrac{a_1}{a_0}, \dots, \dfrac{a_n}{a_0}\right)$. Нехай тепер $f \in \beta(I(Y))$, звідси $f(x_0,\dots,x_n) = x_0^{\deg g} g\left( \dfrac{x_1}{x_0},\dots,\dfrac{x_n}{x_0}\right)$ для деякого $g \in I(Y)$. Проте тоді $g(P) = 0$, внаслідок чого $f(P) = 0$.
+
+\item \textit{$Z(\beta(I(Y)))$ найменша можлива множина}.\\
+Нехай $W$ інша замкнена множина, що містить $Y$, тобто $W = Z(\mathfrak{a})$ для деякого однорідного ідеалу $\mathfrak{a}$. Звідси одержимо $I(Y) \supset I(\mathfrak{a})$. Хочемо довести, що $W \supset Z(\beta(I(Y)))$.\\
+Нехай $Q \in Z(\beta(I(Y)))$, тобто $f(Q) = 0$ для кожного $f \in \beta(I(Y))$, тобто $x_0^{\deg g} g\left( \dfrac{x_1}{x_0},\dots, \dfrac{x_n}{x_0}\right) = 0$. Якщо ототожнити $Q$ з точокю $P = \left( \dfrac{x_1}{x_0},\dots, \dfrac{x_n}{x_0}\right)$, то одержимо $P \in Z(I(Y)) = Y \subset W$. \qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+Слід зауважити, що якщо $f_1,\dots,f_r$ породжують $I(Y)$, то зовсім не обов'язково $\beta(f_1),\dots,\beta(f_r)$ породжують $I(\Cl Y)$.
+\end{remark}
+
+\begin{example}
+Зокрема розглянемо $Y \subset \mathbb{A}^3$, що задається кривою $(x,y,z) = (t,t^2,t^3)$. Відомо, що $f_1 = y-x^2$ та $f_2 = z-x^3$ породжують $I(Y)$. Однак $\beta(f_1), \beta(f_2)$ не породжують $I(\Cl Y)$, для цього треба розглянути $f_3 = z - xy$ та довести, що $\beta(f_3)$ не розписується як комбінація попередніх двох.
+\end{example}
+
+\subsection{Морфізми}
+
+\subsection{Раціональні відображення}
+\subsubsection{Основні означення}
+\begin{definition}
+Нехай $X,Y$ --- алгебраїчні многовиди та $\varphi \colon X \to Y$ --- відображення (\textit{не обов'язково морфізм}). Визначимо пару $\left<U,\varphi|_U\right>$, де $U \subset X$ --- відкрита непорожня множина та $\varphi|_U$ --- морфізм. На таких наборах пар визначимо відношення еквівалентності:
+\begin{align*}
+\left<U, \varphi|_U\right> \sim \left<V, \varphi|_V\right> \iff \varphi|_U \equiv \varphi|_V \text{ на } U \cap V.
+\end{align*}
+Тоді клас еквівалентності пар $\left<U,\varphi|_U\right>$ називається \textbf{раціональним відображенням $\varphi \colon X \to Y$}. 
+\end{definition}
+
+Для класу еквівалентності (\textit{точніше кажучи, для транзитивності}) потрібна ось ця лема.
+
+\begin{lemma}
+Нехай $X,Y$ --- алгебраїчні многовиди та $\varphi, \psi \colon X \to Y$ --- морфізми. Припустимо, існує відкрита непорожня підмножина $U \subset X$, для якої $\varphi|_U = \psi|_U$. Тоді $\varphi \equiv \psi$.
+\end{lemma}
+
+\begin{proof}
+Розглянемо добуток $\mathbb{P}^n \times \mathbb{P}^n$, який має структуру проєктивного многовида в $\mathbb{P}^{(n+1)(n+1)-1}$ згідно з вкладенням Сегре. Визначимо відображення $\varphi \times \psi \colon X \to \mathbb{P}^n \times \mathbb{P}^n$, яке буде морфізмом (\textit{згідно з теорії категорії}) (TODO: додати про це). Розглянемо діагональ $\Delta = \{ P \times P \mid P \in \mathbb{P}^n \}$, причому $\Delta \subset \mathbb{P}^n \times \mathbb{P}^n$ буде замкненою, оскільки після вкладення Сегре одержимо $\Delta = Z(\{x_i y_j - x_j y_i\}$. Крім того, за припущенням леми $\varphi \times \psi (U) \subset \Delta$. Проте $U$ --- щільна та $\Delta$ --- замкнена, тож якщо взяти замикання з двох сторін, одержимо $\varphi \times \psi(X) \subset \Delta$ --- отримали бажане.
+\end{proof}
+
+\begin{definition}
+Раціональне відображення $\varphi \colon X \to Y$ називають \textbf{домінуючим}, якщо
+\begin{center}
+існує $\left<U,\varphi|_U\right>$ таким чином, що $\varphi|_U(U)$ буде щільною в $Y$.
+\end{center}
+\end{definition}
+
+\begin{remark}
+Насправді, якщо існує $\left<U,\varphi|_U\right>$, для якого $\varphi|_U(U)$ буде щільною в $Y$, то тоді й для будь-якого іншого представника $\left<V, \varphi|_V \right>$ щільною в $Y$ буде також $\varphi|_V(V)$.
+\bigskip \\
+Дійсно, для початку $U,V$ --- відкриті щільні, тому $U \cap V$ --- щільна. Крім того, $\varphi|_V (U \cap V) = \varphi|_U (U \cap V)$ щільна в $\varphi|_U(U)$. Оскільки $\varphi|_U(U)$ щільна в $Y$, то звідси $\varphi|_V(U \cap V)$ --- щільна в $Y$. Нарешті, $\varphi|_V(V) \supset \varphi|_V(U \cap V)$, а взявши замикання з двох сторін, отримаємо $\Cl \varphi|_V(V) \supset Y$, тобто $\varphi|_V(V)$ --- щільна також в $Y$.
+\end{remark}
+
+Створимо категорію \vardom, об'єктами яких будуть алгебричні многовиди, а відображеннями між ними будуть домінуючі раціональні відображення (\textit{вправа: довести, що композиція працює}).
+
+\begin{definition}
+Ізоморфізмом в категорії \vardom називають \textbf{біраціональним відображенням}. Алгебричні многовиди $X,Y$ називаються \textbf{біраціонально еквівалентними}, якщо існує між ними біраціональне відображення $\varphi \colon X \to Y$. 
+\end{definition}
+
+\begin{theorem}
+Справедлива ось така еквівалентність категорії, де стрілки змінюють напрямок:
+\begin{center}
+\vardom $\equiv$ \fgFieldExt .
+\end{center}
+Більш розгорнуто, для будь-яких двох алгебричних многовидів $X,Y$ існує бієкція
+\begin{center}
+$\left\{ \substack{\text{домінуючі раціональні} \\ \text{відображення $X \to Y$}} \right\} \leftrightarrow \left\{  \substack{\text{гомоморфізм $K(Y) \to K(X)$} \\ \text{$k$-алгебр}} \right\}$
+\end{center}
+\end{theorem}
+
+Перш ніж довести теорему, нам будуть необхідні наступні леми.
+
+\begin{lemma}
+Нехай $Y \subset \mathbb{A}^n$ --- гіперповерхня, задана многочленом $f(x_1,\dots,x_n) = 0$. Тоді
+\begin{align*}
+\mathbb{A}^n \setminus Y \cong H,
+\end{align*}
+де $H \subset \mathbb{A}^{n+1}$ --- гіперповерхня, задана рівнянням $x_{n+1} f(x_1,\dots,x_n) = 1$. Внаслідок чого $\mathbb{A}^n \setminus H$ буде афінним многовидом, причому
+\begin{align*}
+A(\mathbb{A}^n \setminus Y) = A_f.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Визначимо функцію $\varphi \colon H \to \mathbb{A}^n$ ось так:
+\begin{align*}
+\varphi(a_1,\dots,a_n,a_{n+1}) = (a_1,\dots,a_n).
+\end{align*}
+Воно задає морфізм, якому ставиться в відповідність гомоморфізм $A(\mathbb{A}^n) \to \mathcal{O}(H)$, тобто $A \to A_f$ (TODO: чому $A_f$?). Побудуємо також $\varphi^{-1} \colon \mathbb{A}^n \setminus Y \to H$ ось так:
+\begin{align*}
+\varphi^{-1}(a_1,\dots,a_n) = \left( a_1,\dots,a_n, \dfrac{1}{f(a_1,\dots,a_n)} \right).
+\end{align*}
+Покординатним чином можна довести, що $\varphi^{-1}$ також морфізм. Тоді $\varphi \colon H \to \mathbb{A}^n \setminus Y$ задає ізоморфізм. Внаслідок чого знову за відповідністю $A(\mathbb{A}^n \setminus Y) = A_f$. 
+\end{proof}
+
+\begin{proposition}
+Будь-який алгебричний многовид має базу
+\begin{align*}
+\mathcal{B} = \{ \text{відкриті афінні підмножини} \}.
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+Нехай $Y$ --- алгебричний многовид. Хочемо довести, що для будь-якого $P \in Y$ та будь-якого відкритого $U \ni P$ існує відкритий афінний окіл $V$ точки $P$, щоб $V \subset U$.\\
+Оскільки $U$ є також алгебричний многовидом, то припустимо, що $U = Y$.\\
+Будь-який алгебричний многовид покритий квазі-афінними многовидами, тому припустимо, що $Y$ --- квазі-афінний в $\mathbb{A}^n$.\\
+Нехай $Z = \Cl Y \setminus Y$, який замкнений в $\mathbb{A}^n$. Нехай $\mathcal{a} \subset A$ --- ідеал для $Z$. Оскільки $Z$ замкнена та $P \notin Z$, то знайдемо $f \in \mathcal{a}$, для якого $f(P) \neq 0$. Нехай тоді $H$ --- гіперповерхня, що задається $f = 0$ на $\mathbb{A}^n$. Звідси $Z \subset H$, проте $P \notin H$. Значить, $P \in Y \setminus (Y \cap H)$, остання множина відкрита в $Y$.\\
+Також $Y \setminus (Y \cap H)$ є замкненою в $\mathbb{A}^n \setminus H$, що є афінним за попередньою лемою. Покладемо $V = \mathbb{A}^n \setminus H \ni P$ та одержимо $V \subset \mathbb{A}^n = U$. 
+\end{proof}
+
+\begin{proof}
+\rightproof Нехай $\varphi \colon X \to Y$ --- домінуюче раціональне відображення, клас представника якого $\left<U, \varphi|_U\right>$. Нехай $f \in K(Y)$ буде раціональною функцією, представлена класом $\left<V,f\right>$, де $V \subset Y$ відкрита та $f \colon V \to k$ --- регулярна. Оскільки $\varphi_U(U)$ щільна в $Y$, то звідси $\emptyset \neq \varphi^{-1}_U(V) \subset X$. Тоді $f \circ \varphi|_U \colon \varphi_U^{-1}(V) \to k$ буде також регулярною. Отже, знайшли раціональну функцію на $X$, а тому побудували гомоморфізм $K(Y) \to K(X)$.
+\bigskip \\
+\leftproof Нехай $\theta \colon K(Y) \to K(X)$ --- гомоморфізм $k$-алгебр. За попереднім твердженням $Y$ накрита афінними многовидами, тому надалі припустимо, що $Y$ --- сам афінний.\\
+Нехай $y_1,\dots,y_n$ є твірними $A(Y)$ як $k$-алгебра, тоді $\theta(y_1),\dots,\theta(y_n)$ будуть раціональними функціями на $X$, тому знайдемо відкриту $U \subset X$, де $\theta(y_1),\dots,\theta(y_n)$ регулярні на $U$. Звідси $\theta$ визначає ін'єктивний гомоморфізм $A(Y) \to \mathcal{O}(Y)$, якому відповідає морфізм $\varphi \colon U \to Y$, а тоді пара $\left<U,\varphi|_U\right>$ задає домінуючу раціональну функцію $X \to Y$.
+\bigskip \\
+Категоріальну частину поки пропущу (TODO: дописати).
+\end{proof}
+
+\begin{corollary}
+Для будь-яких двох алгебричних многовидів $X,Y$ маємо наступне:
+\begin{center}
+$X \cong_{\text{birat}} Y \iff \exists \substack{ U \subset X \\ V \subset Y }$ відкриті так, що $U \cong V \iff K(X) \cong_{\text{$k$-alg}} K(Y)$. 
+\end{center}
+(TODO: в другому в якому сенсі ізоморфізм?)
+\end{corollary}
+
+\begin{proof}
+$\boxed{\text{ii)} \Rightarrow \text{ii)}}$ (\textit{випливає з означення функціонального поля}). \\
+$\boxed{\text{iii)} \Rightarrow \text{i)}}$ (\textit{випливає з попередньої теореми}).\\
+$\boxed{\text{i)} \Rightarrow \text{ii)}}$ Нехай $\varphi \colon X \to Y$ та $\psi \colon Y \to X$ раціональні відображення, які обернені один одному. Беремо представників $\left<U,\ \varphi_U\right>$ та $\left<V,\psi|_V\right>$, тоді отримаємо представника $\left< \varphi^{-1}(V), \psi \circ \varphi\right>$, але тоді звідси $\psi \circ \varphi = \id$ на множині $\varphi^{-1}(V)$. Аналогічно $\varphi \circ \psi = \id$ на множині $\psi^{-1}(V)$. Нарешті, оберемо $\tilde{U} = \phi^{-1}(\psi^{-1}(U)) \subset X$ та $\tilde{V} = \psi^{-1}(\varphi^{-1}(V)) \subset Y$, які відкриті та ізоморфні.
+\end{proof}
+
+\subsubsection{Дослідження з позиції розширення полів}
+(TODO:?)
+
+\subsection{Роздуття}
+Спочатку опишемо процес роздуття $\mathbb{A}^n$ в точці $O = (0,\dots,0)$. Розглянемо добуток $\mathbb{A}^n \times \mathbb{P}^{n-1}$, який буде квазі-проєктивним многовидом. Для зручності позначимо $x_1,\dots,x_n$ за афінні координати $\mathbb{A}^n$ та $y_1,\dots,y_n$ за однорідні координати $\mathbb{P}^{n-1}$. Тоді всі замкнені підмножини $\mathbb{A}^n \times \mathbb{P}^{n-1}$ визначені многочленами з $k[x_1,\dots,x_n,y_1,\dots,x_n]$, які однорідні лише відносно $y_1,\dots,y_n$.\\
+Роздуттям $\mathbb{A}^n$ в точці $O$ називають замкнену підмножину $X \subset \mathbb{A}^n \times \mathbb{P}^{n-1}$, яке задається ось так:
+\begin{align*}
+X = Z(\{ x_i y_j - x_j y_i \mid i,j = 1,\dots,n \}).
+\end{align*}
+Можемо визначити морфізм $\varphi \colon X \to \mathbb{A}^n$ так, щоб комутувала діаграма нижче:
+\begin{figure}[H]
+\centering
+\begin{tikzcd}
+X \arrow[hook,r] \arrow[rd,"\varphi"] & \mathbb{A}^n \times \mathbb{P}^{n-1} \arrow[d,"\pi"] \\
+& \mathbb{A}^n
+\end{tikzcd}
+\end{figure}
+\begin{lemma}
+Нехай $P \in \mathbb{A}^n \setminus \{0\}$. Тоді $\varphi^{-1}(P)$ складається лише з однієї точки. Внаслідок чого $X \setminus \varphi^{-1}(O) \cong \mathbb{A}^n \setminus \{0\}$.
+\end{lemma}
+
+\begin{proof}
+Нехай $P = (a_1,\dots,a_n)$ ненульова точка, тобто якийсь $a_i \neq 0$. Нехай $P \times (y_1,\dots,y_n) \in \varphi^{-1}(P)$, тоді для будь-якого $j$ ми маємо $y_j = \frac{a_j}{a_i} y_i$. Покладемо $y_i = a_i$, тоді інші $y_j$ будуть уже визначеними. В просторі $\mathbb{P}^{n-1}$ точка $(y_1,\dots,y_n)$ уже визначена однозначно.\\
+Нарешті, оберненим до $\varphi \colon X \setminus \varphi^{-1}(O) \to \mathbb{A}^n \setminus \{0\}$ буде відображення $\psi \colon \mathbb{A}^n \setminus \{0\} \to X \setminus \varphi^{-1}(O)$, що задається ось так:
+\begin{align*}
+\psi(P) = (a_1,\dots,a_n) \times (a_1,\dots,a_n).
+\end{align*}
+Одержали бажаний ізоморфізм.
+\end{proof}
+
+\begin{lemma}
+$\varphi^{-1}(O) \cong \mathbb{P}^{n-1}$.\\
+\textit{Вказівка: подивитися, з чого складається прообраз, тоді все стане ясно}.
+\end{lemma}
+
+\begin{lemma}
+Існує бієкція між двома множинами:
+\begin{figure}[H]
+\centering
+\begin{tikzcd}
+\varphi^{-1}(O) \arrow[r] & \{ \text{прямі в $\mathbb{A}^n$, що проходять через точку $O$} \} \arrow[l].
+\end{tikzcd}
+\end{figure}
+\end{lemma}
+
+\begin{proof}
+(TODO: дорозібрати)
+\end{proof}
+
+\begin{lemma}
+$X$ --- незвідний.
+\end{lemma}
+
+\begin{proof}
+(TODO: дорозібрати)
+\end{proof}
+\end{document}

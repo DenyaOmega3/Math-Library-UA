@@ -17,6 +17,8 @@
 \RequirePackage{enumitem}
 \RequirePackage{babel}
 \RequirePackage{pgfplots}
+\RequirePackage{mathtools}
+\RequirePackage{extpfeil}
 \RequirePackage{tikz}
 \RequirePackage{graphicx}
 \RequirePackage{caption}
@@ -33,6 +35,8 @@
 \RequirePackage{multicol}
 \RequirePackage{pdfpages}
 \RequirePackage{bm}
+\RequirePackage{adjustbox}
+
 
 
 
@@ -148,13 +152,19 @@
 \newcommand{\eqbydef}{\overset{\text{def.}}{=}}
 \newcommand{\rightproof}{$\boxed{\Rightarrow}$ }
 \newcommand{\leftproof}{$\boxed{\Leftarrow}$ }
-%\newcommand{\symdif}{\,\triangle\,} % symmetric difference
+\newcommand{\symdif}{\,\triangle\,} % symmetric difference
+\newcommand\homom[2]{\text{Hom}({#1},{#2})}
+\newcommand{\Cunif}{C_{\text{unif}}}
+\def\departial#1#2{\dfrac{\partial {#1}}{\partial {#2}}}
+\def\seconddepartial#1#2#3{\ifthenelse{\equal{#2}{#3}}{\dfrac{\partial^2 {#1}}{\partial {#2}^2}}{\dfrac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}}
+\newcommand{\tounif}{^\rightarrow_\rightarrow}
+
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}} %remove later
 %\newcommand\homom[2]{\text{Hom}({#1},{#2})}
 %\newcommand\Orb{\text{Orb}}
 %\newcommand\Stab{\text{Stab}}
 %\newcommand\ncl{\text{ncl}}
-%\newcommand\End[1]{\text{End}({#1})}
-%\newcommand\Aut[1]{\text{Aut}({#1})}
+
 
 
 % LIST OF DECLARED MATH OPERATORS
@@ -182,6 +192,7 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\ncl}{ncl}
 \DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Fix}{Fix}
 
 % field theory
 \DeclareMathOperator{\charac}{char}
@@ -193,4 +204,17 @@
 % TOPOLOGY
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Homeo}{Homeo}
 
+
+% COMPLEX ANALYSIS
+\DeclareMathOperator{\Ln}{Ln}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator*{\res}{res}
+
+% ALGEBRAIC GEOMETRY
+\DeclareMathOperator{\divisor}{div}
+
+% CATEGORY THEORY
+\newcommand{\vardom}{$\mathbf{Var}_{\mathrm{dom}}^{\mathrm{rat}}$}
+\newcommand{\fgFieldExt}{$\mathbf{Field}_{/k}^{\mathrm{f.g.}}$}

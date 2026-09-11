@@ -1544,5 +1544,167 @@ $a_1b_1 + a_2b_2 \leq \sqrt{a_1^2+a_2^2} \sqrt{b_1^2+b_2^2}$
 
 \section{Послідовності, прогресії, суми}
 \textit{Це все досконально знаю.}
+\newpage
+
+{\Huge \textbf{Клас десятий}}
+\section{Тригонометричні функції}
+\subsection{Період функції}
+\begin{definition}
+Функція $f$ називається \textbf{періодичною}, якщо
+\begin{align*}
+\exists T \neq 0: \forall x \in D(f): f(x) = f(x+T) = f(x-T).
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Рівність $f(x) = f(x+T)$ означає, що $x \in D(f) \implies x+T \in D(f)$.
+\end{remark}
+
+\begin{proposition}[Прості властивості]
+Нехай $T$ --- період функції $y = f(x)$. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item $-T$ --- період функції $f$;
+\item $nT$ --- період функції $f$ для кожного $n \in \mathbb{N}$;
+\item $\dfrac{T}{k}$ при $k \neq 0$ --- період функції $y = f(kx+b)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+\textbf{Головним періодом} функції $f$ називають його найменший додатний період, якщо такий існує.
+\end{definition}
+
+\begin{theorem}
+Функція $f(x) = \sin x$ має головний період $2\pi$. 
+\end{theorem}
+
+\begin{proof}
+Нехай $T$ --- період функції $f$, тоді маємо
+\begin{align*}
+\sin (x+T) = \sin x
+\end{align*}
+для кожного $x \in D(f)$, зокрема при $x = \dfrac{-T}{2}$. Звідси одержимо
+\begin{align*}
+\sin \dfrac{T}{2} = - \sin \dfrac{T}{2} \implies \sin \dfrac{T}{2} = 0 \implies \dfrac{T}{2} = \pi k.
+\end{align*}
+Звідси $T = 2\pi k$ при $k \in \mathbb{Z}$. Таким чином, будь-який період функції $f$ має період $2\pi k$, серед яких $2\pi$ є найменшим додатним.
+\end{proof}
+
+\begin{remark}
+Аналогічно доводиться, що $\cos x$ має головний період $2 \pi$, а функції $\tg x,\ \ctg x$ мають головний період $\pi$.
+\end{remark}
+
+\begin{example}
+Не кожна періодична функція має період, тут будуть кілька прикладів:
+\begin{itemize}
+\item $f(x) = const$ --- періодична, причому кожне число $T \in \mathbb{R} \setminus \{0\}$ буде періодом, тому найменшого додатного нема.
+
+\item $f(x) = \mathfrak{D}(x)$ --- періодична, причому кожне число $T \in \mathbb{Q} \setminus \{0\}$ буде періодом, тому найменшого додатного нема.
+\end{itemize}
+
+\begin{theorem}
+Нехай $f$ має головний період $T$. Тоді будь-який період функції $f$ має вигляд $nT$ при $n \in \mathbb{Z} \setminus \{0\}$.
+\end{theorem}
+
+\begin{proof}
+!Припустимо, що $T_1$ --- період, що не має вигляду $nT$. Тоді існує таке $n \in \mathbb{Z}$ та $\alpha \in (0,1)$, для яких $T_1 = nT + \alpha T$. Тоді $\alpha T$ буде періодом функції $f$, оскільки
+\[
+f(x + \alpha T) = f(x + nT + \alpha T) = f(x + T_1) = f(x).
+\]
+Аналогічно $f(x-\alpha T) = f(x)$. Проте $\alpha T < T$, де $T$ --- найменший додатний період --- отримали суперечність!
+\end{proof}
+\end{example}
+
+\begin{example}
+Функція $f(x) = \dfrac{1}{x-2}$ неперіодична.\\
+!Припустимо, що $f$ має період $T \neq 0$. Тоді точка $x_0 = 2-T \in D(f)$, внаслідок чого $x_0+T \in D(f)$, але $x_0+T=2$, тобто $2 \in D(f)$ --- суперечність!
+\end{example}
+
+\begin{definition}
+Числа $a,b > 0$ називаються \textbf{сумірними}, якщо
+\begin{align*}
+\dfrac{a}{b} \in \mathbb{Q}.
+\end{align*}
+Інакше такі числа є \textbf{несумірними}.
+\end{definition}
+
+\begin{definition}
+Число $T$ називається \textbf{спільним періодом функції $f,g$}, якщо
+\begin{center}
+$f,g$ обидва мають період $T$.
+\end{center}
+\end{definition}
+
+\begin{proposition}
+Нехай $T_f,T_g$ --- період функцій $f,g$, причому числа $T_f,T_g$ --- сумірні. Тоді $f,g$ мають спільний період.
+\end{proposition}
+
+\begin{proof}
+За умовою $\dfrac{T_f}{T_g} = \dfrac{m}{n}$ при $m,n \in \mathbb{N}$. Зауважимо, що $T_f n = T$ --- період функції $f$, а також $T_g m = T$ --- період функції $g$. Знайшли спільний період.
+\end{proof}
+
+\begin{example}
+Знайти період функції $f(x) = \cos \dfrac{6x}{5} + \tg \dfrac{6x}{7}$.\\
+Перша та друга функції мають період $T_1 = \dfrac{5\pi}{3},\ T_2 = \dfrac{7\pi}{6}$. Оскільки $T_1,T_2$ --- сумірні, то звідси $f,g$ мають спільний період $T = 7T_1 \overset{\text{або}}{=} 10T_2$. Звідси отримаємо $T_f = \dfrac{35\pi}{3}$. 
+\end{example}
+
+Постає питання: чи завжди сума періодичних функцій --- періодична?
+
+\begin{example}
+Нехай $f(x) = \sqrt{-\sin^2 x}$ та $g(x) = \sqrt{-\cos^2 x}$. Дані функції --- періодичні, однак $f(x)+g(x)$ буде ніде не визначеною функцією, тому неперіодична.
+\end{example}
+
+Цей приклад трошки нецікавий, тому накладемо обмеження, щоб сума функцій була хоч десь визначеною.
+
+\begin{remark}
+Якщо існують сумірні періоди, то так, сума буде періодичною.
+\end{remark}
+
+\begin{example}
+Розглянемо $f(x) = \cos x$ та $g(x) = \cos (\sqrt{2}x)$, що мають період $T_f = 2\pi,\ T_g = \dfrac{2\pi}{\sqrt{2}}$, причому цього разу вони несумірні. Доведемо, що $f(x) + g(x)$ --- неперіодична.
+\bigskip \\
+!Припустимо, що $h$ має період $T \neq 0$. Тоді $h(x+T) = h(x)$, тобто
+\begin{align*}
+\cos (x+T) + \cos(\sqrt{2}(x+T)) = \cos x + \cos(\sqrt{2}x)
+\end{align*}
+для всіх $x \in \mathbb{R}$. Зокрема при $x = 0$ одержимо
+\begin{align*}
+\cos T + \cos (\sqrt{2} T) = 2.
+\end{align*} 
+Оскільки $\cos T \leq 1$ та $\cos (\sqrt{2}T) \leq 1$, то звідси одержимо
+\begin{align*}
+\begin{cases}
+\cos T = 1; \\
+\cos (\sqrt{2}T) = 1
+\end{cases} \implies  \begin{cases} T = 2\pi m,\ m \in \mathbb{Z}; \\ T = \dfrac{2\pi n}{\sqrt{2}},\ n \in \mathbb{Z} \end{cases}
+\end{align*}
+Зокрема звідси отримаємо $\sqrt{2} = \dfrac{n}{m}$ для деяких $n,m \in \mathbb{N}$ --- суперечність!
+\end{example}
+
+\begin{example}
+Якщо дві функції мають несумірні періоди, то не обов'язково, що сума не буде періодичною. Зокрема розглянемо функції:
+\begin{align*}
+f(x) = \begin{cases} b, & x = a+b\sqrt{2}, \\ 0, & x \neq a+b\sqrt{2} \end{cases}, \qquad g(x) = \begin{cases} a, & x = a+b\sqrt{2}, \\ 0, & x \neq a+b\sqrt{2}. \end{cases}
+\end{align*}
+Числа $a,b \in \mathbb{R}$. Зауважимо, що $T_f = 1$ та доведемо, що цей період --- головний.
+!Припустимо, що $f$ має період $T_1 \in (0,1)$. Виникають два варіанти:
+\begin{enumerate}[wide=0pt,label={\Roman*.}]
+\item $T_1 \in \mathbb{Z}[\sqrt{2}]$.\\
+Звідси $T_1 = a+b\sqrt{2}$ при $a,b \in \mathbb{Z}$. Обов'язково тут $b \neq 0$ (\textit{інакше $T_1 \in \mathbb{Z}$}). Тоді умова $f(x) = f(x+T_1)$ не виконується при $x = 0$, оскільки $f(0) = 0$ та $f(0+T_1) = b$.
+
+\item $T_1 \notin \mathbb{Z}[\sqrt{2}]$. Тоді умова $f(x) = f(x+T_1)$ не виконується при $x = \sqrt{2}$, оскільки $f(\sqrt{2}) = 1$ та $f(\sqrt{2}+T_1) = 0$.
+\end{enumerate}
+У будь-якому випадку одержали суперечність!\\
+Аналогічно можна довести, що $T_g = \sqrt{2}$. Уже видно, що ці періоди несумірні.\\
+Періодами функції $f$ будуть числа $n \in \mathbb{Z} \setminus \{0\}$. Періодами функції $g$ будуть числа $\sqrt{2}k,\ k \in \mathbb{Z} \setminus \{0\}$. Проте,
+\begin{align*}
+h(x) = f(x) + g(x) = \begin{cases} a+b, & x = a+b\sqrt{2}, \\ 0, & x \neq a+b\sqrt{2}  \end{cases}
+\end{align*}
+має період $T_h = \sqrt{2}-1$.
+\end{example}
+
+\begin{theorem}
+Нехай $f,g \in C(\mathbb{R})$ та мають несумірні періоди. Тоді $f+g$ --- неперіодична.\\
+\textit{Без доведення}.
+\end{theorem}
 
 \end{document}

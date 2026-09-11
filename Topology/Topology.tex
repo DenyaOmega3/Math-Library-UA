@@ -780,8 +780,9 @@ $\Int A$ -- найбільша відкрита множина, що місти�
 \end{align*}
 \end{proposition}
 
+\subsection{Щільні підмножини}
 \begin{definition}
-Нехай $(X,\tau)$ -- топологічний простір.\\
+Нехай $(X,\tau)$ --- топологічний простір.\\
 Підмножина $A \subset X$ називаються \textbf{щільною} в $X$, якщо
 \begin{align*}
 \Cl A = X.
@@ -789,11 +790,45 @@ $\Int A$ -- найбільша відкрита множина, що місти�
 \end{definition}
 
 \begin{example}
-$\mathbb{Q}$ -- щільна в $\mathbb{R}$ відносно стандартної топології.
+$\mathbb{Q}$ --- щільна в $\mathbb{R}$ відносно стандартної топології.
+\end{example}
+
+\begin{proposition}[Еквівалентні означення]
+Нехай $(X,\tau)$ --- топологічний простір та $A \subset X$. Тоді
+\begin{center}
+$A$ --- щільна $\iff$ для будь-якої точки $x \in X$ та відкритого окола $U_x$ маємо $A \cap U_x \neq \emptyset$.
+\end{center}
+\textit{Впливає з іншого визначення замикання}.
+\end{proposition}
+
+\begin{proposition}
+Нехай $A,B \subset X$ --- щільні підмножини, одна з яких відкрита. Тоді $A \cap B$ --- щільна.
+\end{proposition}
+
+\begin{proof}
+Не втрачаючи загальності, вважатимемо, що $B$ --- відкрита множина.\\
+!Припустимо, що існує точка $x \in X$ та окіл $W_x$, для якого $A \cap B \cap W_x = \emptyset$. Тоді $A \subset X \setminus (B \cap W_x)$, а тому беручи замикання з двох сторін, $\Cl A \subset \Cl (X \setminus (B \cap W_x))$, але тоді $X \subset X \setminus (B \cap W_x)$ в силу щільності $A$ та замкненості $X \setminus (B \cap W_x)$. Внаслідок чого $B \cap W_x = \emptyset$, проте $B$ також щільна --- суперечність!
+\end{proof}
+
+\begin{example}
+Зокрема $\mathbb{Q}$ та $\mathbb{R} \setminus \mathbb{Q}$ --- щільні та обидва не відкриті підмножини. При цьому $\mathbb{Q} \cap (\mathbb{R} \setminus \mathbb{Q}) = \emptyset$, тому перетин перестає бути щільною.
 \end{example}
 
 \begin{proposition}
-Нехай $f,g \colon X \to Y$ -- неперервні відображення та $Y$ -- гаусдорфів. Нехай існує щільна множина $A \subset X$, де
+Нехай $A \subset B \subset C$ так, що $A$ щільна в $B$, а $B$ щільна в $C$. Тоді $A$ щільна в $C$.\\
+\textit{Вправа: довести}.
+\end{proposition}
+
+\begin{proposition}
+Нехай $f \colon X \to Y$ --- неперервне відображення та $A \subset X$ --- щільна. Тоді $f(A)$ --- щільна в $f(X)$, тобто $\Cl f(A) = f(X)$.
+\end{proposition}
+
+\begin{proof}
+Досить розглянути випадок, коли $f \colon X \to Y$ --- сюр'єктивне. Оскільки $f$ --- неперервне, то $f (\Cl A) \subset \Cl f(A)$, проте в силу щільності $A$ та сюр'єктивності $f$ одержимо $Y \subset \Cl f(A)$, тобто тоді $\Cl f(A) = Y$, тобто $f(A)$ --- щільна.
+\end{proof}
+
+\begin{proposition}
+Нехай $f,g \colon X \to Y$ --- неперервні відображення та $Y$ --- гаусдорфів. Нехай існує щільна множина $A \subset X$, де
 \begin{align*}
 f(a) = g(a),\quad \forall a \in A.
 \end{align*}
@@ -3406,6 +3441,129 @@ $A \in \mathcal{F} \iff \forall F \in \mathcal{F}: A \cap F \neq \emptyset$.
 \begin{remark}
 Лему трубки можна було використати в теоремі Тіхонова, коли мали дві компактні множини.
 \end{remark}
+
+\subsection{Худі множини, теорема Бера}
+\begin{definition}
+Нехай $X$ --- топологічний простір. Підмножина $A \subset X$ називається \textbf{худою підмножиною} (або часто кажуть \textbf{підмножина першої категорії}), якщо
+\begin{center}
+$A = \displaystyle\bigcup_{i=1}^\infty N_i$, причому всі $N_i$ ніде не щільні.
+\end{center}
+Інакше $A \subset X$ називається \textbf{нехудою підмножиною} (тут часто кажуть \textbf{підмножина другої категорії}).
+\end{definition}
+
+\begin{definition}
+Нехай $X$ --- топологічний простір. Підмножина $A \subset X$ називається \textbf{кохудою підмножиною} (або часто кажуть \textbf{залишковою підмножиною}), якщо
+\begin{center}
+$X \setminus A$ --- худа підмножина.
+\end{center}
+\end{definition}
+
+\begin{remark}
+Можна миттєво переписати означення. Підмножина $A \subset X$ називається кохудою підмножиною, якщо
+\begin{center}
+$A = \displaystyle\bigcap_{i=1}^\infty N_i$, причому всі $\Int N_i$ щільні.
+\end{center}
+\end{remark}
+
+\begin{proposition}[Елементарні властивості]
+Нехай $X$ --- топологічний простір. Тоді:
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Якщо $A$ --- ніде не щільна, то $A$ --- худа підмножина.
+\item Якщо $X$ --- худа, то будь-яка підмножина $A \subset X$ буде худою та кохудою.
+\item Якщо $X$ --- нехуда, то будь-яка надмножина $Y \supset X$ буде нехудою.
+\item Якщо $X$ --- нехуда, то не існує підмноижни $A \subset X$, яка худа та кохуда (\textit{внаслідок чого, якщо $A$ кохуда, то $A$ нехуда}).
+\end{enumerate}
+\end{proposition}
+
+\begin{example}
+Якщо $X$ --- нехуда та $A$ нехуда підмножина, то необов'язково $A$ бути кохудою.
+\bigskip \\
+Наприклад, $X = [0,2]$, яка сама нехуда. Підмножина $A = [0,1]$ також нехуда, однак не кохуда, оскільки $X \setminus A = (1,2]$, яка нехуда.
+\end{example}
+
+\begin{proposition}
+Нехай $X$ --- зліченна $T_1$-простір без ізольованих точок. Тоді $X$ --- худа.\\
+\textit{Вправа: довести}.
+\end{proposition}
+
+\begin{example}
+Зокрема звідси $\mathbb{Q}$ буде худою як підмножина $\mathbb{R}$, так і в індукованому підпросторі.
+\end{example}
+
+\begin{proposition}
+Нехай $X$ --- топологічний простір, що містить ізольовану точку. Тоді $X$ --- нехуда.\\
+\textit{Вправа: довести}.
+\end{proposition}
+
+\begin{example}
+Зокрема будь-який дискретний простір буде нехудою.
+\end{example}
+
+\subsection{Простори Бера}
+\begin{definition}
+Топологічний простір $X$ називається \textbf{простором Бера}, якщо
+\begin{center}
+будь-яка худа множина має порожню внутрішність.
+\end{center}
+\end{definition}
+
+\begin{remark}
+Взагалі-то кажучи, всього шість еквівалентних означень, коли в нас простір Бера.
+\begin{enumerate}[nosep,wide=0pt,label={\arabic*)}]
+\item Будь-який зліченний перетин відкритих щільних множин є щільною.
+\item Будь-яке зліченне об'єднання замкнених множин з порожньою внутрішністю має порожню внутрішність.
+\item Будь-яка худа підмножина має порожню внутрішність.
+\item Будь-яка непорожня відкрита підмножина нехуда.
+\item Будь-яка кохуда підмножина щільна.
+\item Якщо зліченне об'єднання замнкних множин має внутрішню точку, то деяка замкнена множина (із того об'єднання) має внутрішню точку.
+\end{enumerate}
+Доведення еквівалентних означень наводиться діаграмою.
+\begin{figure}[H]
+\centering
+\begin{tikzcd}[row sep=4em, column sep=12em]
+1) 
+  \arrow[r, shift left=1.2ex, "\text{розглянути внутрішньості}"] 
+  \arrow[d, leftrightarrow, "\text{доповнення}"'] 
+  & 
+5) 
+  \arrow[l, shift left=1.2ex, "\text{застосувати для відкритих множин}"] 
+  \arrow[d, leftrightarrow, "\text{доповнення}"] 
+\\
+2) 
+  \arrow[r, shift left=1.2ex, "\text{розглянути замикання}"] 
+  \arrow[d, leftrightarrow, "\text{контрапозитивне}"'] 
+  & 
+3) 
+  \arrow[l, shift left=1.2ex, "\text{застосувати для замкнених множин}"] 
+  \arrow[d, leftrightarrow, "\text{від супротивного}"] 
+\\
+6) & 4)
+\end{tikzcd}
+\end{figure}
+\end{remark}
+
+\begin{proposition}
+Нехай $X$ --- простір Бера. Тоді $X$ --- нехудий.\\
+\textit{Вправа: довести}.
+\end{proposition}
+
+\begin{theorem}[Категоріальна теорема Бера]
+Існують дві теореми:
+\begin{itemize}[wide=0pt]
+\item Нехай $X$ --- локально компактний гаусдорфів простір. Тоді $X$ --- простір Бера.
+
+\item Нехай $X$ --- повний метричний простір. Тоді $X$ --- простір Бера.
+\end{itemize}
+(TODO: написати доведення)
+\end{theorem}
+
+\begin{example}
+Зокрема $\mathbb{Q}$ відомо, що худа, проте не є простором Бера.
+\end{example}
+
+\begin{example}
+Нехай $C$ --- канторова множина $\mathbb{R}$. Вона ніде не щільна, тому худа як підмножина. Однак сама по собі нехуда в індукованому підпросторі, тому що це --- повний метричний простір.
+\end{example}
 \newpage
 
 \section{$CW$-complex}

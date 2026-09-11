@@ -5,6 +5,8 @@
 %\iffalse
 \includepdf[scale=1]{preview.jpg}
 %\fi
+
+\hypersetup{linkcolor=black}
 \tableofcontents
 \newpage
 
@@ -104,6 +106,7 @@
 	\end{proposition}
 	
 	\begin{proof}
+	\leavevmode
 	\begin{enumerate}[topsep=0pt, wide=0pt, label={\arabic*)}]
 	\item !Припустимо, що існує другий нуль $\tilde{0} \in L$, для якого
 	\[
@@ -136,7 +139,6 @@
 	\]
 	\end{enumerate}
 	\end{proof}
-
 	
 	\begin{example}
 	Задамо множину $L = \mathbb{R}^2$, на якій визначені операції:
@@ -343,6 +345,7 @@
 	\end{proposition}
 	
 	\begin{proof}
+	\leavevmode
 	\begin{enumerate}[topsep=-0pt, wide=0pt, label={\arabic*)}]
 	\item Нехай $\{x_{j_1} \dots, x_{j_k}\}$ --- л.з. підсистема, тоді існують $\alpha_1, \dots, \alpha_k$, не всі нульові, для яких 
 	\[
@@ -402,6 +405,7 @@
 	\end{proposition}
 	
 	\begin{proof}
+	\leavevmode
 	\begin{enumerate}[topsep=0pt, wide=0pt, label={\arabic*)}]
 	\item \textit{наслідок властивості 1) попереднього твердженння.}
 	\item В обидва боки доведення.\\
@@ -461,7 +465,9 @@
 	\end{proposition}
 	
 	\begin{proof}
-	i. \textit{Випадок, коли система $\{x_1, \dots, x_n\}$ --- л.н.з.}\\	
+	\leavevmode
+	\begin{enumerate}[topsep=0pt, wide=0pt,label={\roman*.}]
+	\item \textit{Випадок, коли система $\{x_1, \dots, x_n\}$ --- л.н.з.}\\	
 	Розглянемо кожне перетворення окремо.
 	\begin{enumerate}[wide = 0pt, label={\Roman*.}]
 	\item Маємо систему $P_{j \leftrightarrow k}\{x_1, \dots, x_j, \dots, x_k \dots, x_n\} = \{x_1, \dots, x_k, \dots, x_j \dots, x_n\}$. Тоді
@@ -487,15 +493,16 @@
 	Тоді автоматично також одержимо $\alpha_j = 0$.
 	\end{enumerate}
 	Отже, л.н.з. система після будь-якого елементарного перетворення залишається л.н.з.
-	\bigskip \\
-	ii. \textit{Випадок, коли система $\{x_1,\dots,x_n\}$ --- л.з.}\\
+	
+	\item \textit{Випадок, коли система $\{x_1,\dots,x_n\}$ --- л.з.}\\
 	!Припустимо, що л.з. система після будь-якого з трьох перетворення стане л.н.з. Тобто система $P_{\textrm{будь-яке}} \{x_1, \dots, x_n\}$ --- л.н.з. Зробимо зворотне перетворення (\textit{щоб повернути систему так, як вона виглядала}) в залежності від того, яке перетворення використовували (I,II або III), тобто:
 	\begin{enumerate}[nosep, wide = 0pt, label={\Roman*.}]
 	\item для $\{x_1,\dots,x_k, \dots, x_j, \dots,x_n\}$ змінити $j$\textit{-ий}, $k$\textit{-ий} елементи місцями (\textit{ще раз застосувати $P_{j \leftrightarrow k})$});
 	\item для $\{x_1, \dots, \lambda x_j, \dots, x_n\}$ помножити на $\dfrac{1}{\lambda}$ $j$\textit{-ий} елемент (\textit{це застосувати $P_{j \to \frac{1}{\lambda} j}$});
 	\item для $\{x_1, \dots, x_j, \dots,  x_k + x_j, \dots, x_n\}$ помножити на $(-1)$ елемент $x_j$, додати $j$\textit{-ий} елемент до елементу $x_k+x_j$, а потім помножити на $(-1)$ елемент $(-x_j)$ (\textit{це буде $P_{j \to (-1)j}$, далі $P_{j \to k+j}$, а потім $P_{j \to (-1)j}$}).
 	\end{enumerate}
-	Отримаємо початкову систему, що має стати л.н.з., згідно з випадком вище. Але ми маємо л.з. за умовою, тому суперечність! \\
+	Отримаємо початкову систему, що має стати л.н.з., згідно з випадком вище. Але ми маємо л.з. за умовою, тому суперечність!
+	\end{enumerate}
 	Отже, л.з. система після елементарного перетворення залишається л.з.
 	\end{proof}
 	
@@ -4649,7 +4656,8 @@ $\mathbb{A} \vec{x} = \vec{b}$ --- сумісна $\iff \vec{b} \in \Im \mathbb{
 % Дії з лінійними просторами (2)
 %\iffalse
 \addtocontents{toc}{\protect\vspace*{0.5cm}}
-\setcounter{section}{2}
+\setcounter{section}{1}
+\section{Дії з лінійними операторами (продовження)}
 \setcounter{subsection}{6}
 \subsection{Побудова матриці лінійного оператора за довільним лінійним оператором між скінченновимірними просторами}
 	Ми вже знаємо, що лінійному оператору $A \colon \mathbb{R}^n \to \mathbb{R}^m$ задається однозначно матриця $\mathbb{A}$, якщо в $\mathbb{R}^n$ маємо канонічний базис $\{\vec{e}_1,\dots,\vec{e}_n \}$.\\
